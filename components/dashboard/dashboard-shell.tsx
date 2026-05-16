@@ -21,6 +21,8 @@ import { cn, formatNumber } from "@/lib/utils";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { TextField } from "@/components/ui/text-field";
+import { Textarea } from "@/components/ui/textarea";
 import { Select } from "@/components/ui/select";
 import { Progress } from "@/components/ui/progress";
 
@@ -341,29 +343,32 @@ export function DashboardShell({ initialData, username }: DashboardShellProps) {
         <section className="grid gap-8 lg:grid-cols-[0.95fr_1.4fr]">
           <div className="space-y-8">
             <Panel title="Create Goal" description="Set up a new farming target.">
-              <div className="mt-4 space-y-4">
-                <Input
+              <div className="mt-6 space-y-6">
+                <TextField
                   label="Goal name"
+                  variant="outlined"
                   value={goalName}
                   onChange={(event) => setGoalName(event.target.value)}
+                  helperText="Give your farming goal a memorable name"
                 />
-                <Input
-                  label="Optional note"
+                <Textarea
+                  label="Description (optional)"
                   value={goalDescription}
                   onChange={(event) => setGoalDescription(event.target.value)}
+                  rows={3}
                 />
                 <Button
-                  className="w-full mt-2"
+                  className="w-full"
                   onClick={handleCreateGoal}
                   disabled={isPending}
                 >
-                  {isPending ? "Saving..." : "Create Goal"}
+                  {isPending ? "Creating..." : "Create Goal"}
                 </Button>
               </div>
             </Panel>
 
             <Panel title="Add Requirement" description="Attach materials to a goal.">
-              <div className="mt-4 space-y-4">
+              <div className="mt-6 space-y-6">
                 <Select
                   label="Select Goal"
                   value={selectedGoalId}
@@ -380,20 +385,22 @@ export function DashboardShell({ initialData, username }: DashboardShellProps) {
                   onChange={setSelectedMaterialId}
                   options={data.materials.map((material) => ({ label: material.name, value: material.id }))}
                 />
-                <Input
+                <TextField
                   label="Required Quantity"
+                  variant="outlined"
                   type="number"
                   min={0}
                   value={goalMaterialRequired}
                   onChange={(event) => setGoalMaterialRequired(Number(event.target.value))}
+                  helperText="How many of this material do you need?"
                 />
                 <Button
-                  className="w-full mt-2"
+                  className="w-full"
                   variant="tonal"
                   onClick={handleSaveGoalMaterial}
                   disabled={isPending || data.goals.length === 0}
                 >
-                  {isPending ? "Saving..." : "Save Requirement"}
+                  {isPending ? "Adding..." : "Add Requirement"}
                 </Button>
               </div>
             </Panel>
