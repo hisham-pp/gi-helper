@@ -1,0 +1,101 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Material {
+  id               String         @id
+  name             String         @unique
+  image            String
+  rarity           Int
+  category         String
+  description      String
+  combinable       Boolean        @default(false)
+  combineRatio     Int?
+  parentMaterialId String?
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
+  inventories      Inventory[]
+  parentMaterial   Material?      @relation("MaterialTree", fields: [parentMaterialId], references: [id], onDelete: SetNull)
+  childMaterials   Material[]     @relation("MaterialTree")
+  goalMaterials    GoalMaterial[]
+
+  @@index([category])
+  @@index([parentMaterialId])
+  @@map("materials")
+}
+
+model User {
+  id           String      @id @default(cuid())
+  username     String      @unique
+  passwordHash String
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+  sessions     Session[]
+  inventory    Inventory[]
+  goals        Goal[]
+
+  @@map("users")
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  userId     String
+  tokenHash  String   @unique
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([expiresAt])
+  @@map("sessions")
+}
+
+model Inventory {
+  id         String   @id @default(cuid())
+  userId     String
+  materialId String
+  quantity   Int      @default(0)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  material   Material @relation(fields: [materialId], references: [id], onDelete: Cascade)
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, materialId])
+  @@index([materialId])
+  @@map("inventory")
+}
+
+model Goal {
+  id            String         @id @default(cuid())
+  userId        String
+  name          String
+  description   String?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  goalMaterials GoalMaterial[]
+  user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("goals")
+}
+
+model GoalMaterial {
+  id         String   @id @default(cuid())
+  goalId     String
+  materialId String
+  required   Int
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  goal       Goal     @relation(fields: [goalId], references: [id], onDelete: Cascade)
+  material   Material @relation(fields: [materialId], references: [id], onDelete: Cascade)
+
+  @@unique([goalId, materialId])
+  @@index([materialId])
+  @@map("goal_materials")
+}

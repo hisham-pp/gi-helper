@@ -1,0 +1,7 @@
+import { eliteDrops } from "@/prisma/seed-data/elite-drops";
+import { enemyDrops } from "@/prisma/seed-data/enemy-drops";
+import { talentBooks } from "@/prisma/seed-data/talent-books";
+
+export { type SeedMaterial } from "@/prisma/seed-data/helpers";
+
+export const seedMaterials = [...enemyDrops, ...eliteDrops, ...talentBooks];
