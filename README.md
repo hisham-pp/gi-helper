@@ -1,6 +1,6 @@
 # Genshin Material Tracker
 
-Production-ready full-stack material tracker for Genshin Impact built with Next.js 15, TypeScript, Tailwind CSS, Prisma, and SQLite.
+Production-ready full-stack material tracker for Genshin Impact built with Next.js 15, TypeScript, Tailwind CSS, Prisma, and PostgreSQL.
 
 ## Stack
 
@@ -8,7 +8,7 @@ Production-ready full-stack material tracker for Genshin Impact built with Next.
 - TypeScript
 - Tailwind CSS
 - Prisma ORM
-- SQLite
+- PostgreSQL
 - Simple username/password authentication
 - Server actions plus route handlers
 - Railway-compatible deployment
@@ -141,24 +141,18 @@ NEXT_PUBLIC_APP_NAME="Genshin Material Tracker"
 
 ## Railway Deployment
 
-SQLite on Railway should use a mounted volume if you want persistence across redeploys. If you do not mount a volume, SQLite data may be ephemeral depending on the runtime environment.
+This application is optimized for deployment on Railway with a PostgreSQL database.
 
 ### Recommended Setup
 
 1. Create a new Railway project from this repo.
-2. Add an environment variable:
-
-```env
-DATABASE_URL="file:/data/prod.db"
-```
-
-3. Attach a persistent volume mounted at `/data`.
+2. Add a **PostgreSQL** service to your Railway project.
+3. Railway will automatically provide a `DATABASE_URL` environment variable to your application.
 4. Deploy normally. Railway will use:
    - `npm run build` for build
    - `npm run start` for runtime
 
 The runtime start command runs Prisma migrations, seeds shared materials, and then starts Next.js.
-This does not replace persistent storage. If the SQLite file lives on an ephemeral filesystem, user data will still disappear on redeploy.
 
 ### Included Railway Config
 
