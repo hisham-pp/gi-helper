@@ -80,7 +80,7 @@ export function DashboardShell({
   const [editorForm, setEditorForm] = useState({
     id: "",
     name: "",
-    image: "",
+    iconName: "",
     rarity: 1,
     category: "",
     description: "",
@@ -177,12 +177,17 @@ export function DashboardShell({
     });
   }
 
+  const getIconNameFromImage = (image: string) => {
+    const filename = image.split("/").pop() ?? "";
+    return filename.replace(/\.png$/i, "");
+  };
+
   function resetEditorForm() {
     setEditing(null);
     setEditorForm({
       id: "",
       name: "",
-      image: "",
+      iconName: "",
       rarity: 1,
       category: "",
       description: "",
@@ -202,7 +207,7 @@ export function DashboardShell({
     setEditorForm({
       id: material.id,
       name: material.name,
-      image: material.image,
+      iconName: getIconNameFromImage(material.image),
       rarity: material.rarity,
       category: material.category,
       description: material.description ?? "",
@@ -690,9 +695,10 @@ function MaterialEditor({
               onChange={(e) => setForm({ ...form, name: e.target.value })}
             />
             <TextField
-              label="Image URL"
-              value={form.image}
-              onChange={(e) => setForm({ ...form, image: e.target.value })}
+              label="Icon Name"
+              value={form.iconName}
+              onChange={(e) => setForm({ ...form, iconName: e.target.value })}
+              description="Enter the icon identifier like UI_ItemIcon_100001"
             />
             <TextField
               label="Category"
