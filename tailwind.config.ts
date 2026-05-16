@@ -10,7 +10,48 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "rgb(var(--background) / <alpha-value>)",
+        primary: {
+          DEFAULT: "rgb(var(--md-sys-color-primary) / <alpha-value>)",
+          foreground: "rgb(var(--md-sys-color-on-primary) / <alpha-value>)",
+          container: "rgb(var(--md-sys-color-primary-container) / <alpha-value>)",
+          "on-container": "rgb(var(--md-sys-color-on-primary-container) / <alpha-value>)"
+        },
+        secondary: {
+          DEFAULT: "rgb(var(--md-sys-color-secondary) / <alpha-value>)",
+          foreground: "rgb(var(--md-sys-color-on-secondary) / <alpha-value>)",
+          container: "rgb(var(--md-sys-color-secondary-container) / <alpha-value>)",
+          "on-container": "rgb(var(--md-sys-color-on-secondary-container) / <alpha-value>)"
+        },
+        tertiary: {
+          DEFAULT: "rgb(var(--md-sys-color-tertiary) / <alpha-value>)",
+          foreground: "rgb(var(--md-sys-color-on-tertiary) / <alpha-value>)",
+          container: "rgb(var(--md-sys-color-tertiary-container) / <alpha-value>)",
+          "on-container": "rgb(var(--md-sys-color-on-tertiary-container) / <alpha-value>)"
+        },
+        error: {
+          DEFAULT: "rgb(var(--md-sys-color-error) / <alpha-value>)",
+          foreground: "rgb(var(--md-sys-color-on-error) / <alpha-value>)",
+          container: "rgb(var(--md-sys-color-error-container) / <alpha-value>)",
+          "on-container": "rgb(var(--md-sys-color-on-error-container) / <alpha-value>)"
+        },
+        background: "rgb(var(--md-sys-color-background) / <alpha-value>)",
+        "on-background": "rgb(var(--md-sys-color-on-background) / <alpha-value>)",
+        surface: {
+          DEFAULT: "rgb(var(--md-sys-color-surface) / <alpha-value>)",
+          foreground: "rgb(var(--md-sys-color-on-surface) / <alpha-value>)",
+          variant: "rgb(var(--md-sys-color-surface-variant) / <alpha-value>)",
+          "on-variant": "rgb(var(--md-sys-color-on-surface-variant) / <alpha-value>)"
+        },
+        outline: {
+          DEFAULT: "rgb(var(--md-sys-color-outline) / <alpha-value>)",
+          variant: "rgb(var(--md-sys-color-outline-variant) / <alpha-value>)"
+        },
+        inverse: {
+          surface: "rgb(var(--md-sys-color-inverse-surface) / <alpha-value>)",
+          "on-surface": "rgb(var(--md-sys-color-inverse-on-surface) / <alpha-value>)",
+          primary: "rgb(var(--md-sys-color-inverse-primary) / <alpha-value>)"
+        },
+        /* Legacy support */
         foreground: "rgb(var(--foreground) / <alpha-value>)",
         card: "rgb(var(--card) / <alpha-value>)",
         border: "rgb(var(--border) / <alpha-value>)",

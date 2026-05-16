@@ -22,6 +22,7 @@ Production-ready full-stack material tracker for Genshin Impact built with Next.
 - Recursive 3:1 crafting calculations
 - Dashboard overview cards and progress bars
 - Dedicated routed material tracker page plus future-ready module pages
+- Full backup export/import for shared materials plus user inventory and goals
 - Search and category filters
 - Responsive card-based UI
 - Dark mode
@@ -157,12 +158,18 @@ DATABASE_URL="file:/data/prod.db"
    - `npm run start` for runtime
 
 The runtime start command runs Prisma migrations, seeds shared materials, and then starts Next.js.
+This does not replace persistent storage. If the SQLite file lives on an ephemeral filesystem, user data will still disappear on redeploy.
 
 ### Included Railway Config
 
 - [railway.json](./railway.json)
 - `postinstall` Prisma client generation
 - `start` script with `prisma migrate deploy && prisma db seed && next start`
+
+### Backup
+
+- Use the `Export all` button in the top bar to download a full JSON backup.
+- Use `Import all` to restore that backup for the logged-in user.
 
 ## API Endpoints
 

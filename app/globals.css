@@ -3,27 +3,91 @@
 @tailwind utilities;
 
 :root {
-  --background: 245 247 251;
-  --foreground: 15 23 42;
-  --card: 255 255 255;
-  --border: 226 232 240;
-  --muted: 100 116 139;
-  --accent: 56 189 248;
+  --md-sys-color-primary: 0 106 106;
+  --md-sys-color-on-primary: 255 255 255;
+  --md-sys-color-primary-container: 110 247 246;
+  --md-sys-color-on-primary-container: 0 32 32;
+  --md-sys-color-secondary: 74 99 99;
+  --md-sys-color-on-secondary: 255 255 255;
+  --md-sys-color-secondary-container: 204 232 232;
+  --md-sys-color-on-secondary-container: 5 31 31;
+  --md-sys-color-tertiary: 75 97 124;
+  --md-sys-color-on-tertiary: 255 255 255;
+  --md-sys-color-tertiary-container: 211 228 255;
+  --md-sys-color-on-tertiary-container: 4 28 51;
+  --md-sys-color-error: 186 26 26;
+  --md-sys-color-on-error: 255 255 255;
+  --md-sys-color-error-container: 255 218 214;
+  --md-sys-color-on-error-container: 65 0 2;
+  --md-sys-color-outline: 111 121 121;
+  --md-sys-color-background: 250 253 252;
+  --md-sys-color-on-background: 25 28 28;
+  --md-sys-color-surface: 250 253 252;
+  --md-sys-color-on-surface: 25 28 28;
+  --md-sys-color-surface-variant: 218 229 228;
+  --md-sys-color-on-surface-variant: 63 73 73;
+  --md-sys-color-inverse-surface: 46 49 48;
+  --md-sys-color-inverse-on-surface: 239 241 240;
+  --md-sys-color-inverse-primary: 78 218 217;
+  --md-sys-color-shadow: 0 0 0;
+  --md-sys-color-surface-tint: 0 106 106;
+  --md-sys-color-outline-variant: 190 201 200;
+  --md-sys-color-scrim: 0 0 0;
+
+  /* Compatibility with existing tokens */
+  --background: var(--md-sys-color-background);
+  --foreground: var(--md-sys-color-on-background);
+  --card: var(--md-sys-color-surface);
+  --border: var(--md-sys-color-outline-variant);
+  --muted: var(--md-sys-color-on-surface-variant);
+  --accent: var(--md-sys-color-primary);
   --success: 16 185 129;
   --warning: 245 158 11;
-  --danger: 244 63 94;
+  --danger: var(--md-sys-color-error);
 }
 
 .dark {
-  --background: 2 6 23;
-  --foreground: 226 232 240;
-  --card: 15 23 42;
-  --border: 51 65 85;
-  --muted: 148 163 184;
-  --accent: 125 211 252;
+  --md-sys-color-primary: 78 218 217;
+  --md-sys-color-on-primary: 0 55 55;
+  --md-sys-color-primary-container: 0 80 80;
+  --md-sys-color-on-primary-container: 110 247 246;
+  --md-sys-color-secondary: 176 204 204;
+  --md-sys-color-on-secondary: 27 51 51;
+  --md-sys-color-secondary-container: 50 75 75;
+  --md-sys-color-on-secondary-container: 204 232 232;
+  --md-sys-color-tertiary: 178 198 229;
+  --md-sys-color-on-tertiary: 28 49 75;
+  --md-sys-color-tertiary-container: 52 72 99;
+  --md-sys-color-on-tertiary-container: 211 228 255;
+  --md-sys-color-error: 255 180 171;
+  --md-sys-color-on-error: 105 0 5;
+  --md-sys-color-error-container: 147 0 10;
+  --md-sys-color-on-error-container: 255 218 214;
+  --md-sys-color-outline: 137 147 146;
+  --md-sys-color-background: 25 28 28;
+  --md-sys-color-on-background: 225 227 226;
+  --md-sys-color-surface: 25 28 28;
+  --md-sys-color-on-surface: 225 227 226;
+  --md-sys-color-surface-variant: 63 73 73;
+  --md-sys-color-on-surface-variant: 190 201 200;
+  --md-sys-color-inverse-surface: 225 227 226;
+  --md-sys-color-inverse-on-surface: 46 49 48;
+  --md-sys-color-inverse-primary: 0 106 106;
+  --md-sys-color-shadow: 0 0 0;
+  --md-sys-color-surface-tint: 78 218 217;
+  --md-sys-color-outline-variant: 63 73 73;
+  --md-sys-color-scrim: 0 0 0;
+
+  /* Compatibility with existing tokens */
+  --background: var(--md-sys-color-background);
+  --foreground: var(--md-sys-color-on-background);
+  --card: var(--md-sys-color-surface);
+  --border: var(--md-sys-color-outline-variant);
+  --muted: var(--md-sys-color-on-surface-variant);
+  --accent: var(--md-sys-color-primary);
   --success: 52 211 153;
   --warning: 251 191 36;
-  --danger: 251 113 133;
+  --danger: var(--md-sys-color-error);
 }
 
 * {
@@ -37,10 +101,10 @@ html {
 body {
   min-height: 100vh;
   background:
-    radial-gradient(circle at top left, rgba(56, 189, 248, 0.12), transparent 28%),
-    radial-gradient(circle at bottom right, rgba(251, 191, 36, 0.12), transparent 24%),
-    rgb(var(--background) / 1);
-  color: rgb(var(--foreground) / 1);
+    radial-gradient(circle at top left, rgb(var(--md-sys-color-primary) / 0.08), transparent 35%),
+    radial-gradient(circle at bottom right, rgb(var(--md-sys-color-secondary) / 0.05), transparent 30%),
+    rgb(var(--md-sys-color-background) / 1);
+  color: rgb(var(--md-sys-color-on-background) / 1);
   font-family:
     var(--font-plus-jakarta-sans),
     ui-sans-serif,

@@ -3,20 +3,22 @@
 import Link from "next/link";
 import type { Route } from "next";
 import { usePathname } from "next/navigation";
-import { Compass, Gem, Home, MoonStar, Shield, Sparkles, SunMedium, Swords, Target } from "lucide-react";
+import { Compass, Gem, Home, MoonStar, Shield, Sparkles, SunMedium, Swords, Target, Download, LogOut, Upload } from "lucide-react";
 import { useTheme } from "next-themes";
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ChangeEvent, type ReactNode } from "react";
+import { toast } from "sonner";
 
 import { logoutAction } from "@/app/actions";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
 const navItems = [
   { href: "/", label: "Dashboard", icon: Home },
-  { href: "/materials", label: "Material Tracker", icon: Gem },
+  { href: "/materials", label: "Tracker", icon: Gem },
   { href: "/map", label: "Map", icon: Compass },
-  { href: "/collectibles", label: "Collectibles", icon: Sparkles },
+  { href: "/collectibles", label: "Items", icon: Sparkles },
   { href: "/shrines", label: "Shrines", icon: Shield },
-  { href: "/challenges", label: "Challenges", icon: Swords }
+  { href: "/challenges", label: "Combat", icon: Swords }
 ] satisfies Array<{ href: Route; label: string; icon: typeof Home }>;
 
 export function AppShell({
@@ -33,6 +35,7 @@ export function AppShell({
   const pathname = usePathname();
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const importInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -40,54 +43,114 @@ export function AppShell({
 
   const isDark = mounted && resolvedTheme === "dark";
 
-  return (
-    <main className="min-h-screen bg-background text-foreground">
-      <div className="mx-auto flex min-h-screen w-full max-w-7xl flex-col gap-6 px-4 py-6 sm:px-6 lg:px-8">
-        <header className="overflow-hidden rounded-[32px] border border-white/40 bg-hero-grid bg-card/80 p-6 shadow-panel backdrop-blur dark:border-white/10 dark:bg-slate-950/80">
-          <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
-            <div className="max-w-3xl">
-              <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/50 bg-white/70 px-3 py-1 text-xs font-medium uppercase tracking-[0.24em] text-slate-700 dark:border-white/10 dark:bg-white/5 dark:text-slate-300">
-                <Target className="h-3.5 w-3.5" />
-                Genshin Tracker Suite
-              </div>
-              <h1 className="text-3xl font-semibold tracking-tight text-slate-950 dark:text-white sm:text-4xl">
-                {title}
-              </h1>
-              <p className="mt-3 max-w-2xl text-sm text-slate-600 dark:text-slate-300 sm:text-base">
-                {description}
-              </p>
-            </div>
+  async function handleExportAll() {
+    try {
+      const response = await fetch("/api/export/all");
 
-            <div className="flex flex-wrap items-center gap-3">
-              {userLabel ? (
-                <span className="rounded-full border border-white/60 bg-white px-4 py-2 text-sm text-slate-700 dark:border-white/10 dark:bg-white/10 dark:text-slate-200">
-                  @{userLabel}
-                </span>
-              ) : null}
-              <button
-                className="inline-flex items-center gap-2 rounded-full border border-white/60 bg-white px-4 py-2 text-sm font-medium text-slate-800 transition hover:bg-slate-100 dark:border-white/10 dark:bg-white/10 dark:text-white dark:hover:bg-white/15"
-                onClick={() => setTheme(isDark ? "light" : "dark")}
-                type="button"
-              >
-                {isDark ? <SunMedium className="h-4 w-4" /> : <MoonStar className="h-4 w-4" />}
-                {isDark ? "Light mode" : "Dark mode"}
-              </button>
-              {userLabel ? (
-                <form action={logoutAction}>
-                  <button
-                    className="rounded-full border border-rose-300/70 bg-white px-4 py-2 text-sm font-medium text-rose-600 transition hover:bg-rose-50 dark:border-rose-900 dark:bg-white/10 dark:text-rose-300 dark:hover:bg-rose-950/30"
-                    type="submit"
-                  >
-                    Logout
-                  </button>
-                </form>
-              ) : null}
+      if (!response.ok) {
+        throw new Error("Export failed");
+      }
+
+      const payload = await response.json();
+      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const anchor = document.createElement("a");
+      anchor.href = url;
+      anchor.download = "genshin-material-tracker-all-data.json";
+      anchor.click();
+      URL.revokeObjectURL(url);
+      toast.success("All data exported.");
+    } catch (error) {
+      console.error("Export all failed", error);
+      toast.error("Unable to export all data.");
+    }
+  }
+
+  async function handleImportAll(event: ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0];
+
+    if (!file) {
+      return;
+    }
+
+    try {
+      const text = await file.text();
+      const parsed = JSON.parse(text);
+      const response = await fetch("/api/import/all", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(parsed)
+      });
+
+      if (!response.ok) {
+        throw new Error("Import failed");
+      }
+
+      toast.success("All data imported.");
+      window.location.reload();
+    } catch (error) {
+      console.error("Import all failed", error);
+      toast.error("Unable to import backup file.");
+    } finally {
+      event.target.value = "";
+    }
+  }
+
+  return (
+    <main className="min-h-screen bg-background text-on-background">
+      <div className="mx-auto flex min-h-screen w-full max-w-7xl flex-col gap-6 px-4 py-6 sm:px-6 lg:px-8">
+        <header className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+          <div className="min-w-0">
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-lg">
+                <Target className="h-6 w-6" />
+              </div>
+              <div>
+                <h1 className="text-2xl font-bold tracking-tight text-on-surface">{title}</h1>
+                <p className="text-sm text-on-surface-variant">{description}</p>
+              </div>
             </div>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2">
+            {userLabel && (
+              <div className="mr-2 hidden rounded-full bg-secondary-container px-4 py-2 text-sm font-medium text-secondary-on-container md:block">
+                @{userLabel}
+              </div>
+            )}
+            <Button
+              variant="tonal"
+              className="h-10 w-10 p-0 rounded-full"
+              onClick={() => setTheme(isDark ? "light" : "dark")}
+              title={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
+            >
+              {isDark ? <SunMedium className="h-5 w-5" /> : <MoonStar className="h-5 w-5" />}
+            </Button>
+            <Button variant="tonal" onClick={handleExportAll} className="gap-2">
+              <Download className="h-4 w-4" />
+              <span className="hidden sm:inline">Export</span>
+            </Button>
+            <Button variant="tonal" onClick={() => importInputRef.current?.click()} className="gap-2">
+              <Upload className="h-4 w-4" />
+              <span className="hidden sm:inline">Import</span>
+            </Button>
+            {userLabel && (
+              <form action={logoutAction}>
+                <Button variant="outlined" type="submit" className="border-error text-error hover:bg-error/5 active:bg-error/10">
+                  <LogOut className="h-4 w-4 sm:mr-2" />
+                  <span className="hidden sm:inline">Logout</span>
+                </Button>
+              </form>
+            )}
           </div>
         </header>
 
-        <nav className="rounded-3xl border border-border bg-card/80 p-3 shadow-sm backdrop-blur dark:bg-slate-950/80">
-          <div className="flex flex-wrap gap-2">
+        <input ref={importInputRef} className="hidden" onChange={handleImportAll} type="file" accept="application/json" />
+
+        <nav className="sticky top-4 z-40 flex items-center justify-center">
+          <div className="flex w-full max-w-fit gap-1 rounded-full border border-outline-variant bg-surface/80 p-1.5 shadow-lg backdrop-blur-md">
             {navItems.map((item) => {
               const active = pathname === item.href;
               const Icon = item.icon;
@@ -97,21 +160,23 @@ export function AppShell({
                   key={item.href}
                   href={item.href}
                   className={cn(
-                    "inline-flex items-center gap-2 rounded-2xl px-4 py-2 text-sm font-medium transition",
+                    "relative flex h-11 items-center gap-2 rounded-full px-4 text-sm font-medium transition-all duration-200",
                     active
-                      ? "bg-slate-900 text-white dark:bg-white dark:text-slate-950"
-                      : "text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-white/5"
+                      ? "bg-primary text-primary-foreground shadow-md"
+                      : "text-on-surface-variant hover:bg-surface-variant hover:text-on-surface"
                   )}
                 >
                   <Icon className="h-4 w-4" />
-                  {item.label}
+                  <span className={cn("hidden md:inline", active ? "inline" : "hidden group-hover:inline")}>
+                    {item.label}
+                  </span>
                 </Link>
               );
             })}
           </div>
         </nav>
 
-        {children}
+        <div className="flex-1 pb-10">{children}</div>
       </div>
     </main>
   );

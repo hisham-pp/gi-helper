@@ -4,6 +4,8 @@ import { ArrowRight, Compass, Gem, Shield, Sparkles, Swords } from "lucide-react
 import { AppShell } from "@/components/layout/app-shell";
 import type { DashboardData } from "@/lib/types";
 import { formatNumber } from "@/lib/utils";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 const modules = [
   {
@@ -37,7 +39,7 @@ const modules = [
   {
     href: "/challenges",
     title: "Challenges",
-    description: "General and one-off challenge systems with future completion tracking.",
+    description: "General and one-off challenge systems with completion tracking.",
     icon: Swords,
     status: "Planned"
   }
@@ -47,7 +49,7 @@ export function OverviewPage({ data, username }: { data: DashboardData; username
   return (
     <AppShell
       title="General Dashboard"
-      description="A central home for your future Genshin tracker suite, with the material system isolated as one module."
+      description="A central home for your Genshin tracker suite."
       userLabel={username}
     >
       <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
@@ -55,49 +57,50 @@ export function OverviewPage({ data, username }: { data: DashboardData; username
         <OverviewCard label="Inventory Total" value={formatNumber(data.overview.totalInventory)} />
         <OverviewCard label="Active Goals" value={formatNumber(data.overview.activeGoals)} />
         <OverviewCard label="Completed Goals" value={formatNumber(data.overview.completedGoals)} />
-        <OverviewCard label="Craftable Materials" value={formatNumber(data.overview.craftableMaterials)} />
+        <OverviewCard label="Craftable" value={formatNumber(data.overview.craftableMaterials)} />
       </section>
 
-      <section className="grid gap-6 lg:grid-cols-[1.35fr_0.95fr]">
-        <div className="rounded-3xl border border-border bg-card/80 p-5 shadow-sm backdrop-blur dark:bg-slate-950/80">
-          <div className="mb-4">
-            <h2 className="text-xl font-semibold text-slate-950 dark:text-white">Modules</h2>
-            <p className="text-sm text-slate-500 dark:text-slate-400">
-              Feature areas are split into routes so new systems can be added cleanly.
+      <section className="mt-8 grid gap-8 lg:grid-cols-[1.35fr_0.95fr]">
+        <Card variant="outlined" className="p-6">
+          <div className="mb-6">
+            <h2 className="text-xl font-bold text-on-surface">Modules</h2>
+            <p className="text-sm text-on-surface-variant">
+              Explore different feature areas of the tracker suite.
             </p>
           </div>
 
-          <div className="grid gap-4 md:grid-cols-2">
+          <div className="grid gap-6 md:grid-cols-2">
             {modules.map((module) => {
               const Icon = module.icon;
 
               return (
-                <Link
-                  key={module.href}
-                  href={module.href}
-                  className="group rounded-3xl border border-border bg-white/50 p-5 transition hover:-translate-y-0.5 hover:bg-white/70 dark:bg-white/5 dark:hover:bg-white/10"
-                >
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="rounded-2xl bg-slate-900 p-3 text-white dark:bg-white dark:text-slate-950">
-                      <Icon className="h-5 w-5" />
+                <Link key={module.href} href={module.href} className="group">
+                  <Card
+                    variant="filled"
+                    className="h-full p-6 transition-transform group-hover:scale-[1.02] group-hover:shadow-md"
+                  >
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="rounded-xl bg-primary p-3 text-primary-foreground shadow-sm">
+                        <Icon className="h-6 w-6" />
+                      </div>
+                      <span className="rounded-full bg-secondary-container px-3 py-1 text-xs font-bold text-secondary-on-container">
+                        {module.status}
+                      </span>
                     </div>
-                    <span className="rounded-full border border-border px-2.5 py-1 text-xs text-slate-500 dark:text-slate-300">
-                      {module.status}
-                    </span>
-                  </div>
-                  <h3 className="mt-4 font-semibold text-slate-950 dark:text-white">{module.title}</h3>
-                  <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">{module.description}</p>
-                  <div className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-sky-600 dark:text-sky-300">
-                    Open module
-                    <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
-                  </div>
+                    <h3 className="mt-6 text-lg font-bold text-on-surface">{module.title}</h3>
+                    <p className="mt-2 text-sm text-on-surface-variant leading-relaxed">{module.description}</p>
+                    <div className="mt-6 flex items-center gap-2 text-sm font-bold text-primary">
+                      Open module
+                      <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+                    </div>
+                  </Card>
                 </Link>
               );
             })}
           </div>
-        </div>
+        </Card>
 
-        <div className="space-y-6">
+        <div className="space-y-8">
           <SummaryPanel
             title="Current Material Status"
             items={[
@@ -110,8 +113,8 @@ export function OverviewPage({ data, username }: { data: DashboardData; username
             title="Architecture Direction"
             items={[
               "Dashboard stays product-wide and lightweight",
-              "Material tracking lives on its own page and component tree",
-              "Map, collectibles, shrines, and challenges can be added without restructuring the material module"
+              "Material tracking lives on its own isolated page",
+              "Future modules can be added without restructuring the suite"
             ]}
           />
         </div>
@@ -122,24 +125,24 @@ export function OverviewPage({ data, username }: { data: DashboardData; username
 
 function OverviewCard({ label, value }: { label: string; value: string }) {
   return (
-    <article className="rounded-3xl border border-border bg-card/80 p-5 shadow-sm backdrop-blur dark:bg-slate-950/80">
-      <p className="text-sm text-slate-500 dark:text-slate-400">{label}</p>
-      <p className="mt-3 text-3xl font-semibold text-slate-950 dark:text-white">{value}</p>
-    </article>
+    <Card variant="filled" className="p-6">
+      <p className="text-sm font-medium text-on-surface-variant">{label}</p>
+      <p className="mt-2 text-3xl font-black text-on-surface">{value}</p>
+    </Card>
   );
 }
 
 function SummaryPanel({ title, items }: { title: string; items: string[] }) {
   return (
-    <section className="rounded-3xl border border-border bg-card/80 p-5 shadow-sm backdrop-blur dark:bg-slate-950/80">
-      <h2 className="text-xl font-semibold text-slate-950 dark:text-white">{title}</h2>
-      <div className="mt-4 space-y-3">
+    <Card variant="outlined" className="p-6">
+      <h2 className="text-xl font-bold text-on-surface">{title}</h2>
+      <div className="mt-6 space-y-3">
         {items.map((item) => (
-          <div key={item} className="rounded-2xl border border-border bg-white/50 px-4 py-3 text-sm text-slate-600 dark:bg-white/5 dark:text-slate-300">
+          <Card key={item} variant="filled" className="px-4 py-4 text-sm font-medium text-on-surface-variant">
             {item}
-          </div>
+          </Card>
         ))}
       </div>
-    </section>
+    </Card>
   );
 }
