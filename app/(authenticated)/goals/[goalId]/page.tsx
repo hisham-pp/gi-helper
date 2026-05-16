@@ -6,11 +6,12 @@ import { getDashboardData } from "@/lib/data";
 export default async function GoalEditPage({
   params,
 }: {
-  params: { goalId: string };
+  params: Promise<{ goalId: string }>;
 }) {
+  const { goalId } = await params;
   const user = await requireUser();
   const data = await getDashboardData(user.id);
-  const goal = data.goals.find((g) => g.id === params.goalId);
+  const goal = data.goals.find((g) => g.id === goalId);
 
   if (!goal) {
     redirect("/materials");
