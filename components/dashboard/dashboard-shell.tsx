@@ -1,9 +1,17 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import type { PropsWithChildren, ReactNode } from "react";
 import { useMemo, useState, useTransition } from "react";
-import { PackageSearch, Sparkles, Target, Trash2, Save } from "lucide-react";
+import {
+  PackageSearch,
+  Sparkles,
+  Target,
+  Trash2,
+  Save,
+  ChevronRight,
+} from "lucide-react";
 import { toast } from "sonner";
 
 import {
@@ -11,18 +19,21 @@ import {
   deleteGoalAction,
   deleteGoalMaterialAction,
   saveGoalMaterialAction,
-  saveInventoryAction
+  saveInventoryAction,
 } from "@/app/actions";
 import { AppShell } from "@/components/layout/app-shell";
-import { rarityBorderMap, rarityColorMap, tabs, type DashboardTab } from "@/lib/constants";
+import {
+  rarityBorderMap,
+  rarityColorMap,
+  tabs,
+  type DashboardTab,
+} from "@/lib/constants";
 import { simulateCraftingNeed } from "@/lib/crafting";
 import type { DashboardData, GoalView, MaterialView } from "@/lib/types";
 import { cn, formatNumber } from "@/lib/utils";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { TextField } from "@/components/ui/text-field";
-import { Textarea } from "@/components/ui/textarea";
 import { Select } from "@/components/ui/select";
 import { Progress } from "@/components/ui/progress";
 
@@ -38,7 +49,7 @@ const overviewMeta = [
   { key: "totalInventory", label: "Inventory Total", icon: PackageSearch },
   { key: "activeGoals", label: "Active Goals", icon: Target },
   { key: "completedGoals", label: "Completed Goals", icon: Sparkles },
-  { key: "craftableMaterials", label: "Craftable", icon: Sparkles }
+  { key: "craftableMaterials", label: "Craftable", icon: Sparkles },
 ] as const;
 
 export function DashboardShell({ initialData, username }: DashboardShellProps) {
@@ -47,19 +58,21 @@ export function DashboardShell({ initialData, username }: DashboardShellProps) {
   const [search, setSearch] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("All");
   const [inventoryDraft, setInventoryDraft] = useState<InventoryDraft>(
-    Object.fromEntries(initialData.materials.map((material) => [material.id, material.quantity]))
+    Object.fromEntries(
+      initialData.materials.map((material) => [material.id, material.quantity]),
+    ),
   );
-  const [goalName, setGoalName] = useState("");
-  const [goalDescription, setGoalDescription] = useState("");
-  const [selectedGoalId, setSelectedGoalId] = useState(initialData.goals[0]?.id ?? "");
-  const [selectedMaterialId, setSelectedMaterialId] = useState(initialData.materials[0]?.id ?? "");
-  const [goalMaterialRequired, setGoalMaterialRequired] = useState(1);
-  const [simulationMaterialId, setSimulationMaterialId] = useState(initialData.materials[0]?.id ?? "");
+  const [simulationMaterialId, setSimulationMaterialId] = useState(
+    initialData.materials[0]?.id ?? "",
+  );
   const [simulationRequired, setSimulationRequired] = useState(1);
   const [isPending, startTransition] = useTransition();
   const categories = useMemo(
-    () => ["All", ...new Set(data.materials.map((material) => material.category))],
-    [data.materials]
+    () => [
+      "All",
+      ...new Set(data.materials.map((material) => material.category)),
+    ],
+    [data.materials],
   );
 
   const filteredMaterials = useMemo(() => {
@@ -67,7 +80,8 @@ export function DashboardShell({ initialData, username }: DashboardShellProps) {
       const matchesSearch =
         material.name.toLowerCase().includes(search.toLowerCase()) ||
         material.description.toLowerCase().includes(search.toLowerCase());
-      const matchesCategory = categoryFilter === "All" || material.category === categoryFilter;
+      const matchesCategory =
+        categoryFilter === "All" || material.category === categoryFilter;
 
       return matchesSearch && matchesCategory;
     });
@@ -91,26 +105,22 @@ export function DashboardShell({ initialData, username }: DashboardShellProps) {
         combinable: material.combinable,
         combineRatio: material.combineRatio,
         parentMaterialId: material.parentMaterialId,
-        quantity: material.quantity
-      }))
+        quantity: material.quantity,
+      })),
     );
   }, [data.materials, simulationMaterialId, simulationRequired]);
 
   function syncDashboard(nextData: DashboardData) {
     setData(nextData);
-    setInventoryDraft(Object.fromEntries(nextData.materials.map((material) => [material.id, material.quantity])));
-    setSelectedGoalId((current) =>
-      nextData.goals.some((goal) => goal.id === current) ? current : (nextData.goals[0]?.id ?? "")
-    );
-    setSelectedMaterialId((current) =>
-      nextData.materials.some((material) => material.id === current)
-        ? current
-        : (nextData.materials[0]?.id ?? "")
+    setInventoryDraft(
+      Object.fromEntries(
+        nextData.materials.map((material) => [material.id, material.quantity]),
+      ),
     );
     setSimulationMaterialId((current) =>
       nextData.materials.some((material) => material.id === current)
         ? current
-        : (nextData.materials[0]?.id ?? "")
+        : (nextData.materials[0]?.id ?? ""),
     );
   }
 
@@ -121,14 +131,19 @@ export function DashboardShell({ initialData, username }: DashboardShellProps) {
     const optimistic: DashboardData = {
       ...data,
       materials: data.materials.map((material) =>
-        material.id === materialId ? { ...material, quantity: nextQuantity } : material
-      )
+        material.id === materialId
+          ? { ...material, quantity: nextQuantity }
+          : material,
+      ),
     } as DashboardData;
 
     syncDashboard(optimistic);
 
     startTransition(async () => {
-      const result = await saveInventoryAction({ materialId, quantity: nextQuantity });
+      const result = await saveInventoryAction({
+        materialId,
+        quantity: nextQuantity,
+      });
 
       if (!result.success || !result.data) {
         syncDashboard(previous);
@@ -141,97 +156,25 @@ export function DashboardShell({ initialData, username }: DashboardShellProps) {
     });
   }
 
-  function handleCreateGoal() {
-    if (!goalName.trim()) {
-      toast.error("Goal name is required.");
-      return;
-    }
-
-    startTransition(async () => {
-      const result = await createGoalAction({
-        name: goalName,
-        description: goalDescription
-      });
-
-      if (!result.success || !result.data) {
-        toast.error(result.error ?? "Unable to create goal.");
-        return;
-      }
-
-      syncDashboard(result.data);
-      setGoalName("");
-      setGoalDescription("");
-      setSelectedGoalId(result.data.goals[0]?.id ?? "");
-      toast.success("Goal created.");
-    });
-  }
-
-  function handleSaveGoalMaterial() {
-    if (!selectedGoalId || !selectedMaterialId) {
-      toast.error("Select a goal and material.");
-      return;
-    }
-
-    startTransition(async () => {
-      const result = await saveGoalMaterialAction({
-        goalId: selectedGoalId,
-        materialId: selectedMaterialId,
-        required: goalMaterialRequired
-      });
-
-      if (!result.success || !result.data) {
-        toast.error(result.error ?? "Unable to save goal material.");
-        return;
-      }
-
-      syncDashboard(result.data);
-      toast.success("Goal material saved.");
-    });
-  }
-
-  function handleDeleteGoal(goalId: string) {
-    startTransition(async () => {
-      const result = await deleteGoalAction({ goalId });
-
-      if (!result.success || !result.data) {
-        toast.error(result.error ?? "Unable to delete goal.");
-        return;
-      }
-
-      syncDashboard(result.data);
-      toast.success("Goal deleted.");
-    });
-  }
-
-  function handleDeleteGoalMaterial(goalMaterialId: string) {
-    startTransition(async () => {
-      const result = await deleteGoalMaterialAction({ goalMaterialId });
-
-      if (!result.success || !result.data) {
-        toast.error(result.error ?? "Unable to remove requirement.");
-        return;
-      }
-
-      syncDashboard(result.data);
-      toast.success("Requirement removed.");
-    });
-  }
-
   return (
     <div className="space-y-8">
       <header className="mb-8">
-        <h1 className="text-3xl font-bold tracking-tight text-on-surface">Material Tracker</h1>
-        <p className="mt-2 text-on-surface-variant">Track inventory, goals, material chains, and recursive 3:1 crafting.</p>
+        <h1 className="text-on-surface text-3xl font-bold tracking-tight">
+          Material Tracker
+        </h1>
+        <p className="text-on-surface-variant mt-2">
+          Track inventory, goals, material chains, and recursive 3:1 crafting.
+        </p>
       </header>
 
       <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
         {overviewMeta.map((item) => (
           <Card key={item.key} variant="filled" className="p-5">
-            <div className="flex items-center gap-3 text-on-surface-variant">
+            <div className="text-on-surface-variant flex items-center gap-3">
               <item.icon className="h-4 w-4" />
               <span className="text-sm font-medium">{item.label}</span>
             </div>
-            <p className="mt-2 text-3xl font-bold text-on-surface">
+            <p className="text-on-surface mt-2 text-3xl font-bold">
               {formatNumber(data.overview[item.key])}
             </p>
           </Card>
@@ -259,8 +202,10 @@ export function DashboardShell({ initialData, username }: DashboardShellProps) {
             <div className="border-b border-outline-variant bg-surface p-6">
               <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                 <div>
-                  <h2 className="text-xl font-bold text-on-surface">Inventory</h2>
-                  <p className="text-sm text-on-surface-variant">
+                  <h2 className="text-on-surface text-xl font-bold">
+                    Inventory
+                  </h2>
+                  <p className="text-on-surface-variant text-sm">
                     Search, filter, and update owned quantities.
                   </p>
                 </div>
@@ -276,7 +221,10 @@ export function DashboardShell({ initialData, username }: DashboardShellProps) {
                     className="h-12"
                     value={categoryFilter}
                     onChange={setCategoryFilter}
-                    options={categories.map((category) => ({ label: category, value: category }))}
+                    options={categories.map((category) => ({
+                      label: category,
+                      value: category,
+                    }))}
                   />
                 </div>
               </div>
@@ -297,11 +245,16 @@ export function DashboardShell({ initialData, username }: DashboardShellProps) {
                     <MaterialCard
                       key={material.id}
                       material={material}
-                      quantity={inventoryDraft[material.id] ?? material.quantity}
+                      quantity={
+                        inventoryDraft[material.id] ?? material.quantity
+                      }
                       onChange={(value) =>
                         setInventoryDraft((current) => ({
                           ...current,
-                          [material.id]: Math.max(0, Number.isNaN(value) ? 0 : value)
+                          [material.id]: Math.max(
+                            0,
+                            Number.isNaN(value) ? 0 : value,
+                          ),
                         }))
                       }
                       onSave={() => handleInventorySave(material.id)}
@@ -318,7 +271,7 @@ export function DashboardShell({ initialData, username }: DashboardShellProps) {
                 id: item.id,
                 title: item.materialName,
                 subtitle: `${formatNumber(item.remaining)} still needed`,
-                image: item.materialId
+                image: item.materialId,
               }))}
               title="Materials Still Needed"
               description="Highest deficits across all farming goals."
@@ -329,7 +282,7 @@ export function DashboardShell({ initialData, username }: DashboardShellProps) {
                 id: item.id,
                 title: item.materialName,
                 subtitle: `${formatNumber(item.required)} ready`,
-                image: item.materialId
+                image: item.materialId,
               }))}
               title="Completed Materials"
               description="Goal requirements satisfied by current inventory."
@@ -340,90 +293,91 @@ export function DashboardShell({ initialData, username }: DashboardShellProps) {
       ) : null}
 
       {activeTab === "goals" ? (
-        <section className="grid gap-8 lg:grid-cols-[0.95fr_1.4fr]">
-          <div className="space-y-8">
-            <Panel title="Create Goal" description="Set up a new farming target.">
-              <div className="mt-6 space-y-6">
-                <TextField
-                  label="Goal name"
-                  variant="outlined"
-                  value={goalName}
-                  onChange={(event) => setGoalName(event.target.value)}
-                  helperText="Give your farming goal a memorable name"
-                />
-                <Textarea
-                  label="Description (optional)"
-                  value={goalDescription}
-                  onChange={(event) => setGoalDescription(event.target.value)}
-                  rows={3}
-                />
-                <Button
-                  className="w-full"
-                  onClick={handleCreateGoal}
-                  disabled={isPending}
-                >
-                  {isPending ? "Creating..." : "Create Goal"}
-                </Button>
-              </div>
-            </Panel>
-
-            <Panel title="Add Requirement" description="Attach materials to a goal.">
-              <div className="mt-6 space-y-6">
-                <Select
-                  label="Select Goal"
-                  value={selectedGoalId}
-                  onChange={setSelectedGoalId}
-                  options={
-                    data.goals.length === 0
-                      ? [{ label: "Create a goal first", value: "" }]
-                      : data.goals.map((goal) => ({ label: goal.name, value: goal.id }))
-                  }
-                />
-                <Select
-                  label="Select Material"
-                  value={selectedMaterialId}
-                  onChange={setSelectedMaterialId}
-                  options={data.materials.map((material) => ({ label: material.name, value: material.id }))}
-                />
-                <TextField
-                  label="Required Quantity"
-                  variant="outlined"
-                  type="number"
-                  min={0}
-                  value={goalMaterialRequired}
-                  onChange={(event) => setGoalMaterialRequired(Number(event.target.value))}
-                  helperText="How many of this material do you need?"
-                />
-                <Button
-                  className="w-full"
-                  variant="tonal"
-                  onClick={handleSaveGoalMaterial}
-                  disabled={isPending || data.goals.length === 0}
-                >
-                  {isPending ? "Adding..." : "Add Requirement"}
-                </Button>
-              </div>
-            </Panel>
+        <section className="space-y-6">
+          <div className="flex items-center justify-between">
+            <div>
+              <h2 className="text-on-surface text-2xl font-bold tracking-tight">
+                Farming Goals
+              </h2>
+              <p className="text-on-surface-variant mt-1">
+                Track and manage your farming objectives.
+              </p>
+            </div>
+            <Link href={"/goals/new" as any}>
+              <Button className="gap-2">
+                <Sparkles className="h-4 w-4" />
+                Create Goal
+              </Button>
+            </Link>
           </div>
 
-          <div className="space-y-8">
-            {data.goals.length === 0 ? (
-              <Card variant="outlined" className="p-8">
-                <EmptyState
-                  icon={<Target className="h-12 w-12" />}
-                  title="No Goals Yet"
-                  description="Create a goal and assign materials to start tracking."
-                />
-              </Card>
-            ) : (
-              data.goals.map((goal) => <GoalCard key={goal.id} goal={goal} onDelete={handleDeleteGoal} onDeleteMaterial={handleDeleteGoalMaterial} />)
-            )}
-          </div>
+          {data.goals.length === 0 ? (
+            <Card variant="outlined" className="p-8">
+              <EmptyState
+                icon={<Target className="h-12 w-12" />}
+                title="No Goals Yet"
+                description="Create a goal and assign materials to start tracking."
+              />
+            </Card>
+          ) : (
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {data.goals.map((goal) => (
+                <Link key={goal.id} href={`/goals/${goal.id}` as any}>
+                  <Card
+                    variant="outlined"
+                    className="h-full cursor-pointer p-6 transition-all hover:border-primary hover:shadow-lg"
+                  >
+                    <div className="space-y-4">
+                      <div className="flex items-start justify-between gap-3">
+                        <div className="min-w-0 flex-1">
+                          <h3 className="text-on-surface truncate font-bold">
+                            {goal.name}
+                          </h3>
+                          <p className="text-on-surface-variant mt-1 line-clamp-2 text-sm">
+                            {goal.description ?? "Custom farming plan"}
+                          </p>
+                        </div>
+                        <ChevronRight className="text-on-surface-variant h-5 w-5 flex-shrink-0" />
+                      </div>
+
+                      <div className="space-y-2">
+                        <div className="flex items-center justify-between text-sm">
+                          <span className="text-on-surface-variant">
+                            Progress
+                          </span>
+                          <span className="font-bold text-primary">
+                            {goal.progressPercent}%
+                          </span>
+                        </div>
+                        <Progress
+                          value={goal.progressPercent}
+                          className="h-2"
+                        />
+                      </div>
+
+                      <div className="text-on-surface-variant flex items-center justify-between border-t border-outline-variant pt-2 text-xs">
+                        <span>
+                          {goal.materials.length} material
+                          {goal.materials.length !== 1 ? "s" : ""}
+                        </span>
+                        <span>
+                          {formatNumber(goal.totalRequired)} total needed
+                        </span>
+                      </div>
+                    </div>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+          )}
         </section>
       ) : null}
 
       {activeTab === "materials" ? (
-        <Panel title="Material Library" description="Preloaded data with rarity colors and crafting links.">
+        <Panel
+          title="Material Library"
+          description="Preloaded data with rarity colors and crafting links."
+        >
           <div className="mt-6 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {data.materials.map((material) => (
               <Card
@@ -431,14 +385,14 @@ export function DashboardShell({ initialData, username }: DashboardShellProps) {
                 variant="outlined"
                 className={cn(
                   "p-5 transition-transform hover:scale-[1.02]",
-                  rarityBorderMap[material.rarity] ?? rarityBorderMap[1]
+                  rarityBorderMap[material.rarity] ?? rarityBorderMap[1],
                 )}
               >
                 <div className="flex items-start gap-4">
                   <div
                     className={cn(
                       "relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-2xl bg-gradient-to-br",
-                      rarityColorMap[material.rarity] ?? rarityColorMap[1]
+                      rarityColorMap[material.rarity] ?? rarityColorMap[1],
                     )}
                   >
                     <Image
@@ -451,23 +405,31 @@ export function DashboardShell({ initialData, username }: DashboardShellProps) {
                   </div>
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center justify-between gap-3">
-                      <h3 className="font-bold text-on-surface">{material.name}</h3>
+                      <h3 className="text-on-surface font-bold">
+                        {material.name}
+                      </h3>
                       <span className="rounded-full bg-secondary-container px-2.5 py-1 text-xs font-medium text-secondary-on-container">
                         {material.category}
                       </span>
                     </div>
-                    <p className="mt-2 text-sm text-on-surface-variant line-clamp-2">{material.description}</p>
+                    <p className="text-on-surface-variant mt-2 line-clamp-2 text-sm">
+                      {material.description}
+                    </p>
                     <div className="mt-4 flex flex-wrap gap-2 text-xs">
-                      <span className="rounded-full border border-outline-variant px-2.5 py-1 font-medium text-on-surface-variant">Rarity {material.rarity}</span>
-                      <span className="rounded-full border border-outline-variant px-2.5 py-1 font-medium text-on-surface-variant">
+                      <span className="text-on-surface-variant rounded-full border border-outline-variant px-2.5 py-1 font-medium">
+                        Rarity {material.rarity}
+                      </span>
+                      <span className="text-on-surface-variant rounded-full border border-outline-variant px-2.5 py-1 font-medium">
                         Owned {formatNumber(material.quantity)}
                       </span>
                       {material.combinable && material.parentMaterialId ? (
-                        <span className="rounded-full border border-outline-variant px-2.5 py-1 font-medium text-on-surface-variant">
+                        <span className="text-on-surface-variant rounded-full border border-outline-variant px-2.5 py-1 font-medium">
                           3:1 Crafting
                         </span>
                       ) : (
-                        <span className="rounded-full border border-outline-variant px-2.5 py-1 font-medium text-on-surface-variant">Highest tier</span>
+                        <span className="text-on-surface-variant rounded-full border border-outline-variant px-2.5 py-1 font-medium">
+                          Highest tier
+                        </span>
                       )}
                     </div>
                   </div>
@@ -480,25 +442,36 @@ export function DashboardShell({ initialData, username }: DashboardShellProps) {
 
       {activeTab === "crafting" ? (
         <section className="grid gap-8 lg:grid-cols-[0.9fr_1.3fr]">
-          <Panel title="Crafting Simulator" description="Recursive 3:1 crafting preview.">
+          <Panel
+            title="Crafting Simulator"
+            description="Recursive 3:1 crafting preview."
+          >
             <div className="mt-4 space-y-4">
               <Select
                 label="Select Material"
                 value={simulationMaterialId}
                 onChange={setSimulationMaterialId}
-                options={data.materials.map((material) => ({ label: material.name, value: material.id }))}
+                options={data.materials.map((material) => ({
+                  label: material.name,
+                  value: material.id,
+                }))}
               />
               <Input
                 label="Required Quantity"
                 type="number"
                 min={0}
                 value={simulationRequired}
-                onChange={(event) => setSimulationRequired(Number(event.target.value))}
+                onChange={(event) =>
+                  setSimulationRequired(Number(event.target.value))
+                }
               />
             </div>
           </Panel>
 
-          <Panel title="Simulation Result" description="Craftability and recursive breakdown.">
+          <Panel
+            title="Simulation Result"
+            description="Craftability and recursive breakdown."
+          >
             {!simulation ? (
               <div className="py-12">
                 <EmptyState
@@ -510,33 +483,56 @@ export function DashboardShell({ initialData, username }: DashboardShellProps) {
             ) : (
               <div className="mt-4 space-y-6">
                 <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-                  <StatPill label="Requested" value={formatNumber(simulation.requested)} />
-                  <StatPill label="Total Available" value={formatNumber(simulation.totalAvailable)} />
-                  <StatPill label="Deficit" value={formatNumber(simulation.remaining)} tone={simulation.remaining > 0 ? "danger" : "success"} />
-                  <StatPill label="Surplus" value={formatNumber(simulation.surplus)} tone={simulation.surplus > 0 ? "success" : "default"} />
+                  <StatPill
+                    label="Requested"
+                    value={formatNumber(simulation.requested)}
+                  />
+                  <StatPill
+                    label="Total Available"
+                    value={formatNumber(simulation.totalAvailable)}
+                  />
+                  <StatPill
+                    label="Deficit"
+                    value={formatNumber(simulation.remaining)}
+                    tone={simulation.remaining > 0 ? "danger" : "success"}
+                  />
+                  <StatPill
+                    label="Surplus"
+                    value={formatNumber(simulation.surplus)}
+                    tone={simulation.surplus > 0 ? "success" : "default"}
+                  />
                 </div>
                 <Card variant="filled" className="p-5">
-                  <p className="text-sm font-medium text-on-surface">
+                  <p className="text-on-surface text-sm font-medium">
                     {simulation.craftable
                       ? `You can fully craft ${simulation.requested} ${data.materials.find((item) => item.id === simulation.materialId)?.name}.`
                       : `You are short by ${simulation.remaining} after recursive crafting.`}
                   </p>
-                  <p className="mt-2 text-xs text-on-surface-variant">
+                  <p className="text-on-surface-variant mt-2 text-xs">
                     Directly owned: {formatNumber(simulation.directOwned)}
                   </p>
                 </Card>
                 <div className="space-y-3">
-                  <h3 className="text-sm font-bold uppercase tracking-wider text-on-surface-variant">Recursive sources</h3>
+                  <h3 className="text-on-surface-variant text-sm font-bold uppercase tracking-wider">
+                    Recursive sources
+                  </h3>
                   <div className="grid gap-2">
                     {simulation.recursiveSources.length === 0 ? (
-                      <p className="text-sm text-on-surface-variant italic">
+                      <p className="text-on-surface-variant text-sm italic">
                         No lower-tier materials needed.
                       </p>
                     ) : (
                       simulation.recursiveSources.map((source) => (
-                        <div key={source.materialId} className="flex items-center justify-between rounded-xl border border-outline-variant px-4 py-3 text-sm">
-                          <span className="font-medium">{source.materialName}</span>
-                          <span className="font-bold text-primary">{formatNumber(source.quantity)}</span>
+                        <div
+                          key={source.materialId}
+                          className="flex items-center justify-between rounded-xl border border-outline-variant px-4 py-3 text-sm"
+                        >
+                          <span className="font-medium">
+                            {source.materialName}
+                          </span>
+                          <span className="font-bold text-primary">
+                            {formatNumber(source.quantity)}
+                          </span>
                         </div>
                       ))
                     )}
@@ -555,7 +551,7 @@ function MaterialCard({
   material,
   quantity,
   onChange,
-  onSave
+  onSave,
 }: {
   material: MaterialView;
   quantity: number;
@@ -567,14 +563,14 @@ function MaterialCard({
       variant="outlined"
       className={cn(
         "p-4 transition-all hover:shadow-md",
-        rarityBorderMap[material.rarity] ?? rarityBorderMap[1]
+        rarityBorderMap[material.rarity] ?? rarityBorderMap[1],
       )}
     >
       <div className="flex items-start gap-4">
         <div
           className={cn(
             "relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-xl bg-gradient-to-br",
-            rarityColorMap[material.rarity] ?? rarityColorMap[1]
+            rarityColorMap[material.rarity] ?? rarityColorMap[1],
           )}
         >
           <Image
@@ -586,10 +582,14 @@ function MaterialCard({
           />
         </div>
         <div className="min-w-0 flex-1">
-          <h3 className="font-bold text-on-surface truncate">{material.name}</h3>
+          <h3 className="text-on-surface truncate font-bold">
+            {material.name}
+          </h3>
           <div className="mt-2 flex flex-wrap gap-2 text-[10px]">
-            <span className="rounded-full bg-surface-variant px-2 py-0.5 font-medium text-on-surface-variant">{material.category}</span>
-            <span className="rounded-full bg-primary-container px-2 py-0.5 font-medium text-on-primary-container">
+            <span className="text-on-surface-variant rounded-full bg-surface-variant px-2 py-0.5 font-medium">
+              {material.category}
+            </span>
+            <span className="text-on-primary-container rounded-full bg-primary-container px-2 py-0.5 font-medium">
               Craftable {formatNumber(material.totalCraftable)}
             </span>
           </div>
@@ -606,11 +606,7 @@ function MaterialCard({
             onChange={(event) => onChange(Number(event.target.value))}
           />
         </div>
-        <Button
-          variant="filled"
-          className="h-11 px-4"
-          onClick={onSave}
-        >
+        <Button variant="filled" className="h-11 px-4" onClick={onSave}>
           <Save className="h-4 w-4" />
         </Button>
       </div>
@@ -618,96 +614,12 @@ function MaterialCard({
   );
 }
 
-function GoalCard({
-  goal,
-  onDelete,
-  onDeleteMaterial
-}: {
-  goal: GoalView;
-  onDelete: (goalId: string) => void;
-  onDeleteMaterial: (goalMaterialId: string) => void;
-}) {
-  return (
-    <Panel title={goal.name} description={goal.description ?? "Custom farming plan."} action={
-      <Button
-        variant="text"
-        className="text-error hover:bg-error/5"
-        onClick={() => onDelete(goal.id)}
-      >
-        <Trash2 className="h-4 w-4 mr-2" />
-        Delete Goal
-      </Button>
-    }>
-      <div className="mt-6 space-y-6">
-        <div>
-          <div className="mb-3 flex items-center justify-between text-sm">
-            <span className="font-medium text-on-surface-variant">Overall Progress</span>
-            <span className="font-bold text-primary">{goal.progressPercent}%</span>
-          </div>
-          <Progress value={goal.progressPercent} className="h-2" />
-        </div>
-
-        <div className="space-y-3">
-          {goal.materials.length === 0 ? (
-            <EmptyState
-              icon={<Target className="h-6 w-6" />}
-              title="No requirements"
-              description="Add materials to this goal to track progress."
-            />
-          ) : (
-            goal.materials.map((item) => (
-              <Card key={item.id} variant="filled" className="p-4 bg-surface-variant/30">
-                <div className="flex items-start justify-between gap-4">
-                  <div className="flex min-w-0 items-center gap-4">
-                    <div
-                      className={cn(
-                        "relative h-12 w-12 flex-shrink-0 overflow-hidden rounded-xl bg-gradient-to-br",
-                        rarityColorMap[item.rarity] ?? rarityColorMap[1]
-                      )}
-                    >
-                      <Image
-                        src={`/api/material-image/${item.materialId}`}
-                        alt={item.materialName}
-                        fill
-                        className="object-contain p-2"
-                        sizes="48px"
-                      />
-                    </div>
-                    <div className="min-w-0">
-                      <p className="font-bold text-on-surface">{item.materialName}</p>
-                      <p className="text-xs text-on-surface-variant">
-                        {formatNumber(item.allocated)} / {formatNumber(item.required)} allocated
-                      </p>
-                    </div>
-                  </div>
-                  <Button
-                    variant="text"
-                    className="h-8 w-8 p-0 text-on-surface-variant hover:text-error hover:bg-error/5"
-                    onClick={() => onDeleteMaterial(item.id)}
-                  >
-                    <Trash2 className="h-4 w-4" />
-                  </Button>
-                </div>
-                <div className="mt-4">
-                  <Progress
-                    value={(item.allocated / Math.max(item.required, 1)) * 100}
-                    className={cn("h-1.5")}
-                  />
-                </div>
-              </Card>
-            ))
-          )}
-        </div>
-      </div>
-    </Panel>
-  );
-}
 
 function SummaryList({
   title,
   description,
   items,
-  emptyText
+  emptyText,
 }: {
   title: string;
   description: string;
@@ -718,16 +630,34 @@ function SummaryList({
     <Panel title={title} description={description}>
       <div className="mt-4 space-y-3">
         {items.length === 0 ? (
-          <EmptyState icon={<Sparkles className="h-6 w-6" />} title={title} description={emptyText} />
+          <EmptyState
+            icon={<Sparkles className="h-6 w-6" />}
+            title={title}
+            description={emptyText}
+          />
         ) : (
           items.map((item) => (
-            <Card key={item.id} variant="outlined" className="flex items-center gap-4 p-3 hover:bg-surface-variant/20 transition-colors">
+            <Card
+              key={item.id}
+              variant="outlined"
+              className="flex items-center gap-4 p-3 transition-colors hover:bg-surface-variant/20"
+            >
               <div className="relative h-12 w-12 flex-shrink-0 overflow-hidden rounded-xl bg-surface-variant">
-                <Image src={`/api/material-image/${item.image}`} alt={item.title} fill className="object-contain p-2" sizes="48px" />
+                <Image
+                  src={`/api/material-image/${item.image}`}
+                  alt={item.title}
+                  fill
+                  className="object-contain p-2"
+                  sizes="48px"
+                />
               </div>
               <div className="min-w-0">
-                <p className="font-bold text-on-surface truncate">{item.title}</p>
-                <p className="text-xs text-on-surface-variant font-medium">{item.subtitle}</p>
+                <p className="text-on-surface truncate font-bold">
+                  {item.title}
+                </p>
+                <p className="text-on-surface-variant text-xs font-medium">
+                  {item.subtitle}
+                </p>
               </div>
             </Card>
           ))
@@ -741,7 +671,7 @@ function Panel({
   title,
   description,
   children,
-  action
+  action,
 }: PropsWithChildren<{
   title: string;
   description: string;
@@ -751,8 +681,8 @@ function Panel({
     <Card className="flex flex-col p-6" variant="outlined">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <h2 className="text-xl font-bold text-on-surface">{title}</h2>
-          <p className="text-sm text-on-surface-variant">{description}</p>
+          <h2 className="text-on-surface text-xl font-bold">{title}</h2>
+          <p className="text-on-surface-variant text-sm">{description}</p>
         </div>
         {action}
       </div>
@@ -764,19 +694,21 @@ function Panel({
 function EmptyState({
   icon,
   title,
-  description
+  description,
 }: {
   icon: ReactNode;
   title: string;
   description: string;
 }) {
   return (
-    <div className="flex flex-col items-center justify-center text-center py-8">
-      <div className="mb-4 rounded-full bg-primary-container p-4 text-on-primary-container shadow-sm">
+    <div className="flex flex-col items-center justify-center py-8 text-center">
+      <div className="text-on-primary-container mb-4 rounded-full bg-primary-container p-4 shadow-sm">
         {icon}
       </div>
-      <h3 className="font-bold text-on-surface">{title}</h3>
-      <p className="mt-2 max-w-sm text-sm text-on-surface-variant">{description}</p>
+      <h3 className="text-on-surface font-bold">{title}</h3>
+      <p className="text-on-surface-variant mt-2 max-w-sm text-sm">
+        {description}
+      </p>
     </div>
   );
 }
@@ -784,7 +716,7 @@ function EmptyState({
 function StatPill({
   label,
   value,
-  tone = "default"
+  tone = "default",
 }: {
   label: string;
   value: string;
@@ -793,12 +725,14 @@ function StatPill({
   const tones = {
     default: "bg-surface-variant text-on-surface-variant",
     success: "bg-primary-container text-on-primary-container",
-    danger: "bg-error-container text-on-error-container"
+    danger: "bg-error-container text-on-error-container",
   } as const;
 
   return (
     <Card variant="filled" className={cn("p-4", tones[tone])}>
-      <p className="text-xs font-bold uppercase tracking-wider opacity-80">{label}</p>
+      <p className="text-xs font-bold uppercase tracking-wider opacity-80">
+        {label}
+      </p>
       <p className="mt-2 text-2xl font-black">{value}</p>
     </Card>
   );
