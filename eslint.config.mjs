@@ -1,7 +1,7 @@
-import nextVitals from "eslint-config-next/core-web-vitals";
+import nextVitals from "eslint-config-next/core-web-vitals.js";
 
 const config = [
-  ...nextVitals,
+  nextVitals,
   {
     ignores: [".next/**", "node_modules/**", "dist/**", "coverage/**"]
   }

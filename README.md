@@ -9,6 +9,7 @@ Production-ready full-stack material tracker for Genshin Impact built with Next.
 - Tailwind CSS
 - Prisma ORM
 - SQLite
+- Simple username/password authentication
 - Server actions plus route handlers
 - Railway-compatible deployment
 
@@ -16,9 +17,11 @@ Production-ready full-stack material tracker for Genshin Impact built with Next.
 
 - Preloaded seed database with 80+ Genshin materials across enemy drops, elite drops, and talent books
 - Inventory CRUD with optimistic UI updates
+- Multi-user inventory and goals with cookie sessions
 - Farming goals and goal material requirements
 - Recursive 3:1 crafting calculations
 - Dashboard overview cards and progress bars
+- Dedicated routed material tracker page plus future-ready module pages
 - Search and category filters
 - Responsive card-based UI
 - Dark mode
@@ -33,13 +36,22 @@ Production-ready full-stack material tracker for Genshin Impact built with Next.
 app/
   api/
   actions.ts
+  challenges/
+  collectibles/
   globals.css
   layout.tsx
+  login/
   loading.tsx
   manifest.ts
+  map/
+  materials/
   page.tsx
+  register/
+  shrines/
 components/
+  auth/
   dashboard/
+  layout/
   providers/
 docs/
   requirements.md
@@ -95,6 +107,8 @@ npm run dev
 
 Open `http://localhost:3000`.
 
+Create an account from `/register`, then log in from `/login`.
+
 ## Commands
 
 ```bash
@@ -120,8 +134,9 @@ NEXT_PUBLIC_APP_NAME="Genshin Material Tracker"
 
 - Schema is defined in [prisma/schema.prisma](./prisma/schema.prisma).
 - Initial migration is committed under [prisma/migrations/20260516193000_init/migration.sql](./prisma/migrations/20260516193000_init/migration.sql).
+- Auth and multi-user migration is committed under [prisma/migrations/20260516203000_add_auth_and_multi_user/migration.sql](./prisma/migrations/20260516203000_add_auth_and_multi_user/migration.sql).
 - Seed data is split under [prisma/seed-data](./prisma/seed-data) and re-exported by [lib/material-seed.ts](./lib/material-seed.ts).
-- The seed script uses `upsert`, so rerunning it adds or updates materials without clearing your existing inventory and goals.
+- The seed script uses `upsert`, so rerunning it adds or updates shared material reference data without clearing user data.
 
 ## Railway Deployment
 
@@ -157,6 +172,6 @@ The runtime start command runs Prisma migrations before `next start`.
 
 ## Notes
 
-- No authentication is included by design for the current scope.
-- Inventory is global and single-user for now.
+- Authentication is simple by design: local username/password plus session cookies.
+- Inventory and goals are scoped per user.
 - The architecture is intentionally simple so characters and weapons can be added later without reworking the app foundation.

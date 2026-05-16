@@ -1,8 +1,10 @@
-import { DashboardShell } from "@/components/dashboard/dashboard-shell";
+import { OverviewPage } from "@/components/dashboard/overview-page";
+import { requireUser } from "@/lib/auth";
 import { getDashboardData } from "@/lib/data";
 
 export default async function HomePage() {
-  const data = await getDashboardData();
+  const user = await requireUser();
+  const data = await getDashboardData(user.id);
 
-  return <DashboardShell initialData={data} />;
+  return <OverviewPage data={data} username={user.username} />;
 }

@@ -13,17 +13,6 @@ async function main() {
       update: material,
       create: material
     });
-
-    await prisma.inventory.upsert({
-      where: {
-        materialId: material.id
-      },
-      update: {},
-      create: {
-        materialId: material.id,
-        quantity: 0
-      }
-    });
   }
 }
 

@@ -1,10 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import type { Route } from "next";
 import { usePathname } from "next/navigation";
 import { Compass, Gem, Home, MoonStar, Shield, Sparkles, SunMedium, Swords, Target } from "lucide-react";
 import { useTheme } from "next-themes";
+import type { ReactNode } from "react";
 
+import { logoutAction } from "@/app/actions";
 import { cn } from "@/lib/utils";
 
 const navItems = [
@@ -14,16 +17,18 @@ const navItems = [
   { href: "/collectibles", label: "Collectibles", icon: Sparkles },
   { href: "/shrines", label: "Shrines", icon: Shield },
   { href: "/challenges", label: "Challenges", icon: Swords }
-];
+] satisfies Array<{ href: Route; label: string; icon: typeof Home }>;
 
 export function AppShell({
   title,
   description,
+  userLabel,
   children
 }: Readonly<{
   title: string;
   description: string;
-  children: React.ReactNode;
+  userLabel?: string;
+  children: ReactNode;
 }>) {
   const pathname = usePathname();
   const { resolvedTheme, setTheme } = useTheme();
@@ -46,14 +51,31 @@ export function AppShell({
               </p>
             </div>
 
-            <button
-              className="inline-flex items-center gap-2 self-start rounded-full border border-white/60 bg-white px-4 py-2 text-sm font-medium text-slate-800 transition hover:bg-slate-100 dark:border-white/10 dark:bg-white/10 dark:text-white dark:hover:bg-white/15"
-              onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
-              type="button"
-            >
-              {resolvedTheme === "dark" ? <SunMedium className="h-4 w-4" /> : <MoonStar className="h-4 w-4" />}
-              {resolvedTheme === "dark" ? "Light mode" : "Dark mode"}
-            </button>
+            <div className="flex flex-wrap items-center gap-3">
+              {userLabel ? (
+                <span className="rounded-full border border-white/60 bg-white px-4 py-2 text-sm text-slate-700 dark:border-white/10 dark:bg-white/10 dark:text-slate-200">
+                  @{userLabel}
+                </span>
+              ) : null}
+              <button
+                className="inline-flex items-center gap-2 rounded-full border border-white/60 bg-white px-4 py-2 text-sm font-medium text-slate-800 transition hover:bg-slate-100 dark:border-white/10 dark:bg-white/10 dark:text-white dark:hover:bg-white/15"
+                onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+                type="button"
+              >
+                {resolvedTheme === "dark" ? <SunMedium className="h-4 w-4" /> : <MoonStar className="h-4 w-4" />}
+                {resolvedTheme === "dark" ? "Light mode" : "Dark mode"}
+              </button>
+              {userLabel ? (
+                <form action={logoutAction}>
+                  <button
+                    className="rounded-full border border-rose-300/70 bg-white px-4 py-2 text-sm font-medium text-rose-600 transition hover:bg-rose-50 dark:border-rose-900 dark:bg-white/10 dark:text-rose-300 dark:hover:bg-rose-950/30"
+                    type="submit"
+                  >
+                    Logout
+                  </button>
+                </form>
+              ) : null}
+            </div>
           </div>
         </header>
 

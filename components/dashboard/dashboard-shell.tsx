@@ -3,8 +3,7 @@
 import Image from "next/image";
 import type { ChangeEvent, PropsWithChildren, ReactNode } from "react";
 import { useMemo, useState, useTransition } from "react";
-import { MoonStar, PackageSearch, Save, Sparkles, SunMedium, Target, Trash2, Upload } from "lucide-react";
-import { useTheme } from "next-themes";
+import { PackageSearch, Save, Sparkles, Target, Trash2, Upload } from "lucide-react";
 import { toast } from "sonner";
 
 import {
@@ -14,6 +13,7 @@ import {
   saveGoalMaterialAction,
   saveInventoryAction
 } from "@/app/actions";
+import { AppShell } from "@/components/layout/app-shell";
 import { rarityBorderMap, rarityColorMap, tabs, type DashboardTab } from "@/lib/constants";
 import { simulateCraftingNeed } from "@/lib/crafting";
 import type { DashboardData, GoalView, MaterialView } from "@/lib/types";
@@ -21,6 +21,7 @@ import { cn, formatNumber } from "@/lib/utils";
 
 type DashboardShellProps = {
   initialData: DashboardData;
+  username: string;
 };
 
 type InventoryDraft = Record<string, number>;
@@ -33,7 +34,7 @@ const overviewMeta = [
   { key: "craftableMaterials", label: "Craftable" }
 ] as const;
 
-export function DashboardShell({ initialData }: DashboardShellProps) {
+export function DashboardShell({ initialData, username }: DashboardShellProps) {
   const [data, setData] = useState(initialData);
   const [activeTab, setActiveTab] = useState<DashboardTab>("inventory");
   const [search, setSearch] = useState("");
@@ -49,8 +50,6 @@ export function DashboardShell({ initialData }: DashboardShellProps) {
   const [simulationMaterialId, setSimulationMaterialId] = useState(initialData.materials[0]?.id ?? "");
   const [simulationRequired, setSimulationRequired] = useState(1);
   const [isPending, startTransition] = useTransition();
-  const { resolvedTheme, setTheme } = useTheme();
-
   const categories = useMemo(
     () => ["All", ...new Set(data.materials.map((material) => material.category))],
     [data.materials]
@@ -257,34 +256,14 @@ export function DashboardShell({ initialData }: DashboardShellProps) {
   }
 
   return (
-    <main className="min-h-screen bg-background text-foreground">
-      <section className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 py-6 sm:px-6 lg:px-8">
-        <header className="overflow-hidden rounded-[32px] border border-white/40 bg-hero-grid bg-card/80 p-6 shadow-panel backdrop-blur dark:border-white/10 dark:bg-slate-950/80">
-          <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
-            <div className="max-w-3xl">
-              <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/50 bg-white/70 px-3 py-1 text-xs font-medium uppercase tracking-[0.24em] text-slate-700 dark:border-white/10 dark:bg-white/5 dark:text-slate-300">
-                <Sparkles className="h-3.5 w-3.5" />
-                Genshin Material Tracker
-              </div>
-              <h1 className="text-3xl font-semibold tracking-tight text-slate-950 dark:text-white sm:text-4xl">
-                Plan materials, monitor inventory, and simulate crafting from one dashboard.
-              </h1>
-              <p className="mt-3 max-w-2xl text-sm text-slate-600 dark:text-slate-300 sm:text-base">
-                Seeded with common Genshin materials, recursive 3:1 crafting logic, inventory tracking, and
-                farming goals built for desktop and mobile.
-              </p>
-            </div>
-
-            <div className="flex flex-wrap items-center gap-3">
-              <button
-                className="inline-flex items-center gap-2 rounded-full border border-white/60 bg-white px-4 py-2 text-sm font-medium text-slate-800 transition hover:bg-slate-100 dark:border-white/10 dark:bg-white/10 dark:text-white dark:hover:bg-white/15"
-                onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
-                type="button"
-              >
-                {resolvedTheme === "dark" ? <SunMedium className="h-4 w-4" /> : <MoonStar className="h-4 w-4" />}
-                {resolvedTheme === "dark" ? "Light mode" : "Dark mode"}
-              </button>
-              <button
+    <AppShell
+      title="Material Tracker"
+      description="Track inventory, goals, material chains, and recursive 3:1 crafting in an isolated module."
+      userLabel={username}
+    >
+      <section className="space-y-6">
+        <div className="flex flex-wrap items-center gap-3 rounded-3xl border border-border bg-card/80 p-4 shadow-sm backdrop-blur dark:bg-slate-950/80">
+          <button
                 className="inline-flex items-center gap-2 rounded-full border border-sky-300 bg-sky-500 px-4 py-2 text-sm font-medium text-white transition hover:bg-sky-600"
                 onClick={handleExportInventory}
                 type="button"
@@ -297,9 +276,7 @@ export function DashboardShell({ initialData }: DashboardShellProps) {
                 Import JSON
                 <input className="hidden" onChange={handleImportInventory} type="file" accept="application/json" />
               </label>
-            </div>
-          </div>
-        </header>
+        </div>
 
         <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
           {overviewMeta.map((item) => (
@@ -638,7 +615,7 @@ export function DashboardShell({ initialData }: DashboardShellProps) {
           </section>
         ) : null}
       </section>
-    </main>
+    </AppShell>
   );
 }
 

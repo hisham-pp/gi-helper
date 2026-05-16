@@ -2,15 +2,22 @@ import { prisma } from "@/lib/prisma";
 import { buildDashboardData, evaluateGoal } from "@/lib/crafting";
 import type { DashboardData, MaterialNode } from "@/lib/types";
 
-export async function getDashboardData(): Promise<DashboardData> {
+export async function getDashboardData(userId: string): Promise<DashboardData> {
   const [materials, goals] = await Promise.all([
     prisma.material.findMany({
       include: {
-        inventory: true
+        inventories: {
+          where: {
+            userId
+          }
+        }
       },
       orderBy: [{ category: "asc" }, { rarity: "desc" }, { name: "asc" }]
     }),
     prisma.goal.findMany({
+      where: {
+        userId
+      },
       include: {
         goalMaterials: {
           orderBy: {
@@ -34,7 +41,7 @@ export async function getDashboardData(): Promise<DashboardData> {
     combinable: material.combinable,
     combineRatio: material.combineRatio,
     parentMaterialId: material.parentMaterialId,
-    quantity: material.inventory?.quantity ?? 0
+    quantity: material.inventories[0]?.quantity ?? 0
   }));
 
   const goalViews = goals.map((goal) =>
