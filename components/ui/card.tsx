@@ -10,7 +10,7 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
     const variants = {
       elevated: "bg-surface shadow-md hover:shadow-lg",
       filled: "bg-surface-variant",
-      outlined: "border border-outline-variant bg-surface"
+      outlined: "border border-outline-variant bg-surface",
     };
 
     return (
@@ -19,12 +19,12 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
         className={cn(
           "rounded-xl transition-all",
           variants[variant],
-          className
+          className,
         )}
         {...props}
       />
     );
-  }
+  },
 );
 Card.displayName = "Card";
 

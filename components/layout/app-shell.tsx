@@ -3,13 +3,30 @@
 import Link from "next/link";
 import type { Route } from "next";
 import { usePathname } from "next/navigation";
-import { 
-  Compass, Gem, Home, MoonStar, Shield, Sparkles, 
-  SunMedium, Swords, Target, Download, LogOut, Upload,
-  Menu, X
+import {
+  Compass,
+  Gem,
+  Home,
+  MoonStar,
+  Shield,
+  Sparkles,
+  SunMedium,
+  Swords,
+  Target,
+  Download,
+  LogOut,
+  Upload,
+  Menu,
+  X,
 } from "lucide-react";
 import { useTheme } from "next-themes";
-import { useEffect, useRef, useState, type ChangeEvent, type ReactNode } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type ChangeEvent,
+  type ReactNode,
+} from "react";
 import { toast } from "sonner";
 
 import { logoutAction } from "@/app/actions";
@@ -22,12 +39,12 @@ const navItems = [
   { href: "/map", label: "Map", icon: Compass },
   { href: "/collectibles", label: "Items", icon: Sparkles },
   { href: "/shrines", label: "Shrines", icon: Shield },
-  { href: "/challenges", label: "Combat", icon: Swords }
+  { href: "/challenges", label: "Combat", icon: Swords },
 ] satisfies Array<{ href: Route; label: string; icon: typeof Home }>;
 
 export function AppShell({
   userLabel,
-  children
+  children,
 }: Readonly<{
   userLabel?: string;
   children: ReactNode;
@@ -54,7 +71,9 @@ export function AppShell({
       const response = await fetch("/api/export/all");
       if (!response.ok) throw new Error("Export failed");
       const payload = await response.json();
-      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+      const blob = new Blob([JSON.stringify(payload, null, 2)], {
+        type: "application/json",
+      });
       const url = URL.createObjectURL(blob);
       const anchor = document.createElement("a");
       anchor.href = url;
@@ -77,7 +96,7 @@ export function AppShell({
       const response = await fetch("/api/import/all", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(parsed)
+        body: JSON.stringify(parsed),
       });
       if (!response.ok) throw new Error("Import failed");
       toast.success("All data imported.");
@@ -93,9 +112,13 @@ export function AppShell({
   return (
     <div className="flex min-h-screen bg-background text-on-background">
       {/* Mobile Top App Bar */}
-      <header className="fixed top-0 left-0 right-0 z-30 flex h-16 items-center justify-between border-b border-outline-variant bg-surface/80 px-4 backdrop-blur-md lg:hidden">
+      <header className="fixed left-0 right-0 top-0 z-30 flex h-16 items-center justify-between border-b border-outline-variant bg-surface/80 px-4 backdrop-blur-md lg:hidden">
         <div className="flex items-center gap-3">
-          <Button variant="text" className="h-10 w-10 p-0" onClick={() => setIsSidebarOpen(true)}>
+          <Button
+            variant="text"
+            className="h-10 w-10 p-0"
+            onClick={() => setIsSidebarOpen(true)}
+          >
             <Menu className="h-6 w-6" />
           </Button>
           <div className="flex items-center gap-2">
@@ -103,23 +126,27 @@ export function AppShell({
             <span className="font-bold tracking-tight">GMT</span>
           </div>
         </div>
-        
+
         <div className="flex items-center gap-2">
           <Button
             variant="text"
-            className="h-10 w-10 p-0 rounded-full"
+            className="h-10 w-10 rounded-full p-0"
             onClick={() => setTheme(isDark ? "light" : "dark")}
           >
-            {isDark ? <SunMedium className="h-5 w-5" /> : <MoonStar className="h-5 w-5" />}
+            {isDark ? (
+              <SunMedium className="h-5 w-5" />
+            ) : (
+              <MoonStar className="h-5 w-5" />
+            )}
           </Button>
         </div>
       </header>
 
       {/* Sidebar / Navigation Drawer */}
-      <aside 
+      <aside
         className={cn(
           "fixed inset-y-0 left-0 z-50 flex w-72 flex-col border-r border-outline-variant bg-surface transition-transform duration-300 lg:sticky lg:translate-x-0",
-          isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+          isSidebarOpen ? "translate-x-0" : "-translate-x-full",
         )}
       >
         <div className="flex h-16 items-center justify-between px-6 lg:h-20">
@@ -128,17 +155,25 @@ export function AppShell({
               <Target className="h-6 w-6" />
             </div>
             <div className="min-w-0">
-              <h1 className="text-lg font-bold tracking-tight text-on-surface truncate">Genshin Tracker</h1>
-              <p className="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">Material Suite</p>
+              <h1 className="text-on-surface truncate text-lg font-bold tracking-tight">
+                Genshin Tracker
+              </h1>
+              <p className="text-on-surface-variant text-[10px] font-bold uppercase tracking-widest">
+                Material Suite
+              </p>
             </div>
           </div>
-          <Button variant="text" className="h-10 w-10 p-0 lg:hidden" onClick={() => setIsSidebarOpen(false)}>
+          <Button
+            variant="text"
+            className="h-10 w-10 p-0 lg:hidden"
+            onClick={() => setIsSidebarOpen(false)}
+          >
             <X className="h-6 w-6" />
           </Button>
         </div>
 
         <nav className="flex-1 space-y-1 px-3 py-4">
-          <div className="mb-4 px-3 text-[11px] font-bold uppercase tracking-wider text-on-surface-variant opacity-60">
+          <div className="text-on-surface-variant mb-4 px-3 text-[11px] font-bold uppercase tracking-wider opacity-60">
             Navigation
           </div>
           {navItems.map((item) => {
@@ -152,62 +187,81 @@ export function AppShell({
                 className={cn(
                   "group flex h-12 items-center gap-3 rounded-full px-4 text-sm font-medium transition-all",
                   active
-                    ? "bg-primary-container text-on-primary-container"
-                    : "text-on-surface-variant hover:bg-surface-variant hover:text-on-surface"
+                    ? "text-on-primary-container bg-primary-container"
+                    : "text-on-surface-variant hover:text-on-surface hover:bg-surface-variant",
                 )}
               >
-                <Icon className={cn("h-5 w-5", active ? "text-primary" : "text-on-surface-variant group-hover:text-on-surface")} />
+                <Icon
+                  className={cn(
+                    "h-5 w-5",
+                    active
+                      ? "text-primary"
+                      : "text-on-surface-variant group-hover:text-on-surface",
+                  )}
+                />
                 {item.label}
               </Link>
             );
           })}
 
-          <div className="my-6 border-t border-outline-variant mx-3" />
+          <div className="mx-3 my-6 border-t border-outline-variant" />
 
-          <div className="mb-4 px-3 text-[11px] font-bold uppercase tracking-wider text-on-surface-variant opacity-60">
+          <div className="text-on-surface-variant mb-4 px-3 text-[11px] font-bold uppercase tracking-wider opacity-60">
             Tools & Actions
           </div>
           <button
             onClick={handleExportAll}
-            className="flex w-full h-12 items-center gap-3 rounded-full px-4 text-sm font-medium text-on-surface-variant hover:bg-surface-variant hover:text-on-surface transition-all"
+            className="text-on-surface-variant hover:text-on-surface flex h-12 w-full items-center gap-3 rounded-full px-4 text-sm font-medium transition-all hover:bg-surface-variant"
           >
             <Download className="h-5 w-5" />
             Export All Data
           </button>
           <button
             onClick={() => importInputRef.current?.click()}
-            className="flex w-full h-12 items-center gap-3 rounded-full px-4 text-sm font-medium text-on-surface-variant hover:bg-surface-variant hover:text-on-surface transition-all"
+            className="text-on-surface-variant hover:text-on-surface flex h-12 w-full items-center gap-3 rounded-full px-4 text-sm font-medium transition-all hover:bg-surface-variant"
           >
             <Upload className="h-5 w-5" />
             Import Backup
           </button>
         </nav>
 
-        <div className="p-4 border-t border-outline-variant">
+        <div className="border-t border-outline-variant p-4">
           {userLabel && (
             <div className="flex flex-col gap-4">
               <div className="flex items-center gap-3 px-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-secondary-container text-secondary-on-container font-bold">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-secondary-container font-bold text-secondary-on-container">
                   {userLabel[0].toUpperCase()}
                 </div>
                 <div className="min-w-0 flex-1">
-                  <p className="text-sm font-bold text-on-surface truncate">@{userLabel}</p>
-                  <p className="text-xs text-on-surface-variant truncate">Standard Plan</p>
+                  <p className="text-on-surface truncate text-sm font-bold">
+                    @{userLabel}
+                  </p>
+                  <p className="text-on-surface-variant truncate text-xs">
+                    Standard Plan
+                  </p>
                 </div>
               </div>
-              
+
               <div className="flex items-center gap-2">
                 <Button
                   variant="tonal"
-                  className="flex-1 hidden lg:flex h-10 gap-2 rounded-full"
+                  className="hidden h-10 flex-1 gap-2 rounded-full lg:flex"
                   onClick={() => setTheme(isDark ? "light" : "dark")}
                 >
-                  {isDark ? <SunMedium className="h-4 w-4" /> : <MoonStar className="h-4 w-4" />}
+                  {isDark ? (
+                    <SunMedium className="h-4 w-4" />
+                  ) : (
+                    <MoonStar className="h-4 w-4" />
+                  )}
                   {isDark ? "Light" : "Dark"}
                 </Button>
-                <form action={logoutAction} className="flex-1 flex">
-                  <Button variant="outlined" type="submit" className="flex-1 h-10 border-error text-error hover:bg-error/5">
-                    <LogOut className="h-4 w-4 mr-2" />
+                <form action={logoutAction} className="flex flex-1">
+                  <Button
+                    variant="outlined"
+                    type="submit"
+                    className="h-10 flex-1 border-error text-error hover:bg-error/5"
+                  >
+                    <LogOut className="mr-2 h-4 w-4" />
                     Logout
                   </Button>
                 </form>
@@ -219,15 +273,21 @@ export function AppShell({
 
       {/* Backdrop for mobile */}
       {isSidebarOpen && (
-        <div 
-          className="fixed inset-0 z-40 bg-scrim/30 backdrop-blur-sm lg:hidden" 
+        <div
+          className="bg-scrim/30 fixed inset-0 z-40 backdrop-blur-sm lg:hidden"
           onClick={() => setIsSidebarOpen(false)}
         />
       )}
 
       {/* Main Content Area */}
-      <main className="flex-1 min-w-0 pt-16 lg:pt-0">
-        <input ref={importInputRef} className="hidden" onChange={handleImportAll} type="file" accept="application/json" />
+      <main className="min-w-0 flex-1 pt-16 lg:pt-0">
+        <input
+          ref={importInputRef}
+          className="hidden"
+          onChange={handleImportAll}
+          type="file"
+          accept="application/json"
+        />
         <div className="mx-auto w-full max-w-[1600px] p-4 sm:p-6 lg:p-8">
           {children}
         </div>

@@ -12,7 +12,7 @@ export default async function MapPage() {
       bullets={[
         "Interactive world map with custom markers and route layers",
         "Support for region-specific special items and farming routes",
-        "Future integration with collectibles, shrines, and exploration progress"
+        "Future integration with collectibles, shrines, and exploration progress",
       ]}
     />
   );

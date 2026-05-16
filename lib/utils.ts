@@ -13,5 +13,7 @@ export function clamp(value: number, min: number, max: number) {
 }
 
 export function slugToTitle(value: string) {
-  return value.replace(/-/g, " ").replace(/\b\w/g, (char) => char.toUpperCase());
+  return value
+    .replace(/-/g, " ")
+    .replace(/\b\w/g, (char) => char.toUpperCase());
 }

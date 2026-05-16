@@ -9,16 +9,19 @@ import { ThemeProvider } from "@/components/providers/theme-provider";
 
 export const metadata: Metadata = {
   title: "Genshin Material Tracker",
-  description: "Track Genshin Impact material inventory, goals, and recursive crafting progress.",
-  applicationName: "Genshin Material Tracker"
+  description:
+    "Track Genshin Impact material inventory, goals, and recursive crafting progress.",
+  applicationName: "Genshin Material Tracker",
 };
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  variable: "--font-plus-jakarta-sans"
+  variable: "--font-plus-jakarta-sans",
 });
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={plusJakartaSans.variable}>

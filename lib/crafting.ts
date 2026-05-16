@@ -1,4 +1,10 @@
-import type { DashboardData, GoalMaterialView, GoalView, MaterialNode, MaterialView } from "@/lib/types";
+import type {
+  DashboardData,
+  GoalMaterialView,
+  GoalView,
+  MaterialNode,
+  MaterialView,
+} from "@/lib/types";
 
 type InventoryMap = Record<string, number>;
 
@@ -8,7 +14,9 @@ type MaterialGraph = {
 };
 
 function buildGraph(materials: MaterialNode[]): MaterialGraph {
-  const byId = Object.fromEntries(materials.map((material) => [material.id, material]));
+  const byId = Object.fromEntries(
+    materials.map((material) => [material.id, material]),
+  );
   const childrenByParent: Record<string, MaterialNode[]> = {};
 
   for (const material of materials) {
@@ -24,14 +32,16 @@ function buildGraph(materials: MaterialNode[]): MaterialGraph {
 }
 
 function copyStock(materials: MaterialNode[]): InventoryMap {
-  return Object.fromEntries(materials.map((material) => [material.id, material.quantity]));
+  return Object.fromEntries(
+    materials.map((material) => [material.id, material.quantity]),
+  );
 }
 
 function ensureStock(
   materialId: string,
   minimum: number,
   stock: InventoryMap,
-  graph: MaterialGraph
+  graph: MaterialGraph,
 ): boolean {
   const children = graph.childrenByParent[materialId] ?? [];
   let safety = 0;
@@ -79,9 +89,17 @@ function countMaximumAvailable(materialId: string, materials: MaterialNode[]) {
   return crafted;
 }
 
-function collectDescendants(materialId: string, graph: MaterialGraph, materials: MaterialNode[]) {
+function collectDescendants(
+  materialId: string,
+  graph: MaterialGraph,
+  materials: MaterialNode[],
+) {
   const stock = copyStock(materials);
-  const sources: Array<{ materialId: string; materialName: string; quantity: number }> = [];
+  const sources: Array<{
+    materialId: string;
+    materialName: string;
+    quantity: number;
+  }> = [];
 
   for (const material of materials) {
     if (material.id === materialId) {
@@ -104,7 +122,7 @@ function collectDescendants(materialId: string, graph: MaterialGraph, materials:
       sources.push({
         materialId: material.id,
         materialName: material.name,
-        quantity: stock[material.id]
+        quantity: stock[material.id],
       });
     }
   }
@@ -112,7 +130,10 @@ function collectDescendants(materialId: string, graph: MaterialGraph, materials:
   return sources;
 }
 
-export function getFamilyDepth(materialId: string, byId: Record<string, MaterialNode>) {
+export function getFamilyDepth(
+  materialId: string,
+  byId: Record<string, MaterialNode>,
+) {
   let depth = 0;
   let current = byId[materialId];
 
@@ -135,7 +156,7 @@ export function buildMaterialViews(materials: MaterialNode[]): MaterialView[] {
         ...material,
         totalCraftable,
         craftableExtra: Math.max(totalCraftable - material.quantity, 0),
-        familyDepth: getFamilyDepth(material.id, graph.byId)
+        familyDepth: getFamilyDepth(material.id, graph.byId),
       };
     })
     .sort((left, right) => {
@@ -151,7 +172,11 @@ export function buildMaterialViews(materials: MaterialNode[]): MaterialView[] {
     });
 }
 
-export function simulateCraftingNeed(materialId: string, requested: number, materials: MaterialNode[]) {
+export function simulateCraftingNeed(
+  materialId: string,
+  requested: number,
+  materials: MaterialNode[],
+) {
   const graph = buildGraph(materials);
   const stock = copyStock(materials);
   const directOwned = stock[materialId] ?? 0;
@@ -172,29 +197,38 @@ export function simulateCraftingNeed(materialId: string, requested: number, mate
     remaining,
     surplus,
     directOwned,
-    recursiveSources: collectDescendants(materialId, graph, materials)
+    recursiveSources: collectDescendants(materialId, graph, materials),
   };
 }
 
-export function evaluateGoal(goal: {
-  id: string;
-  name: string;
-  description: string | null;
-  materials: Array<{ id: string; materialId: string; required: number }>;
-}, materials: MaterialNode[]): GoalView {
+export function evaluateGoal(
+  goal: {
+    id: string;
+    name: string;
+    description: string | null;
+    materials: Array<{ id: string; materialId: string; required: number }>;
+  },
+  materials: MaterialNode[],
+): GoalView {
   const graph = buildGraph(materials);
   const stock = copyStock(materials);
   const byId = graph.byId;
 
   const orderedRequirements = [...goal.materials].sort((left, right) => {
-    return getFamilyDepth(right.materialId, byId) - getFamilyDepth(left.materialId, byId);
+    return (
+      getFamilyDepth(right.materialId, byId) -
+      getFamilyDepth(left.materialId, byId)
+    );
   });
 
   const evaluated: GoalMaterialView[] = orderedRequirements.map((item) => {
     ensureStock(item.materialId, item.required, stock, graph);
 
     const allocated = Math.min(stock[item.materialId] ?? 0, item.required);
-    stock[item.materialId] = Math.max((stock[item.materialId] ?? 0) - allocated, 0);
+    stock[item.materialId] = Math.max(
+      (stock[item.materialId] ?? 0) - allocated,
+      0,
+    );
 
     const sourceMaterial = byId[item.materialId];
 
@@ -208,18 +242,24 @@ export function evaluateGoal(goal: {
       allocated,
       totalCraftable: countMaximumAvailable(item.materialId, materials),
       remaining: Math.max(item.required - allocated, 0),
-      complete: allocated >= item.required
+      complete: allocated >= item.required,
     };
   });
 
   const totalRequired = evaluated.reduce((sum, item) => sum + item.required, 0);
-  const totalAllocated = evaluated.reduce((sum, item) => sum + item.allocated, 0);
+  const totalAllocated = evaluated.reduce(
+    (sum, item) => sum + item.allocated,
+    0,
+  );
 
   return {
     id: goal.id,
     name: goal.name,
     description: goal.description,
-    progressPercent: totalRequired === 0 ? 0 : Math.round((totalAllocated / totalRequired) * 100),
+    progressPercent:
+      totalRequired === 0
+        ? 0
+        : Math.round((totalAllocated / totalRequired) * 100),
     totalRequired,
     totalAllocated,
     materials: evaluated.sort((left, right) => {
@@ -232,26 +272,41 @@ export function evaluateGoal(goal: {
       }
 
       return left.materialName.localeCompare(right.materialName);
-    })
+    }),
   };
 }
 
-export function buildDashboardData(materials: MaterialNode[], goals: GoalView[]): DashboardData {
-  const materialsStillNeeded = goals.flatMap((goal) => goal.materials.filter((item) => item.remaining > 0));
-  const completedMaterials = goals.flatMap((goal) => goal.materials.filter((item) => item.complete));
+export function buildDashboardData(
+  materials: MaterialNode[],
+  goals: GoalView[],
+): DashboardData {
+  const materialsStillNeeded = goals.flatMap((goal) =>
+    goal.materials.filter((item) => item.remaining > 0),
+  );
+  const completedMaterials = goals.flatMap((goal) =>
+    goal.materials.filter((item) => item.complete),
+  );
   const materialViews = buildMaterialViews(materials);
 
   return {
     overview: {
       totalTrackedMaterials: materialViews.length,
-      totalInventory: materialViews.reduce((sum, material) => sum + material.quantity, 0),
+      totalInventory: materialViews.reduce(
+        (sum, material) => sum + material.quantity,
+        0,
+      ),
       activeGoals: goals.length,
-      completedGoals: goals.filter((goal) => goal.progressPercent >= 100).length,
-      craftableMaterials: materialViews.filter((material) => material.craftableExtra > 0).length
+      completedGoals: goals.filter((goal) => goal.progressPercent >= 100)
+        .length,
+      craftableMaterials: materialViews.filter(
+        (material) => material.craftableExtra > 0,
+      ).length,
     },
     materials: materialViews,
     goals,
-    materialsStillNeeded: materialsStillNeeded.sort((left, right) => right.remaining - left.remaining),
-    completedMaterials
+    materialsStillNeeded: materialsStillNeeded.sort(
+      (left, right) => right.remaining - left.remaining,
+    ),
+    completedMaterials,
   };
 }

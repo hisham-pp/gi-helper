@@ -12,28 +12,28 @@ export async function GET() {
 
   const [materials, inventory, goals] = await Promise.all([
     prisma.material.findMany({
-      orderBy: [{ category: "asc" }, { rarity: "desc" }, { name: "asc" }]
+      orderBy: [{ category: "asc" }, { rarity: "desc" }, { name: "asc" }],
     }),
     prisma.inventory.findMany({
       where: { userId: user.id },
-      orderBy: [{ material: { name: "asc" } }]
+      orderBy: [{ material: { name: "asc" } }],
     }),
     prisma.goal.findMany({
       where: { userId: user.id },
       include: {
         goalMaterials: {
-          orderBy: { createdAt: "asc" }
-        }
+          orderBy: { createdAt: "asc" },
+        },
       },
-      orderBy: { createdAt: "desc" }
-    })
+      orderBy: { createdAt: "desc" },
+    }),
   ]);
 
   return NextResponse.json({
     exportedAt: new Date().toISOString(),
     user: {
       id: user.id,
-      username: user.username
+      username: user.username,
     },
     materials: materials.map((material) => ({
       id: material.id,
@@ -44,11 +44,11 @@ export async function GET() {
       description: material.description,
       combinable: material.combinable,
       combineRatio: material.combineRatio,
-      parentMaterialId: material.parentMaterialId
+      parentMaterialId: material.parentMaterialId,
     })),
     inventory: inventory.map((item) => ({
       materialId: item.materialId,
-      quantity: item.quantity
+      quantity: item.quantity,
     })),
     goals: goals.map((goal) => ({
       id: goal.id,
@@ -57,8 +57,8 @@ export async function GET() {
       goalMaterials: goal.goalMaterials.map((entry) => ({
         id: entry.id,
         materialId: entry.materialId,
-        required: entry.required
-      }))
-    }))
+        required: entry.required,
+      })),
+    })),
   });
 }

@@ -8,27 +8,27 @@ export async function getDashboardData(userId: string): Promise<DashboardData> {
       include: {
         inventories: {
           where: {
-            userId
-          }
-        }
+            userId,
+          },
+        },
       },
-      orderBy: [{ category: "asc" }, { rarity: "desc" }, { name: "asc" }]
+      orderBy: [{ category: "asc" }, { rarity: "desc" }, { name: "asc" }],
     }),
     prisma.goal.findMany({
       where: {
-        userId
+        userId,
       },
       include: {
         goalMaterials: {
           orderBy: {
-            createdAt: "asc"
-          }
-        }
+            createdAt: "asc",
+          },
+        },
       },
       orderBy: {
-        createdAt: "desc"
-      }
-    })
+        createdAt: "desc",
+      },
+    }),
   ]);
 
   const materialNodes: MaterialNode[] = materials.map((material) => ({
@@ -41,7 +41,7 @@ export async function getDashboardData(userId: string): Promise<DashboardData> {
     combinable: material.combinable,
     combineRatio: material.combineRatio,
     parentMaterialId: material.parentMaterialId,
-    quantity: material.inventories[0]?.quantity ?? 0
+    quantity: material.inventories[0]?.quantity ?? 0,
   }));
 
   const goalViews = goals.map((goal) =>
@@ -53,11 +53,11 @@ export async function getDashboardData(userId: string): Promise<DashboardData> {
         materials: goal.goalMaterials.map((item) => ({
           id: item.id,
           materialId: item.materialId,
-          required: item.required
-        }))
+          required: item.required,
+        })),
       },
-      materialNodes
-    )
+      materialNodes,
+    ),
   );
 
   return buildDashboardData(materialNodes, goalViews);

@@ -12,7 +12,7 @@ export default async function ShrinesPage() {
       bullets={[
         "Track discovered shrine locations",
         "Store open or unopened shrine state per user",
-        "Future integration with map pins and region summaries"
+        "Future integration with map pins and region summaries",
       ]}
     />
   );

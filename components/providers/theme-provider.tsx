@@ -5,7 +5,12 @@ import type { PropsWithChildren } from "react";
 
 export function ThemeProvider({ children }: PropsWithChildren) {
   return (
-    <NextThemesProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+    <NextThemesProvider
+      attribute="class"
+      defaultTheme="system"
+      enableSystem
+      disableTransitionOnChange
+    >
       {children}
     </NextThemesProvider>
   );

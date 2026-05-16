@@ -4,17 +4,17 @@ import { prisma } from "@/lib/prisma";
 
 export async function GET(
   _: Request,
-  context: { params: Promise<{ materialId: string }> }
+  context: { params: Promise<{ materialId: string }> },
 ) {
   const { materialId } = await context.params;
 
   const material = await prisma.material.findUnique({
     where: {
-      id: materialId
+      id: materialId,
     },
     select: {
-      image: true
-    }
+      image: true,
+    },
   });
 
   if (!material) {
@@ -25,8 +25,8 @@ export async function GET(
     const response = await fetch(material.image, {
       cache: "force-cache",
       next: {
-        revalidate: 86400
-      }
+        revalidate: 86400,
+      },
     });
 
     if (!response.ok) {
@@ -39,8 +39,8 @@ export async function GET(
     return new NextResponse(arrayBuffer, {
       headers: {
         "Content-Type": contentType,
-        "Cache-Control": "public, max-age=31536000, immutable"
-      }
+        "Cache-Control": "public, max-age=31536000, immutable",
+      },
     });
   } catch (error) {
     console.error("Material image proxy failed", error);

@@ -32,10 +32,10 @@ export function AuthForm({ mode }: { mode: "login" | "register" }) {
 
   return (
     <Card className="w-full max-w-md p-8" variant="elevated">
-      <h1 className="text-3xl font-bold text-on-surface">
+      <h1 className="text-on-surface text-3xl font-bold">
         {isLogin ? "Login" : "Create account"}
       </h1>
-      <p className="mt-3 text-sm text-on-surface-variant">
+      <p className="text-on-surface-variant mt-3 text-sm">
         {isLogin
           ? "Sign in to access your personal material inventory and goals."
           : "Create a simple username and password to keep your tracker data separate."}
@@ -54,7 +54,7 @@ export function AuthForm({ mode }: { mode: "login" | "register" }) {
           onChange={(event) => setPassword(event.target.value)}
         />
         <Button
-          className="w-full mt-4"
+          className="mt-4 w-full"
           disabled={isPending}
           onClick={handleSubmit}
           variant="filled"
@@ -63,9 +63,12 @@ export function AuthForm({ mode }: { mode: "login" | "register" }) {
         </Button>
       </div>
 
-      <p className="mt-6 text-sm text-on-surface-variant">
+      <p className="text-on-surface-variant mt-6 text-sm">
         {isLogin ? "Need an account?" : "Already have an account?"}{" "}
-        <Link className="font-medium text-primary hover:underline" href={isLogin ? "/register" : "/login"}>
+        <Link
+          className="font-medium text-primary hover:underline"
+          href={isLogin ? "/register" : "/login"}
+        >
           {isLogin ? "Register" : "Login"}
         </Link>
       </p>

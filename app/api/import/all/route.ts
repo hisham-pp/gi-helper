@@ -56,11 +56,11 @@ export async function POST(request: Request) {
     await prisma.$transaction(async (tx) => {
       const existingGoals = await tx.goal.findMany({
         where: {
-          userId: user.id
+          userId: user.id,
         },
         select: {
-          id: true
-        }
+          id: true,
+        },
       });
 
       for (const material of materials) {
@@ -78,10 +78,11 @@ export async function POST(request: Request) {
             description: material.description ?? "",
             combinable: Boolean(material.combinable),
             combineRatio:
-              material.combineRatio === null || material.combineRatio === undefined
+              material.combineRatio === null ||
+              material.combineRatio === undefined
                 ? null
                 : Number(material.combineRatio),
-            parentMaterialId: material.parentMaterialId ?? null
+            parentMaterialId: material.parentMaterialId ?? null,
           },
           create: {
             id: material.id,
@@ -92,11 +93,12 @@ export async function POST(request: Request) {
             description: material.description ?? "",
             combinable: Boolean(material.combinable),
             combineRatio:
-              material.combineRatio === null || material.combineRatio === undefined
+              material.combineRatio === null ||
+              material.combineRatio === undefined
                 ? null
                 : Number(material.combineRatio),
-            parentMaterialId: material.parentMaterialId ?? null
-          }
+            parentMaterialId: material.parentMaterialId ?? null,
+          },
         });
       }
 
@@ -104,22 +106,22 @@ export async function POST(request: Request) {
         await tx.goalMaterial.deleteMany({
           where: {
             goalId: {
-              in: existingGoals.map((goal) => goal.id)
-            }
-          }
+              in: existingGoals.map((goal) => goal.id),
+            },
+          },
         });
       }
 
       await tx.goal.deleteMany({
         where: {
-          userId: user.id
-        }
+          userId: user.id,
+        },
       });
 
       await tx.inventory.deleteMany({
         where: {
-          userId: user.id
-        }
+          userId: user.id,
+        },
       });
 
       if (inventory.length > 0) {
@@ -129,8 +131,8 @@ export async function POST(request: Request) {
             .map((item) => ({
               userId: user.id,
               materialId: item.materialId,
-              quantity: Number(item.quantity ?? 0)
-            }))
+              quantity: Number(item.quantity ?? 0),
+            })),
         });
       }
 
@@ -144,11 +146,13 @@ export async function POST(request: Request) {
             id: goal.id,
             userId: user.id,
             name: goal.name,
-            description: goal.description ?? null
-          }
+            description: goal.description ?? null,
+          },
         });
 
-        const goalMaterials = Array.isArray(goal.goalMaterials) ? goal.goalMaterials : [];
+        const goalMaterials = Array.isArray(goal.goalMaterials)
+          ? goal.goalMaterials
+          : [];
 
         if (goalMaterials.length > 0) {
           await tx.goalMaterial.createMany({
@@ -158,19 +162,22 @@ export async function POST(request: Request) {
                 id: entry.id,
                 goalId: goal.id,
                 materialId: entry.materialId,
-                required: Number(entry.required ?? 0)
-              }))
+                required: Number(entry.required ?? 0),
+              })),
           });
         }
       }
     });
 
     return NextResponse.json({
-      success: true
+      success: true,
     });
   } catch (error) {
     console.error("Import all failed", error);
 
-    return NextResponse.json({ error: "Unable to import backup file." }, { status: 500 });
+    return NextResponse.json(
+      { error: "Unable to import backup file." },
+      { status: 500 },
+    );
   }
 }
