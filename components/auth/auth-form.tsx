@@ -5,6 +5,9 @@ import { useState, useTransition } from "react";
 import { toast } from "sonner";
 
 import { loginAction, registerAction } from "@/app/actions";
+import { Card } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 export function AuthForm({ mode }: { mode: "login" | "register" }) {
   const [username, setUsername] = useState("");
@@ -28,46 +31,44 @@ export function AuthForm({ mode }: { mode: "login" | "register" }) {
   }
 
   return (
-    <div className="w-full max-w-md rounded-[32px] border border-border bg-card/80 p-6 shadow-panel backdrop-blur dark:bg-slate-950/80">
-      <h1 className="text-3xl font-semibold text-slate-950 dark:text-white">
+    <Card className="w-full max-w-md p-8" variant="elevated">
+      <h1 className="text-3xl font-bold text-on-surface">
         {isLogin ? "Login" : "Create account"}
       </h1>
-      <p className="mt-3 text-sm text-slate-500 dark:text-slate-400">
+      <p className="mt-3 text-sm text-on-surface-variant">
         {isLogin
           ? "Sign in to access your personal material inventory and goals."
           : "Create a simple username and password to keep your tracker data separate."}
       </p>
 
-      <div className="mt-6 space-y-3">
-        <input
-          className="w-full rounded-2xl border border-border bg-white/70 px-4 py-3 text-sm outline-none dark:bg-white/5"
-          placeholder="Username"
+      <div className="mt-8 space-y-4">
+        <Input
+          label="Username"
           value={username}
           onChange={(event) => setUsername(event.target.value)}
         />
-        <input
-          className="w-full rounded-2xl border border-border bg-white/70 px-4 py-3 text-sm outline-none dark:bg-white/5"
-          placeholder="Password"
+        <Input
+          label="Password"
           type="password"
           value={password}
           onChange={(event) => setPassword(event.target.value)}
         />
-        <button
-          className="w-full rounded-2xl bg-slate-900 px-4 py-3 text-sm font-medium text-white transition hover:bg-slate-700 disabled:opacity-60 dark:bg-white dark:text-slate-950"
+        <Button
+          className="w-full mt-4"
           disabled={isPending}
           onClick={handleSubmit}
-          type="button"
+          variant="filled"
         >
           {isPending ? "Please wait..." : isLogin ? "Login" : "Create account"}
-        </button>
+        </Button>
       </div>
 
-      <p className="mt-5 text-sm text-slate-500 dark:text-slate-400">
+      <p className="mt-6 text-sm text-on-surface-variant">
         {isLogin ? "Need an account?" : "Already have an account?"}{" "}
-        <Link className="font-medium text-sky-600 dark:text-sky-300" href={isLogin ? "/register" : "/login"}>
+        <Link className="font-medium text-primary hover:underline" href={isLogin ? "/register" : "/login"}>
           {isLogin ? "Register" : "Login"}
         </Link>
       </p>
-    </div>
+    </Card>
   );
 }

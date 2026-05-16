@@ -2,6 +2,8 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 import { AppShell } from "@/components/layout/app-shell";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 export function PlaceholderPage({
   title,
@@ -16,31 +18,32 @@ export function PlaceholderPage({
 }) {
   return (
     <AppShell title={title} description={description} userLabel={username}>
-      <section className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-        <div className="rounded-3xl border border-border bg-card/80 p-6 shadow-sm backdrop-blur dark:bg-slate-950/80">
-          <h2 className="text-xl font-semibold text-slate-950 dark:text-white">Planned Scope</h2>
-          <div className="mt-4 space-y-3">
+      <section className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+        <Card variant="outlined" className="p-8">
+          <h2 className="text-xl font-bold text-on-surface">Planned Scope</h2>
+          <div className="mt-6 space-y-3">
             {bullets.map((bullet) => (
-              <div key={bullet} className="rounded-2xl border border-border bg-white/50 px-4 py-3 text-sm text-slate-600 dark:bg-white/5 dark:text-slate-300">
+              <Card key={bullet} variant="filled" className="px-4 py-4 text-sm font-medium text-on-surface-variant">
                 {bullet}
-              </div>
+              </Card>
             ))}
           </div>
-        </div>
+        </Card>
 
-        <div className="rounded-3xl border border-border bg-card/80 p-6 shadow-sm backdrop-blur dark:bg-slate-950/80">
-          <h2 className="text-xl font-semibold text-slate-950 dark:text-white">Current Status</h2>
-          <p className="mt-3 text-sm text-slate-500 dark:text-slate-400">
+        <Card variant="outlined" className="p-8">
+          <h2 className="text-xl font-bold text-on-surface">Current Status</h2>
+          <p className="mt-4 text-sm text-on-surface-variant leading-relaxed">
             This page is intentionally reserved so the route structure is ready before feature implementation begins.
           </p>
-          <Link
-            href="/materials"
-            className="mt-6 inline-flex items-center gap-2 rounded-2xl bg-slate-900 px-4 py-3 text-sm font-medium text-white transition hover:bg-slate-700 dark:bg-white dark:text-slate-950"
-          >
-            Open material tracker
-            <ArrowRight className="h-4 w-4" />
-          </Link>
-        </div>
+          <div className="mt-8">
+            <Link href="/materials">
+              <Button variant="filled" className="w-full sm:w-auto">
+                Open material tracker
+                <ArrowRight className="h-4 w-4 ml-2" />
+              </Button>
+            </Link>
+          </div>
+        </Card>
       </section>
     </AppShell>
   );
