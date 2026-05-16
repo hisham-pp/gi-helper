@@ -10,8 +10,42 @@ async function main() {
       where: {
         id: material.id
       },
-      update: material,
-      create: material
+      update: {
+        name: material.name,
+        image: material.image,
+        rarity: material.rarity,
+        category: material.category,
+        description: material.description,
+        combinable: material.combinable,
+        combineRatio: material.combineRatio
+      },
+      create: {
+        id: material.id,
+        name: material.name,
+        image: material.image,
+        rarity: material.rarity,
+        category: material.category,
+        description: material.description,
+        combinable: material.combinable,
+        combineRatio: material.combineRatio,
+        parentMaterialId: null
+      }
+    });
+  }
+
+  // Parent links are applied after all materials exist so SQLite foreign keys never fail.
+  for (const material of seedMaterials) {
+    if (!material.parentMaterialId) {
+      continue;
+    }
+
+    await prisma.material.update({
+      where: {
+        id: material.id
+      },
+      data: {
+        parentMaterialId: material.parentMaterialId
+      }
     });
   }
 }
