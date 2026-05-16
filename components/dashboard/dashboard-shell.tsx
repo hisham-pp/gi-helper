@@ -540,7 +540,7 @@ export function DashboardShell({ initialData, username }: DashboardShellProps) {
           </Panel>
         </section>
       ) : null}
-    </section>
+    </div>
   );
 }
 
