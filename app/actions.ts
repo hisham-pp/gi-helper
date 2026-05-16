@@ -366,6 +366,9 @@ export async function logoutAction() {
   redirect("/login");
 }
 
+const externalIconUrl = (iconName: string) =>
+  `https://enka.network/ui/${iconName}.png`;
+
 export async function createMaterialAction(input: unknown) {
   const user = await requireMaster();
   const parsed = materialSchema.safeParse(input);
@@ -376,6 +379,9 @@ export async function createMaterialAction(input: unknown) {
 
   try {
     const createData: any = { ...parsed.data };
+    createData.image = externalIconUrl(createData.iconName);
+    delete createData.iconName;
+
     if (createData.parentMaterialId === null) {
       delete createData.parentMaterialId;
     }
@@ -399,6 +405,9 @@ export async function updateMaterialAction(input: unknown) {
 
   try {
     const updateData: any = { ...parsed.data };
+    updateData.image = externalIconUrl(updateData.iconName);
+    delete updateData.iconName;
+
     if (updateData.parentMaterialId === null) {
       updateData.parentMaterialId = undefined;
     }

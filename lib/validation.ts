@@ -38,7 +38,7 @@ export const deleteGoalMaterialSchema = z.object({
 export const materialSchema = z.object({
   id: z.string().trim().min(1),
   name: z.string().trim().min(1).max(200),
-  image: z.string().url().min(1),
+  iconName: z.string().trim().min(1).max(200),
   rarity: z.coerce.number().int().min(1).max(5),
   category: z.string().trim().min(1).max(60),
   description: z.string().trim().max(1000).optional().or(z.literal("")),
