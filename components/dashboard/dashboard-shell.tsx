@@ -96,6 +96,27 @@ export function DashboardShell({
     [data.materials],
   );
 
+  const materialCategoryOptions = useMemo(
+    () =>
+      Array.from(new Set(data.materials.map((material) => material.category))).map(
+        (category) => ({ label: category, value: category }),
+      ),
+    [data.materials],
+  );
+
+  const parentMaterialOptions = useMemo(
+    () => [
+      { label: "None", value: "" },
+      ...data.materials
+        .filter((material) => material.id !== editing?.id)
+        .map((material) => ({
+          label: `${material.name} (${material.id})`,
+          value: material.id,
+        })),
+    ],
+    [data.materials, editing?.id],
+  );
+
   const filteredMaterials = useMemo(() => {
     return data.materials.filter((material) => {
       const matchesSearch =
@@ -182,6 +203,8 @@ export function DashboardShell({
     return filename.replace(/\.png$/i, "");
   };
 
+  const generateMaterialId = () => crypto.randomUUID();
+
   function resetEditorForm() {
     setEditing(null);
     setEditorForm({
@@ -199,6 +222,7 @@ export function DashboardShell({
 
   function openEditorForCreate() {
     resetEditorForm();
+    setEditorForm((current) => ({ ...current, id: generateMaterialId() }));
     setIsEditorOpen(true);
   }
 
@@ -549,6 +573,8 @@ export function DashboardShell({
               form={editorForm}
               setForm={setEditorForm}
               onSave={handleEditorSave}
+              categoryOptions={materialCategoryOptions}
+              parentOptions={parentMaterialOptions}
             />
           )}
         </>
@@ -667,12 +693,16 @@ function MaterialEditor({
   form,
   setForm,
   onSave,
+  categoryOptions,
+  parentOptions,
 }: {
   open: boolean;
   close: () => void;
   form: any;
   setForm: (next: any) => void;
   onSave: () => Promise<void> | void;
+  categoryOptions: Array<{ label: string; value: string }>;
+  parentOptions: Array<{ label: string; value: string }>;
 }) {
   if (!open) return null;
 
@@ -687,7 +717,8 @@ function MaterialEditor({
             <TextField
               label="ID"
               value={form.id}
-              onChange={(e) => setForm({ ...form, id: e.target.value })}
+              readOnly
+              helperText="Auto-generated for new materials and fixed after creation."
             />
             <TextField
               label="Name"
@@ -698,12 +729,13 @@ function MaterialEditor({
               label="Icon Name"
               value={form.iconName}
               onChange={(e) => setForm({ ...form, iconName: e.target.value })}
-              description="Enter the icon identifier like UI_ItemIcon_100001"
+              helperText="Enter the icon identifier like UI_ItemIcon_100001"
             />
-            <TextField
+            <Select
               label="Category"
               value={form.category}
-              onChange={(e) => setForm({ ...form, category: e.target.value })}
+              onChange={(value) => setForm({ ...form, category: value })}
+              options={categoryOptions}
             />
             <TextField
               label="Rarity"
@@ -724,12 +756,13 @@ function MaterialEditor({
                 })
               }
             />
-            <TextField
-              label="Parent Material ID"
+            <Select
+              label="Parent Material"
               value={form.parentMaterialId ?? ""}
-              onChange={(e) =>
-                setForm({ ...form, parentMaterialId: e.target.value || null })
+              onChange={(value) =>
+                setForm({ ...form, parentMaterialId: value || null })
               }
+              options={parentOptions}
             />
             <TextField
               label="Description"
