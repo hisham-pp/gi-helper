@@ -17,7 +17,8 @@ async function main() {
         category: material.category,
         description: material.description,
         combinable: material.combinable,
-        combineRatio: material.combineRatio
+        combineRatio: material.combineRatio,
+        parentMaterialId: null
       },
       create: {
         id: material.id,
