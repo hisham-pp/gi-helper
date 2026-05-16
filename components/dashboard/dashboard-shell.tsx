@@ -40,6 +40,13 @@ import { TextField } from "@/components/ui/text-field";
 import { Select } from "@/components/ui/select";
 import { Progress } from "@/components/ui/progress";
 
+const generateMaterialIdFromName = (name: string) =>
+  name
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+
 type DashboardShellProps = {
   initialData: DashboardData;
   username: string;
@@ -98,9 +105,9 @@ export function DashboardShell({
 
   const materialCategoryOptions = useMemo(
     () =>
-      Array.from(new Set(data.materials.map((material) => material.category))).map(
-        (category) => ({ label: category, value: category }),
-      ),
+      Array.from(
+        new Set(data.materials.map((material) => material.category)),
+      ).map((category) => ({ label: category, value: category })),
     [data.materials],
   );
 
@@ -203,8 +210,6 @@ export function DashboardShell({
     return filename.replace(/\.png$/i, "");
   };
 
-  const generateMaterialId = () => crypto.randomUUID();
-
   function resetEditorForm() {
     setEditing(null);
     setEditorForm({
@@ -222,7 +227,6 @@ export function DashboardShell({
 
   function openEditorForCreate() {
     resetEditorForm();
-    setEditorForm((current) => ({ ...current, id: generateMaterialId() }));
     setIsEditorOpen(true);
   }
 
@@ -723,7 +727,14 @@ function MaterialEditor({
             <TextField
               label="Name"
               value={form.name}
-              onChange={(e) => setForm({ ...form, name: e.target.value })}
+              onChange={(e) => {
+                const nextName = e.target.value;
+                setForm({
+                  ...form,
+                  name: nextName,
+                  id: form.id || generateMaterialIdFromName(nextName),
+                });
+              }}
             />
             <TextField
               label="Icon Name"
