@@ -5,7 +5,7 @@ import type { Route } from "next";
 import { usePathname } from "next/navigation";
 import { Compass, Gem, Home, MoonStar, Shield, Sparkles, SunMedium, Swords, Target } from "lucide-react";
 import { useTheme } from "next-themes";
-import type { ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 
 import { logoutAction } from "@/app/actions";
 import { cn } from "@/lib/utils";
@@ -32,6 +32,13 @@ export function AppShell({
 }>) {
   const pathname = usePathname();
   const { resolvedTheme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const isDark = mounted && resolvedTheme === "dark";
 
   return (
     <main className="min-h-screen bg-background text-foreground">
@@ -59,11 +66,11 @@ export function AppShell({
               ) : null}
               <button
                 className="inline-flex items-center gap-2 rounded-full border border-white/60 bg-white px-4 py-2 text-sm font-medium text-slate-800 transition hover:bg-slate-100 dark:border-white/10 dark:bg-white/10 dark:text-white dark:hover:bg-white/15"
-                onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+                onClick={() => setTheme(isDark ? "light" : "dark")}
                 type="button"
               >
-                {resolvedTheme === "dark" ? <SunMedium className="h-4 w-4" /> : <MoonStar className="h-4 w-4" />}
-                {resolvedTheme === "dark" ? "Light mode" : "Dark mode"}
+                {isDark ? <SunMedium className="h-4 w-4" /> : <MoonStar className="h-4 w-4" />}
+                {isDark ? "Light mode" : "Dark mode"}
               </button>
               {userLabel ? (
                 <form action={logoutAction}>
