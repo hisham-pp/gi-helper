@@ -1,0 +1,234 @@
+import { createThreeTierFamily } from "@/prisma/seed-data/helpers";
+
+export const enemyDrops = [
+  ...createThreeTierFamily("Enemy Drop", [
+    {
+      id: "slime-condensate",
+      name: "Slime Condensate",
+      iconId: "UI_ItemIcon_112001",
+      rarity: 1,
+      description: "A thick coating left behind by Slimes. Commonly used in character and weapon ascension."
+    },
+    {
+      id: "slime-secretions",
+      name: "Slime Secretions",
+      iconId: "UI_ItemIcon_112002",
+      rarity: 2,
+      description: "Refined slime residue condensed from common droplets."
+    },
+    {
+      id: "slime-concentrate",
+      name: "Slime Concentrate",
+      iconId: "UI_ItemIcon_112003",
+      rarity: 3,
+      description: "Highly concentrated Slime essence used for advanced upgrades."
+    }
+  ]),
+  ...createThreeTierFamily("Enemy Drop", [
+    {
+      id: "damaged-mask",
+      name: "Damaged Mask",
+      iconId: "UI_ItemIcon_112004",
+      rarity: 1,
+      description: "A broken bone mask worn by Hilichurls."
+    },
+    {
+      id: "stained-mask",
+      name: "Stained Mask",
+      iconId: "UI_ItemIcon_112005",
+      rarity: 2,
+      description: "A battle-worn mask darkened by elemental traces."
+    },
+    {
+      id: "ominous-mask",
+      name: "Ominous Mask",
+      iconId: "UI_ItemIcon_112006",
+      rarity: 3,
+      description: "A menacing mask steeped in Hilichurl folklore."
+    }
+  ]),
+  ...createThreeTierFamily("Enemy Drop", [
+    {
+      id: "divining-scroll",
+      name: "Divining Scroll",
+      iconId: "UI_ItemIcon_112007",
+      rarity: 1,
+      description: "A brittle scroll recovered from Samachurls."
+    },
+    {
+      id: "sealed-scroll",
+      name: "Sealed Scroll",
+      iconId: "UI_ItemIcon_112008",
+      rarity: 2,
+      description: "An enchanted scroll sealed with ritual markings."
+    },
+    {
+      id: "forbidden-curse-scroll",
+      name: "Forbidden Curse Scroll",
+      iconId: "UI_ItemIcon_112009",
+      rarity: 3,
+      description: "A dangerous scroll containing forbidden incantations."
+    }
+  ]),
+  ...createThreeTierFamily("Enemy Drop", [
+    {
+      id: "firm-arrowhead",
+      name: "Firm Arrowhead",
+      iconId: "UI_ItemIcon_112010",
+      rarity: 1,
+      description: "A crude arrowhead dropped by ranged Hilichurls."
+    },
+    {
+      id: "sharp-arrowhead",
+      name: "Sharp Arrowhead",
+      iconId: "UI_ItemIcon_112011",
+      rarity: 2,
+      description: "A better-finished arrowhead sharpened through repeated use."
+    },
+    {
+      id: "weathered-arrowhead",
+      name: "Weathered Arrowhead",
+      iconId: "UI_ItemIcon_112012",
+      rarity: 3,
+      description: "A treasured arrowhead marked by countless hunts."
+    }
+  ]),
+  ...createThreeTierFamily("Enemy Drop", [
+    {
+      id: "recruits-insignia",
+      name: "Recruit's Insignia",
+      iconId: "UI_ItemIcon_112025",
+      rarity: 1,
+      description: "A basic Fatui insignia issued to new recruits."
+    },
+    {
+      id: "sergeants-insignia",
+      name: "Sergeant's Insignia",
+      iconId: "UI_ItemIcon_112026",
+      rarity: 2,
+      description: "An insignia reserved for experienced Fatui soldiers."
+    },
+    {
+      id: "lieutenants-insignia",
+      name: "Lieutenant's Insignia",
+      iconId: "UI_ItemIcon_112027",
+      rarity: 3,
+      description: "A mark awarded to elite officers within the Fatui."
+    }
+  ]),
+  ...createThreeTierFamily("Enemy Drop", [
+    {
+      id: "treasure-hoarder-insignia",
+      name: "Treasure Hoarder Insignia",
+      iconId: "UI_ItemIcon_112028",
+      rarity: 1,
+      description: "A badge carried by common Treasure Hoarders."
+    },
+    {
+      id: "silver-raven-insignia",
+      name: "Silver Raven Insignia",
+      iconId: "UI_ItemIcon_112029",
+      rarity: 2,
+      description: "A silver mark earned by more accomplished raiders."
+    },
+    {
+      id: "golden-raven-insignia",
+      name: "Golden Raven Insignia",
+      iconId: "UI_ItemIcon_112030",
+      rarity: 3,
+      description: "A gilded insignia signifying major status among hoarders."
+    }
+  ]),
+  ...createThreeTierFamily("Enemy Drop", [
+    {
+      id: "old-handguard",
+      name: "Old Handguard",
+      iconId: "UI_ItemIcon_112031",
+      rarity: 1,
+      description: "A worn handguard from an Inazuman blade."
+    },
+    {
+      id: "kageuchi-handguard",
+      name: "Kageuchi Handguard",
+      iconId: "UI_ItemIcon_112032",
+      rarity: 2,
+      description: "A stronger guard taken from a practiced fighter."
+    },
+    {
+      id: "famed-handguard",
+      name: "Famed Handguard",
+      iconId: "UI_ItemIcon_112033",
+      rarity: 3,
+      description: "A masterwork guard kept by a renowned swordsman."
+    }
+  ]),
+  ...createThreeTierFamily("Enemy Drop", [
+    {
+      id: "whopperflower-nectar",
+      name: "Whopperflower Nectar",
+      iconId: "UI_ItemIcon_112037",
+      rarity: 1,
+      description: "Sweet nectar gathered from defeated Whopperflowers."
+    },
+    {
+      id: "shimmering-nectar",
+      name: "Shimmering Nectar",
+      iconId: "UI_ItemIcon_112038",
+      rarity: 2,
+      description: "A purer nectar that glows with latent elemental energy."
+    },
+    {
+      id: "energy-nectar",
+      name: "Energy Nectar",
+      iconId: "UI_ItemIcon_112039",
+      rarity: 3,
+      description: "Highly refined nectar used in advanced ascension recipes."
+    }
+  ]),
+  ...createThreeTierFamily("Enemy Drop", [
+    {
+      id: "fungal-spores",
+      name: "Fungal Spores",
+      iconId: "UI_ItemIcon_112065",
+      rarity: 1,
+      description: "Spores scattered by common fungi in Sumeru."
+    },
+    {
+      id: "luminescent-pollen",
+      name: "Luminescent Pollen",
+      iconId: "UI_ItemIcon_112066",
+      rarity: 2,
+      description: "A glowing powder gathered from active fungal growth."
+    },
+    {
+      id: "crystalline-cyst-dust",
+      name: "Crystalline Cyst Dust",
+      iconId: "UI_ItemIcon_112067",
+      rarity: 3,
+      description: "A bright, dense dust prized for high-level upgrades."
+    }
+  ]),
+  ...createThreeTierFamily("Enemy Drop", [
+    {
+      id: "spectral-husk",
+      name: "Spectral Husk",
+      iconId: "UI_ItemIcon_112068",
+      rarity: 1,
+      description: "A faint shell left by defeated Specters."
+    },
+    {
+      id: "spectral-heart",
+      name: "Spectral Heart",
+      iconId: "UI_ItemIcon_112069",
+      rarity: 2,
+      description: "A denser core formed from accumulated spectral energy."
+    },
+    {
+      id: "spectral-nucleus",
+      name: "Spectral Nucleus",
+      iconId: "UI_ItemIcon_112070",
+      rarity: 3,
+      description: "A vibrant nucleus from a Specter with concentrated energy."
+    }
+  ])
+];
