@@ -1,7 +1,11 @@
 "use client";
 
 import * as React from "react";
-import ReactSelect, { type Props as SelectProps, type GroupBase, type StylesConfig } from "react-select";
+import ReactSelect, {
+  type Props as SelectProps,
+  type GroupBase,
+  type StylesConfig,
+} from "react-select";
 import { cn } from "@/lib/utils";
 
 export interface Option {
@@ -9,20 +13,30 @@ export interface Option {
   readonly value: string;
 }
 
-export interface CustomSelectProps extends Omit<SelectProps<Option, false, GroupBase<Option>>, "onChange" | "value"> {
+export interface CustomSelectProps extends Omit<
+  SelectProps<Option, false, GroupBase<Option>>,
+  "onChange" | "value"
+> {
   label?: string;
   value?: string;
   onChange?: (value: string) => void;
   options: Option[];
 }
 
-export function Select({ label, value, onChange, options, className, ...props }: CustomSelectProps) {
+export function Select({
+  label,
+  value,
+  onChange,
+  options,
+  className,
+  ...props
+}: CustomSelectProps) {
   const id = React.useId();
   const [isFocused, setIsFocused] = React.useState(false);
-  
+
   const selectedOption = React.useMemo(
     () => options.find((opt) => opt.value === value) || null,
-    [options, value]
+    [options, value],
   );
 
   const customStyles: StylesConfig<Option, false, GroupBase<Option>> = {
@@ -31,8 +45,8 @@ export function Select({ label, value, onChange, options, className, ...props }:
       height: "56px",
       backgroundColor: "rgb(var(--md-sys-color-surface-variant) / 1)",
       border: "none",
-      borderBottom: state.isFocused 
-        ? "2px solid rgb(var(--md-sys-color-primary) / 1)" 
+      borderBottom: state.isFocused
+        ? "2px solid rgb(var(--md-sys-color-primary) / 1)"
         : "1px solid rgb(var(--md-sys-color-outline-variant) / 1)",
       borderRadius: "4px 4px 0 0",
       boxShadow: "none",
@@ -69,7 +83,8 @@ export function Select({ label, value, onChange, options, className, ...props }:
       ...base,
       backgroundColor: "rgb(var(--md-sys-color-surface) / 1)",
       borderRadius: "4px",
-      boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
+      boxShadow:
+        "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
       zIndex: 50,
     }),
     option: (base, state) => ({
@@ -77,8 +92,8 @@ export function Select({ label, value, onChange, options, className, ...props }:
       backgroundColor: state.isSelected
         ? "rgb(var(--md-sys-color-primary-container) / 1)"
         : state.isFocused
-        ? "rgb(var(--md-sys-color-surface-variant) / 1)"
-        : "transparent",
+          ? "rgb(var(--md-sys-color-surface-variant) / 1)"
+          : "transparent",
       color: state.isSelected
         ? "rgb(var(--md-sys-color-on-primary-container) / 1)"
         : "rgb(var(--md-sys-color-on-surface) / 1)",
@@ -106,10 +121,10 @@ export function Select({ label, value, onChange, options, className, ...props }:
       {label && (
         <label
           className={cn(
-            "pointer-events-none absolute left-4 transition-all z-10",
+            "pointer-events-none absolute left-4 z-10 transition-all",
             selectedOption || isFocused
               ? "top-1 text-xs text-primary"
-              : "top-4 text-base text-on-surface-variant"
+              : "text-on-surface-variant top-4 text-base",
           )}
         >
           {label}

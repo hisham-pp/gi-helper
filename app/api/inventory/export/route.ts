@@ -12,21 +12,21 @@ export async function GET() {
 
   const items = await prisma.inventory.findMany({
     where: {
-      userId: user.id
+      userId: user.id,
     },
     include: {
       material: {
         select: {
           id: true,
-          name: true
-        }
-      }
+          name: true,
+        },
+      },
     },
     orderBy: {
       material: {
-        name: "asc"
-      }
-    }
+        name: "asc",
+      },
+    },
   });
 
   return NextResponse.json({
@@ -34,8 +34,8 @@ export async function GET() {
     items: items.map((item) => ({
       materialId: item.materialId,
       materialName: item.material.name,
-      quantity: item.quantity
+      quantity: item.quantity,
     })),
-    username: user.username
+    username: user.username,
   });
 }

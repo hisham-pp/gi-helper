@@ -16,7 +16,10 @@ export async function POST(request: Request) {
     const parsed = inventoryImportSchema.safeParse(body);
 
     if (!parsed.success) {
-      return NextResponse.json({ error: "Invalid import payload." }, { status: 400 });
+      return NextResponse.json(
+        { error: "Invalid import payload." },
+        { status: 400 },
+      );
     }
 
     await prisma.$transaction(
@@ -25,28 +28,31 @@ export async function POST(request: Request) {
           where: {
             userId_materialId: {
               userId: user.id,
-              materialId: item.materialId
-            }
+              materialId: item.materialId,
+            },
           },
           update: {
-            quantity: item.quantity
+            quantity: item.quantity,
           },
           create: {
             userId: user.id,
             materialId: item.materialId,
-            quantity: item.quantity
-          }
-        })
-      )
+            quantity: item.quantity,
+          },
+        }),
+      ),
     );
 
     return NextResponse.json({
       success: true,
-      importedCount: parsed.data.items.length
+      importedCount: parsed.data.items.length,
     });
   } catch (error) {
     console.error("Inventory import failed", error);
 
-    return NextResponse.json({ error: "Unable to import inventory data." }, { status: 500 });
+    return NextResponse.json(
+      { error: "Unable to import inventory data." },
+      { status: 500 },
+    );
   }
 }

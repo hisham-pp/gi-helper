@@ -12,7 +12,7 @@ export default async function ChallengesPage() {
       bullets={[
         "General challenge and puzzle completion tracking",
         "Support for single-instance or one-time challenge mechanics",
-        "Future challenge grouping by region, area, or category"
+        "Future challenge grouping by region, area, or category",
       ]}
     />
   );

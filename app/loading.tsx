@@ -5,7 +5,10 @@ export default function Loading() {
         <div className="h-48 rounded-[32px] bg-slate-200 dark:bg-slate-800" />
         <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
           {Array.from({ length: 5 }).map((_, index) => (
-            <div key={index} className="h-28 rounded-3xl bg-slate-200 dark:bg-slate-800" />
+            <div
+              key={index}
+              className="h-28 rounded-3xl bg-slate-200 dark:bg-slate-800"
+            />
           ))}
         </div>
         <div className="h-[30rem] rounded-3xl bg-slate-200 dark:bg-slate-800" />

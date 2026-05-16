@@ -2,7 +2,14 @@
 
 import { redirect } from "next/navigation";
 
-import { createSession, hashPassword, requireUser, verifyPassword, clearSession } from "@/lib/auth";
+import {
+  createSession,
+  hashPassword,
+  requireUser,
+  verifyPassword,
+  clearSession,
+  requireMaster,
+} from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import type { ActionResponse, DashboardData } from "@/lib/types";
 import {
@@ -11,7 +18,8 @@ import {
   deleteGoalSchema,
   goalMaterialSchema,
   goalSchema,
-  inventorySchema
+  inventorySchema,
+  materialSchema,
 } from "@/lib/validation";
 import { getDashboardData } from "@/lib/data";
 
@@ -21,18 +29,20 @@ async function refreshDashboard(): Promise<ActionResponse<DashboardData>> {
 
   return {
     success: true,
-    data
+    data,
   };
 }
 
-export async function saveInventoryAction(input: unknown): Promise<ActionResponse<DashboardData>> {
+export async function saveInventoryAction(
+  input: unknown,
+): Promise<ActionResponse<DashboardData>> {
   const user = await requireUser();
   const parsed = inventorySchema.safeParse(input);
 
   if (!parsed.success) {
     return {
       success: false,
-      error: "Invalid inventory payload."
+      error: "Invalid inventory payload.",
     };
   }
 
@@ -43,32 +53,34 @@ export async function saveInventoryAction(input: unknown): Promise<ActionRespons
       where: {
         userId_materialId: {
           userId: user.id,
-          materialId
-        }
+          materialId,
+        },
       },
       update: { quantity },
-      create: { userId: user.id, materialId, quantity }
+      create: { userId: user.id, materialId, quantity },
     });
   } catch (error) {
     console.error("Inventory save failed", error);
 
     return {
       success: false,
-      error: "Unable to save inventory right now."
+      error: "Unable to save inventory right now.",
     };
   }
 
   return refreshDashboard();
 }
 
-export async function createGoalAction(input: unknown): Promise<ActionResponse<DashboardData>> {
+export async function createGoalAction(
+  input: unknown,
+): Promise<ActionResponse<DashboardData>> {
   const user = await requireUser();
   const parsed = goalSchema.safeParse(input);
 
   if (!parsed.success) {
     return {
       success: false,
-      error: "Goal name must be between 2 and 60 characters."
+      error: "Goal name must be between 2 and 60 characters.",
     };
   }
 
@@ -77,29 +89,31 @@ export async function createGoalAction(input: unknown): Promise<ActionResponse<D
       data: {
         userId: user.id,
         name: parsed.data.name,
-        description: parsed.data.description || null
-      }
+        description: parsed.data.description || null,
+      },
     });
   } catch (error) {
     console.error("Goal creation failed", error);
 
     return {
       success: false,
-      error: "Unable to create goal right now."
+      error: "Unable to create goal right now.",
     };
   }
 
   return refreshDashboard();
 }
 
-export async function saveGoalMaterialAction(input: unknown): Promise<ActionResponse<DashboardData>> {
+export async function saveGoalMaterialAction(
+  input: unknown,
+): Promise<ActionResponse<DashboardData>> {
   const user = await requireUser();
   const parsed = goalMaterialSchema.safeParse(input);
 
   if (!parsed.success) {
     return {
       success: false,
-      error: "Invalid goal material payload."
+      error: "Invalid goal material payload.",
     };
   }
 
@@ -109,17 +123,17 @@ export async function saveGoalMaterialAction(input: unknown): Promise<ActionResp
     const goal = await prisma.goal.findFirst({
       where: {
         id: goalId,
-        userId: user.id
+        userId: user.id,
       },
       select: {
-        id: true
-      }
+        id: true,
+      },
     });
 
     if (!goal) {
       return {
         success: false,
-        error: "Goal not found."
+        error: "Goal not found.",
       };
     }
 
@@ -127,38 +141,40 @@ export async function saveGoalMaterialAction(input: unknown): Promise<ActionResp
       where: {
         goalId_materialId: {
           goalId,
-          materialId
-        }
+          materialId,
+        },
       },
       update: {
-        required
+        required,
       },
       create: {
         goalId,
         materialId,
-        required
-      }
+        required,
+      },
     });
   } catch (error) {
     console.error("Goal material save failed", error);
 
     return {
       success: false,
-      error: "Unable to save goal material right now."
+      error: "Unable to save goal material right now.",
     };
   }
 
   return refreshDashboard();
 }
 
-export async function deleteGoalAction(input: unknown): Promise<ActionResponse<DashboardData>> {
+export async function deleteGoalAction(
+  input: unknown,
+): Promise<ActionResponse<DashboardData>> {
   const user = await requireUser();
   const parsed = deleteGoalSchema.safeParse(input);
 
   if (!parsed.success) {
     return {
       success: false,
-      error: "Invalid goal id."
+      error: "Invalid goal id.",
     };
   }
 
@@ -166,45 +182,47 @@ export async function deleteGoalAction(input: unknown): Promise<ActionResponse<D
     const goal = await prisma.goal.findFirst({
       where: {
         id: parsed.data.goalId,
-        userId: user.id
+        userId: user.id,
       },
       select: {
-        id: true
-      }
+        id: true,
+      },
     });
 
     if (!goal) {
       return {
         success: false,
-        error: "Goal not found."
+        error: "Goal not found.",
       };
     }
 
     await prisma.goal.delete({
       where: {
-        id: goal.id
-      }
+        id: goal.id,
+      },
     });
   } catch (error) {
     console.error("Goal delete failed", error);
 
     return {
       success: false,
-      error: "Unable to delete that goal."
+      error: "Unable to delete that goal.",
     };
   }
 
   return refreshDashboard();
 }
 
-export async function deleteGoalMaterialAction(input: unknown): Promise<ActionResponse<DashboardData>> {
+export async function deleteGoalMaterialAction(
+  input: unknown,
+): Promise<ActionResponse<DashboardData>> {
   const user = await requireUser();
   const parsed = deleteGoalMaterialSchema.safeParse(input);
 
   if (!parsed.success) {
     return {
       success: false,
-      error: "Invalid goal material id."
+      error: "Invalid goal material id.",
     };
   }
 
@@ -213,32 +231,32 @@ export async function deleteGoalMaterialAction(input: unknown): Promise<ActionRe
       where: {
         id: parsed.data.goalMaterialId,
         goal: {
-          userId: user.id
-        }
+          userId: user.id,
+        },
       },
       select: {
-        id: true
-      }
+        id: true,
+      },
     });
 
     if (!goalMaterial) {
       return {
         success: false,
-        error: "Requirement not found."
+        error: "Requirement not found.",
       };
     }
 
     await prisma.goalMaterial.delete({
       where: {
-        id: parsed.data.goalMaterialId
-      }
+        id: parsed.data.goalMaterialId,
+      },
     });
   } catch (error) {
     console.error("Goal material delete failed", error);
 
     return {
       success: false,
-      error: "Unable to remove that requirement."
+      error: "Unable to remove that requirement.",
     };
   }
 
@@ -246,14 +264,15 @@ export async function deleteGoalMaterialAction(input: unknown): Promise<ActionRe
 }
 
 export async function registerAction(
-  input: unknown
+  input: unknown,
 ): Promise<ActionResponse<{ username: string }>> {
   const parsed = authSchema.safeParse(input);
 
   if (!parsed.success) {
     return {
       success: false,
-      error: "Username must be 3-30 characters and password must be at least 6 characters."
+      error:
+        "Username must be 3-30 characters and password must be at least 6 characters.",
     };
   }
 
@@ -262,22 +281,22 @@ export async function registerAction(
   try {
     const existing = await prisma.user.findUnique({
       where: {
-        username
-      }
+        username,
+      },
     });
 
     if (existing) {
       return {
         success: false,
-        error: "Username already exists."
+        error: "Username already exists.",
       };
     }
 
     const user = await prisma.user.create({
       data: {
         username,
-        passwordHash: hashPassword(parsed.data.password)
-      }
+        passwordHash: hashPassword(parsed.data.password),
+      },
     });
 
     await createSession(user.id);
@@ -285,42 +304,42 @@ export async function registerAction(
     return {
       success: true,
       data: {
-        username: user.username
-      }
+        username: user.username,
+      },
     };
   } catch (error) {
     console.error("Register failed", error);
 
     return {
       success: false,
-      error: "Unable to create account right now."
+      error: "Unable to create account right now.",
     };
   }
 }
 
 export async function loginAction(
-  input: unknown
+  input: unknown,
 ): Promise<ActionResponse<{ username: string }>> {
   const parsed = authSchema.safeParse(input);
 
   if (!parsed.success) {
     return {
       success: false,
-      error: "Invalid username or password."
+      error: "Invalid username or password.",
     };
   }
 
   try {
     const user = await prisma.user.findUnique({
       where: {
-        username: parsed.data.username.toLowerCase()
-      }
+        username: parsed.data.username.toLowerCase(),
+      },
     });
 
     if (!user || !verifyPassword(parsed.data.password, user.passwordHash)) {
       return {
         success: false,
-        error: "Invalid username or password."
+        error: "Invalid username or password.",
       };
     }
 
@@ -329,15 +348,15 @@ export async function loginAction(
     return {
       success: true,
       data: {
-        username: user.username
-      }
+        username: user.username,
+      },
     };
   } catch (error) {
     console.error("Login failed", error);
 
     return {
       success: false,
-      error: "Unable to login right now."
+      error: "Unable to login right now.",
     };
   }
 }
@@ -345,4 +364,53 @@ export async function loginAction(
 export async function logoutAction() {
   await clearSession();
   redirect("/login");
+}
+
+export async function createMaterialAction(input: unknown) {
+  const user = await requireMaster();
+  const parsed = materialSchema.safeParse(input);
+
+  if (!parsed.success) {
+    return { success: false, error: "Invalid material payload." };
+  }
+
+  try {
+    const createData: any = { ...parsed.data };
+    if (createData.parentMaterialId === null) {
+      delete createData.parentMaterialId;
+    }
+
+    await prisma.material.create({ data: createData });
+  } catch (error) {
+    console.error("Create material failed", error);
+    return { success: false, error: "Unable to create material right now." };
+  }
+
+  return refreshDashboard();
+}
+
+export async function updateMaterialAction(input: unknown) {
+  const user = await requireMaster();
+  const parsed = materialSchema.safeParse(input);
+
+  if (!parsed.success) {
+    return { success: false, error: "Invalid material payload." };
+  }
+
+  try {
+    const updateData: any = { ...parsed.data };
+    if (updateData.parentMaterialId === null) {
+      updateData.parentMaterialId = undefined;
+    }
+
+    await prisma.material.update({
+      where: { id: parsed.data.id },
+      data: updateData,
+    });
+  } catch (error) {
+    console.error("Update material failed", error);
+    return { success: false, error: "Unable to update material right now." };
+  }
+
+  return refreshDashboard();
 }

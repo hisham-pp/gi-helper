@@ -18,9 +18,13 @@ type FamilyItem = {
   description: string;
 };
 
-export const enkaIcon = (iconId: string) => `https://enka.network/ui/${iconId}.png`;
+export const enkaIcon = (iconId: string) =>
+  `https://enka.network/ui/${iconId}.png`;
 
-export function createThreeTierFamily(category: string, items: [FamilyItem, FamilyItem, FamilyItem]): SeedMaterial[] {
+export function createThreeTierFamily(
+  category: string,
+  items: [FamilyItem, FamilyItem, FamilyItem],
+): SeedMaterial[] {
   return items.map((item, index) => ({
     id: item.id,
     name: item.name,
@@ -30,6 +34,6 @@ export function createThreeTierFamily(category: string, items: [FamilyItem, Fami
     description: item.description,
     combinable: index < items.length - 1,
     combineRatio: index < items.length - 1 ? 3 : null,
-    parentMaterialId: index < items.length - 1 ? items[index + 1].id : null
+    parentMaterialId: index < items.length - 1 ? items[index + 1].id : null,
   }));
 }

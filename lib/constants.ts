@@ -3,7 +3,7 @@ export const rarityColorMap: Record<number, string> = {
   2: "from-emerald-400 to-emerald-600",
   3: "from-sky-400 to-sky-600",
   4: "from-violet-400 to-violet-600",
-  5: "from-amber-300 to-amber-500"
+  5: "from-amber-300 to-amber-500",
 };
 
 export const rarityBorderMap: Record<number, string> = {
@@ -11,7 +11,7 @@ export const rarityBorderMap: Record<number, string> = {
   2: "border-emerald-300/60 dark:border-emerald-700/60",
   3: "border-sky-300/60 dark:border-sky-700/60",
   4: "border-violet-300/60 dark:border-violet-700/60",
-  5: "border-amber-300/60 dark:border-amber-700/60"
+  5: "border-amber-300/60 dark:border-amber-700/60",
 };
 
 export const tabs = ["inventory", "goals", "materials", "crafting"] as const;

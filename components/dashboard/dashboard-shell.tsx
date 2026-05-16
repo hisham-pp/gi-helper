@@ -20,6 +20,8 @@ import {
   deleteGoalMaterialAction,
   saveGoalMaterialAction,
   saveInventoryAction,
+  createMaterialAction,
+  updateMaterialAction,
 } from "@/app/actions";
 import { AppShell } from "@/components/layout/app-shell";
 import {
@@ -34,12 +36,14 @@ import { cn, formatNumber } from "@/lib/utils";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { TextField } from "@/components/ui/text-field";
 import { Select } from "@/components/ui/select";
 import { Progress } from "@/components/ui/progress";
 
 type DashboardShellProps = {
   initialData: DashboardData;
   username: string;
+  role?: string;
 };
 
 type InventoryDraft = Record<string, number>;
@@ -52,7 +56,11 @@ const overviewMeta = [
   { key: "craftableMaterials", label: "Craftable", icon: Sparkles },
 ] as const;
 
-export function DashboardShell({ initialData, username }: DashboardShellProps) {
+export function DashboardShell({
+  initialData,
+  username,
+  role,
+}: DashboardShellProps) {
   const [data, setData] = useState(initialData);
   const [activeTab, setActiveTab] = useState<DashboardTab>("inventory");
   const [search, setSearch] = useState("");
@@ -67,6 +75,19 @@ export function DashboardShell({ initialData, username }: DashboardShellProps) {
   );
   const [simulationRequired, setSimulationRequired] = useState(1);
   const [isPending, startTransition] = useTransition();
+  const [isEditorOpen, setIsEditorOpen] = useState(false);
+  const [editing, setEditing] = useState<MaterialView | null>(null);
+  const [editorForm, setEditorForm] = useState({
+    id: "",
+    name: "",
+    image: "",
+    rarity: 1,
+    category: "",
+    description: "",
+    combinable: false,
+    combineRatio: null as number | null,
+    parentMaterialId: null as string | null,
+  });
   const categories = useMemo(
     () => [
       "All",
@@ -156,6 +177,70 @@ export function DashboardShell({ initialData, username }: DashboardShellProps) {
     });
   }
 
+  function resetEditorForm() {
+    setEditing(null);
+    setEditorForm({
+      id: "",
+      name: "",
+      image: "",
+      rarity: 1,
+      category: "",
+      description: "",
+      combinable: false,
+      combineRatio: null,
+      parentMaterialId: null,
+    });
+  }
+
+  function openEditorForCreate() {
+    resetEditorForm();
+    setIsEditorOpen(true);
+  }
+
+  function openEditorForEdit(material: MaterialView) {
+    setEditing(material);
+    setEditorForm({
+      id: material.id,
+      name: material.name,
+      image: material.image,
+      rarity: material.rarity,
+      category: material.category,
+      description: material.description ?? "",
+      combinable: material.combinable ?? false,
+      combineRatio: material.combineRatio ?? null,
+      parentMaterialId: material.parentMaterialId ?? null,
+    });
+    setIsEditorOpen(true);
+  }
+
+  async function handleEditorSave() {
+    const previous = data;
+
+    startTransition(async () => {
+      try {
+        const payload = { ...editorForm };
+
+        const result = editing
+          ? await updateMaterialAction(payload)
+          : await createMaterialAction(payload);
+
+        if (!result.success || !result.data) {
+          toast.error(result.error ?? "Unable to save material.");
+          return;
+        }
+
+        syncDashboard(result.data);
+        toast.success("Material saved.");
+        setIsEditorOpen(false);
+        resetEditorForm();
+      } catch (err) {
+        console.error("Material save failed", err);
+        toast.error("Unable to save material.");
+        syncDashboard(previous);
+      }
+    });
+  }
+
   return (
     <div className="space-y-8">
       <header className="mb-8">
@@ -231,30 +316,23 @@ export function DashboardShell({ initialData, username }: DashboardShellProps) {
             </div>
 
             <div className="p-6">
-              <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+              <div className="grid gap-4">
                 {filteredMaterials.length === 0 ? (
-                  <div className="col-span-full py-12">
-                    <EmptyState
-                      icon={<PackageSearch className="h-10 w-10" />}
-                      title="No materials found"
-                      description="Adjust the search or category filter to find materials."
-                    />
-                  </div>
+                  <EmptyState
+                    icon={<PackageSearch className="h-8 w-8" />}
+                    title="No materials"
+                    description="No materials match your search or filters."
+                  />
                 ) : (
                   filteredMaterials.map((material) => (
                     <MaterialCard
                       key={material.id}
                       material={material}
-                      quantity={
-                        inventoryDraft[material.id] ?? material.quantity
-                      }
+                      quantity={inventoryDraft[material.id] ?? 0}
                       onChange={(value) =>
-                        setInventoryDraft((current) => ({
-                          ...current,
-                          [material.id]: Math.max(
-                            0,
-                            Number.isNaN(value) ? 0 : value,
-                          ),
+                        setInventoryDraft((prev) => ({
+                          ...prev,
+                          [material.id]: value,
                         }))
                       }
                       onSave={() => handleInventorySave(material.id)}
@@ -374,70 +452,101 @@ export function DashboardShell({ initialData, username }: DashboardShellProps) {
       ) : null}
 
       {activeTab === "materials" ? (
-        <Panel
-          title="Material Library"
-          description="Preloaded data with rarity colors and crafting links."
-        >
-          <div className="mt-6 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-            {data.materials.map((material) => (
-              <Card
-                key={material.id}
-                variant="outlined"
-                className={cn(
-                  "p-5 transition-transform hover:scale-[1.02]",
-                  rarityBorderMap[material.rarity] ?? rarityBorderMap[1],
-                )}
-              >
-                <div className="flex items-start gap-4">
-                  <div
-                    className={cn(
-                      "relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-2xl bg-gradient-to-br",
-                      rarityColorMap[material.rarity] ?? rarityColorMap[1],
-                    )}
-                  >
-                    <Image
-                      src={`/api/material-image/${material.id}`}
-                      alt={material.name}
-                      fill
-                      className="object-contain p-2"
-                      sizes="64px"
-                    />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <div className="flex items-center justify-between gap-3">
-                      <h3 className="text-on-surface font-bold">
-                        {material.name}
-                      </h3>
-                      <span className="rounded-full bg-secondary-container px-2.5 py-1 text-xs font-medium text-secondary-on-container">
-                        {material.category}
-                      </span>
-                    </div>
-                    <p className="text-on-surface-variant mt-2 line-clamp-2 text-sm">
-                      {material.description}
-                    </p>
-                    <div className="mt-4 flex flex-wrap gap-2 text-xs">
-                      <span className="text-on-surface-variant rounded-full border border-outline-variant px-2.5 py-1 font-medium">
-                        Rarity {material.rarity}
-                      </span>
-                      <span className="text-on-surface-variant rounded-full border border-outline-variant px-2.5 py-1 font-medium">
-                        Owned {formatNumber(material.quantity)}
-                      </span>
-                      {material.combinable && material.parentMaterialId ? (
-                        <span className="text-on-surface-variant rounded-full border border-outline-variant px-2.5 py-1 font-medium">
-                          3:1 Crafting
-                        </span>
-                      ) : (
-                        <span className="text-on-surface-variant rounded-full border border-outline-variant px-2.5 py-1 font-medium">
-                          Highest tier
-                        </span>
-                      )}
-                    </div>
-                  </div>
+        <>
+          <Panel
+            title="Material Library"
+            description="Preloaded data with rarity colors and crafting links."
+            action={
+              role === "master" ? (
+                <div className="flex gap-2">
+                  <Button onClick={openEditorForCreate}>New Material</Button>
+                  <Button onClick={() => setIsEditorOpen(true)}>
+                    Edit Library
+                  </Button>
                 </div>
-              </Card>
-            ))}
-          </div>
-        </Panel>
+              ) : undefined
+            }
+          >
+            <div className="mt-6 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+              {data.materials.map((material) => (
+                <Card
+                  key={material.id}
+                  variant="outlined"
+                  className={cn(
+                    "p-5 transition-transform hover:scale-[1.02]",
+                    rarityBorderMap[material.rarity] ?? rarityBorderMap[1],
+                  )}
+                >
+                  <div className="flex items-start gap-4">
+                    <div
+                      className={cn(
+                        "relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-2xl bg-gradient-to-br",
+                        rarityColorMap[material.rarity] ?? rarityColorMap[1],
+                      )}
+                    >
+                      <Image
+                        src={`/api/material-image/${material.id}`}
+                        alt={material.name}
+                        fill
+                        className="object-contain p-2"
+                        sizes="64px"
+                      />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-center justify-between gap-3">
+                        <h3 className="text-on-surface font-bold">
+                          {material.name}
+                        </h3>
+                        <div className="flex items-center gap-2">
+                          {role === "master" ? (
+                            <Button
+                              variant="text"
+                              onClick={() => openEditorForEdit(material)}
+                            >
+                              Edit
+                            </Button>
+                          ) : null}
+                          <span className="rounded-full bg-secondary-container px-2.5 py-1 text-xs font-medium text-secondary-on-container">
+                            {material.category}
+                          </span>
+                        </div>
+                      </div>
+                      <p className="text-on-surface-variant mt-2 line-clamp-2 text-sm">
+                        {material.description}
+                      </p>
+                      <div className="mt-4 flex flex-wrap gap-2 text-xs">
+                        <span className="text-on-surface-variant rounded-full border border-outline-variant px-2.5 py-1 font-medium">
+                          Rarity {material.rarity}
+                        </span>
+                        <span className="text-on-surface-variant rounded-full border border-outline-variant px-2.5 py-1 font-medium">
+                          Owned {formatNumber(material.quantity)}
+                        </span>
+                        {material.combinable && material.parentMaterialId ? (
+                          <span className="text-on-surface-variant rounded-full border border-outline-variant px-2.5 py-1 font-medium">
+                            3:1 Crafting
+                          </span>
+                        ) : (
+                          <span className="text-on-surface-variant rounded-full border border-outline-variant px-2.5 py-1 font-medium">
+                            Highest tier
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </Card>
+              ))}
+            </div>
+          </Panel>
+          {isEditorOpen && (
+            <MaterialEditor
+              open={isEditorOpen}
+              close={() => setIsEditorOpen(false)}
+              form={editorForm}
+              setForm={setEditorForm}
+              onSave={handleEditorSave}
+            />
+          )}
+        </>
       ) : null}
 
       {activeTab === "crafting" ? (
@@ -547,6 +656,95 @@ export function DashboardShell({ initialData, username }: DashboardShellProps) {
   );
 }
 
+function MaterialEditor({
+  open,
+  close,
+  form,
+  setForm,
+  onSave,
+}: {
+  open: boolean;
+  close: () => void;
+  form: any;
+  setForm: (next: any) => void;
+  onSave: () => Promise<void> | void;
+}) {
+  if (!open) return null;
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
+      <div className="w-full max-w-2xl">
+        <Card className="p-6">
+          <h3 className="text-on-surface mb-4 text-lg font-bold">
+            Material Editor
+          </h3>
+          <div className="grid gap-3 md:grid-cols-2">
+            <TextField
+              label="ID"
+              value={form.id}
+              onChange={(e) => setForm({ ...form, id: e.target.value })}
+            />
+            <TextField
+              label="Name"
+              value={form.name}
+              onChange={(e) => setForm({ ...form, name: e.target.value })}
+            />
+            <TextField
+              label="Image URL"
+              value={form.image}
+              onChange={(e) => setForm({ ...form, image: e.target.value })}
+            />
+            <TextField
+              label="Category"
+              value={form.category}
+              onChange={(e) => setForm({ ...form, category: e.target.value })}
+            />
+            <TextField
+              label="Rarity"
+              type="number"
+              value={String(form.rarity)}
+              onChange={(e) =>
+                setForm({ ...form, rarity: Number(e.target.value) })
+              }
+            />
+            <TextField
+              label="Combine Ratio"
+              type="number"
+              value={form.combineRatio ?? ""}
+              onChange={(e) =>
+                setForm({
+                  ...form,
+                  combineRatio: e.target.value ? Number(e.target.value) : null,
+                })
+              }
+            />
+            <TextField
+              label="Parent Material ID"
+              value={form.parentMaterialId ?? ""}
+              onChange={(e) =>
+                setForm({ ...form, parentMaterialId: e.target.value || null })
+              }
+            />
+            <TextField
+              label="Description"
+              value={form.description}
+              onChange={(e) =>
+                setForm({ ...form, description: e.target.value })
+              }
+            />
+          </div>
+          <div className="mt-4 flex justify-end gap-2">
+            <Button variant="text" onClick={close}>
+              Cancel
+            </Button>
+            <Button onClick={onSave}>Save</Button>
+          </div>
+        </Card>
+      </div>
+    </div>
+  );
+}
+
 function MaterialCard({
   material,
   quantity,
@@ -613,7 +811,6 @@ function MaterialCard({
     </Card>
   );
 }
-
 
 function SummaryList({
   title,

@@ -2,38 +2,56 @@ import { z } from "zod";
 
 export const inventorySchema = z.object({
   materialId: z.string().min(1),
-  quantity: z.coerce.number().int().min(0).max(999999)
+  quantity: z.coerce.number().int().min(0).max(999999),
 });
 
 export const authSchema = z.object({
-  username: z.string().trim().toLowerCase().min(3).max(30).regex(/^[a-zA-Z0-9_-]+$/),
-  password: z.string().min(6).max(100)
+  username: z
+    .string()
+    .trim()
+    .toLowerCase()
+    .min(3)
+    .max(30)
+    .regex(/^[a-zA-Z0-9_-]+$/),
+  password: z.string().min(6).max(100),
 });
 
 export const goalSchema = z.object({
   name: z.string().trim().min(2).max(60),
-  description: z.string().trim().max(180).optional().or(z.literal(""))
+  description: z.string().trim().max(180).optional().or(z.literal("")),
 });
 
 export const goalMaterialSchema = z.object({
   goalId: z.string().min(1),
   materialId: z.string().min(1),
-  required: z.coerce.number().int().min(0).max(999999)
+  required: z.coerce.number().int().min(0).max(999999),
 });
 
 export const deleteGoalSchema = z.object({
-  goalId: z.string().min(1)
+  goalId: z.string().min(1),
 });
 
 export const deleteGoalMaterialSchema = z.object({
-  goalMaterialId: z.string().min(1)
+  goalMaterialId: z.string().min(1),
+});
+
+export const materialSchema = z.object({
+  id: z.string().trim().min(1),
+  name: z.string().trim().min(1).max(200),
+  image: z.string().url().min(1),
+  rarity: z.coerce.number().int().min(1).max(5),
+  category: z.string().trim().min(1).max(60),
+  description: z.string().trim().max(1000).optional().or(z.literal("")),
+  combinable: z.boolean().optional(),
+  combineRatio: z.coerce.number().int().nullable().optional(),
+  parentMaterialId: z.string().nullable().optional(),
 });
 
 export const inventoryImportSchema = z.object({
   items: z.array(
     z.object({
       materialId: z.string().min(1),
-      quantity: z.coerce.number().int().min(0).max(999999)
-    })
-  )
+      quantity: z.coerce.number().int().min(0).max(999999),
+    }),
+  ),
 });

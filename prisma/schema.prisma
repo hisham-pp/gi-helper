@@ -33,6 +33,7 @@ model User {
   id           String      @id @default(cuid())
   username     String      @unique
   passwordHash String
+  role         String      @default("user")
   createdAt    DateTime    @default(now())
   updatedAt    DateTime    @updatedAt
   sessions     Session[]

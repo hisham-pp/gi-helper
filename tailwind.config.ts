@@ -5,7 +5,7 @@ const config: Config = {
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./lib/**/*.{js,ts,jsx,tsx,mdx}"
+    "./lib/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
@@ -13,43 +13,53 @@ const config: Config = {
         primary: {
           DEFAULT: "rgb(var(--md-sys-color-primary) / <alpha-value>)",
           foreground: "rgb(var(--md-sys-color-on-primary) / <alpha-value>)",
-          container: "rgb(var(--md-sys-color-primary-container) / <alpha-value>)",
-          "on-container": "rgb(var(--md-sys-color-on-primary-container) / <alpha-value>)"
+          container:
+            "rgb(var(--md-sys-color-primary-container) / <alpha-value>)",
+          "on-container":
+            "rgb(var(--md-sys-color-on-primary-container) / <alpha-value>)",
         },
         secondary: {
           DEFAULT: "rgb(var(--md-sys-color-secondary) / <alpha-value>)",
           foreground: "rgb(var(--md-sys-color-on-secondary) / <alpha-value>)",
-          container: "rgb(var(--md-sys-color-secondary-container) / <alpha-value>)",
-          "on-container": "rgb(var(--md-sys-color-on-secondary-container) / <alpha-value>)"
+          container:
+            "rgb(var(--md-sys-color-secondary-container) / <alpha-value>)",
+          "on-container":
+            "rgb(var(--md-sys-color-on-secondary-container) / <alpha-value>)",
         },
         tertiary: {
           DEFAULT: "rgb(var(--md-sys-color-tertiary) / <alpha-value>)",
           foreground: "rgb(var(--md-sys-color-on-tertiary) / <alpha-value>)",
-          container: "rgb(var(--md-sys-color-tertiary-container) / <alpha-value>)",
-          "on-container": "rgb(var(--md-sys-color-on-tertiary-container) / <alpha-value>)"
+          container:
+            "rgb(var(--md-sys-color-tertiary-container) / <alpha-value>)",
+          "on-container":
+            "rgb(var(--md-sys-color-on-tertiary-container) / <alpha-value>)",
         },
         error: {
           DEFAULT: "rgb(var(--md-sys-color-error) / <alpha-value>)",
           foreground: "rgb(var(--md-sys-color-on-error) / <alpha-value>)",
           container: "rgb(var(--md-sys-color-error-container) / <alpha-value>)",
-          "on-container": "rgb(var(--md-sys-color-on-error-container) / <alpha-value>)"
+          "on-container":
+            "rgb(var(--md-sys-color-on-error-container) / <alpha-value>)",
         },
         background: "rgb(var(--md-sys-color-background) / <alpha-value>)",
-        "on-background": "rgb(var(--md-sys-color-on-background) / <alpha-value>)",
+        "on-background":
+          "rgb(var(--md-sys-color-on-background) / <alpha-value>)",
         surface: {
           DEFAULT: "rgb(var(--md-sys-color-surface) / <alpha-value>)",
           foreground: "rgb(var(--md-sys-color-on-surface) / <alpha-value>)",
           variant: "rgb(var(--md-sys-color-surface-variant) / <alpha-value>)",
-          "on-variant": "rgb(var(--md-sys-color-on-surface-variant) / <alpha-value>)"
+          "on-variant":
+            "rgb(var(--md-sys-color-on-surface-variant) / <alpha-value>)",
         },
         outline: {
           DEFAULT: "rgb(var(--md-sys-color-outline) / <alpha-value>)",
-          variant: "rgb(var(--md-sys-color-outline-variant) / <alpha-value>)"
+          variant: "rgb(var(--md-sys-color-outline-variant) / <alpha-value>)",
         },
         inverse: {
           surface: "rgb(var(--md-sys-color-inverse-surface) / <alpha-value>)",
-          "on-surface": "rgb(var(--md-sys-color-inverse-on-surface) / <alpha-value>)",
-          primary: "rgb(var(--md-sys-color-inverse-primary) / <alpha-value>)"
+          "on-surface":
+            "rgb(var(--md-sys-color-inverse-on-surface) / <alpha-value>)",
+          primary: "rgb(var(--md-sys-color-inverse-primary) / <alpha-value>)",
         },
         /* Legacy support */
         foreground: "rgb(var(--foreground) / <alpha-value>)",
@@ -59,18 +69,18 @@ const config: Config = {
         accent: "rgb(var(--accent) / <alpha-value>)",
         success: "rgb(var(--success) / <alpha-value>)",
         warning: "rgb(var(--warning) / <alpha-value>)",
-        danger: "rgb(var(--danger) / <alpha-value>)"
+        danger: "rgb(var(--danger) / <alpha-value>)",
       },
       boxShadow: {
-        panel: "0 20px 80px rgba(15, 23, 42, 0.18)"
+        panel: "0 20px 80px rgba(15, 23, 42, 0.18)",
       },
       backgroundImage: {
         "hero-grid":
-          "radial-gradient(circle at top, rgba(56, 189, 248, 0.22), transparent 30%), radial-gradient(circle at right, rgba(250, 204, 21, 0.18), transparent 24%)"
-      }
-    }
+          "radial-gradient(circle at top, rgba(56, 189, 248, 0.22), transparent 30%), radial-gradient(circle at right, rgba(250, 204, 21, 0.18), transparent 24%)",
+      },
+    },
   },
-  plugins: []
+  plugins: [],
 };
 
 export default config;

@@ -5,4 +5,9 @@ import { localSpecialties } from "@/prisma/seed-data/local-specialties";
 
 export { type SeedMaterial } from "@/prisma/seed-data/helpers";
 
-export const seedMaterials = [...enemyDrops, ...eliteDrops, ...talentBooks, ...localSpecialties];
+export const seedMaterials = [
+  ...enemyDrops,
+  ...eliteDrops,
+  ...talentBooks,
+  ...localSpecialties,
+];

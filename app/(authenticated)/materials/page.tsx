@@ -6,5 +6,11 @@ export default async function MaterialsPage() {
   const user = await requireUser();
   const data = await getDashboardData(user.id);
 
-  return <DashboardShell initialData={data} username={user.username} />;
+  return (
+    <DashboardShell
+      initialData={data}
+      username={user.username}
+      role={user.role}
+    />
+  );
 }

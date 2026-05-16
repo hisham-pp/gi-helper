@@ -1,4 +1,9 @@
-import { randomBytes, scryptSync, timingSafeEqual, createHash } from "node:crypto";
+import {
+  randomBytes,
+  scryptSync,
+  timingSafeEqual,
+  createHash,
+} from "node:crypto";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
@@ -44,8 +49,8 @@ export async function createSession(userId: string) {
     data: {
       userId,
       tokenHash,
-      expiresAt
-    }
+      expiresAt,
+    },
   });
 
   const cookieStore = await cookies();
@@ -54,7 +59,7 @@ export async function createSession(userId: string) {
     sameSite: "lax",
     secure: process.env.NODE_ENV === "production",
     path: "/",
-    expires: expiresAt
+    expires: expiresAt,
   });
 }
 
@@ -65,8 +70,8 @@ export async function clearSession() {
   if (token) {
     await prisma.session.deleteMany({
       where: {
-        tokenHash: hashToken(token)
-      }
+        tokenHash: hashToken(token),
+      },
     });
   }
 
@@ -83,16 +88,17 @@ export async function getCurrentUser() {
 
   const session = await prisma.session.findUnique({
     where: {
-      tokenHash: hashToken(token)
+      tokenHash: hashToken(token),
     },
     include: {
       user: {
         select: {
           id: true,
-          username: true
-        }
-      }
-    }
+          username: true,
+          role: true,
+        },
+      },
+    },
   });
 
   if (!session || session.expiresAt < new Date()) {
@@ -101,8 +107,8 @@ export async function getCurrentUser() {
     if (session) {
       await prisma.session.delete({
         where: {
-          id: session.id
-        }
+          id: session.id,
+        },
       });
     }
 
@@ -117,6 +123,16 @@ export async function requireUser() {
 
   if (!user) {
     redirect("/login");
+  }
+
+  return user;
+}
+
+export async function requireMaster() {
+  const user = await getCurrentUser();
+
+  if (!user || user.role !== "master") {
+    redirect("/");
   }
 
   return user;

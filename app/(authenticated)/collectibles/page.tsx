@@ -12,7 +12,7 @@ export default async function CollectiblesPage() {
       bullets={[
         "Track collected and missing oculi by region",
         "Support Lumenspar and other progression collectibles",
-        "Future map-linked collectible status and filtering"
+        "Future map-linked collectible status and filtering",
       ]}
     />
   );
