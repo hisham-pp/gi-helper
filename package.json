@@ -2,6 +2,7 @@
   "name": "genshin-material-tracker",
   "version": "1.0.0",
   "private": true,
+  "packageManager": "pnpm@11.1.2",
   "engines": {
     "node": ">=20.0.0"
   },
