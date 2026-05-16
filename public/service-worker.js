@@ -1,5 +1,5 @@
-const CACHE_NAME = "genshin-material-tracker-v1";
-const ASSETS = ["/", "/manifest.webmanifest", "/icon.svg"];
+const CACHE_NAME = "genshin-material-tracker-v2";
+const ASSETS = ["/manifest.webmanifest", "/icon.svg"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS)));
@@ -23,7 +23,11 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  if (url.pathname.startsWith("/api/material-image/") || url.pathname === "/") {
+  if (request.mode === "navigate") {
+    return;
+  }
+
+  if (url.pathname.startsWith("/api/material-image/")) {
     event.respondWith(
       caches.match(request).then((cached) => {
         if (cached) {
