@@ -1,8 +1,12 @@
 "use server";
 
+import { redirect } from "next/navigation";
+
+import { createSession, hashPassword, requireUser, verifyPassword, clearSession } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import type { ActionResponse, DashboardData } from "@/lib/types";
 import {
+  authSchema,
   deleteGoalMaterialSchema,
   deleteGoalSchema,
   goalMaterialSchema,
@@ -12,7 +16,8 @@ import {
 import { getDashboardData } from "@/lib/data";
 
 async function refreshDashboard(): Promise<ActionResponse<DashboardData>> {
-  const data = await getDashboardData();
+  const user = await requireUser();
+  const data = await getDashboardData(user.id);
 
   return {
     success: true,
@@ -21,6 +26,7 @@ async function refreshDashboard(): Promise<ActionResponse<DashboardData>> {
 }
 
 export async function saveInventoryAction(input: unknown): Promise<ActionResponse<DashboardData>> {
+  const user = await requireUser();
   const parsed = inventorySchema.safeParse(input);
 
   if (!parsed.success) {
@@ -34,9 +40,14 @@ export async function saveInventoryAction(input: unknown): Promise<ActionRespons
 
   try {
     await prisma.inventory.upsert({
-      where: { materialId },
+      where: {
+        userId_materialId: {
+          userId: user.id,
+          materialId
+        }
+      },
       update: { quantity },
-      create: { materialId, quantity }
+      create: { userId: user.id, materialId, quantity }
     });
   } catch (error) {
     console.error("Inventory save failed", error);
@@ -51,6 +62,7 @@ export async function saveInventoryAction(input: unknown): Promise<ActionRespons
 }
 
 export async function createGoalAction(input: unknown): Promise<ActionResponse<DashboardData>> {
+  const user = await requireUser();
   const parsed = goalSchema.safeParse(input);
 
   if (!parsed.success) {
@@ -63,6 +75,7 @@ export async function createGoalAction(input: unknown): Promise<ActionResponse<D
   try {
     await prisma.goal.create({
       data: {
+        userId: user.id,
         name: parsed.data.name,
         description: parsed.data.description || null
       }
@@ -80,6 +93,7 @@ export async function createGoalAction(input: unknown): Promise<ActionResponse<D
 }
 
 export async function saveGoalMaterialAction(input: unknown): Promise<ActionResponse<DashboardData>> {
+  const user = await requireUser();
   const parsed = goalMaterialSchema.safeParse(input);
 
   if (!parsed.success) {
@@ -92,6 +106,23 @@ export async function saveGoalMaterialAction(input: unknown): Promise<ActionResp
   const { goalId, materialId, required } = parsed.data;
 
   try {
+    const goal = await prisma.goal.findFirst({
+      where: {
+        id: goalId,
+        userId: user.id
+      },
+      select: {
+        id: true
+      }
+    });
+
+    if (!goal) {
+      return {
+        success: false,
+        error: "Goal not found."
+      };
+    }
+
     await prisma.goalMaterial.upsert({
       where: {
         goalId_materialId: {
@@ -121,6 +152,7 @@ export async function saveGoalMaterialAction(input: unknown): Promise<ActionResp
 }
 
 export async function deleteGoalAction(input: unknown): Promise<ActionResponse<DashboardData>> {
+  const user = await requireUser();
   const parsed = deleteGoalSchema.safeParse(input);
 
   if (!parsed.success) {
@@ -131,9 +163,26 @@ export async function deleteGoalAction(input: unknown): Promise<ActionResponse<D
   }
 
   try {
+    const goal = await prisma.goal.findFirst({
+      where: {
+        id: parsed.data.goalId,
+        userId: user.id
+      },
+      select: {
+        id: true
+      }
+    });
+
+    if (!goal) {
+      return {
+        success: false,
+        error: "Goal not found."
+      };
+    }
+
     await prisma.goal.delete({
       where: {
-        id: parsed.data.goalId
+        id: goal.id
       }
     });
   } catch (error) {
@@ -149,6 +198,7 @@ export async function deleteGoalAction(input: unknown): Promise<ActionResponse<D
 }
 
 export async function deleteGoalMaterialAction(input: unknown): Promise<ActionResponse<DashboardData>> {
+  const user = await requireUser();
   const parsed = deleteGoalMaterialSchema.safeParse(input);
 
   if (!parsed.success) {
@@ -159,6 +209,25 @@ export async function deleteGoalMaterialAction(input: unknown): Promise<ActionRe
   }
 
   try {
+    const goalMaterial = await prisma.goalMaterial.findFirst({
+      where: {
+        id: parsed.data.goalMaterialId,
+        goal: {
+          userId: user.id
+        }
+      },
+      select: {
+        id: true
+      }
+    });
+
+    if (!goalMaterial) {
+      return {
+        success: false,
+        error: "Requirement not found."
+      };
+    }
+
     await prisma.goalMaterial.delete({
       where: {
         id: parsed.data.goalMaterialId
@@ -174,4 +243,106 @@ export async function deleteGoalMaterialAction(input: unknown): Promise<ActionRe
   }
 
   return refreshDashboard();
+}
+
+export async function registerAction(
+  input: unknown
+): Promise<ActionResponse<{ username: string }>> {
+  const parsed = authSchema.safeParse(input);
+
+  if (!parsed.success) {
+    return {
+      success: false,
+      error: "Username must be 3-30 characters and password must be at least 6 characters."
+    };
+  }
+
+  const username = parsed.data.username.toLowerCase();
+
+  try {
+    const existing = await prisma.user.findUnique({
+      where: {
+        username
+      }
+    });
+
+    if (existing) {
+      return {
+        success: false,
+        error: "Username already exists."
+      };
+    }
+
+    const user = await prisma.user.create({
+      data: {
+        username,
+        passwordHash: hashPassword(parsed.data.password)
+      }
+    });
+
+    await createSession(user.id);
+
+    return {
+      success: true,
+      data: {
+        username: user.username
+      }
+    };
+  } catch (error) {
+    console.error("Register failed", error);
+
+    return {
+      success: false,
+      error: "Unable to create account right now."
+    };
+  }
+}
+
+export async function loginAction(
+  input: unknown
+): Promise<ActionResponse<{ username: string }>> {
+  const parsed = authSchema.safeParse(input);
+
+  if (!parsed.success) {
+    return {
+      success: false,
+      error: "Invalid username or password."
+    };
+  }
+
+  try {
+    const user = await prisma.user.findUnique({
+      where: {
+        username: parsed.data.username.toLowerCase()
+      }
+    });
+
+    if (!user || !verifyPassword(parsed.data.password, user.passwordHash)) {
+      return {
+        success: false,
+        error: "Invalid username or password."
+      };
+    }
+
+    await createSession(user.id);
+
+    return {
+      success: true,
+      data: {
+        username: user.username
+      }
+    };
+  } catch (error) {
+    console.error("Login failed", error);
+
+    return {
+      success: false,
+      error: "Unable to login right now."
+    };
+  }
+}
+
+export async function logoutAction() {
+  await clearSession();
+  redirect("/login");
 }

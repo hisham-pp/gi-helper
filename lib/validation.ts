@@ -5,6 +5,11 @@ export const inventorySchema = z.object({
   quantity: z.coerce.number().int().min(0).max(999999)
 });
 
+export const authSchema = z.object({
+  username: z.string().trim().toLowerCase().min(3).max(30).regex(/^[a-zA-Z0-9_-]+$/),
+  password: z.string().min(6).max(100)
+});
+
 export const goalSchema = z.object({
   name: z.string().trim().min(2).max(60),
   description: z.string().trim().max(180).optional().or(z.literal(""))

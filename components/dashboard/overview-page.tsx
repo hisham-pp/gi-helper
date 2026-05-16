@@ -43,11 +43,12 @@ const modules = [
   }
 ] as const;
 
-export function OverviewPage({ data }: { data: DashboardData }) {
+export function OverviewPage({ data, username }: { data: DashboardData; username: string }) {
   return (
     <AppShell
       title="General Dashboard"
       description="A central home for your future Genshin tracker suite, with the material system isolated as one module."
+      userLabel={username}
     >
       <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
         <OverviewCard label="Tracked Materials" value={formatNumber(data.overview.totalTrackedMaterials)} />

@@ -6,14 +6,16 @@ import { AppShell } from "@/components/layout/app-shell";
 export function PlaceholderPage({
   title,
   description,
-  bullets
+  bullets,
+  username
 }: {
   title: string;
   description: string;
   bullets: string[];
+  username: string;
 }) {
   return (
-    <AppShell title={title} description={description}>
+    <AppShell title={title} description={description} userLabel={username}>
       <section className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
         <div className="rounded-3xl border border-border bg-card/80 p-6 shadow-sm backdrop-blur dark:bg-slate-950/80">
           <h2 className="text-xl font-semibold text-slate-950 dark:text-white">Planned Scope</h2>

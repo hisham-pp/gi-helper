@@ -133,7 +133,7 @@ Build a production-ready full-stack web application named `Genshin Material Trac
 
 ## Constraints
 
-- No authentication
+- Use simple authentication only
 - SQLite only
 - No external paid services
 - Must run locally with:
@@ -154,13 +154,23 @@ Build a production-ready full-stack web application named `Genshin Material Trac
 
 ### Data Approach
 
-- A single inventory row per material.
+- Materials are global shared reference data.
+- Inventory and goals are user-scoped.
+- A user can have one inventory row per material.
 - Goal materials belong to one goal and one material.
 - Crafting logic should calculate:
   - direct ownership
   - craftable equivalents from descendants
   - recursive material conversion
   - surplus/deficit after simulated crafting
+
+### Authentication Approach
+
+- Simple username/password authentication.
+- Session cookie authentication with server-side session lookup.
+- Registration page for creating accounts.
+- Login required for dashboard and feature routes.
+- Multi-user separation for inventory and goals.
 
 ### UI Approach
 
