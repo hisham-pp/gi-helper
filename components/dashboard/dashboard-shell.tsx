@@ -216,332 +216,331 @@ export function DashboardShell({ initialData, username }: DashboardShellProps) {
   }
 
   return (
-    <AppShell
-      title="Material Tracker"
-      description="Track inventory, goals, material chains, and recursive 3:1 crafting in an isolated module."
-      userLabel={username}
-    >
-      <section className="space-y-8">
-        <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-          {overviewMeta.map((item) => (
-            <Card key={item.key} variant="filled" className="p-5">
-              <div className="flex items-center gap-3 text-on-surface-variant">
-                <item.icon className="h-4 w-4" />
-                <span className="text-sm font-medium">{item.label}</span>
-              </div>
-              <p className="mt-2 text-3xl font-bold text-on-surface">
-                {formatNumber(data.overview[item.key])}
-              </p>
-            </Card>
+    <div className="space-y-8">
+      <header className="mb-8">
+        <h1 className="text-3xl font-bold tracking-tight text-on-surface">Material Tracker</h1>
+        <p className="mt-2 text-on-surface-variant">Track inventory, goals, material chains, and recursive 3:1 crafting.</p>
+      </header>
+
+      <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+        {overviewMeta.map((item) => (
+          <Card key={item.key} variant="filled" className="p-5">
+            <div className="flex items-center gap-3 text-on-surface-variant">
+              <item.icon className="h-4 w-4" />
+              <span className="text-sm font-medium">{item.label}</span>
+            </div>
+            <p className="mt-2 text-3xl font-bold text-on-surface">
+              {formatNumber(data.overview[item.key])}
+            </p>
+          </Card>
+        ))}
+      </section>
+
+      <nav className="flex items-center justify-center">
+        <div className="flex gap-2 rounded-full bg-surface-variant/50 p-1">
+          {tabs.map((tab) => (
+            <Button
+              key={tab}
+              variant={activeTab === tab ? "filled" : "text"}
+              onClick={() => setActiveTab(tab)}
+              className="h-10 px-6 capitalize"
+            >
+              {tab}
+            </Button>
           ))}
-        </section>
+        </div>
+      </nav>
 
-        <nav className="flex items-center justify-center">
-          <div className="flex gap-2 rounded-full bg-surface-variant/50 p-1">
-            {tabs.map((tab) => (
-              <Button
-                key={tab}
-                variant={activeTab === tab ? "filled" : "text"}
-                onClick={() => setActiveTab(tab)}
-                className="h-10 px-6 capitalize"
-              >
-                {tab}
-              </Button>
-            ))}
+      {activeTab === "inventory" ? (
+        <section className="grid gap-8 lg:grid-cols-[1.5fr_0.9fr]">
+          <Card className="flex flex-col overflow-hidden" variant="outlined">
+            <div className="border-b border-outline-variant bg-surface p-6">
+              <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                <div>
+                  <h2 className="text-xl font-bold text-on-surface">Inventory</h2>
+                  <p className="text-sm text-on-surface-variant">
+                    Search, filter, and update owned quantities.
+                  </p>
+                </div>
+                <div className="flex flex-col gap-3 sm:flex-row">
+                  <Input
+                    label="Search"
+                    className="h-12"
+                    value={search}
+                    onChange={(event) => setSearch(event.target.value)}
+                  />
+                  <Select
+                    label="Category"
+                    className="h-12"
+                    value={categoryFilter}
+                    onChange={setCategoryFilter}
+                    options={categories.map((category) => ({ label: category, value: category }))}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="p-6">
+              <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+                {filteredMaterials.length === 0 ? (
+                  <div className="col-span-full py-12">
+                    <EmptyState
+                      icon={<PackageSearch className="h-10 w-10" />}
+                      title="No materials found"
+                      description="Adjust the search or category filter to find materials."
+                    />
+                  </div>
+                ) : (
+                  filteredMaterials.map((material) => (
+                    <MaterialCard
+                      key={material.id}
+                      material={material}
+                      quantity={inventoryDraft[material.id] ?? material.quantity}
+                      onChange={(value) =>
+                        setInventoryDraft((current) => ({
+                          ...current,
+                          [material.id]: Math.max(0, Number.isNaN(value) ? 0 : value)
+                        }))
+                      }
+                      onSave={() => handleInventorySave(material.id)}
+                    />
+                  ))
+                )}
+              </div>
+            </div>
+          </Card>
+
+          <div className="space-y-8">
+            <SummaryList
+              items={data.materialsStillNeeded.slice(0, 8).map((item) => ({
+                id: item.id,
+                title: item.materialName,
+                subtitle: `${formatNumber(item.remaining)} still needed`,
+                image: item.materialId
+              }))}
+              title="Materials Still Needed"
+              description="Highest deficits across all farming goals."
+              emptyText="No shortages. All goals are covered."
+            />
+            <SummaryList
+              items={data.completedMaterials.slice(0, 8).map((item) => ({
+                id: item.id,
+                title: item.materialName,
+                subtitle: `${formatNumber(item.required)} ready`,
+                image: item.materialId
+              }))}
+              title="Completed Materials"
+              description="Goal requirements satisfied by current inventory."
+              emptyText="Completed requirements will appear here."
+            />
           </div>
-        </nav>
+        </section>
+      ) : null}
 
-        {activeTab === "inventory" ? (
-          <section className="grid gap-8 lg:grid-cols-[1.5fr_0.9fr]">
-            <Card className="flex flex-col overflow-hidden" variant="outlined">
-              <div className="border-b border-outline-variant bg-surface p-6">
-                <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                  <div>
-                    <h2 className="text-xl font-bold text-on-surface">Inventory</h2>
-                    <p className="text-sm text-on-surface-variant">
-                      Search, filter, and update owned quantities.
-                    </p>
-                  </div>
-                  <div className="flex flex-col gap-3 sm:flex-row">
-                    <Input
-                      label="Search"
-                      className="h-12"
-                      value={search}
-                      onChange={(event) => setSearch(event.target.value)}
-                    />
-                    <Select
-                      label="Category"
-                      className="h-12"
-                      value={categoryFilter}
-                      onChange={setCategoryFilter}
-                      options={categories.map((category) => ({ label: category, value: category }))}
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div className="p-6">
-                <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-                  {filteredMaterials.length === 0 ? (
-                    <div className="col-span-full py-12">
-                      <EmptyState
-                        icon={<PackageSearch className="h-10 w-10" />}
-                        title="No materials found"
-                        description="Adjust the search or category filter to find materials."
-                      />
-                    </div>
-                  ) : (
-                    filteredMaterials.map((material) => (
-                      <MaterialCard
-                        key={material.id}
-                        material={material}
-                        quantity={inventoryDraft[material.id] ?? material.quantity}
-                        onChange={(value) =>
-                          setInventoryDraft((current) => ({
-                            ...current,
-                            [material.id]: Math.max(0, Number.isNaN(value) ? 0 : value)
-                          }))
-                        }
-                        onSave={() => handleInventorySave(material.id)}
-                      />
-                    ))
-                  )}
-                </div>
-              </div>
-            </Card>
-
-            <div className="space-y-8">
-              <SummaryList
-                items={data.materialsStillNeeded.slice(0, 8).map((item) => ({
-                  id: item.id,
-                  title: item.materialName,
-                  subtitle: `${formatNumber(item.remaining)} still needed`,
-                  image: item.materialId
-                }))}
-                title="Materials Still Needed"
-                description="Highest deficits across all farming goals."
-                emptyText="No shortages. All goals are covered."
-              />
-              <SummaryList
-                items={data.completedMaterials.slice(0, 8).map((item) => ({
-                  id: item.id,
-                  title: item.materialName,
-                  subtitle: `${formatNumber(item.required)} ready`,
-                  image: item.materialId
-                }))}
-                title="Completed Materials"
-                description="Goal requirements satisfied by current inventory."
-                emptyText="Completed requirements will appear here."
-              />
-            </div>
-          </section>
-        ) : null}
-
-        {activeTab === "goals" ? (
-          <section className="grid gap-8 lg:grid-cols-[0.95fr_1.4fr]">
-            <div className="space-y-8">
-              <Panel title="Create Goal" description="Set up a new farming target.">
-                <div className="mt-4 space-y-4">
-                  <Input
-                    label="Goal name"
-                    value={goalName}
-                    onChange={(event) => setGoalName(event.target.value)}
-                  />
-                  <Input
-                    label="Optional note"
-                    value={goalDescription}
-                    onChange={(event) => setGoalDescription(event.target.value)}
-                  />
-                  <Button
-                    className="w-full mt-2"
-                    onClick={handleCreateGoal}
-                    disabled={isPending}
-                  >
-                    {isPending ? "Saving..." : "Create Goal"}
-                  </Button>
-                </div>
-              </Panel>
-
-              <Panel title="Add Requirement" description="Attach materials to a goal.">
-                <div className="mt-4 space-y-4">
-                  <Select
-                    label="Select Goal"
-                    value={selectedGoalId}
-                    onChange={setSelectedGoalId}
-                    options={
-                      data.goals.length === 0
-                        ? [{ label: "Create a goal first", value: "" }]
-                        : data.goals.map((goal) => ({ label: goal.name, value: goal.id }))
-                    }
-                  />
-                  <Select
-                    label="Select Material"
-                    value={selectedMaterialId}
-                    onChange={setSelectedMaterialId}
-                    options={data.materials.map((material) => ({ label: material.name, value: material.id }))}
-                  />
-                  <Input
-                    label="Required Quantity"
-                    type="number"
-                    min={0}
-                    value={goalMaterialRequired}
-                    onChange={(event) => setGoalMaterialRequired(Number(event.target.value))}
-                  />
-                  <Button
-                    className="w-full mt-2"
-                    variant="tonal"
-                    onClick={handleSaveGoalMaterial}
-                    disabled={isPending || data.goals.length === 0}
-                  >
-                    {isPending ? "Saving..." : "Save Requirement"}
-                  </Button>
-                </div>
-              </Panel>
-            </div>
-
-            <div className="space-y-8">
-              {data.goals.length === 0 ? (
-                <Card variant="outlined" className="p-8">
-                  <EmptyState
-                    icon={<Target className="h-12 w-12" />}
-                    title="No Goals Yet"
-                    description="Create a goal and assign materials to start tracking."
-                  />
-                </Card>
-              ) : (
-                data.goals.map((goal) => <GoalCard key={goal.id} goal={goal} onDelete={handleDeleteGoal} onDeleteMaterial={handleDeleteGoalMaterial} />)
-              )}
-            </div>
-          </section>
-        ) : null}
-
-        {activeTab === "materials" ? (
-          <Panel title="Material Library" description="Preloaded data with rarity colors and crafting links.">
-            <div className="mt-6 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-              {data.materials.map((material) => (
-                <Card
-                  key={material.id}
-                  variant="outlined"
-                  className={cn(
-                    "p-5 transition-transform hover:scale-[1.02]",
-                    rarityBorderMap[material.rarity] ?? rarityBorderMap[1]
-                  )}
+      {activeTab === "goals" ? (
+        <section className="grid gap-8 lg:grid-cols-[0.95fr_1.4fr]">
+          <div className="space-y-8">
+            <Panel title="Create Goal" description="Set up a new farming target.">
+              <div className="mt-4 space-y-4">
+                <Input
+                  label="Goal name"
+                  value={goalName}
+                  onChange={(event) => setGoalName(event.target.value)}
+                />
+                <Input
+                  label="Optional note"
+                  value={goalDescription}
+                  onChange={(event) => setGoalDescription(event.target.value)}
+                />
+                <Button
+                  className="w-full mt-2"
+                  onClick={handleCreateGoal}
+                  disabled={isPending}
                 >
-                  <div className="flex items-start gap-4">
-                    <div
-                      className={cn(
-                        "relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-2xl bg-gradient-to-br",
-                        rarityColorMap[material.rarity] ?? rarityColorMap[1]
-                      )}
-                    >
-                      <Image
-                        src={`/api/material-image/${material.id}`}
-                        alt={material.name}
-                        fill
-                        className="object-contain p-2"
-                        sizes="64px"
-                      />
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <div className="flex items-center justify-between gap-3">
-                        <h3 className="font-bold text-on-surface">{material.name}</h3>
-                        <span className="rounded-full bg-secondary-container px-2.5 py-1 text-xs font-medium text-secondary-on-container">
-                          {material.category}
-                        </span>
-                      </div>
-                      <p className="mt-2 text-sm text-on-surface-variant line-clamp-2">{material.description}</p>
-                      <div className="mt-4 flex flex-wrap gap-2 text-xs">
-                        <span className="rounded-full border border-outline-variant px-2.5 py-1 font-medium text-on-surface-variant">Rarity {material.rarity}</span>
-                        <span className="rounded-full border border-outline-variant px-2.5 py-1 font-medium text-on-surface-variant">
-                          Owned {formatNumber(material.quantity)}
-                        </span>
-                        {material.combinable && material.parentMaterialId ? (
-                          <span className="rounded-full border border-outline-variant px-2.5 py-1 font-medium text-on-surface-variant">
-                            3:1 Crafting
-                          </span>
-                        ) : (
-                          <span className="rounded-full border border-outline-variant px-2.5 py-1 font-medium text-on-surface-variant">Highest tier</span>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                </Card>
-              ))}
-            </div>
-          </Panel>
-        ) : null}
+                  {isPending ? "Saving..." : "Create Goal"}
+                </Button>
+              </div>
+            </Panel>
 
-        {activeTab === "crafting" ? (
-          <section className="grid gap-8 lg:grid-cols-[0.9fr_1.3fr]">
-            <Panel title="Crafting Simulator" description="Recursive 3:1 crafting preview.">
+            <Panel title="Add Requirement" description="Attach materials to a goal.">
               <div className="mt-4 space-y-4">
                 <Select
+                  label="Select Goal"
+                  value={selectedGoalId}
+                  onChange={setSelectedGoalId}
+                  options={
+                    data.goals.length === 0
+                      ? [{ label: "Create a goal first", value: "" }]
+                      : data.goals.map((goal) => ({ label: goal.name, value: goal.id }))
+                  }
+                />
+                <Select
                   label="Select Material"
-                  value={simulationMaterialId}
-                  onChange={setSimulationMaterialId}
+                  value={selectedMaterialId}
+                  onChange={setSelectedMaterialId}
                   options={data.materials.map((material) => ({ label: material.name, value: material.id }))}
                 />
                 <Input
                   label="Required Quantity"
                   type="number"
                   min={0}
-                  value={simulationRequired}
-                  onChange={(event) => setSimulationRequired(Number(event.target.value))}
+                  value={goalMaterialRequired}
+                  onChange={(event) => setGoalMaterialRequired(Number(event.target.value))}
                 />
+                <Button
+                  className="w-full mt-2"
+                  variant="tonal"
+                  onClick={handleSaveGoalMaterial}
+                  disabled={isPending || data.goals.length === 0}
+                >
+                  {isPending ? "Saving..." : "Save Requirement"}
+                </Button>
               </div>
             </Panel>
+          </div>
 
-            <Panel title="Simulation Result" description="Craftability and recursive breakdown.">
-              {!simulation ? (
-                <div className="py-12">
-                  <EmptyState
-                    icon={<Sparkles className="h-10 w-10" />}
-                    title="Choose a material"
-                    description="Select a material to preview recursive crafting."
-                  />
-                </div>
-              ) : (
-                <div className="mt-4 space-y-6">
-                  <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-                    <StatPill label="Requested" value={formatNumber(simulation.requested)} />
-                    <StatPill label="Total Available" value={formatNumber(simulation.totalAvailable)} />
-                    <StatPill label="Deficit" value={formatNumber(simulation.remaining)} tone={simulation.remaining > 0 ? "danger" : "success"} />
-                    <StatPill label="Surplus" value={formatNumber(simulation.surplus)} tone={simulation.surplus > 0 ? "success" : "default"} />
+          <div className="space-y-8">
+            {data.goals.length === 0 ? (
+              <Card variant="outlined" className="p-8">
+                <EmptyState
+                  icon={<Target className="h-12 w-12" />}
+                  title="No Goals Yet"
+                  description="Create a goal and assign materials to start tracking."
+                />
+              </Card>
+            ) : (
+              data.goals.map((goal) => <GoalCard key={goal.id} goal={goal} onDelete={handleDeleteGoal} onDeleteMaterial={handleDeleteGoalMaterial} />)
+            )}
+          </div>
+        </section>
+      ) : null}
+
+      {activeTab === "materials" ? (
+        <Panel title="Material Library" description="Preloaded data with rarity colors and crafting links.">
+          <div className="mt-6 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            {data.materials.map((material) => (
+              <Card
+                key={material.id}
+                variant="outlined"
+                className={cn(
+                  "p-5 transition-transform hover:scale-[1.02]",
+                  rarityBorderMap[material.rarity] ?? rarityBorderMap[1]
+                )}
+              >
+                <div className="flex items-start gap-4">
+                  <div
+                    className={cn(
+                      "relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-2xl bg-gradient-to-br",
+                      rarityColorMap[material.rarity] ?? rarityColorMap[1]
+                    )}
+                  >
+                    <Image
+                      src={`/api/material-image/${material.id}`}
+                      alt={material.name}
+                      fill
+                      className="object-contain p-2"
+                      sizes="64px"
+                    />
                   </div>
-                  <Card variant="filled" className="p-5">
-                    <p className="text-sm font-medium text-on-surface">
-                      {simulation.craftable
-                        ? `You can fully craft ${simulation.requested} ${data.materials.find((item) => item.id === simulation.materialId)?.name}.`
-                        : `You are short by ${simulation.remaining} after recursive crafting.`}
-                    </p>
-                    <p className="mt-2 text-xs text-on-surface-variant">
-                      Directly owned: {formatNumber(simulation.directOwned)}
-                    </p>
-                  </Card>
-                  <div className="space-y-3">
-                    <h3 className="text-sm font-bold uppercase tracking-wider text-on-surface-variant">Recursive sources</h3>
-                    <div className="grid gap-2">
-                      {simulation.recursiveSources.length === 0 ? (
-                        <p className="text-sm text-on-surface-variant italic">
-                          No lower-tier materials needed.
-                        </p>
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center justify-between gap-3">
+                      <h3 className="font-bold text-on-surface">{material.name}</h3>
+                      <span className="rounded-full bg-secondary-container px-2.5 py-1 text-xs font-medium text-secondary-on-container">
+                        {material.category}
+                      </span>
+                    </div>
+                    <p className="mt-2 text-sm text-on-surface-variant line-clamp-2">{material.description}</p>
+                    <div className="mt-4 flex flex-wrap gap-2 text-xs">
+                      <span className="rounded-full border border-outline-variant px-2.5 py-1 font-medium text-on-surface-variant">Rarity {material.rarity}</span>
+                      <span className="rounded-full border border-outline-variant px-2.5 py-1 font-medium text-on-surface-variant">
+                        Owned {formatNumber(material.quantity)}
+                      </span>
+                      {material.combinable && material.parentMaterialId ? (
+                        <span className="rounded-full border border-outline-variant px-2.5 py-1 font-medium text-on-surface-variant">
+                          3:1 Crafting
+                        </span>
                       ) : (
-                        simulation.recursiveSources.map((source) => (
-                          <div key={source.materialId} className="flex items-center justify-between rounded-xl border border-outline-variant px-4 py-3 text-sm">
-                            <span className="font-medium">{source.materialName}</span>
-                            <span className="font-bold text-primary">{formatNumber(source.quantity)}</span>
-                          </div>
-                        ))
+                        <span className="rounded-full border border-outline-variant px-2.5 py-1 font-medium text-on-surface-variant">Highest tier</span>
                       )}
                     </div>
                   </div>
                 </div>
-              )}
-            </Panel>
-          </section>
-        ) : null}
-      </section>
-    </AppShell>
+              </Card>
+            ))}
+          </div>
+        </Panel>
+      ) : null}
+
+      {activeTab === "crafting" ? (
+        <section className="grid gap-8 lg:grid-cols-[0.9fr_1.3fr]">
+          <Panel title="Crafting Simulator" description="Recursive 3:1 crafting preview.">
+            <div className="mt-4 space-y-4">
+              <Select
+                label="Select Material"
+                value={simulationMaterialId}
+                onChange={setSimulationMaterialId}
+                options={data.materials.map((material) => ({ label: material.name, value: material.id }))}
+              />
+              <Input
+                label="Required Quantity"
+                type="number"
+                min={0}
+                value={simulationRequired}
+                onChange={(event) => setSimulationRequired(Number(event.target.value))}
+              />
+            </div>
+          </Panel>
+
+          <Panel title="Simulation Result" description="Craftability and recursive breakdown.">
+            {!simulation ? (
+              <div className="py-12">
+                <EmptyState
+                  icon={<Sparkles className="h-10 w-10" />}
+                  title="Choose a material"
+                  description="Select a material to preview recursive crafting."
+                />
+              </div>
+            ) : (
+              <div className="mt-4 space-y-6">
+                <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+                  <StatPill label="Requested" value={formatNumber(simulation.requested)} />
+                  <StatPill label="Total Available" value={formatNumber(simulation.totalAvailable)} />
+                  <StatPill label="Deficit" value={formatNumber(simulation.remaining)} tone={simulation.remaining > 0 ? "danger" : "success"} />
+                  <StatPill label="Surplus" value={formatNumber(simulation.surplus)} tone={simulation.surplus > 0 ? "success" : "default"} />
+                </div>
+                <Card variant="filled" className="p-5">
+                  <p className="text-sm font-medium text-on-surface">
+                    {simulation.craftable
+                      ? `You can fully craft ${simulation.requested} ${data.materials.find((item) => item.id === simulation.materialId)?.name}.`
+                      : `You are short by ${simulation.remaining} after recursive crafting.`}
+                  </p>
+                  <p className="mt-2 text-xs text-on-surface-variant">
+                    Directly owned: {formatNumber(simulation.directOwned)}
+                  </p>
+                </Card>
+                <div className="space-y-3">
+                  <h3 className="text-sm font-bold uppercase tracking-wider text-on-surface-variant">Recursive sources</h3>
+                  <div className="grid gap-2">
+                    {simulation.recursiveSources.length === 0 ? (
+                      <p className="text-sm text-on-surface-variant italic">
+                        No lower-tier materials needed.
+                      </p>
+                    ) : (
+                      simulation.recursiveSources.map((source) => (
+                        <div key={source.materialId} className="flex items-center justify-between rounded-xl border border-outline-variant px-4 py-3 text-sm">
+                          <span className="font-medium">{source.materialName}</span>
+                          <span className="font-bold text-primary">{formatNumber(source.quantity)}</span>
+                        </div>
+                      ))
+                    )}
+                  </div>
+                </div>
+              </div>
+            )}
+          </Panel>
+        </section>
+      ) : null}
+    </section>
   );
 }
 

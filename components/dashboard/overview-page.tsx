@@ -47,11 +47,12 @@ const modules = [
 
 export function OverviewPage({ data, username }: { data: DashboardData; username: string }) {
   return (
-    <AppShell
-      title="General Dashboard"
-      description="A central home for your Genshin tracker suite."
-      userLabel={username}
-    >
+    <div className="space-y-8">
+      <header className="mb-8">
+        <h1 className="text-3xl font-bold tracking-tight text-on-surface">General Dashboard</h1>
+        <p className="mt-2 text-on-surface-variant">A central home for your Genshin tracker suite.</p>
+      </header>
+
       <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
         <OverviewCard label="Tracked Materials" value={formatNumber(data.overview.totalTrackedMaterials)} />
         <OverviewCard label="Inventory Total" value={formatNumber(data.overview.totalInventory)} />
@@ -60,7 +61,7 @@ export function OverviewPage({ data, username }: { data: DashboardData; username
         <OverviewCard label="Craftable" value={formatNumber(data.overview.craftableMaterials)} />
       </section>
 
-      <section className="mt-8 grid gap-8 lg:grid-cols-[1.35fr_0.95fr]">
+      <section className="grid gap-8 lg:grid-cols-[1.35fr_0.95fr]">
         <Card variant="outlined" className="p-6">
           <div className="mb-6">
             <h2 className="text-xl font-bold text-on-surface">Modules</h2>
@@ -119,7 +120,7 @@ export function OverviewPage({ data, username }: { data: DashboardData; username
           />
         </div>
       </section>
-    </AppShell>
+    </div>
   );
 }
 
