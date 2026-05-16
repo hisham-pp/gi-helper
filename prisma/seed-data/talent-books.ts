@@ -207,5 +207,143 @@ export const talentBooks = [
       rarity: 4,
       description: "The final, complete teachings on light."
     }
+  ]),
+  ...createThreeTierFamily("Talent Book", [
+    {
+      id: "teachings-of-admonition",
+      name: "Teachings of Admonition",
+      iconId: "UI_ItemIcon_104328",
+      rarity: 2,
+      description: "Sumeru talent teachings representing the lessons of the jungle."
+    },
+    {
+      id: "guide-to-admonition",
+      name: "Guide to Admonition",
+      iconId: "UI_ItemIcon_104329",
+      rarity: 3,
+      description: "A more thorough manual of the path of admonition."
+    },
+    {
+      id: "philosophies-of-admonition",
+      name: "Philosophies of Admonition",
+      iconId: "UI_ItemIcon_104330",
+      rarity: 4,
+      description: "The peak of Sumerian wisdom regarding admonition."
+    }
+  ]),
+  ...createThreeTierFamily("Talent Book", [
+    {
+      id: "teachings-of-ingenuity",
+      name: "Teachings of Ingenuity",
+      iconId: "UI_ItemIcon_104331",
+      rarity: 2,
+      description: "Sumeru talent teachings that emphasize creativity and cleverness."
+    },
+    {
+      id: "guide-to-ingenuity",
+      name: "Guide to Ingenuity",
+      iconId: "UI_ItemIcon_104332",
+      rarity: 3,
+      description: "A practical guide for applying ingenuity to complex problems."
+    },
+    {
+      id: "philosophies-of-ingenuity",
+      name: "Philosophies of Ingenuity",
+      iconId: "UI_ItemIcon_104333",
+      rarity: 4,
+      description: "The most advanced philosophical treatise on ingenuity."
+    }
+  ]),
+  ...createThreeTierFamily("Talent Book", [
+    {
+      id: "teachings-of-praxis",
+      name: "Teachings of Praxis",
+      iconId: "UI_ItemIcon_104334",
+      rarity: 2,
+      description: "Sumeru talent teachings focused on practice and action."
+    },
+    {
+      id: "guide-to-praxis",
+      name: "Guide to Praxis",
+      iconId: "UI_ItemIcon_104335",
+      rarity: 3,
+      description: "A manual for those who seek to master praxis through diligence."
+    },
+    {
+      id: "philosophies-of-praxis",
+      name: "Philosophies of Praxis",
+      iconId: "UI_ItemIcon_104336",
+      rarity: 4,
+      description: "The definitive guide to the philosophy of praxis."
+    }
+  ]),
+  ...createThreeTierFamily("Talent Book", [
+    {
+      id: "teachings-of-equity",
+      name: "Teachings of Equity",
+      iconId: "UI_ItemIcon_104337",
+      rarity: 2,
+      description: "Fontaine talent teachings emphasizing the principles of fairness."
+    },
+    {
+      id: "guide-to-equity",
+      name: "Guide to Equity",
+      iconId: "UI_ItemIcon_104338",
+      rarity: 3,
+      description: "A more complete manuscript detailing the path of equity."
+    },
+    {
+      id: "philosophies-of-equity",
+      name: "Philosophies of Equity",
+      iconId: "UI_ItemIcon_104339",
+      rarity: 4,
+      description: "A complete philosophical treatise on equity."
+    }
+  ]),
+  ...createThreeTierFamily("Talent Book", [
+    {
+      id: "teachings-of-justice",
+      name: "Teachings of Justice",
+      iconId: "UI_ItemIcon_104340",
+      rarity: 2,
+      description: "Fontaine talent teachings that focus on the ideal of justice."
+    },
+    {
+      id: "guide-to-justice",
+      name: "Guide to Justice",
+      iconId: "UI_ItemIcon_104341",
+      rarity: 3,
+      description: "A guidebook for those who uphold the laws of Fontaine."
+    },
+    {
+      id: "philosophies-of-justice",
+      name: "Philosophies of Justice",
+      iconId: "UI_ItemIcon_104342",
+      rarity: 4,
+      description: "The highest compilation of Fontaine's teachings on justice."
+    }
+  ]),
+  ...createThreeTierFamily("Talent Book", [
+    {
+      id: "teachings-of-order",
+      name: "Teachings of Order",
+      iconId: "UI_ItemIcon_104343",
+      rarity: 2,
+      description: "Fontaine talent teachings celebrating structure and law."
+    },
+    {
+      id: "guide-to-order",
+      name: "Guide to Order",
+      iconId: "UI_ItemIcon_104344",
+      rarity: 3,
+      description: "A manual for maintaining order in the Court of Fontaine."
+    },
+    {
+      id: "philosophies-of-order",
+      name: "Philosophies of Order",
+      iconId: "UI_ItemIcon_104345",
+      rarity: 4,
+      description: "The final, most complete teachings on order."
+    }
   ])
 ];

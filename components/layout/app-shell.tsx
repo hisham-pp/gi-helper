@@ -3,7 +3,11 @@
 import Link from "next/link";
 import type { Route } from "next";
 import { usePathname } from "next/navigation";
-import { Compass, Gem, Home, MoonStar, Shield, Sparkles, SunMedium, Swords, Target, Download, LogOut, Upload } from "lucide-react";
+import { 
+  Compass, Gem, Home, MoonStar, Shield, Sparkles, 
+  SunMedium, Swords, Target, Download, LogOut, Upload,
+  Menu, X
+} from "lucide-react";
 import { useTheme } from "next-themes";
 import { useEffect, useRef, useState, type ChangeEvent, type ReactNode } from "react";
 import { toast } from "sonner";
@@ -22,35 +26,33 @@ const navItems = [
 ] satisfies Array<{ href: Route; label: string; icon: typeof Home }>;
 
 export function AppShell({
-  title,
-  description,
   userLabel,
   children
 }: Readonly<{
-  title: string;
-  description: string;
   userLabel?: string;
   children: ReactNode;
 }>) {
   const pathname = usePathname();
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const importInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
+  // Close sidebar on navigation
+  useEffect(() => {
+    setIsSidebarOpen(false);
+  }, [pathname]);
+
   const isDark = mounted && resolvedTheme === "dark";
 
   async function handleExportAll() {
     try {
       const response = await fetch("/api/export/all");
-
-      if (!response.ok) {
-        throw new Error("Export failed");
-      }
-
+      if (!response.ok) throw new Error("Export failed");
       const payload = await response.json();
       const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
       const url = URL.createObjectURL(blob);
@@ -68,26 +70,16 @@ export function AppShell({
 
   async function handleImportAll(event: ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0];
-
-    if (!file) {
-      return;
-    }
-
+    if (!file) return;
     try {
       const text = await file.text();
       const parsed = JSON.parse(text);
       const response = await fetch("/api/import/all", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(parsed)
       });
-
-      if (!response.ok) {
-        throw new Error("Import failed");
-      }
-
+      if (!response.ok) throw new Error("Import failed");
       toast.success("All data imported.");
       window.location.reload();
     } catch (error) {
@@ -99,85 +91,147 @@ export function AppShell({
   }
 
   return (
-    <main className="min-h-screen bg-background text-on-background">
-      <div className="mx-auto flex min-h-screen w-full max-w-7xl flex-col gap-6 px-4 py-6 sm:px-6 lg:px-8">
-        <header className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-          <div className="min-w-0">
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-lg">
-                <Target className="h-6 w-6" />
-              </div>
-              <div>
-                <h1 className="text-2xl font-bold tracking-tight text-on-surface">{title}</h1>
-                <p className="text-sm text-on-surface-variant">{description}</p>
-              </div>
+    <div className="flex min-h-screen bg-background text-on-background">
+      {/* Mobile Top App Bar */}
+      <header className="fixed top-0 left-0 right-0 z-30 flex h-16 items-center justify-between border-b border-outline-variant bg-surface/80 px-4 backdrop-blur-md lg:hidden">
+        <div className="flex items-center gap-3">
+          <Button variant="text" className="h-10 w-10 p-0" onClick={() => setIsSidebarOpen(true)}>
+            <Menu className="h-6 w-6" />
+          </Button>
+          <div className="flex items-center gap-2">
+            <Target className="h-6 w-6 text-primary" />
+            <span className="font-bold tracking-tight">GMT</span>
+          </div>
+        </div>
+        
+        <div className="flex items-center gap-2">
+          <Button
+            variant="text"
+            className="h-10 w-10 p-0 rounded-full"
+            onClick={() => setTheme(isDark ? "light" : "dark")}
+          >
+            {isDark ? <SunMedium className="h-5 w-5" /> : <MoonStar className="h-5 w-5" />}
+          </Button>
+        </div>
+      </header>
+
+      {/* Sidebar / Navigation Drawer */}
+      <aside 
+        className={cn(
+          "fixed inset-y-0 left-0 z-50 flex w-72 flex-col border-r border-outline-variant bg-surface transition-transform duration-300 lg:sticky lg:translate-x-0",
+          isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+        )}
+      >
+        <div className="flex h-16 items-center justify-between px-6 lg:h-20">
+          <div className="flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-lg">
+              <Target className="h-6 w-6" />
+            </div>
+            <div className="min-w-0">
+              <h1 className="text-lg font-bold tracking-tight text-on-surface truncate">Genshin Tracker</h1>
+              <p className="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">Material Suite</p>
             </div>
           </div>
+          <Button variant="text" className="h-10 w-10 p-0 lg:hidden" onClick={() => setIsSidebarOpen(false)}>
+            <X className="h-6 w-6" />
+          </Button>
+        </div>
 
-          <div className="flex flex-wrap items-center gap-2">
-            {userLabel && (
-              <div className="mr-2 hidden rounded-full bg-secondary-container px-4 py-2 text-sm font-medium text-secondary-on-container md:block">
-                @{userLabel}
-              </div>
-            )}
-            <Button
-              variant="tonal"
-              className="h-10 w-10 p-0 rounded-full"
-              onClick={() => setTheme(isDark ? "light" : "dark")}
-              title={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
-            >
-              {isDark ? <SunMedium className="h-5 w-5" /> : <MoonStar className="h-5 w-5" />}
-            </Button>
-            <Button variant="tonal" onClick={handleExportAll} className="gap-2">
-              <Download className="h-4 w-4" />
-              <span className="hidden sm:inline">Export</span>
-            </Button>
-            <Button variant="tonal" onClick={() => importInputRef.current?.click()} className="gap-2">
-              <Upload className="h-4 w-4" />
-              <span className="hidden sm:inline">Import</span>
-            </Button>
-            {userLabel && (
-              <form action={logoutAction}>
-                <Button variant="outlined" type="submit" className="border-error text-error hover:bg-error/5 active:bg-error/10">
-                  <LogOut className="h-4 w-4 sm:mr-2" />
-                  <span className="hidden sm:inline">Logout</span>
-                </Button>
-              </form>
-            )}
+        <nav className="flex-1 space-y-1 px-3 py-4">
+          <div className="mb-4 px-3 text-[11px] font-bold uppercase tracking-wider text-on-surface-variant opacity-60">
+            Navigation
           </div>
-        </header>
+          {navItems.map((item) => {
+            const active = pathname === item.href;
+            const Icon = item.icon;
 
-        <input ref={importInputRef} className="hidden" onChange={handleImportAll} type="file" accept="application/json" />
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cn(
+                  "group flex h-12 items-center gap-3 rounded-full px-4 text-sm font-medium transition-all",
+                  active
+                    ? "bg-primary-container text-on-primary-container"
+                    : "text-on-surface-variant hover:bg-surface-variant hover:text-on-surface"
+                )}
+              >
+                <Icon className={cn("h-5 w-5", active ? "text-primary" : "text-on-surface-variant group-hover:text-on-surface")} />
+                {item.label}
+              </Link>
+            );
+          })}
 
-        <nav className="sticky top-4 z-40 flex items-center justify-center">
-          <div className="flex w-full max-w-fit gap-1 rounded-full border border-outline-variant bg-surface/80 p-1.5 shadow-lg backdrop-blur-md">
-            {navItems.map((item) => {
-              const active = pathname === item.href;
-              const Icon = item.icon;
+          <div className="my-6 border-t border-outline-variant mx-3" />
 
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={cn(
-                    "relative flex h-11 items-center gap-2 rounded-full px-4 text-sm font-medium transition-all duration-200",
-                    active
-                      ? "bg-primary text-primary-foreground shadow-md"
-                      : "text-on-surface-variant hover:bg-surface-variant hover:text-on-surface"
-                  )}
-                >
-                  <Icon className="h-4 w-4" />
-                  <span className={cn("hidden md:inline", active ? "inline" : "hidden group-hover:inline")}>
-                    {item.label}
-                  </span>
-                </Link>
-              );
-            })}
+          <div className="mb-4 px-3 text-[11px] font-bold uppercase tracking-wider text-on-surface-variant opacity-60">
+            Tools & Actions
           </div>
+          <button
+            onClick={handleExportAll}
+            className="flex w-full h-12 items-center gap-3 rounded-full px-4 text-sm font-medium text-on-surface-variant hover:bg-surface-variant hover:text-on-surface transition-all"
+          >
+            <Download className="h-5 w-5" />
+            Export All Data
+          </button>
+          <button
+            onClick={() => importInputRef.current?.click()}
+            className="flex w-full h-12 items-center gap-3 rounded-full px-4 text-sm font-medium text-on-surface-variant hover:bg-surface-variant hover:text-on-surface transition-all"
+          >
+            <Upload className="h-5 w-5" />
+            Import Backup
+          </button>
         </nav>
 
-        <div className="flex-1 pb-10">{children}</div>
-      </div>
-    </main>
+        <div className="p-4 border-t border-outline-variant">
+          {userLabel && (
+            <div className="flex flex-col gap-4">
+              <div className="flex items-center gap-3 px-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-secondary-container text-secondary-on-container font-bold">
+                  {userLabel[0].toUpperCase()}
+                </div>
+                <div className="min-w-0 flex-1">
+                  <p className="text-sm font-bold text-on-surface truncate">@{userLabel}</p>
+                  <p className="text-xs text-on-surface-variant truncate">Standard Plan</p>
+                </div>
+              </div>
+              
+              <div className="flex items-center gap-2">
+                <Button
+                  variant="tonal"
+                  className="flex-1 hidden lg:flex h-10 gap-2 rounded-full"
+                  onClick={() => setTheme(isDark ? "light" : "dark")}
+                >
+                  {isDark ? <SunMedium className="h-4 w-4" /> : <MoonStar className="h-4 w-4" />}
+                  {isDark ? "Light" : "Dark"}
+                </Button>
+                <form action={logoutAction} className="flex-1 flex">
+                  <Button variant="outlined" type="submit" className="flex-1 h-10 border-error text-error hover:bg-error/5">
+                    <LogOut className="h-4 w-4 mr-2" />
+                    Logout
+                  </Button>
+                </form>
+              </div>
+            </div>
+          )}
+        </div>
+      </aside>
+
+      {/* Backdrop for mobile */}
+      {isSidebarOpen && (
+        <div 
+          className="fixed inset-0 z-40 bg-scrim/30 backdrop-blur-sm lg:hidden" 
+          onClick={() => setIsSidebarOpen(false)}
+        />
+      )}
+
+      {/* Main Content Area */}
+      <main className="flex-1 min-w-0 pt-16 lg:pt-0">
+        <input ref={importInputRef} className="hidden" onChange={handleImportAll} type="file" accept="application/json" />
+        <div className="mx-auto w-full max-w-[1600px] p-4 sm:p-6 lg:p-8">
+          {children}
+        </div>
+      </main>
+    </div>
   );
 }
