@@ -136,7 +136,7 @@ NEXT_PUBLIC_APP_NAME="Genshin Material Tracker"
 - Initial migration is committed under [prisma/migrations/20260516193000_init/migration.sql](./prisma/migrations/20260516193000_init/migration.sql).
 - Auth and multi-user migration is committed under [prisma/migrations/20260516203000_add_auth_and_multi_user/migration.sql](./prisma/migrations/20260516203000_add_auth_and_multi_user/migration.sql).
 - Seed data is split under [prisma/seed-data](./prisma/seed-data) and re-exported by [lib/material-seed.ts](./lib/material-seed.ts).
-- The seed script uses `upsert`, so rerunning it adds or updates shared material reference data without clearing user data.
+- The seed script uses `upsert`, so rerunning it adds or updates shared material reference data without clearing user data. That makes it safe to run on every deployment start.
 
 ## Railway Deployment
 
@@ -156,13 +156,13 @@ DATABASE_URL="file:/data/prod.db"
    - `npm run build` for build
    - `npm run start` for runtime
 
-The runtime start command runs Prisma migrations before `next start`.
+The runtime start command runs Prisma migrations, seeds shared materials, and then starts Next.js.
 
 ### Included Railway Config
 
 - [railway.json](./railway.json)
 - `postinstall` Prisma client generation
-- `start` script with `prisma migrate deploy && next start`
+- `start` script with `prisma migrate deploy && prisma db seed && next start`
 
 ## API Endpoints
 
