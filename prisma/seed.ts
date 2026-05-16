@@ -34,7 +34,7 @@ async function main() {
     });
   }
 
-  // Parent links are applied after all materials exist so SQLite foreign keys never fail.
+  // Parent links are applied after all materials exist so foreign keys never fail.
   for (const material of seedMaterials) {
     if (!material.parentMaterialId) {
       continue;
