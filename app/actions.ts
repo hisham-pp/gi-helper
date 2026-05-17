@@ -14,6 +14,7 @@ import { prisma } from "@/lib/prisma";
 import type { ActionResponse, DashboardData } from "@/lib/types";
 import {
   authSchema,
+  characterSchema,
   deleteGoalMaterialSchema,
   deleteGoalSchema,
   goalMaterialSchema,
@@ -503,6 +504,8 @@ export async function updateMaterialAction(input: unknown) {
 
   try {
     const updateData: any = { ...parsed.data };
+    const materialId = updateData.id;
+    delete updateData.id;
     updateData.image = externalIconUrl(updateData.iconName);
     delete updateData.iconName;
 
@@ -511,12 +514,61 @@ export async function updateMaterialAction(input: unknown) {
     }
 
     await prisma.material.update({
-      where: { id: parsed.data.id },
+      where: { id: materialId },
       data: updateData,
     });
   } catch (error) {
     console.error("Update material failed", error);
     return { success: false, error: "Unable to update material right now." };
+  }
+
+  return refreshDashboard();
+}
+
+export async function createCharacterAction(input: unknown) {
+  const user = await requireMaster();
+  const parsed = characterSchema.safeParse(input);
+
+  if (!parsed.success) {
+    return { success: false, error: "Invalid character payload." };
+  }
+
+  try {
+    const createData: any = { ...parsed.data };
+    createData.image = externalIconUrl(createData.iconName);
+    delete createData.iconName;
+
+    await prisma.character.create({ data: createData });
+  } catch (error) {
+    console.error("Create character failed", error);
+    return { success: false, error: "Unable to create character right now." };
+  }
+
+  return refreshDashboard();
+}
+
+export async function updateCharacterAction(input: unknown) {
+  const user = await requireMaster();
+  const parsed = characterSchema.safeParse(input);
+
+  if (!parsed.success) {
+    return { success: false, error: "Invalid character payload." };
+  }
+
+  try {
+    const updateData: any = { ...parsed.data };
+    const characterId = updateData.id;
+    delete updateData.id;
+    updateData.image = externalIconUrl(updateData.iconName);
+    delete updateData.iconName;
+
+    await prisma.character.update({
+      where: { id: characterId },
+      data: updateData,
+    });
+  } catch (error) {
+    console.error("Update character failed", error);
+    return { success: false, error: "Unable to update character right now." };
   }
 
   return refreshDashboard();

@@ -108,7 +108,7 @@ model GoalMaterial {
 
 model Character {
   id          String                    @id
-  name        String                    @unique
+  name        String
   image       String
   rarity      Int
   element     String

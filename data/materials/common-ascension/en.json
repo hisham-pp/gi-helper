@@ -47,7 +47,7 @@
   "hilichurl-masks": {
     "characters": ["jean", "noelle", "razor", "chongyun", "xingqiu", "sara",
       "eula", "yun-jin", "traveler-anemo", "traveler-geo", "traveler-electro",
-      "traveler-dendro","traveler-hydro", "traveler-pyro"],
+      "traveler-dendro","traveler-hydro", "traveler-pyro", "varka"],
     "weapons": [
       "wolf-fang",
       "apprentice-s-notes",
@@ -87,7 +87,7 @@
     "sources": ["Hilichurl", "Samachurl", "Mitachurl", "Lawachurl"]
   },
   "hilichurl-arrowheads": {
-    "characters": ["amber", "diona", "fischl", "collei"],
+    "characters": ["amber", "diona", "fischl", "collei", "linnea"],
     "weapons": [
       "aquila-favonia",
       "skyward-atlas",

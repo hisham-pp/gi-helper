@@ -1081,6 +1081,17 @@ export const seedMaterials: SeedMaterial[] = [
     "parentMaterialId": "philosophies-of-conflict"
   },
   {
+    "id": "guide-to-contention",
+    "name": "Guide to Contention",
+    "image": "/images/materials/talent-book/guide-to-contention",
+    "rarity": 3,
+    "category": "Talent Book",
+    "description": "Guide to Contention talent material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "philosophies-of-contention"
+  },
+  {
     "id": "guide-to-diligence",
     "name": "Guide to Diligence",
     "image": "/images/materials/talent-book/guide-to-diligence",
@@ -1912,6 +1923,17 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 4,
     "category": "Talent Book",
     "description": "Philosophies of Conflict talent material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null
+  },
+  {
+    "id": "philosophies-of-contention",
+    "name": "Philosophies of Contention",
+    "image": "/images/materials/talent-book/philosophies-of-contention",
+    "rarity": 4,
+    "category": "Talent Book",
+    "description": "Philosophies of Contention talent material.",
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -2960,6 +2982,17 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "guide-to-conflict"
+  },
+  {
+    "id": "teachings-of-contention",
+    "name": "Teachings of Contention",
+    "image": "/images/materials/talent-book/teachings-of-contention",
+    "rarity": 2,
+    "category": "Talent Book",
+    "description": "Teachings of Contention talent material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "guide-to-contention"
   },
   {
     "id": "teachings-of-diligence",

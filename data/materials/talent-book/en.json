@@ -9,7 +9,8 @@
       "sucrose",
       "tartaglia",
       "traveler-anemo",
-      "traveler-geo"
+      "traveler-geo",
+      "linnea"
     ],
     "availability": ["Monday", "Thursday", "Sunday"],
     "source": "forsaken-rift",
@@ -73,7 +74,8 @@
       "rosaria",
       "venti",
       "traveler-anemo",
-      "traveler-geo"
+      "traveler-geo",
+      "varka"
     ],
     "availability": ["Wednesday", "Saturday", "Sunday"],
     "source": "forsaken-rift",
