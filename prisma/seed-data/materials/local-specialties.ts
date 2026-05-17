@@ -310,3 +310,55 @@ export const localSpecialties = [
     },
   ]),
 ];
+  ...createThreeTierFamily("Local Specialty", [
+    {
+      id: "windwheel-aster",
+      name: "Windwheel Aster",
+      iconId: "UI_ItemIcon_100055",
+      rarity: 1,
+      description:
+        "A flower that spins in the wind. Found in Mondstadt's windswept plains.",
+    },
+    {
+      id: "refined-windwheel-aster",
+      name: "Refined Windwheel Aster",
+      iconId: "UI_ItemIcon_100056",
+      rarity: 2,
+      description:
+        "Windwheel Asters carefully preserved to maintain their spinning motion.",
+    },
+    {
+      id: "pristine-windwheel-aster",
+      name: "Pristine Windwheel Aster",
+      iconId: "UI_ItemIcon_100057",
+      rarity: 3,
+      description:
+        "The finest Windwheel Asters, perfectly balanced and eternally spinning.",
+    },
+  ]),
+  ...createThreeTierFamily("Local Specialty", [
+    {
+      id: "cinder-bloom",
+      name: "Cinder Bloom",
+      iconId: "UI_ItemIcon_100058",
+      rarity: 1,
+      description:
+        "A fiery flower from Nod-Krai that blooms in volcanic regions.",
+    },
+    {
+      id: "blazing-cinder-bloom",
+      name: "Blazing Cinder Bloom",
+      iconId: "UI_ItemIcon_100059",
+      rarity: 2,
+      description:
+        "Cinder Blooms with intensified flames and enhanced properties.",
+    },
+    {
+      id: "eternal-cinder-bloom",
+      name: "Eternal Cinder Bloom",
+      iconId: "UI_ItemIcon_100060",
+      rarity: 3,
+      description:
+        "The rarest Cinder Blooms, said to burn with an eternal flame.",
+    },
+  ]),
