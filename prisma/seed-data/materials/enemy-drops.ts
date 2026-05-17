@@ -12,14 +12,14 @@ export const enemyDrops = [
     },
     {
       id: "slime-secretions",
-      name: "Slime Secretions",
+      name: "Slime Secretions Enemy",
       iconId: "UI_ItemIcon_112002",
       rarity: 2,
       description: "Refined slime residue condensed from common droplets.",
     },
     {
       id: "slime-concentrate",
-      name: "Slime Concentrate",
+      name: "Slime Concentrate Enemy",
       iconId: "UI_ItemIcon_112003",
       rarity: 3,
       description:
@@ -398,21 +398,21 @@ export const enemyDrops = [
   ...createThreeTierFamily("Enemy Drop", [
     {
       id: "juvenile-fang",
-      name: "Juvenile Fang",
+      name: "Juvenile Fang Enemy",
       iconId: "UI_ItemIcon_112067",
       rarity: 1,
       description: "A small fang from a young creature.",
     },
     {
       id: "seasoned-fang",
-      name: "Seasoned Fang",
+      name: "Seasoned Fang Enemy",
       iconId: "UI_ItemIcon_112068",
       rarity: 2,
       description: "A strong fang from an experienced creature.",
     },
     {
       id: "tyrant-fang",
-      name: "Tyrant Fang",
+      name: "Tyrant Fang Enemy",
       iconId: "UI_ItemIcon_112069",
       rarity: 3,
       description: "A fearsome fang from a apex predator.",
@@ -421,21 +421,21 @@ export const enemyDrops = [
   ...createThreeTierFamily("Enemy Drop", [
     {
       id: "eroded-horn",
-      name: "Eroded Horn",
+      name: "Eroded Horn Enemy",
       iconId: "UI_ItemIcon_112070",
       rarity: 1,
       description: "A worn horn.",
     },
     {
       id: "seasoned-horn",
-      name: "Seasoned Horn",
+      name: "Seasoned Horn Enemy",
       iconId: "UI_ItemIcon_112071",
       rarity: 2,
       description: "A strong horn.",
     },
     {
       id: "glowing-horn-core",
-      name: "Glowing Horn Core",
+      name: "Glowing Horn Core Enemy",
       iconId: "UI_ItemIcon_112072",
       rarity: 3,
       description: "A glowing horn core.",
@@ -444,21 +444,21 @@ export const enemyDrops = [
   ...createThreeTierFamily("Enemy Drop", [
     {
       id: "tattered-warrant-fatui-oprichnik",
-      name: "Tattered Warrant (Fatui)",
+      name: "Tattered Warrant Fatui Enemy",
       iconId: "UI_ItemIcon_112101",
       rarity: 1,
       description: "A worn warrant from a Fatui Oprichnik.",
     },
     {
       id: "immaculate-warrant-fatui-oprichnik",
-      name: "Immaculate Warrant (Fatui)",
+      name: "Immaculate Warrant Fatui Enemy",
       iconId: "UI_ItemIcon_112102",
       rarity: 2,
       description: "A clean warrant from a higher official.",
     },
     {
       id: "frost-etched-warrant-fatui-oprichnik",
-      name: "Frost-Etched Warrant (Fatui)",
+      name: "Frost-Etched Warrant Fatui Enemy",
       iconId: "UI_ItemIcon_112103",
       rarity: 3,
       description: "An elite warrant etched with frost.",
