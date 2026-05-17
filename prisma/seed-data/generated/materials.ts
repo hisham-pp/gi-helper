@@ -5,7 +5,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "a-flower-yet-to-bloom",
     "name": "A Flower Yet to Bloom",
-    "image": "/image/materials/common-ascension/a-flower-yet-to-bloom",
+    "image": "/images/materials/common-ascension/a-flower-yet-to-bloom",
     "rarity": 2,
     "category": "Enemy Drop",
     "description": "A Flower Yet to Bloom ascension material.",
@@ -16,7 +16,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "agent-s-sacrificial-knife",
     "name": "Agent's Sacrificial Knife",
-    "image": "/image/materials/common-ascension/agent-s-sacrificial-knife",
+    "image": "/images/materials/common-ascension/agent-s-sacrificial-knife",
     "rarity": 3,
     "category": "Elite Drop",
     "description": "Agent's Sacrificial Knife ascension material.",
@@ -27,7 +27,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "agnidus-agate-chunk",
     "name": "Agnidus Agate Chunk",
-    "image": "/image/materials/character-ascension/agnidus-agate-chunk",
+    "image": "/images/materials/character-ascension/agnidus-agate-chunk",
     "rarity": 4,
     "category": "Gem",
     "description": "Agnidus Agate Chunk character ascension gem.",
@@ -38,7 +38,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "agnidus-agate-fragment",
     "name": "Agnidus Agate Fragment",
-    "image": "/image/materials/character-ascension/agnidus-agate-fragment",
+    "image": "/images/materials/character-ascension/agnidus-agate-fragment",
     "rarity": 3,
     "category": "Gem",
     "description": "Agnidus Agate Fragment character ascension gem.",
@@ -49,7 +49,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "agnidus-agate-gemstone",
     "name": "Agnidus Agate Gemstone",
-    "image": "/image/materials/character-ascension/agnidus-agate-gemstone",
+    "image": "/images/materials/character-ascension/agnidus-agate-gemstone",
     "rarity": 5,
     "category": "Gem",
     "description": "Agnidus Agate Gemstone character ascension gem.",
@@ -60,7 +60,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "agnidus-agate-sliver",
     "name": "Agnidus Agate Sliver",
-    "image": "/image/materials/character-ascension/agnidus-agate-sliver",
+    "image": "/images/materials/character-ascension/agnidus-agate-sliver",
     "rarity": 2,
     "category": "Gem",
     "description": "Agnidus Agate Sliver character ascension gem.",
@@ -71,7 +71,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "alien-life-core",
     "name": "Alien Life Core",
-    "image": "/image/materials/common-ascension/alien-life-core",
+    "image": "/images/materials/common-ascension/alien-life-core",
     "rarity": 4,
     "category": "Enemy Drop",
     "description": "Alien Life Core ascension material.",
@@ -82,7 +82,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "amakumo-fruit",
     "name": "Amakumo Fruit",
-    "image": "/image/materials/local-specialties/amakumo-fruit",
+    "image": "/images/materials/local-specialties/amakumo-fruit",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Amakumo Fruit local specialty.",
@@ -93,7 +93,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "artificed-dynamic-gear",
     "name": "Artificed Dynamic Gear",
-    "image": "/image/materials/common-ascension/artificed-dynamic-gear",
+    "image": "/images/materials/common-ascension/artificed-dynamic-gear",
     "rarity": 3,
     "category": "Elite Drop",
     "description": "Artificed Dynamic Gear ascension material.",
@@ -104,7 +104,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "ashen-heart",
     "name": "Ashen Heart",
-    "image": "/image/materials/talent-boss/ashen-heart",
+    "image": "/images/materials/talent-boss/ashen-heart",
     "rarity": 5,
     "category": "Boss Material",
     "description": "Ashen Heart weekly boss talent material.",
@@ -115,7 +115,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "basalt-pillar",
     "name": "Basalt Pillar",
-    "image": "/image/materials/boss-material/basalt-pillar",
+    "image": "/images/materials/boss-material/basalt-pillar",
     "rarity": 4,
     "category": "Boss Material",
     "description": "Basalt Pillar character ascension boss material.",
@@ -126,7 +126,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "beryl-conch",
     "name": "Beryl Conch",
-    "image": "/image/materials/local-specialties/beryl-conch",
+    "image": "/images/materials/local-specialties/beryl-conch",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Beryl Conch local specialty.",
@@ -137,7 +137,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "black-bronze-horn",
     "name": "Black Bronze Horn",
-    "image": "/image/materials/common-ascension/black-bronze-horn",
+    "image": "/images/materials/common-ascension/black-bronze-horn",
     "rarity": 3,
     "category": "Elite Drop",
     "description": "Black Bronze Horn ascension material.",
@@ -148,7 +148,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "black-crystal-horn",
     "name": "Black Crystal Horn",
-    "image": "/image/materials/common-ascension/black-crystal-horn",
+    "image": "/images/materials/common-ascension/black-crystal-horn",
     "rarity": 4,
     "category": "Elite Drop",
     "description": "Black Crystal Horn ascension material.",
@@ -159,7 +159,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "bloodjade-branch",
     "name": "Bloodjade Branch",
-    "image": "/image/materials/talent-boss/bloodjade-branch",
+    "image": "/images/materials/talent-boss/bloodjade-branch",
     "rarity": 5,
     "category": "Boss Material",
     "description": "Bloodjade Branch weekly boss talent material.",
@@ -170,7 +170,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "brilliant-chrysanthemum",
     "name": "Brilliant Chrysanthemum",
-    "image": "/image/materials/local-specialties/brilliant-chrysanthemum",
+    "image": "/images/materials/local-specialties/brilliant-chrysanthemum",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Brilliant Chrysanthemum local specialty.",
@@ -181,7 +181,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "brilliant-diamond-chunk",
     "name": "Brilliant Diamond Chunk",
-    "image": "/image/materials/character-ascension/brilliant-diamond-chunk",
+    "image": "/images/materials/character-ascension/brilliant-diamond-chunk",
     "rarity": 4,
     "category": "Gem",
     "description": "Brilliant Diamond Chunk character ascension gem.",
@@ -192,7 +192,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "brilliant-diamond-fragment",
     "name": "Brilliant Diamond Fragment",
-    "image": "/image/materials/character-ascension/brilliant-diamond-fragment",
+    "image": "/images/materials/character-ascension/brilliant-diamond-fragment",
     "rarity": 3,
     "category": "Gem",
     "description": "Brilliant Diamond Fragment character ascension gem.",
@@ -203,7 +203,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "brilliant-diamond-gemstone",
     "name": "Brilliant Diamond Gemstone",
-    "image": "/image/materials/character-ascension/brilliant-diamond-gemstone",
+    "image": "/images/materials/character-ascension/brilliant-diamond-gemstone",
     "rarity": 5,
     "category": "Gem",
     "description": "Brilliant Diamond Gemstone character ascension gem.",
@@ -214,7 +214,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "brilliant-diamond-sliver",
     "name": "Brilliant Diamond Sliver",
-    "image": "/image/materials/character-ascension/brilliant-diamond-sliver",
+    "image": "/images/materials/character-ascension/brilliant-diamond-sliver",
     "rarity": 2,
     "category": "Gem",
     "description": "Brilliant Diamond Sliver character ascension gem.",
@@ -225,7 +225,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "broken-drive-shaft",
     "name": "Broken Drive Shaft",
-    "image": "/image/materials/boss-material/broken-drive-shaft",
+    "image": "/images/materials/boss-material/broken-drive-shaft",
     "rarity": 4,
     "category": "Boss Material",
     "description": "Broken Drive Shaft character ascension boss material.",
@@ -236,7 +236,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "calla-lily",
     "name": "Calla Lily",
-    "image": "/image/materials/local-specialties/calla-lily",
+    "image": "/images/materials/local-specialties/calla-lily",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Calla Lily local specialty.",
@@ -247,7 +247,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "cecilia",
     "name": "Cecilia",
-    "image": "/image/materials/local-specialties/cecilia",
+    "image": "/images/materials/local-specialties/cecilia",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Cecilia local specialty.",
@@ -258,7 +258,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "chaos-axis",
     "name": "Chaos Axis",
-    "image": "/image/materials/common-ascension/chaos-axis",
+    "image": "/images/materials/common-ascension/chaos-axis",
     "rarity": 3,
     "category": "Elite Drop",
     "description": "Chaos Axis ascension material.",
@@ -269,7 +269,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "chaos-bolt",
     "name": "Chaos Bolt",
-    "image": "/image/materials/common-ascension/chaos-bolt",
+    "image": "/images/materials/common-ascension/chaos-bolt",
     "rarity": 4,
     "category": "Enemy Drop",
     "description": "Chaos Bolt ascension material.",
@@ -280,7 +280,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "chaos-circuit",
     "name": "Chaos Circuit",
-    "image": "/image/materials/common-ascension/chaos-circuit",
+    "image": "/images/materials/common-ascension/chaos-circuit",
     "rarity": 3,
     "category": "Elite Drop",
     "description": "Chaos Circuit ascension material.",
@@ -291,7 +291,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "chaos-core",
     "name": "Chaos Core",
-    "image": "/image/materials/common-ascension/chaos-core",
+    "image": "/images/materials/common-ascension/chaos-core",
     "rarity": 4,
     "category": "Elite Drop",
     "description": "Chaos Core ascension material.",
@@ -302,7 +302,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "chaos-device",
     "name": "Chaos Device",
-    "image": "/image/materials/common-ascension/chaos-device",
+    "image": "/images/materials/common-ascension/chaos-device",
     "rarity": 2,
     "category": "Elite Drop",
     "description": "Chaos Device ascension material.",
@@ -313,7 +313,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "chaos-gear",
     "name": "Chaos Gear",
-    "image": "/image/materials/common-ascension/chaos-gear",
+    "image": "/images/materials/common-ascension/chaos-gear",
     "rarity": 2,
     "category": "Elite Drop",
     "description": "Chaos Gear ascension material.",
@@ -324,7 +324,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "chaos-module",
     "name": "Chaos Module",
-    "image": "/image/materials/common-ascension/chaos-module",
+    "image": "/images/materials/common-ascension/chaos-module",
     "rarity": 3,
     "category": "Enemy Drop",
     "description": "Chaos Module ascension material.",
@@ -335,7 +335,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "chaos-oculus",
     "name": "Chaos Oculus",
-    "image": "/image/materials/common-ascension/chaos-oculus",
+    "image": "/images/materials/common-ascension/chaos-oculus",
     "rarity": 4,
     "category": "Elite Drop",
     "description": "Chaos Oculus ascension material.",
@@ -346,7 +346,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "chaos-storage",
     "name": "Chaos Storage",
-    "image": "/image/materials/common-ascension/chaos-storage",
+    "image": "/images/materials/common-ascension/chaos-storage",
     "rarity": 2,
     "category": "Enemy Drop",
     "description": "Chaos Storage ascension material.",
@@ -357,7 +357,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "cleansing-heart",
     "name": "Cleansing Heart",
-    "image": "/image/materials/boss-material/cleansing-heart",
+    "image": "/images/materials/boss-material/cleansing-heart",
     "rarity": 4,
     "category": "Boss Material",
     "description": "Cleansing Heart character ascension boss material.",
@@ -368,7 +368,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "clearwater-jade",
     "name": "Clearwater Jade",
-    "image": "/image/materials/local-specialties/clearwater-jade",
+    "image": "/images/materials/local-specialties/clearwater-jade",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Clearwater Jade local specialty.",
@@ -379,7 +379,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "cloudseam-scale",
     "name": "Cloudseam Scale",
-    "image": "/image/materials/boss-material/cloudseam-scale",
+    "image": "/images/materials/boss-material/cloudseam-scale",
     "rarity": 4,
     "category": "Boss Material",
     "description": "Cloudseam Scale character ascension boss material.",
@@ -390,7 +390,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "concealed-claw",
     "name": "Concealed Claw",
-    "image": "/image/materials/common-ascension/concealed-claw",
+    "image": "/images/materials/common-ascension/concealed-claw",
     "rarity": 2,
     "category": "Elite Drop",
     "description": "Concealed Claw ascension material.",
@@ -401,7 +401,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "concealed-talon",
     "name": "Concealed Talon",
-    "image": "/image/materials/common-ascension/concealed-talon",
+    "image": "/images/materials/common-ascension/concealed-talon",
     "rarity": 4,
     "category": "Elite Drop",
     "description": "Concealed Talon ascension material.",
@@ -412,7 +412,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "concealed-unguis",
     "name": "Concealed Unguis",
-    "image": "/image/materials/common-ascension/concealed-unguis",
+    "image": "/images/materials/common-ascension/concealed-unguis",
     "rarity": 3,
     "category": "Elite Drop",
     "description": "Concealed Unguis ascension material.",
@@ -423,7 +423,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "coppelia",
     "name": "Artificed Spare Clockwork Component — Coppelia",
-    "image": "/image/materials/boss-material/coppelia",
+    "image": "/images/materials/boss-material/coppelia",
     "rarity": 4,
     "category": "Boss Material",
     "description": "Artificed Spare Clockwork Component — Coppelia character ascension boss material.",
@@ -434,7 +434,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "coppelius",
     "name": "Artificed Spare Clockwork Component — Coppelius",
-    "image": "/image/materials/boss-material/coppelius",
+    "image": "/images/materials/boss-material/coppelius",
     "rarity": 4,
     "category": "Boss Material",
     "description": "Artificed Spare Clockwork Component — Coppelius character ascension boss material.",
@@ -445,7 +445,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "cor-lapis",
     "name": "Cor Lapis",
-    "image": "/image/materials/local-specialties/cor-lapis",
+    "image": "/images/materials/local-specialties/cor-lapis",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Cor Lapis local specialty.",
@@ -456,7 +456,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "crown-of-insight",
     "name": "Crown of Insight",
-    "image": "/image/materials/talent-book/crown-of-insight",
+    "image": "/images/materials/talent-book/crown-of-insight",
     "rarity": 5,
     "category": "Talent Book",
     "description": "Rare crown required to fully level a talent.",
@@ -467,7 +467,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "crystal-marrow",
     "name": "Crystal Marrow",
-    "image": "/image/materials/local-specialties/crystal-marrow",
+    "image": "/images/materials/local-specialties/crystal-marrow",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Crystal Marrow local specialty.",
@@ -478,7 +478,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "crystal-prism",
     "name": "Crystal Prism",
-    "image": "/image/materials/common-ascension/crystal-prism",
+    "image": "/images/materials/common-ascension/crystal-prism",
     "rarity": 3,
     "category": "Enemy Drop",
     "description": "Crystal Prism ascension material.",
@@ -489,7 +489,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "crystalline-bloom",
     "name": "Crystalline Bloom",
-    "image": "/image/materials/boss-material/crystalline-bloom",
+    "image": "/images/materials/boss-material/crystalline-bloom",
     "rarity": 4,
     "category": "Boss Material",
     "description": "Crystalline Bloom character ascension boss material.",
@@ -500,7 +500,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "crystalline-cyst-dust",
     "name": "Crystalline Cyst Dust",
-    "image": "/image/materials/common-ascension/crystalline-cyst-dust",
+    "image": "/images/materials/common-ascension/crystalline-cyst-dust",
     "rarity": 3,
     "category": "Enemy Drop",
     "description": "Crystalline Cyst Dust ascension material.",
@@ -511,7 +511,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "cyclic-military-kuuvahki-core",
     "name": "Cyclic Military Kuuvahki Core",
-    "image": "/image/materials/boss-material/cyclic-military-kuuvahki-core",
+    "image": "/images/materials/boss-material/cyclic-military-kuuvahki-core",
     "rarity": 4,
     "category": "Boss Material",
     "description": "Cyclic Military Kuuvahki Core character ascension boss material.",
@@ -522,7 +522,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "daka-s-bell",
     "name": "Daka's Bell",
-    "image": "/image/materials/talent-boss/daka-s-bell",
+    "image": "/images/materials/talent-boss/daka-s-bell",
     "rarity": 5,
     "category": "Boss Material",
     "description": "Daka's Bell weekly boss talent material.",
@@ -533,7 +533,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "damaged-mask",
     "name": "Damaged Mask",
-    "image": "/image/materials/common-ascension/damaged-mask",
+    "image": "/images/materials/common-ascension/damaged-mask",
     "rarity": 1,
     "category": "Enemy Drop",
     "description": "Damaged Mask ascension material.",
@@ -544,7 +544,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "damaged-prism",
     "name": "Damaged Prism",
-    "image": "/image/materials/common-ascension/damaged-prism",
+    "image": "/images/materials/common-ascension/damaged-prism",
     "rarity": 2,
     "category": "Enemy Drop",
     "description": "Damaged Prism ascension material.",
@@ -555,7 +555,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "dandelion-seed",
     "name": "Dandelion Seed",
-    "image": "/image/materials/local-specialties/dandelion-seed",
+    "image": "/images/materials/local-specialties/dandelion-seed",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Dandelion Seed local specialty.",
@@ -566,7 +566,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "dark-statuette",
     "name": "Dark Statuette",
-    "image": "/image/materials/common-ascension/dark-statuette",
+    "image": "/images/materials/common-ascension/dark-statuette",
     "rarity": 3,
     "category": "Elite Drop",
     "description": "Dark Statuette ascension material.",
@@ -577,7 +577,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "dead-ley-line-branch",
     "name": "Dead Ley Line Branch",
-    "image": "/image/materials/common-ascension/dead-ley-line-branch",
+    "image": "/images/materials/common-ascension/dead-ley-line-branch",
     "rarity": 2,
     "category": "Elite Drop",
     "description": "Dead Ley Line Branch ascension material.",
@@ -588,7 +588,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "dead-ley-line-leaves",
     "name": "Dead Ley Line Leaves",
-    "image": "/image/materials/common-ascension/dead-ley-line-leaves",
+    "image": "/images/materials/common-ascension/dead-ley-line-leaves",
     "rarity": 3,
     "category": "Elite Drop",
     "description": "Dead Ley Line Leaves ascension material.",
@@ -599,7 +599,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "deathly-statuette",
     "name": "Deathly Statuette",
-    "image": "/image/materials/common-ascension/deathly-statuette",
+    "image": "/images/materials/common-ascension/deathly-statuette",
     "rarity": 4,
     "category": "Elite Drop",
     "description": "Deathly Statuette ascension material.",
@@ -610,7 +610,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "dendrobium",
     "name": "Dendrobium",
-    "image": "/image/materials/local-specialties/dendrobium",
+    "image": "/images/materials/local-specialties/dendrobium",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Dendrobium local specialty.",
@@ -621,7 +621,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "denial-and-judgment",
     "name": "Denial and Judgment",
-    "image": "/image/materials/talent-boss/denial-and-judgment",
+    "image": "/images/materials/talent-boss/denial-and-judgment",
     "rarity": 5,
     "category": "Boss Material",
     "description": "Denial and Judgment weekly boss talent material.",
@@ -632,7 +632,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "desiccated-shell",
     "name": "Desiccated Shell",
-    "image": "/image/materials/common-ascension/desiccated-shell",
+    "image": "/images/materials/common-ascension/desiccated-shell",
     "rarity": 2,
     "category": "Enemy Drop",
     "description": "Desiccated Shell ascension material.",
@@ -643,7 +643,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "dew-of-repudiation",
     "name": "Dew of Repudiation",
-    "image": "/image/materials/boss-material/dew-of-repudiation",
+    "image": "/images/materials/boss-material/dew-of-repudiation",
     "rarity": 4,
     "category": "Boss Material",
     "description": "Dew of Repudiation character ascension boss material.",
@@ -654,7 +654,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "dismal-prism",
     "name": "Dismal Prism",
-    "image": "/image/materials/common-ascension/dismal-prism",
+    "image": "/images/materials/common-ascension/dismal-prism",
     "rarity": 2,
     "category": "Enemy Drop",
     "description": "Dismal Prism ascension material.",
@@ -665,7 +665,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "divining-scroll",
     "name": "Divining Scroll",
-    "image": "/image/materials/common-ascension/divining-scroll",
+    "image": "/images/materials/common-ascension/divining-scroll",
     "rarity": 1,
     "category": "Enemy Drop",
     "description": "Divining Scroll ascension material.",
@@ -676,7 +676,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "dormant-fungal-nucleus",
     "name": "Dormant Fungal Nucleus",
-    "image": "/image/materials/common-ascension/dormant-fungal-nucleus",
+    "image": "/images/materials/common-ascension/dormant-fungal-nucleus",
     "rarity": 3,
     "category": "Enemy Drop",
     "description": "Dormant Fungal Nucleus ascension material.",
@@ -687,7 +687,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "dracolite",
     "name": "Dracolite",
-    "image": "/image/materials/local-specialties/dracolite",
+    "image": "/images/materials/local-specialties/dracolite",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Dracolite local specialty.",
@@ -698,7 +698,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "dragon-lord's-crown",
     "name": "Dragon Lord's Crown",
-    "image": "/image/materials/talent-boss/dragon-lord's-crown",
+    "image": "/images/materials/talent-boss/dragon-lord's-crown",
     "rarity": 5,
     "category": "Boss Material",
     "description": "Dragon Lord's Crown weekly boss talent material.",
@@ -709,7 +709,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "dragonheir-s-false-fin",
     "name": "Dragonheir's False Fin",
-    "image": "/image/materials/boss-material/dragonheir-s-false-fin",
+    "image": "/images/materials/boss-material/dragonheir-s-false-fin",
     "rarity": 4,
     "category": "Boss Material",
     "description": "Dragonheir's False Fin character ascension boss material.",
@@ -720,7 +720,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "drop-of-tainted-water",
     "name": "Drop of Tainted Water",
-    "image": "/image/materials/common-ascension/drop-of-tainted-water",
+    "image": "/images/materials/common-ascension/drop-of-tainted-water",
     "rarity": 2,
     "category": "Enemy Drop",
     "description": "Drop of Tainted Water ascension material.",
@@ -731,7 +731,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "dvalin's-claw",
     "name": "Dvalin's Claw",
-    "image": "/image/materials/talent-boss/dvalin's-claw",
+    "image": "/images/materials/talent-boss/dvalin's-claw",
     "rarity": 5,
     "category": "Boss Material",
     "description": "Dvalin's Claw weekly boss talent material.",
@@ -742,7 +742,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "dvalin's-plume",
     "name": "Dvalin's Plume",
-    "image": "/image/materials/talent-boss/dvalin's-plume",
+    "image": "/images/materials/talent-boss/dvalin's-plume",
     "rarity": 5,
     "category": "Boss Material",
     "description": "Dvalin's Plume weekly boss talent material.",
@@ -753,7 +753,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "dvalin's-sigh",
     "name": "Dvalin's Sigh",
-    "image": "/image/materials/talent-boss/dvalin's-sigh",
+    "image": "/images/materials/talent-boss/dvalin's-sigh",
     "rarity": 5,
     "category": "Boss Material",
     "description": "Dvalin's Sigh weekly boss talent material.",
@@ -764,7 +764,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "emperor-s-resolution",
     "name": "Emperor's Resolution",
-    "image": "/image/materials/boss-material/emperor-s-resolution",
+    "image": "/images/materials/boss-material/emperor-s-resolution",
     "rarity": 4,
     "category": "Boss Material",
     "description": "Emperor's Resolution character ascension boss material.",
@@ -775,7 +775,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "energy-nectar",
     "name": "Energy Nectar",
-    "image": "/image/materials/common-ascension/energy-nectar",
+    "image": "/images/materials/common-ascension/energy-nectar",
     "rarity": 3,
     "category": "Enemy Drop",
     "description": "Energy Nectar ascension material.",
@@ -786,7 +786,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "ensnaring-gaze",
     "name": "Ensnaring Gaze",
-    "image": "/image/materials/boss-material/ensnaring-gaze",
+    "image": "/images/materials/boss-material/ensnaring-gaze",
     "rarity": 4,
     "category": "Boss Material",
     "description": "Ensnaring Gaze character ascension boss material.",
@@ -797,7 +797,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "everamber",
     "name": "Everamber",
-    "image": "/image/materials/talent-boss/everamber",
+    "image": "/images/materials/talent-boss/everamber",
     "rarity": 5,
     "category": "Boss Material",
     "description": "Everamber weekly boss talent material.",
@@ -808,7 +808,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "everflame-seed",
     "name": "Everflame Seed",
-    "image": "/image/materials/boss-material/everflame-seed",
+    "image": "/images/materials/boss-material/everflame-seed",
     "rarity": 4,
     "category": "Boss Material",
     "description": "Everflame Seed character ascension boss material.",
@@ -819,7 +819,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "evergloom-ring",
     "name": "Evergloom Ring",
-    "image": "/image/materials/boss-material/evergloom-ring",
+    "image": "/images/materials/boss-material/evergloom-ring",
     "rarity": 4,
     "category": "Boss Material",
     "description": "Evergloom Ring character ascension boss material.",
@@ -830,7 +830,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "faded-red-satin",
     "name": "Faded Red Satin",
-    "image": "/image/materials/common-ascension/faded-red-satin",
+    "image": "/images/materials/common-ascension/faded-red-satin",
     "rarity": 1,
     "category": "Elite Drop",
     "description": "Faded Red Satin ascension material.",
@@ -841,7 +841,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "fading-candle",
     "name": "Fading Candle",
-    "image": "/image/materials/talent-boss/fading-candle",
+    "image": "/images/materials/talent-boss/fading-candle",
     "rarity": 5,
     "category": "Boss Material",
     "description": "Fading Candle weekly boss talent material.",
@@ -852,7 +852,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "famed-handguard",
     "name": "Famed Handguard",
-    "image": "/image/materials/common-ascension/famed-handguard",
+    "image": "/images/materials/common-ascension/famed-handguard",
     "rarity": 3,
     "category": "Enemy Drop",
     "description": "Famed Handguard ascension material.",
@@ -863,7 +863,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "firm-arrowhead",
     "name": "Firm Arrowhead",
-    "image": "/image/materials/common-ascension/firm-arrowhead",
+    "image": "/images/materials/common-ascension/firm-arrowhead",
     "rarity": 1,
     "category": "Enemy Drop",
     "description": "Firm Arrowhead ascension material.",
@@ -874,7 +874,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "fluorescent-fungus",
     "name": "Fluorescent Fungus",
-    "image": "/image/materials/local-specialties/fluorescent-fungus",
+    "image": "/images/materials/local-specialties/fluorescent-fungus",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Fluorescent Fungus local specialty.",
@@ -885,7 +885,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "fontemer-unihorn",
     "name": "Fontemer Unihorn",
-    "image": "/image/materials/boss-material/fontemer-unihorn",
+    "image": "/images/materials/boss-material/fontemer-unihorn",
     "rarity": 4,
     "category": "Boss Material",
     "description": "Fontemer Unihorn character ascension boss material.",
@@ -896,7 +896,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "forbidden-curse-scroll",
     "name": "Forbidden Curse Scroll",
-    "image": "/image/materials/common-ascension/forbidden-curse-scroll",
+    "image": "/images/materials/common-ascension/forbidden-curse-scroll",
     "rarity": 3,
     "category": "Enemy Drop",
     "description": "Forbidden Curse Scroll ascension material.",
@@ -907,7 +907,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "foreign-synapse",
     "name": "Foreign Synapse",
-    "image": "/image/materials/common-ascension/foreign-synapse",
+    "image": "/images/materials/common-ascension/foreign-synapse",
     "rarity": 3,
     "category": "Enemy Drop",
     "description": "Foreign Synapse ascension material.",
@@ -918,7 +918,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "fossilized-bone-shard",
     "name": "Fossilized Bone Shard",
-    "image": "/image/materials/common-ascension/fossilized-bone-shard",
+    "image": "/images/materials/common-ascension/fossilized-bone-shard",
     "rarity": 4,
     "category": "Elite Drop",
     "description": "Fossilized Bone Shard ascension material.",
@@ -929,7 +929,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "fragile-bone-shard",
     "name": "Fragile Bone Shard",
-    "image": "/image/materials/common-ascension/fragile-bone-shard",
+    "image": "/images/materials/common-ascension/fragile-bone-shard",
     "rarity": 2,
     "category": "Elite Drop",
     "description": "Fragile Bone Shard ascension material.",
@@ -940,7 +940,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "fragment-of-a-golden-melody",
     "name": "Fragment of a Golden Melody",
-    "image": "/image/materials/boss-material/fragment-of-a-golden-melody",
+    "image": "/images/materials/boss-material/fragment-of-a-golden-melody",
     "rarity": 4,
     "category": "Boss Material",
     "description": "Fragment of a Golden Melody character ascension boss material.",
@@ -951,7 +951,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "frost-etched-warrant",
     "name": "Frost-Etched Warrant",
-    "image": "/image/materials/boss-material/frost-etched-warrant",
+    "image": "/images/materials/boss-material/frost-etched-warrant",
     "rarity": 4,
     "category": "Boss Material",
     "description": "Frost-Etched Warrant character ascension boss material.",
@@ -962,7 +962,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "frostlamp-flower",
     "name": "Frostlamp Flower",
-    "image": "/image/materials/local-specialties/frostlamp-flower",
+    "image": "/images/materials/local-specialties/frostlamp-flower",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Frostlamp Flower local specialty.",
@@ -973,7 +973,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "fungal-spores",
     "name": "Fungal Spores",
-    "image": "/image/materials/common-ascension/fungal-spores",
+    "image": "/images/materials/common-ascension/fungal-spores",
     "rarity": 1,
     "category": "Enemy Drop",
     "description": "Fungal Spores ascension material.",
@@ -984,7 +984,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "gilded-scale",
     "name": "Gilded Scale",
-    "image": "/image/materials/talent-boss/gilded-scale",
+    "image": "/images/materials/talent-boss/gilded-scale",
     "rarity": 5,
     "category": "Boss Material",
     "description": "Gilded Scale weekly boss talent material.",
@@ -995,7 +995,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "glaze-lily",
     "name": "Glaze Lily",
-    "image": "/image/materials/local-specialties/glaze-lily",
+    "image": "/images/materials/local-specialties/glaze-lily",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Glaze Lily local specialty.",
@@ -1006,7 +1006,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "gloomy-statuette",
     "name": "Gloomy Statuette",
-    "image": "/image/materials/common-ascension/gloomy-statuette",
+    "image": "/images/materials/common-ascension/gloomy-statuette",
     "rarity": 2,
     "category": "Elite Drop",
     "description": "Gloomy Statuette ascension material.",
@@ -1017,7 +1017,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "glowing-hornshroom",
     "name": "Glowing Hornshroom",
-    "image": "/image/materials/local-specialties/glowing-hornshroom",
+    "image": "/images/materials/local-specialties/glowing-hornshroom",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Glowing Hornshroom local specialty.",
@@ -1028,7 +1028,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "gold-inscribed-secret-source-core",
     "name": "Gold-Inscribed Secret Source Core",
-    "image": "/image/materials/boss-material/gold-inscribed-secret-source-core",
+    "image": "/images/materials/boss-material/gold-inscribed-secret-source-core",
     "rarity": 4,
     "category": "Boss Material",
     "description": "Gold-Inscribed Secret Source Core character ascension boss material.",
@@ -1039,7 +1039,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "golden-raven-insignia",
     "name": "Golden Raven Insignia",
-    "image": "/image/materials/common-ascension/golden-raven-insignia",
+    "image": "/images/materials/common-ascension/golden-raven-insignia",
     "rarity": 3,
     "category": "Enemy Drop",
     "description": "Golden Raven Insignia ascension material.",
@@ -1050,7 +1050,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "guide-to-admonition",
     "name": "Guide to Admonition",
-    "image": "/image/materials/talent-book/guide-to-admonition",
+    "image": "/images/materials/talent-book/guide-to-admonition",
     "rarity": 3,
     "category": "Talent Book",
     "description": "Guide to Admonition talent material.",
@@ -1061,7 +1061,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "guide-to-ballad",
     "name": "Guide to Ballad",
-    "image": "/image/materials/talent-book/guide-to-ballad",
+    "image": "/images/materials/talent-book/guide-to-ballad",
     "rarity": 3,
     "category": "Talent Book",
     "description": "Guide to Ballad talent material.",
@@ -1072,7 +1072,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "guide-to-conflict",
     "name": "Guide to Conflict",
-    "image": "/image/materials/talent-book/guide-to-conflict",
+    "image": "/images/materials/talent-book/guide-to-conflict",
     "rarity": 3,
     "category": "Talent Book",
     "description": "Guide to Conflict talent material.",
@@ -1083,7 +1083,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "guide-to-diligence",
     "name": "Guide to Diligence",
-    "image": "/image/materials/talent-book/guide-to-diligence",
+    "image": "/images/materials/talent-book/guide-to-diligence",
     "rarity": 3,
     "category": "Talent Book",
     "description": "Guide to Diligence talent material.",
@@ -1094,7 +1094,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "guide-to-elegance",
     "name": "Guide to Elegance",
-    "image": "/image/materials/talent-book/guide-to-elegance",
+    "image": "/images/materials/talent-book/guide-to-elegance",
     "rarity": 3,
     "category": "Talent Book",
     "description": "Guide to Elegance talent material.",
@@ -1105,7 +1105,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "guide-to-equity",
     "name": "Guide to Equity",
-    "image": "/image/materials/talent-book/guide-to-equity",
+    "image": "/images/materials/talent-book/guide-to-equity",
     "rarity": 3,
     "category": "Talent Book",
     "description": "Guide to Equity talent material.",
@@ -1116,7 +1116,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "guide-to-freedom",
     "name": "Guide to Freedom",
-    "image": "/image/materials/talent-book/guide-to-freedom",
+    "image": "/images/materials/talent-book/guide-to-freedom",
     "rarity": 3,
     "category": "Talent Book",
     "description": "Guide to Freedom talent material.",
@@ -1127,7 +1127,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "guide-to-gold",
     "name": "Guide to Gold",
-    "image": "/image/materials/talent-book/guide-to-gold",
+    "image": "/images/materials/talent-book/guide-to-gold",
     "rarity": 3,
     "category": "Talent Book",
     "description": "Guide to Gold talent material.",
@@ -1138,7 +1138,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "guide-to-ingenuity",
     "name": "Guide to Ingenuity",
-    "image": "/image/materials/talent-book/guide-to-ingenuity",
+    "image": "/images/materials/talent-book/guide-to-ingenuity",
     "rarity": 3,
     "category": "Talent Book",
     "description": "Guide to Ingenuity talent material.",
@@ -1149,7 +1149,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "guide-to-justice",
     "name": "Guide to Justice",
-    "image": "/image/materials/talent-book/guide-to-justice",
+    "image": "/images/materials/talent-book/guide-to-justice",
     "rarity": 3,
     "category": "Talent Book",
     "description": "Guide to Justice talent material.",
@@ -1160,7 +1160,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "guide-to-kindling",
     "name": "Guide to Kindling",
-    "image": "/image/materials/talent-book/guide-to-kindling",
+    "image": "/images/materials/talent-book/guide-to-kindling",
     "rarity": 3,
     "category": "Talent Book",
     "description": "Guide to Kindling talent material.",
@@ -1171,7 +1171,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "guide-to-light",
     "name": "Guide to Light",
-    "image": "/image/materials/talent-book/guide-to-light",
+    "image": "/images/materials/talent-book/guide-to-light",
     "rarity": 3,
     "category": "Talent Book",
     "description": "Guide to Light talent material.",
@@ -1182,7 +1182,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "guide-to-order",
     "name": "Guide to Order",
-    "image": "/image/materials/talent-book/guide-to-order",
+    "image": "/images/materials/talent-book/guide-to-order",
     "rarity": 3,
     "category": "Talent Book",
     "description": "Guide to Order talent material.",
@@ -1193,7 +1193,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "guide-to-praxis",
     "name": "Guide to Praxis",
-    "image": "/image/materials/talent-book/guide-to-praxis",
+    "image": "/images/materials/talent-book/guide-to-praxis",
     "rarity": 3,
     "category": "Talent Book",
     "description": "Guide to Praxis talent material.",
@@ -1204,7 +1204,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "guide-to-prosperity",
     "name": "Guide to Prosperity",
-    "image": "/image/materials/talent-book/guide-to-prosperity",
+    "image": "/images/materials/talent-book/guide-to-prosperity",
     "rarity": 3,
     "category": "Talent Book",
     "description": "Guide to Prosperity talent material.",
@@ -1215,7 +1215,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "guide-to-resistance",
     "name": "Guide to Resistance",
-    "image": "/image/materials/talent-book/guide-to-resistance",
+    "image": "/images/materials/talent-book/guide-to-resistance",
     "rarity": 3,
     "category": "Talent Book",
     "description": "Guide to Resistance talent material.",
@@ -1226,7 +1226,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "guide-to-transience",
     "name": "Guide to Transience",
-    "image": "/image/materials/talent-book/guide-to-transience",
+    "image": "/images/materials/talent-book/guide-to-transience",
     "rarity": 3,
     "category": "Talent Book",
     "description": "Guide to Transience talent material.",
@@ -1237,7 +1237,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "heavy-horn",
     "name": "Heavy Horn",
-    "image": "/image/materials/common-ascension/heavy-horn",
+    "image": "/images/materials/common-ascension/heavy-horn",
     "rarity": 2,
     "category": "Elite Drop",
     "description": "Heavy Horn ascension material.",
@@ -1248,7 +1248,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "hellfire-butterfly",
     "name": "Hellfire Butterfly",
-    "image": "/image/materials/talent-boss/hellfire-butterfly",
+    "image": "/images/materials/talent-boss/hellfire-butterfly",
     "rarity": 5,
     "category": "Boss Material",
     "description": "Hellfire Butterfly weekly boss talent material.",
@@ -1259,7 +1259,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "henna-berry",
     "name": "Henna Berry",
-    "image": "/image/materials/local-specialties/henna-berry",
+    "image": "/images/materials/local-specialties/henna-berry",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Henna Berry local specialty.",
@@ -1270,7 +1270,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "hoarfrost-core",
     "name": "Hoarfrost Core",
-    "image": "/image/materials/boss-material/hoarfrost-core",
+    "image": "/images/materials/boss-material/hoarfrost-core",
     "rarity": 4,
     "category": "Boss Material",
     "description": "Hoarfrost Core character ascension boss material.",
@@ -1281,7 +1281,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "hunter-s-sacrificial-knife",
     "name": "Hunter's Sacrificial Knife",
-    "image": "/image/materials/common-ascension/hunter-s-sacrificial-knife",
+    "image": "/images/materials/common-ascension/hunter-s-sacrificial-knife",
     "rarity": 2,
     "category": "Elite Drop",
     "description": "Hunter's Sacrificial Knife ascension material.",
@@ -1292,7 +1292,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "hurricane-seed",
     "name": "Hurricane Seed",
-    "image": "/image/materials/boss-material/hurricane-seed",
+    "image": "/images/materials/boss-material/hurricane-seed",
     "rarity": 4,
     "category": "Boss Material",
     "description": "Hurricane Seed character ascension boss material.",
@@ -1303,7 +1303,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "immaculate-warrant",
     "name": "Immaculate Warrant",
-    "image": "/image/materials/boss-material/immaculate-warrant",
+    "image": "/images/materials/boss-material/immaculate-warrant",
     "rarity": 4,
     "category": "Boss Material",
     "description": "Immaculate Warrant character ascension boss material.",
@@ -1314,7 +1314,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "inactivated-fungal-nucleus",
     "name": "Inactivated Fungal Nucleus",
-    "image": "/image/materials/common-ascension/inactivated-fungal-nucleus",
+    "image": "/images/materials/common-ascension/inactivated-fungal-nucleus",
     "rarity": 2,
     "category": "Enemy Drop",
     "description": "Inactivated Fungal Nucleus ascension material.",
@@ -1325,7 +1325,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "inspector-s-sacrificial-knife",
     "name": "Inspector's Sacrificial Knife",
-    "image": "/image/materials/common-ascension/inspector-s-sacrificial-knife",
+    "image": "/images/materials/common-ascension/inspector-s-sacrificial-knife",
     "rarity": 4,
     "category": "Elite Drop",
     "description": "Inspector's Sacrificial Knife ascension material.",
@@ -1336,7 +1336,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "jueyun-chili",
     "name": "Jueyun Chili",
-    "image": "/image/materials/local-specialties/jueyun-chili",
+    "image": "/images/materials/local-specialties/jueyun-chili",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Jueyun Chili local specialty.",
@@ -1347,7 +1347,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "juvenile-fang",
     "name": "Juvenile Fang",
-    "image": "/image/materials/common-ascension/juvenile-fang",
+    "image": "/images/materials/common-ascension/juvenile-fang",
     "rarity": 2,
     "category": "Enemy Drop",
     "description": "Juvenile Fang ascension material.",
@@ -1358,7 +1358,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "juvenile-jade",
     "name": "Juvenile Jade",
-    "image": "/image/materials/boss-material/juvenile-jade",
+    "image": "/images/materials/boss-material/juvenile-jade",
     "rarity": 4,
     "category": "Boss Material",
     "description": "Juvenile Jade character ascension boss material.",
@@ -1369,7 +1369,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "kageuchi-handguard",
     "name": "Kageuchi Handguard",
-    "image": "/image/materials/common-ascension/kageuchi-handguard",
+    "image": "/images/materials/common-ascension/kageuchi-handguard",
     "rarity": 2,
     "category": "Enemy Drop",
     "description": "Kageuchi Handguard ascension material.",
@@ -1380,7 +1380,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "kalpalata-lotus",
     "name": "Kalpalata Lotus",
-    "image": "/image/materials/local-specialties/kalpalata-lotus",
+    "image": "/images/materials/local-specialties/kalpalata-lotus",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Kalpalata Lotus local specialty.",
@@ -1391,7 +1391,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "lakelight-lily",
     "name": "Lakelight Lily",
-    "image": "/image/materials/local-specialties/lakelight-lily",
+    "image": "/images/materials/local-specialties/lakelight-lily",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Lakelight Lily local specialty.",
@@ -1402,7 +1402,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "ley-line-sprout",
     "name": "Ley Line Sprout",
-    "image": "/image/materials/common-ascension/ley-line-sprout",
+    "image": "/images/materials/common-ascension/ley-line-sprout",
     "rarity": 4,
     "category": "Elite Drop",
     "description": "Ley Line Sprout ascension material.",
@@ -1413,7 +1413,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "lieutenant-s-insignia",
     "name": "Lieutenant's Insignia",
-    "image": "/image/materials/common-ascension/lieutenant-s-insignia",
+    "image": "/images/materials/common-ascension/lieutenant-s-insignia",
     "rarity": 3,
     "category": "Enemy Drop",
     "description": "Lieutenant's Insignia ascension material.",
@@ -1424,7 +1424,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "light-guiding-tetrahedron",
     "name": "Light Guiding Tetrahedron",
-    "image": "/image/materials/boss-material/light-guiding-tetrahedron",
+    "image": "/images/materials/boss-material/light-guiding-tetrahedron",
     "rarity": 4,
     "category": "Boss Material",
     "description": "Light Guiding Tetrahedron character ascension boss material.",
@@ -1435,7 +1435,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "lightbearing-scale-feather",
     "name": "Lightbearing Scale-Feather",
-    "image": "/image/materials/boss-material/lightbearing-scale-feather",
+    "image": "/images/materials/boss-material/lightbearing-scale-feather",
     "rarity": 4,
     "category": "Boss Material",
     "description": "Lightbearing Scale-Feather character ascension boss material.",
@@ -1446,7 +1446,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "lightless-eye-of-the-maelstrom",
     "name": "Lightless Eye of the Maelstrom",
-    "image": "/image/materials/talent-boss/lightless-eye-of-the-maelstrom",
+    "image": "/images/materials/talent-boss/lightless-eye-of-the-maelstrom",
     "rarity": 5,
     "category": "Boss Material",
     "description": "Lightless Eye of the Maelstrom weekly boss talent material.",
@@ -1457,7 +1457,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "lightless-mass",
     "name": "Lightless Mass",
-    "image": "/image/materials/talent-boss/lightless-mass",
+    "image": "/images/materials/talent-boss/lightless-mass",
     "rarity": 5,
     "category": "Boss Material",
     "description": "Lightless Mass weekly boss talent material.",
@@ -1468,7 +1468,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "lightless-silk-string",
     "name": "Lightless Silk String",
-    "image": "/image/materials/talent-boss/lightless-silk-string",
+    "image": "/images/materials/talent-boss/lightless-silk-string",
     "rarity": 5,
     "category": "Boss Material",
     "description": "Lightless Silk String weekly boss talent material.",
@@ -1479,7 +1479,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "lightning-prism",
     "name": "Lightning Prism",
-    "image": "/image/materials/boss-material/lightning-prism",
+    "image": "/images/materials/boss-material/lightning-prism",
     "rarity": 4,
     "category": "Boss Material",
     "description": "Lightning Prism character ascension boss material.",
@@ -1490,7 +1490,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "lumidouce-bell",
     "name": "Lumidouce Bell",
-    "image": "/image/materials/local-specialties/lumidouce-bell",
+    "image": "/images/materials/local-specialties/lumidouce-bell",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Lumidouce Bell local specialty.",
@@ -1501,7 +1501,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "luminescent-pollen",
     "name": "Luminescent Pollen",
-    "image": "/image/materials/common-ascension/luminescent-pollen",
+    "image": "/images/materials/common-ascension/luminescent-pollen",
     "rarity": 2,
     "category": "Enemy Drop",
     "description": "Luminescent Pollen ascension material.",
@@ -1512,7 +1512,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "lumitoile",
     "name": "Lumitoile",
-    "image": "/image/materials/local-specialties/lumitoile",
+    "image": "/images/materials/local-specialties/lumitoile",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Lumitoile local specialty.",
@@ -1523,7 +1523,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "majestic-hooked-beak",
     "name": "Majestic Hooked Beak",
-    "image": "/image/materials/boss-material/majestic-hooked-beak",
+    "image": "/images/materials/boss-material/majestic-hooked-beak",
     "rarity": 4,
     "category": "Boss Material",
     "description": "Majestic Hooked Beak character ascension boss material.",
@@ -1534,7 +1534,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "marionette-core",
     "name": "Marionette Core",
-    "image": "/image/materials/boss-material/marionette-core",
+    "image": "/images/materials/boss-material/marionette-core",
     "rarity": 4,
     "category": "Boss Material",
     "description": "Marionette Core character ascension boss material.",
@@ -1545,7 +1545,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "mark-of-the-binding-blessing",
     "name": "Mark of the Binding Blessing",
-    "image": "/image/materials/boss-material/mark-of-the-binding-blessing",
+    "image": "/images/materials/boss-material/mark-of-the-binding-blessing",
     "rarity": 4,
     "category": "Boss Material",
     "description": "Mark of the Binding Blessing character ascension boss material.",
@@ -1556,7 +1556,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "marked-shell",
     "name": "Marked Shell",
-    "image": "/image/materials/common-ascension/marked-shell",
+    "image": "/images/materials/common-ascension/marked-shell",
     "rarity": 4,
     "category": "Enemy Drop",
     "description": "Marked Shell ascension material.",
@@ -1567,7 +1567,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "mechanical-spur-gear",
     "name": "Mechanical Spur Gear",
-    "image": "/image/materials/common-ascension/mechanical-spur-gear",
+    "image": "/images/materials/common-ascension/mechanical-spur-gear",
     "rarity": 2,
     "category": "Elite Drop",
     "description": "Mechanical Spur Gear ascension material.",
@@ -1578,7 +1578,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "meshing-gear",
     "name": "Meshing Gear",
-    "image": "/image/materials/common-ascension/meshing-gear",
+    "image": "/images/materials/common-ascension/meshing-gear",
     "rarity": 1,
     "category": "Elite Drop",
     "description": "Meshing Gear ascension material.",
@@ -1589,7 +1589,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "mirror-of-mushin",
     "name": "Mirror of Mushin",
-    "image": "/image/materials/talent-boss/mirror-of-mushin",
+    "image": "/images/materials/talent-boss/mirror-of-mushin",
     "rarity": 5,
     "category": "Boss Material",
     "description": "Mirror of Mushin weekly boss talent material.",
@@ -1600,7 +1600,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "mist-grass",
     "name": "Mist Grass",
-    "image": "/image/materials/common-ascension/mist-grass",
+    "image": "/images/materials/common-ascension/mist-grass",
     "rarity": 3,
     "category": "Elite Drop",
     "description": "Mist Grass ascension material.",
@@ -1611,7 +1611,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "mist-grass-pollen",
     "name": "Mist Grass Pollen",
-    "image": "/image/materials/common-ascension/mist-grass-pollen",
+    "image": "/images/materials/common-ascension/mist-grass-pollen",
     "rarity": 2,
     "category": "Elite Drop",
     "description": "Mist Grass Pollen ascension material.",
@@ -1622,7 +1622,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "mist-grass-wick",
     "name": "Mist Grass Wick",
-    "image": "/image/materials/common-ascension/mist-grass-wick",
+    "image": "/images/materials/common-ascension/mist-grass-wick",
     "rarity": 4,
     "category": "Elite Drop",
     "description": "Mist Grass Wick ascension material.",
@@ -1633,7 +1633,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "molten-moment",
     "name": "Molten Moment",
-    "image": "/image/materials/talent-boss/molten-moment",
+    "image": "/images/materials/talent-boss/molten-moment",
     "rarity": 5,
     "category": "Boss Material",
     "description": "Molten Moment weekly boss talent material.",
@@ -1644,7 +1644,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "moonfall-silver",
     "name": "Moonfall Silver",
-    "image": "/image/materials/local-specialties/moonfall-silver",
+    "image": "/images/materials/local-specialties/moonfall-silver",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Moonfall Silver local specialty.",
@@ -1655,7 +1655,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "mourning-flower",
     "name": "Mourning Flower",
-    "image": "/image/materials/local-specialties/mourning-flower",
+    "image": "/images/materials/local-specialties/mourning-flower",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Mourning Flower local specialty.",
@@ -1666,7 +1666,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "mudra-of-the-malefic-general",
     "name": "Mudra of the Malefic General",
-    "image": "/image/materials/talent-boss/mudra-of-the-malefic-general",
+    "image": "/images/materials/talent-boss/mudra-of-the-malefic-general",
     "rarity": 5,
     "category": "Boss Material",
     "description": "Mudra of the Malefic General weekly boss talent material.",
@@ -1677,7 +1677,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "nagadus-emerald-chunk",
     "name": "Nagadus Emerald Chunk",
-    "image": "/image/materials/character-ascension/nagadus-emerald-chunk",
+    "image": "/images/materials/character-ascension/nagadus-emerald-chunk",
     "rarity": 4,
     "category": "Gem",
     "description": "Nagadus Emerald Chunk character ascension gem.",
@@ -1688,7 +1688,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "nagadus-emerald-fragment",
     "name": "Nagadus Emerald Fragment",
-    "image": "/image/materials/character-ascension/nagadus-emerald-fragment",
+    "image": "/images/materials/character-ascension/nagadus-emerald-fragment",
     "rarity": 3,
     "category": "Gem",
     "description": "Nagadus Emerald Fragment character ascension gem.",
@@ -1699,7 +1699,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "nagadus-emerald-gemstone",
     "name": "Nagadus Emerald Gemstone",
-    "image": "/image/materials/character-ascension/nagadus-emerald-gemstone",
+    "image": "/images/materials/character-ascension/nagadus-emerald-gemstone",
     "rarity": 5,
     "category": "Gem",
     "description": "Nagadus Emerald Gemstone character ascension gem.",
@@ -1710,7 +1710,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "nagadus-emerald-sliver",
     "name": "Nagadus Emerald Sliver",
-    "image": "/image/materials/character-ascension/nagadus-emerald-sliver",
+    "image": "/images/materials/character-ascension/nagadus-emerald-sliver",
     "rarity": 2,
     "category": "Gem",
     "description": "Nagadus Emerald Sliver character ascension gem.",
@@ -1721,7 +1721,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "naku-weed",
     "name": "Naku Weed",
-    "image": "/image/materials/local-specialties/naku-weed",
+    "image": "/images/materials/local-specialties/naku-weed",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Naku Weed local specialty.",
@@ -1732,7 +1732,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "newborn-tainted-hydro-phantasm",
     "name": "Newborn Tainted Hydro Phantasm",
-    "image": "/image/materials/common-ascension/newborn-tainted-hydro-phantasm",
+    "image": "/images/materials/common-ascension/newborn-tainted-hydro-phantasm",
     "rarity": 4,
     "category": "Enemy Drop",
     "description": "Newborn Tainted Hydro Phantasm ascension material.",
@@ -1743,7 +1743,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "nilotpala-lotus",
     "name": "Nilotpala Lotus",
-    "image": "/image/materials/local-specialties/nilotpala-lotus",
+    "image": "/images/materials/local-specialties/nilotpala-lotus",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Nilotpala Lotus local specialty.",
@@ -1754,7 +1754,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "noctilucous-jade",
     "name": "Noctilucous Jade",
-    "image": "/image/materials/local-specialties/noctilucous-jade",
+    "image": "/images/materials/local-specialties/noctilucous-jade",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Noctilucous Jade local specialty.",
@@ -1765,7 +1765,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "old-handguard",
     "name": "Old Handguard",
-    "image": "/image/materials/common-ascension/old-handguard",
+    "image": "/images/materials/common-ascension/old-handguard",
     "rarity": 1,
     "category": "Enemy Drop",
     "description": "Old Handguard ascension material.",
@@ -1776,7 +1776,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "old-operative-s-pocket-watch",
     "name": "Old Operative's Pocket Watch",
-    "image": "/image/materials/common-ascension/old-operative-s-pocket-watch",
+    "image": "/images/materials/common-ascension/old-operative-s-pocket-watch",
     "rarity": 2,
     "category": "Enemy Drop",
     "description": "Old Operative's Pocket Watch ascension material.",
@@ -1787,7 +1787,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "ominous-mask",
     "name": "Ominous Mask",
-    "image": "/image/materials/common-ascension/ominous-mask",
+    "image": "/images/materials/common-ascension/ominous-mask",
     "rarity": 3,
     "category": "Enemy Drop",
     "description": "Ominous Mask ascension material.",
@@ -1798,7 +1798,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "onikabuto",
     "name": "Onikabuto",
-    "image": "/image/materials/local-specialties/onikabuto",
+    "image": "/images/materials/local-specialties/onikabuto",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Onikabuto local specialty.",
@@ -1809,7 +1809,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "operative-s-constancy",
     "name": "Operative's Constancy",
-    "image": "/image/materials/common-ascension/operative-s-constancy",
+    "image": "/images/materials/common-ascension/operative-s-constancy",
     "rarity": 4,
     "category": "Enemy Drop",
     "description": "Operative's Constancy ascension material.",
@@ -1820,7 +1820,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "operative-s-standard-pocket-watch",
     "name": "Operative's Standard Pocket Watch",
-    "image": "/image/materials/common-ascension/operative-s-standard-pocket-watch",
+    "image": "/images/materials/common-ascension/operative-s-standard-pocket-watch",
     "rarity": 3,
     "category": "Enemy Drop",
     "description": "Operative's Standard Pocket Watch ascension material.",
@@ -1831,7 +1831,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "overripe-flamegranate",
     "name": "Overripe Flamegranate",
-    "image": "/image/materials/boss-material/overripe-flamegranate",
+    "image": "/images/materials/boss-material/overripe-flamegranate",
     "rarity": 4,
     "category": "Boss Material",
     "description": "Overripe Flamegranate character ascension boss material.",
@@ -1842,7 +1842,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "padisarah",
     "name": "Padisarah",
-    "image": "/image/materials/local-specialties/padisarah",
+    "image": "/images/materials/local-specialties/padisarah",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Padisarah local specialty.",
@@ -1853,7 +1853,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "perpetual-caliber",
     "name": "Perpetual Caliber",
-    "image": "/image/materials/boss-material/perpetual-caliber",
+    "image": "/images/materials/boss-material/perpetual-caliber",
     "rarity": 4,
     "category": "Boss Material",
     "description": "Perpetual Caliber character ascension boss material.",
@@ -1864,7 +1864,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "perpetual-heart",
     "name": "Perpetual Heart",
-    "image": "/image/materials/boss-material/perpetual-heart",
+    "image": "/images/materials/boss-material/perpetual-heart",
     "rarity": 4,
     "category": "Boss Material",
     "description": "Perpetual Heart character ascension boss material.",
@@ -1875,7 +1875,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "philanemo-mushroom",
     "name": "Philanemo Mushroom",
-    "image": "/image/materials/local-specialties/philanemo-mushroom",
+    "image": "/images/materials/local-specialties/philanemo-mushroom",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Philanemo Mushroom local specialty.",
@@ -1886,7 +1886,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "philosophies-of-admonition",
     "name": "Philosophies of Admonition",
-    "image": "/image/materials/talent-book/philosophies-of-admonition",
+    "image": "/images/materials/talent-book/philosophies-of-admonition",
     "rarity": 4,
     "category": "Talent Book",
     "description": "Philosophies of Admonition talent material.",
@@ -1897,7 +1897,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "philosophies-of-ballad",
     "name": "Philosophies of Ballad",
-    "image": "/image/materials/talent-book/philosophies-of-ballad",
+    "image": "/images/materials/talent-book/philosophies-of-ballad",
     "rarity": 4,
     "category": "Talent Book",
     "description": "Philosophies of Ballad talent material.",
@@ -1908,7 +1908,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "philosophies-of-conflict",
     "name": "Philosophies of Conflict",
-    "image": "/image/materials/talent-book/philosophies-of-conflict",
+    "image": "/images/materials/talent-book/philosophies-of-conflict",
     "rarity": 4,
     "category": "Talent Book",
     "description": "Philosophies of Conflict talent material.",
@@ -1919,7 +1919,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "philosophies-of-diligence",
     "name": "Philosophies of Diligence",
-    "image": "/image/materials/talent-book/philosophies-of-diligence",
+    "image": "/images/materials/talent-book/philosophies-of-diligence",
     "rarity": 4,
     "category": "Talent Book",
     "description": "Philosophies of Diligence talent material.",
@@ -1930,7 +1930,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "philosophies-of-elegance",
     "name": "Philosophies of Elegance",
-    "image": "/image/materials/talent-book/philosophies-of-elegance",
+    "image": "/images/materials/talent-book/philosophies-of-elegance",
     "rarity": 4,
     "category": "Talent Book",
     "description": "Philosophies of Elegance talent material.",
@@ -1941,7 +1941,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "philosophies-of-equity",
     "name": "Philosophies of Equity",
-    "image": "/image/materials/talent-book/philosophies-of-equity",
+    "image": "/images/materials/talent-book/philosophies-of-equity",
     "rarity": 4,
     "category": "Talent Book",
     "description": "Philosophies of Equity talent material.",
@@ -1952,7 +1952,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "philosophies-of-freedom",
     "name": "Philosophies of Freedom",
-    "image": "/image/materials/talent-book/philosophies-of-freedom",
+    "image": "/images/materials/talent-book/philosophies-of-freedom",
     "rarity": 4,
     "category": "Talent Book",
     "description": "Philosophies of Freedom talent material.",
@@ -1963,7 +1963,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "philosophies-of-gold",
     "name": "Philosophies of Gold",
-    "image": "/image/materials/talent-book/philosophies-of-gold",
+    "image": "/images/materials/talent-book/philosophies-of-gold",
     "rarity": 4,
     "category": "Talent Book",
     "description": "Philosophies of Gold talent material.",
@@ -1974,7 +1974,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "philosophies-of-ingenuity",
     "name": "Philosophies of Ingenuity",
-    "image": "/image/materials/talent-book/philosophies-of-ingenuity",
+    "image": "/images/materials/talent-book/philosophies-of-ingenuity",
     "rarity": 4,
     "category": "Talent Book",
     "description": "Philosophies of Ingenuity talent material.",
@@ -1985,7 +1985,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "philosophies-of-justice",
     "name": "Philosophies of Justice",
-    "image": "/image/materials/talent-book/philosophies-of-justice",
+    "image": "/images/materials/talent-book/philosophies-of-justice",
     "rarity": 4,
     "category": "Talent Book",
     "description": "Philosophies of Justice talent material.",
@@ -1996,7 +1996,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "philosophies-of-kindling",
     "name": "Philosophies of Kindling",
-    "image": "/image/materials/talent-book/philosophies-of-kindling",
+    "image": "/images/materials/talent-book/philosophies-of-kindling",
     "rarity": 4,
     "category": "Talent Book",
     "description": "Philosophies of Kindling talent material.",
@@ -2007,7 +2007,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "philosophies-of-light",
     "name": "Philosophies of Light",
-    "image": "/image/materials/talent-book/philosophies-of-light",
+    "image": "/images/materials/talent-book/philosophies-of-light",
     "rarity": 4,
     "category": "Talent Book",
     "description": "Philosophies of Light talent material.",
@@ -2018,7 +2018,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "philosophies-of-order",
     "name": "Philosophies of Order",
-    "image": "/image/materials/talent-book/philosophies-of-order",
+    "image": "/images/materials/talent-book/philosophies-of-order",
     "rarity": 4,
     "category": "Talent Book",
     "description": "Philosophies of Order talent material.",
@@ -2029,7 +2029,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "philosophies-of-praxis",
     "name": "Philosophies of Praxis",
-    "image": "/image/materials/talent-book/philosophies-of-praxis",
+    "image": "/images/materials/talent-book/philosophies-of-praxis",
     "rarity": 4,
     "category": "Talent Book",
     "description": "Philosophies of Praxis talent material.",
@@ -2040,7 +2040,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "philosophies-of-prosperity",
     "name": "Philosophies of Prosperity",
-    "image": "/image/materials/talent-book/philosophies-of-prosperity",
+    "image": "/images/materials/talent-book/philosophies-of-prosperity",
     "rarity": 4,
     "category": "Talent Book",
     "description": "Philosophies of Prosperity talent material.",
@@ -2051,7 +2051,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "philosophies-of-resistance",
     "name": "Philosophies of Resistance",
-    "image": "/image/materials/talent-book/philosophies-of-resistance",
+    "image": "/images/materials/talent-book/philosophies-of-resistance",
     "rarity": 4,
     "category": "Talent Book",
     "description": "Philosophies of Resistance talent material.",
@@ -2062,7 +2062,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "philosophies-of-transience",
     "name": "Philosophies of Transience",
-    "image": "/image/materials/talent-book/philosophies-of-transience",
+    "image": "/images/materials/talent-book/philosophies-of-transience",
     "rarity": 4,
     "category": "Talent Book",
     "description": "Philosophies of Transience talent material.",
@@ -2073,7 +2073,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "pine-amber",
     "name": "Pine Amber",
-    "image": "/image/materials/local-specialties/pine-amber",
+    "image": "/images/materials/local-specialties/pine-amber",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Pine Amber local specialty.",
@@ -2084,7 +2084,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "polarizing-prism",
     "name": "Polarizing Prism",
-    "image": "/image/materials/common-ascension/polarizing-prism",
+    "image": "/images/materials/common-ascension/polarizing-prism",
     "rarity": 4,
     "category": "Enemy Drop",
     "description": "Polarizing Prism ascension material.",
@@ -2095,7 +2095,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "portable-bearing",
     "name": "Portable Bearing",
-    "image": "/image/materials/local-specialties/portable-bearing",
+    "image": "/images/materials/local-specialties/portable-bearing",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Portable Bearing local specialty.",
@@ -2106,7 +2106,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "precision-drive-shaft",
     "name": "Precision Drive Shaft",
-    "image": "/image/materials/boss-material/precision-drive-shaft",
+    "image": "/images/materials/boss-material/precision-drive-shaft",
     "rarity": 4,
     "category": "Boss Material",
     "description": "Precision Drive Shaft character ascension boss material.",
@@ -2117,7 +2117,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "precision-kuuvahki-stamping-die",
     "name": "Precision Kuuvahki Stamping Die",
-    "image": "/image/materials/boss-material/precision-kuuvahki-stamping-die",
+    "image": "/images/materials/boss-material/precision-kuuvahki-stamping-die",
     "rarity": 4,
     "category": "Boss Material",
     "description": "Precision Kuuvahki Stamping Die character ascension boss material.",
@@ -2128,7 +2128,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "primordial-greenbloom",
     "name": "Primordial Greenbloom",
-    "image": "/image/materials/talent-boss/primordial-greenbloom",
+    "image": "/images/materials/talent-boss/primordial-greenbloom",
     "rarity": 5,
     "category": "Boss Material",
     "description": "Primordial Greenbloom weekly boss talent material.",
@@ -2139,7 +2139,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "prithiva-topaz-chunk",
     "name": "Prithiva Topaz Chunk",
-    "image": "/image/materials/character-ascension/prithiva-topaz-chunk",
+    "image": "/images/materials/character-ascension/prithiva-topaz-chunk",
     "rarity": 4,
     "category": "Gem",
     "description": "Prithiva Topaz Chunk character ascension gem.",
@@ -2150,7 +2150,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "prithiva-topaz-fragment",
     "name": "Prithiva Topaz Fragment",
-    "image": "/image/materials/character-ascension/prithiva-topaz-fragment",
+    "image": "/images/materials/character-ascension/prithiva-topaz-fragment",
     "rarity": 3,
     "category": "Gem",
     "description": "Prithiva Topaz Fragment character ascension gem.",
@@ -2161,7 +2161,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "prithiva-topaz-gemstone",
     "name": "Prithiva Topaz Gemstone",
-    "image": "/image/materials/character-ascension/prithiva-topaz-gemstone",
+    "image": "/images/materials/character-ascension/prithiva-topaz-gemstone",
     "rarity": 5,
     "category": "Gem",
     "description": "Prithiva Topaz Gemstone character ascension gem.",
@@ -2172,7 +2172,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "prithiva-topaz-sliver",
     "name": "Prithiva Topaz Sliver",
-    "image": "/image/materials/character-ascension/prithiva-topaz-sliver",
+    "image": "/images/materials/character-ascension/prithiva-topaz-sliver",
     "rarity": 2,
     "category": "Gem",
     "description": "Prithiva Topaz Sliver character ascension gem.",
@@ -2183,7 +2183,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "pseudo-stamens",
     "name": "Pseudo-Stamens",
-    "image": "/image/materials/boss-material/pseudo-stamens",
+    "image": "/images/materials/boss-material/pseudo-stamens",
     "rarity": 4,
     "category": "Boss Material",
     "description": "Pseudo-Stamens character ascension boss material.",
@@ -2192,20 +2192,9 @@ export const seedMaterials: SeedMaterial[] = [
     "parentMaterialId": null
   },
   {
-    "id": "pseudo-stamenss",
-    "name": "Pseudo-Stamenss",
-    "image": "/image/materials/boss-material/pseudo-stamenss",
-    "rarity": 4,
-    "category": "Boss Material",
-    "description": "Pseudo-Stamenss character ascension boss material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
     "id": "puppet-strings",
     "name": "Puppet Strings",
-    "image": "/image/materials/talent-boss/puppet-strings",
+    "image": "/images/materials/talent-boss/puppet-strings",
     "rarity": 5,
     "category": "Boss Material",
     "description": "Puppet Strings weekly boss talent material.",
@@ -2216,7 +2205,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "qingxin",
     "name": "Qingxin",
-    "image": "/image/materials/local-specialties/qingxin",
+    "image": "/images/materials/local-specialties/qingxin",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Qingxin local specialty.",
@@ -2227,7 +2216,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "quelled-creeper",
     "name": "Quelled Creeper",
-    "image": "/image/materials/boss-material/quelled-creeper",
+    "image": "/images/materials/boss-material/quelled-creeper",
     "rarity": 4,
     "category": "Boss Material",
     "description": "Quelled Creeper character ascension boss material.",
@@ -2238,7 +2227,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "quenepa-berry",
     "name": "Quenepa Berry",
-    "image": "/image/materials/local-specialties/quenepa-berry",
+    "image": "/images/materials/local-specialties/quenepa-berry",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Quenepa Berry local specialty.",
@@ -2249,7 +2238,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "radiant-antler",
     "name": "Radiant Antler",
-    "image": "/image/materials/boss-material/radiant-antler",
+    "image": "/images/materials/boss-material/radiant-antler",
     "rarity": 4,
     "category": "Boss Material",
     "description": "Radiant Antler character ascension boss material.",
@@ -2260,7 +2249,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "radiant-prism",
     "name": "Radiant Prism",
-    "image": "/image/materials/common-ascension/radiant-prism",
+    "image": "/images/materials/common-ascension/radiant-prism",
     "rarity": 4,
     "category": "Enemy Drop",
     "description": "Radiant Prism ascension material.",
@@ -2271,7 +2260,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "rainbow-rose",
     "name": "Rainbow Rose",
-    "image": "/image/materials/local-specialties/rainbow-rose",
+    "image": "/images/materials/local-specialties/rainbow-rose",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Rainbow Rose local specialty.",
@@ -2282,7 +2271,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "recruit-s-insignia",
     "name": "Recruit's Insignia",
-    "image": "/image/materials/common-ascension/recruit-s-insignia",
+    "image": "/images/materials/common-ascension/recruit-s-insignia",
     "rarity": 1,
     "category": "Enemy Drop",
     "description": "Recruit's Insignia ascension material.",
@@ -2293,7 +2282,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "reinforced-drive-shaft",
     "name": "Reinforced Drive Shaft",
-    "image": "/image/materials/boss-material/reinforced-drive-shaft",
+    "image": "/images/materials/boss-material/reinforced-drive-shaft",
     "rarity": 4,
     "category": "Boss Material",
     "description": "Reinforced Drive Shaft character ascension boss material.",
@@ -2304,7 +2293,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "remnant-of-the-dreadwing",
     "name": "Remnant of the Dreadwing",
-    "image": "/image/materials/boss-material/remnant-of-the-dreadwing",
+    "image": "/images/materials/boss-material/remnant-of-the-dreadwing",
     "rarity": 4,
     "category": "Boss Material",
     "description": "Remnant of the Dreadwing character ascension boss material.",
@@ -2315,7 +2304,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "rich-red-brocade",
     "name": "Rich Red Brocade",
-    "image": "/image/materials/common-ascension/rich-red-brocade",
+    "image": "/images/materials/common-ascension/rich-red-brocade",
     "rarity": 3,
     "category": "Elite Drop",
     "description": "Rich Red Brocade ascension material.",
@@ -2326,7 +2315,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "rift-core",
     "name": "Rift Core",
-    "image": "/image/materials/common-ascension/rift-core",
+    "image": "/images/materials/common-ascension/rift-core",
     "rarity": 2,
     "category": "Enemy Drop",
     "description": "Rift Core ascension material.",
@@ -2337,7 +2326,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "riftborn-regalia",
     "name": "Riftborn Regalia",
-    "image": "/image/materials/boss-material/riftborn-regalia",
+    "image": "/images/materials/boss-material/riftborn-regalia",
     "rarity": 4,
     "category": "Boss Material",
     "description": "Riftborn Regalia character ascension boss material.",
@@ -2348,7 +2337,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "ring-of-boreas",
     "name": "Ring of Boreas",
-    "image": "/image/materials/talent-boss/ring-of-boreas",
+    "image": "/images/materials/talent-boss/ring-of-boreas",
     "rarity": 5,
     "category": "Boss Material",
     "description": "Ring of Boreas weekly boss talent material.",
@@ -2359,7 +2348,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "robust-fungal-nucleus",
     "name": "Robust Fungal Nucleus",
-    "image": "/image/materials/common-ascension/robust-fungal-nucleus",
+    "image": "/images/materials/common-ascension/robust-fungal-nucleus",
     "rarity": 4,
     "category": "Enemy Drop",
     "description": "Robust Fungal Nucleus ascension material.",
@@ -2370,7 +2359,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "romaritime-flower",
     "name": "Romaritime Flower",
-    "image": "/image/materials/local-specialties/romaritime-flower",
+    "image": "/images/materials/local-specialties/romaritime-flower",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Romaritime Flower local specialty.",
@@ -2381,7 +2370,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "ruined-hilt",
     "name": "Ruined Hilt",
-    "image": "/image/materials/common-ascension/ruined-hilt",
+    "image": "/images/materials/common-ascension/ruined-hilt",
     "rarity": 2,
     "category": "Enemy Drop",
     "description": "Ruined Hilt ascension material.",
@@ -2392,7 +2381,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "rukkhashava-mushrooms",
     "name": "Rukkhashava Mushrooms",
-    "image": "/image/materials/local-specialties/rukkhashava-mushrooms",
+    "image": "/images/materials/local-specialties/rukkhashava-mushrooms",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Rukkhashava Mushrooms local specialty.",
@@ -2403,7 +2392,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "runic-fang",
     "name": "Runic Fang",
-    "image": "/image/materials/boss-material/runic-fang",
+    "image": "/images/materials/boss-material/runic-fang",
     "rarity": 4,
     "category": "Boss Material",
     "description": "Runic Fang character ascension boss material.",
@@ -2414,7 +2403,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "sakura-bloom",
     "name": "Sakura Bloom",
-    "image": "/image/materials/local-specialties/sakura-bloom",
+    "image": "/images/materials/local-specialties/sakura-bloom",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Sakura Bloom local specialty.",
@@ -2425,7 +2414,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "sand-grease-pupa",
     "name": "Sand Grease Pupa",
-    "image": "/image/materials/local-specialties/sand-grease-pupa",
+    "image": "/images/materials/local-specialties/sand-grease-pupa",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Sand Grease Pupa local specialty.",
@@ -2436,7 +2425,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "sango-pearl",
     "name": "Sango Pearl",
-    "image": "/image/materials/local-specialties/sango-pearl",
+    "image": "/images/materials/local-specialties/sango-pearl",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Sango Pearl local specialty.",
@@ -2447,7 +2436,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "saurian-claw-succulent",
     "name": "Saurian Claw Succulent",
-    "image": "/image/materials/local-specialties/saurian-claw-succulent",
+    "image": "/images/materials/local-specialties/saurian-claw-succulent",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Saurian Claw Succulent local specialty.",
@@ -2457,22 +2446,11 @@ export const seedMaterials: SeedMaterial[] = [
   },
   {
     "id": "saurian-crowned-warrior-s-golden-whistle",
-    "name": "Saurian-Crowned Warriors's Golden Whistle",
-    "image": "/image/materials/common-ascension/saurian-crowned-warrior-s-golden-whistle",
+    "name": "Saurian-Crowned Warrior's Golden Whistle",
+    "image": "/images/materials/common-ascension/saurian-crowned-warrior-s-golden-whistle",
     "rarity": 4,
     "category": "Elite Drop",
-    "description": "Saurian-Crowned Warriors's Golden Whistle ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "saurian-crowned-warrior-s-golden-whistle",
-    "name": "Saurian-Crowned Warrior's Golden Whistle",
-    "image": "/image/materials/boss-material/saurian-crowned-warrior-s-golden-whistle",
-    "rarity": 4,
-    "category": "Boss Material",
-    "description": "Saurian-Crowned Warrior's Golden Whistle character ascension boss material.",
+    "description": "Saurian-Crowned Warrior's Golden Whistle ascension material.",
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -2480,7 +2458,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "scarab",
     "name": "Scarab",
-    "image": "/image/materials/local-specialties/scarab",
+    "image": "/images/materials/local-specialties/scarab",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Scarab local specialty.",
@@ -2491,7 +2469,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "scoop-of-tainted-water",
     "name": "Scoop of Tainted Water",
-    "image": "/image/materials/common-ascension/scoop-of-tainted-water",
+    "image": "/images/materials/common-ascension/scoop-of-tainted-water",
     "rarity": 3,
     "category": "Enemy Drop",
     "description": "Scoop of Tainted Water ascension material.",
@@ -2502,7 +2480,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "sea-ganoderma",
     "name": "Sea Ganoderma",
-    "image": "/image/materials/local-specialties/sea-ganoderma",
+    "image": "/images/materials/local-specialties/sea-ganoderma",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Sea Ganoderma local specialty.",
@@ -2513,7 +2491,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "sealed-scroll",
     "name": "Sealed Scroll",
-    "image": "/image/materials/common-ascension/sealed-scroll",
+    "image": "/images/materials/common-ascension/sealed-scroll",
     "rarity": 2,
     "category": "Enemy Drop",
     "description": "Sealed Scroll ascension material.",
@@ -2524,7 +2502,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "seasoned-fang",
     "name": "Seasoned Fang",
-    "image": "/image/materials/common-ascension/seasoned-fang",
+    "image": "/images/materials/common-ascension/seasoned-fang",
     "rarity": 3,
     "category": "Enemy Drop",
     "description": "Seasoned Fang ascension material.",
@@ -2535,7 +2513,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "secret-source-airflow-accumulator",
     "name": "Secret Source Airflow Accumulator",
-    "image": "/image/materials/boss-material/secret-source-airflow-accumulator",
+    "image": "/images/materials/boss-material/secret-source-airflow-accumulator",
     "rarity": 4,
     "category": "Boss Material",
     "description": "Secret Source Airflow Accumulator character ascension boss material.",
@@ -2546,7 +2524,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "sentry-s-wooden-whistle",
     "name": "Sentry's Wooden Whistle",
-    "image": "/image/materials/common-ascension/sentry-s-wooden-whistle",
+    "image": "/images/materials/common-ascension/sentry-s-wooden-whistle",
     "rarity": 2,
     "category": "Elite Drop",
     "description": "Sentry's Wooden Whistle ascension material.",
@@ -2557,7 +2535,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "sergeant-s-insignia",
     "name": "Sergeant's Insignia",
-    "image": "/image/materials/common-ascension/sergeant-s-insignia",
+    "image": "/images/materials/common-ascension/sergeant-s-insignia",
     "rarity": 2,
     "category": "Enemy Drop",
     "description": "Sergeant's Insignia ascension material.",
@@ -2568,7 +2546,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "shadow-of-the-warrior",
     "name": "Shadow of the Warrior",
-    "image": "/image/materials/talent-boss/shadow-of-the-warrior",
+    "image": "/images/materials/talent-boss/shadow-of-the-warrior",
     "rarity": 5,
     "category": "Boss Material",
     "description": "Shadow of the Warrior weekly boss talent material.",
@@ -2579,7 +2557,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "shard-of-a-foul-legacy",
     "name": "Shard of a Foul Legacy",
-    "image": "/image/materials/talent-boss/shard-of-a-foul-legacy",
+    "image": "/images/materials/talent-boss/shard-of-a-foul-legacy",
     "rarity": 5,
     "category": "Boss Material",
     "description": "Shard of a Foul Legacy weekly boss talent material.",
@@ -2590,7 +2568,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "sharp-arrowhead",
     "name": "Sharp Arrowhead",
-    "image": "/image/materials/common-ascension/sharp-arrowhead",
+    "image": "/images/materials/common-ascension/sharp-arrowhead",
     "rarity": 2,
     "category": "Enemy Drop",
     "description": "Sharp Arrowhead ascension material.",
@@ -2601,7 +2579,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "shimmering-nectar",
     "name": "Shimmering Nectar",
-    "image": "/image/materials/common-ascension/shimmering-nectar",
+    "image": "/images/materials/common-ascension/shimmering-nectar",
     "rarity": 2,
     "category": "Enemy Drop",
     "description": "Shimmering Nectar ascension material.",
@@ -2612,7 +2590,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "shivada-jade-chunk",
     "name": "Shivada Jade Chunk",
-    "image": "/image/materials/character-ascension/shivada-jade-chunk",
+    "image": "/images/materials/character-ascension/shivada-jade-chunk",
     "rarity": 4,
     "category": "Gem",
     "description": "Shivada Jade Chunk character ascension gem.",
@@ -2623,7 +2601,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "shivada-jade-fragment",
     "name": "Shivada Jade Fragment",
-    "image": "/image/materials/character-ascension/shivada-jade-fragment",
+    "image": "/images/materials/character-ascension/shivada-jade-fragment",
     "rarity": 3,
     "category": "Gem",
     "description": "Shivada Jade Fragment character ascension gem.",
@@ -2634,7 +2612,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "shivada-jade-gemstone",
     "name": "Shivada Jade Gemstone",
-    "image": "/image/materials/character-ascension/shivada-jade-gemstone",
+    "image": "/images/materials/character-ascension/shivada-jade-gemstone",
     "rarity": 5,
     "category": "Gem",
     "description": "Shivada Jade Gemstone character ascension gem.",
@@ -2645,7 +2623,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "shivada-jade-sliver",
     "name": "Shivada Jade Sliver",
-    "image": "/image/materials/character-ascension/shivada-jade-sliver",
+    "image": "/images/materials/character-ascension/shivada-jade-sliver",
     "rarity": 2,
     "category": "Gem",
     "description": "Shivada Jade Sliver character ascension gem.",
@@ -2656,7 +2634,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "silk-flower",
     "name": "Silk Flower",
-    "image": "/image/materials/local-specialties/silk-flower",
+    "image": "/images/materials/local-specialties/silk-flower",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Silk Flower local specialty.",
@@ -2667,7 +2645,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "silken-feather",
     "name": "Silken Feather",
-    "image": "/image/materials/talent-boss/silken-feather",
+    "image": "/images/materials/talent-boss/silken-feather",
     "rarity": 5,
     "category": "Boss Material",
     "description": "Silken Feather weekly boss talent material.",
@@ -2678,7 +2656,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "silver-raven-insignia",
     "name": "Silver Raven Insignia",
-    "image": "/image/materials/common-ascension/silver-raven-insignia",
+    "image": "/images/materials/common-ascension/silver-raven-insignia",
     "rarity": 2,
     "category": "Enemy Drop",
     "description": "Silver Raven Insignia ascension material.",
@@ -2689,7 +2667,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "skysplit-gembloom",
     "name": "Skysplit Gembloom",
-    "image": "/image/materials/local-specialties/skysplit-gembloom",
+    "image": "/images/materials/local-specialties/skysplit-gembloom",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Skysplit Gembloom local specialty.",
@@ -2700,7 +2678,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "slime-concentrate",
     "name": "Slime Concentrate",
-    "image": "/image/materials/common-ascension/slime-concentrate",
+    "image": "/images/materials/common-ascension/slime-concentrate",
     "rarity": 3,
     "category": "Enemy Drop",
     "description": "Slime Concentrate ascension material.",
@@ -2711,7 +2689,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "slime-condensate",
     "name": "Slime Condensate",
-    "image": "/image/materials/common-ascension/slime-condensate",
+    "image": "/images/materials/common-ascension/slime-condensate",
     "rarity": 1,
     "category": "Enemy Drop",
     "description": "Slime Condensate ascension material.",
@@ -2722,7 +2700,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "slime-secretions",
     "name": "Slime Secretions",
-    "image": "/image/materials/common-ascension/slime-secretions",
+    "image": "/images/materials/common-ascension/slime-secretions",
     "rarity": 2,
     "category": "Enemy Drop",
     "description": "Slime Secretions ascension material.",
@@ -2733,7 +2711,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "small-lamp-grass",
     "name": "Small Lamp Grass",
-    "image": "/image/materials/local-specialties/small-lamp-grass",
+    "image": "/images/materials/local-specialties/small-lamp-grass",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Small Lamp Grass local specialty.",
@@ -2744,7 +2722,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "smoldering-pearl",
     "name": "Smoldering Pearl",
-    "image": "/image/materials/boss-material/smoldering-pearl",
+    "image": "/images/materials/boss-material/smoldering-pearl",
     "rarity": 4,
     "category": "Boss Material",
     "description": "Smoldering Pearl character ascension boss material.",
@@ -2755,7 +2733,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "sparkless-statue-core",
     "name": "Sparkless Statue Core",
-    "image": "/image/materials/boss-material/sparkless-statue-core",
+    "image": "/images/materials/boss-material/sparkless-statue-core",
     "rarity": 4,
     "category": "Boss Material",
     "description": "Sparkless Statue Core character ascension boss material.",
@@ -2766,7 +2744,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "spectral-heart",
     "name": "Spectral Heart",
-    "image": "/image/materials/common-ascension/spectral-heart",
+    "image": "/images/materials/common-ascension/spectral-heart",
     "rarity": 2,
     "category": "Enemy Drop",
     "description": "Spectral Heart ascension material.",
@@ -2777,7 +2755,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "spectral-husk",
     "name": "Spectral Husk",
-    "image": "/image/materials/common-ascension/spectral-husk",
+    "image": "/images/materials/common-ascension/spectral-husk",
     "rarity": 1,
     "category": "Enemy Drop",
     "description": "Spectral Husk ascension material.",
@@ -2788,7 +2766,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "spectral-nucleus",
     "name": "Spectral Nucleus",
-    "image": "/image/materials/common-ascension/spectral-nucleus",
+    "image": "/images/materials/common-ascension/spectral-nucleus",
     "rarity": 3,
     "category": "Enemy Drop",
     "description": "Spectral Nucleus ascension material.",
@@ -2799,7 +2777,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "spirit-locket-of-boreas",
     "name": "Spirit Locket of Boreas",
-    "image": "/image/materials/talent-boss/spirit-locket-of-boreas",
+    "image": "/images/materials/talent-boss/spirit-locket-of-boreas",
     "rarity": 5,
     "category": "Boss Material",
     "description": "Spirit Locket of Boreas weekly boss talent material.",
@@ -2810,7 +2788,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "splintered-hilt",
     "name": "Splintered Hilt",
-    "image": "/image/materials/common-ascension/splintered-hilt",
+    "image": "/images/materials/common-ascension/splintered-hilt",
     "rarity": 3,
     "category": "Enemy Drop",
     "description": "Splintered Hilt ascension material.",
@@ -2821,7 +2799,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "sprayfeather-gill",
     "name": "Sprayfeather Gill",
-    "image": "/image/materials/local-specialties/sprayfeather-gill",
+    "image": "/images/materials/local-specialties/sprayfeather-gill",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Sprayfeather Gill local specialty.",
@@ -2832,7 +2810,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "spring-of-the-first-dewdrop",
     "name": "Spring of the First Dewdrop",
-    "image": "/image/materials/local-specialties/spring-of-the-first-dewdrop",
+    "image": "/images/materials/local-specialties/spring-of-the-first-dewdrop",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Spring of the First Dewdrop local specialty.",
@@ -2843,7 +2821,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "stained-mask",
     "name": "Stained Mask",
-    "image": "/image/materials/common-ascension/stained-mask",
+    "image": "/images/materials/common-ascension/stained-mask",
     "rarity": 2,
     "category": "Enemy Drop",
     "description": "Stained Mask ascension material.",
@@ -2854,7 +2832,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "starconch",
     "name": "Starconch",
-    "image": "/image/materials/local-specialties/starconch",
+    "image": "/images/materials/local-specialties/starconch",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Starconch local specialty.",
@@ -2865,7 +2843,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "still-smoldering-hilt",
     "name": "Still-Smoldering Hilt",
-    "image": "/image/materials/common-ascension/still-smoldering-hilt",
+    "image": "/images/materials/common-ascension/still-smoldering-hilt",
     "rarity": 4,
     "category": "Enemy Drop",
     "description": "Still-Smoldering Hilt ascension material.",
@@ -2876,7 +2854,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "storm-beads",
     "name": "Storm Beads",
-    "image": "/image/materials/boss-material/storm-beads",
+    "image": "/images/materials/boss-material/storm-beads",
     "rarity": 4,
     "category": "Boss Material",
     "description": "Storm Beads character ascension boss material.",
@@ -2887,7 +2865,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "sturdy-bone-shard",
     "name": "Sturdy Bone Shard",
-    "image": "/image/materials/common-ascension/sturdy-bone-shard",
+    "image": "/images/materials/common-ascension/sturdy-bone-shard",
     "rarity": 3,
     "category": "Elite Drop",
     "description": "Sturdy Bone Shard ascension material.",
@@ -2898,7 +2876,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "sturdy-shell",
     "name": "Sturdy Shell",
-    "image": "/image/materials/common-ascension/sturdy-shell",
+    "image": "/images/materials/common-ascension/sturdy-shell",
     "rarity": 3,
     "category": "Enemy Drop",
     "description": "Sturdy Shell ascension material.",
@@ -2909,7 +2887,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "subdetection-unit",
     "name": "Subdetection Unit",
-    "image": "/image/materials/local-specialties/subdetection-unit",
+    "image": "/images/materials/local-specialties/subdetection-unit",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Subdetection Unit local specialty.",
@@ -2920,7 +2898,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "tail-of-boreas",
     "name": "Tail of Boreas",
-    "image": "/image/materials/talent-boss/tail-of-boreas",
+    "image": "/images/materials/talent-boss/tail-of-boreas",
     "rarity": 5,
     "category": "Boss Material",
     "description": "Tail of Boreas weekly boss talent material.",
@@ -2931,7 +2909,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "talisman-of-the-enigmatic-land",
     "name": "Talisman of the Enigmatic Land",
-    "image": "/image/materials/boss-material/talisman-of-the-enigmatic-land",
+    "image": "/images/materials/boss-material/talisman-of-the-enigmatic-land",
     "rarity": 4,
     "category": "Boss Material",
     "description": "Talisman of the Enigmatic Land character ascension boss material.",
@@ -2942,7 +2920,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "tattered-warrant",
     "name": "Tattered Warrant",
-    "image": "/image/materials/boss-material/tattered-warrant",
+    "image": "/images/materials/boss-material/tattered-warrant",
     "rarity": 4,
     "category": "Boss Material",
     "description": "Tattered Warrant character ascension boss material.",
@@ -2953,7 +2931,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "teachings-of-admonition",
     "name": "Teachings of Admonition",
-    "image": "/image/materials/talent-book/teachings-of-admonition",
+    "image": "/images/materials/talent-book/teachings-of-admonition",
     "rarity": 2,
     "category": "Talent Book",
     "description": "Teachings of Admonition talent material.",
@@ -2964,7 +2942,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "teachings-of-ballad",
     "name": "Teachings of Ballad",
-    "image": "/image/materials/talent-book/teachings-of-ballad",
+    "image": "/images/materials/talent-book/teachings-of-ballad",
     "rarity": 2,
     "category": "Talent Book",
     "description": "Teachings of Ballad talent material.",
@@ -2975,7 +2953,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "teachings-of-conflict",
     "name": "Teachings of Conflict",
-    "image": "/image/materials/talent-book/teachings-of-conflict",
+    "image": "/images/materials/talent-book/teachings-of-conflict",
     "rarity": 2,
     "category": "Talent Book",
     "description": "Teachings of Conflict talent material.",
@@ -2986,7 +2964,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "teachings-of-diligence",
     "name": "Teachings of Diligence",
-    "image": "/image/materials/talent-book/teachings-of-diligence",
+    "image": "/images/materials/talent-book/teachings-of-diligence",
     "rarity": 2,
     "category": "Talent Book",
     "description": "Teachings of Diligence talent material.",
@@ -2997,7 +2975,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "teachings-of-elegance",
     "name": "Teachings of Elegance",
-    "image": "/image/materials/talent-book/teachings-of-elegance",
+    "image": "/images/materials/talent-book/teachings-of-elegance",
     "rarity": 2,
     "category": "Talent Book",
     "description": "Teachings of Elegance talent material.",
@@ -3008,7 +2986,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "teachings-of-equity",
     "name": "Teachings of Equity",
-    "image": "/image/materials/talent-book/teachings-of-equity",
+    "image": "/images/materials/talent-book/teachings-of-equity",
     "rarity": 2,
     "category": "Talent Book",
     "description": "Teachings of Equity talent material.",
@@ -3019,7 +2997,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "teachings-of-freedom",
     "name": "Teachings of Freedom",
-    "image": "/image/materials/talent-book/teachings-of-freedom",
+    "image": "/images/materials/talent-book/teachings-of-freedom",
     "rarity": 2,
     "category": "Talent Book",
     "description": "Teachings of Freedom talent material.",
@@ -3030,7 +3008,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "teachings-of-gold",
     "name": "Teachings of Gold",
-    "image": "/image/materials/talent-book/teachings-of-gold",
+    "image": "/images/materials/talent-book/teachings-of-gold",
     "rarity": 2,
     "category": "Talent Book",
     "description": "Teachings of Gold talent material.",
@@ -3041,7 +3019,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "teachings-of-ingenuity",
     "name": "Teachings of Ingenuity",
-    "image": "/image/materials/talent-book/teachings-of-ingenuity",
+    "image": "/images/materials/talent-book/teachings-of-ingenuity",
     "rarity": 2,
     "category": "Talent Book",
     "description": "Teachings of Ingenuity talent material.",
@@ -3052,7 +3030,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "teachings-of-justice",
     "name": "Teachings of Justice",
-    "image": "/image/materials/talent-book/teachings-of-justice",
+    "image": "/images/materials/talent-book/teachings-of-justice",
     "rarity": 2,
     "category": "Talent Book",
     "description": "Teachings of Justice talent material.",
@@ -3063,7 +3041,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "teachings-of-kindling",
     "name": "Teachings of Kindling",
-    "image": "/image/materials/talent-book/teachings-of-kindling",
+    "image": "/images/materials/talent-book/teachings-of-kindling",
     "rarity": 2,
     "category": "Talent Book",
     "description": "Teachings of Kindling talent material.",
@@ -3074,7 +3052,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "teachings-of-light",
     "name": "Teachings of Light",
-    "image": "/image/materials/talent-book/teachings-of-light",
+    "image": "/images/materials/talent-book/teachings-of-light",
     "rarity": 2,
     "category": "Talent Book",
     "description": "Teachings of Light talent material.",
@@ -3085,7 +3063,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "teachings-of-order",
     "name": "Teachings of Order",
-    "image": "/image/materials/talent-book/teachings-of-order",
+    "image": "/images/materials/talent-book/teachings-of-order",
     "rarity": 2,
     "category": "Talent Book",
     "description": "Teachings of Order talent material.",
@@ -3096,7 +3074,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "teachings-of-praxis",
     "name": "Teachings of Praxis",
-    "image": "/image/materials/talent-book/teachings-of-praxis",
+    "image": "/images/materials/talent-book/teachings-of-praxis",
     "rarity": 2,
     "category": "Talent Book",
     "description": "Teachings of Praxis talent material.",
@@ -3107,7 +3085,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "teachings-of-prosperity",
     "name": "Teachings of Prosperity",
-    "image": "/image/materials/talent-book/teachings-of-prosperity",
+    "image": "/images/materials/talent-book/teachings-of-prosperity",
     "rarity": 2,
     "category": "Talent Book",
     "description": "Teachings of Prosperity talent material.",
@@ -3118,7 +3096,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "teachings-of-resistance",
     "name": "Teachings of Resistance",
-    "image": "/image/materials/talent-book/teachings-of-resistance",
+    "image": "/images/materials/talent-book/teachings-of-resistance",
     "rarity": 2,
     "category": "Talent Book",
     "description": "Teachings of Resistance talent material.",
@@ -3129,7 +3107,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "teachings-of-transience",
     "name": "Teachings of Transience",
-    "image": "/image/materials/talent-book/teachings-of-transience",
+    "image": "/images/materials/talent-book/teachings-of-transience",
     "rarity": 2,
     "category": "Talent Book",
     "description": "Teachings of Transience talent material.",
@@ -3140,7 +3118,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "tears-of-the-calamitous-god",
     "name": "Tears of the Calamitous God",
-    "image": "/image/materials/talent-boss/tears-of-the-calamitous-god",
+    "image": "/images/materials/talent-boss/tears-of-the-calamitous-god",
     "rarity": 5,
     "category": "Boss Material",
     "description": "Tears of the Calamitous God weekly boss talent material.",
@@ -3151,7 +3129,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "the-meaning-of-aeons",
     "name": "The Meaning of Aeons",
-    "image": "/image/materials/talent-boss/the-meaning-of-aeons",
+    "image": "/images/materials/talent-boss/the-meaning-of-aeons",
     "rarity": 5,
     "category": "Boss Material",
     "description": "The Meaning of Aeons weekly boss talent material.",
@@ -3162,7 +3140,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "thunderclap-fruitcore",
     "name": "Thunderclap Fruitcore",
-    "image": "/image/materials/boss-material/thunderclap-fruitcore",
+    "image": "/images/materials/boss-material/thunderclap-fruitcore",
     "rarity": 4,
     "category": "Boss Material",
     "description": "Thunderclap Fruitcore character ascension boss material.",
@@ -3173,7 +3151,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "tourbillon-device",
     "name": "Tourbillon Device",
-    "image": "/image/materials/boss-material/tourbillon-device",
+    "image": "/images/materials/boss-material/tourbillon-device",
     "rarity": 4,
     "category": "Boss Material",
     "description": "Tourbillon Device character ascension boss material.",
@@ -3184,7 +3162,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "transoceanic-chunk",
     "name": "Transoceanic Chunk",
-    "image": "/image/materials/common-ascension/transoceanic-chunk",
+    "image": "/images/materials/common-ascension/transoceanic-chunk",
     "rarity": 2,
     "category": "Enemy Drop",
     "description": "Transoceanic Chunk ascension material.",
@@ -3195,7 +3173,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "transoceanic-pearl",
     "name": "Transoceanic Pearl",
-    "image": "/image/materials/common-ascension/transoceanic-pearl",
+    "image": "/images/materials/common-ascension/transoceanic-pearl",
     "rarity": 1,
     "category": "Enemy Drop",
     "description": "Transoceanic Pearl ascension material.",
@@ -3206,7 +3184,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "treasure-hoarder-insignia",
     "name": "Treasure Hoarder Insignia",
-    "image": "/image/materials/common-ascension/treasure-hoarder-insignia",
+    "image": "/images/materials/common-ascension/treasure-hoarder-insignia",
     "rarity": 1,
     "category": "Enemy Drop",
     "description": "Treasure Hoarder Insignia ascension material.",
@@ -3217,7 +3195,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "treasured-flower",
     "name": "Treasured Flower",
-    "image": "/image/materials/common-ascension/treasured-flower",
+    "image": "/images/materials/common-ascension/treasured-flower",
     "rarity": 3,
     "category": "Enemy Drop",
     "description": "Treasured Flower ascension material.",
@@ -3228,7 +3206,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "trimmed-red-silk",
     "name": "Trimmed Red Silk",
-    "image": "/image/materials/common-ascension/trimmed-red-silk",
+    "image": "/images/materials/common-ascension/trimmed-red-silk",
     "rarity": 2,
     "category": "Elite Drop",
     "description": "Trimmed Red Silk ascension material.",
@@ -3239,7 +3217,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "trishiraite",
     "name": "Trishiraite",
-    "image": "/image/materials/local-specialties/trishiraite",
+    "image": "/images/materials/local-specialties/trishiraite",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Trishiraite local specialty.",
@@ -3250,7 +3228,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "turbid-prism",
     "name": "Turbid Prism",
-    "image": "/image/materials/common-ascension/turbid-prism",
+    "image": "/images/materials/common-ascension/turbid-prism",
     "rarity": 3,
     "category": "Enemy Drop",
     "description": "Turbid Prism ascension material.",
@@ -3261,7 +3239,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "tusk-of-monoceros-caeli",
     "name": "Tusk of Monoceros Caeli",
-    "image": "/image/materials/talent-boss/tusk-of-monoceros-caeli",
+    "image": "/images/materials/talent-boss/tusk-of-monoceros-caeli",
     "rarity": 5,
     "category": "Boss Material",
     "description": "Tusk of Monoceros Caeli weekly boss talent material.",
@@ -3272,7 +3250,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "tyrant-s-fang",
     "name": "Tyrant's Fang",
-    "image": "/image/materials/common-ascension/tyrant-s-fang",
+    "image": "/images/materials/common-ascension/tyrant-s-fang",
     "rarity": 4,
     "category": "Enemy Drop",
     "description": "Tyrant's Fang ascension material.",
@@ -3283,7 +3261,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "vajrada-amethyst-chunk",
     "name": "Vajrada Amethyst Chunk",
-    "image": "/image/materials/character-ascension/vajrada-amethyst-chunk",
+    "image": "/images/materials/character-ascension/vajrada-amethyst-chunk",
     "rarity": 4,
     "category": "Gem",
     "description": "Vajrada Amethyst Chunk character ascension gem.",
@@ -3294,7 +3272,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "vajrada-amethyst-fragment",
     "name": "Vajrada Amethyst Fragment",
-    "image": "/image/materials/character-ascension/vajrada-amethyst-fragment",
+    "image": "/images/materials/character-ascension/vajrada-amethyst-fragment",
     "rarity": 3,
     "category": "Gem",
     "description": "Vajrada Amethyst Fragment character ascension gem.",
@@ -3305,7 +3283,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "vajrada-amethyst-gemstone",
     "name": "Vajrada Amethyst Gemstone",
-    "image": "/image/materials/character-ascension/vajrada-amethyst-gemstone",
+    "image": "/images/materials/character-ascension/vajrada-amethyst-gemstone",
     "rarity": 5,
     "category": "Gem",
     "description": "Vajrada Amethyst Gemstone character ascension gem.",
@@ -3316,7 +3294,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "vajrada-amethyst-sliver",
     "name": "Vajrada Amethyst Sliver",
-    "image": "/image/materials/character-ascension/vajrada-amethyst-sliver",
+    "image": "/images/materials/character-ascension/vajrada-amethyst-sliver",
     "rarity": 2,
     "category": "Gem",
     "description": "Vajrada Amethyst Sliver character ascension gem.",
@@ -3327,7 +3305,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "valberry",
     "name": "Valberry",
-    "image": "/image/materials/local-specialties/valberry",
+    "image": "/images/materials/local-specialties/valberry",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Valberry local specialty.",
@@ -3338,7 +3316,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "varunada-lazurite-chunk",
     "name": "Varunada Lazurite Chunk",
-    "image": "/image/materials/character-ascension/varunada-lazurite-chunk",
+    "image": "/images/materials/character-ascension/varunada-lazurite-chunk",
     "rarity": 4,
     "category": "Gem",
     "description": "Varunada Lazurite Chunk character ascension gem.",
@@ -3349,7 +3327,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "varunada-lazurite-fragment",
     "name": "Varunada Lazurite Fragment",
-    "image": "/image/materials/character-ascension/varunada-lazurite-fragment",
+    "image": "/images/materials/character-ascension/varunada-lazurite-fragment",
     "rarity": 3,
     "category": "Gem",
     "description": "Varunada Lazurite Fragment character ascension gem.",
@@ -3360,7 +3338,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "varunada-lazurite-gemstone",
     "name": "Varunada Lazurite Gemstone",
-    "image": "/image/materials/character-ascension/varunada-lazurite-gemstone",
+    "image": "/images/materials/character-ascension/varunada-lazurite-gemstone",
     "rarity": 5,
     "category": "Gem",
     "description": "Varunada Lazurite Gemstone character ascension gem.",
@@ -3371,7 +3349,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "varunada-lazurite-sliver",
     "name": "Varunada Lazurite Sliver",
-    "image": "/image/materials/character-ascension/varunada-lazurite-sliver",
+    "image": "/images/materials/character-ascension/varunada-lazurite-sliver",
     "rarity": 2,
     "category": "Gem",
     "description": "Varunada Lazurite Sliver character ascension gem.",
@@ -3382,7 +3360,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "vayuda-turquoise-chunk",
     "name": "Vayuda Turquoise Chunk",
-    "image": "/image/materials/character-ascension/vayuda-turquoise-chunk",
+    "image": "/images/materials/character-ascension/vayuda-turquoise-chunk",
     "rarity": 4,
     "category": "Gem",
     "description": "Vayuda Turquoise Chunk character ascension gem.",
@@ -3393,7 +3371,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "vayuda-turquoise-fragment",
     "name": "Vayuda Turquoise Fragment",
-    "image": "/image/materials/character-ascension/vayuda-turquoise-fragment",
+    "image": "/images/materials/character-ascension/vayuda-turquoise-fragment",
     "rarity": 3,
     "category": "Gem",
     "description": "Vayuda Turquoise Fragment character ascension gem.",
@@ -3404,7 +3382,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "vayuda-turquoise-gemstone",
     "name": "Vayuda Turquoise Gemstone",
-    "image": "/image/materials/character-ascension/vayuda-turquoise-gemstone",
+    "image": "/images/materials/character-ascension/vayuda-turquoise-gemstone",
     "rarity": 5,
     "category": "Gem",
     "description": "Vayuda Turquoise Gemstone character ascension gem.",
@@ -3415,7 +3393,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "vayuda-turquoise-sliver",
     "name": "Vayuda Turquoise Sliver",
-    "image": "/image/materials/character-ascension/vayuda-turquoise-sliver",
+    "image": "/images/materials/character-ascension/vayuda-turquoise-sliver",
     "rarity": 2,
     "category": "Gem",
     "description": "Vayuda Turquoise Sliver character ascension gem.",
@@ -3426,7 +3404,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "violetgrass",
     "name": "Violetgrass",
-    "image": "/image/materials/local-specialties/violetgrass",
+    "image": "/images/materials/local-specialties/violetgrass",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Violetgrass local specialty.",
@@ -3437,7 +3415,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "wanderer-s-blooming-flower",
     "name": "Wanderer's Blooming Flower",
-    "image": "/image/materials/common-ascension/wanderer-s-blooming-flower",
+    "image": "/images/materials/common-ascension/wanderer-s-blooming-flower",
     "rarity": 4,
     "category": "Enemy Drop",
     "description": "Wanderer's Blooming Flower ascension material.",
@@ -3446,23 +3424,12 @@ export const seedMaterials: SeedMaterial[] = [
     "parentMaterialId": null
   },
   {
-    "id": "warrior-s-metal-whistle",
-    "name": "Warrior's Metal Whistle",
-    "image": "/image/materials/boss-material/warrior-s-metal-whistle",
-    "rarity": 4,
-    "category": "Boss Material",
-    "description": "Warrior's Metal Whistle character ascension boss material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
     "id": "warriors-s-metal-whistle",
-    "name": "Warriors's Metal Whistle",
-    "image": "/image/materials/common-ascension/warriors-s-metal-whistle",
+    "name": "Warrior's Metal Whistle",
+    "image": "/images/materials/common-ascension/warriors-s-metal-whistle",
     "rarity": 3,
     "category": "Elite Drop",
-    "description": "Warriors's Metal Whistle ascension material.",
+    "description": "Warrior's Metal Whistle ascension material.",
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "saurian-crowned-warrior-s-golden-whistle"
@@ -3470,7 +3437,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "water-that-failed-to-transcend",
     "name": "Water That Failed To Transcend",
-    "image": "/image/materials/boss-material/water-that-failed-to-transcend",
+    "image": "/images/materials/boss-material/water-that-failed-to-transcend",
     "rarity": 4,
     "category": "Boss Material",
     "description": "Water That Failed To Transcend character ascension boss material.",
@@ -3481,7 +3448,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "weathered-arrowhead",
     "name": "Weathered Arrowhead",
-    "image": "/image/materials/common-ascension/weathered-arrowhead",
+    "image": "/images/materials/common-ascension/weathered-arrowhead",
     "rarity": 3,
     "category": "Enemy Drop",
     "description": "Weathered Arrowhead ascension material.",
@@ -3492,7 +3459,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "whopperflower-nectar",
     "name": "Whopperflower Nectar",
-    "image": "/image/materials/common-ascension/whopperflower-nectar",
+    "image": "/images/materials/common-ascension/whopperflower-nectar",
     "rarity": 1,
     "category": "Enemy Drop",
     "description": "Whopperflower Nectar ascension material.",
@@ -3503,7 +3470,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "windwheel-aster",
     "name": "Windwheel Aster",
-    "image": "/image/materials/local-specialties/windwheel-aster",
+    "image": "/images/materials/local-specialties/windwheel-aster",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Windwheel Aster local specialty.",
@@ -3514,7 +3481,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "winter-icelea",
     "name": "Winter Icelea",
-    "image": "/image/materials/local-specialties/winter-icelea",
+    "image": "/images/materials/local-specialties/winter-icelea",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Winter Icelea local specialty.",
@@ -3525,7 +3492,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "withering-purpurbloom",
     "name": "Withering Purpurbloom",
-    "image": "/image/materials/local-specialties/withering-purpurbloom",
+    "image": "/images/materials/local-specialties/withering-purpurbloom",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Withering Purpurbloom local specialty.",
@@ -3536,7 +3503,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "wolfhook",
     "name": "Wolfhook",
-    "image": "/image/materials/local-specialties/wolfhook",
+    "image": "/images/materials/local-specialties/wolfhook",
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Wolfhook local specialty.",
@@ -3547,7 +3514,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "worldspan-fern",
     "name": "Worldspan Fern",
-    "image": "/image/materials/talent-boss/worldspan-fern",
+    "image": "/images/materials/talent-boss/worldspan-fern",
     "rarity": 5,
     "category": "Boss Material",
     "description": "Worldspan Fern weekly boss talent material.",
@@ -3558,7 +3525,7 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "xenochromatic-crystal",
     "name": "Xenochromatic Crystal",
-    "image": "/image/materials/common-ascension/xenochromatic-crystal",
+    "image": "/images/materials/common-ascension/xenochromatic-crystal",
     "rarity": 3,
     "category": "Enemy Drop",
     "description": "Xenochromatic Crystal ascension material.",

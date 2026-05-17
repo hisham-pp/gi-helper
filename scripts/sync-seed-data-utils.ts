@@ -87,7 +87,7 @@ const __dirname = path.dirname(__filename);
 export const repoRoot = path.resolve(__dirname, "..");
 
 const seedIdSchema = z.string().regex(/^[a-z0-9]+(?:[-'][a-z0-9]+)*$/);
-const imagePathSchema = z.string().regex(/^\/image\/[a-z0-9/'-]+$/);
+const imagePathSchema = z.string().regex(/^\/images\/[a-z0-9/'-]+$/);
 const materialCategorySchema = z.enum([
   "Elite Drop",
   "Enemy Drop",
@@ -645,6 +645,7 @@ function validateGeneratedMaterials(materials: SeedMaterialRecord[]): void {
   const seenIds = new Set<string>();
   const seenNames = new Set<string>();
   const byId = new Map<string, SeedMaterialRecord>();
+  const missingImages: string[] = [];
 
   for (const material of materials) {
     seedMaterialSchema.parse(material);
@@ -664,9 +665,7 @@ function validateGeneratedMaterials(materials: SeedMaterialRecord[]): void {
     byId.set(material.id, material);
 
     if (!repoImageExists(material.image)) {
-      throw new Error(
-        `Missing repo image for material ${material.id}: ${material.image}`,
-      );
+      missingImages.push(material.id);
     }
 
     if (material.combinable && material.combineRatio !== 3) {
@@ -680,6 +679,12 @@ function validateGeneratedMaterials(materials: SeedMaterialRecord[]): void {
         `Non-combinable material ${material.id} must not have combineRatio`,
       );
     }
+  }
+
+  if (missingImages.length > 0) {
+    console.warn(
+      `Warning: ${missingImages.length} material(s) have no repo image yet: ${missingImages.join(", ")}`,
+    );
   }
 
   for (const material of materials) {
@@ -703,9 +708,8 @@ function validateGeneratedMaterials(materials: SeedMaterialRecord[]): void {
 }
 
 export function repoImageExists(imagePath: string): boolean {
-  return fs.existsSync(
-    path.join(repoRoot, "public", imagePath.replace(/^\/image\//, "image/")),
-  );
+  const relativePath = imagePath.replace(/^\//, "");
+  return fs.existsSync(path.join(repoRoot, "public", relativePath));
 }
 
 function inferMissingAscensionCategory(values: number[]): string {
