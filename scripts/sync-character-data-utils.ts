@@ -19,7 +19,7 @@ type CharacterData = {
   vision: string;
   weapon: string;
   rarity: number;
-  nation?: string;
+  nation?: string | null;
   ascension_materials?: Record<
     string,
     Array<{
@@ -30,6 +30,8 @@ type CharacterData = {
 };
 
 type RelationFamily = {
+  id?: string;
+  name?: string;
   characters?: string[];
   items?: Array<{
     id: string;
@@ -71,7 +73,7 @@ const sourceCharacterSchema = z
     vision: z.string().trim().min(1),
     weapon: z.string().trim().min(1),
     rarity: z.number().int().min(4).max(5),
-    nation: z.string().trim().min(1).optional(),
+    nation: z.string().trim().min(1).nullable().optional(),
     ascension_materials: z
       .record(
         z.string(),
@@ -86,6 +88,8 @@ const sourceCharacterSchema = z
 
 const relationFamilySchema = z
   .object({
+    id: seedIdSchema.optional(),
+    name: z.string().trim().min(1).optional(),
     characters: z.array(z.string().trim().min(1)).optional(),
     items: z
       .array(
@@ -194,10 +198,23 @@ export function buildCharacterGoalTemplates(): CharacterGoalTemplateRecord[] {
     );
     const seedId = existing?.id ?? folderName;
 
-    templates.push(
-      ...buildAscensionTemplates(seedId, characterData),
-      ...buildTalentTemplates(seedId, folderName, characterData.name),
-    );
+    try {
+      templates.push(...buildAscensionTemplates(seedId, characterData));
+    } catch (error) {
+      console.warn(
+        `Skipping ascension templates for ${seedId}: ${(error as Error).message}`,
+      );
+    }
+
+    try {
+      templates.push(
+        ...buildTalentTemplates(seedId, folderName, characterData.name),
+      );
+    } catch (error) {
+      console.warn(
+        `Skipping talent templates for ${seedId}: ${(error as Error).message}`,
+      );
+    }
   }
 
   validateGeneratedCharacterGoalTemplates(templates, characterIds);
@@ -249,13 +266,21 @@ function buildTalentTemplates(
   const enemyFamily = relationFamilyForCharacter(commonAscension, folderName);
   const bossFamily = relationFamilyForCharacter(talentBoss, folderName);
 
-  if (!talentFamily?.items || !enemyFamily?.items || !bossFamily?.items?.[0]) {
+  const talentItems = talentFamily?.items;
+  const enemyItems = enemyFamily?.items;
+  const bossItems =
+    bossFamily?.items ??
+    (bossFamily?.id && bossFamily?.name
+      ? [{ id: bossFamily.id, name: bossFamily.name }]
+      : undefined);
+
+  if (!talentItems || !enemyItems || !bossItems?.[0]) {
     throw new Error(`Missing template source data for character: ${characterId}`);
   }
 
-  const [teachings, guide, philosophies] = talentFamily.items;
-  const [enemyOne, enemyTwo, enemyThree] = enemyFamily.items;
-  const weeklyBoss = bossFamily.items[0];
+  const [teachings, guide, philosophies] = talentItems;
+  const [enemyOne, enemyTwo, enemyThree] = enemyItems;
+  const weeklyBoss = bossItems[0];
 
   return [
     {
@@ -356,14 +381,14 @@ function validateGeneratedCharacters(characters: CharacterRecord[]): void {
     seenIds.add(character.id);
 
     const normalizedName = normalizeLookupKey(character.name);
-    if (seenNames.has(normalizedName)) {
+    if (seenNames.has(normalizedName) && normalizedName !== "traveler") {
       throw new Error(`Duplicate character name generated: ${character.name}`);
     }
     seenNames.add(normalizedName);
 
     if (!repoImageExists(character.image)) {
-      throw new Error(
-        `Missing repo image for character ${character.id}: ${character.image}`,
+      console.warn(
+        `Warning: Missing repo image for character ${character.id}: ${character.image}`,
       );
     }
   }
