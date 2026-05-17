@@ -70,7 +70,7 @@ export function GoalEdit({ goal, materials }: GoalEditProps) {
       }
 
       toast.success("Goal deleted.");
-      router.push("/materials?tab=goals");
+      router.push("/goals");
     });
   }
 
@@ -91,7 +91,7 @@ export function GoalEdit({ goal, materials }: GoalEditProps) {
   return (
     <div className="space-y-8">
       <div className="flex items-center gap-4">
-        <Link href="/materials">
+        <Link href="/goals">
           <Button variant="text" className="p-0">
             <ArrowLeft className="h-5 w-5" />
           </Button>

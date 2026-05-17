@@ -13,6 +13,7 @@ import {
   SunMedium,
   Swords,
   Target,
+  PackageSearch,
   Download,
   LogOut,
   Upload,
@@ -38,7 +39,9 @@ import { Button } from "@/components/ui/button";
 const navItems = [
   { href: "/", label: "Dashboard", icon: Home },
   { href: "/search", label: "Search", icon: Search },
-  { href: "/materials", label: "Tracker", icon: Gem },
+  { href: "/inventory", label: "Inventory", icon: PackageSearch },
+  { href: "/goals", label: "Goals", icon: Target },
+  { href: "/materials", label: "Materials", icon: Gem },
   { href: "/characters", label: "Characters", icon: Users },
   { href: "/map", label: "Map", icon: Compass },
   { href: "/collectibles", label: "Items", icon: Sparkles },
@@ -183,7 +186,9 @@ export function AppShell({
             Navigation
           </div>
           {navItems.map((item) => {
-            const active = pathname === item.href;
+            const active =
+              pathname === item.href ||
+              (item.href !== "/" && pathname.startsWith(`${item.href}/`));
             const Icon = item.icon;
 
             return (

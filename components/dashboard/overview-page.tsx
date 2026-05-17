@@ -16,9 +16,23 @@ import { Button } from "@/components/ui/button";
 
 const modules = [
   {
+    href: "/inventory",
+    title: "Inventory",
+    description: "Update owned material quantities across all goals.",
+    icon: Gem,
+    status: "Active",
+  },
+  {
+    href: "/goals",
+    title: "Farming Goals",
+    description: "Track farming targets and open goals for details.",
+    icon: Gem,
+    status: "Active",
+  },
+  {
     href: "/materials",
-    title: "Material Tracker",
-    description: "Inventory, goals, recursive crafting, and farming progress.",
+    title: "Material Library",
+    description: "Browse materials, crafting chains, and simulations.",
     icon: Gem,
     status: "Active",
   },

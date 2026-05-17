@@ -30,7 +30,7 @@ export default async function GoalTemplatesPage() {
   return (
     <div className="space-y-8">
       <div className="flex items-center gap-4">
-        <Link href="/materials?tab=goals">
+        <Link href="/goals">
           <Button variant="text" className="p-0">
             <ArrowLeft className="h-5 w-5" />
           </Button>

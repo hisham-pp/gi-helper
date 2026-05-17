@@ -72,7 +72,7 @@ export function GoalTemplates({ characters, weapons }: GoalTemplatesProps) {
       }
 
       toast.success("Goal created from template.");
-      router.push("/materials?tab=goals");
+      router.push("/goals");
     });
   }
 
