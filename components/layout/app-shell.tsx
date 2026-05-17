@@ -208,23 +208,27 @@ export function AppShell({
 
           <div className="mx-3 my-6 border-t border-outline-variant" />
 
-          <div className="text-on-surface-variant mb-4 px-3 text-[11px] font-bold uppercase tracking-wider opacity-60">
-            Tools & Actions
-          </div>
-          <button
-            onClick={handleExportAll}
-            className="text-on-surface-variant hover:text-on-surface flex h-12 w-full items-center gap-3 rounded-full px-4 text-sm font-medium transition-all hover:bg-surface-variant"
-          >
-            <Download className="h-5 w-5" />
-            Export All Data
-          </button>
-          <button
-            onClick={() => importInputRef.current?.click()}
-            className="text-on-surface-variant hover:text-on-surface flex h-12 w-full items-center gap-3 rounded-full px-4 text-sm font-medium transition-all hover:bg-surface-variant"
-          >
-            <Upload className="h-5 w-5" />
-            Import Backup
-          </button>
+          {userRole === "master" && (
+            <>
+              <div className="text-on-surface-variant mb-4 px-3 text-[11px] font-bold uppercase tracking-wider opacity-60">
+                Tools & Actions
+              </div>
+              <button
+                onClick={handleExportAll}
+                className="text-on-surface-variant hover:text-on-surface flex h-12 w-full items-center gap-3 rounded-full px-4 text-sm font-medium transition-all hover:bg-surface-variant"
+              >
+                <Download className="h-5 w-5" />
+                Export All Data
+              </button>
+              <button
+                onClick={() => importInputRef.current?.click()}
+                className="text-on-surface-variant hover:text-on-surface flex h-12 w-full items-center gap-3 rounded-full px-4 text-sm font-medium transition-all hover:bg-surface-variant"
+              >
+                <Upload className="h-5 w-5" />
+                Import Backup
+              </button>
+            </>
+          )}
         </nav>
 
         <div className="border-t border-outline-variant p-4">
