@@ -1,7 +1,6 @@
 import { nahida, nahidaGoalTemplates } from "./nahida";
 import { raiden, raidenGoalTemplates } from "./raiden";
 import { zhongli, zhongliGoalTemplates } from "./zhongli";
-import { kazuha, kazuhaGoalTemplates } from "./kazuha";
 import { yelan, yelanGoalTemplates } from "./yelan";
 import { bennett, bennettGoalTemplates } from "./bennett";
 import { xingqiu, xingqiuGoalTemplates } from "./xingqiu";
@@ -126,7 +125,6 @@ export const characters = [
   nahida,
   raiden,
   zhongli,
-  kazuha,
   yelan,
   bennett,
   xingqiu,
@@ -243,7 +241,6 @@ export const characterGoalTemplates = [
   ...nahidaGoalTemplates,
   ...raidenGoalTemplates,
   ...zhongliGoalTemplates,
-  ...kazuhaGoalTemplates,
   ...shenheGoalTemplates,
   ...baizhuGoalTemplates,
   ...columbinaGoalTemplates,

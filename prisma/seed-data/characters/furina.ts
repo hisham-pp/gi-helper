@@ -120,7 +120,7 @@ export const furinaGoalTemplates: SeedCharacterGoalTemplate[] = [
       { materialId: "philosophies-of-justice", required: 38 },
       { materialId: "shimmering-nectar", required: 6 },
       { materialId: "energy-nectar", required: 22 },
-      { materialId: "massless-lightless-eye-of-the-maelstrom", required: 6 }, // Note: materialId mapping might follow "lightless-eye-of-the-maelstrom" depending on dataset schema
+      { materialId: "lightless-eye-of-the-maelstrom", required: 6 }, // Note: materialId mapping might follow "lightless-eye-of-the-maelstrom" depending on dataset schema
       { materialId: "crown-of-insight", required: 1 },
     ],
   },

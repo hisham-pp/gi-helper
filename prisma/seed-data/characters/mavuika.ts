@@ -34,7 +34,7 @@ export const mavuikaGoalTemplates: SeedCharacterGoalTemplate[] = [
     sortOrder: 2,
     materials: [
       { materialId: "agnidus-agate-fragment", required: 3 },
-      { materialId: "gold-inscribed-secret-source-core", required: 2 },
+      { materialId: "sentry-source-core", required: 2 },
       { materialId: "withering-purpurbloom", required: 10 },
       { materialId: "sentrys-wooden-whistle", required: 15 },
     ],
@@ -49,7 +49,7 @@ export const mavuikaGoalTemplates: SeedCharacterGoalTemplate[] = [
     sortOrder: 3,
     materials: [
       { materialId: "agnidus-agate-fragment", required: 6 },
-      { materialId: "gold-inscribed-secret-source-core", required: 4 },
+      { materialId: "sentry-source-core", required: 4 },
       { materialId: "withering-purpurbloom", required: 20 },
       { materialId: "warriors-metal-whistle", required: 12 },
     ],
@@ -64,7 +64,7 @@ export const mavuikaGoalTemplates: SeedCharacterGoalTemplate[] = [
     sortOrder: 4,
     materials: [
       { materialId: "agnidus-agate-chunk", required: 3 },
-      { materialId: "gold-inscribed-secret-source-core", required: 8 },
+      { materialId: "sentry-source-core", required: 8 },
       { materialId: "withering-purpurbloom", required: 30 },
       { materialId: "warriors-metal-whistle", required: 18 },
     ],
@@ -79,7 +79,7 @@ export const mavuikaGoalTemplates: SeedCharacterGoalTemplate[] = [
     sortOrder: 5,
     materials: [
       { materialId: "agnidus-agate-chunk", required: 6 },
-      { materialId: "gold-inscribed-secret-source-core", required: 12 },
+      { materialId: "sentry-source-core", required: 12 },
       { materialId: "withering-purpurbloom", required: 45 },
       { materialId: "saurian-crowned-warriors-whistle", required: 12 },
     ],
@@ -94,7 +94,7 @@ export const mavuikaGoalTemplates: SeedCharacterGoalTemplate[] = [
     sortOrder: 6,
     materials: [
       { materialId: "agnidus-agate-gemstone", required: 6 },
-      { materialId: "gold-inscribed-secret-source-core", required: 20 },
+      { materialId: "sentry-source-core", required: 20 },
       { materialId: "withering-purpurbloom", required: 60 },
       { materialId: "saurian-crowned-warriors-whistle", required: 24 },
     ],

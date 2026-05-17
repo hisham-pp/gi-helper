@@ -3,15 +3,14 @@ import type { SeedCharacter, SeedCharacterGoalTemplate } from "../types";
 export const durin: SeedCharacter = {
   id: "durin",
   name: "Durin",
-  image: "https://enka.network/ui/UI_AvatarIcon_Durin.png", // Placeholder mapping path format
+  image: "https://enka.network/ui/UI_AvatarIcon_Durin.png",
   rarity: 5,
-  element: "Anemo", // Expected configuration based on regional/lore alignments
+  element: "Pyro",
   weaponType: "Sword",
   region: "Mondstadt",
 };
 
 export const durinGoalTemplates: SeedCharacterGoalTemplate[] = [
-  // Ascension 1
   {
     characterId: "durin",
     name: "Ascension 1 (Lv. 20 → 40)",
@@ -19,12 +18,11 @@ export const durinGoalTemplates: SeedCharacterGoalTemplate[] = [
     category: "ascension",
     sortOrder: 1,
     materials: [
-      { materialId: "vayuda-turquoise-sliver", required: 1 },
-      { materialId: "placeholder-specialty", required: 3 },
-      { materialId: "placeholder-enemy-drop-1", required: 3 },
+      { materialId: "agnidus-agate-sliver", required: 1 },
+      { materialId: "frostlamp-flower", required: 3 },
+      { materialId: "tattered-warrant-fatui-oprichnik", required: 3 },
     ],
   },
-  // Ascension 2
   {
     characterId: "durin",
     name: "Ascension 2 (Lv. 40 → 50)",
@@ -32,13 +30,12 @@ export const durinGoalTemplates: SeedCharacterGoalTemplate[] = [
     category: "ascension",
     sortOrder: 2,
     materials: [
-      { materialId: "vayuda-turquoise-fragment", required: 3 },
-      { materialId: "placeholder-boss-drop", required: 2 },
-      { materialId: "placeholder-specialty", required: 10 },
-      { materialId: "placeholder-enemy-drop-1", required: 15 },
+      { materialId: "agnidus-agate-fragment", required: 3 },
+      { materialId: "cyclic-military-kuuvahki-core", required: 2 },
+      { materialId: "frostlamp-flower", required: 10 },
+      { materialId: "tattered-warrant-fatui-oprichnik", required: 15 },
     ],
   },
-  // Ascension 3
   {
     characterId: "durin",
     name: "Ascension 3 (Lv. 50 → 60)",
@@ -46,13 +43,12 @@ export const durinGoalTemplates: SeedCharacterGoalTemplate[] = [
     category: "ascension",
     sortOrder: 3,
     materials: [
-      { materialId: "vayuda-turquoise-fragment", required: 6 },
-      { materialId: "placeholder-boss-drop", required: 4 },
-      { materialId: "placeholder-specialty", required: 20 },
-      { materialId: "placeholder-enemy-drop-2", required: 12 },
+      { materialId: "agnidus-agate-fragment", required: 6 },
+      { materialId: "cyclic-military-kuuvahki-core", required: 4 },
+      { materialId: "frostlamp-flower", required: 20 },
+      { materialId: "immaculate-warrant-fatui-oprichnik", required: 12 },
     ],
   },
-  // Ascension 4
   {
     characterId: "durin",
     name: "Ascension 4 (Lv. 60 → 70)",
@@ -60,13 +56,12 @@ export const durinGoalTemplates: SeedCharacterGoalTemplate[] = [
     category: "ascension",
     sortOrder: 4,
     materials: [
-      { materialId: "vayuda-turquoise-chunk", required: 3 },
-      { materialId: "placeholder-boss-drop", required: 8 },
-      { materialId: "placeholder-specialty", required: 30 },
-      { materialId: "placeholder-enemy-drop-2", required: 18 },
+      { materialId: "agnidus-agate-chunk", required: 3 },
+      { materialId: "cyclic-military-kuuvahki-core", required: 8 },
+      { materialId: "frostlamp-flower", required: 30 },
+      { materialId: "immaculate-warrant-fatui-oprichnik", required: 18 },
     ],
   },
-  // Ascension 5
   {
     characterId: "durin",
     name: "Ascension 5 (Lv. 70 → 80)",
@@ -74,13 +69,12 @@ export const durinGoalTemplates: SeedCharacterGoalTemplate[] = [
     category: "ascension",
     sortOrder: 5,
     materials: [
-      { materialId: "vayuda-turquoise-chunk", required: 6 },
-      { materialId: "placeholder-boss-drop", required: 12 },
-      { materialId: "placeholder-specialty", required: 45 },
-      { materialId: "placeholder-enemy-drop-3", required: 12 },
+      { materialId: "agnidus-agate-chunk", required: 6 },
+      { materialId: "cyclic-military-kuuvahki-core", required: 12 },
+      { materialId: "frostlamp-flower", required: 45 },
+      { materialId: "frost-etched-warrant-fatui-oprichnik", required: 12 },
     ],
   },
-  // Ascension 6
   {
     characterId: "durin",
     name: "Ascension 6 (Lv. 80 → 90)",
@@ -88,13 +82,12 @@ export const durinGoalTemplates: SeedCharacterGoalTemplate[] = [
     category: "ascension",
     sortOrder: 6,
     materials: [
-      { materialId: "vayuda-turquoise-gemstone", required: 6 },
-      { materialId: "placeholder-boss-drop", required: 20 },
-      { materialId: "placeholder-specialty", required: 60 },
-      { materialId: "placeholder-enemy-drop-3", required: 24 },
+      { materialId: "agnidus-agate-gemstone", required: 6 },
+      { materialId: "cyclic-military-kuuvahki-core", required: 20 },
+      { materialId: "frostlamp-flower", required: 60 },
+      { materialId: "frost-etched-warrant-fatui-oprichnik", required: 24 },
     ],
   },
-  // All Talents 1 → 6
   {
     characterId: "durin",
     name: "All Talents Level 1 → 6",
@@ -102,13 +95,12 @@ export const durinGoalTemplates: SeedCharacterGoalTemplate[] = [
     category: "talent",
     sortOrder: 1,
     materials: [
-      { materialId: "teachings-of-placeholder", required: 9 },
-      { materialId: "guide-to-placeholder", required: 63 },
-      { materialId: "placeholder-enemy-drop-1", required: 18 },
-      { materialId: "placeholder-enemy-drop-2", required: 66 },
+      { materialId: "teachings-of-ballad", required: 9 },
+      { materialId: "guide-to-ballad", required: 63 },
+      { materialId: "tattered-warrant-fatui-oprichnik", required: 18 },
+      { materialId: "immaculate-warrant-fatui-oprichnik", required: 66 },
     ],
   },
-  // Single Talent 6 → 10
   {
     characterId: "durin",
     name: "Single Talent Level 6 → 10",
@@ -116,15 +108,14 @@ export const durinGoalTemplates: SeedCharacterGoalTemplate[] = [
     category: "talent",
     sortOrder: 2,
     materials: [
-      { materialId: "guide-to-placeholder", required: 4 },
-      { materialId: "philosophies-of-placeholder", required: 38 },
-      { materialId: "placeholder-enemy-drop-2", required: 6 },
-      { materialId: "placeholder-enemy-drop-3", required: 22 },
-      { materialId: "placeholder-weekly-boss-drop", required: 6 },
+      { materialId: "guide-to-ballad", required: 4 },
+      { materialId: "philosophies-of-ballad", required: 38 },
+      { materialId: "immaculate-warrant-fatui-oprichnik", required: 6 },
+      { materialId: "frost-etched-warrant-fatui-oprichnik", required: 22 },
+      { materialId: "eroded-sunfire", required: 6 },
       { materialId: "crown-of-insight", required: 1 },
     ],
   },
-  // Triple Crown 6 → 10
   {
     characterId: "durin",
     name: "Triple Crown (All Talents 6 → 10)",
@@ -132,11 +123,11 @@ export const durinGoalTemplates: SeedCharacterGoalTemplate[] = [
     category: "talent",
     sortOrder: 3,
     materials: [
-      { materialId: "guide-to-placeholder", required: 12 },
-      { materialId: "philosophies-of-placeholder", required: 114 },
-      { materialId: "placeholder-enemy-drop-2", required: 18 },
-      { materialId: "placeholder-enemy-drop-3", required: 66 },
-      { materialId: "placeholder-weekly-boss-drop", required: 18 },
+      { materialId: "guide-to-ballad", required: 12 },
+      { materialId: "philosophies-of-ballad", required: 114 },
+      { materialId: "immaculate-warrant-fatui-oprichnik", required: 18 },
+      { materialId: "frost-etched-warrant-fatui-oprichnik", required: 66 },
+      { materialId: "eroded-sunfire", required: 18 },
       { materialId: "crown-of-insight", required: 3 },
     ],
   },

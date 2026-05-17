@@ -21,7 +21,7 @@ export const dilucGoalTemplates: SeedCharacterGoalTemplate[] = [
     materials: [
       { materialId: "agnidus-agate-sliver", required: 1 },
       { materialId: "small-lamp-grass", required: 3 },
-      { materialId: "recruit-insignia", required: 3 },
+      { materialId: "recruits-insignia", required: 3 },
     ],
   },
   // Ascension 2
@@ -35,7 +35,7 @@ export const dilucGoalTemplates: SeedCharacterGoalTemplate[] = [
       { materialId: "agnidus-agate-fragment", required: 3 },
       { materialId: "everflame-seed", required: 2 },
       { materialId: "small-lamp-grass", required: 10 },
-      { materialId: "recruit-insignia", required: 15 },
+      { materialId: "recruits-insignia", required: 15 },
     ],
   },
   // Ascension 3
@@ -49,7 +49,7 @@ export const dilucGoalTemplates: SeedCharacterGoalTemplate[] = [
       { materialId: "agnidus-agate-fragment", required: 6 },
       { materialId: "everflame-seed", required: 4 },
       { materialId: "small-lamp-grass", required: 20 },
-      { materialId: "sergeant-insignia", required: 12 },
+      { materialId: "sergeants-insignia", required: 12 },
     ],
   },
   // Ascension 4
@@ -63,7 +63,7 @@ export const dilucGoalTemplates: SeedCharacterGoalTemplate[] = [
       { materialId: "agnidus-agate-chunk", required: 3 },
       { materialId: "everflame-seed", required: 8 },
       { materialId: "small-lamp-grass", required: 30 },
-      { materialId: "sergeant-insignia", required: 18 },
+      { materialId: "sergeants-insignia", required: 18 },
     ],
   },
   // Ascension 5
@@ -77,7 +77,7 @@ export const dilucGoalTemplates: SeedCharacterGoalTemplate[] = [
       { materialId: "agnidus-agate-chunk", required: 6 },
       { materialId: "everflame-seed", required: 12 },
       { materialId: "small-lamp-grass", required: 45 },
-      { materialId: "lieutenant-insignia", required: 12 },
+      { materialId: "lieutenants-insignia", required: 12 },
     ],
   },
   // Ascension 6
@@ -91,7 +91,7 @@ export const dilucGoalTemplates: SeedCharacterGoalTemplate[] = [
       { materialId: "agnidus-agate-gemstone", required: 6 },
       { materialId: "everflame-seed", required: 20 },
       { materialId: "small-lamp-grass", required: 60 },
-      { materialId: "lieutenant-insignia", required: 24 },
+      { materialId: "lieutenants-insignia", required: 24 },
     ],
   },
   // All Talents 1 → 6
@@ -104,8 +104,8 @@ export const dilucGoalTemplates: SeedCharacterGoalTemplate[] = [
     materials: [
       { materialId: "teachings-of-resistance", required: 9 },
       { materialId: "guide-to-resistance", required: 63 },
-      { materialId: "recruit-insignia", required: 18 },
-      { materialId: "sergeant-insignia", required: 66 },
+      { materialId: "recruits-insignia", required: 18 },
+      { materialId: "sergeants-insignia", required: 66 },
     ],
   },
   // Single Talent 6 → 10
@@ -118,8 +118,8 @@ export const dilucGoalTemplates: SeedCharacterGoalTemplate[] = [
     materials: [
       { materialId: "guide-to-resistance", required: 4 },
       { materialId: "philosophies-of-resistance", required: 38 },
-      { materialId: "sergeant-insignia", required: 6 },
-      { materialId: "lieutenant-insignia", required: 22 },
+      { materialId: "sergeants-insignia", required: 6 },
+      { materialId: "lieutenants-insignia", required: 22 },
       { materialId: "dvalins-plume", required: 6 },
       { materialId: "crown-of-insight", required: 1 },
     ],
@@ -134,8 +134,8 @@ export const dilucGoalTemplates: SeedCharacterGoalTemplate[] = [
     materials: [
       { materialId: "guide-to-resistance", required: 12 },
       { materialId: "philosophies-of-resistance", required: 114 },
-      { materialId: "sergeant-insignia", required: 18 },
-      { materialId: "lieutenant-insignia", required: 66 },
+      { materialId: "sergeants-insignia", required: 18 },
+      { materialId: "lieutenants-insignia", required: 66 },
       { materialId: "dvalins-plume", required: 18 },
       { materialId: "crown-of-insight", required: 3 },
     ],

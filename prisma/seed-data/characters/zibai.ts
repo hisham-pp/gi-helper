@@ -21,7 +21,7 @@ export const zibaiGoalTemplates: SeedCharacterGoalTemplate[] = [
     materials: [
       { materialId: "vajrada-amethyst-sliver", required: 1 },
       { materialId: "violetgrass", required: 3 },
-      { materialId: "recruit-insignia", required: 3 },
+      { materialId: "recruits-insignia", required: 3 },
     ],
   },
 
@@ -36,7 +36,7 @@ export const zibaiGoalTemplates: SeedCharacterGoalTemplate[] = [
       { materialId: "vajrada-amethyst-fragment", required: 3 },
       { materialId: "thunderclap-core", required: 2 },
       { materialId: "violetgrass", required: 10 },
-      { materialId: "recruit-insignia", required: 15 },
+      { materialId: "recruits-insignia", required: 15 },
     ],
   },
 
@@ -51,7 +51,7 @@ export const zibaiGoalTemplates: SeedCharacterGoalTemplate[] = [
       { materialId: "vajrada-amethyst-fragment", required: 6 },
       { materialId: "thunderclap-core", required: 4 },
       { materialId: "violetgrass", required: 20 },
-      { materialId: "sergeant-insignia", required: 12 },
+      { materialId: "sergeants-insignia", required: 12 },
     ],
   },
 
@@ -66,7 +66,7 @@ export const zibaiGoalTemplates: SeedCharacterGoalTemplate[] = [
       { materialId: "vajrada-amethyst-chunk", required: 3 },
       { materialId: "thunderclap-core", required: 8 },
       { materialId: "violetgrass", required: 30 },
-      { materialId: "sergeant-insignia", required: 18 },
+      { materialId: "sergeants-insignia", required: 18 },
     ],
   },
 
@@ -81,7 +81,7 @@ export const zibaiGoalTemplates: SeedCharacterGoalTemplate[] = [
       { materialId: "vajrada-amethyst-chunk", required: 6 },
       { materialId: "thunderclap-core", required: 12 },
       { materialId: "violetgrass", required: 45 },
-      { materialId: "lieutenant-insignia", required: 12 },
+      { materialId: "lieutenants-insignia", required: 12 },
     ],
   },
 
@@ -96,7 +96,7 @@ export const zibaiGoalTemplates: SeedCharacterGoalTemplate[] = [
       { materialId: "vajrada-amethyst-gemstone", required: 6 },
       { materialId: "thunderclap-core", required: 20 },
       { materialId: "violetgrass", required: 60 },
-      { materialId: "lieutenant-insignia", required: 24 },
+      { materialId: "lieutenants-insignia", required: 24 },
     ],
   },
 
@@ -110,8 +110,8 @@ export const zibaiGoalTemplates: SeedCharacterGoalTemplate[] = [
     materials: [
       { materialId: "teachings-of-gold", required: 9 },
       { materialId: "guide-to-gold", required: 63 },
-      { materialId: "recruit-insignia", required: 18 },
-      { materialId: "sergeant-insignia", required: 66 },
+      { materialId: "recruits-insignia", required: 18 },
+      { materialId: "sergeants-insignia", required: 66 },
     ],
   },
 
@@ -125,8 +125,8 @@ export const zibaiGoalTemplates: SeedCharacterGoalTemplate[] = [
     materials: [
       { materialId: "guide-to-gold", required: 4 },
       { materialId: "philosophies-of-gold", required: 38 },
-      { materialId: "sergeant-insignia", required: 6 },
-      { materialId: "lieutenant-insignia", required: 22 },
+      { materialId: "sergeants-insignia", required: 6 },
+      { materialId: "lieutenants-insignia", required: 22 },
       { materialId: "dragon-lords-crown", required: 6 },
       { materialId: "crown-of-insight", required: 1 },
     ],
@@ -142,8 +142,8 @@ export const zibaiGoalTemplates: SeedCharacterGoalTemplate[] = [
     materials: [
       { materialId: "guide-to-gold", required: 12 },
       { materialId: "philosophies-of-gold", required: 114 },
-      { materialId: "sergeant-insignia", required: 18 },
-      { materialId: "lieutenant-insignia", required: 66 },
+      { materialId: "sergeants-insignia", required: 18 },
+      { materialId: "lieutenants-insignia", required: 66 },
       { materialId: "dragon-lords-crown", required: 18 },
       { materialId: "crown-of-insight", required: 3 },
     ],

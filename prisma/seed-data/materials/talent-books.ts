@@ -479,4 +479,50 @@ export const talentBooks = [
       description: "A complete philosophical treatise on fairness.",
     },
   ]),
+  ...createThreeTierFamily("Talent Book", [
+    {
+      id: "teachings-of-compassion",
+      name: "Teachings of Compassion",
+      iconId: "UI_ItemIcon_104328",
+      rarity: 2,
+      description: "Basic principles of compassion.",
+    },
+    {
+      id: "guide-to-compassion",
+      name: "Guide to Compassion",
+      iconId: "UI_ItemIcon_104329",
+      rarity: 3,
+      description: "A comprehensive guide to compassion.",
+    },
+    {
+      id: "philosophies-of-compassion",
+      name: "Philosophies of Compassion",
+      iconId: "UI_ItemIcon_104330",
+      rarity: 4,
+      description: "The complete philosophy of compassion.",
+    },
+  ]),
+  ...createThreeTierFamily("Talent Book", [
+    {
+      id: "teachings-of-moonlight",
+      name: "Teachings of Moonlight",
+      iconId: "UI_ItemIcon_104331",
+      rarity: 2,
+      description: "Basic principles of moonlight.",
+    },
+    {
+      id: "guide-to-moonlight",
+      name: "Guide to Moonlight",
+      iconId: "UI_ItemIcon_104332",
+      rarity: 3,
+      description: "A comprehensive guide to moonlight.",
+    },
+    {
+      id: "philosophies-of-moonlight",
+      name: "Philosophies of Moonlight",
+      iconId: "UI_ItemIcon_104333",
+      rarity: 4,
+      description: "The complete philosophy of moonlight.",
+    },
+  ]),
 ];

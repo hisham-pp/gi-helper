@@ -20,7 +20,7 @@ export const yelanGoalTemplates: SeedCharacterGoalTemplate[] = [
     materials: [
       { materialId: "varunada-lazurite-sliver", required: 1 },
       { materialId: "starconch", required: 3 },
-      { materialId: "recruit-insignia", required: 3 },
+      { materialId: "recruits-insignia", required: 3 },
     ],
   },
   {
@@ -33,7 +33,7 @@ export const yelanGoalTemplates: SeedCharacterGoalTemplate[] = [
       { materialId: "varunada-lazurite-fragment", required: 3 },
       { materialId: "runic-fang", required: 2 },
       { materialId: "starconch", required: 10 },
-      { materialId: "recruit-insignia", required: 15 },
+      { materialId: "recruits-insignia", required: 15 },
     ],
   },
   {
@@ -46,7 +46,7 @@ export const yelanGoalTemplates: SeedCharacterGoalTemplate[] = [
       { materialId: "varunada-lazurite-fragment", required: 6 },
       { materialId: "runic-fang", required: 4 },
       { materialId: "starconch", required: 20 },
-      { materialId: "sergeant-insignia", required: 12 },
+      { materialId: "sergeants-insignia", required: 12 },
     ],
   },
   {
@@ -59,7 +59,7 @@ export const yelanGoalTemplates: SeedCharacterGoalTemplate[] = [
       { materialId: "varunada-lazurite-chunk", required: 3 },
       { materialId: "runic-fang", required: 8 },
       { materialId: "starconch", required: 30 },
-      { materialId: "sergeant-insignia", required: 18 },
+      { materialId: "sergeants-insignia", required: 18 },
     ],
   },
   {
@@ -72,7 +72,7 @@ export const yelanGoalTemplates: SeedCharacterGoalTemplate[] = [
       { materialId: "varunada-lazurite-chunk", required: 6 },
       { materialId: "runic-fang", required: 12 },
       { materialId: "starconch", required: 45 },
-      { materialId: "lieutenant-insignia", required: 12 },
+      { materialId: "lieutenants-insignia", required: 12 },
     ],
   },
   {
@@ -85,7 +85,7 @@ export const yelanGoalTemplates: SeedCharacterGoalTemplate[] = [
       { materialId: "varunada-lazurite-gemstone", required: 6 },
       { materialId: "runic-fang", required: 20 },
       { materialId: "starconch", required: 60 },
-      { materialId: "lieutenant-insignia", required: 24 },
+      { materialId: "lieutenants-insignia", required: 24 },
     ],
   },
   {
@@ -97,8 +97,8 @@ export const yelanGoalTemplates: SeedCharacterGoalTemplate[] = [
     materials: [
       { materialId: "teachings-of-prosperity", required: 9 },
       { materialId: "guide-to-prosperity", required: 63 },
-      { materialId: "recruit-insignia", required: 18 },
-      { materialId: "sergeant-insignia", required: 66 },
+      { materialId: "recruits-insignia", required: 18 },
+      { materialId: "sergeants-insignia", required: 66 },
     ],
   },
   {
@@ -110,8 +110,8 @@ export const yelanGoalTemplates: SeedCharacterGoalTemplate[] = [
     materials: [
       { materialId: "guide-to-prosperity", required: 4 },
       { materialId: "philosophies-of-prosperity", required: 38 },
-      { materialId: "sergeant-insignia", required: 6 },
-      { materialId: "lieutenant-insignia", required: 22 },
+      { materialId: "sergeants-insignia", required: 6 },
+      { materialId: "lieutenants-insignia", required: 22 },
       { materialId: "gilded-scale", required: 6 },
       { materialId: "crown-of-insight", required: 1 },
     ],
@@ -125,8 +125,8 @@ export const yelanGoalTemplates: SeedCharacterGoalTemplate[] = [
     materials: [
       { materialId: "guide-to-prosperity", required: 12 },
       { materialId: "philosophies-of-prosperity", required: 114 },
-      { materialId: "sergeant-insignia", required: 18 },
-      { materialId: "lieutenant-insignia", required: 66 },
+      { materialId: "sergeants-insignia", required: 18 },
+      { materialId: "lieutenants-insignia", required: 66 },
       { materialId: "gilded-scale", required: 18 },
       { materialId: "crown-of-insight", required: 3 },
     ],

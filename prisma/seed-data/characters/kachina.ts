@@ -21,7 +21,7 @@ export const kachinaGoalTemplates: SeedCharacterGoalTemplate[] = [
     materials: [
       { materialId: "prithiva-topaz-sliver", required: 1 },
       { materialId: "quenepa-berry", required: 3 },
-      { materialId: "sentry-wooden-whistle", required: 3 },
+      { materialId: "sentrys-wooden-whistle", required: 3 },
     ],
   },
   // Ascension 2
@@ -35,7 +35,7 @@ export const kachinaGoalTemplates: SeedCharacterGoalTemplate[] = [
       { materialId: "prithiva-topaz-fragment", required: 3 },
       { materialId: "overripe-flamegranate", required: 2 },
       { materialId: "quenepa-berry", required: 10 },
-      { materialId: "sentry-wooden-whistle", required: 15 },
+      { materialId: "sentrys-wooden-whistle", required: 15 },
     ],
   },
   // Ascension 3
@@ -49,7 +49,7 @@ export const kachinaGoalTemplates: SeedCharacterGoalTemplate[] = [
       { materialId: "prithiva-topaz-fragment", required: 6 },
       { materialId: "overripe-flamegranate", required: 4 },
       { materialId: "quenepa-berry", required: 20 },
-      { materialId: "man-at-arms-metal-whistle", required: 12 },
+      { materialId: "warriors-metal-whistle", required: 12 },
     ],
   },
   // Ascension 4
@@ -63,7 +63,7 @@ export const kachinaGoalTemplates: SeedCharacterGoalTemplate[] = [
       { materialId: "prithiva-topaz-chunk", required: 3 },
       { materialId: "overripe-flamegranate", required: 8 },
       { materialId: "quenepa-berry", required: 30 },
-      { materialId: "man-at-arms-metal-whistle", required: 18 },
+      { materialId: "warriors-metal-whistle", required: 18 },
     ],
   },
   // Ascension 5
@@ -104,8 +104,8 @@ export const kachinaGoalTemplates: SeedCharacterGoalTemplate[] = [
     materials: [
       { materialId: "teachings-of-conflict", required: 9 },
       { materialId: "guide-to-conflict", required: 63 },
-      { materialId: "sentry-wooden-whistle", required: 18 },
-      { materialId: "man-at-arms-metal-whistle", required: 66 },
+      { materialId: "sentrys-wooden-whistle", required: 18 },
+      { materialId: "warriors-metal-whistle", required: 66 },
     ],
   },
   // Single Talent 6 → 10
@@ -118,7 +118,7 @@ export const kachinaGoalTemplates: SeedCharacterGoalTemplate[] = [
     materials: [
       { materialId: "guide-to-conflict", required: 4 },
       { materialId: "philosophies-of-conflict", required: 38 },
-      { materialId: "man-at-arms-metal-whistle", required: 6 },
+      { materialId: "warriors-metal-whistle", required: 6 },
       { materialId: "coronals-golden-whistle", required: 22 },
       { materialId: "fading-candle", required: 6 },
       { materialId: "crown-of-insight", required: 1 },
@@ -134,7 +134,7 @@ export const kachinaGoalTemplates: SeedCharacterGoalTemplate[] = [
     materials: [
       { materialId: "guide-to-conflict", required: 12 },
       { materialId: "philosophies-of-conflict", required: 114 },
-      { materialId: "man-at-arms-metal-whistle", required: 18 },
+      { materialId: "warriors-metal-whistle", required: 18 },
       { materialId: "coronals-golden-whistle", required: 66 },
       { materialId: "fading-candle", required: 18 },
       { materialId: "crown-of-insight", required: 3 },
