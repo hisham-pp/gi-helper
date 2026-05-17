@@ -8,5 +8,9 @@ export default async function AuthenticatedLayout({
 }) {
   const user = await requireUser();
 
-  return <AppShell userLabel={user.username}>{children}</AppShell>;
+  return (
+    <AppShell userLabel={user.username} userRole={user.role}>
+      {children}
+    </AppShell>
+  );
 }
