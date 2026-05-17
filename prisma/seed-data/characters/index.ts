@@ -9,6 +9,7 @@ import { xingqiu, xingqiuGoalTemplates } from "./xingqiu";
 import { navia, naviaGoalTemplates } from "./navia";
 import { varka, varkaGoalTemplates } from "./varka";
 import { nefer, neferGoalTemplates } from "./nefer";
+import { jahoda, jahodaGoalTemplates } from "./jahoda";
 
 export const characters = [
   nahida,
@@ -22,6 +23,7 @@ export const characters = [
   navia,
   varka,
   nefer,
+  jahoda,
 ];
 
 export const characterGoalTemplates = [
@@ -36,4 +38,5 @@ export const characterGoalTemplates = [
   ...naviaGoalTemplates,
   ...varkaGoalTemplates,
   ...neferGoalTemplates,
+  ...jahodaGoalTemplates,
 ];

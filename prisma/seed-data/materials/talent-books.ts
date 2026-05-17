@@ -383,3 +383,27 @@ export const talentBooks = [
     },
   ]),
 ];
+  ...createThreeTierFamily("Talent Book", [
+    {
+      id: "teachings-of-elysium",
+      name: "Teachings of Elysium",
+      iconId: "UI_ItemIcon_104346",
+      rarity: 2,
+      description:
+        "Nod-Krai talent teachings emphasizing the ideals of paradise.",
+    },
+    {
+      id: "guide-to-elysium",
+      name: "Guide to Elysium",
+      iconId: "UI_ItemIcon_104347",
+      rarity: 3,
+      description: "A more complete manuscript detailing the path to elysium.",
+    },
+    {
+      id: "philosophies-of-elysium",
+      name: "Philosophies of Elysium",
+      iconId: "UI_ItemIcon_104348",
+      rarity: 4,
+      description: "A complete philosophical treatise on elysium.",
+    },
+  ]),
