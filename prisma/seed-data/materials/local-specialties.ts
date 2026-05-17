@@ -229,7 +229,7 @@ export const localSpecialties = [
   ...createThreeTierFamily("Local Specialty", [
     {
       id: "glaze-lily",
-      name: "Glaze Lily",
+      name: "Glaze Lily Specialty",
       iconId: "UI_ItemIcon_100027",
       rarity: 1,
       description:
@@ -254,7 +254,7 @@ export const localSpecialties = [
   ...createThreeTierFamily("Local Specialty", [
     {
       id: "qingxin",
-      name: "Qingxin",
+      name: "Qingxin Specialty",
       iconId: "UI_ItemIcon_100030",
       rarity: 1,
       description:
@@ -498,7 +498,7 @@ export const localSpecialties = [
   ...createThreeTierFamily("Local Specialty", [
     {
       id: "brilliant-chrysanthemum",
-      name: "Brilliant Chrysanthemum",
+      name: "Brilliant Chrysanthemum Specialty",
       iconId: "UI_ItemIcon_101228",
       rarity: 1,
       description: "A flower that glows with a brilliant light.",
@@ -521,7 +521,7 @@ export const localSpecialties = [
   ...createThreeTierFamily("Local Specialty", [
     {
       id: "clearwater-jade",
-      name: "Clearwater Jade",
+      name: "Clearwater Jade Specialty",
       iconId: "UI_ItemIcon_101231",
       rarity: 1,
       description: "A jade that is as clear as water.",
@@ -544,7 +544,7 @@ export const localSpecialties = [
   ...createThreeTierFamily("Local Specialty", [
     {
       id: "purifying-light-rose",
-      name: "Purifying Light Rose",
+      name: "Purifying Light Rose Specialty",
       iconId: "UI_ItemIcon_101234",
       rarity: 1,
       description: "A rose that purifies the light around it.",
@@ -567,7 +567,7 @@ export const localSpecialties = [
   ...createThreeTierFamily("Local Specialty", [
     {
       id: "saurian-claw-succulent",
-      name: "Saurian Claw Succulent",
+      name: "Saurian Claw Succulent Specialty",
       iconId: "UI_ItemIcon_101237",
       rarity: 1,
       description: "A plant that looks like a saurian claw.",
@@ -590,7 +590,7 @@ export const localSpecialties = [
   ...createThreeTierFamily("Local Specialty", [
     {
       id: "skysplit-gembloom",
-      name: "Skysplit Gembloom",
+      name: "Skysplit Gembloom Specialty",
       iconId: "UI_ItemIcon_101240",
       rarity: 1,
       description: "A flower that looks like a gem from the sky.",
@@ -613,7 +613,7 @@ export const localSpecialties = [
   ...createThreeTierFamily("Local Specialty", [
     {
       id: "sprayfeather-gill",
-      name: "Sprayfeather Gill",
+      name: "Sprayfeather Gill Specialty",
       iconId: "UI_ItemIcon_101243",
       rarity: 1,
       description: "A mushroom that looks like a feather.",
@@ -636,7 +636,7 @@ export const localSpecialties = [
   ...createThreeTierFamily("Local Specialty", [
     {
       id: "withering-purpurbloom",
-      name: "Withering Purpurbloom",
+      name: "Withering Purpurbloom Specialty",
       iconId: "UI_ItemIcon_101246",
       rarity: 1,
       description: "A purple flower that withers quickly.",
@@ -659,7 +659,7 @@ export const localSpecialties = [
   ...createThreeTierFamily("Local Specialty", [
     {
       id: "rainbow-rose",
-      name: "Rainbow Rose",
+      name: "Rainbow Rose Specialty",
       iconId: "UI_ItemIcon_101233",
       rarity: 1,
       description: "A beautiful rose that grows in Fontaine.",
@@ -682,7 +682,7 @@ export const localSpecialties = [
   ...createThreeTierFamily("Local Specialty", [
     {
       id: "sea-ganoderma",
-      name: "Sea Ganoderma",
+      name: "Sea Ganoderma Specialty",
       iconId: "UI_ItemIcon_101224",
       rarity: 1,
       description: "A plant species that grows in certain ocean areas.",
@@ -705,7 +705,7 @@ export const localSpecialties = [
   ...createThreeTierFamily("Local Specialty", [
     {
       id: "winter-icelea",
-      name: "Winter Icelea",
+      name: "Winter Icelea Specialty",
       iconId: "UI_ItemIcon_101242",
       rarity: 1,
       description: "A flower that thrives in the frozen north.",
@@ -728,7 +728,7 @@ export const localSpecialties = [
   ...createThreeTierFamily("Local Specialty", [
     {
       id: "frostlamp-flower",
-      name: "Frostlamp Flower",
+      name: "Frostlamp Flower Specialty",
       iconId: "UI_ItemIcon_101241",
       rarity: 1,
       description: "A flower that glows with a cold light.",
@@ -751,7 +751,7 @@ export const localSpecialties = [
   ...createThreeTierFamily("Local Specialty", [
     {
       id: "dracolite",
-      name: "Dracolite",
+      name: "Dracolite Specialty",
       iconId: "UI_ItemIcon_101249",
       rarity: 1,
       description: "A rare stone containing draconic power.",
