@@ -1,9 +1,9 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 import { prisma } from "@/lib/prisma";
 
 export async function GET(
-  _: Request,
+  request: NextRequest,
   context: { params: Promise<{ materialId: string }> },
 ) {
   const { materialId } = await context.params;
@@ -22,7 +22,11 @@ export async function GET(
   }
 
   try {
-    const response = await fetch(material.image, {
+    const imageUrl = material.image.startsWith("http")
+      ? material.image
+      : new URL(material.image, request.nextUrl.origin).toString();
+
+    const response = await fetch(imageUrl, {
       cache: "force-cache",
       next: {
         revalidate: 86400,
@@ -44,6 +48,9 @@ export async function GET(
     });
   } catch (error) {
     console.error("Material image proxy failed", error);
-    return new NextResponse("Unable to fetch image", { status: 500 });
+
+    return new NextResponse("Unable to fetch image", {
+      status: 500,
+    });
   }
 }
