@@ -20,14 +20,7 @@ export default async function GoalEditPage({
     }
 
     return (
-      <GoalEdit
-        goal={goal}
-        materials={data.materials}
-        allData={data}
-        onUpdateData={() => {
-          // This is a client-side component, data will be updated via server actions
-        }}
-      />
+      <GoalEdit goal={goal} materials={data.materials} />
     );
   } catch (error) {
     // Log server-side error for debugging and redirect to materials to avoid leaking details to client

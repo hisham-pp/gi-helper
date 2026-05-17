@@ -44,9 +44,11 @@ const navItems = [
 
 export function AppShell({
   userLabel,
+  userRole,
   children,
 }: Readonly<{
   userLabel?: string;
+  userRole?: string;
   children: ReactNode;
 }>) {
   const pathname = usePathname();
@@ -110,7 +112,7 @@ export function AppShell({
   }
 
   return (
-    <div className="flex min-h-screen bg-background text-on-background">
+    <div className="flex h-screen overflow-hidden bg-background text-on-background">
       {/* Mobile Top App Bar */}
       <header className="fixed left-0 right-0 top-0 z-30 flex h-16 items-center justify-between border-b border-outline-variant bg-surface/80 px-4 backdrop-blur-md lg:hidden">
         <div className="flex items-center gap-3">
@@ -145,7 +147,7 @@ export function AppShell({
       {/* Sidebar / Navigation Drawer */}
       <aside
         className={cn(
-          "fixed inset-y-0 left-0 z-50 flex w-72 flex-col border-r border-outline-variant bg-surface transition-transform duration-300 lg:sticky lg:translate-x-0",
+          "fixed inset-y-0 left-0 z-50 flex w-72 flex-col border-r border-outline-variant bg-surface transition-transform duration-300 lg:static lg:translate-x-0",
           isSidebarOpen ? "translate-x-0" : "-translate-x-full",
         )}
       >
@@ -280,7 +282,7 @@ export function AppShell({
       )}
 
       {/* Main Content Area */}
-      <main className="min-w-0 flex-1 pt-16 lg:pt-0">
+      <main className="min-w-0 flex-1 overflow-y-auto pt-16 lg:pt-0">
         <input
           ref={importInputRef}
           className="hidden"

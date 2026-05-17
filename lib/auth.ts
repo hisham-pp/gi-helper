@@ -102,8 +102,7 @@ export async function getCurrentUser() {
   });
 
   if (!session || session.expiresAt < new Date()) {
-    cookieStore.delete(SESSION_COOKIE);
-
+    // Clean up expired session from database
     if (session) {
       await prisma.session.delete({
         where: {

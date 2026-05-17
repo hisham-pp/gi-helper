@@ -6,7 +6,7 @@ import { toast } from "sonner";
 
 import { loginAction, registerAction } from "@/app/actions";
 import { Card } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
+import { TextField } from "@/components/ui/text-field";
 import { Button } from "@/components/ui/button";
 
 export function AuthForm({ mode }: { mode: "login" | "register" }) {
@@ -42,13 +42,15 @@ export function AuthForm({ mode }: { mode: "login" | "register" }) {
       </p>
 
       <div className="mt-8 space-y-4">
-        <Input
+        <TextField
           label="Username"
+          variant="outlined"
           value={username}
           onChange={(event) => setUsername(event.target.value)}
         />
-        <Input
+        <TextField
           label="Password"
+          variant="outlined"
           type="password"
           value={password}
           onChange={(event) => setPassword(event.target.value)}

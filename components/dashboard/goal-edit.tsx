@@ -13,7 +13,7 @@ import {
   saveGoalMaterialAction,
 } from "@/app/actions";
 import { rarityColorMap } from "@/lib/constants";
-import type { DashboardData, GoalView, MaterialView } from "@/lib/types";
+import type { GoalView, MaterialView } from "@/lib/types";
 import { cn, formatNumber } from "@/lib/utils";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -21,21 +21,13 @@ import { TextField } from "@/components/ui/text-field";
 import { Select } from "@/components/ui/select";
 import { Progress } from "@/components/ui/progress";
 import { Panel } from "@/components/ui/panel";
-import { EmptyState } from "@/components/ui/empty-state";
 
 type GoalEditProps = {
   goal: GoalView;
   materials: MaterialView[];
-  allData: DashboardData;
-  onUpdateData: (data: DashboardData) => void;
 };
 
-export function GoalEdit({
-  goal,
-  materials,
-  allData,
-  onUpdateData,
-}: GoalEditProps) {
+export function GoalEdit({ goal, materials }: GoalEditProps) {
   const router = useRouter();
   const [selectedMaterialId, setSelectedMaterialId] = useState(
     materials[0]?.id ?? "",
@@ -61,10 +53,10 @@ export function GoalEdit({
         return;
       }
 
-      onUpdateData(result.data);
       toast.success("Requirement added.");
       setSelectedMaterialId("");
       setGoalMaterialRequired(1);
+      router.refresh();
     });
   }
 
@@ -77,7 +69,6 @@ export function GoalEdit({
         return;
       }
 
-      onUpdateData(result.data);
       toast.success("Goal deleted.");
       router.push("/materials?tab=goals");
     });
@@ -92,8 +83,8 @@ export function GoalEdit({
         return;
       }
 
-      onUpdateData(result.data);
       toast.success("Requirement removed.");
+      router.refresh();
     });
   }
 
@@ -132,6 +123,7 @@ export function GoalEdit({
           <div className="mt-6 space-y-6">
             <Select
               label="Select Material"
+              variant="outlined"
               value={selectedMaterialId}
               onChange={setSelectedMaterialId}
               options={materials.map((material) => ({

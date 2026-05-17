@@ -79,9 +79,10 @@ export function CreateGoal() {
             />
             <Textarea
               label="Description (optional)"
+              variant="outlined"
               value={goalDescription}
               onChange={(event) => setGoalDescription(event.target.value)}
-              rows={3}
+              rows={4}
             />
             <div className="flex gap-3">
               <Button
