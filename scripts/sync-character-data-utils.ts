@@ -64,7 +64,7 @@ const materialCatalog = buildMaterialCatalog();
 const { byId: materialsById, byName: materialsByName } = materialCatalog;
 
 const seedIdSchema = z.string().regex(/^[a-z0-9]+(?:[-'][a-z0-9]+)*$/);
-const imagePathSchema = z.string().regex(/^\/image\/[a-z0-9/'-]+$/);
+const imagePathSchema = z.string().regex(/^\/images\/[a-z0-9/'-]+$/);
 const sourceCharacterSchema = z
   .object({
     name: z.string().trim().min(1),
