@@ -10,3 +10,4 @@ prisma/dev.db-journal
 prisma/prod.db
 prisma/prod.db-journal
 tmp
+tsconfig.tsbuildinfo
