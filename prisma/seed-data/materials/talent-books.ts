@@ -382,28 +382,101 @@ export const talentBooks = [
       description: "A complete philosophical treatise on elysium.",
     },
   ]),
-];
   ...createThreeTierFamily("Talent Book", [
     {
-      id: "teachings-of-elysium",
-      name: "Teachings of Elysium",
-      iconId: "UI_ItemIcon_104346",
+      id: "teachings-of-conflict",
+      name: "Teachings of Conflict",
+      iconId: "UI_ItemIcon_104349",
       rarity: 2,
       description:
-        "Nod-Krai talent teachings emphasizing the ideals of paradise.",
+        "Natlan talent teachings emphasizing the strength found in battle.",
     },
     {
-      id: "guide-to-elysium",
-      name: "Guide to Elysium",
-      iconId: "UI_ItemIcon_104347",
+      id: "guide-to-conflict",
+      name: "Guide to Conflict",
+      iconId: "UI_ItemIcon_104350",
       rarity: 3,
-      description: "A more complete manuscript detailing the path to elysium.",
+      description: "A more complete manuscript detailing the path of conflict.",
     },
     {
-      id: "philosophies-of-elysium",
-      name: "Philosophies of Elysium",
-      iconId: "UI_ItemIcon_104348",
+      id: "philosophies-of-conflict",
+      name: "Philosophies of Conflict",
+      iconId: "UI_ItemIcon_104351",
       rarity: 4,
-      description: "A complete philosophical treatise on elysium.",
+      description: "A complete philosophical treatise on conflict.",
     },
   ]),
+  ...createThreeTierFamily("Talent Book", [
+    {
+      id: "teachings-of-contention",
+      name: "Teachings of Contention",
+      iconId: "UI_ItemIcon_104352",
+      rarity: 2,
+      description:
+        "Natlan talent teachings emphasizing competitive spirit and rivalry.",
+    },
+    {
+      id: "guide-to-contention",
+      name: "Guide to Contention",
+      iconId: "UI_ItemIcon_104353",
+      rarity: 3,
+      description:
+        "A more complete manuscript detailing the path of contention.",
+    },
+    {
+      id: "philosophies-of-contention",
+      name: "Philosophies of Contention",
+      iconId: "UI_ItemIcon_104354",
+      rarity: 4,
+      description: "A complete philosophical treatise on contention.",
+    },
+  ]),
+  ...createThreeTierFamily("Talent Book", [
+    {
+      id: "teachings-of-kindling",
+      name: "Teachings of Kindling",
+      iconId: "UI_ItemIcon_104350",
+      rarity: 2,
+      description:
+        "Talent teachings from Natlan emphasizing the power of fire.",
+    },
+    {
+      id: "guide-to-kindling",
+      name: "Guide to Kindling",
+      iconId: "UI_ItemIcon_104351",
+      rarity: 3,
+      description: "A more complete manuscript detailing the path of fire.",
+    },
+    {
+      id: "philosophies-of-kindling",
+      name: "Philosophies of Kindling",
+      iconId: "UI_ItemIcon_104352",
+      rarity: 4,
+      description: "A complete philosophical treatise on fire.",
+    },
+  ]),
+  ...createThreeTierFamily("Talent Book", [
+    {
+      id: "teachings-of-fairness",
+      name: "Teachings of Fairness",
+      iconId: "UI_ItemIcon_104353",
+      rarity: 2,
+      description:
+        "Talent teachings from Lyney emphasizing the ideals of fairness.",
+    },
+    {
+      id: "guide-to-fairness",
+      name: "Guide to Fairness",
+      iconId: "UI_ItemIcon_104354",
+      rarity: 3,
+      description: "A more complete manuscript detailing the path of fairness.",
+    },
+    {
+      id: "philosophies-of-fairness",
+      name: "Philosophies of Fairness",
+      iconId: "UI_ItemIcon_104355",
+      rarity: 4,
+      description: "A complete philosophical treatise on fairness.",
+    },
+  ]),
+];
