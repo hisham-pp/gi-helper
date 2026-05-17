@@ -209,4 +209,27 @@ export const eliteDrops = [
       description: "A polished talon holding a dangerous abyssal edge.",
     },
   ]),
+  ...createThreeTierFamily("Elite Drop", [
+    {
+      id: "meshing-gear",
+      name: "Meshing Gear",
+      iconId: "UI_ItemIcon_112086",
+      rarity: 1,
+      description: "A gear component from Fontaine's clockwork mechanisms.",
+    },
+    {
+      id: "mechanical-spur-gear",
+      name: "Mechanical Spur Gear",
+      iconId: "UI_ItemIcon_112087",
+      rarity: 2,
+      description: "A refined gear from more advanced clockwork constructs.",
+    },
+    {
+      id: "artificed-dynamic-gear",
+      name: "Artificed Dynamic Gear",
+      iconId: "UI_ItemIcon_112088",
+      rarity: 3,
+      description: "A masterwork gear from the finest clockwork creations.",
+    },
+  ]),
 ];

@@ -1,13 +1,33 @@
-import { eliteDrops } from "@/prisma/seed-data/elite-drops";
-import { enemyDrops } from "@/prisma/seed-data/enemy-drops";
-import { talentBooks } from "@/prisma/seed-data/talent-books";
-import { localSpecialties } from "@/prisma/seed-data/local-specialties";
+import {
+  eliteDrops,
+  enemyDrops,
+  talentBooks,
+  localSpecialties,
+  bossMaterials,
+  gemMaterials,
+} from "@/prisma/seed-data/materials";
+import {
+  characters,
+  characterGoalTemplates,
+} from "@/prisma/seed-data/characters";
+import { weapons } from "@/prisma/seed-data/weapons";
+import { weaponGoalTemplates } from "@/prisma/seed-data/weapon-templates";
 
-export { type SeedMaterial } from "@/prisma/seed-data/helpers";
+export type {
+  SeedMaterial,
+  SeedCharacter,
+  SeedWeapon,
+  SeedCharacterGoalTemplate,
+  SeedWeaponGoalTemplate,
+} from "@/prisma/seed-data/types";
 
 export const seedMaterials = [
   ...enemyDrops,
   ...eliteDrops,
   ...talentBooks,
   ...localSpecialties,
+  ...bossMaterials,
+  ...gemMaterials,
 ];
+
+export { characters, weapons, characterGoalTemplates, weaponGoalTemplates };

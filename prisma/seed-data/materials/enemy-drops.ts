@@ -234,4 +234,27 @@ export const enemyDrops = [
       description: "A vibrant nucleus from a Specter with concentrated energy.",
     },
   ]),
+  ...createThreeTierFamily("Enemy Drop", [
+    {
+      id: "transoceanic-pearl",
+      name: "Transoceanic Pearl",
+      iconId: "UI_ItemIcon_112083",
+      rarity: 1,
+      description: "A small pearl from Fontaine's aquatic creatures.",
+    },
+    {
+      id: "transoceanic-chunk",
+      name: "Transoceanic Chunk",
+      iconId: "UI_ItemIcon_112084",
+      rarity: 2,
+      description: "A larger pearl fragment with enhanced luster.",
+    },
+    {
+      id: "xenochromatic-crystal",
+      name: "Xenochromatic Crystal",
+      iconId: "UI_ItemIcon_112085",
+      rarity: 3,
+      description: "A rare crystallized pearl with unique coloration.",
+    },
+  ]),
 ];
