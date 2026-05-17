@@ -16,7 +16,7 @@ export default async function GoalEditPage({
     const goal = data.goals.find((g) => g.id === goalId);
 
     if (!goal) {
-      redirect("/materials");
+      redirect("/goals");
     }
 
     return (

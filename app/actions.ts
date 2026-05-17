@@ -15,6 +15,7 @@ import type { ActionResponse, DashboardData } from "@/lib/types";
 import {
   authSchema,
   characterSchema,
+  createGoalsFromTemplatesSchema,
   deleteGoalMaterialSchema,
   deleteGoalSchema,
   goalMaterialSchema,
@@ -108,8 +109,6 @@ export async function createGoalAction(
 export async function createGoalFromTemplateAction(
   input: unknown,
 ): Promise<ActionResponse<DashboardData>> {
-  const user = await requireUser();
-
   const parsed = input as { type: "character" | "weapon"; templateId: string };
 
   if (!parsed.type || !parsed.templateId) {
@@ -119,84 +118,109 @@ export async function createGoalFromTemplateAction(
     };
   }
 
+  return createGoalsFromTemplatesAction({
+    type: parsed.type,
+    templateIds: [parsed.templateId],
+  });
+}
+
+export async function createGoalsFromTemplatesAction(
+  input: unknown,
+): Promise<ActionResponse<DashboardData>> {
+  const user = await requireUser();
+  const parsed = createGoalsFromTemplatesSchema.safeParse(input);
+
+  if (!parsed.success) {
+    return {
+      success: false,
+      error: "Invalid template selection.",
+    };
+  }
+
+  const uniqueTemplateIds = [...new Set(parsed.data.templateIds)];
+
   try {
-    if (parsed.type === "character") {
-      const template = await prisma.characterGoalTemplate.findUnique({
-        where: { id: parsed.templateId },
-        include: {
-          character: true,
-          materials: true,
-        },
-      });
-
-      if (!template) {
-        return {
-          success: false,
-          error: "Template not found.",
-        };
-      }
-
-      const goal = await prisma.goal.create({
-        data: {
-          userId: user.id,
-          name: `${template.character.name} - ${template.name}`,
-          description: template.description,
-          templateType: "character",
-          templateId: template.id,
-        },
-      });
-
-      for (const material of template.materials) {
-        await prisma.goalMaterial.create({
-          data: {
-            goalId: goal.id,
-            materialId: material.materialId,
-            required: material.required,
+    if (parsed.data.type === "character") {
+      for (const templateId of uniqueTemplateIds) {
+        const template = await prisma.characterGoalTemplate.findUnique({
+          where: { id: templateId },
+          include: {
+            character: true,
+            materials: true,
           },
         });
-      }
-    } else if (parsed.type === "weapon") {
-      const template = await prisma.weaponGoalTemplate.findUnique({
-        where: { id: parsed.templateId },
-        include: {
-          weapon: true,
-          materials: true,
-        },
-      });
 
-      if (!template) {
-        return {
-          success: false,
-          error: "Template not found.",
-        };
-      }
+        if (!template) {
+          return {
+            success: false,
+            error: "One or more templates were not found.",
+          };
+        }
 
-      const goal = await prisma.goal.create({
-        data: {
-          userId: user.id,
-          name: `${template.weapon.name} - ${template.name}`,
-          description: template.description,
-          templateType: "weapon",
-          templateId: template.id,
-        },
-      });
-
-      for (const material of template.materials) {
-        await prisma.goalMaterial.create({
+        const goal = await prisma.goal.create({
           data: {
-            goalId: goal.id,
-            materialId: material.materialId,
-            required: material.required,
+            userId: user.id,
+            name: `${template.character.name} - ${template.name}`,
+            description: template.description,
+            templateType: "character",
+            templateId: template.id,
           },
         });
+
+        if (template.materials.length > 0) {
+          await prisma.goalMaterial.createMany({
+            data: template.materials.map((material) => ({
+              goalId: goal.id,
+              materialId: material.materialId,
+              required: material.required,
+            })),
+          });
+        }
+      }
+    } else {
+      for (const templateId of uniqueTemplateIds) {
+        const template = await prisma.weaponGoalTemplate.findUnique({
+          where: { id: templateId },
+          include: {
+            weapon: true,
+            materials: true,
+          },
+        });
+
+        if (!template) {
+          return {
+            success: false,
+            error: "One or more templates were not found.",
+          };
+        }
+
+        const goal = await prisma.goal.create({
+          data: {
+            userId: user.id,
+            name: `${template.weapon.name} - ${template.name}`,
+            description: template.description,
+            templateType: "weapon",
+            templateId: template.id,
+          },
+        });
+
+        if (template.materials.length > 0) {
+          await prisma.goalMaterial.createMany({
+            data: template.materials.map((material) => ({
+              goalId: goal.id,
+              materialId: material.materialId,
+              required: material.required,
+            })),
+          });
+        }
       }
     }
   } catch (error) {
-    console.error("Goal creation from template failed", error);
+    console.error("Goal creation from templates failed", error);
 
     return {
       success: false,
-      error: "Unable to create goal from template right now.",
+      error: "Unable to create goals from templates right now.",
     };
   }
 

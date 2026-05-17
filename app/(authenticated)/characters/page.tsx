@@ -26,7 +26,7 @@ export default async function CharactersPage() {
             Characters
           </h1>
           <p className="text-on-surface-variant mt-1">
-            Browse character templates and add them to your tracking goals.
+            Browse characters and open a card to create one or more farming goals.
           </p>
         </div>
         {user.role === "master" && (

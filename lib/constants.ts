@@ -14,6 +14,6 @@ export const rarityBorderMap: Record<number, string> = {
   5: "border-amber-300/60 dark:border-amber-700/60",
 };
 
-export const tabs = ["inventory", "goals", "materials", "crafting"] as const;
+export const tabs = ["materials", "crafting"] as const;
 
 export type DashboardTab = (typeof tabs)[number];
