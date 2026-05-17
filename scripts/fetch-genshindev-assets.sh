@@ -4,7 +4,7 @@ set -euo pipefail
 
 REPO_URL="https://github.com/codeuriii/forkgenshinapi.git"
 BRANCH="mistress"
-DEST_IMAGES="public/image"
+DEST_IMAGES="public/images"
 DEST_DATA="data"
 CLEAN_DEST="true"
 
@@ -14,13 +14,13 @@ Usage: scripts/fetch-genshindev-assets.sh [options]
 
 Fetches selected content from the genshindev/api repository and syncs it into
 this project:
-  assets/images -> public/image
+  assets/images -> public/images
   assets/data   -> data
 
 Options:
   -b, --branch <name>     Branch, tag, or ref to fetch from (default: main)
       --repo <url>        Override source repository URL
-      --images-dir <dir>  Destination for assets/images (default: public/image)
+      --images-dir <dir>  Destination for assets/images (default: public/images)
       --data-dir <dir>    Destination for assets/data (default: data)
       --no-clean          Do not delete files in destination that no longer
                           exist in the source
