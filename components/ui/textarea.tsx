@@ -3,15 +3,19 @@ import { cn } from "@/lib/utils";
 
 export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   label?: string;
+  variant?: "filled" | "outlined";
 }
 
 const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
-  ({ className, label, ...props }, ref) => {
+  ({ className, label, variant = "outlined", ...props }, ref) => {
     return (
       <div className="group relative w-full">
         <textarea
           className={cn(
-            "text-on-surface-variant peer flex min-h-[80px] w-full resize-y rounded-t-md border-b border-outline-variant bg-surface-variant px-4 pb-2 pt-6 transition-all placeholder:text-transparent hover:bg-surface-variant/80 focus:border-primary focus:outline-none focus:ring-0",
+            "text-on-surface-variant peer flex min-h-[80px] w-full resize-y px-4 pb-2 pt-6 transition-all placeholder:text-transparent focus:outline-none focus:ring-0",
+            variant === "outlined"
+              ? "hover:border-on-surface rounded-md border border-outline bg-transparent focus:border-2 focus:border-primary"
+              : "rounded-t-md border-b border-outline-variant bg-surface-variant hover:bg-surface-variant/80 focus:border-primary",
             className,
           )}
           ref={ref}

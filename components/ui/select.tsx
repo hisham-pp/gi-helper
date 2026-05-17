@@ -21,6 +21,7 @@ export interface CustomSelectProps extends Omit<
   value?: string;
   onChange?: (value: string) => void;
   options: Option[];
+  variant?: "filled" | "outlined";
 }
 
 export function Select({
@@ -29,6 +30,7 @@ export function Select({
   onChange,
   options,
   className,
+  variant = "outlined",
   ...props
 }: CustomSelectProps) {
   const id = React.useId();
@@ -43,17 +45,35 @@ export function Select({
     control: (base, state) => ({
       ...base,
       height: "56px",
-      backgroundColor: "rgb(var(--md-sys-color-surface-variant) / 1)",
-      border: "none",
-      borderBottom: state.isFocused
-        ? "2px solid rgb(var(--md-sys-color-primary) / 1)"
-        : "1px solid rgb(var(--md-sys-color-outline-variant) / 1)",
-      borderRadius: "4px 4px 0 0",
+      backgroundColor:
+        variant === "outlined"
+          ? "transparent"
+          : "rgb(var(--md-sys-color-surface-variant) / 1)",
+      border:
+        variant === "outlined"
+          ? state.isFocused
+            ? "2px solid rgb(var(--md-sys-color-primary) / 1)"
+            : "1px solid rgb(var(--md-sys-color-outline) / 1)"
+          : "none",
+      borderBottom:
+        variant === "filled"
+          ? state.isFocused
+            ? "2px solid rgb(var(--md-sys-color-primary) / 1)"
+            : "1px solid rgb(var(--md-sys-color-outline-variant) / 1)"
+          : undefined,
+      borderRadius: variant === "outlined" ? "4px" : "4px 4px 0 0",
       boxShadow: "none",
       paddingTop: "16px",
       paddingLeft: "4px",
       "&:hover": {
-        backgroundColor: "rgb(var(--md-sys-color-surface-variant) / 0.8)",
+        backgroundColor:
+          variant === "outlined"
+            ? "rgb(var(--md-sys-color-surface-variant) / 0.05)"
+            : "rgb(var(--md-sys-color-surface-variant) / 0.8)",
+        borderColor:
+          variant === "outlined" && !state.isFocused
+            ? "rgb(var(--md-sys-color-on-surface) / 1)"
+            : undefined,
       },
     }),
     valueContainer: (base) => ({

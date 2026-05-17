@@ -35,7 +35,6 @@ import type { DashboardData, GoalView, MaterialView } from "@/lib/types";
 import { cn, formatNumber } from "@/lib/utils";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { TextField } from "@/components/ui/text-field";
 import { Select } from "@/components/ui/select";
 import { Progress } from "@/components/ui/progress";
@@ -328,14 +327,16 @@ export function DashboardShell({
                   </p>
                 </div>
                 <div className="flex flex-col gap-3 sm:flex-row">
-                  <Input
+                  <TextField
                     label="Search"
+                    variant="outlined"
                     className="h-12"
                     value={search}
                     onChange={(event) => setSearch(event.target.value)}
                   />
                   <Select
                     label="Category"
+                    variant="outlined"
                     className="h-12"
                     value={categoryFilter}
                     onChange={setCategoryFilter}
@@ -593,6 +594,7 @@ export function DashboardShell({
             <div className="mt-4 space-y-4">
               <Select
                 label="Select Material"
+                variant="outlined"
                 value={simulationMaterialId}
                 onChange={setSimulationMaterialId}
                 options={data.materials.map((material) => ({
@@ -600,8 +602,9 @@ export function DashboardShell({
                   value: material.id,
                 }))}
               />
-              <Input
+              <TextField
                 label="Required Quantity"
+                variant="outlined"
                 type="number"
                 min={0}
                 value={simulationRequired}
@@ -744,6 +747,7 @@ function MaterialEditor({
             />
             <Select
               label="Category"
+              variant="outlined"
               value={form.category}
               onChange={(value) => setForm({ ...form, category: value })}
               options={categoryOptions}
@@ -769,6 +773,7 @@ function MaterialEditor({
             />
             <Select
               label="Parent Material"
+              variant="outlined"
               value={form.parentMaterialId ?? ""}
               onChange={(value) =>
                 setForm({ ...form, parentMaterialId: value || null })
@@ -846,7 +851,8 @@ function MaterialCard({
 
       <div className="mt-4 flex items-center gap-2">
         <div className="flex-1">
-          <Input
+          <TextField
+            variant="outlined"
             type="number"
             min={0}
             className="h-11"
