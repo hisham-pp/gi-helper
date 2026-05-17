@@ -904,6 +904,12 @@ function MaterialCard({
             className="h-11"
             value={quantity}
             onChange={(event) => onChange(Number(event.target.value))}
+            onKeyDown={(event) => {
+              if (event.key === "Enter") {
+                event.preventDefault();
+                onSave();
+              }
+            }}
           />
         </div>
         <Button variant="filled" className="h-11 px-4" onClick={onSave}>
