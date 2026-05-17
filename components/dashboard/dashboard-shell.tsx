@@ -415,12 +415,20 @@ export function DashboardShell({
                 Track and manage your farming objectives.
               </p>
             </div>
-            <Link href={"/goals/new" as any}>
-              <Button className="gap-2">
-                <Sparkles className="h-4 w-4" />
-                Create Goal
-              </Button>
-            </Link>
+            <div className="flex gap-2">
+              <Link href={"/goal-templates" as any}>
+                <Button variant="outlined" className="gap-2">
+                  <Sparkles className="h-4 w-4" />
+                  Templates
+                </Button>
+              </Link>
+              <Link href={"/goals/new" as any}>
+                <Button className="gap-2">
+                  <Target className="h-4 w-4" />
+                  Custom Goal
+                </Button>
+              </Link>
+            </div>
           </div>
 
           {data.goals.length === 0 ? (
@@ -428,7 +436,7 @@ export function DashboardShell({
               <EmptyState
                 icon={<Target className="h-12 w-12" />}
                 title="No Goals Yet"
-                description="Create a goal and assign materials to start tracking."
+                description="Create a goal from templates or build a custom one."
               />
             </Card>
           ) : (
