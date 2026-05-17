@@ -131,6 +131,17 @@ Build a production-ready full-stack web application named `Genshin Material Trac
 - Material planner calculator
 - Architecture ready for future character/weapon expansion
 
+### 12. Character & Weapon Goal Templates (Implemented)
+
+- Predefined goal templates for characters and weapons
+- Quick goal creation from templates
+- Support for ascension and talent level goals
+- Sub-goals with material requirements
+- Template browser with character/weapon filtering
+- Seed data for 8 characters and 6 weapons
+- Multiple templates per character/weapon (ascension levels, talent levels)
+- One-click goal creation from templates
+
 ## Constraints
 
 - Use simple authentication only
