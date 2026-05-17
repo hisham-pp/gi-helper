@@ -25,7 +25,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "aino",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Aino",
     "category": "ascension",
     "sortOrder": 2,
@@ -50,7 +50,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "aino",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Aino",
     "category": "ascension",
     "sortOrder": 3,
@@ -75,7 +75,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "aino",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Aino",
     "category": "ascension",
     "sortOrder": 4,
@@ -100,7 +100,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "aino",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Aino",
     "category": "ascension",
     "sortOrder": 5,
@@ -125,7 +125,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "aino",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Aino",
     "category": "ascension",
     "sortOrder": 6,
@@ -171,7 +171,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "albedo",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Albedo",
     "category": "ascension",
     "sortOrder": 2,
@@ -196,7 +196,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "albedo",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Albedo",
     "category": "ascension",
     "sortOrder": 3,
@@ -221,7 +221,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "albedo",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Albedo",
     "category": "ascension",
     "sortOrder": 4,
@@ -246,7 +246,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "albedo",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Albedo",
     "category": "ascension",
     "sortOrder": 5,
@@ -271,7 +271,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "albedo",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Albedo",
     "category": "ascension",
     "sortOrder": 6,
@@ -291,6 +291,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "forbidden-curse-scroll",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "albedo",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Albedo",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-ballad",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-ballad",
+        "required": 63
+      },
+      {
+        "materialId": "divining-scroll",
+        "required": 18
+      },
+      {
+        "materialId": "sealed-scroll",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "albedo",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Albedo",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-ballad",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-ballad",
+        "required": 38
+      },
+      {
+        "materialId": "sealed-scroll",
+        "required": 6
+      },
+      {
+        "materialId": "forbidden-curse-scroll",
+        "required": 22
+      },
+      {
+        "materialId": "tusk-of-monoceros-caeli",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "albedo",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Albedo",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-ballad",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-ballad",
+        "required": 114
+      },
+      {
+        "materialId": "sealed-scroll",
+        "required": 18
+      },
+      {
+        "materialId": "forbidden-curse-scroll",
+        "required": 66
+      },
+      {
+        "materialId": "tusk-of-monoceros-caeli",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -317,7 +408,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "alhaitham",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Alhaitham",
     "category": "ascension",
     "sortOrder": 2,
@@ -342,7 +433,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "alhaitham",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Alhaitham",
     "category": "ascension",
     "sortOrder": 3,
@@ -367,7 +458,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "alhaitham",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Alhaitham",
     "category": "ascension",
     "sortOrder": 4,
@@ -392,7 +483,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "alhaitham",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Alhaitham",
     "category": "ascension",
     "sortOrder": 5,
@@ -417,7 +508,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "alhaitham",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Alhaitham",
     "category": "ascension",
     "sortOrder": 6,
@@ -437,6 +528,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "rich-red-brocade",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "alhaitham",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Alhaitham",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-ingenuity",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-ingenuity",
+        "required": 63
+      },
+      {
+        "materialId": "faded-red-satin",
+        "required": 18
+      },
+      {
+        "materialId": "trimmed-red-silk",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "alhaitham",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Alhaitham",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-ingenuity",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-ingenuity",
+        "required": 38
+      },
+      {
+        "materialId": "trimmed-red-silk",
+        "required": 6
+      },
+      {
+        "materialId": "rich-red-brocade",
+        "required": 22
+      },
+      {
+        "materialId": "mirror-of-mushin",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "alhaitham",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Alhaitham",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-ingenuity",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-ingenuity",
+        "required": 114
+      },
+      {
+        "materialId": "trimmed-red-silk",
+        "required": 18
+      },
+      {
+        "materialId": "rich-red-brocade",
+        "required": 66
+      },
+      {
+        "materialId": "mirror-of-mushin",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -463,7 +645,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "aloy",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Aloy",
     "category": "ascension",
     "sortOrder": 2,
@@ -488,7 +670,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "aloy",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Aloy",
     "category": "ascension",
     "sortOrder": 3,
@@ -513,7 +695,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "aloy",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Aloy",
     "category": "ascension",
     "sortOrder": 4,
@@ -538,7 +720,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "aloy",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Aloy",
     "category": "ascension",
     "sortOrder": 5,
@@ -563,7 +745,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "aloy",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Aloy",
     "category": "ascension",
     "sortOrder": 6,
@@ -583,6 +765,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "spectral-nucleus",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "aloy",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Aloy",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-freedom",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-freedom",
+        "required": 63
+      },
+      {
+        "materialId": "spectral-husk",
+        "required": 18
+      },
+      {
+        "materialId": "spectral-heart",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "aloy",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Aloy",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-freedom",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-freedom",
+        "required": 38
+      },
+      {
+        "materialId": "spectral-heart",
+        "required": 6
+      },
+      {
+        "materialId": "spectral-nucleus",
+        "required": 22
+      },
+      {
+        "materialId": "molten-moment",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "aloy",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Aloy",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-freedom",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-freedom",
+        "required": 114
+      },
+      {
+        "materialId": "spectral-heart",
+        "required": 18
+      },
+      {
+        "materialId": "spectral-nucleus",
+        "required": 66
+      },
+      {
+        "materialId": "molten-moment",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -609,7 +882,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "amber",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Amber",
     "category": "ascension",
     "sortOrder": 2,
@@ -634,7 +907,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "amber",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Amber",
     "category": "ascension",
     "sortOrder": 3,
@@ -659,7 +932,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "amber",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Amber",
     "category": "ascension",
     "sortOrder": 4,
@@ -684,7 +957,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "amber",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Amber",
     "category": "ascension",
     "sortOrder": 5,
@@ -709,7 +982,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "amber",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Amber",
     "category": "ascension",
     "sortOrder": 6,
@@ -729,6 +1002,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "weathered-arrowhead",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "amber",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Amber",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-freedom",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-freedom",
+        "required": 63
+      },
+      {
+        "materialId": "firm-arrowhead",
+        "required": 18
+      },
+      {
+        "materialId": "sharp-arrowhead",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "amber",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Amber",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-freedom",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-freedom",
+        "required": 38
+      },
+      {
+        "materialId": "sharp-arrowhead",
+        "required": 6
+      },
+      {
+        "materialId": "weathered-arrowhead",
+        "required": 22
+      },
+      {
+        "materialId": "dvalin's-sigh",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "amber",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Amber",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-freedom",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-freedom",
+        "required": 114
+      },
+      {
+        "materialId": "sharp-arrowhead",
+        "required": 18
+      },
+      {
+        "materialId": "weathered-arrowhead",
+        "required": 66
+      },
+      {
+        "materialId": "dvalin's-sigh",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -755,7 +1119,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "arataki-itto",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Arataki Itto",
     "category": "ascension",
     "sortOrder": 2,
@@ -780,7 +1144,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "arataki-itto",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Arataki Itto",
     "category": "ascension",
     "sortOrder": 3,
@@ -805,7 +1169,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "arataki-itto",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Arataki Itto",
     "category": "ascension",
     "sortOrder": 4,
@@ -830,7 +1194,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "arataki-itto",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Arataki Itto",
     "category": "ascension",
     "sortOrder": 5,
@@ -855,7 +1219,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "arataki-itto",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Arataki Itto",
     "category": "ascension",
     "sortOrder": 6,
@@ -875,6 +1239,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "slime-concentrate",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "arataki-itto",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Arataki Itto",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-elegance",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-elegance",
+        "required": 63
+      },
+      {
+        "materialId": "slime-condensate",
+        "required": 18
+      },
+      {
+        "materialId": "slime-secretions",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "arataki-itto",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Arataki Itto",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-elegance",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-elegance",
+        "required": 38
+      },
+      {
+        "materialId": "slime-secretions",
+        "required": 6
+      },
+      {
+        "materialId": "slime-concentrate",
+        "required": 22
+      },
+      {
+        "materialId": "ashen-heart",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "arataki-itto",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Arataki Itto",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-elegance",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-elegance",
+        "required": 114
+      },
+      {
+        "materialId": "slime-secretions",
+        "required": 18
+      },
+      {
+        "materialId": "slime-concentrate",
+        "required": 66
+      },
+      {
+        "materialId": "ashen-heart",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -901,7 +1356,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "arlecchino",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Arlecchino",
     "category": "ascension",
     "sortOrder": 2,
@@ -926,7 +1381,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "arlecchino",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Arlecchino",
     "category": "ascension",
     "sortOrder": 3,
@@ -951,7 +1406,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "arlecchino",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Arlecchino",
     "category": "ascension",
     "sortOrder": 4,
@@ -976,7 +1431,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "arlecchino",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Arlecchino",
     "category": "ascension",
     "sortOrder": 5,
@@ -1001,7 +1456,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "arlecchino",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Arlecchino",
     "category": "ascension",
     "sortOrder": 6,
@@ -1047,7 +1502,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kamisato-ayaka",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Kamisato Ayaka",
     "category": "ascension",
     "sortOrder": 2,
@@ -1072,7 +1527,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kamisato-ayaka",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Kamisato Ayaka",
     "category": "ascension",
     "sortOrder": 3,
@@ -1097,7 +1552,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kamisato-ayaka",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Kamisato Ayaka",
     "category": "ascension",
     "sortOrder": 4,
@@ -1122,7 +1577,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kamisato-ayaka",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Kamisato Ayaka",
     "category": "ascension",
     "sortOrder": 5,
@@ -1147,7 +1602,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kamisato-ayaka",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Kamisato Ayaka",
     "category": "ascension",
     "sortOrder": 6,
@@ -1167,6 +1622,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "famed-handguard",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "kamisato-ayaka",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Kamisato Ayaka",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-elegance",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-elegance",
+        "required": 63
+      },
+      {
+        "materialId": "old-handguard",
+        "required": 18
+      },
+      {
+        "materialId": "kageuchi-handguard",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "kamisato-ayaka",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Kamisato Ayaka",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-elegance",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-elegance",
+        "required": 38
+      },
+      {
+        "materialId": "kageuchi-handguard",
+        "required": 6
+      },
+      {
+        "materialId": "famed-handguard",
+        "required": 22
+      },
+      {
+        "materialId": "bloodjade-branch",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "kamisato-ayaka",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Kamisato Ayaka",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-elegance",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-elegance",
+        "required": 114
+      },
+      {
+        "materialId": "kageuchi-handguard",
+        "required": 18
+      },
+      {
+        "materialId": "famed-handguard",
+        "required": 66
+      },
+      {
+        "materialId": "bloodjade-branch",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -1193,7 +1739,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kamisato-ayato",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Kamisato Ayato",
     "category": "ascension",
     "sortOrder": 2,
@@ -1218,7 +1764,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kamisato-ayato",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Kamisato Ayato",
     "category": "ascension",
     "sortOrder": 3,
@@ -1243,7 +1789,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kamisato-ayato",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Kamisato Ayato",
     "category": "ascension",
     "sortOrder": 4,
@@ -1268,7 +1814,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kamisato-ayato",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Kamisato Ayato",
     "category": "ascension",
     "sortOrder": 5,
@@ -1293,7 +1839,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kamisato-ayato",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Kamisato Ayato",
     "category": "ascension",
     "sortOrder": 6,
@@ -1313,6 +1859,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "famed-handguard",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "kamisato-ayato",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Kamisato Ayato",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-elegance",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-elegance",
+        "required": 63
+      },
+      {
+        "materialId": "old-handguard",
+        "required": 18
+      },
+      {
+        "materialId": "kageuchi-handguard",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "kamisato-ayato",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Kamisato Ayato",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-elegance",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-elegance",
+        "required": 38
+      },
+      {
+        "materialId": "kageuchi-handguard",
+        "required": 6
+      },
+      {
+        "materialId": "famed-handguard",
+        "required": 22
+      },
+      {
+        "materialId": "mudra-of-the-malefic-general",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "kamisato-ayato",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Kamisato Ayato",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-elegance",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-elegance",
+        "required": 114
+      },
+      {
+        "materialId": "kageuchi-handguard",
+        "required": 18
+      },
+      {
+        "materialId": "famed-handguard",
+        "required": 66
+      },
+      {
+        "materialId": "mudra-of-the-malefic-general",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -1339,7 +1976,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "baizhu",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Baizhu",
     "category": "ascension",
     "sortOrder": 2,
@@ -1364,7 +2001,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "baizhu",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Baizhu",
     "category": "ascension",
     "sortOrder": 3,
@@ -1389,7 +2026,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "baizhu",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Baizhu",
     "category": "ascension",
     "sortOrder": 4,
@@ -1414,7 +2051,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "baizhu",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Baizhu",
     "category": "ascension",
     "sortOrder": 5,
@@ -1439,7 +2076,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "baizhu",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Baizhu",
     "category": "ascension",
     "sortOrder": 6,
@@ -1459,6 +2096,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "crystalline-cyst-dust",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "baizhu",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Baizhu",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-gold",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-gold",
+        "required": 63
+      },
+      {
+        "materialId": "fungal-spores",
+        "required": 18
+      },
+      {
+        "materialId": "luminescent-pollen",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "baizhu",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Baizhu",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-gold",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-gold",
+        "required": 38
+      },
+      {
+        "materialId": "luminescent-pollen",
+        "required": 6
+      },
+      {
+        "materialId": "crystalline-cyst-dust",
+        "required": 22
+      },
+      {
+        "materialId": "worldspan-fern",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "baizhu",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Baizhu",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-gold",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-gold",
+        "required": 114
+      },
+      {
+        "materialId": "luminescent-pollen",
+        "required": 18
+      },
+      {
+        "materialId": "crystalline-cyst-dust",
+        "required": 66
+      },
+      {
+        "materialId": "worldspan-fern",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -1485,7 +2213,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "barbara",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Barbara",
     "category": "ascension",
     "sortOrder": 2,
@@ -1510,7 +2238,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "barbara",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Barbara",
     "category": "ascension",
     "sortOrder": 3,
@@ -1535,7 +2263,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "barbara",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Barbara",
     "category": "ascension",
     "sortOrder": 4,
@@ -1560,7 +2288,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "barbara",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Barbara",
     "category": "ascension",
     "sortOrder": 5,
@@ -1585,7 +2313,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "barbara",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Barbara",
     "category": "ascension",
     "sortOrder": 6,
@@ -1605,6 +2333,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "forbidden-curse-scroll",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "barbara",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Barbara",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-freedom",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-freedom",
+        "required": 63
+      },
+      {
+        "materialId": "divining-scroll",
+        "required": 18
+      },
+      {
+        "materialId": "sealed-scroll",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "barbara",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Barbara",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-freedom",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-freedom",
+        "required": 38
+      },
+      {
+        "materialId": "sealed-scroll",
+        "required": 6
+      },
+      {
+        "materialId": "forbidden-curse-scroll",
+        "required": 22
+      },
+      {
+        "materialId": "ring-of-boreas",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "barbara",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Barbara",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-freedom",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-freedom",
+        "required": 114
+      },
+      {
+        "materialId": "sealed-scroll",
+        "required": 18
+      },
+      {
+        "materialId": "forbidden-curse-scroll",
+        "required": 66
+      },
+      {
+        "materialId": "ring-of-boreas",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -1631,7 +2450,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "beidou",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Beidou",
     "category": "ascension",
     "sortOrder": 2,
@@ -1656,7 +2475,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "beidou",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Beidou",
     "category": "ascension",
     "sortOrder": 3,
@@ -1681,7 +2500,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "beidou",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Beidou",
     "category": "ascension",
     "sortOrder": 4,
@@ -1706,7 +2525,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "beidou",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Beidou",
     "category": "ascension",
     "sortOrder": 5,
@@ -1731,7 +2550,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "beidou",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Beidou",
     "category": "ascension",
     "sortOrder": 6,
@@ -1751,6 +2570,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "golden-raven-insignia",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "beidou",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Beidou",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-gold",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-gold",
+        "required": 63
+      },
+      {
+        "materialId": "treasure-hoarder-insignia",
+        "required": 18
+      },
+      {
+        "materialId": "silver-raven-insignia",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "beidou",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Beidou",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-gold",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-gold",
+        "required": 38
+      },
+      {
+        "materialId": "silver-raven-insignia",
+        "required": 6
+      },
+      {
+        "materialId": "golden-raven-insignia",
+        "required": 22
+      },
+      {
+        "materialId": "dvalin's-sigh",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "beidou",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Beidou",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-gold",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-gold",
+        "required": 114
+      },
+      {
+        "materialId": "silver-raven-insignia",
+        "required": 18
+      },
+      {
+        "materialId": "golden-raven-insignia",
+        "required": 66
+      },
+      {
+        "materialId": "dvalin's-sigh",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -1777,7 +2687,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "bennett",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Bennett",
     "category": "ascension",
     "sortOrder": 2,
@@ -1802,7 +2712,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "bennett",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Bennett",
     "category": "ascension",
     "sortOrder": 3,
@@ -1827,7 +2737,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "bennett",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Bennett",
     "category": "ascension",
     "sortOrder": 4,
@@ -1852,7 +2762,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "bennett",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Bennett",
     "category": "ascension",
     "sortOrder": 5,
@@ -1877,7 +2787,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "bennett",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Bennett",
     "category": "ascension",
     "sortOrder": 6,
@@ -1897,6 +2807,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "golden-raven-insignia",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "bennett",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Bennett",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-resistance",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-resistance",
+        "required": 63
+      },
+      {
+        "materialId": "treasure-hoarder-insignia",
+        "required": 18
+      },
+      {
+        "materialId": "silver-raven-insignia",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "bennett",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Bennett",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-resistance",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-resistance",
+        "required": 38
+      },
+      {
+        "materialId": "silver-raven-insignia",
+        "required": 6
+      },
+      {
+        "materialId": "golden-raven-insignia",
+        "required": 22
+      },
+      {
+        "materialId": "dvalin's-plume",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "bennett",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Bennett",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-resistance",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-resistance",
+        "required": 114
+      },
+      {
+        "materialId": "silver-raven-insignia",
+        "required": 18
+      },
+      {
+        "materialId": "golden-raven-insignia",
+        "required": 66
+      },
+      {
+        "materialId": "dvalin's-plume",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -1923,7 +2924,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "candace",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Candace",
     "category": "ascension",
     "sortOrder": 2,
@@ -1948,7 +2949,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "candace",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Candace",
     "category": "ascension",
     "sortOrder": 3,
@@ -1973,7 +2974,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "candace",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Candace",
     "category": "ascension",
     "sortOrder": 4,
@@ -1998,7 +2999,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "candace",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Candace",
     "category": "ascension",
     "sortOrder": 5,
@@ -2023,7 +3024,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "candace",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Candace",
     "category": "ascension",
     "sortOrder": 6,
@@ -2043,6 +3044,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "rich-red-brocade",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "candace",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Candace",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-admonition",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-admonition",
+        "required": 63
+      },
+      {
+        "materialId": "faded-red-satin",
+        "required": 18
+      },
+      {
+        "materialId": "trimmed-red-silk",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "candace",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Candace",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-admonition",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-admonition",
+        "required": 38
+      },
+      {
+        "materialId": "trimmed-red-silk",
+        "required": 6
+      },
+      {
+        "materialId": "rich-red-brocade",
+        "required": 22
+      },
+      {
+        "materialId": "tears-of-the-calamitous-god",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "candace",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Candace",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-admonition",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-admonition",
+        "required": 114
+      },
+      {
+        "materialId": "trimmed-red-silk",
+        "required": 18
+      },
+      {
+        "materialId": "rich-red-brocade",
+        "required": 66
+      },
+      {
+        "materialId": "tears-of-the-calamitous-god",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -2069,7 +3161,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "charlotte",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Charlotte",
     "category": "ascension",
     "sortOrder": 2,
@@ -2094,7 +3186,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "charlotte",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Charlotte",
     "category": "ascension",
     "sortOrder": 3,
@@ -2119,7 +3211,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "charlotte",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Charlotte",
     "category": "ascension",
     "sortOrder": 4,
@@ -2144,7 +3236,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "charlotte",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Charlotte",
     "category": "ascension",
     "sortOrder": 5,
@@ -2169,7 +3261,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "charlotte",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Charlotte",
     "category": "ascension",
     "sortOrder": 6,
@@ -2189,6 +3281,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "artificed-dynamic-gear",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "charlotte",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Charlotte",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-justice",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-justice",
+        "required": 63
+      },
+      {
+        "materialId": "meshing-gear",
+        "required": 18
+      },
+      {
+        "materialId": "mechanical-spur-gear",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "charlotte",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Charlotte",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-justice",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-justice",
+        "required": 38
+      },
+      {
+        "materialId": "mechanical-spur-gear",
+        "required": 6
+      },
+      {
+        "materialId": "artificed-dynamic-gear",
+        "required": 22
+      },
+      {
+        "materialId": "lightless-silk-string",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "charlotte",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Charlotte",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-justice",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-justice",
+        "required": 114
+      },
+      {
+        "materialId": "mechanical-spur-gear",
+        "required": 18
+      },
+      {
+        "materialId": "artificed-dynamic-gear",
+        "required": 66
+      },
+      {
+        "materialId": "lightless-silk-string",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -2215,7 +3398,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "chasca",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Chasca",
     "category": "ascension",
     "sortOrder": 2,
@@ -2240,7 +3423,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "chasca",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Chasca",
     "category": "ascension",
     "sortOrder": 3,
@@ -2265,7 +3448,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "chasca",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Chasca",
     "category": "ascension",
     "sortOrder": 4,
@@ -2290,7 +3473,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "chasca",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Chasca",
     "category": "ascension",
     "sortOrder": 5,
@@ -2315,7 +3498,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "chasca",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Chasca",
     "category": "ascension",
     "sortOrder": 6,
@@ -2361,7 +3544,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "chevreuse",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Chevreuse",
     "category": "ascension",
     "sortOrder": 2,
@@ -2386,7 +3569,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "chevreuse",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Chevreuse",
     "category": "ascension",
     "sortOrder": 3,
@@ -2411,7 +3594,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "chevreuse",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Chevreuse",
     "category": "ascension",
     "sortOrder": 4,
@@ -2436,7 +3619,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "chevreuse",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Chevreuse",
     "category": "ascension",
     "sortOrder": 5,
@@ -2461,7 +3644,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "chevreuse",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Chevreuse",
     "category": "ascension",
     "sortOrder": 6,
@@ -2481,6 +3664,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "artificed-dynamic-gear",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "chevreuse",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Chevreuse",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-order",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-order",
+        "required": 63
+      },
+      {
+        "materialId": "meshing-gear",
+        "required": 18
+      },
+      {
+        "materialId": "mechanical-spur-gear",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "chevreuse",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Chevreuse",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-order",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-order",
+        "required": 38
+      },
+      {
+        "materialId": "mechanical-spur-gear",
+        "required": 6
+      },
+      {
+        "materialId": "artificed-dynamic-gear",
+        "required": 22
+      },
+      {
+        "materialId": "lightless-eye-of-the-maelstrom",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "chevreuse",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Chevreuse",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-order",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-order",
+        "required": 114
+      },
+      {
+        "materialId": "mechanical-spur-gear",
+        "required": 18
+      },
+      {
+        "materialId": "artificed-dynamic-gear",
+        "required": 66
+      },
+      {
+        "materialId": "lightless-eye-of-the-maelstrom",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -2507,7 +3781,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "chiori",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Chiori",
     "category": "ascension",
     "sortOrder": 2,
@@ -2532,7 +3806,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "chiori",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Chiori",
     "category": "ascension",
     "sortOrder": 3,
@@ -2557,7 +3831,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "chiori",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Chiori",
     "category": "ascension",
     "sortOrder": 4,
@@ -2582,7 +3856,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "chiori",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Chiori",
     "category": "ascension",
     "sortOrder": 5,
@@ -2607,7 +3881,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "chiori",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Chiori",
     "category": "ascension",
     "sortOrder": 6,
@@ -2653,7 +3927,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "chongyun",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Chongyun",
     "category": "ascension",
     "sortOrder": 2,
@@ -2678,7 +3952,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "chongyun",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Chongyun",
     "category": "ascension",
     "sortOrder": 3,
@@ -2703,7 +3977,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "chongyun",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Chongyun",
     "category": "ascension",
     "sortOrder": 4,
@@ -2728,7 +4002,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "chongyun",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Chongyun",
     "category": "ascension",
     "sortOrder": 5,
@@ -2753,7 +4027,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "chongyun",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Chongyun",
     "category": "ascension",
     "sortOrder": 6,
@@ -2773,6 +4047,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "ominous-mask",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "chongyun",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Chongyun",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-diligence",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-diligence",
+        "required": 63
+      },
+      {
+        "materialId": "damaged-mask",
+        "required": 18
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "chongyun",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Chongyun",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-diligence",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-diligence",
+        "required": 38
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 6
+      },
+      {
+        "materialId": "ominous-mask",
+        "required": 22
+      },
+      {
+        "materialId": "dvalin's-sigh",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "chongyun",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Chongyun",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-diligence",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-diligence",
+        "required": 114
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 18
+      },
+      {
+        "materialId": "ominous-mask",
+        "required": 66
+      },
+      {
+        "materialId": "dvalin's-sigh",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -2799,7 +4164,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "citlali",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Citlali",
     "category": "ascension",
     "sortOrder": 2,
@@ -2824,7 +4189,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "citlali",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Citlali",
     "category": "ascension",
     "sortOrder": 3,
@@ -2849,7 +4214,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "citlali",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Citlali",
     "category": "ascension",
     "sortOrder": 4,
@@ -2874,7 +4239,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "citlali",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Citlali",
     "category": "ascension",
     "sortOrder": 5,
@@ -2899,7 +4264,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "citlali",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Citlali",
     "category": "ascension",
     "sortOrder": 6,
@@ -2945,7 +4310,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "clorinde",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Clorinde",
     "category": "ascension",
     "sortOrder": 2,
@@ -2970,7 +4335,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "clorinde",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Clorinde",
     "category": "ascension",
     "sortOrder": 3,
@@ -2995,7 +4360,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "clorinde",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Clorinde",
     "category": "ascension",
     "sortOrder": 4,
@@ -3020,7 +4385,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "clorinde",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Clorinde",
     "category": "ascension",
     "sortOrder": 5,
@@ -3045,7 +4410,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "clorinde",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Clorinde",
     "category": "ascension",
     "sortOrder": 6,
@@ -3065,6 +4430,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "xenochromatic-crystal",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "clorinde",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Clorinde",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-justice",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-justice",
+        "required": 63
+      },
+      {
+        "materialId": "transoceanic-pearl",
+        "required": 18
+      },
+      {
+        "materialId": "transoceanic-chunk",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "clorinde",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Clorinde",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-justice",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-justice",
+        "required": 38
+      },
+      {
+        "materialId": "transoceanic-chunk",
+        "required": 6
+      },
+      {
+        "materialId": "xenochromatic-crystal",
+        "required": 22
+      },
+      {
+        "materialId": "everamber",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "clorinde",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Clorinde",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-justice",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-justice",
+        "required": 114
+      },
+      {
+        "materialId": "transoceanic-chunk",
+        "required": 18
+      },
+      {
+        "materialId": "xenochromatic-crystal",
+        "required": 66
+      },
+      {
+        "materialId": "everamber",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -3091,7 +4547,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "collei",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Collei",
     "category": "ascension",
     "sortOrder": 2,
@@ -3116,7 +4572,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "collei",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Collei",
     "category": "ascension",
     "sortOrder": 3,
@@ -3141,7 +4597,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "collei",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Collei",
     "category": "ascension",
     "sortOrder": 4,
@@ -3166,7 +4622,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "collei",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Collei",
     "category": "ascension",
     "sortOrder": 5,
@@ -3191,7 +4647,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "collei",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Collei",
     "category": "ascension",
     "sortOrder": 6,
@@ -3211,6 +4667,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "weathered-arrowhead",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "collei",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Collei",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-praxis",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-praxis",
+        "required": 63
+      },
+      {
+        "materialId": "firm-arrowhead",
+        "required": 18
+      },
+      {
+        "materialId": "sharp-arrowhead",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "collei",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Collei",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-praxis",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-praxis",
+        "required": 38
+      },
+      {
+        "materialId": "sharp-arrowhead",
+        "required": 6
+      },
+      {
+        "materialId": "weathered-arrowhead",
+        "required": 22
+      },
+      {
+        "materialId": "tears-of-the-calamitous-god",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "collei",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Collei",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-praxis",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-praxis",
+        "required": 114
+      },
+      {
+        "materialId": "sharp-arrowhead",
+        "required": 18
+      },
+      {
+        "materialId": "weathered-arrowhead",
+        "required": 66
+      },
+      {
+        "materialId": "tears-of-the-calamitous-god",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -3237,7 +4784,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "columbina",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Columbina",
     "category": "ascension",
     "sortOrder": 2,
@@ -3262,7 +4809,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "columbina",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Columbina",
     "category": "ascension",
     "sortOrder": 3,
@@ -3287,7 +4834,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "columbina",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Columbina",
     "category": "ascension",
     "sortOrder": 4,
@@ -3312,7 +4859,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "columbina",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Columbina",
     "category": "ascension",
     "sortOrder": 5,
@@ -3337,7 +4884,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "columbina",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Columbina",
     "category": "ascension",
     "sortOrder": 6,
@@ -3383,7 +4930,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "cyno",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Cyno",
     "category": "ascension",
     "sortOrder": 2,
@@ -3408,7 +4955,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "cyno",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Cyno",
     "category": "ascension",
     "sortOrder": 3,
@@ -3433,7 +4980,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "cyno",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Cyno",
     "category": "ascension",
     "sortOrder": 4,
@@ -3458,7 +5005,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "cyno",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Cyno",
     "category": "ascension",
     "sortOrder": 5,
@@ -3483,7 +5030,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "cyno",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Cyno",
     "category": "ascension",
     "sortOrder": 6,
@@ -3503,6 +5050,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "forbidden-curse-scroll",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "cyno",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Cyno",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-admonition",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-admonition",
+        "required": 63
+      },
+      {
+        "materialId": "divining-scroll",
+        "required": 18
+      },
+      {
+        "materialId": "sealed-scroll",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "cyno",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Cyno",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-admonition",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-admonition",
+        "required": 38
+      },
+      {
+        "materialId": "sealed-scroll",
+        "required": 6
+      },
+      {
+        "materialId": "forbidden-curse-scroll",
+        "required": 22
+      },
+      {
+        "materialId": "mudra-of-the-malefic-general",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "cyno",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Cyno",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-admonition",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-admonition",
+        "required": 114
+      },
+      {
+        "materialId": "sealed-scroll",
+        "required": 18
+      },
+      {
+        "materialId": "forbidden-curse-scroll",
+        "required": 66
+      },
+      {
+        "materialId": "mudra-of-the-malefic-general",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -3529,7 +5167,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "dahlia",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Dahlia",
     "category": "ascension",
     "sortOrder": 2,
@@ -3554,7 +5192,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "dahlia",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Dahlia",
     "category": "ascension",
     "sortOrder": 3,
@@ -3579,7 +5217,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "dahlia",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Dahlia",
     "category": "ascension",
     "sortOrder": 4,
@@ -3604,7 +5242,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "dahlia",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Dahlia",
     "category": "ascension",
     "sortOrder": 5,
@@ -3629,7 +5267,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "dahlia",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Dahlia",
     "category": "ascension",
     "sortOrder": 6,
@@ -3675,7 +5313,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "dehya",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Dehya",
     "category": "ascension",
     "sortOrder": 2,
@@ -3700,7 +5338,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "dehya",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Dehya",
     "category": "ascension",
     "sortOrder": 3,
@@ -3725,7 +5363,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "dehya",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Dehya",
     "category": "ascension",
     "sortOrder": 4,
@@ -3750,7 +5388,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "dehya",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Dehya",
     "category": "ascension",
     "sortOrder": 5,
@@ -3775,7 +5413,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "dehya",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Dehya",
     "category": "ascension",
     "sortOrder": 6,
@@ -3795,6 +5433,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "rich-red-brocade",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "dehya",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Dehya",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-praxis",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-praxis",
+        "required": 63
+      },
+      {
+        "materialId": "faded-red-satin",
+        "required": 18
+      },
+      {
+        "materialId": "trimmed-red-silk",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "dehya",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Dehya",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-praxis",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-praxis",
+        "required": 38
+      },
+      {
+        "materialId": "trimmed-red-silk",
+        "required": 6
+      },
+      {
+        "materialId": "rich-red-brocade",
+        "required": 22
+      },
+      {
+        "materialId": "puppet-strings",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "dehya",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Dehya",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-praxis",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-praxis",
+        "required": 114
+      },
+      {
+        "materialId": "trimmed-red-silk",
+        "required": 18
+      },
+      {
+        "materialId": "rich-red-brocade",
+        "required": 66
+      },
+      {
+        "materialId": "puppet-strings",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -3821,7 +5550,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "diluc",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Diluc",
     "category": "ascension",
     "sortOrder": 2,
@@ -3846,7 +5575,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "diluc",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Diluc",
     "category": "ascension",
     "sortOrder": 3,
@@ -3871,7 +5600,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "diluc",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Diluc",
     "category": "ascension",
     "sortOrder": 4,
@@ -3896,7 +5625,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "diluc",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Diluc",
     "category": "ascension",
     "sortOrder": 5,
@@ -3921,7 +5650,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "diluc",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Diluc",
     "category": "ascension",
     "sortOrder": 6,
@@ -3941,6 +5670,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "lieutenant-s-insignia",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "diluc",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Diluc",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-resistance",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-resistance",
+        "required": 63
+      },
+      {
+        "materialId": "recruit-s-insignia",
+        "required": 18
+      },
+      {
+        "materialId": "sergeant-s-insignia",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "diluc",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Diluc",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-resistance",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-resistance",
+        "required": 38
+      },
+      {
+        "materialId": "sergeant-s-insignia",
+        "required": 6
+      },
+      {
+        "materialId": "lieutenant-s-insignia",
+        "required": 22
+      },
+      {
+        "materialId": "dvalin's-plume",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "diluc",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Diluc",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-resistance",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-resistance",
+        "required": 114
+      },
+      {
+        "materialId": "sergeant-s-insignia",
+        "required": 18
+      },
+      {
+        "materialId": "lieutenant-s-insignia",
+        "required": 66
+      },
+      {
+        "materialId": "dvalin's-plume",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -3967,7 +5787,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "diona",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Diona",
     "category": "ascension",
     "sortOrder": 2,
@@ -3992,7 +5812,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "diona",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Diona",
     "category": "ascension",
     "sortOrder": 3,
@@ -4017,7 +5837,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "diona",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Diona",
     "category": "ascension",
     "sortOrder": 4,
@@ -4042,7 +5862,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "diona",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Diona",
     "category": "ascension",
     "sortOrder": 5,
@@ -4067,7 +5887,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "diona",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Diona",
     "category": "ascension",
     "sortOrder": 6,
@@ -4087,6 +5907,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "lieutenant-s-insignia",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "diona",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Diona",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-freedom",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-freedom",
+        "required": 63
+      },
+      {
+        "materialId": "firm-arrowhead",
+        "required": 18
+      },
+      {
+        "materialId": "sharp-arrowhead",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "diona",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Diona",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-freedom",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-freedom",
+        "required": 38
+      },
+      {
+        "materialId": "sharp-arrowhead",
+        "required": 6
+      },
+      {
+        "materialId": "weathered-arrowhead",
+        "required": 22
+      },
+      {
+        "materialId": "shard-of-a-foul-legacy",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "diona",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Diona",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-freedom",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-freedom",
+        "required": 114
+      },
+      {
+        "materialId": "sharp-arrowhead",
+        "required": 18
+      },
+      {
+        "materialId": "weathered-arrowhead",
+        "required": 66
+      },
+      {
+        "materialId": "shard-of-a-foul-legacy",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -4113,7 +6024,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "dori",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Dori",
     "category": "ascension",
     "sortOrder": 2,
@@ -4138,7 +6049,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "dori",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Dori",
     "category": "ascension",
     "sortOrder": 3,
@@ -4163,7 +6074,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "dori",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Dori",
     "category": "ascension",
     "sortOrder": 4,
@@ -4188,7 +6099,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "dori",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Dori",
     "category": "ascension",
     "sortOrder": 5,
@@ -4213,7 +6124,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "dori",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Dori",
     "category": "ascension",
     "sortOrder": 6,
@@ -4233,6 +6144,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "rich-red-brocade",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "dori",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Dori",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-ingenuity",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-ingenuity",
+        "required": 63
+      },
+      {
+        "materialId": "faded-red-satin",
+        "required": 18
+      },
+      {
+        "materialId": "trimmed-red-silk",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "dori",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Dori",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-ingenuity",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-ingenuity",
+        "required": 38
+      },
+      {
+        "materialId": "trimmed-red-silk",
+        "required": 6
+      },
+      {
+        "materialId": "rich-red-brocade",
+        "required": 22
+      },
+      {
+        "materialId": "bloodjade-branch",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "dori",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Dori",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-ingenuity",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-ingenuity",
+        "required": 114
+      },
+      {
+        "materialId": "trimmed-red-silk",
+        "required": 18
+      },
+      {
+        "materialId": "rich-red-brocade",
+        "required": 66
+      },
+      {
+        "materialId": "bloodjade-branch",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -4259,7 +6261,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "durin",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Durin",
     "category": "ascension",
     "sortOrder": 2,
@@ -4284,7 +6286,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "durin",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Durin",
     "category": "ascension",
     "sortOrder": 3,
@@ -4309,7 +6311,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "durin",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Durin",
     "category": "ascension",
     "sortOrder": 4,
@@ -4334,7 +6336,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "durin",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Durin",
     "category": "ascension",
     "sortOrder": 5,
@@ -4359,7 +6361,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "durin",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Durin",
     "category": "ascension",
     "sortOrder": 6,
@@ -4405,7 +6407,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "emilie",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Emilie",
     "category": "ascension",
     "sortOrder": 2,
@@ -4434,7 +6436,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "emilie",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Emilie",
     "category": "ascension",
     "sortOrder": 3,
@@ -4459,7 +6461,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "emilie",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Emilie",
     "category": "ascension",
     "sortOrder": 4,
@@ -4484,7 +6486,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "emilie",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Emilie",
     "category": "ascension",
     "sortOrder": 5,
@@ -4509,7 +6511,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "emilie",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Emilie",
     "category": "ascension",
     "sortOrder": 6,
@@ -4555,7 +6557,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "escoffier",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Escoffier",
     "category": "ascension",
     "sortOrder": 2,
@@ -4580,7 +6582,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "escoffier",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Escoffier",
     "category": "ascension",
     "sortOrder": 3,
@@ -4605,7 +6607,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "escoffier",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Escoffier",
     "category": "ascension",
     "sortOrder": 4,
@@ -4630,7 +6632,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "escoffier",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Escoffier",
     "category": "ascension",
     "sortOrder": 5,
@@ -4655,7 +6657,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "escoffier",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Escoffier",
     "category": "ascension",
     "sortOrder": 6,
@@ -4701,7 +6703,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "eula",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Eula",
     "category": "ascension",
     "sortOrder": 2,
@@ -4726,7 +6728,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "eula",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Eula",
     "category": "ascension",
     "sortOrder": 3,
@@ -4751,7 +6753,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "eula",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Eula",
     "category": "ascension",
     "sortOrder": 4,
@@ -4776,7 +6778,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "eula",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Eula",
     "category": "ascension",
     "sortOrder": 5,
@@ -4801,7 +6803,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "eula",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Eula",
     "category": "ascension",
     "sortOrder": 6,
@@ -4821,6 +6823,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "ominous-mask",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "eula",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Eula",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-resistance",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-resistance",
+        "required": 63
+      },
+      {
+        "materialId": "damaged-mask",
+        "required": 18
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "eula",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Eula",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-resistance",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-resistance",
+        "required": 38
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 6
+      },
+      {
+        "materialId": "ominous-mask",
+        "required": 22
+      },
+      {
+        "materialId": "dragon-lord's-crown",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "eula",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Eula",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-resistance",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-resistance",
+        "required": 114
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 18
+      },
+      {
+        "materialId": "ominous-mask",
+        "required": 66
+      },
+      {
+        "materialId": "dragon-lord's-crown",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -4847,7 +6940,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "faruzan",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Faruzan",
     "category": "ascension",
     "sortOrder": 2,
@@ -4872,7 +6965,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "faruzan",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Faruzan",
     "category": "ascension",
     "sortOrder": 3,
@@ -4897,7 +6990,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "faruzan",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Faruzan",
     "category": "ascension",
     "sortOrder": 4,
@@ -4922,7 +7015,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "faruzan",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Faruzan",
     "category": "ascension",
     "sortOrder": 5,
@@ -4947,7 +7040,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "faruzan",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Faruzan",
     "category": "ascension",
     "sortOrder": 6,
@@ -4967,6 +7060,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "rich-red-brocade",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "faruzan",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Faruzan",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-admonition",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-admonition",
+        "required": 63
+      },
+      {
+        "materialId": "faded-red-satin",
+        "required": 18
+      },
+      {
+        "materialId": "trimmed-red-silk",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "faruzan",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Faruzan",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-admonition",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-admonition",
+        "required": 38
+      },
+      {
+        "materialId": "trimmed-red-silk",
+        "required": 6
+      },
+      {
+        "materialId": "rich-red-brocade",
+        "required": 22
+      },
+      {
+        "materialId": "puppet-strings",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "faruzan",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Faruzan",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-admonition",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-admonition",
+        "required": 114
+      },
+      {
+        "materialId": "trimmed-red-silk",
+        "required": 18
+      },
+      {
+        "materialId": "rich-red-brocade",
+        "required": 66
+      },
+      {
+        "materialId": "puppet-strings",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -4993,7 +7177,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "fischl",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Fischl",
     "category": "ascension",
     "sortOrder": 2,
@@ -5018,7 +7202,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "fischl",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Fischl",
     "category": "ascension",
     "sortOrder": 3,
@@ -5043,7 +7227,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "fischl",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Fischl",
     "category": "ascension",
     "sortOrder": 4,
@@ -5068,7 +7252,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "fischl",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Fischl",
     "category": "ascension",
     "sortOrder": 5,
@@ -5093,7 +7277,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "fischl",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Fischl",
     "category": "ascension",
     "sortOrder": 6,
@@ -5113,6 +7297,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "weathered-arrowhead",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "fischl",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Fischl",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-ballad",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-ballad",
+        "required": 63
+      },
+      {
+        "materialId": "firm-arrowhead",
+        "required": 18
+      },
+      {
+        "materialId": "sharp-arrowhead",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "fischl",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Fischl",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-ballad",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-ballad",
+        "required": 38
+      },
+      {
+        "materialId": "sharp-arrowhead",
+        "required": 6
+      },
+      {
+        "materialId": "weathered-arrowhead",
+        "required": 22
+      },
+      {
+        "materialId": "spirit-locket-of-boreas",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "fischl",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Fischl",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-ballad",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-ballad",
+        "required": 114
+      },
+      {
+        "materialId": "sharp-arrowhead",
+        "required": 18
+      },
+      {
+        "materialId": "weathered-arrowhead",
+        "required": 66
+      },
+      {
+        "materialId": "spirit-locket-of-boreas",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -5139,7 +7414,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "flins",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Flins",
     "category": "ascension",
     "sortOrder": 2,
@@ -5164,7 +7439,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "flins",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Flins",
     "category": "ascension",
     "sortOrder": 3,
@@ -5189,7 +7464,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "flins",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Flins",
     "category": "ascension",
     "sortOrder": 4,
@@ -5214,7 +7489,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "flins",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Flins",
     "category": "ascension",
     "sortOrder": 5,
@@ -5239,7 +7514,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "flins",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Flins",
     "category": "ascension",
     "sortOrder": 6,
@@ -5285,7 +7560,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "freminet",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Freminet",
     "category": "ascension",
     "sortOrder": 2,
@@ -5310,7 +7585,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "freminet",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Freminet",
     "category": "ascension",
     "sortOrder": 3,
@@ -5335,7 +7610,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "freminet",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Freminet",
     "category": "ascension",
     "sortOrder": 4,
@@ -5360,7 +7635,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "freminet",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Freminet",
     "category": "ascension",
     "sortOrder": 5,
@@ -5385,7 +7660,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "freminet",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Freminet",
     "category": "ascension",
     "sortOrder": 6,
@@ -5405,6 +7680,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "xenochromatic-crystal",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "freminet",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Freminet",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-justice",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-justice",
+        "required": 63
+      },
+      {
+        "materialId": "transoceanic-pearl",
+        "required": 18
+      },
+      {
+        "materialId": "transoceanic-chunk",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "freminet",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Freminet",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-justice",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-justice",
+        "required": 38
+      },
+      {
+        "materialId": "transoceanic-chunk",
+        "required": 6
+      },
+      {
+        "materialId": "xenochromatic-crystal",
+        "required": 22
+      },
+      {
+        "materialId": "worldspan-fern",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "freminet",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Freminet",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-justice",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-justice",
+        "required": 114
+      },
+      {
+        "materialId": "transoceanic-chunk",
+        "required": 18
+      },
+      {
+        "materialId": "xenochromatic-crystal",
+        "required": 66
+      },
+      {
+        "materialId": "worldspan-fern",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -5431,7 +7797,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "furina",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Furina",
     "category": "ascension",
     "sortOrder": 2,
@@ -5456,7 +7822,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "furina",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Furina",
     "category": "ascension",
     "sortOrder": 3,
@@ -5481,7 +7847,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "furina",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Furina",
     "category": "ascension",
     "sortOrder": 4,
@@ -5506,7 +7872,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "furina",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Furina",
     "category": "ascension",
     "sortOrder": 5,
@@ -5531,7 +7897,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "furina",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Furina",
     "category": "ascension",
     "sortOrder": 6,
@@ -5551,6 +7917,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "energy-nectar",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "furina",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Furina",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-justice",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-justice",
+        "required": 63
+      },
+      {
+        "materialId": "whopperflower-nectar",
+        "required": 18
+      },
+      {
+        "materialId": "shimmering-nectar",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "furina",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Furina",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-justice",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-justice",
+        "required": 38
+      },
+      {
+        "materialId": "shimmering-nectar",
+        "required": 6
+      },
+      {
+        "materialId": "energy-nectar",
+        "required": 22
+      },
+      {
+        "materialId": "lightless-mass",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "furina",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Furina",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-justice",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-justice",
+        "required": 114
+      },
+      {
+        "materialId": "shimmering-nectar",
+        "required": 18
+      },
+      {
+        "materialId": "energy-nectar",
+        "required": 66
+      },
+      {
+        "materialId": "lightless-mass",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -5577,7 +8034,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "gaming",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Gaming",
     "category": "ascension",
     "sortOrder": 2,
@@ -5602,7 +8059,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "gaming",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Gaming",
     "category": "ascension",
     "sortOrder": 3,
@@ -5627,7 +8084,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "gaming",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Gaming",
     "category": "ascension",
     "sortOrder": 4,
@@ -5652,7 +8109,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "gaming",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Gaming",
     "category": "ascension",
     "sortOrder": 5,
@@ -5677,7 +8134,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "gaming",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Gaming",
     "category": "ascension",
     "sortOrder": 6,
@@ -5697,6 +8154,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "slime-concentrate",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "gaming",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Gaming",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-prosperity",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-prosperity",
+        "required": 63
+      },
+      {
+        "materialId": "slime-condensate",
+        "required": 18
+      },
+      {
+        "materialId": "slime-secretions",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "gaming",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Gaming",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-prosperity",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-prosperity",
+        "required": 38
+      },
+      {
+        "materialId": "slime-secretions",
+        "required": 6
+      },
+      {
+        "materialId": "slime-concentrate",
+        "required": 22
+      },
+      {
+        "materialId": "lightless-mass",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "gaming",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Gaming",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-prosperity",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-prosperity",
+        "required": 114
+      },
+      {
+        "materialId": "slime-secretions",
+        "required": 18
+      },
+      {
+        "materialId": "slime-concentrate",
+        "required": 66
+      },
+      {
+        "materialId": "lightless-mass",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -5723,7 +8271,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "ganyu",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Ganyu",
     "category": "ascension",
     "sortOrder": 2,
@@ -5748,7 +8296,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "ganyu",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Ganyu",
     "category": "ascension",
     "sortOrder": 3,
@@ -5773,7 +8321,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "ganyu",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Ganyu",
     "category": "ascension",
     "sortOrder": 4,
@@ -5798,7 +8346,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "ganyu",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Ganyu",
     "category": "ascension",
     "sortOrder": 5,
@@ -5823,7 +8371,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "ganyu",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Ganyu",
     "category": "ascension",
     "sortOrder": 6,
@@ -5843,6 +8391,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "energy-nectar",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "ganyu",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Ganyu",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-diligence",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-diligence",
+        "required": 63
+      },
+      {
+        "materialId": "whopperflower-nectar",
+        "required": 18
+      },
+      {
+        "materialId": "shimmering-nectar",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "ganyu",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Ganyu",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-diligence",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-diligence",
+        "required": 38
+      },
+      {
+        "materialId": "shimmering-nectar",
+        "required": 6
+      },
+      {
+        "materialId": "energy-nectar",
+        "required": 22
+      },
+      {
+        "materialId": "shadow-of-the-warrior",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "ganyu",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Ganyu",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-diligence",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-diligence",
+        "required": 114
+      },
+      {
+        "materialId": "shimmering-nectar",
+        "required": 18
+      },
+      {
+        "materialId": "energy-nectar",
+        "required": 66
+      },
+      {
+        "materialId": "shadow-of-the-warrior",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -5869,7 +8508,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "gorou",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Gorou",
     "category": "ascension",
     "sortOrder": 2,
@@ -5894,7 +8533,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "gorou",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Gorou",
     "category": "ascension",
     "sortOrder": 3,
@@ -5919,7 +8558,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "gorou",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Gorou",
     "category": "ascension",
     "sortOrder": 4,
@@ -5944,7 +8583,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "gorou",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Gorou",
     "category": "ascension",
     "sortOrder": 5,
@@ -5969,7 +8608,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "gorou",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Gorou",
     "category": "ascension",
     "sortOrder": 6,
@@ -5989,6 +8628,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "spectral-nucleus",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "gorou",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Gorou",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-light",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-light",
+        "required": 63
+      },
+      {
+        "materialId": "spectral-husk",
+        "required": 18
+      },
+      {
+        "materialId": "spectral-heart",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "gorou",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Gorou",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-light",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-light",
+        "required": 38
+      },
+      {
+        "materialId": "spectral-heart",
+        "required": 6
+      },
+      {
+        "materialId": "spectral-nucleus",
+        "required": 22
+      },
+      {
+        "materialId": "molten-moment",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "gorou",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Gorou",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-light",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-light",
+        "required": 114
+      },
+      {
+        "materialId": "spectral-heart",
+        "required": 18
+      },
+      {
+        "materialId": "spectral-nucleus",
+        "required": 66
+      },
+      {
+        "materialId": "molten-moment",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -6015,7 +8745,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "hu-tao",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Hu Tao",
     "category": "ascension",
     "sortOrder": 2,
@@ -6040,7 +8770,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "hu-tao",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Hu Tao",
     "category": "ascension",
     "sortOrder": 3,
@@ -6065,7 +8795,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "hu-tao",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Hu Tao",
     "category": "ascension",
     "sortOrder": 4,
@@ -6090,7 +8820,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "hu-tao",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Hu Tao",
     "category": "ascension",
     "sortOrder": 5,
@@ -6115,7 +8845,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "hu-tao",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Hu Tao",
     "category": "ascension",
     "sortOrder": 6,
@@ -6135,6 +8865,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "energy-nectar",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "hu-tao",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Hu Tao",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-diligence",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-diligence",
+        "required": 63
+      },
+      {
+        "materialId": "whopperflower-nectar",
+        "required": 18
+      },
+      {
+        "materialId": "shimmering-nectar",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "hu-tao",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Hu Tao",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-diligence",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-diligence",
+        "required": 38
+      },
+      {
+        "materialId": "shimmering-nectar",
+        "required": 6
+      },
+      {
+        "materialId": "energy-nectar",
+        "required": 22
+      },
+      {
+        "materialId": "shard-of-a-foul-legacy",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "hu-tao",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Hu Tao",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-diligence",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-diligence",
+        "required": 114
+      },
+      {
+        "materialId": "shimmering-nectar",
+        "required": 18
+      },
+      {
+        "materialId": "energy-nectar",
+        "required": 66
+      },
+      {
+        "materialId": "shard-of-a-foul-legacy",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -6161,7 +8982,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "iansan",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Iansan",
     "category": "ascension",
     "sortOrder": 2,
@@ -6186,7 +9007,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "iansan",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Iansan",
     "category": "ascension",
     "sortOrder": 3,
@@ -6204,14 +9025,14 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 20
       },
       {
-        "materialId": "warrior-s-metal-whistle",
+        "materialId": "warriors-s-metal-whistle",
         "required": 12
       }
     ]
   },
   {
     "characterId": "iansan",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Iansan",
     "category": "ascension",
     "sortOrder": 4,
@@ -6229,14 +9050,14 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 30
       },
       {
-        "materialId": "warrior-s-metal-whistle",
+        "materialId": "warriors-s-metal-whistle",
         "required": 18
       }
     ]
   },
   {
     "characterId": "iansan",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Iansan",
     "category": "ascension",
     "sortOrder": 5,
@@ -6261,7 +9082,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "iansan",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Iansan",
     "category": "ascension",
     "sortOrder": 6,
@@ -6307,7 +9128,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "ifa",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Ifa",
     "category": "ascension",
     "sortOrder": 2,
@@ -6332,7 +9153,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "ifa",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Ifa",
     "category": "ascension",
     "sortOrder": 3,
@@ -6357,7 +9178,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "ifa",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Ifa",
     "category": "ascension",
     "sortOrder": 4,
@@ -6382,7 +9203,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "ifa",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Ifa",
     "category": "ascension",
     "sortOrder": 5,
@@ -6407,7 +9228,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "ifa",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Ifa",
     "category": "ascension",
     "sortOrder": 6,
@@ -6453,7 +9274,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "illuga",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Illuga",
     "category": "ascension",
     "sortOrder": 2,
@@ -6478,7 +9299,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "illuga",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Illuga",
     "category": "ascension",
     "sortOrder": 3,
@@ -6503,7 +9324,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "illuga",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Illuga",
     "category": "ascension",
     "sortOrder": 4,
@@ -6528,7 +9349,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "illuga",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Illuga",
     "category": "ascension",
     "sortOrder": 5,
@@ -6553,7 +9374,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "illuga",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Illuga",
     "category": "ascension",
     "sortOrder": 6,
@@ -6599,7 +9420,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "ineffa",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Ineffa",
     "category": "ascension",
     "sortOrder": 2,
@@ -6624,7 +9445,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "ineffa",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Ineffa",
     "category": "ascension",
     "sortOrder": 3,
@@ -6642,14 +9463,14 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 20
       },
       {
-        "materialId": "warrior-s-metal-whistle",
+        "materialId": "warriors-s-metal-whistle",
         "required": 12
       }
     ]
   },
   {
     "characterId": "ineffa",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Ineffa",
     "category": "ascension",
     "sortOrder": 4,
@@ -6667,14 +9488,14 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 30
       },
       {
-        "materialId": "warrior-s-metal-whistle",
+        "materialId": "warriors-s-metal-whistle",
         "required": 18
       }
     ]
   },
   {
     "characterId": "ineffa",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Ineffa",
     "category": "ascension",
     "sortOrder": 5,
@@ -6699,7 +9520,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "ineffa",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Ineffa",
     "category": "ascension",
     "sortOrder": 6,
@@ -6745,7 +9566,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "jahoda",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Jahoda",
     "category": "ascension",
     "sortOrder": 2,
@@ -6770,7 +9591,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "jahoda",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Jahoda",
     "category": "ascension",
     "sortOrder": 3,
@@ -6795,7 +9616,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "jahoda",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Jahoda",
     "category": "ascension",
     "sortOrder": 4,
@@ -6820,7 +9641,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "jahoda",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Jahoda",
     "category": "ascension",
     "sortOrder": 5,
@@ -6845,7 +9666,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "jahoda",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Jahoda",
     "category": "ascension",
     "sortOrder": 6,
@@ -6891,7 +9712,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "jean",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Jean",
     "category": "ascension",
     "sortOrder": 2,
@@ -6916,7 +9737,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "jean",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Jean",
     "category": "ascension",
     "sortOrder": 3,
@@ -6941,7 +9762,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "jean",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Jean",
     "category": "ascension",
     "sortOrder": 4,
@@ -6966,7 +9787,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "jean",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Jean",
     "category": "ascension",
     "sortOrder": 5,
@@ -6991,7 +9812,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "jean",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Jean",
     "category": "ascension",
     "sortOrder": 6,
@@ -7011,6 +9832,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "ominous-mask",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "jean",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Jean",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-resistance",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-resistance",
+        "required": 63
+      },
+      {
+        "materialId": "damaged-mask",
+        "required": 18
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "jean",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Jean",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-resistance",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-resistance",
+        "required": 38
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 6
+      },
+      {
+        "materialId": "ominous-mask",
+        "required": 22
+      },
+      {
+        "materialId": "dvalin's-plume",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "jean",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Jean",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-resistance",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-resistance",
+        "required": 114
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 18
+      },
+      {
+        "materialId": "ominous-mask",
+        "required": 66
+      },
+      {
+        "materialId": "dvalin's-plume",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -7037,7 +9949,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kachina",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Kachina",
     "category": "ascension",
     "sortOrder": 2,
@@ -7062,7 +9974,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kachina",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Kachina",
     "category": "ascension",
     "sortOrder": 3,
@@ -7080,14 +9992,14 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 20
       },
       {
-        "materialId": "warrior-s-metal-whistle",
+        "materialId": "warriors-s-metal-whistle",
         "required": 12
       }
     ]
   },
   {
     "characterId": "kachina",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Kachina",
     "category": "ascension",
     "sortOrder": 4,
@@ -7105,14 +10017,14 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 30
       },
       {
-        "materialId": "warrior-s-metal-whistle",
+        "materialId": "warriors-s-metal-whistle",
         "required": 18
       }
     ]
   },
   {
     "characterId": "kachina",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Kachina",
     "category": "ascension",
     "sortOrder": 5,
@@ -7137,7 +10049,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kachina",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Kachina",
     "category": "ascension",
     "sortOrder": 6,
@@ -7157,6 +10069,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "saurian-crowned-warrior-s-golden-whistle",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "kachina",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Kachina",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-conflict",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-conflict",
+        "required": 63
+      },
+      {
+        "materialId": "sentry-s-wooden-whistle",
+        "required": 18
+      },
+      {
+        "materialId": "warriors-s-metal-whistle",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "kachina",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Kachina",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-conflict",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-conflict",
+        "required": 38
+      },
+      {
+        "materialId": "warriors-s-metal-whistle",
+        "required": 6
+      },
+      {
+        "materialId": "saurian-crowned-warrior-s-golden-whistle",
+        "required": 22
+      },
+      {
+        "materialId": "fading-candle",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "kachina",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Kachina",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-conflict",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-conflict",
+        "required": 114
+      },
+      {
+        "materialId": "warriors-s-metal-whistle",
+        "required": 18
+      },
+      {
+        "materialId": "saurian-crowned-warrior-s-golden-whistle",
+        "required": 66
+      },
+      {
+        "materialId": "fading-candle",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -7183,7 +10186,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kaeya",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Kaeya",
     "category": "ascension",
     "sortOrder": 2,
@@ -7208,7 +10211,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kaeya",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Kaeya",
     "category": "ascension",
     "sortOrder": 3,
@@ -7233,7 +10236,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kaeya",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Kaeya",
     "category": "ascension",
     "sortOrder": 4,
@@ -7258,7 +10261,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kaeya",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Kaeya",
     "category": "ascension",
     "sortOrder": 5,
@@ -7283,7 +10286,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kaeya",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Kaeya",
     "category": "ascension",
     "sortOrder": 6,
@@ -7303,6 +10306,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "golden-raven-insignia",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "kaeya",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Kaeya",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-ballad",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-ballad",
+        "required": 63
+      },
+      {
+        "materialId": "treasure-hoarder-insignia",
+        "required": 18
+      },
+      {
+        "materialId": "silver-raven-insignia",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "kaeya",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Kaeya",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-ballad",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-ballad",
+        "required": 38
+      },
+      {
+        "materialId": "silver-raven-insignia",
+        "required": 6
+      },
+      {
+        "materialId": "golden-raven-insignia",
+        "required": 22
+      },
+      {
+        "materialId": "spirit-locket-of-boreas",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "kaeya",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Kaeya",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-ballad",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-ballad",
+        "required": 114
+      },
+      {
+        "materialId": "silver-raven-insignia",
+        "required": 18
+      },
+      {
+        "materialId": "golden-raven-insignia",
+        "required": 66
+      },
+      {
+        "materialId": "spirit-locket-of-boreas",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -7329,7 +10423,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kaveh",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Kaveh",
     "category": "ascension",
     "sortOrder": 2,
@@ -7354,7 +10448,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kaveh",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Kaveh",
     "category": "ascension",
     "sortOrder": 3,
@@ -7379,7 +10473,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kaveh",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Kaveh",
     "category": "ascension",
     "sortOrder": 4,
@@ -7404,7 +10498,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kaveh",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Kaveh",
     "category": "ascension",
     "sortOrder": 5,
@@ -7429,7 +10523,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kaveh",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Kaveh",
     "category": "ascension",
     "sortOrder": 6,
@@ -7449,6 +10543,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "crystalline-cyst-dust",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "kaveh",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Kaveh",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-ingenuity",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-ingenuity",
+        "required": 63
+      },
+      {
+        "materialId": "fungal-spores",
+        "required": 18
+      },
+      {
+        "materialId": "luminescent-pollen",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "kaveh",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Kaveh",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-ingenuity",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-ingenuity",
+        "required": 38
+      },
+      {
+        "materialId": "luminescent-pollen",
+        "required": 6
+      },
+      {
+        "materialId": "crystalline-cyst-dust",
+        "required": 22
+      },
+      {
+        "materialId": "primordial-greenbloom",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "kaveh",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Kaveh",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-ingenuity",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-ingenuity",
+        "required": 114
+      },
+      {
+        "materialId": "luminescent-pollen",
+        "required": 18
+      },
+      {
+        "materialId": "crystalline-cyst-dust",
+        "required": 66
+      },
+      {
+        "materialId": "primordial-greenbloom",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -7475,7 +10660,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kaedehara-kazuha",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Kaedehara Kazuha",
     "category": "ascension",
     "sortOrder": 2,
@@ -7500,7 +10685,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kaedehara-kazuha",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Kaedehara Kazuha",
     "category": "ascension",
     "sortOrder": 3,
@@ -7525,7 +10710,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kaedehara-kazuha",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Kaedehara Kazuha",
     "category": "ascension",
     "sortOrder": 4,
@@ -7550,7 +10735,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kaedehara-kazuha",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Kaedehara Kazuha",
     "category": "ascension",
     "sortOrder": 5,
@@ -7575,7 +10760,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kaedehara-kazuha",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Kaedehara Kazuha",
     "category": "ascension",
     "sortOrder": 6,
@@ -7595,6 +10780,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "golden-raven-insignia",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "kaedehara-kazuha",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Kaedehara Kazuha",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-diligence",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-diligence",
+        "required": 63
+      },
+      {
+        "materialId": "treasure-hoarder-insignia",
+        "required": 18
+      },
+      {
+        "materialId": "silver-raven-insignia",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "kaedehara-kazuha",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Kaedehara Kazuha",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-diligence",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-diligence",
+        "required": 38
+      },
+      {
+        "materialId": "silver-raven-insignia",
+        "required": 6
+      },
+      {
+        "materialId": "golden-raven-insignia",
+        "required": 22
+      },
+      {
+        "materialId": "gilded-scale",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "kaedehara-kazuha",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Kaedehara Kazuha",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-diligence",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-diligence",
+        "required": 114
+      },
+      {
+        "materialId": "silver-raven-insignia",
+        "required": 18
+      },
+      {
+        "materialId": "golden-raven-insignia",
+        "required": 66
+      },
+      {
+        "materialId": "gilded-scale",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -7621,7 +10897,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "keqing",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Keqing",
     "category": "ascension",
     "sortOrder": 2,
@@ -7646,7 +10922,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "keqing",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Keqing",
     "category": "ascension",
     "sortOrder": 3,
@@ -7671,7 +10947,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "keqing",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Keqing",
     "category": "ascension",
     "sortOrder": 4,
@@ -7696,7 +10972,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "keqing",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Keqing",
     "category": "ascension",
     "sortOrder": 5,
@@ -7721,7 +10997,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "keqing",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Keqing",
     "category": "ascension",
     "sortOrder": 6,
@@ -7741,6 +11017,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "energy-nectar",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "keqing",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Keqing",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-prosperity",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-prosperity",
+        "required": 63
+      },
+      {
+        "materialId": "whopperflower-nectar",
+        "required": 18
+      },
+      {
+        "materialId": "shimmering-nectar",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "keqing",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Keqing",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-prosperity",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-prosperity",
+        "required": 38
+      },
+      {
+        "materialId": "shimmering-nectar",
+        "required": 6
+      },
+      {
+        "materialId": "energy-nectar",
+        "required": 22
+      },
+      {
+        "materialId": "ring-of-boreas",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "keqing",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Keqing",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-prosperity",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-prosperity",
+        "required": 114
+      },
+      {
+        "materialId": "shimmering-nectar",
+        "required": 18
+      },
+      {
+        "materialId": "energy-nectar",
+        "required": 66
+      },
+      {
+        "materialId": "ring-of-boreas",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -7767,7 +11134,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kinich",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Kinich",
     "category": "ascension",
     "sortOrder": 2,
@@ -7792,7 +11159,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kinich",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Kinich",
     "category": "ascension",
     "sortOrder": 3,
@@ -7817,7 +11184,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kinich",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Kinich",
     "category": "ascension",
     "sortOrder": 4,
@@ -7842,7 +11209,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kinich",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Kinich",
     "category": "ascension",
     "sortOrder": 5,
@@ -7867,7 +11234,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kinich",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Kinich",
     "category": "ascension",
     "sortOrder": 6,
@@ -7887,6 +11254,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "tyrant-s-fang",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "kinich",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Kinich",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-kindling",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-kindling",
+        "required": 63
+      },
+      {
+        "materialId": "juvenile-fang",
+        "required": 18
+      },
+      {
+        "materialId": "seasoned-fang",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "kinich",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Kinich",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-kindling",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-kindling",
+        "required": 38
+      },
+      {
+        "materialId": "seasoned-fang",
+        "required": 6
+      },
+      {
+        "materialId": "tyrant-s-fang",
+        "required": 22
+      },
+      {
+        "materialId": "denial-and-judgment",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "kinich",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Kinich",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-kindling",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-kindling",
+        "required": 114
+      },
+      {
+        "materialId": "seasoned-fang",
+        "required": 18
+      },
+      {
+        "materialId": "tyrant-s-fang",
+        "required": 66
+      },
+      {
+        "materialId": "denial-and-judgment",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -7913,7 +11371,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kirara",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Kirara",
     "category": "ascension",
     "sortOrder": 2,
@@ -7938,7 +11396,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kirara",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Kirara",
     "category": "ascension",
     "sortOrder": 3,
@@ -7963,7 +11421,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kirara",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Kirara",
     "category": "ascension",
     "sortOrder": 4,
@@ -7988,7 +11446,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kirara",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Kirara",
     "category": "ascension",
     "sortOrder": 5,
@@ -8013,7 +11471,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kirara",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Kirara",
     "category": "ascension",
     "sortOrder": 6,
@@ -8033,6 +11491,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "spectral-nucleus",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "kirara",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Kirara",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-transience",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-transience",
+        "required": 63
+      },
+      {
+        "materialId": "spectral-husk",
+        "required": 18
+      },
+      {
+        "materialId": "spectral-heart",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "kirara",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Kirara",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-transience",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-transience",
+        "required": 38
+      },
+      {
+        "materialId": "spectral-heart",
+        "required": 6
+      },
+      {
+        "materialId": "spectral-nucleus",
+        "required": 22
+      },
+      {
+        "materialId": "everamber",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "kirara",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Kirara",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-transience",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-transience",
+        "required": 114
+      },
+      {
+        "materialId": "spectral-heart",
+        "required": 18
+      },
+      {
+        "materialId": "spectral-nucleus",
+        "required": 66
+      },
+      {
+        "materialId": "everamber",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -8059,7 +11608,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "klee",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Klee",
     "category": "ascension",
     "sortOrder": 2,
@@ -8084,7 +11633,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "klee",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Klee",
     "category": "ascension",
     "sortOrder": 3,
@@ -8109,7 +11658,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "klee",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Klee",
     "category": "ascension",
     "sortOrder": 4,
@@ -8134,7 +11683,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "klee",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Klee",
     "category": "ascension",
     "sortOrder": 5,
@@ -8159,7 +11708,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "klee",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Klee",
     "category": "ascension",
     "sortOrder": 6,
@@ -8179,6 +11728,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "forbidden-curse-scroll",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "klee",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Klee",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-freedom",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-freedom",
+        "required": 63
+      },
+      {
+        "materialId": "divining-scroll",
+        "required": 18
+      },
+      {
+        "materialId": "sealed-scroll",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "klee",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Klee",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-freedom",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-freedom",
+        "required": 38
+      },
+      {
+        "materialId": "sealed-scroll",
+        "required": 6
+      },
+      {
+        "materialId": "forbidden-curse-scroll",
+        "required": 22
+      },
+      {
+        "materialId": "ring-of-boreas",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "klee",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Klee",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-freedom",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-freedom",
+        "required": 114
+      },
+      {
+        "materialId": "sealed-scroll",
+        "required": 18
+      },
+      {
+        "materialId": "forbidden-curse-scroll",
+        "required": 66
+      },
+      {
+        "materialId": "ring-of-boreas",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -8205,7 +11845,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "sangonomiya-kokomi",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Sangonomiya Kokomi",
     "category": "ascension",
     "sortOrder": 2,
@@ -8230,7 +11870,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "sangonomiya-kokomi",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Sangonomiya Kokomi",
     "category": "ascension",
     "sortOrder": 3,
@@ -8255,7 +11895,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "sangonomiya-kokomi",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Sangonomiya Kokomi",
     "category": "ascension",
     "sortOrder": 4,
@@ -8280,7 +11920,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "sangonomiya-kokomi",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Sangonomiya Kokomi",
     "category": "ascension",
     "sortOrder": 5,
@@ -8305,7 +11945,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "sangonomiya-kokomi",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Sangonomiya Kokomi",
     "category": "ascension",
     "sortOrder": 6,
@@ -8325,6 +11965,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "spectral-nucleus",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "sangonomiya-kokomi",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Sangonomiya Kokomi",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-transience",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-transience",
+        "required": 63
+      },
+      {
+        "materialId": "spectral-husk",
+        "required": 18
+      },
+      {
+        "materialId": "spectral-heart",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "sangonomiya-kokomi",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Sangonomiya Kokomi",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-transience",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-transience",
+        "required": 38
+      },
+      {
+        "materialId": "spectral-heart",
+        "required": 6
+      },
+      {
+        "materialId": "spectral-nucleus",
+        "required": 22
+      },
+      {
+        "materialId": "hellfire-butterfly",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "sangonomiya-kokomi",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Sangonomiya Kokomi",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-transience",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-transience",
+        "required": 114
+      },
+      {
+        "materialId": "spectral-heart",
+        "required": 18
+      },
+      {
+        "materialId": "spectral-nucleus",
+        "required": 66
+      },
+      {
+        "materialId": "hellfire-butterfly",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -8351,7 +12082,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kuki-shinobu",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Kuki Shinobu",
     "category": "ascension",
     "sortOrder": 2,
@@ -8376,7 +12107,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kuki-shinobu",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Kuki Shinobu",
     "category": "ascension",
     "sortOrder": 3,
@@ -8401,7 +12132,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kuki-shinobu",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Kuki Shinobu",
     "category": "ascension",
     "sortOrder": 4,
@@ -8426,7 +12157,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kuki-shinobu",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Kuki Shinobu",
     "category": "ascension",
     "sortOrder": 5,
@@ -8451,7 +12182,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kuki-shinobu",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Kuki Shinobu",
     "category": "ascension",
     "sortOrder": 6,
@@ -8471,6 +12202,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "spectral-nucleus",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "kuki-shinobu",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Kuki Shinobu",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-elegance",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-elegance",
+        "required": 63
+      },
+      {
+        "materialId": "spectral-husk",
+        "required": 18
+      },
+      {
+        "materialId": "spectral-heart",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "kuki-shinobu",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Kuki Shinobu",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-elegance",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-elegance",
+        "required": 38
+      },
+      {
+        "materialId": "spectral-heart",
+        "required": 6
+      },
+      {
+        "materialId": "spectral-nucleus",
+        "required": 22
+      },
+      {
+        "materialId": "tears-of-the-calamitous-god",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "kuki-shinobu",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Kuki Shinobu",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-elegance",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-elegance",
+        "required": 114
+      },
+      {
+        "materialId": "spectral-heart",
+        "required": 18
+      },
+      {
+        "materialId": "spectral-nucleus",
+        "required": 66
+      },
+      {
+        "materialId": "tears-of-the-calamitous-god",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -8497,7 +12319,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "lan-yan",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Lan Yan",
     "category": "ascension",
     "sortOrder": 2,
@@ -8522,7 +12344,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "lan-yan",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Lan Yan",
     "category": "ascension",
     "sortOrder": 3,
@@ -8547,7 +12369,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "lan-yan",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Lan Yan",
     "category": "ascension",
     "sortOrder": 4,
@@ -8572,7 +12394,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "lan-yan",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Lan Yan",
     "category": "ascension",
     "sortOrder": 5,
@@ -8597,7 +12419,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "lan-yan",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Lan Yan",
     "category": "ascension",
     "sortOrder": 6,
@@ -8643,7 +12465,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "lauma",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Lauma",
     "category": "ascension",
     "sortOrder": 2,
@@ -8668,7 +12490,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "lauma",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Lauma",
     "category": "ascension",
     "sortOrder": 3,
@@ -8693,7 +12515,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "lauma",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Lauma",
     "category": "ascension",
     "sortOrder": 4,
@@ -8718,7 +12540,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "lauma",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Lauma",
     "category": "ascension",
     "sortOrder": 5,
@@ -8743,7 +12565,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "lauma",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Lauma",
     "category": "ascension",
     "sortOrder": 6,
@@ -8789,7 +12611,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "layla",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Layla",
     "category": "ascension",
     "sortOrder": 2,
@@ -8814,7 +12636,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "layla",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Layla",
     "category": "ascension",
     "sortOrder": 3,
@@ -8839,7 +12661,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "layla",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Layla",
     "category": "ascension",
     "sortOrder": 4,
@@ -8864,7 +12686,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "layla",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Layla",
     "category": "ascension",
     "sortOrder": 5,
@@ -8889,7 +12711,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "layla",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Layla",
     "category": "ascension",
     "sortOrder": 6,
@@ -8909,6 +12731,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "forbidden-curse-scroll",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "layla",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Layla",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-ingenuity",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-ingenuity",
+        "required": 63
+      },
+      {
+        "materialId": "divining-scroll",
+        "required": 18
+      },
+      {
+        "materialId": "sealed-scroll",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "layla",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Layla",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-ingenuity",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-ingenuity",
+        "required": 38
+      },
+      {
+        "materialId": "sealed-scroll",
+        "required": 6
+      },
+      {
+        "materialId": "forbidden-curse-scroll",
+        "required": 22
+      },
+      {
+        "materialId": "mirror-of-mushin",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "layla",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Layla",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-ingenuity",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-ingenuity",
+        "required": 114
+      },
+      {
+        "materialId": "sealed-scroll",
+        "required": 18
+      },
+      {
+        "materialId": "forbidden-curse-scroll",
+        "required": 66
+      },
+      {
+        "materialId": "mirror-of-mushin",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -8935,7 +12848,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "lisa",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Lisa",
     "category": "ascension",
     "sortOrder": 2,
@@ -8960,7 +12873,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "lisa",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Lisa",
     "category": "ascension",
     "sortOrder": 3,
@@ -8985,7 +12898,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "lisa",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Lisa",
     "category": "ascension",
     "sortOrder": 4,
@@ -9010,7 +12923,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "lisa",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Lisa",
     "category": "ascension",
     "sortOrder": 5,
@@ -9035,7 +12948,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "lisa",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Lisa",
     "category": "ascension",
     "sortOrder": 6,
@@ -9055,6 +12968,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "slime-concentrate",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "lisa",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Lisa",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-ballad",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-ballad",
+        "required": 63
+      },
+      {
+        "materialId": "slime-condensate",
+        "required": 18
+      },
+      {
+        "materialId": "slime-secretions",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "lisa",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Lisa",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-ballad",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-ballad",
+        "required": 38
+      },
+      {
+        "materialId": "slime-secretions",
+        "required": 6
+      },
+      {
+        "materialId": "slime-concentrate",
+        "required": 22
+      },
+      {
+        "materialId": "dvalin's-claw",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "lisa",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Lisa",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-ballad",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-ballad",
+        "required": 114
+      },
+      {
+        "materialId": "slime-secretions",
+        "required": 18
+      },
+      {
+        "materialId": "slime-concentrate",
+        "required": 66
+      },
+      {
+        "materialId": "dvalin's-claw",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -9081,7 +13085,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "lynette",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Lynette",
     "category": "ascension",
     "sortOrder": 2,
@@ -9106,7 +13110,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "lynette",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Lynette",
     "category": "ascension",
     "sortOrder": 3,
@@ -9131,7 +13135,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "lynette",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Lynette",
     "category": "ascension",
     "sortOrder": 4,
@@ -9156,7 +13160,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "lynette",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Lynette",
     "category": "ascension",
     "sortOrder": 5,
@@ -9181,7 +13185,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "lynette",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Lynette",
     "category": "ascension",
     "sortOrder": 6,
@@ -9201,6 +13205,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "artificed-dynamic-gear",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "lynette",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Lynette",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-order",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-order",
+        "required": 63
+      },
+      {
+        "materialId": "meshing-gear",
+        "required": 18
+      },
+      {
+        "materialId": "mechanical-spur-gear",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "lynette",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Lynette",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-order",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-order",
+        "required": 38
+      },
+      {
+        "materialId": "mechanical-spur-gear",
+        "required": 6
+      },
+      {
+        "materialId": "artificed-dynamic-gear",
+        "required": 22
+      },
+      {
+        "materialId": "everamber",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "lynette",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Lynette",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-order",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-order",
+        "required": 114
+      },
+      {
+        "materialId": "mechanical-spur-gear",
+        "required": 18
+      },
+      {
+        "materialId": "artificed-dynamic-gear",
+        "required": 66
+      },
+      {
+        "materialId": "everamber",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -9227,7 +13322,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "lyney",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Lyney",
     "category": "ascension",
     "sortOrder": 2,
@@ -9252,7 +13347,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "lyney",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Lyney",
     "category": "ascension",
     "sortOrder": 3,
@@ -9277,7 +13372,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "lyney",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Lyney",
     "category": "ascension",
     "sortOrder": 4,
@@ -9302,7 +13397,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "lyney",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Lyney",
     "category": "ascension",
     "sortOrder": 5,
@@ -9327,7 +13422,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "lyney",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Lyney",
     "category": "ascension",
     "sortOrder": 6,
@@ -9347,6 +13442,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "lieutenant-s-insignia",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "lyney",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Lyney",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-equity",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-equity",
+        "required": 63
+      },
+      {
+        "materialId": "recruit-s-insignia",
+        "required": 18
+      },
+      {
+        "materialId": "sergeant-s-insignia",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "lyney",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Lyney",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-equity",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-equity",
+        "required": 38
+      },
+      {
+        "materialId": "sergeant-s-insignia",
+        "required": 6
+      },
+      {
+        "materialId": "lieutenant-s-insignia",
+        "required": 22
+      },
+      {
+        "materialId": "primordial-greenbloom",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "lyney",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Lyney",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-equity",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-equity",
+        "required": 114
+      },
+      {
+        "materialId": "sergeant-s-insignia",
+        "required": 18
+      },
+      {
+        "materialId": "lieutenant-s-insignia",
+        "required": 66
+      },
+      {
+        "materialId": "primordial-greenbloom",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -9373,7 +13559,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "mavuika",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Mavuika",
     "category": "ascension",
     "sortOrder": 2,
@@ -9398,7 +13584,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "mavuika",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Mavuika",
     "category": "ascension",
     "sortOrder": 3,
@@ -9416,14 +13602,14 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 20
       },
       {
-        "materialId": "warrior-s-metal-whistle",
+        "materialId": "warriors-s-metal-whistle",
         "required": 12
       }
     ]
   },
   {
     "characterId": "mavuika",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Mavuika",
     "category": "ascension",
     "sortOrder": 4,
@@ -9441,14 +13627,14 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 30
       },
       {
-        "materialId": "warrior-s-metal-whistle",
+        "materialId": "warriors-s-metal-whistle",
         "required": 18
       }
     ]
   },
   {
     "characterId": "mavuika",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Mavuika",
     "category": "ascension",
     "sortOrder": 5,
@@ -9473,7 +13659,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "mavuika",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Mavuika",
     "category": "ascension",
     "sortOrder": 6,
@@ -9519,7 +13705,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "mika",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Mika",
     "category": "ascension",
     "sortOrder": 2,
@@ -9544,7 +13730,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "mika",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Mika",
     "category": "ascension",
     "sortOrder": 3,
@@ -9569,7 +13755,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "mika",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Mika",
     "category": "ascension",
     "sortOrder": 4,
@@ -9594,7 +13780,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "mika",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Mika",
     "category": "ascension",
     "sortOrder": 5,
@@ -9604,7 +13790,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 6
       },
       {
-        "materialId": "pseudo-stamenss",
+        "materialId": "pseudo-stamens",
         "required": 12
       },
       {
@@ -9619,7 +13805,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "mika",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Mika",
     "category": "ascension",
     "sortOrder": 6,
@@ -9639,6 +13825,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "lieutenant-s-insignia",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "mika",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Mika",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-ballad",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-ballad",
+        "required": 63
+      },
+      {
+        "materialId": "recruit-s-insignia",
+        "required": 18
+      },
+      {
+        "materialId": "sergeant-s-insignia",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "mika",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Mika",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-ballad",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-ballad",
+        "required": 38
+      },
+      {
+        "materialId": "sergeant-s-insignia",
+        "required": 6
+      },
+      {
+        "materialId": "lieutenant-s-insignia",
+        "required": 22
+      },
+      {
+        "materialId": "mirror-of-mushin",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "mika",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Mika",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-ballad",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-ballad",
+        "required": 114
+      },
+      {
+        "materialId": "sergeant-s-insignia",
+        "required": 18
+      },
+      {
+        "materialId": "lieutenant-s-insignia",
+        "required": 66
+      },
+      {
+        "materialId": "mirror-of-mushin",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -9665,7 +13942,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "mona",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Mona",
     "category": "ascension",
     "sortOrder": 2,
@@ -9690,7 +13967,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "mona",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Mona",
     "category": "ascension",
     "sortOrder": 3,
@@ -9715,7 +13992,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "mona",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Mona",
     "category": "ascension",
     "sortOrder": 4,
@@ -9740,7 +14017,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "mona",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Mona",
     "category": "ascension",
     "sortOrder": 5,
@@ -9765,7 +14042,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "mona",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Mona",
     "category": "ascension",
     "sortOrder": 6,
@@ -9785,6 +14062,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "energy-nectar",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "mona",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Mona",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-resistance",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-resistance",
+        "required": 63
+      },
+      {
+        "materialId": "whopperflower-nectar",
+        "required": 18
+      },
+      {
+        "materialId": "shimmering-nectar",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "mona",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Mona",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-resistance",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-resistance",
+        "required": 38
+      },
+      {
+        "materialId": "shimmering-nectar",
+        "required": 6
+      },
+      {
+        "materialId": "energy-nectar",
+        "required": 22
+      },
+      {
+        "materialId": "ring-of-boreas",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "mona",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Mona",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-resistance",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-resistance",
+        "required": 114
+      },
+      {
+        "materialId": "shimmering-nectar",
+        "required": 18
+      },
+      {
+        "materialId": "energy-nectar",
+        "required": 66
+      },
+      {
+        "materialId": "ring-of-boreas",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -9811,7 +14179,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "mualani",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Mualani",
     "category": "ascension",
     "sortOrder": 2,
@@ -9836,7 +14204,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "mualani",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Mualani",
     "category": "ascension",
     "sortOrder": 3,
@@ -9854,14 +14222,14 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 20
       },
       {
-        "materialId": "warrior-s-metal-whistle",
+        "materialId": "warriors-s-metal-whistle",
         "required": 12
       }
     ]
   },
   {
     "characterId": "mualani",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Mualani",
     "category": "ascension",
     "sortOrder": 4,
@@ -9879,14 +14247,14 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 30
       },
       {
-        "materialId": "warrior-s-metal-whistle",
+        "materialId": "warriors-s-metal-whistle",
         "required": 18
       }
     ]
   },
   {
     "characterId": "mualani",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Mualani",
     "category": "ascension",
     "sortOrder": 5,
@@ -9911,7 +14279,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "mualani",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Mualani",
     "category": "ascension",
     "sortOrder": 6,
@@ -9931,6 +14299,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "saurian-crowned-warrior-s-golden-whistle",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "mualani",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Mualani",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-contention",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-contention",
+        "required": 63
+      },
+      {
+        "materialId": "sentry-s-wooden-whistle",
+        "required": 18
+      },
+      {
+        "materialId": "warriors-s-metal-whistle",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "mualani",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Mualani",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-contention",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-contention",
+        "required": 38
+      },
+      {
+        "materialId": "warriors-s-metal-whistle",
+        "required": 6
+      },
+      {
+        "materialId": "saurian-crowned-warrior-s-golden-whistle",
+        "required": 22
+      },
+      {
+        "materialId": "lightless-mass",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "mualani",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Mualani",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-contention",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-contention",
+        "required": 114
+      },
+      {
+        "materialId": "warriors-s-metal-whistle",
+        "required": 18
+      },
+      {
+        "materialId": "saurian-crowned-warrior-s-golden-whistle",
+        "required": 66
+      },
+      {
+        "materialId": "lightless-mass",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -9957,7 +14416,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "nahida",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Nahida",
     "category": "ascension",
     "sortOrder": 2,
@@ -9982,7 +14441,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "nahida",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Nahida",
     "category": "ascension",
     "sortOrder": 3,
@@ -10007,7 +14466,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "nahida",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Nahida",
     "category": "ascension",
     "sortOrder": 4,
@@ -10032,7 +14491,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "nahida",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Nahida",
     "category": "ascension",
     "sortOrder": 5,
@@ -10057,7 +14516,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "nahida",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Nahida",
     "category": "ascension",
     "sortOrder": 6,
@@ -10077,6 +14536,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "crystalline-cyst-dust",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "nahida",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Nahida",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-ingenuity",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-ingenuity",
+        "required": 63
+      },
+      {
+        "materialId": "fungal-spores",
+        "required": 18
+      },
+      {
+        "materialId": "luminescent-pollen",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "nahida",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Nahida",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-ingenuity",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-ingenuity",
+        "required": 38
+      },
+      {
+        "materialId": "luminescent-pollen",
+        "required": 6
+      },
+      {
+        "materialId": "crystalline-cyst-dust",
+        "required": 22
+      },
+      {
+        "materialId": "puppet-strings",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "nahida",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Nahida",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-ingenuity",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-ingenuity",
+        "required": 114
+      },
+      {
+        "materialId": "luminescent-pollen",
+        "required": 18
+      },
+      {
+        "materialId": "crystalline-cyst-dust",
+        "required": 66
+      },
+      {
+        "materialId": "puppet-strings",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -10103,7 +14653,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "navia",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Navia",
     "category": "ascension",
     "sortOrder": 2,
@@ -10128,7 +14678,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "navia",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Navia",
     "category": "ascension",
     "sortOrder": 3,
@@ -10153,7 +14703,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "navia",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Navia",
     "category": "ascension",
     "sortOrder": 4,
@@ -10178,7 +14728,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "navia",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Navia",
     "category": "ascension",
     "sortOrder": 5,
@@ -10203,7 +14753,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "navia",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Navia",
     "category": "ascension",
     "sortOrder": 6,
@@ -10223,6 +14773,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "xenochromatic-crystal",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "navia",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Navia",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-equity",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-equity",
+        "required": 63
+      },
+      {
+        "materialId": "transoceanic-pearl",
+        "required": 18
+      },
+      {
+        "materialId": "transoceanic-chunk",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "navia",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Navia",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-equity",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-equity",
+        "required": 38
+      },
+      {
+        "materialId": "transoceanic-chunk",
+        "required": 6
+      },
+      {
+        "materialId": "xenochromatic-crystal",
+        "required": 22
+      },
+      {
+        "materialId": "lightless-silk-string",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "navia",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Navia",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-equity",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-equity",
+        "required": 114
+      },
+      {
+        "materialId": "transoceanic-chunk",
+        "required": 18
+      },
+      {
+        "materialId": "xenochromatic-crystal",
+        "required": 66
+      },
+      {
+        "materialId": "lightless-silk-string",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -10249,7 +14890,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "nefer",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Nefer",
     "category": "ascension",
     "sortOrder": 2,
@@ -10274,7 +14915,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "nefer",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Nefer",
     "category": "ascension",
     "sortOrder": 3,
@@ -10299,7 +14940,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "nefer",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Nefer",
     "category": "ascension",
     "sortOrder": 4,
@@ -10324,7 +14965,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "nefer",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Nefer",
     "category": "ascension",
     "sortOrder": 5,
@@ -10349,7 +14990,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "nefer",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Nefer",
     "category": "ascension",
     "sortOrder": 6,
@@ -10395,7 +15036,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "neuvillette",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Neuvillette",
     "category": "ascension",
     "sortOrder": 2,
@@ -10420,7 +15061,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "neuvillette",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Neuvillette",
     "category": "ascension",
     "sortOrder": 3,
@@ -10445,7 +15086,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "neuvillette",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Neuvillette",
     "category": "ascension",
     "sortOrder": 4,
@@ -10470,7 +15111,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "neuvillette",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Neuvillette",
     "category": "ascension",
     "sortOrder": 5,
@@ -10495,7 +15136,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "neuvillette",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Neuvillette",
     "category": "ascension",
     "sortOrder": 6,
@@ -10515,6 +15156,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "xenochromatic-crystal",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "neuvillette",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Neuvillette",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-equity",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-equity",
+        "required": 63
+      },
+      {
+        "materialId": "transoceanic-pearl",
+        "required": 18
+      },
+      {
+        "materialId": "transoceanic-chunk",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "neuvillette",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Neuvillette",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-equity",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-equity",
+        "required": 38
+      },
+      {
+        "materialId": "transoceanic-chunk",
+        "required": 6
+      },
+      {
+        "materialId": "xenochromatic-crystal",
+        "required": 22
+      },
+      {
+        "materialId": "everamber",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "neuvillette",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Neuvillette",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-equity",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-equity",
+        "required": 114
+      },
+      {
+        "materialId": "transoceanic-chunk",
+        "required": 18
+      },
+      {
+        "materialId": "xenochromatic-crystal",
+        "required": 66
+      },
+      {
+        "materialId": "everamber",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -10541,7 +15273,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "nilou",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Nilou",
     "category": "ascension",
     "sortOrder": 2,
@@ -10566,7 +15298,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "nilou",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Nilou",
     "category": "ascension",
     "sortOrder": 3,
@@ -10591,7 +15323,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "nilou",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Nilou",
     "category": "ascension",
     "sortOrder": 4,
@@ -10616,7 +15348,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "nilou",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Nilou",
     "category": "ascension",
     "sortOrder": 5,
@@ -10641,7 +15373,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "nilou",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Nilou",
     "category": "ascension",
     "sortOrder": 6,
@@ -10661,6 +15393,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "crystalline-cyst-dust",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "nilou",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Nilou",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-praxis",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-praxis",
+        "required": 63
+      },
+      {
+        "materialId": "fungal-spores",
+        "required": 18
+      },
+      {
+        "materialId": "luminescent-pollen",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "nilou",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Nilou",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-praxis",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-praxis",
+        "required": 38
+      },
+      {
+        "materialId": "luminescent-pollen",
+        "required": 6
+      },
+      {
+        "materialId": "crystalline-cyst-dust",
+        "required": 22
+      },
+      {
+        "materialId": "tears-of-the-calamitous-god",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "nilou",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Nilou",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-praxis",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-praxis",
+        "required": 114
+      },
+      {
+        "materialId": "luminescent-pollen",
+        "required": 18
+      },
+      {
+        "materialId": "crystalline-cyst-dust",
+        "required": 66
+      },
+      {
+        "materialId": "tears-of-the-calamitous-god",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -10687,7 +15510,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "ningguang",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Ningguang",
     "category": "ascension",
     "sortOrder": 2,
@@ -10712,7 +15535,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "ningguang",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Ningguang",
     "category": "ascension",
     "sortOrder": 3,
@@ -10737,7 +15560,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "ningguang",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Ningguang",
     "category": "ascension",
     "sortOrder": 4,
@@ -10762,7 +15585,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "ningguang",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Ningguang",
     "category": "ascension",
     "sortOrder": 5,
@@ -10787,7 +15610,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "ningguang",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Ningguang",
     "category": "ascension",
     "sortOrder": 6,
@@ -10807,6 +15630,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "lieutenant-s-insignia",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "ningguang",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Ningguang",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-prosperity",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-prosperity",
+        "required": 63
+      },
+      {
+        "materialId": "recruit-s-insignia",
+        "required": 18
+      },
+      {
+        "materialId": "sergeant-s-insignia",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "ningguang",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Ningguang",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-prosperity",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-prosperity",
+        "required": 38
+      },
+      {
+        "materialId": "sergeant-s-insignia",
+        "required": 6
+      },
+      {
+        "materialId": "lieutenant-s-insignia",
+        "required": 22
+      },
+      {
+        "materialId": "spirit-locket-of-boreas",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "ningguang",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Ningguang",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-prosperity",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-prosperity",
+        "required": 114
+      },
+      {
+        "materialId": "sergeant-s-insignia",
+        "required": 18
+      },
+      {
+        "materialId": "lieutenant-s-insignia",
+        "required": 66
+      },
+      {
+        "materialId": "spirit-locket-of-boreas",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -10833,7 +15747,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "noelle",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Noelle",
     "category": "ascension",
     "sortOrder": 2,
@@ -10858,7 +15772,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "noelle",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Noelle",
     "category": "ascension",
     "sortOrder": 3,
@@ -10883,7 +15797,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "noelle",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Noelle",
     "category": "ascension",
     "sortOrder": 4,
@@ -10908,7 +15822,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "noelle",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Noelle",
     "category": "ascension",
     "sortOrder": 5,
@@ -10933,7 +15847,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "noelle",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Noelle",
     "category": "ascension",
     "sortOrder": 6,
@@ -10953,6 +15867,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "ominous-mask",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "noelle",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Noelle",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-resistance",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-resistance",
+        "required": 63
+      },
+      {
+        "materialId": "damaged-mask",
+        "required": 18
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "noelle",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Noelle",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-resistance",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-resistance",
+        "required": 38
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 6
+      },
+      {
+        "materialId": "ominous-mask",
+        "required": 22
+      },
+      {
+        "materialId": "dvalin's-claw",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "noelle",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Noelle",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-resistance",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-resistance",
+        "required": 114
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 18
+      },
+      {
+        "materialId": "ominous-mask",
+        "required": 66
+      },
+      {
+        "materialId": "dvalin's-claw",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -10979,7 +15984,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "ororon",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Ororon",
     "category": "ascension",
     "sortOrder": 2,
@@ -11004,7 +16009,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "ororon",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Ororon",
     "category": "ascension",
     "sortOrder": 3,
@@ -11029,7 +16034,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "ororon",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Ororon",
     "category": "ascension",
     "sortOrder": 4,
@@ -11054,7 +16059,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "ororon",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Ororon",
     "category": "ascension",
     "sortOrder": 5,
@@ -11079,7 +16084,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "ororon",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Ororon",
     "category": "ascension",
     "sortOrder": 6,
@@ -11125,7 +16130,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "qiqi",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Qiqi",
     "category": "ascension",
     "sortOrder": 2,
@@ -11150,7 +16155,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "qiqi",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Qiqi",
     "category": "ascension",
     "sortOrder": 3,
@@ -11175,7 +16180,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "qiqi",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Qiqi",
     "category": "ascension",
     "sortOrder": 4,
@@ -11200,7 +16205,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "qiqi",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Qiqi",
     "category": "ascension",
     "sortOrder": 5,
@@ -11225,7 +16230,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "qiqi",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Qiqi",
     "category": "ascension",
     "sortOrder": 6,
@@ -11245,6 +16250,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "forbidden-curse-scroll",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "qiqi",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Qiqi",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-prosperity",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-prosperity",
+        "required": 63
+      },
+      {
+        "materialId": "divining-scroll",
+        "required": 18
+      },
+      {
+        "materialId": "sealed-scroll",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "qiqi",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Qiqi",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-prosperity",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-prosperity",
+        "required": 38
+      },
+      {
+        "materialId": "sealed-scroll",
+        "required": 6
+      },
+      {
+        "materialId": "forbidden-curse-scroll",
+        "required": 22
+      },
+      {
+        "materialId": "tail-of-boreas",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "qiqi",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Qiqi",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-prosperity",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-prosperity",
+        "required": 114
+      },
+      {
+        "materialId": "sealed-scroll",
+        "required": 18
+      },
+      {
+        "materialId": "forbidden-curse-scroll",
+        "required": 66
+      },
+      {
+        "materialId": "tail-of-boreas",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -11271,7 +16367,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "raiden",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Raiden Shogun",
     "category": "ascension",
     "sortOrder": 2,
@@ -11296,7 +16392,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "raiden",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Raiden Shogun",
     "category": "ascension",
     "sortOrder": 3,
@@ -11321,7 +16417,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "raiden",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Raiden Shogun",
     "category": "ascension",
     "sortOrder": 4,
@@ -11346,7 +16442,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "raiden",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Raiden Shogun",
     "category": "ascension",
     "sortOrder": 5,
@@ -11371,7 +16467,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "raiden",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Raiden Shogun",
     "category": "ascension",
     "sortOrder": 6,
@@ -11391,6 +16487,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "famed-handguard",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "raiden",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Raiden Shogun",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-light",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-light",
+        "required": 63
+      },
+      {
+        "materialId": "old-handguard",
+        "required": 18
+      },
+      {
+        "materialId": "kageuchi-handguard",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "raiden",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Raiden Shogun",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-light",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-light",
+        "required": 38
+      },
+      {
+        "materialId": "kageuchi-handguard",
+        "required": 6
+      },
+      {
+        "materialId": "famed-handguard",
+        "required": 22
+      },
+      {
+        "materialId": "molten-moment",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "raiden",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Raiden Shogun",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-light",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-light",
+        "required": 114
+      },
+      {
+        "materialId": "kageuchi-handguard",
+        "required": 18
+      },
+      {
+        "materialId": "famed-handguard",
+        "required": 66
+      },
+      {
+        "materialId": "molten-moment",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -11417,7 +16604,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "razor",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Razor",
     "category": "ascension",
     "sortOrder": 2,
@@ -11442,7 +16629,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "razor",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Razor",
     "category": "ascension",
     "sortOrder": 3,
@@ -11467,7 +16654,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "razor",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Razor",
     "category": "ascension",
     "sortOrder": 4,
@@ -11492,7 +16679,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "razor",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Razor",
     "category": "ascension",
     "sortOrder": 5,
@@ -11517,7 +16704,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "razor",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Razor",
     "category": "ascension",
     "sortOrder": 6,
@@ -11537,6 +16724,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "ominous-mask",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "razor",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Razor",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-resistance",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-resistance",
+        "required": 63
+      },
+      {
+        "materialId": "damaged-mask",
+        "required": 18
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "razor",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Razor",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-resistance",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-resistance",
+        "required": 38
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 6
+      },
+      {
+        "materialId": "ominous-mask",
+        "required": 22
+      },
+      {
+        "materialId": "dvalin's-claw",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "razor",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Razor",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-resistance",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-resistance",
+        "required": 114
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 18
+      },
+      {
+        "materialId": "ominous-mask",
+        "required": 66
+      },
+      {
+        "materialId": "dvalin's-claw",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -11563,7 +16841,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "rosaria",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Rosaria",
     "category": "ascension",
     "sortOrder": 2,
@@ -11588,7 +16866,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "rosaria",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Rosaria",
     "category": "ascension",
     "sortOrder": 3,
@@ -11613,7 +16891,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "rosaria",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Rosaria",
     "category": "ascension",
     "sortOrder": 4,
@@ -11638,7 +16916,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "rosaria",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Rosaria",
     "category": "ascension",
     "sortOrder": 5,
@@ -11663,7 +16941,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "rosaria",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Rosaria",
     "category": "ascension",
     "sortOrder": 6,
@@ -11683,6 +16961,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "lieutenant-s-insignia",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "rosaria",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Rosaria",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-ballad",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-ballad",
+        "required": 63
+      },
+      {
+        "materialId": "recruit-s-insignia",
+        "required": 18
+      },
+      {
+        "materialId": "sergeant-s-insignia",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "rosaria",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Rosaria",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-ballad",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-ballad",
+        "required": 38
+      },
+      {
+        "materialId": "sergeant-s-insignia",
+        "required": 6
+      },
+      {
+        "materialId": "lieutenant-s-insignia",
+        "required": 22
+      },
+      {
+        "materialId": "shadow-of-the-warrior",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "rosaria",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Rosaria",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-ballad",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-ballad",
+        "required": 114
+      },
+      {
+        "materialId": "sergeant-s-insignia",
+        "required": 18
+      },
+      {
+        "materialId": "lieutenant-s-insignia",
+        "required": 66
+      },
+      {
+        "materialId": "shadow-of-the-warrior",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -11709,7 +17078,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kujou-sara",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Kujou Sara",
     "category": "ascension",
     "sortOrder": 2,
@@ -11734,7 +17103,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kujou-sara",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Kujou Sara",
     "category": "ascension",
     "sortOrder": 3,
@@ -11759,7 +17128,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kujou-sara",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Kujou Sara",
     "category": "ascension",
     "sortOrder": 4,
@@ -11784,7 +17153,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kujou-sara",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Kujou Sara",
     "category": "ascension",
     "sortOrder": 5,
@@ -11809,7 +17178,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kujou-sara",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Kujou Sara",
     "category": "ascension",
     "sortOrder": 6,
@@ -11829,6 +17198,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "ominous-mask",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "kujou-sara",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Kujou Sara",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-elegance",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-elegance",
+        "required": 63
+      },
+      {
+        "materialId": "damaged-mask",
+        "required": 18
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "kujou-sara",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Kujou Sara",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-elegance",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-elegance",
+        "required": 38
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 6
+      },
+      {
+        "materialId": "ominous-mask",
+        "required": 22
+      },
+      {
+        "materialId": "ashen-heart",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "kujou-sara",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Kujou Sara",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-elegance",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-elegance",
+        "required": 114
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 18
+      },
+      {
+        "materialId": "ominous-mask",
+        "required": 66
+      },
+      {
+        "materialId": "ashen-heart",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -11855,7 +17315,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "sayu",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Sayu",
     "category": "ascension",
     "sortOrder": 2,
@@ -11880,7 +17340,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "sayu",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Sayu",
     "category": "ascension",
     "sortOrder": 3,
@@ -11905,7 +17365,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "sayu",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Sayu",
     "category": "ascension",
     "sortOrder": 4,
@@ -11930,7 +17390,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "sayu",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Sayu",
     "category": "ascension",
     "sortOrder": 5,
@@ -11955,7 +17415,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "sayu",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Sayu",
     "category": "ascension",
     "sortOrder": 6,
@@ -11975,6 +17435,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "energy-nectar",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "sayu",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Sayu",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-light",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-light",
+        "required": 63
+      },
+      {
+        "materialId": "whopperflower-nectar",
+        "required": 18
+      },
+      {
+        "materialId": "shimmering-nectar",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "sayu",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Sayu",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-light",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-light",
+        "required": 38
+      },
+      {
+        "materialId": "shimmering-nectar",
+        "required": 6
+      },
+      {
+        "materialId": "energy-nectar",
+        "required": 22
+      },
+      {
+        "materialId": "gilded-scale",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "sayu",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Sayu",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-light",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-light",
+        "required": 114
+      },
+      {
+        "materialId": "shimmering-nectar",
+        "required": 18
+      },
+      {
+        "materialId": "energy-nectar",
+        "required": 66
+      },
+      {
+        "materialId": "gilded-scale",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -12001,7 +17552,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "sethos",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Sethos",
     "category": "ascension",
     "sortOrder": 2,
@@ -12026,7 +17577,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "sethos",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Sethos",
     "category": "ascension",
     "sortOrder": 3,
@@ -12051,7 +17602,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "sethos",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Sethos",
     "category": "ascension",
     "sortOrder": 4,
@@ -12076,7 +17627,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "sethos",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Sethos",
     "category": "ascension",
     "sortOrder": 5,
@@ -12101,7 +17652,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "sethos",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Sethos",
     "category": "ascension",
     "sortOrder": 6,
@@ -12121,6 +17672,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "rich-red-brocade",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "sethos",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Sethos",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-praxis",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-praxis",
+        "required": 63
+      },
+      {
+        "materialId": "faded-red-satin",
+        "required": 18
+      },
+      {
+        "materialId": "trimmed-red-silk",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "sethos",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Sethos",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-praxis",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-praxis",
+        "required": 38
+      },
+      {
+        "materialId": "trimmed-red-silk",
+        "required": 6
+      },
+      {
+        "materialId": "rich-red-brocade",
+        "required": 22
+      },
+      {
+        "materialId": "daka-s-bell",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "sethos",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Sethos",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-praxis",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-praxis",
+        "required": 114
+      },
+      {
+        "materialId": "trimmed-red-silk",
+        "required": 18
+      },
+      {
+        "materialId": "rich-red-brocade",
+        "required": 66
+      },
+      {
+        "materialId": "daka-s-bell",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -12147,7 +17789,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "shenhe",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Shenhe",
     "category": "ascension",
     "sortOrder": 2,
@@ -12172,7 +17814,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "shenhe",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Shenhe",
     "category": "ascension",
     "sortOrder": 3,
@@ -12197,7 +17839,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "shenhe",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Shenhe",
     "category": "ascension",
     "sortOrder": 4,
@@ -12222,7 +17864,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "shenhe",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Shenhe",
     "category": "ascension",
     "sortOrder": 5,
@@ -12247,7 +17889,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "shenhe",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Shenhe",
     "category": "ascension",
     "sortOrder": 6,
@@ -12267,6 +17909,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "energy-nectar",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "shenhe",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Shenhe",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-prosperity",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-prosperity",
+        "required": 63
+      },
+      {
+        "materialId": "whopperflower-nectar",
+        "required": 18
+      },
+      {
+        "materialId": "shimmering-nectar",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "shenhe",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Shenhe",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-prosperity",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-prosperity",
+        "required": 38
+      },
+      {
+        "materialId": "shimmering-nectar",
+        "required": 6
+      },
+      {
+        "materialId": "energy-nectar",
+        "required": 22
+      },
+      {
+        "materialId": "hellfire-butterfly",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "shenhe",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Shenhe",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-prosperity",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-prosperity",
+        "required": 114
+      },
+      {
+        "materialId": "shimmering-nectar",
+        "required": 18
+      },
+      {
+        "materialId": "energy-nectar",
+        "required": 66
+      },
+      {
+        "materialId": "hellfire-butterfly",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -12293,7 +18026,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "shikanoin-heizou",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Shikanoin Heizou",
     "category": "ascension",
     "sortOrder": 2,
@@ -12318,7 +18051,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "shikanoin-heizou",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Shikanoin Heizou",
     "category": "ascension",
     "sortOrder": 3,
@@ -12343,7 +18076,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "shikanoin-heizou",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Shikanoin Heizou",
     "category": "ascension",
     "sortOrder": 4,
@@ -12368,7 +18101,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "shikanoin-heizou",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Shikanoin Heizou",
     "category": "ascension",
     "sortOrder": 5,
@@ -12393,7 +18126,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "shikanoin-heizou",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Shikanoin Heizou",
     "category": "ascension",
     "sortOrder": 6,
@@ -12413,6 +18146,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "golden-raven-insignia",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "shikanoin-heizou",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Shikanoin Heizou",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-transience",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-transience",
+        "required": 63
+      },
+      {
+        "materialId": "treasure-hoarder-insignia",
+        "required": 18
+      },
+      {
+        "materialId": "silver-raven-insignia",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "shikanoin-heizou",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Shikanoin Heizou",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-transience",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-transience",
+        "required": 38
+      },
+      {
+        "materialId": "silver-raven-insignia",
+        "required": 6
+      },
+      {
+        "materialId": "golden-raven-insignia",
+        "required": 22
+      },
+      {
+        "materialId": "the-meaning-of-aeons",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "shikanoin-heizou",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Shikanoin Heizou",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-transience",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-transience",
+        "required": 114
+      },
+      {
+        "materialId": "silver-raven-insignia",
+        "required": 18
+      },
+      {
+        "materialId": "golden-raven-insignia",
+        "required": 66
+      },
+      {
+        "materialId": "the-meaning-of-aeons",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -12439,7 +18263,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "sigwinne",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Sigewinne",
     "category": "ascension",
     "sortOrder": 2,
@@ -12464,7 +18288,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "sigwinne",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Sigewinne",
     "category": "ascension",
     "sortOrder": 3,
@@ -12489,7 +18313,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "sigwinne",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Sigewinne",
     "category": "ascension",
     "sortOrder": 4,
@@ -12514,7 +18338,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "sigwinne",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Sigewinne",
     "category": "ascension",
     "sortOrder": 5,
@@ -12539,7 +18363,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "sigwinne",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Sigewinne",
     "category": "ascension",
     "sortOrder": 6,
@@ -12559,6 +18383,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "xenochromatic-crystal",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "sigwinne",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Sigewinne",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-equity",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-equity",
+        "required": 63
+      },
+      {
+        "materialId": "transoceanic-pearl",
+        "required": 18
+      },
+      {
+        "materialId": "transoceanic-chunk",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "sigwinne",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Sigewinne",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-equity",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-equity",
+        "required": 38
+      },
+      {
+        "materialId": "transoceanic-chunk",
+        "required": 6
+      },
+      {
+        "materialId": "xenochromatic-crystal",
+        "required": 22
+      },
+      {
+        "materialId": "lightless-eye-of-the-maelstrom",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "sigwinne",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Sigewinne",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-equity",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-equity",
+        "required": 114
+      },
+      {
+        "materialId": "transoceanic-chunk",
+        "required": 18
+      },
+      {
+        "materialId": "xenochromatic-crystal",
+        "required": 66
+      },
+      {
+        "materialId": "lightless-eye-of-the-maelstrom",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -12585,7 +18500,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "skirk",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Skirk",
     "category": "ascension",
     "sortOrder": 2,
@@ -12610,7 +18525,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "skirk",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Skirk",
     "category": "ascension",
     "sortOrder": 3,
@@ -12635,7 +18550,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "skirk",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Skirk",
     "category": "ascension",
     "sortOrder": 4,
@@ -12660,7 +18575,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "skirk",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Skirk",
     "category": "ascension",
     "sortOrder": 5,
@@ -12685,7 +18600,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "skirk",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Skirk",
     "category": "ascension",
     "sortOrder": 6,
@@ -12731,7 +18646,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "sucrose",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Sucrose",
     "category": "ascension",
     "sortOrder": 2,
@@ -12756,7 +18671,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "sucrose",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Sucrose",
     "category": "ascension",
     "sortOrder": 3,
@@ -12781,7 +18696,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "sucrose",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Sucrose",
     "category": "ascension",
     "sortOrder": 4,
@@ -12806,7 +18721,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "sucrose",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Sucrose",
     "category": "ascension",
     "sortOrder": 5,
@@ -12831,7 +18746,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "sucrose",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Sucrose",
     "category": "ascension",
     "sortOrder": 6,
@@ -12851,6 +18766,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "energy-nectar",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "sucrose",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Sucrose",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-freedom",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-freedom",
+        "required": 63
+      },
+      {
+        "materialId": "whopperflower-nectar",
+        "required": 18
+      },
+      {
+        "materialId": "shimmering-nectar",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "sucrose",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Sucrose",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-freedom",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-freedom",
+        "required": 38
+      },
+      {
+        "materialId": "shimmering-nectar",
+        "required": 6
+      },
+      {
+        "materialId": "energy-nectar",
+        "required": 22
+      },
+      {
+        "materialId": "spirit-locket-of-boreas",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "sucrose",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Sucrose",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-freedom",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-freedom",
+        "required": 114
+      },
+      {
+        "materialId": "shimmering-nectar",
+        "required": 18
+      },
+      {
+        "materialId": "energy-nectar",
+        "required": 66
+      },
+      {
+        "materialId": "spirit-locket-of-boreas",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -12877,7 +18883,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "tartaglia",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Tartaglia",
     "category": "ascension",
     "sortOrder": 2,
@@ -12902,7 +18908,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "tartaglia",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Tartaglia",
     "category": "ascension",
     "sortOrder": 3,
@@ -12927,7 +18933,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "tartaglia",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Tartaglia",
     "category": "ascension",
     "sortOrder": 4,
@@ -12952,7 +18958,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "tartaglia",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Tartaglia",
     "category": "ascension",
     "sortOrder": 5,
@@ -12977,7 +18983,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "tartaglia",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Tartaglia",
     "category": "ascension",
     "sortOrder": 6,
@@ -12997,6 +19003,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "lieutenant-s-insignia",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "tartaglia",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Tartaglia",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-freedom",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-freedom",
+        "required": 63
+      },
+      {
+        "materialId": "recruit-s-insignia",
+        "required": 18
+      },
+      {
+        "materialId": "sergeant-s-insignia",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "tartaglia",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Tartaglia",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-freedom",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-freedom",
+        "required": 38
+      },
+      {
+        "materialId": "sergeant-s-insignia",
+        "required": 6
+      },
+      {
+        "materialId": "lieutenant-s-insignia",
+        "required": 22
+      },
+      {
+        "materialId": "shard-of-a-foul-legacy",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "tartaglia",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Tartaglia",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-freedom",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-freedom",
+        "required": 114
+      },
+      {
+        "materialId": "sergeant-s-insignia",
+        "required": 18
+      },
+      {
+        "materialId": "lieutenant-s-insignia",
+        "required": 66
+      },
+      {
+        "materialId": "shard-of-a-foul-legacy",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -13023,7 +19120,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "thoma",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Thoma",
     "category": "ascension",
     "sortOrder": 2,
@@ -13048,7 +19145,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "thoma",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Thoma",
     "category": "ascension",
     "sortOrder": 3,
@@ -13073,7 +19170,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "thoma",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Thoma",
     "category": "ascension",
     "sortOrder": 4,
@@ -13098,7 +19195,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "thoma",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Thoma",
     "category": "ascension",
     "sortOrder": 5,
@@ -13123,7 +19220,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "thoma",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Thoma",
     "category": "ascension",
     "sortOrder": 6,
@@ -13143,6 +19240,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "golden-raven-insignia",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "thoma",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Thoma",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-transience",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-transience",
+        "required": 63
+      },
+      {
+        "materialId": "treasure-hoarder-insignia",
+        "required": 18
+      },
+      {
+        "materialId": "silver-raven-insignia",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "thoma",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Thoma",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-transience",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-transience",
+        "required": 38
+      },
+      {
+        "materialId": "silver-raven-insignia",
+        "required": 6
+      },
+      {
+        "materialId": "golden-raven-insignia",
+        "required": 22
+      },
+      {
+        "materialId": "hellfire-butterfly",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "thoma",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Thoma",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-transience",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-transience",
+        "required": 114
+      },
+      {
+        "materialId": "silver-raven-insignia",
+        "required": 18
+      },
+      {
+        "materialId": "golden-raven-insignia",
+        "required": 66
+      },
+      {
+        "materialId": "hellfire-butterfly",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -13169,7 +19357,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "tighnari",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Tighnari",
     "category": "ascension",
     "sortOrder": 2,
@@ -13194,7 +19382,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "tighnari",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Tighnari",
     "category": "ascension",
     "sortOrder": 3,
@@ -13219,7 +19407,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "tighnari",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Tighnari",
     "category": "ascension",
     "sortOrder": 4,
@@ -13244,7 +19432,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "tighnari",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Tighnari",
     "category": "ascension",
     "sortOrder": 5,
@@ -13269,7 +19457,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "tighnari",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Tighnari",
     "category": "ascension",
     "sortOrder": 6,
@@ -13293,6 +19481,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
+    "characterId": "tighnari",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Tighnari",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-admonition",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-admonition",
+        "required": 63
+      },
+      {
+        "materialId": "fungal-spores",
+        "required": 18
+      },
+      {
+        "materialId": "luminescent-pollen",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "tighnari",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Tighnari",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-admonition",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-admonition",
+        "required": 38
+      },
+      {
+        "materialId": "luminescent-pollen",
+        "required": 6
+      },
+      {
+        "materialId": "crystalline-cyst-dust",
+        "required": 22
+      },
+      {
+        "materialId": "the-meaning-of-aeons",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "tighnari",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Tighnari",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-admonition",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-admonition",
+        "required": 114
+      },
+      {
+        "materialId": "luminescent-pollen",
+        "required": 18
+      },
+      {
+        "materialId": "crystalline-cyst-dust",
+        "required": 66
+      },
+      {
+        "materialId": "the-meaning-of-aeons",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
+      }
+    ]
+  },
+  {
     "characterId": "traveler-anemo",
     "name": "Ascension 1 (Lv. 20 -> 40)",
     "description": "First ascension materials for Traveler",
@@ -13315,7 +19594,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "traveler-anemo",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Traveler",
     "category": "ascension",
     "sortOrder": 2,
@@ -13336,7 +19615,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "traveler-anemo",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Traveler",
     "category": "ascension",
     "sortOrder": 3,
@@ -13357,7 +19636,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "traveler-anemo",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Traveler",
     "category": "ascension",
     "sortOrder": 4,
@@ -13378,7 +19657,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "traveler-anemo",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Traveler",
     "category": "ascension",
     "sortOrder": 5,
@@ -13399,7 +19678,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "traveler-anemo",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Traveler",
     "category": "ascension",
     "sortOrder": 6,
@@ -13415,6 +19694,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "ominous-mask",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "traveler-anemo",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Traveler",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-freedom",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-freedom",
+        "required": 63
+      },
+      {
+        "materialId": "damaged-mask",
+        "required": 18
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "traveler-anemo",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Traveler",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-freedom",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-freedom",
+        "required": 38
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 6
+      },
+      {
+        "materialId": "ominous-mask",
+        "required": 22
+      },
+      {
+        "materialId": "dvalin's-sigh",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "traveler-anemo",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Traveler",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-freedom",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-freedom",
+        "required": 114
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 18
+      },
+      {
+        "materialId": "ominous-mask",
+        "required": 66
+      },
+      {
+        "materialId": "dvalin's-sigh",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -13441,7 +19811,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "traveler-dendro",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Traveler",
     "category": "ascension",
     "sortOrder": 2,
@@ -13462,7 +19832,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "traveler-dendro",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Traveler",
     "category": "ascension",
     "sortOrder": 3,
@@ -13483,7 +19853,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "traveler-dendro",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Traveler",
     "category": "ascension",
     "sortOrder": 4,
@@ -13504,7 +19874,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "traveler-dendro",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Traveler",
     "category": "ascension",
     "sortOrder": 5,
@@ -13525,7 +19895,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "traveler-dendro",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Traveler",
     "category": "ascension",
     "sortOrder": 6,
@@ -13541,6 +19911,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "ominous-mask",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "traveler-dendro",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Traveler",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-admonition",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-admonition",
+        "required": 63
+      },
+      {
+        "materialId": "damaged-mask",
+        "required": 18
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "traveler-dendro",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Traveler",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-admonition",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-admonition",
+        "required": 38
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 6
+      },
+      {
+        "materialId": "ominous-mask",
+        "required": 22
+      },
+      {
+        "materialId": "mudra-of-the-malefic-general",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "traveler-dendro",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Traveler",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-admonition",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-admonition",
+        "required": 114
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 18
+      },
+      {
+        "materialId": "ominous-mask",
+        "required": 66
+      },
+      {
+        "materialId": "mudra-of-the-malefic-general",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -13567,7 +20028,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "traveler-electro",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Traveler",
     "category": "ascension",
     "sortOrder": 2,
@@ -13588,7 +20049,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "traveler-electro",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Traveler",
     "category": "ascension",
     "sortOrder": 3,
@@ -13609,7 +20070,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "traveler-electro",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Traveler",
     "category": "ascension",
     "sortOrder": 4,
@@ -13630,7 +20091,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "traveler-electro",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Traveler",
     "category": "ascension",
     "sortOrder": 5,
@@ -13651,7 +20112,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "traveler-electro",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Traveler",
     "category": "ascension",
     "sortOrder": 6,
@@ -13667,6 +20128,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "ominous-mask",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "traveler-electro",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Traveler",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-transience",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-transience",
+        "required": 63
+      },
+      {
+        "materialId": "damaged-mask",
+        "required": 18
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "traveler-electro",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Traveler",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-transience",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-transience",
+        "required": 38
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 6
+      },
+      {
+        "materialId": "ominous-mask",
+        "required": 22
+      },
+      {
+        "materialId": "dragon-lord's-crown",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "traveler-electro",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Traveler",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-transience",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-transience",
+        "required": 114
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 18
+      },
+      {
+        "materialId": "ominous-mask",
+        "required": 66
+      },
+      {
+        "materialId": "dragon-lord's-crown",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -13693,7 +20245,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "traveler-geo",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Traveler",
     "category": "ascension",
     "sortOrder": 2,
@@ -13714,7 +20266,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "traveler-geo",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Traveler",
     "category": "ascension",
     "sortOrder": 3,
@@ -13735,7 +20287,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "traveler-geo",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Traveler",
     "category": "ascension",
     "sortOrder": 4,
@@ -13756,7 +20308,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "traveler-geo",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Traveler",
     "category": "ascension",
     "sortOrder": 5,
@@ -13777,7 +20329,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "traveler-geo",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Traveler",
     "category": "ascension",
     "sortOrder": 6,
@@ -13793,6 +20345,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "ominous-mask",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "traveler-geo",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Traveler",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-freedom",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-freedom",
+        "required": 63
+      },
+      {
+        "materialId": "damaged-mask",
+        "required": 18
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "traveler-geo",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Traveler",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-freedom",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-freedom",
+        "required": 38
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 6
+      },
+      {
+        "materialId": "ominous-mask",
+        "required": 22
+      },
+      {
+        "materialId": "tail-of-boreas",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "traveler-geo",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Traveler",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-freedom",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-freedom",
+        "required": 114
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 18
+      },
+      {
+        "materialId": "ominous-mask",
+        "required": 66
+      },
+      {
+        "materialId": "tail-of-boreas",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -13819,7 +20462,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "traveler-hydro",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Traveler",
     "category": "ascension",
     "sortOrder": 2,
@@ -13840,7 +20483,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "traveler-hydro",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Traveler",
     "category": "ascension",
     "sortOrder": 3,
@@ -13861,7 +20504,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "traveler-hydro",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Traveler",
     "category": "ascension",
     "sortOrder": 4,
@@ -13882,7 +20525,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "traveler-hydro",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Traveler",
     "category": "ascension",
     "sortOrder": 5,
@@ -13903,7 +20546,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "traveler-hydro",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Traveler",
     "category": "ascension",
     "sortOrder": 6,
@@ -13919,6 +20562,314 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "ominous-mask",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "traveler-hydro",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Traveler",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-equity",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-equity",
+        "required": 63
+      },
+      {
+        "materialId": "damaged-mask",
+        "required": 18
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "traveler-hydro",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Traveler",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-equity",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-equity",
+        "required": 38
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 6
+      },
+      {
+        "materialId": "ominous-mask",
+        "required": 22
+      },
+      {
+        "materialId": "worldspan-fern",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "traveler-hydro",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Traveler",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-equity",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-equity",
+        "required": 114
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 18
+      },
+      {
+        "materialId": "ominous-mask",
+        "required": 66
+      },
+      {
+        "materialId": "worldspan-fern",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
+      }
+    ]
+  },
+  {
+    "characterId": "traveler-pyro",
+    "name": "Ascension 1 (Lv. 20 -> 40)",
+    "description": "First ascension materials for Traveler",
+    "category": "ascension",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "brilliant-diamond-sliver",
+        "required": 1
+      },
+      {
+        "materialId": "windwheel-aster",
+        "required": 3
+      },
+      {
+        "materialId": "damaged-mask",
+        "required": 3
+      }
+    ]
+  },
+  {
+    "characterId": "traveler-pyro",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
+    "description": "Second ascension materials for Traveler",
+    "category": "ascension",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "brilliant-diamond-fragment",
+        "required": 3
+      },
+      {
+        "materialId": "windwheel-aster",
+        "required": 10
+      },
+      {
+        "materialId": "damaged-mask",
+        "required": 15
+      }
+    ]
+  },
+  {
+    "characterId": "traveler-pyro",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
+    "description": "Third ascension materials for Traveler",
+    "category": "ascension",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "brilliant-diamond-fragment",
+        "required": 6
+      },
+      {
+        "materialId": "windwheel-aster",
+        "required": 20
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 12
+      }
+    ]
+  },
+  {
+    "characterId": "traveler-pyro",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
+    "description": "Fourth ascension materials for Traveler",
+    "category": "ascension",
+    "sortOrder": 4,
+    "materials": [
+      {
+        "materialId": "brilliant-diamond-chunk",
+        "required": 3
+      },
+      {
+        "materialId": "windwheel-aster",
+        "required": 30
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 18
+      }
+    ]
+  },
+  {
+    "characterId": "traveler-pyro",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
+    "description": "Fifth ascension materials for Traveler",
+    "category": "ascension",
+    "sortOrder": 5,
+    "materials": [
+      {
+        "materialId": "brilliant-diamond-chunk",
+        "required": 6
+      },
+      {
+        "materialId": "windwheel-aster",
+        "required": 45
+      },
+      {
+        "materialId": "ominous-mask",
+        "required": 12
+      }
+    ]
+  },
+  {
+    "characterId": "traveler-pyro",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
+    "description": "Sixth ascension materials for Traveler",
+    "category": "ascension",
+    "sortOrder": 6,
+    "materials": [
+      {
+        "materialId": "brilliant-diamond-gemstone",
+        "required": 6
+      },
+      {
+        "materialId": "windwheel-aster",
+        "required": 60
+      },
+      {
+        "materialId": "ominous-mask",
+        "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "traveler-pyro",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Traveler",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-conflict",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-conflict",
+        "required": 63
+      },
+      {
+        "materialId": "damaged-mask",
+        "required": 18
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "traveler-pyro",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Traveler",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-conflict",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-conflict",
+        "required": 38
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 6
+      },
+      {
+        "materialId": "ominous-mask",
+        "required": 22
+      },
+      {
+        "materialId": "denial-and-judgment",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "traveler-pyro",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Traveler",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-conflict",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-conflict",
+        "required": 114
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 18
+      },
+      {
+        "materialId": "ominous-mask",
+        "required": 66
+      },
+      {
+        "materialId": "denial-and-judgment",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -13945,7 +20896,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "varesa",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Varesa",
     "category": "ascension",
     "sortOrder": 2,
@@ -13970,7 +20921,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "varesa",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Varesa",
     "category": "ascension",
     "sortOrder": 3,
@@ -13995,7 +20946,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "varesa",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Varesa",
     "category": "ascension",
     "sortOrder": 4,
@@ -14020,7 +20971,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "varesa",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Varesa",
     "category": "ascension",
     "sortOrder": 5,
@@ -14045,7 +20996,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "varesa",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Varesa",
     "category": "ascension",
     "sortOrder": 6,
@@ -14091,7 +21042,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "venti",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Venti",
     "category": "ascension",
     "sortOrder": 2,
@@ -14116,7 +21067,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "venti",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Venti",
     "category": "ascension",
     "sortOrder": 3,
@@ -14141,7 +21092,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "venti",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Venti",
     "category": "ascension",
     "sortOrder": 4,
@@ -14166,7 +21117,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "venti",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Venti",
     "category": "ascension",
     "sortOrder": 5,
@@ -14191,7 +21142,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "venti",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Venti",
     "category": "ascension",
     "sortOrder": 6,
@@ -14211,6 +21162,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "slime-concentrate",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "venti",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Venti",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-ballad",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-ballad",
+        "required": 63
+      },
+      {
+        "materialId": "slime-condensate",
+        "required": 18
+      },
+      {
+        "materialId": "slime-secretions",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "venti",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Venti",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-ballad",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-ballad",
+        "required": 38
+      },
+      {
+        "materialId": "slime-secretions",
+        "required": 6
+      },
+      {
+        "materialId": "slime-concentrate",
+        "required": 22
+      },
+      {
+        "materialId": "tail-of-boreas",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "venti",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Venti",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-ballad",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-ballad",
+        "required": 114
+      },
+      {
+        "materialId": "slime-secretions",
+        "required": 18
+      },
+      {
+        "materialId": "slime-concentrate",
+        "required": 66
+      },
+      {
+        "materialId": "tail-of-boreas",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -14237,7 +21279,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "wanderer",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Wanderer",
     "category": "ascension",
     "sortOrder": 2,
@@ -14262,7 +21304,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "wanderer",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Wanderer",
     "category": "ascension",
     "sortOrder": 3,
@@ -14287,7 +21329,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "wanderer",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Wanderer",
     "category": "ascension",
     "sortOrder": 4,
@@ -14312,7 +21354,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "wanderer",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Wanderer",
     "category": "ascension",
     "sortOrder": 5,
@@ -14337,7 +21379,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "wanderer",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Wanderer",
     "category": "ascension",
     "sortOrder": 6,
@@ -14357,6 +21399,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "famed-handguard",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "wanderer",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Wanderer",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-praxis",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-praxis",
+        "required": 63
+      },
+      {
+        "materialId": "old-handguard",
+        "required": 18
+      },
+      {
+        "materialId": "kageuchi-handguard",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "wanderer",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Wanderer",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-praxis",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-praxis",
+        "required": 38
+      },
+      {
+        "materialId": "kageuchi-handguard",
+        "required": 6
+      },
+      {
+        "materialId": "famed-handguard",
+        "required": 22
+      },
+      {
+        "materialId": "daka-s-bell",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "wanderer",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Wanderer",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-praxis",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-praxis",
+        "required": 114
+      },
+      {
+        "materialId": "kageuchi-handguard",
+        "required": 18
+      },
+      {
+        "materialId": "famed-handguard",
+        "required": 66
+      },
+      {
+        "materialId": "daka-s-bell",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -14383,7 +21516,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "wriothesley",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Wriothesley",
     "category": "ascension",
     "sortOrder": 2,
@@ -14408,7 +21541,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "wriothesley",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Wriothesley",
     "category": "ascension",
     "sortOrder": 3,
@@ -14433,7 +21566,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "wriothesley",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Wriothesley",
     "category": "ascension",
     "sortOrder": 4,
@@ -14458,7 +21591,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "wriothesley",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Wriothesley",
     "category": "ascension",
     "sortOrder": 5,
@@ -14483,7 +21616,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "wriothesley",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Wriothesley",
     "category": "ascension",
     "sortOrder": 6,
@@ -14503,6 +21636,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "artificed-dynamic-gear",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "wriothesley",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Wriothesley",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-order",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-order",
+        "required": 63
+      },
+      {
+        "materialId": "meshing-gear",
+        "required": 18
+      },
+      {
+        "materialId": "mechanical-spur-gear",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "wriothesley",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Wriothesley",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-order",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-order",
+        "required": 38
+      },
+      {
+        "materialId": "mechanical-spur-gear",
+        "required": 6
+      },
+      {
+        "materialId": "artificed-dynamic-gear",
+        "required": 22
+      },
+      {
+        "materialId": "primordial-greenbloom",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "wriothesley",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Wriothesley",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-order",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-order",
+        "required": 114
+      },
+      {
+        "materialId": "mechanical-spur-gear",
+        "required": 18
+      },
+      {
+        "materialId": "artificed-dynamic-gear",
+        "required": 66
+      },
+      {
+        "materialId": "primordial-greenbloom",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -14529,7 +21753,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "xiangling",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Xiangling",
     "category": "ascension",
     "sortOrder": 2,
@@ -14554,7 +21778,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "xiangling",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Xiangling",
     "category": "ascension",
     "sortOrder": 3,
@@ -14579,7 +21803,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "xiangling",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Xiangling",
     "category": "ascension",
     "sortOrder": 4,
@@ -14604,7 +21828,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "xiangling",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Xiangling",
     "category": "ascension",
     "sortOrder": 5,
@@ -14629,7 +21853,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "xiangling",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Xiangling",
     "category": "ascension",
     "sortOrder": 6,
@@ -14649,6 +21873,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "slime-concentrate",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "xiangling",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Xiangling",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-diligence",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-diligence",
+        "required": 63
+      },
+      {
+        "materialId": "slime-condensate",
+        "required": 18
+      },
+      {
+        "materialId": "slime-secretions",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "xiangling",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Xiangling",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-diligence",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-diligence",
+        "required": 38
+      },
+      {
+        "materialId": "slime-secretions",
+        "required": 6
+      },
+      {
+        "materialId": "slime-concentrate",
+        "required": 22
+      },
+      {
+        "materialId": "dvalin's-claw",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "xiangling",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Xiangling",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-diligence",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-diligence",
+        "required": 114
+      },
+      {
+        "materialId": "slime-secretions",
+        "required": 18
+      },
+      {
+        "materialId": "slime-concentrate",
+        "required": 66
+      },
+      {
+        "materialId": "dvalin's-claw",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -14675,7 +21990,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "xianyun",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Xianyun",
     "category": "ascension",
     "sortOrder": 2,
@@ -14700,7 +22015,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "xianyun",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Xianyun",
     "category": "ascension",
     "sortOrder": 3,
@@ -14725,7 +22040,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "xianyun",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Xianyun",
     "category": "ascension",
     "sortOrder": 4,
@@ -14750,7 +22065,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "xianyun",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Xianyun",
     "category": "ascension",
     "sortOrder": 5,
@@ -14775,7 +22090,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "xianyun",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Xianyun",
     "category": "ascension",
     "sortOrder": 6,
@@ -14795,6 +22110,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "forbidden-curse-scroll",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "xianyun",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Xianyun",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-gold",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-gold",
+        "required": 63
+      },
+      {
+        "materialId": "divining-scroll",
+        "required": 18
+      },
+      {
+        "materialId": "sealed-scroll",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "xianyun",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Xianyun",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-gold",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-gold",
+        "required": 38
+      },
+      {
+        "materialId": "sealed-scroll",
+        "required": 6
+      },
+      {
+        "materialId": "forbidden-curse-scroll",
+        "required": 22
+      },
+      {
+        "materialId": "lightless-eye-of-the-maelstrom",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "xianyun",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Xianyun",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-gold",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-gold",
+        "required": 114
+      },
+      {
+        "materialId": "sealed-scroll",
+        "required": 18
+      },
+      {
+        "materialId": "forbidden-curse-scroll",
+        "required": 66
+      },
+      {
+        "materialId": "lightless-eye-of-the-maelstrom",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -14821,7 +22227,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "xiao",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Xiao",
     "category": "ascension",
     "sortOrder": 2,
@@ -14846,7 +22252,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "xiao",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Xiao",
     "category": "ascension",
     "sortOrder": 3,
@@ -14871,7 +22277,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "xiao",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Xiao",
     "category": "ascension",
     "sortOrder": 4,
@@ -14896,7 +22302,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "xiao",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Xiao",
     "category": "ascension",
     "sortOrder": 5,
@@ -14921,7 +22327,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "xiao",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Xiao",
     "category": "ascension",
     "sortOrder": 6,
@@ -14941,6 +22347,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "slime-concentrate",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "xiao",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Xiao",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-prosperity",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-prosperity",
+        "required": 63
+      },
+      {
+        "materialId": "slime-condensate",
+        "required": 18
+      },
+      {
+        "materialId": "slime-secretions",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "xiao",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Xiao",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-prosperity",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-prosperity",
+        "required": 38
+      },
+      {
+        "materialId": "slime-secretions",
+        "required": 6
+      },
+      {
+        "materialId": "slime-concentrate",
+        "required": 22
+      },
+      {
+        "materialId": "shadow-of-the-warrior",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "xiao",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Xiao",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-prosperity",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-prosperity",
+        "required": 114
+      },
+      {
+        "materialId": "slime-secretions",
+        "required": 18
+      },
+      {
+        "materialId": "slime-concentrate",
+        "required": 66
+      },
+      {
+        "materialId": "shadow-of-the-warrior",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -14967,7 +22464,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "xilonen",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Xilonen",
     "category": "ascension",
     "sortOrder": 2,
@@ -14992,7 +22489,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "xilonen",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Xilonen",
     "category": "ascension",
     "sortOrder": 3,
@@ -15010,14 +22507,14 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 20
       },
       {
-        "materialId": "warrior-s-metal-whistle",
+        "materialId": "warriors-s-metal-whistle",
         "required": 12
       }
     ]
   },
   {
     "characterId": "xilonen",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Xilonen",
     "category": "ascension",
     "sortOrder": 4,
@@ -15035,14 +22532,14 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 30
       },
       {
-        "materialId": "warrior-s-metal-whistle",
+        "materialId": "warriors-s-metal-whistle",
         "required": 18
       }
     ]
   },
   {
     "characterId": "xilonen",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Xilonen",
     "category": "ascension",
     "sortOrder": 5,
@@ -15067,7 +22564,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "xilonen",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Xilonen",
     "category": "ascension",
     "sortOrder": 6,
@@ -15113,7 +22610,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "xingqiu",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Xingqiu",
     "category": "ascension",
     "sortOrder": 2,
@@ -15138,7 +22635,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "xingqiu",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Xingqiu",
     "category": "ascension",
     "sortOrder": 3,
@@ -15163,7 +22660,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "xingqiu",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Xingqiu",
     "category": "ascension",
     "sortOrder": 4,
@@ -15188,7 +22685,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "xingqiu",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Xingqiu",
     "category": "ascension",
     "sortOrder": 5,
@@ -15213,7 +22710,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "xingqiu",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Xingqiu",
     "category": "ascension",
     "sortOrder": 6,
@@ -15233,6 +22730,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "ominous-mask",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "xingqiu",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Xingqiu",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-gold",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-gold",
+        "required": 63
+      },
+      {
+        "materialId": "damaged-mask",
+        "required": 18
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "xingqiu",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Xingqiu",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-gold",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-gold",
+        "required": 38
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 6
+      },
+      {
+        "materialId": "ominous-mask",
+        "required": 22
+      },
+      {
+        "materialId": "tail-of-boreas",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "xingqiu",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Xingqiu",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-gold",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-gold",
+        "required": 114
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 18
+      },
+      {
+        "materialId": "ominous-mask",
+        "required": 66
+      },
+      {
+        "materialId": "tail-of-boreas",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -15259,7 +22847,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "xinyan",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Xinyan",
     "category": "ascension",
     "sortOrder": 2,
@@ -15284,7 +22872,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "xinyan",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Xinyan",
     "category": "ascension",
     "sortOrder": 3,
@@ -15309,7 +22897,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "xinyan",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Xinyan",
     "category": "ascension",
     "sortOrder": 4,
@@ -15334,7 +22922,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "xinyan",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Xinyan",
     "category": "ascension",
     "sortOrder": 5,
@@ -15359,7 +22947,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "xinyan",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Xinyan",
     "category": "ascension",
     "sortOrder": 6,
@@ -15379,6 +22967,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "golden-raven-insignia",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "xinyan",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Xinyan",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-gold",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-gold",
+        "required": 63
+      },
+      {
+        "materialId": "treasure-hoarder-insignia",
+        "required": 18
+      },
+      {
+        "materialId": "silver-raven-insignia",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "xinyan",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Xinyan",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-gold",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-gold",
+        "required": 38
+      },
+      {
+        "materialId": "silver-raven-insignia",
+        "required": 6
+      },
+      {
+        "materialId": "golden-raven-insignia",
+        "required": 22
+      },
+      {
+        "materialId": "tusk-of-monoceros-caeli",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "xinyan",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Xinyan",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-gold",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-gold",
+        "required": 114
+      },
+      {
+        "materialId": "silver-raven-insignia",
+        "required": 18
+      },
+      {
+        "materialId": "golden-raven-insignia",
+        "required": 66
+      },
+      {
+        "materialId": "tusk-of-monoceros-caeli",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -15405,7 +23084,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "yae-miko",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Yae Miko",
     "category": "ascension",
     "sortOrder": 2,
@@ -15430,7 +23109,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "yae-miko",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Yae Miko",
     "category": "ascension",
     "sortOrder": 3,
@@ -15455,7 +23134,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "yae-miko",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Yae Miko",
     "category": "ascension",
     "sortOrder": 4,
@@ -15480,7 +23159,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "yae-miko",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Yae Miko",
     "category": "ascension",
     "sortOrder": 5,
@@ -15505,7 +23184,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "yae-miko",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Yae Miko",
     "category": "ascension",
     "sortOrder": 6,
@@ -15525,6 +23204,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "famed-handguard",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "yae-miko",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Yae Miko",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-light",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-light",
+        "required": 63
+      },
+      {
+        "materialId": "old-handguard",
+        "required": 18
+      },
+      {
+        "materialId": "kageuchi-handguard",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "yae-miko",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Yae Miko",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-light",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-light",
+        "required": 38
+      },
+      {
+        "materialId": "kageuchi-handguard",
+        "required": 6
+      },
+      {
+        "materialId": "famed-handguard",
+        "required": 22
+      },
+      {
+        "materialId": "the-meaning-of-aeons",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "yae-miko",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Yae Miko",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-light",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-light",
+        "required": 114
+      },
+      {
+        "materialId": "kageuchi-handguard",
+        "required": 18
+      },
+      {
+        "materialId": "famed-handguard",
+        "required": 66
+      },
+      {
+        "materialId": "the-meaning-of-aeons",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -15551,7 +23321,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "yanfei",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Yanfei",
     "category": "ascension",
     "sortOrder": 2,
@@ -15576,7 +23346,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "yanfei",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Yanfei",
     "category": "ascension",
     "sortOrder": 3,
@@ -15601,7 +23371,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "yanfei",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Yanfei",
     "category": "ascension",
     "sortOrder": 4,
@@ -15626,7 +23396,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "yanfei",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Yanfei",
     "category": "ascension",
     "sortOrder": 5,
@@ -15651,7 +23421,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "yanfei",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Yanfei",
     "category": "ascension",
     "sortOrder": 6,
@@ -15671,6 +23441,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "golden-raven-insignia",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "yanfei",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Yanfei",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-gold",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-gold",
+        "required": 63
+      },
+      {
+        "materialId": "treasure-hoarder-insignia",
+        "required": 18
+      },
+      {
+        "materialId": "silver-raven-insignia",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "yanfei",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Yanfei",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-gold",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-gold",
+        "required": 38
+      },
+      {
+        "materialId": "silver-raven-insignia",
+        "required": 6
+      },
+      {
+        "materialId": "golden-raven-insignia",
+        "required": 22
+      },
+      {
+        "materialId": "bloodjade-branch",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "yanfei",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Yanfei",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-gold",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-gold",
+        "required": 114
+      },
+      {
+        "materialId": "silver-raven-insignia",
+        "required": 18
+      },
+      {
+        "materialId": "golden-raven-insignia",
+        "required": 66
+      },
+      {
+        "materialId": "bloodjade-branch",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -15697,7 +23558,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "yaoyao",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Yaoyao",
     "category": "ascension",
     "sortOrder": 2,
@@ -15722,7 +23583,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "yaoyao",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Yaoyao",
     "category": "ascension",
     "sortOrder": 3,
@@ -15747,7 +23608,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "yaoyao",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Yaoyao",
     "category": "ascension",
     "sortOrder": 4,
@@ -15772,7 +23633,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "yaoyao",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Yaoyao",
     "category": "ascension",
     "sortOrder": 5,
@@ -15797,7 +23658,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "yaoyao",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Yaoyao",
     "category": "ascension",
     "sortOrder": 6,
@@ -15817,6 +23678,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "slime-concentrate",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "yaoyao",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Yaoyao",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-diligence",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-diligence",
+        "required": 63
+      },
+      {
+        "materialId": "slime-condensate",
+        "required": 18
+      },
+      {
+        "materialId": "slime-secretions",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "yaoyao",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Yaoyao",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-diligence",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-diligence",
+        "required": 38
+      },
+      {
+        "materialId": "slime-secretions",
+        "required": 6
+      },
+      {
+        "materialId": "slime-concentrate",
+        "required": 22
+      },
+      {
+        "materialId": "daka-s-bell",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "yaoyao",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Yaoyao",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-diligence",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-diligence",
+        "required": 114
+      },
+      {
+        "materialId": "slime-secretions",
+        "required": 18
+      },
+      {
+        "materialId": "slime-concentrate",
+        "required": 66
+      },
+      {
+        "materialId": "daka-s-bell",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -15843,7 +23795,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "yelan",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Yelan",
     "category": "ascension",
     "sortOrder": 2,
@@ -15868,7 +23820,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "yelan",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Yelan",
     "category": "ascension",
     "sortOrder": 3,
@@ -15893,7 +23845,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "yelan",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Yelan",
     "category": "ascension",
     "sortOrder": 4,
@@ -15918,7 +23870,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "yelan",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Yelan",
     "category": "ascension",
     "sortOrder": 5,
@@ -15943,7 +23895,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "yelan",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Yelan",
     "category": "ascension",
     "sortOrder": 6,
@@ -15963,6 +23915,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "lieutenant-s-insignia",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "yelan",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Yelan",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-prosperity",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-prosperity",
+        "required": 63
+      },
+      {
+        "materialId": "recruit-s-insignia",
+        "required": 18
+      },
+      {
+        "materialId": "sergeant-s-insignia",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "yelan",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Yelan",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-prosperity",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-prosperity",
+        "required": 38
+      },
+      {
+        "materialId": "sergeant-s-insignia",
+        "required": 6
+      },
+      {
+        "materialId": "lieutenant-s-insignia",
+        "required": 22
+      },
+      {
+        "materialId": "gilded-scale",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "yelan",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Yelan",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-prosperity",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-prosperity",
+        "required": 114
+      },
+      {
+        "materialId": "sergeant-s-insignia",
+        "required": 18
+      },
+      {
+        "materialId": "lieutenant-s-insignia",
+        "required": 66
+      },
+      {
+        "materialId": "gilded-scale",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -15989,7 +24032,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "yoimiya",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Yoimiya",
     "category": "ascension",
     "sortOrder": 2,
@@ -16014,7 +24057,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "yoimiya",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Yoimiya",
     "category": "ascension",
     "sortOrder": 3,
@@ -16039,7 +24082,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "yoimiya",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Yoimiya",
     "category": "ascension",
     "sortOrder": 4,
@@ -16064,7 +24107,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "yoimiya",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Yoimiya",
     "category": "ascension",
     "sortOrder": 5,
@@ -16089,7 +24132,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "yoimiya",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Yoimiya",
     "category": "ascension",
     "sortOrder": 6,
@@ -16109,6 +24152,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "forbidden-curse-scroll",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "yoimiya",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Yoimiya",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-transience",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-transience",
+        "required": 63
+      },
+      {
+        "materialId": "divining-scroll",
+        "required": 18
+      },
+      {
+        "materialId": "sealed-scroll",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "yoimiya",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Yoimiya",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-transience",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-transience",
+        "required": 38
+      },
+      {
+        "materialId": "sealed-scroll",
+        "required": 6
+      },
+      {
+        "materialId": "forbidden-curse-scroll",
+        "required": 22
+      },
+      {
+        "materialId": "dragon-lord's-crown",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "yoimiya",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Yoimiya",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-transience",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-transience",
+        "required": 114
+      },
+      {
+        "materialId": "sealed-scroll",
+        "required": 18
+      },
+      {
+        "materialId": "forbidden-curse-scroll",
+        "required": 66
+      },
+      {
+        "materialId": "dragon-lord's-crown",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -16135,7 +24269,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "yumemizuki-mizuki",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Yumemizuki Mizuki",
     "category": "ascension",
     "sortOrder": 2,
@@ -16160,7 +24294,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "yumemizuki-mizuki",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Yumemizuki Mizuki",
     "category": "ascension",
     "sortOrder": 3,
@@ -16185,7 +24319,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "yumemizuki-mizuki",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Yumemizuki Mizuki",
     "category": "ascension",
     "sortOrder": 4,
@@ -16210,7 +24344,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "yumemizuki-mizuki",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Yumemizuki Mizuki",
     "category": "ascension",
     "sortOrder": 5,
@@ -16235,7 +24369,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "yumemizuki-mizuki",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Yumemizuki Mizuki",
     "category": "ascension",
     "sortOrder": 6,
@@ -16281,7 +24415,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "yun-jin",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Yun Jin",
     "category": "ascension",
     "sortOrder": 2,
@@ -16306,7 +24440,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "yun-jin",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Yun Jin",
     "category": "ascension",
     "sortOrder": 3,
@@ -16331,7 +24465,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "yun-jin",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Yun Jin",
     "category": "ascension",
     "sortOrder": 4,
@@ -16356,7 +24490,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "yun-jin",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Yun Jin",
     "category": "ascension",
     "sortOrder": 5,
@@ -16381,7 +24515,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "yun-jin",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Yun Jin",
     "category": "ascension",
     "sortOrder": 6,
@@ -16401,6 +24535,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "ominous-mask",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "yun-jin",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Yun Jin",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-diligence",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-diligence",
+        "required": 63
+      },
+      {
+        "materialId": "damaged-mask",
+        "required": 18
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "yun-jin",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Yun Jin",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-diligence",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-diligence",
+        "required": 38
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 6
+      },
+      {
+        "materialId": "ominous-mask",
+        "required": 22
+      },
+      {
+        "materialId": "ashen-heart",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "yun-jin",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Yun Jin",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-diligence",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-diligence",
+        "required": 114
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 18
+      },
+      {
+        "materialId": "ominous-mask",
+        "required": 66
+      },
+      {
+        "materialId": "ashen-heart",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -16427,7 +24652,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "zhongli",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Zhongli",
     "category": "ascension",
     "sortOrder": 2,
@@ -16452,7 +24677,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "zhongli",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Zhongli",
     "category": "ascension",
     "sortOrder": 3,
@@ -16477,7 +24702,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "zhongli",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Zhongli",
     "category": "ascension",
     "sortOrder": 4,
@@ -16502,7 +24727,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "zhongli",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Zhongli",
     "category": "ascension",
     "sortOrder": 5,
@@ -16527,7 +24752,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "zhongli",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Zhongli",
     "category": "ascension",
     "sortOrder": 6,
@@ -16547,6 +24772,97 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "slime-concentrate",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "zhongli",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Zhongli",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-gold",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-gold",
+        "required": 63
+      },
+      {
+        "materialId": "slime-condensate",
+        "required": 18
+      },
+      {
+        "materialId": "slime-secretions",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "zhongli",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Zhongli",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-gold",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-gold",
+        "required": 38
+      },
+      {
+        "materialId": "slime-secretions",
+        "required": 6
+      },
+      {
+        "materialId": "slime-concentrate",
+        "required": 22
+      },
+      {
+        "materialId": "tusk-of-monoceros-caeli",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "zhongli",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Zhongli",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-gold",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-gold",
+        "required": 114
+      },
+      {
+        "materialId": "slime-secretions",
+        "required": 18
+      },
+      {
+        "materialId": "slime-concentrate",
+        "required": 66
+      },
+      {
+        "materialId": "tusk-of-monoceros-caeli",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },
@@ -16573,7 +24889,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "zibai",
-    "name": "Ascension 2 (Lv. 40 -> 60)",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Zibai",
     "category": "ascension",
     "sortOrder": 2,
@@ -16598,7 +24914,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "zibai",
-    "name": "Ascension 3 (Lv. 50 -> 70)",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Zibai",
     "category": "ascension",
     "sortOrder": 3,
@@ -16623,7 +24939,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "zibai",
-    "name": "Ascension 4 (Lv. 60 -> 80)",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Zibai",
     "category": "ascension",
     "sortOrder": 4,
@@ -16648,7 +24964,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "zibai",
-    "name": "Ascension 5 (Lv. 70 -> 90)",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Zibai",
     "category": "ascension",
     "sortOrder": 5,
@@ -16673,7 +24989,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "zibai",
-    "name": "Ascension 6 (Lv. 80 -> 100)",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Zibai",
     "category": "ascension",
     "sortOrder": 6,
