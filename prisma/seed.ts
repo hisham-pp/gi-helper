@@ -8,8 +8,21 @@ import {
   characterGoalTemplates,
   weaponGoalTemplates,
 } from "@/prisma/seed-data";
+import type { SeedMaterial } from "@/prisma/seed-data";
 
 const prisma = new PrismaClient();
+
+function materialSeedData(material: SeedMaterial) {
+  return {
+    image: material.image,
+    rarity: material.rarity,
+    category: material.category,
+    description: material.description,
+    combinable: material.combinable,
+    combineRatio: material.combineRatio,
+    parentMaterialId: null,
+  };
+}
 
 async function main() {
   // Ensure a development 'master' user exists so materials can be managed.
@@ -22,36 +35,25 @@ async function main() {
     create: { username: "master", passwordHash: masterHash, role: "master" },
   });
 
-  // Proceed with material seeding
+  // Match materials by name so re-seeding stays idempotent when seed ids change.
+  const materialIdBySeedId = new Map<string, string>();
 
   for (const material of seedMaterials) {
-    await prisma.material.upsert({
-      where: {
-        id: material.id,
-      },
-      update: {
-        name: material.name,
-        image: material.image,
-        rarity: material.rarity,
-        category: material.category,
-        description: material.description,
-        combinable: material.combinable,
-        combineRatio: material.combineRatio,
-        parentMaterialId: null,
-      },
+    const data = materialSeedData(material);
+    const saved = await prisma.material.upsert({
+      where: { name: material.name },
+      update: data,
       create: {
         id: material.id,
         name: material.name,
-        image: material.image,
-        rarity: material.rarity,
-        category: material.category,
-        description: material.description,
-        combinable: material.combinable,
-        combineRatio: material.combineRatio,
-        parentMaterialId: null,
+        ...data,
       },
     });
+    materialIdBySeedId.set(material.id, saved.id);
   }
+
+  const resolveMaterialId = (seedMaterialId: string) =>
+    materialIdBySeedId.get(seedMaterialId) ?? seedMaterialId;
 
   // Parent links are applied after all materials exist so foreign keys never fail.
   for (const material of seedMaterials) {
@@ -61,10 +63,10 @@ async function main() {
 
     await prisma.material.update({
       where: {
-        id: material.id,
+        id: resolveMaterialId(material.id),
       },
       data: {
-        parentMaterialId: material.parentMaterialId,
+        parentMaterialId: resolveMaterialId(material.parentMaterialId),
       },
     });
   }
@@ -131,7 +133,7 @@ async function main() {
       await prisma.characterGoalTemplateMaterial.create({
         data: {
           templateId: created.id,
-          materialId: material.materialId,
+          materialId: resolveMaterialId(material.materialId),
           required: material.required,
         },
       });
@@ -170,7 +172,7 @@ async function main() {
       await prisma.weaponGoalTemplateMaterial.create({
         data: {
           templateId: created.id,
-          materialId: material.materialId,
+          materialId: resolveMaterialId(material.materialId),
           required: material.required,
         },
       });
