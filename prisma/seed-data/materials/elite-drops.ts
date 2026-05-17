@@ -232,4 +232,50 @@ export const eliteDrops = [
       description: "A masterwork gear from the finest clockwork creations.",
     },
   ]),
+  ...createThreeTierFamily("Elite Drop", [
+    {
+      id: "sentry-wooden-whistle",
+      name: "Sentry's Wooden Whistle",
+      iconId: "UI_ItemIcon_112089",
+      rarity: 1,
+      description: "A simple wooden whistle used by Natlan sentries.",
+    },
+    {
+      id: "man-at-arms-metal-whistle",
+      name: "Man-at-Arms's Metal Whistle",
+      iconId: "UI_ItemIcon_112090",
+      rarity: 2,
+      description: "A sturdier metal whistle used by experienced warriors.",
+    },
+    {
+      id: "coronals-golden-whistle",
+      name: "Coronal's Golden Whistle",
+      iconId: "UI_ItemIcon_112091",
+      rarity: 3,
+      description: "A golden whistle used by the elite commanders of Natlan.",
+    },
+  ]),
+  ...createThreeTierFamily("Elite Drop", [
+    {
+      id: "faded-red-satin",
+      name: "Faded Red Satin",
+      iconId: "UI_ItemIcon_112101",
+      rarity: 1,
+      description: "Worn red fabric from Eremites in the desert.",
+    },
+    {
+      id: "trimmed-red-silk",
+      name: "Trimmed Red Silk",
+      iconId: "UI_ItemIcon_112102",
+      rarity: 2,
+      description: "Finer red fabric from more experienced Eremites.",
+    },
+    {
+      id: "rich-red-brocade",
+      name: "Rich Red Brocade",
+      iconId: "UI_ItemIcon_112103",
+      rarity: 3,
+      description: "Luxurious red fabric from elite Eremite warriors.",
+    },
+  ]),
 ];

@@ -11,6 +11,7 @@ export const navia: SeedCharacter = {
 };
 
 export const naviaGoalTemplates: SeedCharacterGoalTemplate[] = [
+  // Ascension 1
   {
     characterId: "navia",
     name: "Ascension 1 (Lv. 20 → 40)",
@@ -23,6 +24,7 @@ export const naviaGoalTemplates: SeedCharacterGoalTemplate[] = [
       { materialId: "transoceanic-pearl", required: 3 },
     ],
   },
+  // Ascension 2
   {
     characterId: "navia",
     name: "Ascension 2 (Lv. 40 → 50)",
@@ -31,14 +33,12 @@ export const naviaGoalTemplates: SeedCharacterGoalTemplate[] = [
     sortOrder: 2,
     materials: [
       { materialId: "prithiva-topaz-fragment", required: 3 },
-      {
-        materialId: "artificed-spare-clockwork-component-coppelius",
-        required: 2,
-      },
+      { materialId: "artificed-spare-clockwork-component-coppelius", required: 2 },
       { materialId: "spring-of-the-first-dewdrop", required: 10 },
       { materialId: "transoceanic-pearl", required: 15 },
     ],
   },
+  // Ascension 3
   {
     characterId: "navia",
     name: "Ascension 3 (Lv. 50 → 60)",
@@ -47,14 +47,12 @@ export const naviaGoalTemplates: SeedCharacterGoalTemplate[] = [
     sortOrder: 3,
     materials: [
       { materialId: "prithiva-topaz-fragment", required: 6 },
-      {
-        materialId: "artificed-spare-clockwork-component-coppelius",
-        required: 4,
-      },
+      { materialId: "artificed-spare-clockwork-component-coppelius", required: 4 },
       { materialId: "spring-of-the-first-dewdrop", required: 20 },
       { materialId: "transoceanic-chunk", required: 12 },
     ],
   },
+  // Ascension 4
   {
     characterId: "navia",
     name: "Ascension 4 (Lv. 60 → 70)",
@@ -63,14 +61,12 @@ export const naviaGoalTemplates: SeedCharacterGoalTemplate[] = [
     sortOrder: 4,
     materials: [
       { materialId: "prithiva-topaz-chunk", required: 3 },
-      {
-        materialId: "artificed-spare-clockwork-component-coppelius",
-        required: 8,
-      },
+      { materialId: "artificed-spare-clockwork-component-coppelius", required: 8 },
       { materialId: "spring-of-the-first-dewdrop", required: 30 },
       { materialId: "transoceanic-chunk", required: 18 },
     ],
   },
+  // Ascension 5
   {
     characterId: "navia",
     name: "Ascension 5 (Lv. 70 → 80)",
@@ -79,14 +75,12 @@ export const naviaGoalTemplates: SeedCharacterGoalTemplate[] = [
     sortOrder: 5,
     materials: [
       { materialId: "prithiva-topaz-chunk", required: 6 },
-      {
-        materialId: "artificed-spare-clockwork-component-coppelius",
-        required: 12,
-      },
+      { materialId: "artificed-spare-clockwork-component-coppelius", required: 12 },
       { materialId: "spring-of-the-first-dewdrop", required: 45 },
       { materialId: "xenochromatic-crystal", required: 12 },
     ],
   },
+  // Ascension 6
   {
     characterId: "navia",
     name: "Ascension 6 (Lv. 80 → 90)",
@@ -95,14 +89,12 @@ export const naviaGoalTemplates: SeedCharacterGoalTemplate[] = [
     sortOrder: 6,
     materials: [
       { materialId: "prithiva-topaz-gemstone", required: 6 },
-      {
-        materialId: "artificed-spare-clockwork-component-coppelius",
-        required: 20,
-      },
+      { materialId: "artificed-spare-clockwork-component-coppelius", required: 20 },
       { materialId: "spring-of-the-first-dewdrop", required: 60 },
       { materialId: "xenochromatic-crystal", required: 24 },
     ],
   },
+  // All Talents 1 → 6
   {
     characterId: "navia",
     name: "All Talents Level 1 → 6",
@@ -116,6 +108,7 @@ export const naviaGoalTemplates: SeedCharacterGoalTemplate[] = [
       { materialId: "transoceanic-chunk", required: 66 },
     ],
   },
+  // Single Talent 6 → 10
   {
     characterId: "navia",
     name: "Single Talent Level 6 → 10",
@@ -131,6 +124,7 @@ export const naviaGoalTemplates: SeedCharacterGoalTemplate[] = [
       { materialId: "crown-of-insight", required: 1 },
     ],
   },
+  // Triple Crown 6 → 10
   {
     characterId: "navia",
     name: "Triple Crown (All Talents 6 → 10)",
