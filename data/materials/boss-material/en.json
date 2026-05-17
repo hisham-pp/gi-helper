@@ -1,0 +1,168 @@
+{
+  "hurricane-seed": {
+    "name": "Hurricane Seed",
+    "source": "Anemo Hypostasis",
+    "characters": ["jean", "sucrose", "venti"]
+  },
+  "hoarfrost-core": {
+    "name": "Hoarfrost Core",
+    "source": "Cryo Regisvine",
+    "characters": ["chongyun", "diona", "ganyu", "kaeya", "qiqi", "rosaria"]
+  },
+  "lightning-prism": {
+    "name": "Lightning Prism",
+    "source": "Electro Hypostasis",
+    "characters": ["beidou", "fischl", "keqing", "lisa", "razor"]
+  },
+  "basalt-pillar": {
+    "name": "Basalt Pillar",
+    "source": "Geo Hypostasis",
+    "characters": ["albedo", "ningguang", "noelle", "zhongli"]
+  },
+  "cleansing-heart": {
+    "name": "Cleansing Heart",
+    "source": "Oceanid",
+    "characters": ["barbara", "mona", "tartaglia", "xingqiu"]
+  },
+  "everflame-seed": {
+    "name": "Everflame Seed",
+    "source": "Pyro Regisvine",
+    "characters": ["amber", "bennett", "diluc", "klee", "xiangling", "xinyan"]
+  },
+  "juvenile-jade": {
+    "name": "Juvenile Jade",
+    "source": "Primo Geovishap",
+    "characters": ["hu-tao", "xiao", "yanfei"]
+  },
+  "crystalline-bloom": {
+    "name": "Crystalline Bloom",
+    "source": "Cryo Hypostasis",
+    "characters": ["aloy", "eula"]
+  },
+  "marionette-core": {
+    "name": "Marionette Core",
+    "source": "Maguu Kenki",
+    "characters": ["kazuha", "sayu"]
+  },
+  "perpetual-heart": {
+    "name": "Perpetual Heart",
+    "source": "Perpetual Mechanical Array",
+    "characters": ["gorou", "ayaka"]
+  },
+  "smoldering-pearl": {
+    "name": "Smoldering Pearl",
+    "source": "Pyro Hypostasis",
+    "characters": ["thoma", "yoimiya"]
+  },
+  "dew-of-repudiation": {
+    "name": "Dew of Repudiation",
+    "source": "Hydro Hypostasis",
+    "characters": ["kokomi", "ayato"]
+  },
+  "storm-beads": {
+    "name": "Storm Beads",
+    "source": "Thunder Manifestation",
+    "characters": ["sara", "raiden"]
+  },
+  "riftborn-regalia": {
+    "name": "Riftborn Regalia",
+    "source": "Golden Wolflord",
+    "characters": ["arataki-itto", "yun-jin"]
+  },
+  "dragonheir-s-false-fin": {
+    "name": "Dragonheir's False Fin",
+    "source": "Coral Defenders",
+    "characters": ["shenhe", "yae-miko"]
+  },
+  "perpetual-caliber": {
+    "name": "Perpetual Caliber",
+    "source": "Aeonblight Drake",
+    "characters": ["layla", "nilou", "wanderer"]
+  },
+  "majestic-hooked-beak": {
+    "name": "Majestic Hooked Beak",
+    "source": "Jadeplume Terrorshroom",
+    "characters": ["collei", "tighnari"]
+  },
+  "thunderclap-fruitcore": {
+    "name": "Thunderclap Fruitcore",
+    "source": "Electro Regisvine",
+    "characters": ["cyno", "dori"]
+  },
+  "light-guiding-tetrahedron": {
+    "name": "Light Guiding Tetrahedron",
+    "source": "Algorithm of Semi-Intransient Matrix of Overseer Network",
+    "characters": ["candace", "faruzan", "dehya"]
+  },
+  "tourbillon-device": {
+    "name": "Tourbillon Device",
+    "source": "Prototype Cal. Breguet",
+    "characters": ["charlotte", "wriothesley"]
+  },
+  "evergloom-ring": {
+    "name": "Evergloom Ring",
+    "source": "Iniquitous Baptist",
+    "characters": ["kirara", "baizhu"]
+  },
+  "quelled-creeper": {
+    "name": "Quelled Creeper",
+    "source": "Dendro Hypostasis",
+    "characters": ["nahida", "yaoyao", "kaveh"]
+  },
+  "pseudo-stamens": {
+    "name": "Pseudo-Stamens",
+    "source": "Setekh Wenut",
+    "characters": ["mika", "alhaitham"]
+  },
+  "emperor-s-resolution": {
+    "name": "Emperor's Resolution",
+    "source": "Emperor of Fire and Iron",
+    "characters": ["lyney", "gaming"]
+  },
+  "coppelia": {
+    "name": "Artificed Spare Clockwork Component — Coppelia",
+    "source": "Icewind Suite",
+    "characters": ["lynette"]
+  },
+  "coppelius": {
+    "name": "Artificed Spare Clockwork Component — Coppelius",
+    "source": "Icewind Suite",
+    "characters": ["navia", "freminet"]
+  },
+  "runic-fang": {
+    "name": "Runic Fang",
+    "source": "Ruin Serpent",
+    "characters": ["yelan", "shikanoin-heizou", "kuki-shinobu"]
+  },
+  "fontemer-unihorn": {
+    "name": "Fontemer Unihorn",
+    "source": "Millennial Pearl Seahorse",
+    "characters": ["chevreuse", "neuvillette", "clorinde"]
+  },
+  "water-that-failed-to-transcend": {
+    "name": "Water That Failed To Transcend",
+    "source": "Hydro Tulpa",
+    "characters": ["furina", "sigewinne"]
+  },
+  "cloudseam-scale": {
+    "name": "Cloudseam Scale",
+    "source": "Solitary Suanni",
+    "characters": ["xianyun", "sethos"]
+  },
+  "fragment-of-a-golden-melody": {
+    "name": "Fragment of a Golden Melody",
+    "source": "Statue of Marble and Brass",
+    "characters": ["arlecchino"]
+  },
+  "overripe-flamegranate": {
+    "name": "Overripe Flamegranate",
+    "source": "Kongamato",
+    "characters": ["kachina", "kinich"]
+  },
+  "mark-of-the-binding-blessing": {
+    "name": "Mark of the Binding Blessing",
+    "source": "Holawaqa Ngoubou",
+    "characters": ["mualani"]
+  }
+
+}

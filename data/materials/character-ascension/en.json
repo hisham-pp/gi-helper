@@ -1,0 +1,709 @@
+{
+  "anemo": {
+    "sliver": {
+      "id": "vayuda-turquoise-sliver",
+      "name": "Vayuda Turquoise Sliver",
+      "sources": [
+        "Anemo Hypostasis",
+        "Icewind Suite",
+        "Maguu Kenki",
+        "Setekh Wenut",
+        "Algorithm of Semi-Intransient Matrix of Overseer Network",
+        "Souvenir shop",
+        "Wolf of the North",
+        "Memories: Lucent Altar of the Everlasting I",
+        "Memories: Lucent Altar of the Everlasting II",
+        "Memories: Lucent Altar of the Everlasting III",
+        "Memories: Lucent Altar of the Everlasting IV",
+        "Memories: Storming Terror I",
+        "Memories: Storming Terror II",
+        "Memories: Storming Terror III",
+        "Memories: Storming Terror IV",
+        "Memories: Storming Terror V",
+        "Memories: Storming Terror VI"
+      ],
+      "rarity": 2
+    },
+    "fragment": {
+      "id": "vayuda-turquoise-fragment",
+      "name": "Vayuda Turquoise Fragment",
+      "sources": [
+        "Anemo Hypostasis",
+        "Icewind Suite",
+        "Maguu Kenki",
+        "Setekh Wenut",
+        "Algorithm of Semi-Intransient Matrix of Overseer Network",
+        "Wolf of the North",
+        "Memories: Lucent Altar of the Everlasting I",
+        "Memories: Lucent Altar of the Everlasting II",
+        "Memories: Lucent Altar of the Everlasting III",
+        "Memories: Lucent Altar of the Everlasting IV",
+        "Memories: Storming Terror I",
+        "Memories: Storming Terror II",
+        "Memories: Storming Terror III",
+        "Memories: Storming Terror IV",
+        "Memories: Storming Terror V",
+        "Memories: Storming Terror VI"
+      ],
+      "rarity": 3
+    },
+    "chunk": {
+      "id": "vayuda-turquoise-chunk",
+      "name": "Vayuda Turquoise Chunk",
+      "sources": [
+        "Anemo Hypostasis",
+        "Icewind Suite",
+        "Maguu Kenki",
+        "Setekh Wenut",
+        "Algorithm of Semi-Intransient Matrix of Overseer Network",
+        "Wolf of the North",
+        "Memories: Lucent Altar of the Everlasting III",
+        "Memories: Lucent Altar of the Everlasting IV",
+        "Memories: Storming Terror III",
+        "Memories: Storming Terror IV",
+        "Memories: Storming Terror V",
+        "Memories: Storming Terror VI"
+      ],
+      "rarity": 4
+    },
+    "gemstone": {
+      "id": "vayuda-turquoise-gemstone",
+      "name": "Vayuda Turquoise Gemstone",
+      "sources": [
+        "Anemo Hypostasis",
+        "Icewind Suite",
+        "Maguu Kenki",
+        "Setekh Wenut",
+        "Algorithm of Semi-Intransient Matrix of Overseer Network",
+        "Wolf of the North",
+        "Memories: Lucent Altar of the Everlasting III",
+        "Memories: Lucent Altar of the Everlasting IV",
+        "Memories: Storming Terror V",
+        "Memories: Storming Terror VI"
+      ],
+      "rarity": 5
+    }
+  },
+  "cryo": {
+    "sliver": {
+      "id": "shivada-jade-sliver",
+      "name": "Shivada Jade Sliver",
+      "sources": [
+        "Cryo Regisvine",
+        "Cryo Hypostasis",
+        "Bathysmal Vishap Herd",
+        "Icewind Suite",
+        "Iniquitous Baptist",
+        "Maguu Kenki",
+        "Perpetual Mechanical Array",
+        "Primo Geovishap",
+        "Aeonblight Drake",
+        "Souvenir shop",
+        "Wolf of the North",
+        "Memories: Earthshaking Dragon I",
+        "Memories: Earthshaking Dragon II",
+        "Memories: Earthshaking Dragon III",
+        "Memories: Earthshaking Dragon IV",
+        "Memories: Duel to the Fiery Death I",
+        "Memories: Duel to the Fiery Death II",
+        "Memories: Duel to the Fiery Death III",
+        "Memories: Duel to the Fiery Death IV",
+        "Memories: The Golden Shadow I",
+        "Memories: The Golden Shadow II",
+        "Memories: The Golden Shadow III",
+        "Memories: The Golden Shadow IV"
+      ],
+      "rarity": 2
+    },
+    "fragment": {
+      "id": "shivada-jade-fragment",
+      "name": "Shivada Jade Fragment",
+      "sources": [
+        "Cryo Regisvine",
+        "Cryo Hypostasis",
+        "Bathysmal Vishap Herd",
+        "Icewind Suite",
+        "Iniquitous Baptist",
+        "Maguu Kenki",
+        "Perpetual Mechanical Array",
+        "Primo Geovishap",
+        "Aeonblight Drake",
+        "Wolf of the North",
+        "Memories: Earthshaking Dragon I",
+        "Memories: Earthshaking Dragon II",
+        "Memories: Earthshaking Dragon III",
+        "Memories: Earthshaking Dragon IV",
+        "Memories: Duel to the Fiery Death I",
+        "Memories: Duel to the Fiery Death II",
+        "Memories: Duel to the Fiery Death III",
+        "Memories: Duel to the Fiery Death IV",
+        "Memories: The Golden Shadow I",
+        "Memories: The Golden Shadow II",
+        "Memories: The Golden Shadow III",
+        "Memories: The Golden Shadow IV"
+      ],
+      "rarity": 3
+    },
+    "chunk": {
+      "id": "shivada-jade-chunk",
+      "name": "Shivada Jade Chunk",
+      "sources": [
+        "Cryo Regisvine",
+        "Cryo Hypostasis",
+        "Bathysmal Vishap Herd",
+        "Icewind Suite",
+        "Iniquitous Baptist",
+        "Maguu Kenki",
+        "Perpetual Mechanical Array",
+        "Primo Geovishap",
+        "Aeonblight Drake",
+        "Wolf of the North",
+        "Memories: Earthshaking Dragon III",
+        "Memories: Earthshaking Dragon IV",
+        "Memories: Duel to the Fiery Death III",
+        "Memories: Duel to the Fiery Death IV",
+        "Memories: The Golden Shadow III",
+        "Memories: The Golden Shadow IV"
+      ],
+      "rarity": 4
+    },
+    "gemstone": {
+      "id": "shivada-jade-gemstone",
+      "name": "Shivada Jade Gemstone",
+      "sources": [
+        "Cryo Regisvine",
+        "Cryo Hypostasis",
+        "Bathysmal Vishap Herd",
+        "Icewind Suite",
+        "Iniquitous Baptist",
+        "Maguu Kenki",
+        "Perpetual Mechanical Array",
+        "Primo Geovishap",
+        "Aeonblight Drake",
+        "Wolf of the North",
+        "Memories: Earthshaking Dragon III",
+        "Memories: Earthshaking Dragon IV",
+        "Memories: Duel to the Fiery Death III",
+        "Memories: Duel to the Fiery Death IV",
+        "Memories: The Golden Shadow III",
+        "Memories: The Golden Shadow IV"
+      ],
+      "rarity": 5
+    }
+  },
+  "electro": {
+    "sliver": {
+      "id": "vajrada-amethyst-sliver",
+      "name": "Vajrada Amethyst Sliver",
+      "sources": [
+        "Electro Hypostasis",
+        "Electro Regisvine",
+        "Primo Geovishap",
+        "Thunder Manifestation",
+        "Iniquitous Baptist",
+        "Bathysmal Vishap Herd",
+        "Millennial Pearl Seahorse",
+        "Souvenir shop",
+        "Memories: Storming Terror I",
+        "Memories: Storming Terror II",
+        "Memories: Storming Terror III",
+        "Memories: Storming Terror IV",
+        "Memories: Storming Terror V",
+        "Memories: Storming Terror VI",
+        "Memories: The Golden Shadow I",
+        "Memories: The Golden Shadow II",
+        "Memories: The Golden Shadow III",
+        "Memories: The Golden Shadow IV",
+        "Memories: Earthshaking Dragon I",
+        "Memories: Earthshaking Dragon II",
+        "Memories: Earthshaking Dragon III",
+        "Memories: Earthshaking Dragon IV",
+        "Memories: Lucent Altar of the Everlasting I",
+        "Memories: Lucent Altar of the Everlasting II",
+        "Memories: Lucent Altar of the Everlasting III",
+        "Memories: Lucent Altar of the Everlasting IV",
+        "Memories: Guardian of Eternity I",
+        "Memories: Guardian of Eternity II",
+        "Memories: Guardian of Eternity III",
+        "Memories: Guardian of Eternity IV"
+      ],
+      "rarity": 2
+    },
+    "fragment": {
+      "id": "vajrada-amethyst-fragment",
+      "name": "Vajrada Amethyst Fragment",
+      "sources": [
+        "Electro Hypostasis",
+        "Electro Regisvine",
+        "Primo Geovishap",
+        "Thunder Manifestation",
+        "Millennial Pearl Seahorse",
+        "Iniquitous Baptist",
+        "Bathysmal Vishap Herd",
+        "Memories: Storming Terror I",
+        "Memories: Storming Terror II",
+        "Memories: Storming Terror III",
+        "Memories: Storming Terror IV",
+        "Memories: Storming Terror V",
+        "Memories: Storming Terror VI",
+        "Memories: The Golden Shadow I",
+        "Memories: The Golden Shadow II",
+        "Memories: The Golden Shadow III",
+        "Memories: The Golden Shadow IV",
+        "Memories: Earthshaking Dragon I",
+        "Memories: Earthshaking Dragon II",
+        "Memories: Earthshaking Dragon III",
+        "Memories: Earthshaking Dragon IV",
+        "Memories: Lucent Altar of the Everlasting I",
+        "Memories: Lucent Altar of the Everlasting II",
+        "Memories: Lucent Altar of the Everlasting III",
+        "Memories: Lucent Altar of the Everlasting IV",
+        "Memories: Guardian of Eternity I",
+        "Memories: Guardian of Eternity II",
+        "Memories: Guardian of Eternity III",
+        "Memories: Guardian of Eternity IV"
+      ],
+      "rarity": 3
+    },
+    "chunk": {
+      "id": "vajrada-amethyst-chunk",
+      "name": "Vajrada Amethyst Chunk",
+      "sources": [
+        "Electro Hypostasis",
+        "Electro Regisvine",
+        "Primo Geovishap",
+        "Thunder Manifestation",
+        "Millennial Pearl Seahorse",
+        "Iniquitous Baptist",
+        "Bathysmal Vishap Herd",
+        "Memories: Storming Terror III",
+        "Memories: Storming Terror IV",
+        "Memories: Storming Terror V",
+        "Memories: Storming Terror VI",
+        "Memories: The Golden Shadow III",
+        "Memories: The Golden Shadow IV",
+        "Memories: Earthshaking Dragon III",
+        "Memories: Earthshaking Dragon IV",
+        "Memories: Lucent Altar of the Everlasting III",
+        "Memories: Lucent Altar of the Everlasting IV",
+        "Memories: Guardian of Eternity III",
+        "Memories: Guardian of Eternity IV"
+      ],
+      "rarity": 4
+    },
+    "gemstone": {
+      "id": "vajrada-amethyst-gemstone",
+      "name": "Vajrada Amethyst Gemstone",
+      "sources": [
+        "Electro Hypostasis",
+        "Electro Regisvine",
+        "Primo Geovishap",
+        "Thunder Manifestation",
+        "Millennial Pearl Seahorse",
+        "Iniquitous Baptist",
+        "Bathysmal Vishap Herd",
+        "Memories: Storming Terror V",
+        "Memories: Storming Terror VI",
+        "Memories: The Golden Shadow III",
+        "Memories: The Golden Shadow IV",
+        "Memories: Earthshaking Dragon III",
+        "Memories: Earthshaking Dragon IV",
+        "Memories: Lucent Altar of the Everlasting III",
+        "Memories: Lucent Altar of the Everlasting IV",
+        "Memories: Guardian of Eternity III",
+        "Memories: Guardian of Eternity IV"
+      ],
+      "rarity": 5
+    }
+  },
+  "geo": {
+    "sliver": {
+      "id": "prithiva-topaz-sliver",
+      "name": "Prithiva Topaz Sliver",
+      "sources": [
+        "Geo Hypostasis",
+        "Golden Wolflord",
+        "Perpetual Mechanical Array",
+        "Primo Geovishap",
+        "Experimental Field Generator",
+        "Ruin Serpent",
+        "Wolf of the North",
+        "Souvenir shop",
+        "Memories: Earthshaking Dragon I",
+        "Memories: Earthshaking Dragon II",
+        "Memories: Earthshaking Dragon III",
+        "Memories: Earthshaking Dragon IV",
+        "Statue of Marble and Brass"
+      ],
+      "rarity": 2
+    },
+    "fragment": {
+      "id": "prithiva-topaz-fragment",
+      "name": "Prithiva Topaz Fragment",
+      "sources": [
+        "Geo Hypostasis",
+        "Golden Wolflord",
+        "Perpetual Mechanical Array",
+        "Primo Geovishap",
+        "Experimental Field Generator",
+        "Ruin Serpent",
+        "Wolf of the North",
+        "Memories: Earthshaking Dragon I",
+        "Memories: Earthshaking Dragon II",
+        "Memories: Earthshaking Dragon III",
+        "Memories: Earthshaking Dragon IV",
+        "Statue of Marble and Brass"
+      ],
+      "rarity": 3
+    },
+    "chunk": {
+      "id": "prithiva-topaz-chunk",
+      "name": "Prithiva Topaz Chunk",
+      "sources": [
+        "Geo Hypostasis",
+        "Golden Wolflord",
+        "Perpetual Mechanical Array",
+        "Primo Geovishap",
+        "Experimental Field Generator",
+        "Ruin Serpent",
+        "Wolf of the North",
+        "Memories: Earthshaking Dragon III",
+        "Memories: Earthshaking Dragon IV",
+        "Statue of Marble and Brass"
+      ],
+      "rarity": 4
+    },
+    "gemstone": {
+      "id": "prithiva-topaz-gemstone",
+      "name": "Prithiva Topaz Gemstone",
+      "sources": [
+        "Geo Hypostasis",
+        "Golden Wolflord",
+        "Perpetual Mechanical Array",
+        "Primo Geovishap",
+        "Experimental Field Generator",
+        "Ruin Serpent",
+        "Wolf of the North",
+        "Memories: Earthshaking Dragon III",
+        "Memories: Earthshaking Dragon IV",
+        "Statue of Marble and Brass"
+      ],
+      "rarity": 5
+    }
+  },
+  "hydro": {
+    "sliver": {
+      "id": "varunada-lazurite-sliver",
+      "name": "Varunada Lazurite Sliver",
+      "sources": [
+        "Oceanid",
+        "Primo Geovishap",
+        "Aeonblight Drake",
+        "Hydro Hypostasis",
+        "Hydro Tulpa",
+        "Iniquitous Baptist",
+        "Lupus Bereas",
+        "Souvenir shop",
+        "Memories: Earthshaking Dragon I",
+        "Memories: Earthshaking Dragon II",
+        "Memories: Earthshaking Dragon III",
+        "Memories: Earthshaking Dragon IV",
+        "Memories: Storming Terror I",
+        "Memories: Storming Terror II",
+        "Memories: Storming Terror III",
+        "Memories: Storming Terror IV",
+        "Memories: Storming Terror V",
+        "Memories: Storming Terror VI",
+        "Memories: Lucent Altar of the Everlasting I",
+        "Memories: Lucent Altar of the Everlasting II",
+        "Memories: Lucent Altar of the Everlasting III",
+        "Memories: Lucent Altar of the Everlasting IV",
+        "Memories: The Golden Shadow I",
+        "Memories: The Golden Shadow II",
+        "Memories: The Golden Shadow III",
+        "Memories: The Golden Shadow IV",
+        "Memories: The Titan Amidst the Stars I",
+        "Memories: The Titan Amidst the Stars II",
+        "Memories: The Titan Amidst the Stars III",
+        "Memories: The Titan Amidst the Stars IV"
+      ],
+      "rarity": 2
+    },
+    "fragment": {
+      "id": "varunada-lazurite-fragment",
+      "name": "Varunada Lazurite Fragment",
+      "sources": [
+        "Oceanid",
+        "Primo Geovishap",
+        "Aeonblight Drake",
+        "Hydro Hypostasis",
+        "Hydro Tulpa",
+        "Iniquitous Baptist",
+        "Lupus Bereas",
+        "Memories: Earthshaking Dragon I",
+        "Memories: Earthshaking Dragon II",
+        "Memories: Earthshaking Dragon III",
+        "Memories: Earthshaking Dragon IV",
+        "Memories: Storming Terror I",
+        "Memories: Storming Terror II",
+        "Memories: Storming Terror III",
+        "Memories: Storming Terror IV",
+        "Memories: Storming Terror V",
+        "Memories: Storming Terror VI",
+        "Memories: Lucent Altar of the Everlasting I",
+        "Memories: Lucent Altar of the Everlasting II",
+        "Memories: Lucent Altar of the Everlasting III",
+        "Memories: Lucent Altar of the Everlasting IV",
+        "Memories: The Golden Shadow I",
+        "Memories: The Golden Shadow II",
+        "Memories: The Golden Shadow III",
+        "Memories: The Golden Shadow IV",
+        "Memories: The Titan Amidst the Stars I",
+        "Memories: The Titan Amidst the Stars II",
+        "Memories: The Titan Amidst the Stars III",
+        "Memories: The Titan Amidst the Stars IV"
+      ],
+      "rarity": 3
+    },
+    "chunk": {
+      "id": "varunada-lazurite-chunk",
+      "name": "Varunada Lazurite Chunk",
+      "sources": [
+        "Oceanid",
+        "Primo Geovishap",
+        "Aeonblight Drake",
+        "Hydro Hypostasis",
+        "Hydro Tulpa",
+        "Iniquitous Baptist",
+        "Lupus Bereas",
+        "Memories: Earthshaking Dragon III",
+        "Memories: Earthshaking Dragon IV",
+        "Memories: Storming Terror III",
+        "Memories: Storming Terror IV",
+        "Memories: Storming Terror V",
+        "Memories: Storming Terror VI",
+        "Memories: Lucent Altar of the Everlasting III",
+        "Memories: Lucent Altar of the Everlasting IV",
+        "Memories: The Golden Shadow III",
+        "Memories: The Golden Shadow IV",
+        "Memories: The Titan Amidst the Stars III",
+        "Memories: The Titan Amidst the Stars IV"
+      ],
+      "rarity": 4
+    },
+    "gemstone": {
+      "id": "varunada-lazurite-gemstone",
+      "name": "Varunada Lazurite Gemstone",
+      "sources": [
+        "Oceanid",
+        "Primo Geovishap",
+        "Aeonblight Drake",
+        "Hydro Hypostasis",
+        "Hydro Tulpa",
+        "Iniquitous Baptist",
+        "Lupus Bereas",
+        "Memories: Earthshaking Dragon III",
+        "Memories: Earthshaking Dragon IV",
+        "Memories: Storming Terror V",
+        "Memories: Storming Terror VI",
+        "Memories: Lucent Altar of the Everlasting III",
+        "Memories: Lucent Altar of the Everlasting IV",
+        "Memories: The Golden Shadow III",
+        "Memories: The Golden Shadow IV",
+        "Memories: The Titan Amidst the Stars III",
+        "Memories: The Titan Amidst the Stars IV"
+      ],
+      "rarity": 5
+    }
+  },
+  "pyro": {
+    "sliver": {
+      "id": "agnidus-agate-sliver",
+      "name": "Agnidus Agate Sliver",
+      "sources": [
+        "Pyro Regisvine",
+        "Pyro Hypostasis",
+        "Algorithm of Semi-Intransient Matrix of Overseer Network",
+        "Emperor of Fire and Iron",
+        "Iniquitous Baptist",
+        "Primo Geovishap",
+        "Lupus Bereas",
+        "Souvenir shop",
+        "Memories: Earthshaking Dragon I",
+        "Memories: Earthshaking Dragon II",
+        "Memories: Earthshaking Dragon III",
+        "Memories: Earthshaking Dragon IV",
+        "Memories: Duel to the Fiery Death I",
+        "Memories: Duel to the Fiery Death II",
+        "Memories: Duel to the Fiery Death III",
+        "Memories: Duel to the Fiery Death IV",
+        "Statue of Marble and Brass",
+        "The Knave",
+        "Holawaqa Ngoubou"
+      ],
+      "rarity": 2
+    },
+    "fragment": {
+      "id": "agnidus-agate-fragment",
+      "name": "Agnidus Agate Fragment",
+      "sources": [
+        "Pyro Regisvine",
+        "Pyro Hypostasis",
+        "Algorithm of Semi-Intransient Matrix of Overseer Network",
+        "Emperor of Fire and Iron",
+        "Iniquitous Baptist",
+        "Primo Geovishap",
+        "Lupus Bereas",
+        "Memories: Earthshaking Dragon I",
+        "Memories: Earthshaking Dragon II",
+        "Memories: Earthshaking Dragon III",
+        "Memories: Earthshaking Dragon IV",
+        "Memories: Duel to the Fiery Death I",
+        "Memories: Duel to the Fiery Death II",
+        "Memories: Duel to the Fiery Death III",
+        "Memories: Duel to the Fiery Death IV",
+        "Statue of Marble and Brass",
+        "The Knave",
+        "Holawaqa Ngoubou"
+      ],
+      "rarity": 3
+    },
+    "chunk": {
+      "id": "agnidus-agate-chunk",
+      "name": "Agnidus Agate Chunk",
+      "sources": [
+        "Pyro Regisvine",
+        "Pyro Hypostasis",
+        "Algorithm of Semi-Intransient Matrix of Overseer Network",
+        "Emperor of Fire and Iron",
+        "Iniquitous Baptist",
+        "Primo Geovishap",
+        "Lupus Bereas",
+        "Memories: Earthshaking Dragon III",
+        "Memories: Earthshaking Dragon IV",
+        "Memories: Duel to the Fiery Death III",
+        "Memories: Duel to the Fiery Death IV",
+        "Statue of Marble and Brass",
+        "The Knave",
+        "Holawaqa Ngoubou"
+      ],
+      "rarity": 4
+    },
+    "gemstone": {
+      "id": "agnidus-agate-gemstone",
+      "name": "Agnidus Agate Gemstone",
+      "sources": [
+        "Pyro Regisvine",
+        "Pyro Hypostasis",
+        "Algorithm of Semi-Intransient Matrix of Overseer Network",
+        "Emperor of Fire and Iron",
+        "Iniquitous Baptist",
+        "Primo Geovishap",
+        "Lupus Bereas",
+        "Memories: Earthshaking Dragon III",
+        "Memories: Earthshaking Dragon IV",
+        "Memories: Duel to the Fiery Death III",
+        "Memories: Duel to the Fiery Death IV",
+        "Statue of Marble and Brass",
+        "The Knave",
+        "Holawaqa Ngoubou"
+      ],
+      "rarity": 5
+    }
+  },
+  "dendro": {
+    "sliver": {
+      "id": "nagadus-emerald-sliver",
+      "name": "Nagadus Emerald Sliver",
+      "sources": [
+        "Dendro Hypostasis",
+        "Jadeplume Terrorshroom",
+        "Memories: \"They\" Too Were Once Flawless I",
+        "Memories: \"They\" Too Were Once Flawless II",
+        "Memories: \"They\" Too Were Once Flawless III",
+        "Memories: \"They\" Too Were Once Flawless IV",
+        "Kongamato"
+      ],
+      "rarity": 2
+    },
+    "fragment": {
+      "id": "nagadus-emerald-fragment",
+      "name": "Nagadus Emerald Fragment",
+      "sources": [
+        "Dendro Hypostasis",
+        "Jadeplume Terrorshroom",
+        "Memories: \"They\" Too Were Once Flawless I",
+        "Memories: \"They\" Too Were Once Flawless II",
+        "Memories: \"They\" Too Were Once Flawless III",
+        "Memories: \"They\" Too Were Once Flawless IV",
+        "Kongamato"
+      ],
+      "rarity": 3
+    },
+    "chunk": {
+      "id": "nagadus-emerald-chunk",
+      "name": "Nagadus Emerald Chunk",
+      "sources": [
+        "Dendro Hypostasis",
+        "Jadeplume Terrorshroom",
+        "Memories: \"They\" Too Were Once Flawless I",
+        "Memories: \"They\" Too Were Once Flawless II",
+        "Memories: \"They\" Too Were Once Flawless III",
+        "Memories: \"They\" Too Were Once Flawless IV",
+        "Kongamato"
+      ],
+      "rarity": 4
+    },
+    "gemstone": {
+      "id": "nagadus-emerald-gemstone",
+      "name": "Nagadus Emerald Gemstone",
+      "sources": [
+        "Dendro Hypostasis",
+        "Jadeplume Terrorshroom",
+        "Memories: \"They\" Too Were Once Flawless III",
+        "Memories: \"They\" Too Were Once Flawless IV",
+        "Kongamato"
+      ],
+      "rarity": 5
+    }
+  },
+  "traveler": {
+    "sliver": {
+      "id": "brilliant-diamond-sliver",
+      "name": "Brilliant Diamond Sliver",
+      "sources": ["Adventure Rank 15"],
+      "rarity": 2
+    },
+    "fragment": {
+      "id": "brilliant-diamond-fragment",
+      "name": "Brilliant Diamond Fragment",
+      "sources": [
+        "Adventure Rank 25",
+        "Adventure Rank 26",
+        "Adventure Rank 28",
+        "Adventure Rank 30"
+      ],
+      "rarity": 3
+    },
+    "chunk": {
+      "id": "brilliant-diamond-chunk",
+      "name": "Brilliant Diamond Chunk",
+      "sources": [
+        "Adventure Rank 35",
+        "Adventure Rank 38",
+        "Adventure Rank 40"
+      ],
+      "rarity": 4
+    },
+    "gemstone": {
+      "id": "brilliant-diamond-gemstone",
+      "name": "Brilliant Diamond Gemstone",
+      "sources": [
+        "Adventure Rank 41",
+        "Adventure Rank 42",
+        "Adventure Rank 45"
+      ],
+      "rarity": 5
+    }
+  }
+}
