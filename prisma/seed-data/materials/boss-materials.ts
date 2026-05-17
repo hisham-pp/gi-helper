@@ -769,7 +769,7 @@ export const bossMaterials: SeedMaterial[] = [
   },
   {
     id: "mark-of-the-binding-knot",
-    name: "Mark of the Binding Knot",
+    name: "Mark of the Binding Knot Boss",
     image: enkaIcon("UI_ItemIcon_114139"),
     rarity: 4,
     category: "Boss Material",
@@ -780,7 +780,7 @@ export const bossMaterials: SeedMaterial[] = [
   },
   {
     id: "the-knights-watch",
-    name: "The Knight's Watch",
+    name: "The Knights Watch Boss",
     image: enkaIcon("UI_ItemIcon_114146"),
     rarity: 5,
     category: "Boss Material",
@@ -791,7 +791,7 @@ export const bossMaterials: SeedMaterial[] = [
   },
   {
     id: "cloudseam-scale",
-    name: "Cloudseam Scale",
+    name: "Cloudseam Scale Boss",
     image: enkaIcon("UI_ItemIcon_114069"),
     rarity: 4,
     category: "Boss Material",
@@ -802,7 +802,7 @@ export const bossMaterials: SeedMaterial[] = [
   },
   {
     id: "crystalline-bloom",
-    name: "Crystalline Bloom",
+    name: "Crystalline Bloom Boss",
     image: enkaIcon("UI_ItemIcon_114070"),
     rarity: 4,
     category: "Boss Material",
@@ -813,7 +813,7 @@ export const bossMaterials: SeedMaterial[] = [
   },
   {
     id: "perpetual-heart",
-    name: "Perpetual Heart",
+    name: "Perpetual Heart Boss",
     image: enkaIcon("UI_ItemIcon_114071"),
     rarity: 4,
     category: "Boss Material",
@@ -824,7 +824,7 @@ export const bossMaterials: SeedMaterial[] = [
   },
   {
     id: "pure-water-core",
-    name: "Pure Water Core",
+    name: "Pure Water Core Boss",
     image: enkaIcon("UI_ItemIcon_114072"),
     rarity: 4,
     category: "Boss Material",
@@ -835,7 +835,7 @@ export const bossMaterials: SeedMaterial[] = [
   },
   {
     id: "thunderclap-core",
-    name: "Thunderclap Core",
+    name: "Thunderclap Core Boss",
     image: enkaIcon("UI_ItemIcon_114073"),
     rarity: 4,
     category: "Boss Material",
@@ -846,7 +846,7 @@ export const bossMaterials: SeedMaterial[] = [
   },
   {
     id: "deepening-glow",
-    name: "Deepening Glow",
+    name: "Deepening Glow Boss",
     image: enkaIcon("UI_ItemIcon_114074"),
     rarity: 4,
     category: "Boss Material",
@@ -857,7 +857,7 @@ export const bossMaterials: SeedMaterial[] = [
   },
   {
     id: "dragonheirs-false-fin",
-    name: "Dragonheir's False Fin",
+    name: "Dragonheirs False Fin Boss",
     image: enkaIcon("UI_ItemIcon_114075"),
     rarity: 4,
     category: "Boss Material",
@@ -868,7 +868,7 @@ export const bossMaterials: SeedMaterial[] = [
   },
   {
     id: "enigmatic-core",
-    name: "Enigmatic Core",
+    name: "Enigmatic Core Boss",
     image: enkaIcon("UI_ItemIcon_114076"),
     rarity: 4,
     category: "Boss Material",
@@ -978,7 +978,7 @@ export const bossMaterials: SeedMaterial[] = [
   },
   {
     id: "fragment-of-a-golden-melody",
-    name: "Fragment of a Golden Melody",
+    name: "Fragment of a Golden Melody Boss",
     image: enkaIcon("UI_ItemIcon_113058"),
     rarity: 4,
     category: "Boss Material",
@@ -989,7 +989,7 @@ export const bossMaterials: SeedMaterial[] = [
   },
   {
     id: "gold-inscribed-secret-source-core",
-    name: "Gold-Inscribed Secret Source Core",
+    name: "Gold-Inscribed Secret Source Core Boss",
     image: enkaIcon("UI_ItemIcon_113064"),
     rarity: 4,
     category: "Boss Material",
@@ -1000,7 +1000,7 @@ export const bossMaterials: SeedMaterial[] = [
   },
   {
     id: "eroded-sunfire",
-    name: "Eroded Sunfire Weekly",
+    name: "Eroded Sunfire Boss",
     image: enkaIcon("UI_ItemIcon_113065"),
     rarity: 5,
     category: "Boss Material",
@@ -1011,7 +1011,7 @@ export const bossMaterials: SeedMaterial[] = [
   },
   {
     id: "mask-of-the-virtuous-doctor",
-    name: "Mask of the Virtuous Doctor Weekly",
+    name: "Mask of the Virtuous Doctor Boss",
     image: enkaIcon("UI_ItemIcon_113070"),
     rarity: 5,
     category: "Boss Material",
@@ -1022,7 +1022,7 @@ export const bossMaterials: SeedMaterial[] = [
   },
   {
     id: "cyclic-military-kuuvahki-core",
-    name: "Cyclic Military Kuuvahki Core",
+    name: "Cyclic Military Kuuvahki Core Boss",
     image: enkaIcon("UI_ItemIcon_113069"),
     rarity: 4,
     category: "Boss Material",
