@@ -18,6 +18,8 @@ import {
   Upload,
   Menu,
   X,
+  Users,
+  Search,
 } from "lucide-react";
 import { useTheme } from "next-themes";
 import {
@@ -35,7 +37,9 @@ import { Button } from "@/components/ui/button";
 
 const navItems = [
   { href: "/", label: "Dashboard", icon: Home },
+  { href: "/search", label: "Search", icon: Search },
   { href: "/materials", label: "Tracker", icon: Gem },
+  { href: "/characters", label: "Characters", icon: Users },
   { href: "/map", label: "Map", icon: Compass },
   { href: "/collectibles", label: "Items", icon: Sparkles },
   { href: "/shrines", label: "Shrines", icon: Shield },

@@ -65,3 +65,13 @@ export const inventoryImportSchema = z.object({
     }),
   ),
 });
+
+export const characterSchema = z.object({
+  id: z.string().trim().min(1),
+  name: z.string().trim().min(1).max(200),
+  iconName: z.string().trim().min(1).max(200),
+  rarity: z.coerce.number().int().min(1).max(5),
+  element: z.string().trim().min(1),
+  weaponType: z.string().trim().min(1),
+  region: z.string().trim().min(1),
+});
