@@ -283,4 +283,30 @@ export const localSpecialties = [
         "Legendary beetles that shimmer with the colors of the cosmos.",
     },
   ]),
+  ...createThreeTierFamily("Local Specialty", [
+    {
+      id: "moonfall-silver",
+      name: "Moonfall Silver",
+      iconId: "UI_ItemIcon_100055",
+      rarity: 1,
+      description:
+        "A silvery plant found in Nod-Krai. Blooms under moonlight.",
+    },
+    {
+      id: "refined-moonfall-silver",
+      name: "Refined Moonfall Silver",
+      iconId: "UI_ItemIcon_100056",
+      rarity: 2,
+      description:
+        "Moonfall Silver carefully processed to enhance its properties.",
+    },
+    {
+      id: "pristine-moonfall-silver",
+      name: "Pristine Moonfall Silver",
+      iconId: "UI_ItemIcon_100057",
+      rarity: 3,
+      description:
+        "The finest Moonfall Silver, said to capture the essence of moonlight.",
+    },
+  ]),
 ];

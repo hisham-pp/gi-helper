@@ -257,4 +257,50 @@ export const enemyDrops = [
       description: "A rare crystallized pearl with unique coloration.",
     },
   ]),
+  ...createThreeTierFamily("Enemy Drop", [
+    {
+      id: "broken-drive-shaft",
+      name: "Broken Drive Shaft",
+      iconId: "UI_ItemIcon_112089",
+      rarity: 1,
+      description: "A damaged mechanical component from Nod-Krai automatons.",
+    },
+    {
+      id: "reinforced-drive-shaft",
+      name: "Reinforced Drive Shaft",
+      iconId: "UI_ItemIcon_112090",
+      rarity: 2,
+      description: "A sturdier drive shaft from advanced mechanical units.",
+    },
+    {
+      id: "precision-drive-shaft",
+      name: "Precision Drive Shaft",
+      iconId: "UI_ItemIcon_112091",
+      rarity: 3,
+      description: "A finely-crafted drive shaft from elite automatons.",
+    },
+  ]),
+  ...createThreeTierFamily("Enemy Drop", [
+    {
+      id: "tattered-warrant",
+      name: "Tattered Warrant",
+      iconId: "UI_ItemIcon_112092",
+      rarity: 1,
+      description: "A worn document carried by Nod-Krai enforcers.",
+    },
+    {
+      id: "immaculate-warrant",
+      name: "Immaculate Warrant",
+      iconId: "UI_ItemIcon_112093",
+      rarity: 2,
+      description: "A well-preserved warrant from higher-ranking officials.",
+    },
+    {
+      id: "frost-etched-warrant",
+      name: "Frost-Etched Warrant",
+      iconId: "UI_ItemIcon_112094",
+      rarity: 3,
+      description: "An ornate warrant bearing the mark of Nod-Krai's elite.",
+    },
+  ]),
 ];
