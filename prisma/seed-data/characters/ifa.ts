@@ -21,7 +21,7 @@ export const ifaGoalTemplates: SeedCharacterGoalTemplate[] = [
     materials: [
       { materialId: "vayuda-turquoise-sliver", required: 1 },
       { materialId: "cloud-puff-berry", required: 3 },
-      { materialId: "sentry-wooden-whistle", required: 3 },
+      { materialId: "sentrys-wooden-whistle", required: 3 },
     ],
   },
   // Ascension 2
@@ -35,7 +35,7 @@ export const ifaGoalTemplates: SeedCharacterGoalTemplate[] = [
       { materialId: "vayuda-turquoise-fragment", required: 3 },
       { materialId: "mark-of-the-binding-blessing", required: 2 },
       { materialId: "cloud-puff-berry", required: 10 },
-      { materialId: "sentry-wooden-whistle", required: 15 },
+      { materialId: "sentrys-wooden-whistle", required: 15 },
     ],
   },
   // Ascension 3
@@ -49,7 +49,7 @@ export const ifaGoalTemplates: SeedCharacterGoalTemplate[] = [
       { materialId: "vayuda-turquoise-fragment", required: 6 },
       { materialId: "mark-of-the-binding-blessing", required: 4 },
       { materialId: "cloud-puff-berry", required: 20 },
-      { materialId: "man-at-arms-metal-whistle", required: 12 },
+      { materialId: "warriors-metal-whistle", required: 12 },
     ],
   },
   // Ascension 4
@@ -63,7 +63,7 @@ export const ifaGoalTemplates: SeedCharacterGoalTemplate[] = [
       { materialId: "vayuda-turquoise-chunk", required: 3 },
       { materialId: "mark-of-the-binding-blessing", required: 8 },
       { materialId: "cloud-puff-berry", required: 30 },
-      { materialId: "man-at-arms-metal-whistle", required: 18 },
+      { materialId: "warriors-metal-whistle", required: 18 },
     ],
   },
   // Ascension 5
@@ -104,8 +104,8 @@ export const ifaGoalTemplates: SeedCharacterGoalTemplate[] = [
     materials: [
       { materialId: "teachings-of-contention", required: 9 },
       { materialId: "guide-to-contention", required: 63 },
-      { materialId: "sentry-wooden-whistle", required: 18 },
-      { materialId: "man-at-arms-metal-whistle", required: 66 },
+      { materialId: "sentrys-wooden-whistle", required: 18 },
+      { materialId: "warriors-metal-whistle", required: 66 },
     ],
   },
   // Single Talent 6 → 10
@@ -118,7 +118,7 @@ export const ifaGoalTemplates: SeedCharacterGoalTemplate[] = [
     materials: [
       { materialId: "guide-to-contention", required: 4 },
       { materialId: "philosophies-of-contention", required: 38 },
-      { materialId: "man-at-arms-metal-whistle", required: 6 },
+      { materialId: "warriors-metal-whistle", required: 6 },
       { materialId: "coronals-golden-whistle", required: 22 },
       { materialId: "erosions-fading-candle", required: 6 },
       { materialId: "crown-of-insight", required: 1 },
@@ -134,7 +134,7 @@ export const ifaGoalTemplates: SeedCharacterGoalTemplate[] = [
     materials: [
       { materialId: "guide-to-contention", required: 12 },
       { materialId: "philosophies-of-contention", required: 114 },
-      { materialId: "man-at-arms-metal-whistle", required: 18 },
+      { materialId: "warriors-metal-whistle", required: 18 },
       { materialId: "coronals-golden-whistle", required: 66 },
       { materialId: "erosions-fading-candle", required: 18 },
       { materialId: "crown-of-insight", required: 3 },

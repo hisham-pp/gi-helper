@@ -49,7 +49,7 @@ export const kaeyaGoalTemplates: SeedCharacterGoalTemplate[] = [
       { materialId: "shivada-jade-fragment", required: 6 },
       { materialId: "hoarfrost-core", required: 4 },
       { materialId: "calla-lily", required: 20 },
-      { materialId: "silver-hoarder-insignia", required: 12 },
+      { materialId: "silver-raven-insignia", required: 12 },
     ],
   },
   // Ascension 4
@@ -63,7 +63,7 @@ export const kaeyaGoalTemplates: SeedCharacterGoalTemplate[] = [
       { materialId: "shivada-jade-chunk", required: 3 },
       { materialId: "hoarfrost-core", required: 8 },
       { materialId: "calla-lily", required: 30 },
-      { materialId: "silver-hoarder-insignia", required: 18 },
+      { materialId: "silver-raven-insignia", required: 18 },
     ],
   },
   // Ascension 5
@@ -105,7 +105,7 @@ export const kaeyaGoalTemplates: SeedCharacterGoalTemplate[] = [
       { materialId: "teachings-of-ballad", required: 9 },
       { materialId: "guide-to-ballad", required: 63 },
       { materialId: "treasure-hoarder-insignia", required: 18 },
-      { materialId: "silver-hoarder-insignia", required: 66 },
+      { materialId: "silver-raven-insignia", required: 66 },
     ],
   },
   // Single Talent 6 → 10
@@ -118,7 +118,7 @@ export const kaeyaGoalTemplates: SeedCharacterGoalTemplate[] = [
     materials: [
       { materialId: "guide-to-ballad", required: 4 },
       { materialId: "philosophies-of-ballad", required: 38 },
-      { materialId: "silver-hoarder-insignia", required: 6 },
+      { materialId: "silver-raven-insignia", required: 6 },
       { materialId: "golden-raven-insignia", required: 22 },
       { materialId: "spirit-locket-of-boreas", required: 6 },
       { materialId: "crown-of-insight", required: 1 },
@@ -134,7 +134,7 @@ export const kaeyaGoalTemplates: SeedCharacterGoalTemplate[] = [
     materials: [
       { materialId: "guide-to-ballad", required: 12 },
       { materialId: "philosophies-of-ballad", required: 114 },
-      { materialId: "silver-hoarder-insignia", required: 18 },
+      { materialId: "silver-raven-insignia", required: 18 },
       { materialId: "golden-raven-insignia", required: 66 },
       { materialId: "spirit-locket-of-boreas", required: 18 },
       { materialId: "crown-of-insight", required: 3 },

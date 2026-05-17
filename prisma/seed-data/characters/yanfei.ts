@@ -49,7 +49,7 @@ export const yanfeiGoalTemplates: SeedCharacterGoalTemplate[] = [
       { materialId: "agnidus-agate-fragment", required: 6 },
       { materialId: "juvenile-jade", required: 4 },
       { materialId: "noctilucous-jade", required: 20 },
-      { materialId: "silver-hoarder-insignia", required: 12 },
+      { materialId: "silver-raven-insignia", required: 12 },
     ],
   },
   // Ascension 4
@@ -63,7 +63,7 @@ export const yanfeiGoalTemplates: SeedCharacterGoalTemplate[] = [
       { materialId: "agnidus-agate-chunk", required: 3 },
       { materialId: "juvenile-jade", required: 8 },
       { materialId: "noctilucous-jade", required: 30 },
-      { materialId: "silver-hoarder-insignia", required: 18 },
+      { materialId: "silver-raven-insignia", required: 18 },
     ],
   },
   // Ascension 5
@@ -105,7 +105,7 @@ export const yanfeiGoalTemplates: SeedCharacterGoalTemplate[] = [
       { materialId: "teachings-of-gold", required: 9 },
       { materialId: "guide-to-gold", required: 63 },
       { materialId: "treasure-hoarder-insignia", required: 18 },
-      { materialId: "silver-hoarder-insignia", required: 66 },
+      { materialId: "silver-raven-insignia", required: 66 },
     ],
   },
   // Single Talent 6 → 10
@@ -118,7 +118,7 @@ export const yanfeiGoalTemplates: SeedCharacterGoalTemplate[] = [
     materials: [
       { materialId: "guide-to-gold", required: 4 },
       { materialId: "philosophies-of-gold", required: 38 },
-      { materialId: "silver-hoarder-insignia", required: 6 },
+      { materialId: "silver-raven-insignia", required: 6 },
       { materialId: "golden-raven-insignia", required: 22 },
       { materialId: "bloodjade-branch", required: 6 },
       { materialId: "crown-of-insight", required: 1 },
@@ -134,7 +134,7 @@ export const yanfeiGoalTemplates: SeedCharacterGoalTemplate[] = [
     materials: [
       { materialId: "guide-to-gold", required: 12 },
       { materialId: "philosophies-of-gold", required: 114 },
-      { materialId: "silver-hoarder-insignia", required: 18 },
+      { materialId: "silver-raven-insignia", required: 18 },
       { materialId: "golden-raven-insignia", required: 66 },
       { materialId: "bloodjade-branch", required: 18 },
       { materialId: "crown-of-insight", required: 3 },
