@@ -1,0 +1,158 @@
+{
+  "tail-of-boreas": {
+    "id": "tail-of-boreas",
+    "name": "Tail of Boreas",
+    "characters": ["qiqi", "venti", "xingqiu", "traveler-geo"]
+  },
+  "ring-of-boreas": {
+    "id": "ring-of-boreas",
+    "name": "Ring of Boreas",
+    "characters": ["barbara", "keqing", "klee", "mona"]
+  },
+  "spirit-locket-of-boreas": {
+    "id": "spirit-locket-of-boreas",
+    "name": "Spirit Locket of Boreas",
+    "characters": ["fischl", "kaeya", "ningguang", "sucrose"]
+  },
+  "dvalin's-plume": {
+    "id": "dvalin's-plume",
+    "name": "Dvalin's Plume",
+    "characters": ["bennett", "diluc", "jean"]
+  },
+  "dvalin's-claw": {
+    "id": "dvalin's-claw",
+    "name": "Dvalin's Claw",
+    "characters": ["lisa", "noelle", "razor", "xiangling"]
+  },
+  "dvalin's-sigh": {
+    "id": "dvalin's-sigh",
+    "name": "Dvalin's Sigh",
+    "characters": [
+      "amber",
+      "beidou",
+      "chongyun",
+      "traveler-anemo",
+      "traveler-geo"
+    ]
+  },
+  "tusk-of-monoceros-caeli": {
+    "id": "tusk-of-monoceros-caeli",
+    "name": "Tusk of Monoceros Caeli",
+    "characters": ["albedo", "xinyan", "zhongli"]
+  },
+  "shard-of-a-foul-legacy": {
+    "id": "shard-of-a-foul-legacy",
+    "name": "Shard of a Foul Legacy",
+    "characters": ["diona", "hu-tao", "tartaglia"]
+  },
+  "shadow-of-the-warrior": {
+    "id": "shadow-of-the-warrior",
+    "name": "Shadow of the Warrior",
+    "characters": ["ganyu", "rosaria", "xiao"]
+  },
+  "bloodjade-branch": {
+    "id": "bloodjade-branch",
+    "name": "Bloodjade Branch",
+    "characters": ["ayaka", "yanfei", "dori"]
+  },
+  "dragon-lord's-crown": {
+    "id": "dragon-lord's-crown",
+    "name": "Dragon Lord's Crown",
+    "characters": ["eula", "yoimiya", "traveler-electro"]
+  },
+  "gilded-scale": {
+    "id": "gilded-scale",
+    "name": "Gilded Scale",
+    "characters": ["kazuha", "sayu", "yelan"]
+  },
+  "molten-moment": {
+    "id": "moltent-moment",
+    "name": "Molten Moment",
+    "characters": ["raiden", "aloy", "gorou"]
+  },
+  "hellfire-butterfly": {
+    "id": "hellfire-butterfly",
+    "name": "Hellfire Butterfly",
+    "characters": ["kokomi", "thoma", "shenhe"]
+  },
+  "ashen-heart": {
+    "id": "ashen-heart",
+    "name": "Ashen Heart",
+    "characters": ["sara", "arataki-itto", "yun-jin"]
+  },
+  "everamber": {
+    "id": "everamber",
+    "name": "Everamber",
+    "characters": ["lynette", "neuvillette", "kirara", "clorinde"]
+  },
+  "primordial-greenbloom": {
+    "id": "primordial-greenbloom",
+    "name": "Primordial Greenbloom",
+    "characters": ["lyney", "wriothesley", "kaveh"]
+  },
+  "worldspan-fern": {
+    "id": "worldspan-fern",
+    "name": "Worldspan Fern",
+    "characters": ["baizhu", "freminet", "traveler-hydro"]
+  },
+  "lightless-silk-string": {
+    "id": "lightless-silk-string",
+    "name": "Lightless Silk String",
+    "characters": ["charlotte", "navia"]
+  },
+  "lightless-mass": {
+    "id": "lightless-mass",
+    "name": "Lightless Mass",
+    "characters": ["furina", "gaming", "mualani"]
+  },
+  "lightless-eye-of-the-maelstrom": {
+    "id": "lightless-eye-of-the-maelstrom",
+    "name": "Lightless Eye of the Maelstrom",
+    "characters": ["chevreuse", "xianyun", "sigewinne"]
+  },
+  "daka-s-bell": {
+    "id": "daka-s-bell",
+    "name": "Daka's Bell",
+    "characters": ["wanderer", "yaoyao", "sethos"]
+  },
+  "puppet-strings": {
+    "id": "puppet-strings",
+    "name": "Puppet Strings",
+    "characters": ["dehya", "faruzan", "nahida"]
+  },
+  "mirror-of-mushin": {
+    "id": "mirror-of-mushin",
+    "name": "Mirror of Mushin",
+    "characters": ["alhaitham", "layla", "mika"]
+  },
+  "mudra-of-the-malefic-general": {
+    "id": "mudra-of-the-malefic-general",
+    "name": "Mudra of the Malefic General",
+    "characters": ["cyno", "ayato", "traveler-dendro"]
+  },
+  "tears-of-the-calamitous-god": {
+    "id": "tears-of-the-calamitous-god",
+    "name": "Tears of the Calamitous God",
+    "characters": ["candace", "collei", "kuki-shinobu", "nilou"]
+  },
+  "the-meaning-of-aeons": {
+    "id": "the-meaning-of-aeons",
+    "name": "The Meaning of Aeons",
+    "characters": ["shikanoin-heizou", "tighnari", "yae-miko"]
+  },
+  "fading-candle": {
+    "id": "fading-candle",
+    "name": "Fading Candle",
+    "characters": ["arlechino", "kachina"]
+  },
+  "silken-feather": {
+    "id": "silken-feather",
+    "name": "Silken Feather",
+    "characters": []
+  },
+  "denial-and-judgment": {
+    "id": "denial-and-judgment",
+    "name": "Denial and Judgment",
+    "characters": ["kinich"]
+  }
+}

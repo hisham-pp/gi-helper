@@ -1,0 +1,600 @@
+{
+  "decarabian": {
+    "weapons": [
+      "apprentice-s-notes",
+      "aquila-favonia",
+      "cool-steel",
+      "cinnabar-spindle",
+      "dull-blade",
+      "favonius-codex",
+      "favonius-sword",
+      "ferrous-shadow",
+      "magic-guide",
+      "mitternachts-waltz",
+      "pocket-grimoire",
+      "raven-bow",
+      "royal-grimoire",
+      "royal-longsword",
+      "silver-sword",
+      "snow-tombed-starsilver",
+      "song-of-broken-pines",
+      "the-alley-flash",
+      "the-bell",
+      "the-stringless",
+      "the-viridescent-hunt",
+      "wolf-fang"
+    ],
+    "availability": ["Monday", "Thursday", "Sunday"],
+    "source": "cecilia-garden",
+    "items": [
+      {
+        "id": "tile-of-decarabian-s-tower",
+        "name": "Tile of Decarabian's Tower",
+        "rarity": 2
+      },
+      {
+        "id": "debris-of-decarabian-s-city",
+        "name": "Debris of Decarabian's City",
+        "rarity": 3
+      },
+      {
+        "id": "fragment-of-decarabian-s-epic",
+        "name": "Fragment of Decarabian's Epic",
+        "rarity": 4
+      },
+      {
+        "id": "scattered-piece-of-decarabian-s-dream",
+        "name": "Scattered Piece of Decarabian's Dream",
+        "rarity": 5
+      }
+    ]
+  },
+  "boreal": {
+    "weapons": [
+      "ballad-of-the-boundless-blue",
+      "bloodtainted-greatsword",
+      "deathmatch",
+      "dodoco-tales",
+      "dragonspine-spear",
+      "elegy-for-the-end",
+      "harbinger-of-dawn",
+      "hunter-s-bow",
+      "old-merc-s-pal",
+      "missive-windspear",
+      "sacrificial-bow",
+      "sacrificial-greatsword",
+      "seasoned-hunter-s-bow",
+      "sharpshooter-s-oath",
+      "skyward-atlas",
+      "skyward-blade",
+      "skyward-harp",
+      "skyward-pride",
+      "sword-of-descension",
+      "the-black-sword",
+      "the-flute",
+      "the-widsith",
+      "thrilling-tales-of-dragon-slayers",
+      "waster-greatsword",
+      "wine-and-song"
+    ],
+    "availability": ["Tuesday", "Friday", "Sunday"],
+    "source": "cecilia-garden",
+    "items": [
+      {
+        "id": "boreal-wolf-s-milk-tooth",
+        "name": "Boreal Wolf's Milk Tooth",
+        "rarity": 2
+      },
+      {
+        "id": "boreal-wolf-s-cracked-tooth",
+        "name": "Boreal Wolf's Cracked Tooth",
+        "rarity": 3
+      },
+      {
+        "id": "boreal-wolf-s-broken-fang",
+        "name": "Boreal Wolf's Broken Fang",
+        "rarity": 4
+      },
+      {
+        "id": "boreal-wolf-s-nostalgia",
+        "name": "Boreal Wolf's Nostalgia",
+        "rarity": 5
+      }
+    ]
+  },
+  "dandelion": {
+    "weapons": [
+      "alley-hunter",
+      "amos-bow",
+      "beginner-s-protector",
+      "favonius-greatsword",
+      "favonius-lance",
+      "favonius-warbow",
+      "festering-desire",
+      "freedom-sworn",
+      "frostbearer",
+      "iron-point",
+      "mailed-flower",
+      "lost-prayer-to-the-sacred-winds",
+      "otherworldly-story",
+      "recurve-bow",
+      "royal-bow",
+      "royal-greatsword",
+      "sacrificial-fragments",
+      "sacrificial-sword",
+      "skyward-spine",
+      "traveler-s-handy-sword",
+      "white-iron-greatsword",
+      "windblume-ode",
+      "wolf-s-gravestone"
+    ],
+    "availability": ["Wednesday", "Saturday", "Sunday"],
+    "source": "cecilia-garden",
+    "items": [
+      {
+        "id": "fetters-of-the-dandelion-gladiator",
+        "name": "Fetters of the Dandelion Gladiator",
+        "rarity": 2
+      },
+      {
+        "id": "chains-of-the-dandelion-gladiator",
+        "name": "Chains of the Dandelion Gladiator",
+        "rarity": 3
+      },
+      {
+        "id": "shackles-of-the-dandelion-gladiator",
+        "name": "Shackles of the Dandelion Gladiator",
+        "rarity": 4
+      },
+      {
+        "id": "dream-of-the-dandelion-gladiator",
+        "name": "Dream of the Dandelion Gladiator",
+        "rarity": 5
+      }
+    ]
+  },
+  "guyun": {
+    "weapons": [
+      "aqua-simulacra",
+      "blackcliff-agate",
+      "blackcliff-longsword",
+      "blackcliff-warbow",
+      "crescent-pike",
+      "dark-iron-sword",
+      "emerald-orb",
+      "jadefall-s-splendor",
+      "lion-s-roar",
+      "lithic-blade",
+      "primordial-jade-winged-spear",
+      "rust",
+      "slingshot",
+      "solar-pearl",
+      "summit-shaper",
+      "white-tassel",
+      "whiteblind",
+      "sacrificial-jade"
+    ],
+    "availability": ["Monday", "Thursday", "Sunday"],
+    "source": "hidden-palace-of-lianshan",
+    "items": [
+      {
+        "id": "luminous-sands-from-guyun",
+        "name": "Luminous Sands from Guyun",
+        "rarity": 2
+      },
+      {
+        "id": "lustrous-stone-from-guyun",
+        "name": "Lustrous Stone from Guyun",
+        "rarity": 3
+      },
+      {
+        "id": "relic-from-guyun",
+        "name": "Relic from Guyun",
+        "rarity": 4
+      },
+      {
+        "id": "divine-body-from-guyun",
+        "name": "Divine Body from Guyun",
+        "rarity": 5
+      }
+    ]
+  },
+  "elixir": {
+    "weapons": [
+      "blackcliff-pole",
+      "blackcliff-slasher",
+      "calamity-queller",
+      "debate-club",
+      "dragon-s-bane",
+      "eye-of-perception",
+      "fillet-blade",
+      "halberd",
+      "messenger",
+      "primordial-jade-cutter",
+      "prototype-amber",
+      "prototype-crescent",
+      "prototype-rancour",
+      "rainslasher",
+      "royal-spear",
+      "the-unforged",
+      "twin-nephrite"
+    ],
+    "availability": ["Tuesday", "Friday", "Sunday"],
+    "source": "hidden-palace-of-lianshan",
+    "items": [
+      {
+        "id": "mist-veiled-lead-elixir",
+        "name": "Mist Veiled Lead Elixir",
+        "rarity": 2
+      },
+      {
+        "id": "mist-veiled-mercury-elixir",
+        "name": "Mist Veiled Mercury Elixir",
+        "rarity": 3
+      },
+      {
+        "id": "mist-veiled-gold-elixir",
+        "name": "Mist Veiled Gold Elixir",
+        "rarity": 4
+      },
+      {
+        "id": "mist-veiled-primo-elixir",
+        "name": "Mist Veiled Primo Elixir",
+        "rarity": 5
+      }
+    ]
+  },
+  "aerosiderite": {
+    "weapons": [
+      "black-tassel",
+      "compound-bow",
+      "fading-twilight",
+      "iron-sting",
+      "lithic-spear",
+      "luxurious-sea-lord",
+      "mappa-mare",
+      "memory-of-dust",
+      "prototype-archaic",
+      "prototype-starglitter",
+      "serpent-spine",
+      "skyrider-greatsword",
+      "skyrider-sword",
+      "staff-of-homa",
+      "vortex-vanquisher"
+    ],
+    "availability": ["Wednesday", "Saturday", "Sunday"],
+    "source": "hidden-palace-of-lianshan",
+    "items": [
+      {
+        "id": "grain-of-aerosiderite",
+        "name": "Grain of Aerosiderite",
+        "rarity": 2
+      },
+      {
+        "id": "piece-of-aerosiderite",
+        "name": "Piece of Aerosiderite",
+        "rarity": 3
+      },
+      {
+        "id": "bit-of-aerosiderite",
+        "name": "Bit of Aerosiderite",
+        "rarity": 4
+      },
+      {
+        "id": "chunk-of-aerosiderite",
+        "name": "Chunk of Aerosiderite",
+        "rarity": 5
+      }
+    ]
+  },
+  "distant-sea": {
+    "weapons": [
+      "akuoumaru",
+      "amenoma-kageuchi",
+      "everlasting-moonglow",
+      "hakushin-ring",
+      "mistsplitter-reforged",
+      "oathsworn-eye"
+    ],
+    "availability": ["Monday", "Thursday", "Sunday"],
+    "source": "court-of-flowing-sand",
+    "items": [
+      {
+        "id": "coral-branch-of-a-distant-sea",
+        "name": "Coral Branch of a Distant Sea",
+        "rarity": 2
+      },
+      {
+        "id": "jeweled-branch-of-a-distant-sea",
+        "name": "Jeweled Branch of a Distant Sea",
+        "rarity": 3
+      },
+      {
+        "id": "jade-branch-of-a-distant-sea",
+        "name": "Jade Branch of a Distant Sea",
+        "rarity": 4
+      },
+      {
+        "id": "golden-branch-of-a-distant-sea",
+        "name": "Golden Branch of a Distant Sea",
+        "rarity": 5
+      }
+    ]
+  },
+  "narukami": {
+    "weapons": [
+      "hamayumi",
+      "haran-geppaku-futsu",
+      "katsuragikiri-nagamasa",
+      "mouun-s-moon",
+      "predator",
+      "redhorn-stonethresher",
+      "thundering-pulse",
+      "toukabou-shigure"
+    ],
+    "availability": ["Tuesday", "Friday", "Sunday"],
+    "source": "court-of-flowing-sand",
+    "items": [
+      {
+        "id": "narukami-s-wisdom",
+        "name": "Narukami's Wisdom",
+        "rarity": 2
+      },
+      {
+        "id": "narukami-s-joy",
+        "name": "Narukami's Joy",
+        "rarity": 3
+      },
+      {
+        "id": "narukami-s-affection",
+        "name": "Narukami's Affection",
+        "rarity": 4
+      },
+      {
+        "id": "narukami-s-valor",
+        "name": "Narukami's Valor",
+        "rarity": 5
+      }
+    ]
+  },
+  "mask": {
+    "weapons": [
+      "the-catch",
+      "engulfing-lightning",
+      "kagotsurube-isshin",
+      "kagura-s-verity",
+      "kitain-cross-spear",
+      "polar-star",
+      "wavebreaker-s-fin"
+    ],
+    "availability": ["Wednesday", "Saturday", "Sunday"],
+    "source": "court-of-flowing-sand",
+    "items": [
+      {
+        "id": "mask-of-the-wicked-lieutenant",
+        "name": "Mask of the Wicked Lieutenant",
+        "rarity": 2
+      },
+      {
+        "id": "mask-of-the-tiger-s-bite",
+        "name": "Mask of the Tiger's Bite",
+        "rarity": 3
+      },
+      {
+        "id": "mask-of-the-one-horned",
+        "name": "Mask of the One-Horned",
+        "rarity": 4
+      },
+      {
+        "id": "mask-of-the-kijin",
+        "name": "Mask of the Kijin",
+        "rarity": 5
+      }
+    ]
+  },
+  "talisman": {
+    "weapons": [
+      "forest-regalia",
+      "ibis-piercer",
+      "key-of-khaj-nisut",
+      "light-of-foliar-incision",
+      "sapwood-blade",
+      "xiphos-moonlight"
+    ],
+    "availability": ["Monday", "Thursday", "Sunday"],
+    "source": "tower-of-abject-pride",
+    "items": [
+      {
+        "id": "copper-talisman-of-the-forest-dew",
+        "name": "Copper Talisman of the Forest Dew",
+        "rarity": 2
+      },
+      {
+        "id": "iron-talisman-of-the-forest-dew",
+        "name": "Iron Talisman of the Forest Dew",
+        "rarity": 3
+      },
+      {
+        "id": "silver-talisman-of-the-forest-dew",
+        "name": "Silver Talisman of the Forest Dew",
+        "rarity": 4
+      },
+      {
+        "id": "golden-talisman-of-the-forest-dew",
+        "name": "Golden Talisman of the Forest Dew",
+        "rarity": 5
+      }
+    ]
+  },
+  "oasis": {
+    "weapons": [
+      "a-thousand-floating-dreams",
+      "fruit-of-fulfillment",
+      "moonpiercer",
+      "staff-of-the-scarlet-sands",
+      "talking-stick",
+      "wandering-evenstar"
+    ],
+    "availability": ["Tuesday", "Friday", "Sunday"],
+    "source": "tower-of-abject-pride",
+    "items": [
+      {
+        "id": "oasis-garden-s-reminiscence",
+        "name": "Oasis Garden's Reminiscence",
+        "rarity": 2
+      },
+      {
+        "id": "oasis-garden-s-kindness",
+        "name": "Oasis Garden's Kindness",
+        "rarity": 3
+      },
+      {
+        "id": "oasis-garden-s-mourning",
+        "name": "Oasis Garden's Mourning",
+        "rarity": 4
+      },
+      {
+        "id": "oasis-garden-s-truth",
+        "name": "Oasis Garden's Truth",
+        "rarity": 5
+      }
+    ]
+  },
+  "scorching": {
+    "weapons": [
+      "beacon-of-the-reed-sea",
+      "hunter-s-path",
+      "scion-of-the-blazing-sun",
+      "tulaytullah-s-remembrance",
+      "end-of-the-line",
+      "king-s-squire",
+      "makhaira-aquamarine"
+    ],
+    "availability": ["Wednesday", "Saturday", "Sunday"],
+    "source": "tower-of-abject-pride",
+    "items": [
+      {
+        "id": "echo-of-scorching-might",
+        "name": "Echo of Scorching Might",
+        "rarity": 2
+      },
+      {
+        "id": "remnant-glow-of-scorching-might",
+        "name": "Remnant Glow of Scorching Might",
+        "rarity": 3
+      },
+      {
+        "id": "dream-of-scorching-might",
+        "name": "Dream of Scorching Might",
+        "rarity": 4
+      },
+      {
+        "id": "olden-days-of-scorching-might",
+        "name": "Olden Days of Scorching Might",
+        "rarity": 5
+      }
+    ]
+  },
+  "ancient-chord": {
+    "weapons": [
+      "the-first-great-magic",
+      "fleuve-cendre-ferryman",
+      "prospectors-drill",
+      "range-gauge",
+      "song-of-stillness",
+      "sword-of-narzissenkreuz",
+      "verdict"
+    ],
+    "availability": ["Monday", "Thursday", "Sunday"],
+    "source": "echoes-of-the-deep-tides",
+    "items": [
+      {
+        "id": "fragment-of-an-ancient-chord",
+        "name": "Fragment of an Ancient Chord",
+        "rarity": 2
+      },
+      {
+        "id": "chapter-of-an-ancient-chord",
+        "name": "Chapter of an Ancient Chord",
+        "rarity": 3
+      },
+      {
+        "id": "movement-of-an-ancient-chord",
+        "name": "Movement of an Ancient Chord",
+        "rarity": 4
+      },
+      {
+        "id": "echo-of-an-ancient-chord",
+        "name": "Echo of an Ancient Chord",
+        "rarity": 5
+      }
+    ]
+  },
+  "pure-sacred-dewdrop": {
+    "weapons": [
+      "splendor-of-tranquil-waters",
+      "tome-of-the-eternal",
+      "finale-of-the-deep",
+      "flowing-purity",
+      "the-dockhands-assistant"
+    ],
+    "availability": ["Tuesday", "Friday", "Sunday"],
+    "source": "echoes-of-the-deep-tides",
+    "items": [
+      {
+        "id": "dross-of-pure-sacred-dewdrop",
+        "name": "Dross of Pure Sacred Dewdrop",
+        "rarity": 2
+      },
+      {
+        "id": "sublimation-of-pure-sacred-dewdrop",
+        "name": "Sublimation of Pure Sacred Dewdrop",
+        "rarity": 3
+      },
+      {
+        "id": "spring-of-pure-sacred-dewdrop",
+        "name": "Spring of Pure Sacred Dewdrop",
+        "rarity": 4
+      },
+      {
+        "id": "essence-of-pure-sacred-dewdrop",
+        "name": "Essence of Pure Sacred Dewdrop",
+        "rarity": 5
+      }
+    ]
+  },
+  "pristine-sea": {
+    "weapons": [
+      "cashflow-supervision",
+      "ballad-of-the-fjords",
+      "portable-power-saw",
+      "rightful-reward",
+      "tidal-shadow",
+      "ultimate-overlord-s-mega-magic-sword"
+    ],
+    "availability": ["Wednesday", "Saturday", "Sunday"],
+    "source": "echoes-of-the-deep-tides",
+    "items": [
+      {
+        "id": "broken-goblet-of-the-pristine-sea",
+        "name": "Broken Goblet of the Pristine Sea",
+        "rarity": 2
+      },
+      {
+        "id": "wine-goblet-of-the-pristine-sea",
+        "name": "Wine Goblet of the Pristine Sea",
+        "rarity": 3
+      },
+      {
+        "id": "silver-goblet-of-the-pristine-sea",
+        "name": "Silver Goblet of the Pristine Sea",
+        "rarity": 4
+      },
+      {
+        "id": "golden-goblet-of-the-pristine-sea",
+        "name": "Golden Goblet of the Pristine Sea",
+        "rarity": 5
+      }
+    ]
+  }
+}
