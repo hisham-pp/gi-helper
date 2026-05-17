@@ -378,7 +378,7 @@
     ]
   },
   "conflict": {
-    "characters": ["kachina"],
+    "characters": ["kachina", "traveler-pyro"],
     "availability": ["Wednesday", "Saturday", "Sunday"],
     "source": "blazing-ruins",
     "items": [
@@ -400,29 +400,29 @@
     ]
   },
   "contention": {
-    "characters": ["mualani"],
+    "characters": ["mualani", "traveler-pyro"],
     "availability": ["Monday", "Thursday", "Sunday"],
     "source": "blazing-ruins",
     "items": [
       {
-        "id": "teachings-of-order",
-        "name": "Teachings of Order",
+        "id": "teachings-of-contention",
+        "name": "Teachings of Contention",
         "rarity": 2
       },
       {
-        "id": "guide-to-order",
-        "name": "Guide to Order",
+        "id": "guide-to-contention",
+        "name": "Guide to Contention",
         "rarity": 3
       },
       {
-        "id": "philosophies-of-order",
-        "name": "Philosophies of Order",
+        "id": "philosophies-of-contention",
+        "name": "Philosophies of Contention",
         "rarity": 4
       }
     ]
   },
   "kindling": {
-    "characters": ["kinich"],
+    "characters": ["kinich", "traveler-pyro"],
     "availability": ["Tuesday", "Friday", "Sunday"],
     "source": "myriad-illusions",
     "items": [

@@ -47,7 +47,7 @@
   "hilichurl-masks": {
     "characters": ["jean", "noelle", "razor", "chongyun", "xingqiu", "sara",
       "eula", "yun-jin", "traveler-anemo", "traveler-geo", "traveler-electro",
-      "traveler-dendro","traveler-hydro"],
+      "traveler-dendro","traveler-hydro", "traveler-pyro"],
     "weapons": [
       "wolf-fang",
       "apprentice-s-notes",

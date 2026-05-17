@@ -66,7 +66,7 @@
     "characters": ["kazuha", "sayu", "yelan"]
   },
   "molten-moment": {
-    "id": "moltent-moment",
+    "id": "molten-moment",
     "name": "Molten Moment",
     "characters": ["raiden", "aloy", "gorou"]
   },
@@ -153,6 +153,6 @@
   "denial-and-judgment": {
     "id": "denial-and-judgment",
     "name": "Denial and Judgment",
-    "characters": ["kinich"]
+    "characters": ["kinich", "traveler-pyro"]
   }
 }
