@@ -35,6 +35,11 @@ export const deleteGoalMaterialSchema = z.object({
   goalMaterialId: z.string().min(1),
 });
 
+export const createGoalsFromTemplatesSchema = z.object({
+  type: z.enum(["character", "weapon"]),
+  templateIds: z.array(z.string().min(1)).min(1).max(24),
+});
+
 export const materialCategories = [
   "Elite Drop",
   "Enemy Drop",

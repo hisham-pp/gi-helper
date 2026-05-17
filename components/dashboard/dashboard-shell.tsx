@@ -3,7 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { PropsWithChildren, ReactNode } from "react";
-import { useMemo, useState, useTransition } from "react";
+import { useEffect, useMemo, useState, useTransition } from "react";
+import { useSearchParams } from "next/navigation";
 import {
   PackageSearch,
   Sparkles,
@@ -50,6 +51,7 @@ type DashboardShellProps = {
   initialData: DashboardData;
   username: string;
   role?: string;
+  view?: "tracker" | "inventory" | "goals";
 };
 
 type InventoryDraft = Record<string, number>;
@@ -66,9 +68,25 @@ export function DashboardShell({
   initialData,
   username,
   role,
+  view = "tracker",
 }: DashboardShellProps) {
+  const searchParams = useSearchParams();
   const [data, setData] = useState(initialData);
-  const [activeTab, setActiveTab] = useState<DashboardTab>("inventory");
+  const tabFromUrl = searchParams.get("tab");
+  const initialTab: DashboardTab =
+    tabFromUrl === "crafting" || tabFromUrl === "materials"
+      ? tabFromUrl
+      : "materials";
+  const [activeTab, setActiveTab] = useState<DashboardTab>(initialTab);
+
+  useEffect(() => {
+    if (view !== "tracker") {
+      return;
+    }
+    if (tabFromUrl === "crafting" || tabFromUrl === "materials") {
+      setActiveTab(tabFromUrl);
+    }
+  }, [tabFromUrl, view]);
   const [search, setSearch] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("All");
   const [inventoryDraft, setInventoryDraft] = useState<InventoryDraft>(
@@ -273,17 +291,34 @@ export function DashboardShell({
     });
   }
 
+  const pageTitle =
+    view === "inventory"
+      ? "Inventory"
+      : view === "goals"
+        ? "Farming Goals"
+        : "Material Tracker";
+
+  const pageDescription =
+    view === "inventory"
+      ? "Update owned material quantities for all farming goals."
+      : view === "goals"
+        ? "Track progress and open a goal for details."
+        : "Material library, crafting chains, and recursive 3:1 simulation.";
+
+  const showInventory = view === "inventory";
+  const showGoals = view === "goals";
+  const showTracker = view === "tracker";
+
   return (
     <div className="space-y-8">
       <header className="mb-8">
         <h1 className="text-on-surface text-3xl font-bold tracking-tight">
-          Material Tracker
+          {pageTitle}
         </h1>
-        <p className="text-on-surface-variant mt-2">
-          Track inventory, goals, material chains, and recursive 3:1 crafting.
-        </p>
+        <p className="text-on-surface-variant mt-2">{pageDescription}</p>
       </header>
 
+      {showTracker ? (
       <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
         {overviewMeta.map((item) => (
           <Card key={item.key} variant="filled" className="p-5">
@@ -297,7 +332,9 @@ export function DashboardShell({
           </Card>
         ))}
       </section>
+      ) : null}
 
+      {showTracker ? (
       <nav className="flex items-center justify-center">
         <div className="flex gap-2 rounded-full bg-surface-variant/50 p-1">
           {tabs.map((tab) => (
@@ -312,8 +349,9 @@ export function DashboardShell({
           ))}
         </div>
       </nav>
+      ) : null}
 
-      {activeTab === "inventory" ? (
+      {showInventory ? (
         <section className="grid gap-8 lg:grid-cols-[1.5fr_0.9fr]">
           <Card className="flex flex-col overflow-hidden" variant="outlined">
             <div className="border-b border-outline-variant bg-surface p-6">
@@ -349,8 +387,8 @@ export function DashboardShell({
               </div>
             </div>
 
-            <div className="p-6">
-              <div className="grid gap-4">
+            <div className="p-4 sm:p-6">
+              <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
                 {filteredMaterials.length === 0 ? (
                   <EmptyState
                     icon={<PackageSearch className="h-8 w-8" />}
@@ -404,7 +442,7 @@ export function DashboardShell({
         </section>
       ) : null}
 
-      {activeTab === "goals" ? (
+      {showGoals ? (
         <section className="space-y-6">
           <div className="flex items-center justify-between">
             <div>
@@ -493,7 +531,7 @@ export function DashboardShell({
         </section>
       ) : null}
 
-      {activeTab === "materials" ? (
+      {showTracker && activeTab === "materials" ? (
         <>
           <Panel
             title="Material Library"
@@ -593,7 +631,7 @@ export function DashboardShell({
         </>
       ) : null}
 
-      {activeTab === "crafting" ? (
+      {showTracker && activeTab === "crafting" ? (
         <section className="grid gap-8 lg:grid-cols-[0.9fr_1.3fr]">
           <Panel
             title="Crafting Simulator"

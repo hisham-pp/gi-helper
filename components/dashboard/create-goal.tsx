@@ -41,7 +41,7 @@ export function CreateGoal() {
       if (createdGoal) {
         router.push(`/goals/${createdGoal.id}` as any);
       } else {
-        router.push("/materials?tab=goals" as any);
+        router.push("/goals");
       }
     });
   }
@@ -49,7 +49,7 @@ export function CreateGoal() {
   return (
     <div className="space-y-8">
       <div className="flex items-center gap-4">
-        <Link href="/materials?tab=goals">
+        <Link href="/goals">
           <Button variant="text" className="p-0">
             <ArrowLeft className="h-5 w-5" />
           </Button>
@@ -92,7 +92,7 @@ export function CreateGoal() {
               >
                 {isPending ? "Creating..." : "Create Goal"}
               </Button>
-              <Link href="/materials?tab=goals" className="flex-1">
+              <Link href="/goals" className="flex-1">
                 <Button variant="outlined" className="w-full">
                   Cancel
                 </Button>
