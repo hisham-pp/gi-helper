@@ -66,10 +66,10 @@ export const characters: SeedCharacter[] = [
     "rarity": 5,
     "element": "Pyro",
     "weaponType": "Polearm",
-    "region": "Fontaine"
+    "region": "Snezhnaya"
   },
   {
-    "id": "kamisato-ayaka",
+    "id": "ayaka",
     "name": "Kamisato Ayaka",
     "image": "/images/characters/ayaka/icon-big",
     "rarity": 5,
@@ -78,7 +78,7 @@ export const characters: SeedCharacter[] = [
     "region": "Inazuma"
   },
   {
-    "id": "kamisato-ayato",
+    "id": "ayato",
     "name": "Kamisato Ayato",
     "image": "/images/characters/ayato/icon-big",
     "rarity": 5,
@@ -210,7 +210,7 @@ export const characters: SeedCharacter[] = [
     "rarity": 5,
     "element": "Hydro",
     "weaponType": "Catalyst",
-    "region": "Snezhnaya"
+    "region": "Nod-Krai"
   },
   {
     "id": "cyno",
@@ -327,7 +327,7 @@ export const characters: SeedCharacter[] = [
     "rarity": 5,
     "element": "Electro",
     "weaponType": "Polearm",
-    "region": "Fontaine"
+    "region": "Nod-Krai"
   },
   {
     "id": "freminet",
@@ -465,7 +465,7 @@ export const characters: SeedCharacter[] = [
     "region": "Sumeru"
   },
   {
-    "id": "kaedehara-kazuha",
+    "id": "kazuha",
     "name": "Kaedehara Kazuha",
     "image": "/images/characters/kazuha/icon-big",
     "rarity": 5,
@@ -510,7 +510,7 @@ export const characters: SeedCharacter[] = [
     "region": "Mondstadt"
   },
   {
-    "id": "sangonomiya-kokomi",
+    "id": "kokomi",
     "name": "Sangonomiya Kokomi",
     "image": "/images/characters/kokomi/icon-big",
     "rarity": 5,
@@ -553,6 +553,15 @@ export const characters: SeedCharacter[] = [
     "element": "Cryo",
     "weaponType": "Sword",
     "region": "Sumeru"
+  },
+  {
+    "id": "linnea",
+    "name": "Linnea",
+    "image": "/images/characters/linnea/icon-big",
+    "rarity": 5,
+    "element": "Geo",
+    "weaponType": "Bow",
+    "region": "Nod-Krai"
   },
   {
     "id": "lisa",
@@ -726,7 +735,7 @@ export const characters: SeedCharacter[] = [
     "region": "Mondstadt"
   },
   {
-    "id": "kujou-sara",
+    "id": "sara",
     "name": "Kujou Sara",
     "image": "/images/characters/sara/icon-big",
     "rarity": 4,
@@ -771,7 +780,7 @@ export const characters: SeedCharacter[] = [
     "region": "Inazuma"
   },
   {
-    "id": "sigwinne",
+    "id": "sigewinne",
     "name": "Sigewinne",
     "image": "/images/characters/sigewinne/icon-big",
     "rarity": 5,
@@ -786,7 +795,7 @@ export const characters: SeedCharacter[] = [
     "rarity": 5,
     "element": "Cryo",
     "weaponType": "Sword",
-    "region": "Khaenri'ah"
+    "region": "Unknown"
   },
   {
     "id": "sucrose",
@@ -813,7 +822,7 @@ export const characters: SeedCharacter[] = [
     "rarity": 4,
     "element": "Pyro",
     "weaponType": "Polearm",
-    "region": "Inazuma"
+    "region": "Mondstadt"
   },
   {
     "id": "tighnari",
@@ -886,6 +895,15 @@ export const characters: SeedCharacter[] = [
     "element": "Electro",
     "weaponType": "Catalyst",
     "region": "Natlan"
+  },
+  {
+    "id": "varka",
+    "name": "Varka",
+    "image": "/images/characters/varka/icon-big",
+    "rarity": 5,
+    "element": "Anemo",
+    "weaponType": "Claymore",
+    "region": "Mondstadt"
   },
   {
     "id": "venti",
@@ -2530,7 +2548,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
-    "characterId": "kamisato-ayaka",
+    "characterId": "ayaka",
     "name": "Ascension 1 (Lv. 20 -> 40)",
     "description": "First ascension materials for Kamisato Ayaka",
     "category": "ascension",
@@ -2551,7 +2569,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
-    "characterId": "kamisato-ayaka",
+    "characterId": "ayaka",
     "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Kamisato Ayaka",
     "category": "ascension",
@@ -2576,7 +2594,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
-    "characterId": "kamisato-ayaka",
+    "characterId": "ayaka",
     "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Kamisato Ayaka",
     "category": "ascension",
@@ -2601,7 +2619,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
-    "characterId": "kamisato-ayaka",
+    "characterId": "ayaka",
     "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Kamisato Ayaka",
     "category": "ascension",
@@ -2626,7 +2644,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
-    "characterId": "kamisato-ayaka",
+    "characterId": "ayaka",
     "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Kamisato Ayaka",
     "category": "ascension",
@@ -2651,7 +2669,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
-    "characterId": "kamisato-ayaka",
+    "characterId": "ayaka",
     "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Kamisato Ayaka",
     "category": "ascension",
@@ -2676,7 +2694,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
-    "characterId": "kamisato-ayaka",
+    "characterId": "ayaka",
     "name": "All Talents Level 1 -> 6",
     "description": "Materials to level all three talents from 1 to 6 for Kamisato Ayaka",
     "category": "talent",
@@ -2701,7 +2719,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
-    "characterId": "kamisato-ayaka",
+    "characterId": "ayaka",
     "name": "Single Talent Level 6 -> 10",
     "description": "Materials to max one talent from level 6 to 10 for Kamisato Ayaka",
     "category": "talent",
@@ -2734,7 +2752,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
-    "characterId": "kamisato-ayaka",
+    "characterId": "ayaka",
     "name": "Triple Crown (All Talents 6 -> 10)",
     "description": "Materials to max all three talents from level 6 to 10 for Kamisato Ayaka",
     "category": "talent",
@@ -2767,7 +2785,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
-    "characterId": "kamisato-ayato",
+    "characterId": "ayato",
     "name": "Ascension 1 (Lv. 20 -> 40)",
     "description": "First ascension materials for Kamisato Ayato",
     "category": "ascension",
@@ -2788,7 +2806,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
-    "characterId": "kamisato-ayato",
+    "characterId": "ayato",
     "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Kamisato Ayato",
     "category": "ascension",
@@ -2813,7 +2831,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
-    "characterId": "kamisato-ayato",
+    "characterId": "ayato",
     "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Kamisato Ayato",
     "category": "ascension",
@@ -2838,7 +2856,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
-    "characterId": "kamisato-ayato",
+    "characterId": "ayato",
     "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Kamisato Ayato",
     "category": "ascension",
@@ -2863,7 +2881,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
-    "characterId": "kamisato-ayato",
+    "characterId": "ayato",
     "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Kamisato Ayato",
     "category": "ascension",
@@ -2888,7 +2906,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
-    "characterId": "kamisato-ayato",
+    "characterId": "ayato",
     "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Kamisato Ayato",
     "category": "ascension",
@@ -2913,7 +2931,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
-    "characterId": "kamisato-ayato",
+    "characterId": "ayato",
     "name": "All Talents Level 1 -> 6",
     "description": "Materials to level all three talents from 1 to 6 for Kamisato Ayato",
     "category": "talent",
@@ -2938,7 +2956,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
-    "characterId": "kamisato-ayato",
+    "characterId": "ayato",
     "name": "Single Talent Level 6 -> 10",
     "description": "Materials to max one talent from level 6 to 10 for Kamisato Ayato",
     "category": "talent",
@@ -2971,7 +2989,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
-    "characterId": "kamisato-ayato",
+    "characterId": "ayato",
     "name": "Triple Crown (All Talents 6 -> 10)",
     "description": "Materials to max all three talents from level 6 to 10 for Kamisato Ayato",
     "category": "talent",
@@ -11688,7 +11706,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
-    "characterId": "kaedehara-kazuha",
+    "characterId": "kazuha",
     "name": "Ascension 1 (Lv. 20 -> 40)",
     "description": "First ascension materials for Kaedehara Kazuha",
     "category": "ascension",
@@ -11709,7 +11727,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
-    "characterId": "kaedehara-kazuha",
+    "characterId": "kazuha",
     "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Kaedehara Kazuha",
     "category": "ascension",
@@ -11734,7 +11752,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
-    "characterId": "kaedehara-kazuha",
+    "characterId": "kazuha",
     "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Kaedehara Kazuha",
     "category": "ascension",
@@ -11759,7 +11777,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
-    "characterId": "kaedehara-kazuha",
+    "characterId": "kazuha",
     "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Kaedehara Kazuha",
     "category": "ascension",
@@ -11784,7 +11802,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
-    "characterId": "kaedehara-kazuha",
+    "characterId": "kazuha",
     "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Kaedehara Kazuha",
     "category": "ascension",
@@ -11809,7 +11827,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
-    "characterId": "kaedehara-kazuha",
+    "characterId": "kazuha",
     "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Kaedehara Kazuha",
     "category": "ascension",
@@ -11834,7 +11852,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
-    "characterId": "kaedehara-kazuha",
+    "characterId": "kazuha",
     "name": "All Talents Level 1 -> 6",
     "description": "Materials to level all three talents from 1 to 6 for Kaedehara Kazuha",
     "category": "talent",
@@ -11859,7 +11877,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
-    "characterId": "kaedehara-kazuha",
+    "characterId": "kazuha",
     "name": "Single Talent Level 6 -> 10",
     "description": "Materials to max one talent from level 6 to 10 for Kaedehara Kazuha",
     "category": "talent",
@@ -11892,7 +11910,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
-    "characterId": "kaedehara-kazuha",
+    "characterId": "kazuha",
     "name": "Triple Crown (All Talents 6 -> 10)",
     "description": "Materials to max all three talents from level 6 to 10 for Kaedehara Kazuha",
     "category": "talent",
@@ -12873,7 +12891,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
-    "characterId": "sangonomiya-kokomi",
+    "characterId": "kokomi",
     "name": "Ascension 1 (Lv. 20 -> 40)",
     "description": "First ascension materials for Sangonomiya Kokomi",
     "category": "ascension",
@@ -12894,7 +12912,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
-    "characterId": "sangonomiya-kokomi",
+    "characterId": "kokomi",
     "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Sangonomiya Kokomi",
     "category": "ascension",
@@ -12919,7 +12937,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
-    "characterId": "sangonomiya-kokomi",
+    "characterId": "kokomi",
     "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Sangonomiya Kokomi",
     "category": "ascension",
@@ -12944,7 +12962,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
-    "characterId": "sangonomiya-kokomi",
+    "characterId": "kokomi",
     "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Sangonomiya Kokomi",
     "category": "ascension",
@@ -12969,7 +12987,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
-    "characterId": "sangonomiya-kokomi",
+    "characterId": "kokomi",
     "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Sangonomiya Kokomi",
     "category": "ascension",
@@ -12994,7 +13012,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
-    "characterId": "sangonomiya-kokomi",
+    "characterId": "kokomi",
     "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Sangonomiya Kokomi",
     "category": "ascension",
@@ -13019,7 +13037,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
-    "characterId": "sangonomiya-kokomi",
+    "characterId": "kokomi",
     "name": "All Talents Level 1 -> 6",
     "description": "Materials to level all three talents from 1 to 6 for Sangonomiya Kokomi",
     "category": "talent",
@@ -13044,7 +13062,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
-    "characterId": "sangonomiya-kokomi",
+    "characterId": "kokomi",
     "name": "Single Talent Level 6 -> 10",
     "description": "Materials to max one talent from level 6 to 10 for Sangonomiya Kokomi",
     "category": "talent",
@@ -13077,7 +13095,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
-    "characterId": "sangonomiya-kokomi",
+    "characterId": "kokomi",
     "name": "Triple Crown (All Talents 6 -> 10)",
     "description": "Materials to max all three talents from level 6 to 10 for Sangonomiya Kokomi",
     "category": "talent",
@@ -13867,6 +13885,243 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       },
       {
         "materialId": "mirror-of-mushin",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
+      }
+    ]
+  },
+  {
+    "characterId": "linnea",
+    "name": "Ascension 1 (Lv. 20 -> 40)",
+    "description": "First ascension materials for Linnea",
+    "category": "ascension",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "prithiva-topaz-sliver",
+        "required": 1
+      },
+      {
+        "materialId": "wolfhook",
+        "required": 3
+      },
+      {
+        "materialId": "firm-arrowhead",
+        "required": 3
+      }
+    ]
+  },
+  {
+    "characterId": "linnea",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
+    "description": "Second ascension materials for Linnea",
+    "category": "ascension",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "prithiva-topaz-fragment",
+        "required": 3
+      },
+      {
+        "materialId": "basalt-pillar",
+        "required": 2
+      },
+      {
+        "materialId": "wolfhook",
+        "required": 10
+      },
+      {
+        "materialId": "firm-arrowhead",
+        "required": 15
+      }
+    ]
+  },
+  {
+    "characterId": "linnea",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
+    "description": "Third ascension materials for Linnea",
+    "category": "ascension",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "prithiva-topaz-fragment",
+        "required": 6
+      },
+      {
+        "materialId": "basalt-pillar",
+        "required": 4
+      },
+      {
+        "materialId": "wolfhook",
+        "required": 20
+      },
+      {
+        "materialId": "sharp-arrowhead",
+        "required": 12
+      }
+    ]
+  },
+  {
+    "characterId": "linnea",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
+    "description": "Fourth ascension materials for Linnea",
+    "category": "ascension",
+    "sortOrder": 4,
+    "materials": [
+      {
+        "materialId": "prithiva-topaz-chunk",
+        "required": 3
+      },
+      {
+        "materialId": "basalt-pillar",
+        "required": 8
+      },
+      {
+        "materialId": "wolfhook",
+        "required": 30
+      },
+      {
+        "materialId": "sharp-arrowhead",
+        "required": 18
+      }
+    ]
+  },
+  {
+    "characterId": "linnea",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
+    "description": "Fifth ascension materials for Linnea",
+    "category": "ascension",
+    "sortOrder": 5,
+    "materials": [
+      {
+        "materialId": "prithiva-topaz-chunk",
+        "required": 6
+      },
+      {
+        "materialId": "basalt-pillar",
+        "required": 12
+      },
+      {
+        "materialId": "wolfhook",
+        "required": 45
+      },
+      {
+        "materialId": "weathered-arrowhead",
+        "required": 12
+      }
+    ]
+  },
+  {
+    "characterId": "linnea",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
+    "description": "Sixth ascension materials for Linnea",
+    "category": "ascension",
+    "sortOrder": 6,
+    "materials": [
+      {
+        "materialId": "prithiva-topaz-gemstone",
+        "required": 6
+      },
+      {
+        "materialId": "basalt-pillar",
+        "required": 20
+      },
+      {
+        "materialId": "wolfhook",
+        "required": 60
+      },
+      {
+        "materialId": "weathered-arrowhead",
+        "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "linnea",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Linnea",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-freedom",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-freedom",
+        "required": 63
+      },
+      {
+        "materialId": "firm-arrowhead",
+        "required": 18
+      },
+      {
+        "materialId": "sharp-arrowhead",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "linnea",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Linnea",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-freedom",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-freedom",
+        "required": 38
+      },
+      {
+        "materialId": "sharp-arrowhead",
+        "required": 6
+      },
+      {
+        "materialId": "weathered-arrowhead",
+        "required": 22
+      },
+      {
+        "materialId": "ring-of-boreas",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "linnea",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Linnea",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-freedom",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-freedom",
+        "required": 114
+      },
+      {
+        "materialId": "sharp-arrowhead",
+        "required": 18
+      },
+      {
+        "materialId": "weathered-arrowhead",
+        "required": 66
+      },
+      {
+        "materialId": "ring-of-boreas",
         "required": 18
       },
       {
@@ -18106,7 +18361,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
-    "characterId": "kujou-sara",
+    "characterId": "sara",
     "name": "Ascension 1 (Lv. 20 -> 40)",
     "description": "First ascension materials for Kujou Sara",
     "category": "ascension",
@@ -18127,7 +18382,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
-    "characterId": "kujou-sara",
+    "characterId": "sara",
     "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Kujou Sara",
     "category": "ascension",
@@ -18152,7 +18407,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
-    "characterId": "kujou-sara",
+    "characterId": "sara",
     "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Kujou Sara",
     "category": "ascension",
@@ -18177,7 +18432,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
-    "characterId": "kujou-sara",
+    "characterId": "sara",
     "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Kujou Sara",
     "category": "ascension",
@@ -18202,7 +18457,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
-    "characterId": "kujou-sara",
+    "characterId": "sara",
     "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Kujou Sara",
     "category": "ascension",
@@ -18227,7 +18482,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
-    "characterId": "kujou-sara",
+    "characterId": "sara",
     "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Kujou Sara",
     "category": "ascension",
@@ -18252,7 +18507,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
-    "characterId": "kujou-sara",
+    "characterId": "sara",
     "name": "All Talents Level 1 -> 6",
     "description": "Materials to level all three talents from 1 to 6 for Kujou Sara",
     "category": "talent",
@@ -18277,7 +18532,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
-    "characterId": "kujou-sara",
+    "characterId": "sara",
     "name": "Single Talent Level 6 -> 10",
     "description": "Materials to max one talent from level 6 to 10 for Kujou Sara",
     "category": "talent",
@@ -18310,7 +18565,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
-    "characterId": "kujou-sara",
+    "characterId": "sara",
     "name": "Triple Crown (All Talents 6 -> 10)",
     "description": "Materials to max all three talents from level 6 to 10 for Kujou Sara",
     "category": "talent",
@@ -19291,7 +19546,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
-    "characterId": "sigwinne",
+    "characterId": "sigewinne",
     "name": "Ascension 1 (Lv. 20 -> 40)",
     "description": "First ascension materials for Sigewinne",
     "category": "ascension",
@@ -19312,7 +19567,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
-    "characterId": "sigwinne",
+    "characterId": "sigewinne",
     "name": "Ascension 2 (Lv. 40 -> 50)",
     "description": "Second ascension materials for Sigewinne",
     "category": "ascension",
@@ -19337,7 +19592,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
-    "characterId": "sigwinne",
+    "characterId": "sigewinne",
     "name": "Ascension 3 (Lv. 50 -> 60)",
     "description": "Third ascension materials for Sigewinne",
     "category": "ascension",
@@ -19362,7 +19617,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
-    "characterId": "sigwinne",
+    "characterId": "sigewinne",
     "name": "Ascension 4 (Lv. 60 -> 70)",
     "description": "Fourth ascension materials for Sigewinne",
     "category": "ascension",
@@ -19387,7 +19642,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
-    "characterId": "sigwinne",
+    "characterId": "sigewinne",
     "name": "Ascension 5 (Lv. 70 -> 80)",
     "description": "Fifth ascension materials for Sigewinne",
     "category": "ascension",
@@ -19412,7 +19667,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
-    "characterId": "sigwinne",
+    "characterId": "sigewinne",
     "name": "Ascension 6 (Lv. 80 -> 90)",
     "description": "Sixth ascension materials for Sigewinne",
     "category": "ascension",
@@ -19437,7 +19692,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
-    "characterId": "sigwinne",
+    "characterId": "sigewinne",
     "name": "All Talents Level 1 -> 6",
     "description": "Materials to level all three talents from 1 to 6 for Sigewinne",
     "category": "talent",
@@ -19462,7 +19717,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
-    "characterId": "sigwinne",
+    "characterId": "sigewinne",
     "name": "Single Talent Level 6 -> 10",
     "description": "Materials to max one talent from level 6 to 10 for Sigewinne",
     "category": "talent",
@@ -19495,7 +19750,7 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
-    "characterId": "sigwinne",
+    "characterId": "sigewinne",
     "name": "Triple Crown (All Talents 6 -> 10)",
     "description": "Materials to max all three talents from level 6 to 10 for Sigewinne",
     "category": "talent",
@@ -22066,6 +22321,243 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "tyrant-s-fang",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "varka",
+    "name": "Ascension 1 (Lv. 20 -> 40)",
+    "description": "First ascension materials for Varka",
+    "category": "ascension",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "vayuda-turquoise-sliver",
+        "required": 1
+      },
+      {
+        "materialId": "windwheel-aster",
+        "required": 3
+      },
+      {
+        "materialId": "damaged-mask",
+        "required": 3
+      }
+    ]
+  },
+  {
+    "characterId": "varka",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
+    "description": "Second ascension materials for Varka",
+    "category": "ascension",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "vayuda-turquoise-fragment",
+        "required": 3
+      },
+      {
+        "materialId": "hurricane-seed",
+        "required": 2
+      },
+      {
+        "materialId": "windwheel-aster",
+        "required": 10
+      },
+      {
+        "materialId": "damaged-mask",
+        "required": 15
+      }
+    ]
+  },
+  {
+    "characterId": "varka",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
+    "description": "Third ascension materials for Varka",
+    "category": "ascension",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "vayuda-turquoise-fragment",
+        "required": 6
+      },
+      {
+        "materialId": "hurricane-seed",
+        "required": 4
+      },
+      {
+        "materialId": "windwheel-aster",
+        "required": 20
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 12
+      }
+    ]
+  },
+  {
+    "characterId": "varka",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
+    "description": "Fourth ascension materials for Varka",
+    "category": "ascension",
+    "sortOrder": 4,
+    "materials": [
+      {
+        "materialId": "vayuda-turquoise-chunk",
+        "required": 3
+      },
+      {
+        "materialId": "hurricane-seed",
+        "required": 8
+      },
+      {
+        "materialId": "windwheel-aster",
+        "required": 30
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 18
+      }
+    ]
+  },
+  {
+    "characterId": "varka",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
+    "description": "Fifth ascension materials for Varka",
+    "category": "ascension",
+    "sortOrder": 5,
+    "materials": [
+      {
+        "materialId": "vayuda-turquoise-chunk",
+        "required": 6
+      },
+      {
+        "materialId": "hurricane-seed",
+        "required": 12
+      },
+      {
+        "materialId": "windwheel-aster",
+        "required": 45
+      },
+      {
+        "materialId": "ominous-mask",
+        "required": 12
+      }
+    ]
+  },
+  {
+    "characterId": "varka",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
+    "description": "Sixth ascension materials for Varka",
+    "category": "ascension",
+    "sortOrder": 6,
+    "materials": [
+      {
+        "materialId": "vayuda-turquoise-gemstone",
+        "required": 6
+      },
+      {
+        "materialId": "hurricane-seed",
+        "required": 20
+      },
+      {
+        "materialId": "windwheel-aster",
+        "required": 60
+      },
+      {
+        "materialId": "ominous-mask",
+        "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "varka",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all three talents from 1 to 6 for Varka",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-ballad",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-ballad",
+        "required": 63
+      },
+      {
+        "materialId": "damaged-mask",
+        "required": 18
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 66
+      }
+    ]
+  },
+  {
+    "characterId": "varka",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Varka",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-ballad",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-ballad",
+        "required": 38
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 6
+      },
+      {
+        "materialId": "ominous-mask",
+        "required": 22
+      },
+      {
+        "materialId": "spirit-locket-of-boreas",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "varka",
+    "name": "Triple Crown (All Talents 6 -> 10)",
+    "description": "Materials to max all three talents from level 6 to 10 for Varka",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-ballad",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-ballad",
+        "required": 114
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 18
+      },
+      {
+        "materialId": "ominous-mask",
+        "required": 66
+      },
+      {
+        "materialId": "spirit-locket-of-boreas",
+        "required": 18
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 3
       }
     ]
   },

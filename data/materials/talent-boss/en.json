@@ -7,12 +7,12 @@
   "ring-of-boreas": {
     "id": "ring-of-boreas",
     "name": "Ring of Boreas",
-    "characters": ["barbara", "keqing", "klee", "mona"]
+    "characters": ["barbara", "keqing", "klee", "mona", "linnea"]
   },
   "spirit-locket-of-boreas": {
     "id": "spirit-locket-of-boreas",
     "name": "Spirit Locket of Boreas",
-    "characters": ["fischl", "kaeya", "ningguang", "sucrose"]
+    "characters": ["fischl", "kaeya", "ningguang", "sucrose", "varka"]
   },
   "dvalin's-plume": {
     "id": "dvalin's-plume",

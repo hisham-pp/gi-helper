@@ -1,0 +1,43 @@
+import { prisma } from "@/lib/prisma";
+import { requireUser } from "@/lib/auth";
+import { CharacterList } from "@/components/dashboard/character-list";
+import { Search } from "lucide-react";
+import { getDashboardData } from "@/lib/data";
+import { SearchManager } from "@/components/dashboard/search-manager";
+
+export default async function GlobalSearchPage() {
+  const user = await requireUser();
+  const dashboardData = await getDashboardData(user.id);
+
+  const characters = await prisma.character.findMany({
+    include: {
+      templates: {
+        orderBy: [{ category: "asc" }, { sortOrder: "asc" }],
+      },
+    },
+    orderBy: [{ rarity: "desc" }, { name: "asc" }],
+  });
+
+  return (
+    <div className="space-y-8">
+      <div className="flex items-center gap-3">
+        <div className="bg-primary-container p-2 rounded-xl">
+          <Search className="h-6 w-6 text-primary" />
+        </div>
+        <div>
+          <h1 className="text-on-surface text-3xl font-bold tracking-tight">
+            Search
+          </h1>
+          <p className="text-on-surface-variant mt-1">
+            Search across characters, materials, and goals.
+          </p>
+        </div>
+      </div>
+
+      <SearchManager
+        characters={characters}
+        materials={dashboardData.materials}
+      />
+    </div>
+  );
+}
