@@ -1,0 +1,13 @@
+{
+  "id": "defense-mechanism",
+  "name": "Defense Mechanism",
+  "description": "N/A",
+  "region": "Dragonspine",
+
+  "elements": ["Pyro", "Cryo", "Hydro", "Electro"],
+
+  "type": "Unique Enemies",
+  "family": "Unknown",
+
+  "mora-gained": 0
+}

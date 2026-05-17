@@ -1,0 +1,446 @@
+{
+  "freedom": {
+    "characters": [
+      "aloy",
+      "amber",
+      "barbara",
+      "diona",
+      "klee",
+      "sucrose",
+      "tartaglia",
+      "traveler-anemo",
+      "traveler-geo"
+    ],
+    "availability": ["Monday", "Thursday", "Sunday"],
+    "source": "forsaken-rift",
+    "items": [
+      {
+        "id": "teachings-of-freedom",
+        "name": "Teachings of Freedom",
+        "rarity": 2
+      },
+      {
+        "id": "guide-to-freedom",
+        "name": "Guide to Freedom",
+        "rarity": 3
+      },
+      {
+        "id": "philosophies-of-freedom",
+        "name": "Philosophies of Freedom",
+        "rarity": 4
+      }
+    ]
+  },
+  "resistance": {
+    "characters": [
+      "bennett",
+      "diluc",
+      "eula",
+      "jean",
+      "mona",
+      "noelle",
+      "razor",
+      "traveler-anemo",
+      "traveler-geo"
+    ],
+    "availability": ["Tuesday", "Friday", "Sunday"],
+    "source": "forsaken-rift",
+    "items": [
+      {
+        "id": "teachings-of-resistance",
+        "name": "Teachings of Resistance",
+        "rarity": 2
+      },
+      {
+        "id": "guide-to-resistance",
+        "name": "Guide to Resistance",
+        "rarity": 3
+      },
+      {
+        "id": "philosophies-of-resistance",
+        "name": "Philosophies of Resistance",
+        "rarity": 4
+      }
+    ]
+  },
+  "ballad": {
+    "characters": [
+      "albedo",
+      "fischl",
+      "kaeya",
+      "lisa",
+      "mika",
+      "rosaria",
+      "venti",
+      "traveler-anemo",
+      "traveler-geo"
+    ],
+    "availability": ["Wednesday", "Saturday", "Sunday"],
+    "source": "forsaken-rift",
+    "items": [
+      {
+        "id": "teachings-of-ballad",
+        "name": "Teachings of Ballad",
+        "rarity": 2
+      },
+      {
+        "id": "guide-to-ballad",
+        "name": "Guide to Ballad",
+        "rarity": 3
+      },
+      {
+        "id": "philosophies-of-ballad",
+        "name": "Philosophies of Ballad",
+        "rarity": 4
+      }
+    ]
+  },
+  "prosperity": {
+    "characters": ["keqing", "ningguang", "qiqi", "traveler-geo", "xiao", "shenhe", "yelan", "gaming"],
+    "availability": ["Monday", "Thursday", "Sunday"],
+    "source": "taishan-mansion",
+    "items": [
+      {
+        "id": "teachings-of-prosperity",
+        "name": "Teachings of Prosperity",
+        "rarity": 2
+      },
+      {
+        "id": "guide-to-prosperity",
+        "name": "Guide to Prosperity",
+        "rarity": 3
+      },
+      {
+        "id": "philosophies-of-prosperity",
+        "name": "Philosophies of Prosperity",
+        "rarity": 4
+      }
+    ]
+  },
+  "diligence": {
+    "characters": [
+      "chongyun",
+      "ganyu",
+      "hu-tao",
+      "kazuha",
+      "traveler-geo",
+      "xiangling",
+      "yaoyao",
+      "yun-jin"
+    ],
+    "availability": ["Tuesday", "Friday", "Sunday"],
+    "source": "taishan-mansion",
+    "items": [
+      {
+        "id": "teachings-of-diligence",
+        "name": "Teachings of Diligence",
+        "rarity": 2
+      },
+      {
+        "id": "guide-to-diligence",
+        "name": "Guide to Diligence",
+        "rarity": 3
+      },
+      {
+        "id": "philosophies-of-diligence",
+        "name": "Philosophies of Diligence",
+        "rarity": 4
+      }
+    ]
+  },
+  "gold": {
+    "characters": [
+      "beidou",
+      "traveler-geo",
+      "xingqiu",
+      "xinyan",
+      "yanfei",
+      "zhongli",
+      "baizhu",
+      "xianyun"
+    ],
+    "availability": ["Wednesday", "Saturday", "Sunday"],
+    "source": "taishan-mansion",
+    "items": [
+      {
+        "id": "teachings-of-gold",
+        "name": "Teachings of Gold",
+        "rarity": 2
+      },
+      {
+        "id": "guide-to-gold",
+        "name": "Guide to Gold",
+        "rarity": 3
+      },
+      {
+        "id": "philosophies-of-gold",
+        "name": "Philosophies of Gold",
+        "rarity": 4
+      }
+    ]
+  },
+  "transience": {
+    "characters": ["kokomi", "thoma", "traveler-electro", "yoimiya", "kirara", "shikanoin-heizou"],
+    "availability": ["Monday", "Thursday", "Sunday"],
+    "source": "violet-court",
+    "items": [
+      {
+        "id": "teachings-of-transience",
+        "name": "Teachings of Transience",
+        "rarity": 2
+      },
+      {
+        "id": "guide-to-transience",
+        "name": "Guide to Transience",
+        "rarity": 3
+      },
+      {
+        "id": "philosophies-of-transience",
+        "name": "Philosophies of Transience",
+        "rarity": 4
+      }
+    ]
+  },
+  "elegance": {
+    "characters": ["arataki-itto", "ayaka", "sara", "traveler-electro", "ayato", "kuki-shinobu"],
+    "availability": ["Tuesday", "Friday", "Sunday"],
+    "source": "violet-court",
+    "items": [
+      {
+        "id": "teachings-of-elegance",
+        "name": "Teachings of Elegance",
+        "rarity": 2
+      },
+      {
+        "id": "guide-to-elegance",
+        "name": "Guide to Elegance",
+        "rarity": 3
+      },
+      {
+        "id": "philosophies-of-elegance",
+        "name": "Philosophies of Elegance",
+        "rarity": 4
+      }
+    ]
+  },
+  "light": {
+    "characters": ["chiori", "gorou", "raiden", "sayu", "traveler-electro", "yae-miko"],
+    "availability": ["Wednesday", "Saturday", "Sunday"],
+    "source": "violet-court",
+    "items": [
+      {
+        "id": "teachings-of-light",
+        "name": "Teachings of Light",
+        "rarity": 2
+      },
+      {
+        "id": "guide-to-light",
+        "name": "Guide to Light",
+        "rarity": 3
+      },
+      {
+        "id": "philosophies-of-light",
+        "name": "Philosophies of Light",
+        "rarity": 4
+      }
+    ]
+  },
+  "admonition": {
+    "characters": ["candace", "cyno", "faruzan", "tighnari", "traveler-dendro"],
+    "availability": ["Monday", "Thursday", "Sunday"],
+    "source": "steeple-of-ignorance",
+    "items": [
+      {
+        "id": "teachings-of-admonition",
+        "name": "Teachings of Admonition",
+        "rarity": 2
+      },
+      {
+        "id": "guide-to-admonition",
+        "name": "Guide to Admonition",
+        "rarity": 3
+      },
+      {
+        "id": "philosophies-of-admonition",
+        "name": "Philosophies of Admonition",
+        "rarity": 4
+      }
+    ]
+  },
+  "ingenuity": {
+    "characters": ["alhaitham", "dori", "layla", "kaveh", "nahida", "traveler-dendro"],
+    "availability": ["Tuesday", "Friday", "Sunday"],
+    "source": "steeple-of-ignorance",
+    "items": [
+      {
+        "id": "teachings-of-ingenuity",
+        "name": "Teachings of Ingenuity",
+        "rarity": 2
+      },
+      {
+        "id": "guide-to-ingenuity",
+        "name": "Guide to Ingenuity",
+        "rarity": 3
+      },
+      {
+        "id": "philosophies-of-ingenuity",
+        "name": "Philosophies of Ingenuity",
+        "rarity": 4
+      }
+    ]
+  },
+  "praxis": {
+    "characters": ["collei", "nilou", "traveler-dendro", "wanderer", "dehya", "sethos"],
+    "availability": ["Wednesday", "Saturday", "Sunday"],
+    "source": "steeple-of-ignorance",
+    "items": [
+      {
+        "id": "teachings-of-praxis",
+        "name": "Teachings of Praxis",
+        "rarity": 2
+      },
+      {
+        "id": "guide-to-praxis",
+        "name": "Guide to Praxis",
+        "rarity": 3
+      },
+      {
+        "id": "philosophies-of-praxis",
+        "name": "Philosophies of Praxis",
+        "rarity": 4
+      }
+    ]
+  },
+  "equity": {
+    "characters": ["lyney", "neuvillette", "traveler-hydro", "navia", "sigewinne"],
+    "availability": ["Monday", "Thursday", "Sunday"],
+    "source": "pale-of-forgotten-glory",
+    "items": [
+      {
+        "id": "teachings-of-equity",
+        "name": "Teachings of Equity",
+        "rarity": 2
+      },
+      {
+        "id": "guide-to-equity",
+        "name": "Guide to Equity",
+        "rarity": 3
+      },
+      {
+        "id": "philosophies-of-equity",
+        "name": "Philosophies of Equity",
+        "rarity": 4
+      }
+    ]
+  },
+  "justice": {
+    "characters": ["charlotte", "freminet", "furina", "traveler-hydro", "clorinde"],
+    "availability": ["Tuesday", "Friday", "Sunday"],
+    "source": "pale-of-forgotten-glory",
+    "items": [
+      {
+        "id": "teachings-of-justice",
+        "name": "Teachings of Justice",
+        "rarity": 2
+      },
+      {
+        "id": "guide-to-justice",
+        "name": "Guide to Justice",
+        "rarity": 3
+      },
+      {
+        "id": "philosophies-of-justice",
+        "name": "Philosophies of Justice",
+        "rarity": 4
+      }
+    ]
+  },
+  "order": {
+    "characters": ["arlecchino", "chevreuse", "lynette", "traveler-hydro", "wriothesley"],
+    "availability": ["Wednesday", "Saturday", "Sunday"],
+    "source": "pale-of-forgotten-glory",
+    "items": [
+      {
+        "id": "teachings-of-order",
+        "name": "Teachings of Order",
+        "rarity": 2
+      },
+      {
+        "id": "guide-to-order",
+        "name": "Guide to Order",
+        "rarity": 3
+      },
+      {
+        "id": "philosophies-of-order",
+        "name": "Philosophies of Order",
+        "rarity": 4
+      }
+    ]
+  },
+  "conflict": {
+    "characters": ["kachina"],
+    "availability": ["Wednesday", "Saturday", "Sunday"],
+    "source": "blazing-ruins",
+    "items": [
+      {
+        "id": "teachings-of-conflict",
+        "name": "Teachings of Conflict",
+        "rarity": 2
+      },
+      {
+        "id": "guide-to-conflict",
+        "name": "Guide to Conflict",
+        "rarity": 3
+      },
+      {
+        "id": "philosophies-of-conflict",
+        "name": "Philosophies of Conflict",
+        "rarity": 4
+      }
+    ]
+  },
+  "contention": {
+    "characters": ["mualani"],
+    "availability": ["Monday", "Thursday", "Sunday"],
+    "source": "blazing-ruins",
+    "items": [
+      {
+        "id": "teachings-of-order",
+        "name": "Teachings of Order",
+        "rarity": 2
+      },
+      {
+        "id": "guide-to-order",
+        "name": "Guide to Order",
+        "rarity": 3
+      },
+      {
+        "id": "philosophies-of-order",
+        "name": "Philosophies of Order",
+        "rarity": 4
+      }
+    ]
+  },
+  "kindling": {
+    "characters": ["kinich"],
+    "availability": ["Tuesday", "Friday", "Sunday"],
+    "source": "myriad-illusions",
+    "items": [
+      {
+        "id": "teachings-of-kindling",
+        "name": "Teachings of Kindling",
+        "rarity": 2
+      },
+      {
+        "id": "guide-to-kindling",
+        "name": "Guide to Kindling",
+        "rarity": 3
+      },
+      {
+        "id": "philosophies-of-kindling",
+        "name": "Philosophies of Kindling",
+        "rarity": 4
+      }
+    ]
+  }
+}
