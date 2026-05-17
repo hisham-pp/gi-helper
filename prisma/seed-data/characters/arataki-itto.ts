@@ -20,7 +20,7 @@ export const aratakiIttoGoalTemplates: SeedCharacterGoalTemplate[] = [
     materials: [
       { materialId: "prithiva-topaz-sliver", required: 1 },
       { materialId: "onikabuto", required: 3 },
-      { materialId: "slimeshot", required: 3 },
+      { materialId: "slime-condensate", required: 3 },
     ],
   },
   {
@@ -33,7 +33,7 @@ export const aratakiIttoGoalTemplates: SeedCharacterGoalTemplate[] = [
       { materialId: "prithiva-topaz-fragment", required: 3 },
       { materialId: "rifthound-regalia", required: 2 },
       { materialId: "onikabuto", required: 10 },
-      { materialId: "slimeshot", required: 15 },
+      { materialId: "slime-condensate", required: 15 },
     ],
   },
   {
@@ -97,7 +97,7 @@ export const aratakiIttoGoalTemplates: SeedCharacterGoalTemplate[] = [
     materials: [
       { materialId: "teachings-of-elegance", required: 9 },
       { materialId: "guide-to-elegance", required: 63 },
-      { materialId: "slimeshot", required: 18 },
+      { materialId: "slime-condensate", required: 18 },
       { materialId: "slime-secretions", required: 66 },
     ],
   },

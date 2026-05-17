@@ -21,7 +21,7 @@ export const mikaGoalTemplates: SeedCharacterGoalTemplate[] = [
     materials: [
       { materialId: "shivada-jade-sliver", required: 1 },
       { materialId: "wolfhook", required: 3 },
-      { materialId: "recruit-insignia", required: 3 },
+      { materialId: "recruits-insignia", required: 3 },
     ],
   },
   // Ascension 2
@@ -35,7 +35,7 @@ export const mikaGoalTemplates: SeedCharacterGoalTemplate[] = [
       { materialId: "shivada-jade-fragment", required: 3 },
       { materialId: "pseudo-stamen", required: 2 },
       { materialId: "wolfhook", required: 10 },
-      { materialId: "recruit-insignia", required: 15 },
+      { materialId: "recruits-insignia", required: 15 },
     ],
   },
   // Ascension 3
@@ -49,7 +49,7 @@ export const mikaGoalTemplates: SeedCharacterGoalTemplate[] = [
       { materialId: "shivada-jade-fragment", required: 6 },
       { materialId: "pseudo-stamen", required: 4 },
       { materialId: "wolfhook", required: 20 },
-      { materialId: "sergeant-insignia", required: 12 },
+      { materialId: "sergeants-insignia", required: 12 },
     ],
   },
   // Ascension 4
@@ -63,7 +63,7 @@ export const mikaGoalTemplates: SeedCharacterGoalTemplate[] = [
       { materialId: "shivada-jade-chunk", required: 3 },
       { materialId: "pseudo-stamen", required: 8 },
       { materialId: "wolfhook", required: 30 },
-      { materialId: "sergeant-insignia", required: 18 },
+      { materialId: "sergeants-insignia", required: 18 },
     ],
   },
   // Ascension 5
@@ -77,7 +77,7 @@ export const mikaGoalTemplates: SeedCharacterGoalTemplate[] = [
       { materialId: "shivada-jade-chunk", required: 6 },
       { materialId: "pseudo-stamen", required: 12 },
       { materialId: "wolfhook", required: 45 },
-      { materialId: "lieutenant-insignia", required: 12 },
+      { materialId: "lieutenants-insignia", required: 12 },
     ],
   },
   // Ascension 6
@@ -91,7 +91,7 @@ export const mikaGoalTemplates: SeedCharacterGoalTemplate[] = [
       { materialId: "shivada-jade-gemstone", required: 6 },
       { materialId: "pseudo-stamen", required: 20 },
       { materialId: "wolfhook", required: 60 },
-      { materialId: "lieutenant-insignia", required: 24 },
+      { materialId: "lieutenants-insignia", required: 24 },
     ],
   },
   // All Talents 1 → 6
@@ -104,8 +104,8 @@ export const mikaGoalTemplates: SeedCharacterGoalTemplate[] = [
     materials: [
       { materialId: "teachings-of-ballad", required: 9 },
       { materialId: "guide-to-ballad", required: 63 },
-      { materialId: "recruit-insignia", required: 18 },
-      { materialId: "sergeant-insignia", required: 66 },
+      { materialId: "recruits-insignia", required: 18 },
+      { materialId: "sergeants-insignia", required: 66 },
     ],
   },
   // Single Talent 6 → 10
@@ -118,8 +118,8 @@ export const mikaGoalTemplates: SeedCharacterGoalTemplate[] = [
     materials: [
       { materialId: "guide-to-ballad", required: 4 },
       { materialId: "philosophies-of-ballad", required: 38 },
-      { materialId: "sergeant-insignia", required: 6 },
-      { materialId: "lieutenant-insignia", required: 22 },
+      { materialId: "sergeants-insignia", required: 6 },
+      { materialId: "lieutenants-insignia", required: 22 },
       { materialId: "mirror-of-alocher", required: 6 },
       { materialId: "crown-of-insight", required: 1 },
     ],
@@ -134,8 +134,8 @@ export const mikaGoalTemplates: SeedCharacterGoalTemplate[] = [
     materials: [
       { materialId: "guide-to-ballad", required: 12 },
       { materialId: "philosophies-of-ballad", required: 114 },
-      { materialId: "sergeant-insignia", required: 18 },
-      { materialId: "lieutenant-insignia", required: 66 },
+      { materialId: "sergeants-insignia", required: 18 },
+      { materialId: "lieutenants-insignia", required: 66 },
       { materialId: "mirror-of-alocher", required: 18 },
       { materialId: "crown-of-insight", required: 3 },
     ],

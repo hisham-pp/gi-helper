@@ -49,7 +49,7 @@ export const shikanoinHeizouGoalTemplates: SeedCharacterGoalTemplate[] = [
       { materialId: "vayuda-turquoise-fragment", required: 6 },
       { materialId: "runic-fang", required: 4 },
       { materialId: "onikabuto", required: 20 },
-      { materialId: "silver-hoarder-insignia", required: 12 },
+      { materialId: "silver-raven-insignia", required: 12 },
     ],
   },
   // Ascension 4
@@ -63,7 +63,7 @@ export const shikanoinHeizouGoalTemplates: SeedCharacterGoalTemplate[] = [
       { materialId: "vayuda-turquoise-chunk", required: 3 },
       { materialId: "runic-fang", required: 8 },
       { materialId: "onikabuto", required: 30 },
-      { materialId: "silver-hoarder-insignia", required: 18 },
+      { materialId: "silver-raven-insignia", required: 18 },
     ],
   },
   // Ascension 5
@@ -105,7 +105,7 @@ export const shikanoinHeizouGoalTemplates: SeedCharacterGoalTemplate[] = [
       { materialId: "teachings-of-transience", required: 9 },
       { materialId: "guide-to-transience", required: 63 },
       { materialId: "treasure-hoarder-insignia", required: 18 },
-      { materialId: "silver-hoarder-insignia", required: 66 },
+      { materialId: "silver-raven-insignia", required: 66 },
     ],
   },
   // Single Talent 6 → 10
@@ -118,7 +118,7 @@ export const shikanoinHeizouGoalTemplates: SeedCharacterGoalTemplate[] = [
     materials: [
       { materialId: "guide-to-transience", required: 4 },
       { materialId: "philosophies-of-transience", required: 38 },
-      { materialId: "silver-hoarder-insignia", required: 6 },
+      { materialId: "silver-raven-insignia", required: 6 },
       { materialId: "golden-raven-insignia", required: 22 },
       { materialId: "the-meaning-of-aeons", required: 6 },
       { materialId: "crown-of-insight", required: 1 },
@@ -134,7 +134,7 @@ export const shikanoinHeizouGoalTemplates: SeedCharacterGoalTemplate[] = [
     materials: [
       { materialId: "guide-to-transience", required: 12 },
       { materialId: "philosophies-of-transience", required: 114 },
-      { materialId: "silver-hoarder-insignia", required: 18 },
+      { materialId: "silver-raven-insignia", required: 18 },
       { materialId: "golden-raven-insignia", required: 66 },
       { materialId: "the-meaning-of-aeons", required: 18 },
       { materialId: "crown-of-insight", required: 3 },

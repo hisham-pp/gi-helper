@@ -33,7 +33,7 @@ export const chascaGoalTemplates: SeedCharacterGoalTemplate[] = [
     sortOrder: 2,
     materials: [
       { materialId: "vayuda-turquoise-fragment", required: 3 },
-      { materialId: "enigmatic-source-core", required: 2 },
+      { materialId: "dealer-source-core", required: 2 },
       { materialId: "wither-valentia-nut", required: 10 },
       { materialId: "juvenile-fang", required: 15 },
     ],
@@ -47,7 +47,7 @@ export const chascaGoalTemplates: SeedCharacterGoalTemplate[] = [
     sortOrder: 3,
     materials: [
       { materialId: "vayuda-turquoise-fragment", required: 6 },
-      { materialId: "enigmatic-source-core", required: 4 },
+      { materialId: "dealer-source-core", required: 4 },
       { materialId: "wither-valentia-nut", required: 20 },
       { materialId: "seasoned-fang", required: 12 },
     ],
@@ -61,7 +61,7 @@ export const chascaGoalTemplates: SeedCharacterGoalTemplate[] = [
     sortOrder: 4,
     materials: [
       { materialId: "vayuda-turquoise-chunk", required: 3 },
-      { materialId: "enigmatic-source-core", required: 8 },
+      { materialId: "dealer-source-core", required: 8 },
       { materialId: "wither-valentia-nut", required: 30 },
       { materialId: "seasoned-fang", required: 18 },
     ],
@@ -75,7 +75,7 @@ export const chascaGoalTemplates: SeedCharacterGoalTemplate[] = [
     sortOrder: 5,
     materials: [
       { materialId: "vayuda-turquoise-chunk", required: 6 },
-      { materialId: "enigmatic-source-core", required: 12 },
+      { materialId: "dealer-source-core", required: 12 },
       { materialId: "wither-valentia-nut", required: 45 },
       { materialId: "tyrant-fang", required: 12 },
     ],
@@ -89,7 +89,7 @@ export const chascaGoalTemplates: SeedCharacterGoalTemplate[] = [
     sortOrder: 6,
     materials: [
       { materialId: "vayuda-turquoise-gemstone", required: 6 },
-      { materialId: "enigmatic-source-core", required: 20 },
+      { materialId: "dealer-source-core", required: 20 },
       { materialId: "wither-valentia-nut", required: 60 },
       { materialId: "tyrant-fang", required: 24 },
     ],
