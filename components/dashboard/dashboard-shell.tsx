@@ -1,57 +1,24 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
-import type { PropsWithChildren, ReactNode } from "react";
-import {
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-  useTransition,
-} from "react";
+import { useCallback, useEffect, useMemo, useState, useTransition } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import {
-  PackageSearch,
-  Sparkles,
-  Target,
-  Trash2,
-  Save,
-  ChevronRight,
-} from "lucide-react";
 import { toast } from "sonner";
 
 import {
-  createGoalAction,
-  deleteGoalAction,
-  deleteGoalMaterialAction,
-  saveGoalMaterialAction,
-  saveInventoryAction,
   createMaterialAction,
+  saveInventoryAction,
   updateMaterialAction,
 } from "@/app/actions";
-import { AppShell } from "@/components/layout/app-shell";
-import {
-  rarityBorderMap,
-  rarityColorMap,
-  tabs,
-  type DashboardTab,
-} from "@/lib/constants";
+import { DashboardTabs } from "@/components/dashboard/dashboard-tabs";
+import type { MaterialEditorForm } from "@/components/dashboard/material-editor";
+import { OverviewStatsGrid } from "@/components/dashboard/overview-stats";
+import { CraftingSection } from "@/components/dashboard/sections/crafting-section";
+import { GoalsSection } from "@/components/dashboard/sections/goals-section";
+import { InventorySection } from "@/components/dashboard/inventory/inventory-section";
+import { MaterialsSection } from "@/components/dashboard/sections/materials-section";
 import { simulateCraftingNeed } from "@/lib/crafting";
-import type { DashboardData, GoalView, MaterialView } from "@/lib/types";
-import { cn, formatNumber } from "@/lib/utils";
-import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { TextField } from "@/components/ui/text-field";
-import { Select } from "@/components/ui/select";
-import { Progress } from "@/components/ui/progress";
-
-const generateMaterialIdFromName = (name: string) =>
-  name
-    .trim()
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
+import type { DashboardTab } from "@/lib/constants";
+import type { DashboardData, MaterialView } from "@/lib/types";
 
 type DashboardShellProps = {
   initialData: DashboardData;
@@ -62,36 +29,54 @@ type DashboardShellProps = {
 
 type InventoryDraft = Record<string, number>;
 
-const overviewMeta = [
-  { key: "totalTrackedMaterials", label: "Tracked Materials", icon: Target },
-  { key: "totalInventory", label: "Inventory Total", icon: PackageSearch },
-  { key: "activeGoals", label: "Active Goals", icon: Target },
-  { key: "completedGoals", label: "Completed Goals", icon: Sparkles },
-  { key: "craftableMaterials", label: "Craftable", icon: Sparkles },
-] as const;
+const emptyEditorForm: MaterialEditorForm = {
+  id: "",
+  name: "",
+  iconName: "",
+  rarity: 1,
+  category: "",
+  description: "",
+  combinable: false,
+  combineRatio: null,
+  parentMaterialId: null,
+};
 
 export function DashboardShell({
   initialData,
-  username,
   role,
   view = "tracker",
 }: DashboardShellProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [data, setData] = useState(initialData);
   const tabFromUrl = searchParams.get("tab");
   const initialTab: DashboardTab =
     tabFromUrl === "crafting" || tabFromUrl === "materials"
       ? tabFromUrl
       : "materials";
+
+  const [data, setData] = useState(initialData);
   const [activeTab, setActiveTab] = useState<DashboardTab>(initialTab);
   const [inventoryTab, setInventoryTab] = useState<"needed" | "edit">("needed");
+  const [search, setSearch] = useState("");
+  const [categoryFilter, setCategoryFilter] = useState("All");
+  const [inventoryDraft, setInventoryDraft] = useState<InventoryDraft>(
+    buildInventoryDraft(initialData),
+  );
+  const [simulationMaterialId, setSimulationMaterialId] = useState(
+    initialData.materials[0]?.id ?? "",
+  );
+  const [simulationRequired, setSimulationRequired] = useState(1);
   const [goalFilter, setGoalFilter] = useState<
     "incomplete" | "completed" | "all"
   >("incomplete");
   const [goalSearch, setGoalSearch] = useState("");
   const [goalCharacterFilter, setGoalCharacterFilter] = useState("All");
   const [goalCategoryFilter, setGoalCategoryFilter] = useState("All");
+  const [isEditorOpen, setIsEditorOpen] = useState(false);
+  const [editing, setEditing] = useState<MaterialView | null>(null);
+  const [editorForm, setEditorForm] =
+    useState<MaterialEditorForm>(emptyEditorForm);
+  const [, startTransition] = useTransition();
 
   useEffect(() => {
     if (view !== "tracker") {
@@ -101,31 +86,21 @@ export function DashboardShell({
       setActiveTab(tabFromUrl);
     }
   }, [tabFromUrl, view]);
-  const [search, setSearch] = useState("");
-  const [categoryFilter, setCategoryFilter] = useState("All");
-  const [inventoryDraft, setInventoryDraft] = useState<InventoryDraft>(
-    Object.fromEntries(
-      initialData.materials.map((material) => [material.id, material.quantity]),
-    ),
-  );
-  const [simulationMaterialId, setSimulationMaterialId] = useState(
-    initialData.materials[0]?.id ?? "",
-  );
-  const [simulationRequired, setSimulationRequired] = useState(1);
-  const [isPending, startTransition] = useTransition();
-  const [isEditorOpen, setIsEditorOpen] = useState(false);
-  const [editing, setEditing] = useState<MaterialView | null>(null);
-  const [editorForm, setEditorForm] = useState({
-    id: "",
-    name: "",
-    iconName: "",
-    rarity: 1,
-    category: "",
-    description: "",
-    combinable: false,
-    combineRatio: null as number | null,
-    parentMaterialId: null as string | null,
-  });
+
+  const syncDashboard = useCallback((nextData: DashboardData) => {
+    setData(nextData);
+    setInventoryDraft(buildInventoryDraft(nextData));
+    setSimulationMaterialId((current) =>
+      nextData.materials.some((material) => material.id === current)
+        ? current
+        : (nextData.materials[0]?.id ?? ""),
+    );
+  }, []);
+
+  useEffect(() => {
+    syncDashboard(initialData);
+  }, [initialData, syncDashboard]);
+
   const categories = useMemo(
     () => [
       "All",
@@ -175,53 +150,72 @@ export function DashboardShell({
     return simulateCraftingNeed(
       simulationMaterialId,
       Math.max(simulationRequired, 0),
-      data.materials.map((material) => ({
-        id: material.id,
-        name: material.name,
-        image: material.image,
-        rarity: material.rarity,
-        category: material.category,
-        description: material.description,
-        combinable: material.combinable,
-        combineRatio: material.combineRatio,
-        parentMaterialId: material.parentMaterialId,
-        quantity: material.quantity,
-      })),
+      data.materials,
     );
   }, [data.materials, simulationMaterialId, simulationRequired]);
 
-  const syncDashboard = useCallback((nextData: DashboardData) => {
-    setData(nextData);
-    setInventoryDraft(
-      Object.fromEntries(
-        nextData.materials.map((material) => [material.id, material.quantity]),
-      ),
+  const goalCharacters = useMemo(() => {
+    const chars = new Set(
+      data.goals
+        .map((goal) => goal.characterName)
+        .filter((name): name is string => Boolean(name)),
     );
-    setSimulationMaterialId((current) =>
-      nextData.materials.some((material) => material.id === current)
-        ? current
-        : (nextData.materials[0]?.id ?? ""),
-    );
-  }, []);
+    return ["All", ...Array.from(chars).sort()];
+  }, [data.goals]);
 
-  useEffect(() => {
-    syncDashboard(initialData);
-  }, [initialData, syncDashboard]);
+  const goalCategories = useMemo(() => {
+    const cats = new Set(
+      data.goals
+        .map((goal) => goal.category)
+        .filter((category): category is string => Boolean(category)),
+    );
+    return ["All", ...Array.from(cats).sort()];
+  }, [data.goals]);
+
+  const filteredGoals = useMemo(() => {
+    return data.goals.filter((goal) => {
+      if (goalFilter === "completed" && !goal.completed) return false;
+      if (goalFilter === "incomplete" && goal.completed) return false;
+      if (
+        goalCharacterFilter !== "All" &&
+        goal.characterName !== goalCharacterFilter
+      ) {
+        return false;
+      }
+      if (goalCategoryFilter !== "All" && goal.category !== goalCategoryFilter) {
+        return false;
+      }
+
+      if (!goalSearch) {
+        return true;
+      }
+
+      const searchLower = goalSearch.toLowerCase();
+      return (
+        goal.name.toLowerCase().includes(searchLower) ||
+        (goal.description ?? "").toLowerCase().includes(searchLower)
+      );
+    });
+  }, [
+    data.goals,
+    goalCategoryFilter,
+    goalCharacterFilter,
+    goalFilter,
+    goalSearch,
+  ]);
 
   function handleInventorySave(materialId: string) {
     const nextQuantity = Math.max(0, Number(inventoryDraft[materialId] ?? 0));
     const previous = data;
 
-    const optimistic: DashboardData = {
+    syncDashboard({
       ...data,
       materials: data.materials.map((material) =>
         material.id === materialId
           ? { ...material, quantity: nextQuantity }
           : material,
       ),
-    } as DashboardData;
-
-    syncDashboard(optimistic);
+    });
 
     startTransition(async () => {
       const result = await saveInventoryAction({
@@ -241,24 +235,9 @@ export function DashboardShell({
     });
   }
 
-  const getIconNameFromImage = (image: string) => {
-    const filename = image.split("/").pop() ?? "";
-    return filename.replace(/\.png$/i, "");
-  };
-
   function resetEditorForm() {
     setEditing(null);
-    setEditorForm({
-      id: "",
-      name: "",
-      iconName: "",
-      rarity: 1,
-      category: "",
-      description: "",
-      combinable: false,
-      combineRatio: null,
-      parentMaterialId: null,
-    });
+    setEditorForm(emptyEditorForm);
   }
 
   function openEditorForCreate() {
@@ -287,11 +266,9 @@ export function DashboardShell({
 
     startTransition(async () => {
       try {
-        const payload = { ...editorForm };
-
         const result = editing
-          ? await updateMaterialAction(payload)
-          : await createMaterialAction(payload);
+          ? await updateMaterialAction(editorForm)
+          : await createMaterialAction(editorForm);
 
         if (!result.success || !result.data) {
           toast.error(result.error ?? "Unable to save material.");
@@ -310,61 +287,6 @@ export function DashboardShell({
     });
   }
 
-  const goalCharacters = useMemo(() => {
-    const chars = new Set(
-      data.goals
-        .map((g) => g.characterName)
-        .filter((name): name is string => !!name),
-    );
-    return ["All", ...Array.from(chars).sort()];
-  }, [data.goals]);
-
-  const goalCategories = useMemo(() => {
-    const cats = new Set(
-      data.goals
-        .map((g) => g.category)
-        .filter((cat): cat is string => !!cat),
-    );
-    return ["All", ...Array.from(cats).sort()];
-  }, [data.goals]);
-
-  const filteredGoals = useMemo(() => {
-    return data.goals.filter((g) => {
-      // Status Filter
-      if (goalFilter === "completed" && !g.completed) return false;
-      if (goalFilter === "incomplete" && g.completed) return false;
-
-      // Character Filter
-      if (
-        goalCharacterFilter !== "All" &&
-        g.characterName !== goalCharacterFilter
-      )
-        return false;
-
-      // Category Filter
-      if (goalCategoryFilter !== "All" && g.category !== goalCategoryFilter)
-        return false;
-
-      // Search Filter
-      if (goalSearch) {
-        const searchLower = goalSearch.toLowerCase();
-        const matchesName = g.name.toLowerCase().includes(searchLower);
-        const matchesDesc = (g.description ?? "")
-          .toLowerCase()
-          .includes(searchLower);
-        if (!matchesName && !matchesDesc) return false;
-      }
-
-      return true;
-    });
-  }, [
-    data.goals,
-    goalFilter,
-    goalCharacterFilter,
-    goalCategoryFilter,
-    goalSearch,
-  ]);
-
   const pageTitle =
     view === "inventory"
       ? "Inventory"
@@ -379,10 +301,6 @@ export function DashboardShell({
         ? "Track progress and open a goal for details."
         : "Material library, crafting chains, and recursive 3:1 simulation.";
 
-  const showInventory = view === "inventory";
-  const showGoals = view === "goals";
-  const showTracker = view === "tracker";
-
   return (
     <div className="space-y-8">
       <header className="mb-8">
@@ -392,879 +310,82 @@ export function DashboardShell({
         <p className="text-on-surface-variant mt-2">{pageDescription}</p>
       </header>
 
-      {showTracker ? (
-      <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-        {overviewMeta.map((item) => (
-          <Card key={item.key} variant="filled" className="p-5">
-            <div className="text-on-surface-variant flex items-center gap-3">
-              <item.icon className="h-4 w-4" />
-              <span className="text-sm font-medium">{item.label}</span>
-            </div>
-            <p className="text-on-surface mt-2 text-3xl font-bold">
-              {formatNumber(data.overview[item.key])}
-            </p>
-          </Card>
-        ))}
-      </section>
-      ) : null}
-
-      {showTracker ? (
-      <nav className="flex items-center justify-center">
-        <div className="flex gap-2 rounded-full bg-surface-variant/50 p-1">
-          {tabs.map((tab) => (
-            <Button
-              key={tab}
-              variant={activeTab === tab ? "filled" : "text"}
-              onClick={() => setActiveTab(tab)}
-              className="h-10 px-6 capitalize"
-            >
-              {tab}
-            </Button>
-          ))}
-        </div>
-      </nav>
-      ) : null}
-
-      {showInventory ? (
-        <div className="space-y-6">
-          <nav className="flex items-center justify-center">
-            <div className="flex gap-2 rounded-full bg-surface-variant/50 p-1">
-              <Button
-                variant={inventoryTab === "needed" ? "filled" : "text"}
-                onClick={() => setInventoryTab("needed")}
-                className="h-10 px-6"
-              >
-                Shopping List
-              </Button>
-              <Button
-                variant={inventoryTab === "edit" ? "filled" : "text"}
-                onClick={() => setInventoryTab("edit")}
-                className="h-10 px-6"
-              >
-                Manage Inventory
-              </Button>
-            </div>
-          </nav>
-
-          {inventoryTab === "needed" ? (
-            <section className="grid gap-8 lg:grid-cols-[1.5fr_0.9fr]">
-              <Card
-                className="flex flex-col overflow-hidden"
-                variant="outlined"
-              >
-                <div className="border-b border-outline-variant bg-surface p-6">
-                  <h2 className="text-on-surface text-xl font-bold">
-                    Shopping List
-                  </h2>
-                  <p className="text-on-surface-variant text-sm">
-                    Aggregated material requirements for all active goals.
-                  </p>
-                </div>
-
-                <div className="p-4 sm:p-6">
-                  <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
-                    {data.materialsStillNeeded.length === 0 ? (
-                      <EmptyState
-                        icon={<Sparkles className="h-8 w-8" />}
-                        title="Everything covered"
-                        description="You have enough materials for all your goals!"
-                      />
-                    ) : (
-                      data.materialsStillNeeded.map((item) => (
-                        <Card
-                          key={item.materialId}
-                          variant="outlined"
-                          className={cn(
-                            "flex items-center gap-4 p-4",
-                            rarityBorderMap[item.rarity] ?? rarityBorderMap[1],
-                          )}
-                        >
-                          <div
-                            className={cn(
-                              "relative h-12 w-12 flex-shrink-0 overflow-hidden rounded-xl bg-gradient-to-br",
-                              rarityColorMap[item.rarity] ?? rarityColorMap[1],
-                            )}
-                          >
-                            <Image
-                              src={`/api/material-image/${item.materialId}`}
-                              alt={item.materialName}
-                              fill
-                              className="object-contain p-1.5"
-                              sizes="48px"
-                            />
-                          </div>
-                          <div className="min-w-0 flex-1">
-                            <h3 className="text-on-surface truncate text-sm font-bold">
-                              {item.materialName}
-                            </h3>
-                            <p className="mt-0.5 text-lg font-black text-primary">
-                              {formatNumber(item.remaining)}
-                            </p>
-                          </div>
-                        </Card>
-                      ))
-                    )}
-                  </div>
-                </div>
-              </Card>
-
-              <div className="space-y-8">
-                <SummaryList
-                  items={data.completedMaterials.slice(0, 8).map((item) => ({
-                    id: item.id,
-                    title: item.materialName,
-                    subtitle: `${formatNumber(item.required)} ready`,
-                    image: item.materialId,
-                  }))}
-                  title="Completed Materials"
-                  description="Goal requirements satisfied by current inventory."
-                  emptyText="Completed requirements will appear here."
-                />
-              </div>
-            </section>
-          ) : (
-            <section className="grid gap-8 lg:grid-cols-[1.5fr_0.9fr]">
-              <Card
-                className="flex flex-col overflow-hidden"
-                variant="outlined"
-              >
-                <div className="border-b border-outline-variant bg-surface p-6">
-                  <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                    <div>
-                      <h2 className="text-on-surface text-xl font-bold">
-                        Inventory
-                      </h2>
-                      <p className="text-on-surface-variant text-sm">
-                        Search, filter, and update owned quantities.
-                      </p>
-                    </div>
-                    <div className="flex flex-col gap-3 sm:flex-row">
-                      <TextField
-                        label="Search"
-                        variant="outlined"
-                        className="h-12"
-                        value={search}
-                        onChange={(event) => setSearch(event.target.value)}
-                      />
-                      <Select
-                        label="Category"
-                        variant="outlined"
-                        className="h-12"
-                        value={categoryFilter}
-                        onChange={setCategoryFilter}
-                        options={categories.map((category) => ({
-                          label: category,
-                          value: category,
-                        }))}
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                <div className="p-4 sm:p-6">
-                  <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
-                    {filteredMaterials.length === 0 ? (
-                      <EmptyState
-                        icon={<PackageSearch className="h-8 w-8" />}
-                        title="No materials"
-                        description="No materials match your search or filters."
-                      />
-                    ) : (
-                      filteredMaterials.map((material) => (
-                        <MaterialCard
-                          key={material.id}
-                          material={material}
-                          quantity={inventoryDraft[material.id] ?? 0}
-                          onChange={(value) =>
-                            setInventoryDraft((prev) => ({
-                              ...prev,
-                              [material.id]: value,
-                            }))
-                          }
-                          onSave={() => handleInventorySave(material.id)}
-                        />
-                      ))
-                    )}
-                  </div>
-                </div>
-              </Card>
-
-              <div className="space-y-8">
-                <SummaryList
-                  items={data.materialsStillNeeded.slice(0, 8).map((item) => ({
-                    id: item.id,
-                    title: item.materialName,
-                    subtitle: `${formatNumber(item.remaining)} still needed`,
-                    image: item.materialId,
-                  }))}
-                  title="Shortages Overview"
-                  description="Highest deficits across all farming goals."
-                  emptyText="No shortages. All goals are covered."
-                />
-              </div>
-            </section>
-          )}
-        </div>
-      ) : null}
-
-      {showGoals ? (
-        <section className="space-y-6">
-          <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-            <div>
-              <h2 className="text-on-surface text-2xl font-bold tracking-tight">
-                Farming Goals
-              </h2>
-              <p className="text-on-surface-variant mt-1">
-                Track and manage your farming objectives.
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              <Link href={"/goal-templates" as any}>
-                <Button variant="outlined" className="h-11 gap-2">
-                  <Sparkles className="h-4 w-4" />
-                  Templates
-                </Button>
-              </Link>
-              <Link href={"/goals/new" as any}>
-                <Button className="h-11 gap-2">
-                  <Target className="h-4 w-4" />
-                  Custom Goal
-                </Button>
-              </Link>
-            </div>
-          </div>
-
-          <Card variant="outlined" className="p-4">
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-              <TextField
-                label="Search Goals"
-                variant="outlined"
-                className="h-11"
-                value={goalSearch}
-                onChange={(e) => setGoalSearch(e.target.value)}
-                placeholder="Name or description..."
-              />
-              <Select
-                label="Status"
-                variant="outlined"
-                className="h-11"
-                value={goalFilter}
-                onChange={(val) => setGoalFilter(val as any)}
-                options={[
-                  { label: "Incomplete", value: "incomplete" },
-                  { label: "Completed", value: "completed" },
-                  { label: "All", value: "all" },
-                ]}
-              />
-              <Select
-                label="Character"
-                variant="outlined"
-                className="h-11"
-                value={goalCharacterFilter}
-                onChange={setGoalCharacterFilter}
-                options={goalCharacters.map((c) => ({ label: c, value: c }))}
-              />
-              <Select
-                label="Category"
-                variant="outlined"
-                className="h-11"
-                value={goalCategoryFilter}
-                onChange={setGoalCategoryFilter}
-                options={goalCategories.map((c) => ({
-                  label: c.charAt(0).toUpperCase() + c.slice(1),
-                  value: c,
-                }))}
-              />
-            </div>
-          </Card>
-
-          {filteredGoals.length === 0 ? (
-            <Card variant="outlined" className="p-12">
-              <EmptyState
-                icon={<Target className="h-12 w-12" />}
-                title="No Goals Found"
-                description="Try adjusting your filters or search terms to find what you're looking for."
-              />
-            </Card>
-          ) : (
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-              {filteredGoals.map((goal) => (
-                <Link key={goal.id} href={`/goals/${goal.id}` as any}>
-                  <Card
-                    variant="outlined"
-                    className="h-full cursor-pointer p-6 transition-all hover:border-primary hover:shadow-lg"
-                  >
-                    <div className="space-y-4">
-                      <div className="flex items-start justify-between gap-3">
-                        <div className="min-w-0 flex-1">
-                          <div className="flex items-center gap-2">
-                            <h3 className="text-on-surface truncate font-bold">
-                              {goal.name}
-                            </h3>
-                            {goal.completed && (
-                              <Sparkles className="h-3.5 w-3.5 text-primary" />
-                            )}
-                          </div>
-                          <div className="mt-1 flex flex-wrap gap-2">
-                            {goal.characterName && (
-                              <span className="bg-secondary-container text-secondary-on-container rounded-full px-2 py-0.5 text-[10px] font-bold">
-                                {goal.characterName}
-                              </span>
-                            )}
-                            {goal.category && (
-                              <span className="bg-surface-variant text-on-surface-variant rounded-full border border-outline-variant px-2 py-0.5 text-[10px] font-bold capitalize">
-                                {goal.category}
-                              </span>
-                            )}
-                          </div>
-                          <p className="text-on-surface-variant mt-2 line-clamp-2 text-sm">
-                            {goal.description ?? "Custom farming plan"}
-                          </p>
-                        </div>
-                        <ChevronRight className="text-on-surface-variant h-5 w-5 flex-shrink-0" />
-                      </div>
-
-                      <div className="space-y-2">
-                        <div className="flex items-center justify-between text-sm">
-                          <span className="text-on-surface-variant">
-                            Progress
-                          </span>
-                          <span className="font-bold text-primary">
-                            {goal.completed ? 100 : goal.progressPercent}%
-                          </span>
-                        </div>
-                        <Progress
-                          value={goal.completed ? 100 : goal.progressPercent}
-                          className="h-2"
-                        />
-                      </div>
-
-                      <div className="text-on-surface-variant flex items-center justify-between border-t border-outline-variant pt-2 text-xs">
-                        <span>
-                          {goal.materials.length} material
-                          {goal.materials.length !== 1 ? "s" : ""}
-                        </span>
-                        <span>
-                          {formatNumber(goal.totalRequired)} total needed
-                        </span>
-                      </div>
-                    </div>
-                  </Card>
-                </Link>
-              ))}
-            </div>
-          )}
-        </section>
-      ) : null}
-
-      {showTracker && activeTab === "materials" ? (
+      {view === "tracker" ? (
         <>
-          <Panel
-            title="Material Library"
-            description="Preloaded data with rarity colors and crafting links."
-            action={
-              role === "master" ? (
-                <div className="flex gap-2">
-                  <Button onClick={openEditorForCreate}>New Material</Button>
-                  <Button onClick={() => setIsEditorOpen(true)}>
-                    Edit Library
-                  </Button>
-                </div>
-              ) : undefined
-            }
-          >
-            <div className="mt-6 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-              {data.materials.map((material) => (
-                <Card
-                  key={material.id}
-                  variant="outlined"
-                  className={cn(
-                    "p-5 transition-transform hover:scale-[1.02]",
-                    rarityBorderMap[material.rarity] ?? rarityBorderMap[1],
-                  )}
-                >
-                  <div className="flex items-start gap-4">
-                    <div
-                      className={cn(
-                        "relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-2xl bg-gradient-to-br",
-                        rarityColorMap[material.rarity] ?? rarityColorMap[1],
-                      )}
-                    >
-                      <Image
-                        src={`/api/material-image/${material.id}`}
-                        alt={material.name}
-                        fill
-                        className="object-contain p-2"
-                        sizes="64px"
-                      />
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <div className="flex items-center justify-between gap-3">
-                        <h3 className="text-on-surface font-bold">
-                          {material.name}
-                        </h3>
-                        <div className="flex items-center gap-2">
-                          {role === "master" ? (
-                            <Button
-                              variant="text"
-                              onClick={() => openEditorForEdit(material)}
-                            >
-                              Edit
-                            </Button>
-                          ) : null}
-                          <span className="rounded-full bg-secondary-container px-2.5 py-1 text-xs font-medium text-secondary-on-container">
-                            {material.category}
-                          </span>
-                        </div>
-                      </div>
-                      <p className="text-on-surface-variant mt-2 line-clamp-2 text-sm">
-                        {material.description}
-                      </p>
-                      <div className="mt-4 flex flex-wrap gap-2 text-xs">
-                        <span className="text-on-surface-variant rounded-full border border-outline-variant px-2.5 py-1 font-medium">
-                          Rarity {material.rarity}
-                        </span>
-                        <span className="text-on-surface-variant rounded-full border border-outline-variant px-2.5 py-1 font-medium">
-                          Owned {formatNumber(material.quantity)}
-                        </span>
-                        {material.combinable && material.parentMaterialId ? (
-                          <span className="text-on-surface-variant rounded-full border border-outline-variant px-2.5 py-1 font-medium">
-                            3:1 Crafting
-                          </span>
-                        ) : (
-                          <span className="text-on-surface-variant rounded-full border border-outline-variant px-2.5 py-1 font-medium">
-                            Highest tier
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                </Card>
-              ))}
-            </div>
-          </Panel>
-          {isEditorOpen && (
-            <MaterialEditor
-              open={isEditorOpen}
-              close={() => setIsEditorOpen(false)}
-              form={editorForm}
-              setForm={setEditorForm}
-              onSave={handleEditorSave}
+          <OverviewStatsGrid overview={data.overview} />
+          <DashboardTabs activeTab={activeTab} onChange={setActiveTab} />
+          {activeTab === "materials" ? (
+            <MaterialsSection
               categoryOptions={materialCategoryOptions}
+              closeEditor={() => setIsEditorOpen(false)}
+              editorForm={editorForm}
+              isEditorOpen={isEditorOpen}
+              isMaster={role === "master"}
+              materials={data.materials}
               parentOptions={parentMaterialOptions}
+              setEditorForm={setEditorForm}
+              onCreate={openEditorForCreate}
+              onEdit={openEditorForEdit}
+              onSave={handleEditorSave}
             />
-          )}
+          ) : null}
+          {activeTab === "crafting" ? (
+            <CraftingSection
+              materials={data.materials}
+              required={simulationRequired}
+              selectedMaterialId={simulationMaterialId}
+              simulation={simulation}
+              setRequired={setSimulationRequired}
+              setSelectedMaterialId={setSimulationMaterialId}
+            />
+          ) : null}
         </>
       ) : null}
 
-      {showTracker && activeTab === "crafting" ? (
-        <section className="grid gap-8 lg:grid-cols-[0.9fr_1.3fr]">
-          <Panel
-            title="Crafting Simulator"
-            description="Recursive 3:1 crafting preview."
-          >
-            <div className="mt-4 space-y-4">
-              <Select
-                label="Select Material"
-                variant="outlined"
-                value={simulationMaterialId}
-                onChange={setSimulationMaterialId}
-                options={data.materials.map((material) => ({
-                  label: material.name,
-                  value: material.id,
-                }))}
-              />
-              <TextField
-                label="Required Quantity"
-                variant="outlined"
-                type="number"
-                min={0}
-                value={simulationRequired}
-                onChange={(event) =>
-                  setSimulationRequired(Number(event.target.value))
-                }
-              />
-            </div>
-          </Panel>
+      {view === "inventory" ? (
+        <InventorySection
+          activeTab={inventoryTab}
+          categories={categories}
+          categoryFilter={categoryFilter}
+          completedMaterials={data.completedMaterials}
+          filteredMaterials={filteredMaterials}
+          inventoryDraft={inventoryDraft}
+          materialsStillNeeded={data.materialsStillNeeded}
+          search={search}
+          setActiveTab={setInventoryTab}
+          setCategoryFilter={setCategoryFilter}
+          setInventoryDraft={setInventoryDraft}
+          setSearch={setSearch}
+          onSaveMaterial={handleInventorySave}
+        />
+      ) : null}
 
-          <Panel
-            title="Simulation Result"
-            description="Craftability and recursive breakdown."
-          >
-            {!simulation ? (
-              <div className="py-12">
-                <EmptyState
-                  icon={<Sparkles className="h-10 w-10" />}
-                  title="Choose a material"
-                  description="Select a material to preview recursive crafting."
-                />
-              </div>
-            ) : (
-              <div className="mt-4 space-y-6">
-                <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-                  <StatPill
-                    label="Requested"
-                    value={formatNumber(simulation.requested)}
-                  />
-                  <StatPill
-                    label="Total Available"
-                    value={formatNumber(simulation.totalAvailable)}
-                  />
-                  <StatPill
-                    label="Deficit"
-                    value={formatNumber(simulation.remaining)}
-                    tone={simulation.remaining > 0 ? "danger" : "success"}
-                  />
-                  <StatPill
-                    label="Surplus"
-                    value={formatNumber(simulation.surplus)}
-                    tone={simulation.surplus > 0 ? "success" : "default"}
-                  />
-                </div>
-                <Card variant="filled" className="p-5">
-                  <p className="text-on-surface text-sm font-medium">
-                    {simulation.craftable
-                      ? `You can fully craft ${simulation.requested} ${data.materials.find((item) => item.id === simulation.materialId)?.name}.`
-                      : `You are short by ${simulation.remaining} after recursive crafting.`}
-                  </p>
-                  <p className="text-on-surface-variant mt-2 text-xs">
-                    Directly owned: {formatNumber(simulation.directOwned)}
-                  </p>
-                </Card>
-                <div className="space-y-3">
-                  <h3 className="text-on-surface-variant text-sm font-bold uppercase tracking-wider">
-                    Recursive sources
-                  </h3>
-                  <div className="grid gap-2">
-                    {simulation.recursiveSources.length === 0 ? (
-                      <p className="text-on-surface-variant text-sm italic">
-                        No lower-tier materials needed.
-                      </p>
-                    ) : (
-                      simulation.recursiveSources.map((source) => (
-                        <div
-                          key={source.materialId}
-                          className="flex items-center justify-between rounded-xl border border-outline-variant px-4 py-3 text-sm"
-                        >
-                          <span className="font-medium">
-                            {source.materialName}
-                          </span>
-                          <span className="font-bold text-primary">
-                            {formatNumber(source.quantity)}
-                          </span>
-                        </div>
-                      ))
-                    )}
-                  </div>
-                </div>
-              </div>
-            )}
-          </Panel>
-        </section>
+      {view === "goals" ? (
+        <GoalsSection
+          categories={goalCategories}
+          categoryFilter={goalCategoryFilter}
+          characterFilter={goalCharacterFilter}
+          characters={goalCharacters}
+          goals={filteredGoals}
+          search={goalSearch}
+          statusFilter={goalFilter}
+          setCategoryFilter={setGoalCategoryFilter}
+          setCharacterFilter={setGoalCharacterFilter}
+          setSearch={setGoalSearch}
+          setStatusFilter={setGoalFilter}
+        />
       ) : null}
     </div>
   );
 }
 
-function MaterialEditor({
-  open,
-  close,
-  form,
-  setForm,
-  onSave,
-  categoryOptions,
-  parentOptions,
-}: {
-  open: boolean;
-  close: () => void;
-  form: any;
-  setForm: (next: any) => void;
-  onSave: () => Promise<void> | void;
-  categoryOptions: Array<{ label: string; value: string }>;
-  parentOptions: Array<{ label: string; value: string }>;
-}) {
-  if (!open) return null;
-
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
-      <div className="w-full max-w-2xl">
-        <Card className="p-6">
-          <h3 className="text-on-surface mb-4 text-lg font-bold">
-            Material Editor
-          </h3>
-          <div className="grid gap-3 md:grid-cols-2">
-            <TextField
-              label="ID"
-              value={form.id}
-              readOnly
-              helperText="Auto-generated for new materials and fixed after creation."
-            />
-            <TextField
-              label="Name"
-              value={form.name}
-              onChange={(e) => {
-                const nextName = e.target.value;
-                setForm({
-                  ...form,
-                  name: nextName,
-                  id: form.id || generateMaterialIdFromName(nextName),
-                });
-              }}
-            />
-            <TextField
-              label="Icon Name"
-              value={form.iconName}
-              onChange={(e) => setForm({ ...form, iconName: e.target.value })}
-              helperText="Enter the icon identifier like UI_ItemIcon_100001"
-            />
-            <Select
-              label="Category"
-              variant="outlined"
-              value={form.category}
-              onChange={(value) => setForm({ ...form, category: value })}
-              options={categoryOptions}
-            />
-            <TextField
-              label="Rarity"
-              type="number"
-              value={String(form.rarity)}
-              onChange={(e) =>
-                setForm({ ...form, rarity: Number(e.target.value) })
-              }
-            />
-            <TextField
-              label="Combine Ratio"
-              type="number"
-              value={form.combineRatio ?? ""}
-              onChange={(e) =>
-                setForm({
-                  ...form,
-                  combineRatio: e.target.value ? Number(e.target.value) : null,
-                })
-              }
-            />
-            <Select
-              label="Parent Material"
-              variant="outlined"
-              value={form.parentMaterialId ?? ""}
-              onChange={(value) =>
-                setForm({ ...form, parentMaterialId: value || null })
-              }
-              options={parentOptions}
-            />
-            <TextField
-              label="Description"
-              value={form.description}
-              onChange={(e) =>
-                setForm({ ...form, description: e.target.value })
-              }
-            />
-          </div>
-          <div className="mt-4 flex justify-end gap-2">
-            <Button variant="text" onClick={close}>
-              Cancel
-            </Button>
-            <Button onClick={onSave}>Save</Button>
-          </div>
-        </Card>
-      </div>
-    </div>
+function buildInventoryDraft(data: DashboardData): InventoryDraft {
+  return Object.fromEntries(
+    data.materials.map((material) => [material.id, material.quantity]),
   );
 }
 
-function MaterialCard({
-  material,
-  quantity,
-  onChange,
-  onSave,
-}: {
-  material: MaterialView;
-  quantity: number;
-  onChange: (value: number) => void;
-  onSave: () => void;
-}) {
-  return (
-    <Card
-      variant="outlined"
-      className={cn(
-        "p-4 transition-all hover:shadow-md",
-        rarityBorderMap[material.rarity] ?? rarityBorderMap[1],
-      )}
-    >
-      <div className="flex items-start gap-4">
-        <div
-          className={cn(
-            "relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-xl bg-gradient-to-br",
-            rarityColorMap[material.rarity] ?? rarityColorMap[1],
-          )}
-        >
-          <Image
-            src={`/api/material-image/${material.id}`}
-            alt={material.name}
-            fill
-            className="object-contain p-2"
-            sizes="56px"
-          />
-        </div>
-        <div className="min-w-0 flex-1">
-          <h3 className="text-on-surface truncate font-bold">
-            {material.name}
-          </h3>
-          <div className="mt-2 flex flex-wrap gap-2 text-[10px]">
-            <span className="text-on-surface-variant rounded-full bg-surface-variant px-2 py-0.5 font-medium">
-              {material.category}
-            </span>
-            <span className="text-on-primary-container rounded-full bg-primary-container px-2 py-0.5 font-medium">
-              Craftable {formatNumber(material.totalCraftable)}
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <div className="mt-4 flex items-center gap-2">
-        <div className="flex-1">
-          <TextField
-            variant="outlined"
-            type="number"
-            min={0}
-            className="h-11"
-            value={quantity}
-            onChange={(event) => onChange(Number(event.target.value))}
-            onKeyDown={(event) => {
-              if (event.key === "Enter") {
-                event.preventDefault();
-                onSave();
-              }
-            }}
-          />
-        </div>
-        <Button variant="filled" className="h-11 px-4" onClick={onSave}>
-          <Save className="h-4 w-4" />
-        </Button>
-      </div>
-    </Card>
-  );
-}
-
-function SummaryList({
-  title,
-  description,
-  items,
-  emptyText,
-}: {
-  title: string;
-  description: string;
-  items: Array<{ id: string; title: string; subtitle: string; image: string }>;
-  emptyText: string;
-}) {
-  return (
-    <Panel title={title} description={description}>
-      <div className="mt-4 space-y-3">
-        {items.length === 0 ? (
-          <EmptyState
-            icon={<Sparkles className="h-6 w-6" />}
-            title={title}
-            description={emptyText}
-          />
-        ) : (
-          items.map((item) => (
-            <Card
-              key={item.id}
-              variant="outlined"
-              className="flex items-center gap-4 p-3 transition-colors hover:bg-surface-variant/20"
-            >
-              <div className="relative h-12 w-12 flex-shrink-0 overflow-hidden rounded-xl bg-surface-variant">
-                <Image
-                  src={`/api/material-image/${item.image}`}
-                  alt={item.title}
-                  fill
-                  className="object-contain p-2"
-                  sizes="48px"
-                />
-              </div>
-              <div className="min-w-0">
-                <p className="text-on-surface truncate font-bold">
-                  {item.title}
-                </p>
-                <p className="text-on-surface-variant text-xs font-medium">
-                  {item.subtitle}
-                </p>
-              </div>
-            </Card>
-          ))
-        )}
-      </div>
-    </Panel>
-  );
-}
-
-function Panel({
-  title,
-  description,
-  children,
-  action,
-}: PropsWithChildren<{
-  title: string;
-  description: string;
-  action?: ReactNode;
-}>) {
-  return (
-    <Card className="flex flex-col p-6" variant="outlined">
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-        <div>
-          <h2 className="text-on-surface text-xl font-bold">{title}</h2>
-          <p className="text-on-surface-variant text-sm">{description}</p>
-        </div>
-        {action}
-      </div>
-      {children}
-    </Card>
-  );
-}
-
-function EmptyState({
-  icon,
-  title,
-  description,
-}: {
-  icon: ReactNode;
-  title: string;
-  description: string;
-}) {
-  return (
-    <div className="flex flex-col items-center justify-center py-8 text-center">
-      <div className="text-on-primary-container mb-4 rounded-full bg-primary-container p-4 shadow-sm">
-        {icon}
-      </div>
-      <h3 className="text-on-surface font-bold">{title}</h3>
-      <p className="text-on-surface-variant mt-2 max-w-sm text-sm">
-        {description}
-      </p>
-    </div>
-  );
-}
-
-function StatPill({
-  label,
-  value,
-  tone = "default",
-}: {
-  label: string;
-  value: string;
-  tone?: "default" | "success" | "danger";
-}) {
-  const tones = {
-    default: "bg-surface-variant text-on-surface-variant",
-    success: "bg-primary-container text-on-primary-container",
-    danger: "bg-error-container text-on-error-container",
-  } as const;
-
-  return (
-    <Card variant="filled" className={cn("p-4", tones[tone])}>
-      <p className="text-xs font-bold uppercase tracking-wider opacity-80">
-        {label}
-      </p>
-      <p className="mt-2 text-2xl font-black">{value}</p>
-    </Card>
-  );
+function getIconNameFromImage(image: string) {
+  const filename = image.split("/").pop() ?? "";
+  return filename.replace(/\.png$/i, "");
 }
