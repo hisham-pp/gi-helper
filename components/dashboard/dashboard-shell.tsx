@@ -3,8 +3,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { PropsWithChildren, ReactNode } from "react";
-import { useEffect, useMemo, useState, useTransition } from "react";
-import { useSearchParams } from "next/navigation";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+  useTransition,
+} from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import {
   PackageSearch,
   Sparkles,
@@ -70,6 +76,7 @@ export function DashboardShell({
   role,
   view = "tracker",
 }: DashboardShellProps) {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const [data, setData] = useState(initialData);
   const tabFromUrl = searchParams.get("tab");
@@ -79,7 +86,9 @@ export function DashboardShell({
       : "materials";
   const [activeTab, setActiveTab] = useState<DashboardTab>(initialTab);
   const [inventoryTab, setInventoryTab] = useState<"needed" | "edit">("needed");
-  const [goalFilter, setGoalFilter] = useState<"incomplete" | "completed" | "all">("incomplete");
+  const [goalFilter, setGoalFilter] = useState<
+    "incomplete" | "completed" | "all"
+  >("incomplete");
   const [goalSearch, setGoalSearch] = useState("");
   const [goalCharacterFilter, setGoalCharacterFilter] = useState("All");
   const [goalCategoryFilter, setGoalCategoryFilter] = useState("All");
@@ -181,7 +190,7 @@ export function DashboardShell({
     );
   }, [data.materials, simulationMaterialId, simulationRequired]);
 
-  function syncDashboard(nextData: DashboardData) {
+  const syncDashboard = useCallback((nextData: DashboardData) => {
     setData(nextData);
     setInventoryDraft(
       Object.fromEntries(
@@ -193,7 +202,11 @@ export function DashboardShell({
         ? current
         : (nextData.materials[0]?.id ?? ""),
     );
-  }
+  }, []);
+
+  useEffect(() => {
+    syncDashboard(initialData);
+  }, [initialData, syncDashboard]);
 
   function handleInventorySave(materialId: string) {
     const nextQuantity = Math.max(0, Number(inventoryDraft[materialId] ?? 0));
@@ -223,6 +236,7 @@ export function DashboardShell({
       }
 
       syncDashboard(result.data);
+      router.refresh();
       toast.success("Inventory updated.");
     });
   }

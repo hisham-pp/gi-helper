@@ -1,5 +1,6 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 import {
@@ -34,6 +35,13 @@ async function refreshDashboard(): Promise<ActionResponse<DashboardData>> {
     success: true,
     data,
   };
+}
+
+function revalidateDashboardPages() {
+  revalidatePath("/");
+  revalidatePath("/materials");
+  revalidatePath("/inventory");
+  revalidatePath("/goals");
 }
 
 export async function saveInventoryAction(
@@ -71,6 +79,7 @@ export async function saveInventoryAction(
     };
   }
 
+  revalidateDashboardPages();
   return refreshDashboard();
 }
 
@@ -149,6 +158,8 @@ export async function completeGoalAction(
     };
   }
 
+  revalidateDashboardPages();
+  revalidatePath(`/goals/${parsed.data.goalId}`);
   return refreshDashboard();
 }
 
@@ -182,6 +193,7 @@ export async function createGoalAction(
     };
   }
 
+  revalidateDashboardPages();
   return refreshDashboard();
 }
 
@@ -306,6 +318,7 @@ export async function createGoalsFromTemplatesAction(
     };
   }
 
+  revalidateDashboardPages();
   return refreshDashboard();
 }
 
@@ -367,6 +380,8 @@ export async function saveGoalMaterialAction(
     };
   }
 
+  revalidateDashboardPages();
+  revalidatePath(`/goals/${goalId}`);
   return refreshDashboard();
 }
 
@@ -415,6 +430,8 @@ export async function deleteGoalAction(
     };
   }
 
+  revalidateDashboardPages();
+  revalidatePath(`/goals/${parsed.data.goalId}`);
   return refreshDashboard();
 }
 
@@ -423,6 +440,7 @@ export async function deleteGoalMaterialAction(
 ): Promise<ActionResponse<DashboardData>> {
   const user = await requireUser();
   const parsed = deleteGoalMaterialSchema.safeParse(input);
+  let goalIdToRevalidate: string | null = null;
 
   if (!parsed.success) {
     return {
@@ -441,6 +459,7 @@ export async function deleteGoalMaterialAction(
       },
       select: {
         id: true,
+        goalId: true,
       },
     });
 
@@ -450,6 +469,8 @@ export async function deleteGoalMaterialAction(
         error: "Requirement not found.",
       };
     }
+
+    goalIdToRevalidate = goalMaterial.goalId;
 
     await prisma.goalMaterial.delete({
       where: {
@@ -465,6 +486,10 @@ export async function deleteGoalMaterialAction(
     };
   }
 
+  revalidateDashboardPages();
+  if (goalIdToRevalidate) {
+    revalidatePath(`/goals/${goalIdToRevalidate}`);
+  }
   return refreshDashboard();
 }
 
@@ -597,6 +622,7 @@ export async function createMaterialAction(input: unknown) {
     return { success: false, error: "Unable to create material right now." };
   }
 
+  revalidateDashboardPages();
   return refreshDashboard();
 }
 
@@ -628,6 +654,7 @@ export async function updateMaterialAction(input: unknown) {
     return { success: false, error: "Unable to update material right now." };
   }
 
+  revalidateDashboardPages();
   return refreshDashboard();
 }
 
