@@ -1,6 +1,12 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState, useTransition } from "react";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+  useTransition,
+} from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 
@@ -18,7 +24,12 @@ import { InventorySection } from "@/components/dashboard/inventory/inventory-sec
 import { MaterialsSection } from "@/components/dashboard/sections/materials-section";
 import { simulateCraftingNeed } from "@/lib/crafting";
 import type { DashboardTab } from "@/lib/constants";
-import type { DashboardData, MaterialView } from "@/lib/types";
+import type {
+  DashboardData,
+  GoalMaterialView,
+  GoalView,
+  MaterialView,
+} from "@/lib/types";
 
 type DashboardShellProps = {
   initialData: DashboardData;
@@ -59,6 +70,9 @@ export function DashboardShell({
   const [inventoryTab, setInventoryTab] = useState<"needed" | "edit">("needed");
   const [search, setSearch] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("All");
+  const [shoppingSearch, setShoppingSearch] = useState("");
+  const [shoppingCharacterFilter, setShoppingCharacterFilter] = useState("All");
+  const [shoppingGoalTypeFilter, setShoppingGoalTypeFilter] = useState("All");
   const [inventoryDraft, setInventoryDraft] = useState<InventoryDraft>(
     buildInventoryDraft(initialData),
   );
@@ -172,6 +186,57 @@ export function DashboardShell({
     return ["All", ...Array.from(cats).sort()];
   }, [data.goals]);
 
+  const shoppingCharacters = useMemo(() => {
+    const chars = new Set(
+      data.goals
+        .filter((goal) => !goal.completed)
+        .map((goal) => goal.characterName)
+        .filter((name): name is string => Boolean(name)),
+    );
+    return ["All", ...Array.from(chars).sort()];
+  }, [data.goals]);
+
+  const shoppingGoalTypes = useMemo(() => {
+    const types = new Set(
+      data.goals
+        .filter((goal) => !goal.completed)
+        .map((goal) => goal.category)
+        .filter((category): category is string => Boolean(category)),
+    );
+    return ["All", ...Array.from(types).sort()];
+  }, [data.goals]);
+
+  const filteredShoppingMaterials = useMemo(() => {
+    const searchLower = shoppingSearch.trim().toLowerCase();
+
+    const goals = data.goals.filter((goal) => {
+      if (goal.completed) {
+        return false;
+      }
+      if (
+        shoppingCharacterFilter !== "All" &&
+        goal.characterName !== shoppingCharacterFilter
+      ) {
+        return false;
+      }
+      if (
+        shoppingGoalTypeFilter !== "All" &&
+        goal.category !== shoppingGoalTypeFilter
+      ) {
+        return false;
+      }
+
+      return true;
+    });
+
+    return aggregateShoppingMaterials(goals, searchLower);
+  }, [
+    data.goals,
+    shoppingCharacterFilter,
+    shoppingGoalTypeFilter,
+    shoppingSearch,
+  ]);
+
   const filteredGoals = useMemo(() => {
     return data.goals.filter((goal) => {
       if (goalFilter === "completed" && !goal.completed) return false;
@@ -182,7 +247,10 @@ export function DashboardShell({
       ) {
         return false;
       }
-      if (goalCategoryFilter !== "All" && goal.category !== goalCategoryFilter) {
+      if (
+        goalCategoryFilter !== "All" &&
+        goal.category !== goalCategoryFilter
+      ) {
         return false;
       }
 
@@ -347,13 +415,20 @@ export function DashboardShell({
           activeTab={inventoryTab}
           categories={categories}
           categoryFilter={categoryFilter}
-          completedMaterials={data.completedMaterials}
+          shoppingCharacterFilter={shoppingCharacterFilter}
+          shoppingCharacters={shoppingCharacters}
+          shoppingGoalTypeFilter={shoppingGoalTypeFilter}
+          shoppingGoalTypes={shoppingGoalTypes}
+          shoppingSearch={shoppingSearch}
           filteredMaterials={filteredMaterials}
           inventoryDraft={inventoryDraft}
-          materialsStillNeeded={data.materialsStillNeeded}
+          materialsStillNeeded={filteredShoppingMaterials}
           search={search}
           setActiveTab={setInventoryTab}
           setCategoryFilter={setCategoryFilter}
+          setShoppingCharacterFilter={setShoppingCharacterFilter}
+          setShoppingGoalTypeFilter={setShoppingGoalTypeFilter}
+          setShoppingSearch={setShoppingSearch}
           setInventoryDraft={setInventoryDraft}
           setSearch={setSearch}
           onSaveMaterial={handleInventorySave}
@@ -382,6 +457,45 @@ export function DashboardShell({
 function buildInventoryDraft(data: DashboardData): InventoryDraft {
   return Object.fromEntries(
     data.materials.map((material) => [material.id, material.quantity]),
+  );
+}
+
+function aggregateShoppingMaterials(
+  goals: GoalView[],
+  searchLower: string,
+): GoalMaterialView[] {
+  const aggregated: Record<string, GoalMaterialView> = {};
+
+  for (const goal of goals) {
+    const matchesGoal =
+      searchLower.length === 0 ||
+      goal.name.toLowerCase().includes(searchLower) ||
+      (goal.description ?? "").toLowerCase().includes(searchLower);
+
+    for (const item of goal.materials) {
+      if (item.remaining <= 0) {
+        continue;
+      }
+
+      const matchesMaterial = item.materialName
+        .toLowerCase()
+        .includes(searchLower);
+
+      if (searchLower.length > 0 && !matchesGoal && !matchesMaterial) {
+        continue;
+      }
+
+      if (aggregated[item.materialId]) {
+        aggregated[item.materialId].remaining += item.remaining;
+        aggregated[item.materialId].required += item.required;
+      } else {
+        aggregated[item.materialId] = { ...item };
+      }
+    }
+  }
+
+  return Object.values(aggregated).sort(
+    (left, right) => right.remaining - left.remaining,
   );
 }
 
