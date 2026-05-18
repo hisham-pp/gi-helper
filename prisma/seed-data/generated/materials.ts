@@ -7,7 +7,7 @@ export const seedMaterials: SeedMaterial[] = [
     "name": "A Flower Yet to Bloom",
     "image": "/images/materials/common-ascension/a-flower-yet-to-bloom",
     "rarity": 2,
-    "category": "Enemy Drop",
+    "category": "Elite Drop",
     "description": "A Flower Yet to Bloom ascension material.",
     "combinable": true,
     "combineRatio": 3,
@@ -73,7 +73,7 @@ export const seedMaterials: SeedMaterial[] = [
     "name": "Alien Life Core",
     "image": "/images/materials/common-ascension/alien-life-core",
     "rarity": 4,
-    "category": "Enemy Drop",
+    "category": "Elite Drop",
     "description": "Alien Life Core ascension material.",
     "combinable": false,
     "combineRatio": null,
@@ -91,11 +91,55 @@ export const seedMaterials: SeedMaterial[] = [
     "parentMaterialId": null
   },
   {
+    "id": "artful-device-fragment",
+    "name": "Artful Device Fragment",
+    "image": "/images/materials/weapon-ascension/artful-device-fragment",
+    "rarity": 2,
+    "category": "Weapon Ascension",
+    "description": "Artful Device Fragment weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "artful-device-replica"
+  },
+  {
+    "id": "artful-device-inheritance",
+    "name": "Artful Device Inheritance",
+    "image": "/images/materials/weapon-ascension/artful-device-inheritance",
+    "rarity": 4,
+    "category": "Weapon Ascension",
+    "description": "Artful Device Inheritance weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "artful-device-wish"
+  },
+  {
+    "id": "artful-device-replica",
+    "name": "Artful Device Replica",
+    "image": "/images/materials/weapon-ascension/artful-device-replica",
+    "rarity": 3,
+    "category": "Weapon Ascension",
+    "description": "Artful Device Replica weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "artful-device-inheritance"
+  },
+  {
+    "id": "artful-device-wish",
+    "name": "Artful Device Wish",
+    "image": "/images/materials/weapon-ascension/artful-device-wish",
+    "rarity": 5,
+    "category": "Weapon Ascension",
+    "description": "Artful Device Wish weapon ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null
+  },
+  {
     "id": "artificed-dynamic-gear",
     "name": "Artificed Dynamic Gear",
     "image": "/images/materials/common-ascension/artificed-dynamic-gear",
     "rarity": 3,
-    "category": "Elite Drop",
+    "category": "Enemy Drop",
     "description": "Artificed Dynamic Gear ascension material.",
     "combinable": false,
     "combineRatio": null,
@@ -135,6 +179,17 @@ export const seedMaterials: SeedMaterial[] = [
     "parentMaterialId": null
   },
   {
+    "id": "bit-of-aerosiderite",
+    "name": "Bit of Aerosiderite",
+    "image": "/images/materials/weapon-ascension/bit-of-aerosiderite",
+    "rarity": 4,
+    "category": "Weapon Ascension",
+    "description": "Bit of Aerosiderite weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "chunk-of-aerosiderite"
+  },
+  {
     "id": "black-bronze-horn",
     "name": "Black Bronze Horn",
     "image": "/images/materials/common-ascension/black-bronze-horn",
@@ -163,6 +218,50 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 5,
     "category": "Boss Material",
     "description": "Bloodjade Branch weekly boss talent material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null
+  },
+  {
+    "id": "boreal-wolf-s-broken-fang",
+    "name": "Boreal Wolf's Broken Fang",
+    "image": "/images/materials/weapon-ascension/boreal-wolf-s-broken-fang",
+    "rarity": 4,
+    "category": "Weapon Ascension",
+    "description": "Boreal Wolf's Broken Fang weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "boreal-wolf-s-nostalgia"
+  },
+  {
+    "id": "boreal-wolf-s-cracked-tooth",
+    "name": "Boreal Wolf's Cracked Tooth",
+    "image": "/images/materials/weapon-ascension/boreal-wolf-s-cracked-tooth",
+    "rarity": 3,
+    "category": "Weapon Ascension",
+    "description": "Boreal Wolf's Cracked Tooth weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "boreal-wolf-s-broken-fang"
+  },
+  {
+    "id": "boreal-wolf-s-milk-tooth",
+    "name": "Boreal Wolf's Milk Tooth",
+    "image": "/images/materials/weapon-ascension/boreal-wolf-s-milk-tooth",
+    "rarity": 2,
+    "category": "Weapon Ascension",
+    "description": "Boreal Wolf's Milk Tooth weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "boreal-wolf-s-cracked-tooth"
+  },
+  {
+    "id": "boreal-wolf-s-nostalgia",
+    "name": "Boreal Wolf's Nostalgia",
+    "image": "/images/materials/weapon-ascension/boreal-wolf-s-nostalgia",
+    "rarity": 5,
+    "category": "Weapon Ascension",
+    "description": "Boreal Wolf's Nostalgia weapon ascension material.",
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -234,6 +333,17 @@ export const seedMaterials: SeedMaterial[] = [
     "parentMaterialId": null
   },
   {
+    "id": "broken-goblet-of-the-pristine-sea",
+    "name": "Broken Goblet of the Pristine Sea",
+    "image": "/images/materials/weapon-ascension/broken-goblet-of-the-pristine-sea",
+    "rarity": 2,
+    "category": "Weapon Ascension",
+    "description": "Broken Goblet of the Pristine Sea weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "wine-goblet-of-the-pristine-sea"
+  },
+  {
     "id": "calla-lily",
     "name": "Calla Lily",
     "image": "/images/materials/local-specialties/calla-lily",
@@ -256,6 +366,17 @@ export const seedMaterials: SeedMaterial[] = [
     "parentMaterialId": null
   },
   {
+    "id": "chains-of-the-dandelion-gladiator",
+    "name": "Chains of the Dandelion Gladiator",
+    "image": "/images/materials/weapon-ascension/chains-of-the-dandelion-gladiator",
+    "rarity": 3,
+    "category": "Weapon Ascension",
+    "description": "Chains of the Dandelion Gladiator weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "shackles-of-the-dandelion-gladiator"
+  },
+  {
     "id": "chaos-axis",
     "name": "Chaos Axis",
     "image": "/images/materials/common-ascension/chaos-axis",
@@ -271,7 +392,7 @@ export const seedMaterials: SeedMaterial[] = [
     "name": "Chaos Bolt",
     "image": "/images/materials/common-ascension/chaos-bolt",
     "rarity": 4,
-    "category": "Enemy Drop",
+    "category": "Elite Drop",
     "description": "Chaos Bolt ascension material.",
     "combinable": false,
     "combineRatio": null,
@@ -326,7 +447,7 @@ export const seedMaterials: SeedMaterial[] = [
     "name": "Chaos Module",
     "image": "/images/materials/common-ascension/chaos-module",
     "rarity": 3,
-    "category": "Enemy Drop",
+    "category": "Elite Drop",
     "description": "Chaos Module ascension material.",
     "combinable": true,
     "combineRatio": 3,
@@ -348,11 +469,44 @@ export const seedMaterials: SeedMaterial[] = [
     "name": "Chaos Storage",
     "image": "/images/materials/common-ascension/chaos-storage",
     "rarity": 2,
-    "category": "Enemy Drop",
+    "category": "Elite Drop",
     "description": "Chaos Storage ascension material.",
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "chaos-module"
+  },
+  {
+    "id": "chapter-of-an-ancient-chord",
+    "name": "Chapter of an Ancient Chord",
+    "image": "/images/materials/weapon-ascension/chapter-of-an-ancient-chord",
+    "rarity": 3,
+    "category": "Weapon Ascension",
+    "description": "Chapter of an Ancient Chord weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "movement-of-an-ancient-chord"
+  },
+  {
+    "id": "chasmlight-fin",
+    "name": "Chasmlight Fin",
+    "image": "/images/materials/common-ascension/chasmlight-fin",
+    "rarity": 4,
+    "category": "Elite Drop",
+    "description": "Chasmlight Fin ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null
+  },
+  {
+    "id": "chunk-of-aerosiderite",
+    "name": "Chunk of Aerosiderite",
+    "image": "/images/materials/weapon-ascension/chunk-of-aerosiderite",
+    "rarity": 5,
+    "category": "Weapon Ascension",
+    "description": "Chunk of Aerosiderite weapon ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null
   },
   {
     "id": "cleansing-heart",
@@ -443,6 +597,17 @@ export const seedMaterials: SeedMaterial[] = [
     "parentMaterialId": null
   },
   {
+    "id": "copper-talisman-of-the-forest-dew",
+    "name": "Copper Talisman of the Forest Dew",
+    "image": "/images/materials/weapon-ascension/copper-talisman-of-the-forest-dew",
+    "rarity": 2,
+    "category": "Weapon Ascension",
+    "description": "Copper Talisman of the Forest Dew weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "iron-talisman-of-the-forest-dew"
+  },
+  {
     "id": "cor-lapis",
     "name": "Cor Lapis",
     "image": "/images/materials/local-specialties/cor-lapis",
@@ -452,6 +617,17 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
+  },
+  {
+    "id": "coral-branch-of-a-distant-sea",
+    "name": "Coral Branch of a Distant Sea",
+    "image": "/images/materials/weapon-ascension/coral-branch-of-a-distant-sea",
+    "rarity": 2,
+    "category": "Weapon Ascension",
+    "description": "Coral Branch of a Distant Sea weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "jeweled-branch-of-a-distant-sea"
   },
   {
     "id": "crown-of-insight",
@@ -480,7 +656,7 @@ export const seedMaterials: SeedMaterial[] = [
     "name": "Crystal Prism",
     "image": "/images/materials/common-ascension/crystal-prism",
     "rarity": 3,
-    "category": "Enemy Drop",
+    "category": "Elite Drop",
     "description": "Crystal Prism ascension material.",
     "combinable": true,
     "combineRatio": 3,
@@ -546,7 +722,7 @@ export const seedMaterials: SeedMaterial[] = [
     "name": "Damaged Prism",
     "image": "/images/materials/common-ascension/damaged-prism",
     "rarity": 2,
-    "category": "Enemy Drop",
+    "category": "Elite Drop",
     "description": "Damaged Prism ascension material.",
     "combinable": true,
     "combineRatio": 3,
@@ -608,6 +784,17 @@ export const seedMaterials: SeedMaterial[] = [
     "parentMaterialId": null
   },
   {
+    "id": "debris-of-decarabian-s-city",
+    "name": "Debris of Decarabian's City",
+    "image": "/images/materials/weapon-ascension/debris-of-decarabian-s-city",
+    "rarity": 3,
+    "category": "Weapon Ascension",
+    "description": "Debris of Decarabian's City weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "fragment-of-decarabian-s-epic"
+  },
+  {
     "id": "dendrobium",
     "name": "Dendrobium",
     "image": "/images/materials/local-specialties/dendrobium",
@@ -634,7 +821,7 @@ export const seedMaterials: SeedMaterial[] = [
     "name": "Desiccated Shell",
     "image": "/images/materials/common-ascension/desiccated-shell",
     "rarity": 2,
-    "category": "Enemy Drop",
+    "category": "Elite Drop",
     "description": "Desiccated Shell ascension material.",
     "combinable": true,
     "combineRatio": 3,
@@ -656,11 +843,22 @@ export const seedMaterials: SeedMaterial[] = [
     "name": "Dismal Prism",
     "image": "/images/materials/common-ascension/dismal-prism",
     "rarity": 2,
-    "category": "Enemy Drop",
+    "category": "Elite Drop",
     "description": "Dismal Prism ascension material.",
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "crystal-prism"
+  },
+  {
+    "id": "divine-body-from-guyun",
+    "name": "Divine Body from Guyun",
+    "image": "/images/materials/weapon-ascension/divine-body-from-guyun",
+    "rarity": 5,
+    "category": "Weapon Ascension",
+    "description": "Divine Body from Guyun weapon ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null
   },
   {
     "id": "divining-scroll",
@@ -678,7 +876,7 @@ export const seedMaterials: SeedMaterial[] = [
     "name": "Dormant Fungal Nucleus",
     "image": "/images/materials/common-ascension/dormant-fungal-nucleus",
     "rarity": 3,
-    "category": "Enemy Drop",
+    "category": "Elite Drop",
     "description": "Dormant Fungal Nucleus ascension material.",
     "combinable": true,
     "combineRatio": 3,
@@ -718,15 +916,48 @@ export const seedMaterials: SeedMaterial[] = [
     "parentMaterialId": null
   },
   {
+    "id": "dream-of-scorching-might",
+    "name": "Dream of Scorching Might",
+    "image": "/images/materials/weapon-ascension/dream-of-scorching-might",
+    "rarity": 4,
+    "category": "Weapon Ascension",
+    "description": "Dream of Scorching Might weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "olden-days-of-scorching-might"
+  },
+  {
+    "id": "dream-of-the-dandelion-gladiator",
+    "name": "Dream of the Dandelion Gladiator",
+    "image": "/images/materials/weapon-ascension/dream-of-the-dandelion-gladiator",
+    "rarity": 5,
+    "category": "Weapon Ascension",
+    "description": "Dream of the Dandelion Gladiator weapon ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null
+  },
+  {
     "id": "drop-of-tainted-water",
     "name": "Drop of Tainted Water",
     "image": "/images/materials/common-ascension/drop-of-tainted-water",
     "rarity": 2,
-    "category": "Enemy Drop",
+    "category": "Elite Drop",
     "description": "Drop of Tainted Water ascension material.",
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "scoop-of-tainted-water"
+  },
+  {
+    "id": "dross-of-pure-sacred-dewdrop",
+    "name": "Dross of Pure Sacred Dewdrop",
+    "image": "/images/materials/weapon-ascension/dross-of-pure-sacred-dewdrop",
+    "rarity": 2,
+    "category": "Weapon Ascension",
+    "description": "Dross of Pure Sacred Dewdrop weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "sublimation-of-pure-sacred-dewdrop"
   },
   {
     "id": "dvalin's-claw",
@@ -762,6 +993,28 @@ export const seedMaterials: SeedMaterial[] = [
     "parentMaterialId": null
   },
   {
+    "id": "echo-of-an-ancient-chord",
+    "name": "Echo of an Ancient Chord",
+    "image": "/images/materials/weapon-ascension/echo-of-an-ancient-chord",
+    "rarity": 5,
+    "category": "Weapon Ascension",
+    "description": "Echo of an Ancient Chord weapon ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null
+  },
+  {
+    "id": "echo-of-scorching-might",
+    "name": "Echo of Scorching Might",
+    "image": "/images/materials/weapon-ascension/echo-of-scorching-might",
+    "rarity": 2,
+    "category": "Weapon Ascension",
+    "description": "Echo of Scorching Might weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "remnant-glow-of-scorching-might"
+  },
+  {
     "id": "emperor-s-resolution",
     "name": "Emperor's Resolution",
     "image": "/images/materials/boss-material/emperor-s-resolution",
@@ -790,6 +1043,17 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 4,
     "category": "Boss Material",
     "description": "Ensnaring Gaze character ascension boss material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null
+  },
+  {
+    "id": "essence-of-pure-sacred-dewdrop",
+    "name": "Essence of Pure Sacred Dewdrop",
+    "image": "/images/materials/weapon-ascension/essence-of-pure-sacred-dewdrop",
+    "rarity": 5,
+    "category": "Weapon Ascension",
+    "description": "Essence of Pure Sacred Dewdrop weapon ascension material.",
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -828,11 +1092,22 @@ export const seedMaterials: SeedMaterial[] = [
     "parentMaterialId": null
   },
   {
+    "id": "faded-flaming-hilt",
+    "name": "Faded Flaming Hilt",
+    "image": "/images/materials/common-ascension/faded-flaming-hilt",
+    "rarity": 2,
+    "category": "Elite Drop",
+    "description": "Faded Flaming Hilt ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "fractured-flaming-hilt"
+  },
+  {
     "id": "faded-red-satin",
     "name": "Faded Red Satin",
     "image": "/images/materials/common-ascension/faded-red-satin",
     "rarity": 1,
-    "category": "Elite Drop",
+    "category": "Enemy Drop",
     "description": "Faded Red Satin ascension material.",
     "combinable": true,
     "combineRatio": 3,
@@ -859,6 +1134,28 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
+  },
+  {
+    "id": "feathery-fin",
+    "name": "Feathery Fin",
+    "image": "/images/materials/common-ascension/feathery-fin",
+    "rarity": 2,
+    "category": "Elite Drop",
+    "description": "Feathery Fin ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "lunar-fin"
+  },
+  {
+    "id": "fetters-of-the-dandelion-gladiator",
+    "name": "Fetters of the Dandelion Gladiator",
+    "image": "/images/materials/weapon-ascension/fetters-of-the-dandelion-gladiator",
+    "rarity": 2,
+    "category": "Weapon Ascension",
+    "description": "Fetters of the Dandelion Gladiator weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "chains-of-the-dandelion-gladiator"
   },
   {
     "id": "firm-arrowhead",
@@ -909,7 +1206,7 @@ export const seedMaterials: SeedMaterial[] = [
     "name": "Foreign Synapse",
     "image": "/images/materials/common-ascension/foreign-synapse",
     "rarity": 3,
-    "category": "Enemy Drop",
+    "category": "Elite Drop",
     "description": "Foreign Synapse ascension material.",
     "combinable": true,
     "combineRatio": 3,
@@ -925,6 +1222,17 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
+  },
+  {
+    "id": "fractured-flaming-hilt",
+    "name": "Fractured Flaming Hilt",
+    "image": "/images/materials/common-ascension/fractured-flaming-hilt",
+    "rarity": 3,
+    "category": "Elite Drop",
+    "description": "Fractured Flaming Hilt ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "jeweled-flaming-hilt"
   },
   {
     "id": "fragile-bone-shard",
@@ -949,6 +1257,28 @@ export const seedMaterials: SeedMaterial[] = [
     "parentMaterialId": null
   },
   {
+    "id": "fragment-of-an-ancient-chord",
+    "name": "Fragment of an Ancient Chord",
+    "image": "/images/materials/weapon-ascension/fragment-of-an-ancient-chord",
+    "rarity": 2,
+    "category": "Weapon Ascension",
+    "description": "Fragment of an Ancient Chord weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "chapter-of-an-ancient-chord"
+  },
+  {
+    "id": "fragment-of-decarabian-s-epic",
+    "name": "Fragment of Decarabian's Epic",
+    "image": "/images/materials/weapon-ascension/fragment-of-decarabian-s-epic",
+    "rarity": 4,
+    "category": "Weapon Ascension",
+    "description": "Fragment of Decarabian's Epic weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "scattered-piece-of-decarabian-s-dream"
+  },
+  {
     "id": "frost-etched-warrant",
     "name": "Frost-Etched Warrant",
     "image": "/images/materials/boss-material/frost-etched-warrant",
@@ -969,6 +1299,39 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
+  },
+  {
+    "id": "frostnight-s-glimmer",
+    "name": "Frostnight's Glimmer",
+    "image": "/images/materials/common-ascension/frostnight-s-glimmer",
+    "rarity": 2,
+    "category": "Elite Drop",
+    "description": "Frostnight's Glimmer ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "frostnight-s-glow"
+  },
+  {
+    "id": "frostnight-s-glory",
+    "name": "Frostnight's Glory",
+    "image": "/images/materials/common-ascension/frostnight-s-glory",
+    "rarity": 4,
+    "category": "Elite Drop",
+    "description": "Frostnight's Glory ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null
+  },
+  {
+    "id": "frostnight-s-glow",
+    "name": "Frostnight's Glow",
+    "image": "/images/materials/common-ascension/frostnight-s-glow",
+    "rarity": 3,
+    "category": "Elite Drop",
+    "description": "Frostnight's Glow ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "frostnight-s-glory"
   },
   {
     "id": "fungal-spores",
@@ -1026,12 +1389,45 @@ export const seedMaterials: SeedMaterial[] = [
     "parentMaterialId": null
   },
   {
+    "id": "glowing-remains",
+    "name": "Glowing Remains",
+    "image": "/images/materials/common-ascension/glowing-remains",
+    "rarity": 3,
+    "category": "Elite Drop",
+    "description": "Glowing Remains ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "radiant-exoskeleton"
+  },
+  {
     "id": "gold-inscribed-secret-source-core",
     "name": "Gold-Inscribed Secret Source Core",
     "image": "/images/materials/boss-material/gold-inscribed-secret-source-core",
     "rarity": 4,
     "category": "Boss Material",
     "description": "Gold-Inscribed Secret Source Core character ascension boss material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null
+  },
+  {
+    "id": "golden-branch-of-a-distant-sea",
+    "name": "Golden Branch of a Distant Sea",
+    "image": "/images/materials/weapon-ascension/golden-branch-of-a-distant-sea",
+    "rarity": 5,
+    "category": "Weapon Ascension",
+    "description": "Golden Branch of a Distant Sea weapon ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null
+  },
+  {
+    "id": "golden-goblet-of-the-pristine-sea",
+    "name": "Golden Goblet of the Pristine Sea",
+    "image": "/images/materials/weapon-ascension/golden-goblet-of-the-pristine-sea",
+    "rarity": 5,
+    "category": "Weapon Ascension",
+    "description": "Golden Goblet of the Pristine Sea weapon ascension material.",
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -1046,6 +1442,28 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
+  },
+  {
+    "id": "golden-talisman-of-the-forest-dew",
+    "name": "Golden Talisman of the Forest Dew",
+    "image": "/images/materials/weapon-ascension/golden-talisman-of-the-forest-dew",
+    "rarity": 5,
+    "category": "Weapon Ascension",
+    "description": "Golden Talisman of the Forest Dew weapon ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null
+  },
+  {
+    "id": "grain-of-aerosiderite",
+    "name": "Grain of Aerosiderite",
+    "image": "/images/materials/weapon-ascension/grain-of-aerosiderite",
+    "rarity": 2,
+    "category": "Weapon Ascension",
+    "description": "Grain of Aerosiderite weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "piece-of-aerosiderite"
   },
   {
     "id": "guide-to-admonition",
@@ -1112,6 +1530,17 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "philosophies-of-elegance"
+  },
+  {
+    "id": "guide-to-elysium",
+    "name": "Guide to Elysium",
+    "image": "/images/materials/talent-book/guide-to-elysium",
+    "rarity": 3,
+    "category": "Talent Book",
+    "description": "Guide to Elysium talent material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "philosophies-of-elysium"
   },
   {
     "id": "guide-to-equity",
@@ -1191,6 +1620,17 @@ export const seedMaterials: SeedMaterial[] = [
     "parentMaterialId": "philosophies-of-light"
   },
   {
+    "id": "guide-to-moonlight",
+    "name": "Guide to Moonlight",
+    "image": "/images/materials/talent-book/guide-to-moonlight",
+    "rarity": 3,
+    "category": "Talent Book",
+    "description": "Guide to Moonlight talent material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "philosophies-of-moonlight"
+  },
+  {
     "id": "guide-to-order",
     "name": "Guide to Order",
     "image": "/images/materials/talent-book/guide-to-order",
@@ -1244,6 +1684,17 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "philosophies-of-transience"
+  },
+  {
+    "id": "guide-to-vagrancy",
+    "name": "Guide to Vagrancy",
+    "image": "/images/materials/talent-book/guide-to-vagrancy",
+    "rarity": 3,
+    "category": "Talent Book",
+    "description": "Guide to Vagrancy talent material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "philosophies-of-vagrancy"
   },
   {
     "id": "heavy-horn",
@@ -1327,7 +1778,7 @@ export const seedMaterials: SeedMaterial[] = [
     "name": "Inactivated Fungal Nucleus",
     "image": "/images/materials/common-ascension/inactivated-fungal-nucleus",
     "rarity": 2,
-    "category": "Enemy Drop",
+    "category": "Elite Drop",
     "description": "Inactivated Fungal Nucleus ascension material.",
     "combinable": true,
     "combineRatio": 3,
@@ -1340,6 +1791,50 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 4,
     "category": "Elite Drop",
     "description": "Inspector's Sacrificial Knife ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null
+  },
+  {
+    "id": "iron-talisman-of-the-forest-dew",
+    "name": "Iron Talisman of the Forest Dew",
+    "image": "/images/materials/weapon-ascension/iron-talisman-of-the-forest-dew",
+    "rarity": 3,
+    "category": "Weapon Ascension",
+    "description": "Iron Talisman of the Forest Dew weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "silver-talisman-of-the-forest-dew"
+  },
+  {
+    "id": "jade-branch-of-a-distant-sea",
+    "name": "Jade Branch of a Distant Sea",
+    "image": "/images/materials/weapon-ascension/jade-branch-of-a-distant-sea",
+    "rarity": 4,
+    "category": "Weapon Ascension",
+    "description": "Jade Branch of a Distant Sea weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "golden-branch-of-a-distant-sea"
+  },
+  {
+    "id": "jeweled-branch-of-a-distant-sea",
+    "name": "Jeweled Branch of a Distant Sea",
+    "image": "/images/materials/weapon-ascension/jeweled-branch-of-a-distant-sea",
+    "rarity": 3,
+    "category": "Weapon Ascension",
+    "description": "Jeweled Branch of a Distant Sea weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "jade-branch-of-a-distant-sea"
+  },
+  {
+    "id": "jeweled-flaming-hilt",
+    "name": "Jeweled Flaming Hilt",
+    "image": "/images/materials/common-ascension/jeweled-flaming-hilt",
+    "rarity": 4,
+    "category": "Elite Drop",
+    "description": "Jeweled Flaming Hilt ascension material.",
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -1360,7 +1855,7 @@ export const seedMaterials: SeedMaterial[] = [
     "name": "Juvenile Fang",
     "image": "/images/materials/common-ascension/juvenile-fang",
     "rarity": 2,
-    "category": "Enemy Drop",
+    "category": "Elite Drop",
     "description": "Juvenile Fang ascension material.",
     "combinable": true,
     "combineRatio": 3,
@@ -1455,6 +1950,17 @@ export const seedMaterials: SeedMaterial[] = [
     "parentMaterialId": null
   },
   {
+    "id": "lightless-bone",
+    "name": "Lightless Bone",
+    "image": "/images/materials/common-ascension/lightless-bone",
+    "rarity": 2,
+    "category": "Elite Drop",
+    "description": "Lightless Bone ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "glowing-remains"
+  },
+  {
     "id": "lightless-eye-of-the-maelstrom",
     "name": "Lightless Eye of the Maelstrom",
     "image": "/images/materials/talent-boss/lightless-eye-of-the-maelstrom",
@@ -1499,6 +2005,17 @@ export const seedMaterials: SeedMaterial[] = [
     "parentMaterialId": null
   },
   {
+    "id": "locus-of-a-clear-will",
+    "name": "Locus of a Clear Will",
+    "image": "/images/materials/common-ascension/locus-of-a-clear-will",
+    "rarity": 3,
+    "category": "Elite Drop",
+    "description": "Locus of a Clear Will ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "sigil-of-a-striding-will"
+  },
+  {
     "id": "lumidouce-bell",
     "name": "Lumidouce Bell",
     "image": "/images/materials/local-specialties/lumidouce-bell",
@@ -1521,6 +2038,17 @@ export const seedMaterials: SeedMaterial[] = [
     "parentMaterialId": "crystalline-cyst-dust"
   },
   {
+    "id": "luminous-sands-from-guyun",
+    "name": "Luminous Sands from Guyun",
+    "image": "/images/materials/weapon-ascension/luminous-sands-from-guyun",
+    "rarity": 2,
+    "category": "Weapon Ascension",
+    "description": "Luminous Sands from Guyun weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "lustrous-stone-from-guyun"
+  },
+  {
     "id": "lumitoile",
     "name": "Lumitoile",
     "image": "/images/materials/local-specialties/lumitoile",
@@ -1530,6 +2058,28 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
+  },
+  {
+    "id": "lunar-fin",
+    "name": "Lunar Fin",
+    "image": "/images/materials/common-ascension/lunar-fin",
+    "rarity": 3,
+    "category": "Elite Drop",
+    "description": "Lunar Fin ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "chasmlight-fin"
+  },
+  {
+    "id": "lustrous-stone-from-guyun",
+    "name": "Lustrous Stone from Guyun",
+    "image": "/images/materials/weapon-ascension/lustrous-stone-from-guyun",
+    "rarity": 3,
+    "category": "Weapon Ascension",
+    "description": "Lustrous Stone from Guyun weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "relic-from-guyun"
   },
   {
     "id": "majestic-hooked-beak",
@@ -1569,18 +2119,62 @@ export const seedMaterials: SeedMaterial[] = [
     "name": "Marked Shell",
     "image": "/images/materials/common-ascension/marked-shell",
     "rarity": 4,
-    "category": "Enemy Drop",
+    "category": "Elite Drop",
     "description": "Marked Shell ascension material.",
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
   },
   {
+    "id": "mask-of-the-kijin",
+    "name": "Mask of the Kijin",
+    "image": "/images/materials/weapon-ascension/mask-of-the-kijin",
+    "rarity": 5,
+    "category": "Weapon Ascension",
+    "description": "Mask of the Kijin weapon ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null
+  },
+  {
+    "id": "mask-of-the-one-horned",
+    "name": "Mask of the One-Horned",
+    "image": "/images/materials/weapon-ascension/mask-of-the-one-horned",
+    "rarity": 4,
+    "category": "Weapon Ascension",
+    "description": "Mask of the One-Horned weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "mask-of-the-kijin"
+  },
+  {
+    "id": "mask-of-the-tiger-s-bite",
+    "name": "Mask of the Tiger's Bite",
+    "image": "/images/materials/weapon-ascension/mask-of-the-tiger-s-bite",
+    "rarity": 3,
+    "category": "Weapon Ascension",
+    "description": "Mask of the Tiger's Bite weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "mask-of-the-one-horned"
+  },
+  {
+    "id": "mask-of-the-wicked-lieutenant",
+    "name": "Mask of the Wicked Lieutenant",
+    "image": "/images/materials/weapon-ascension/mask-of-the-wicked-lieutenant",
+    "rarity": 2,
+    "category": "Weapon Ascension",
+    "description": "Mask of the Wicked Lieutenant weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "mask-of-the-tiger-s-bite"
+  },
+  {
     "id": "mechanical-spur-gear",
     "name": "Mechanical Spur Gear",
     "image": "/images/materials/common-ascension/mechanical-spur-gear",
     "rarity": 2,
-    "category": "Elite Drop",
+    "category": "Enemy Drop",
     "description": "Mechanical Spur Gear ascension material.",
     "combinable": true,
     "combineRatio": 3,
@@ -1591,7 +2185,7 @@ export const seedMaterials: SeedMaterial[] = [
     "name": "Meshing Gear",
     "image": "/images/materials/common-ascension/meshing-gear",
     "rarity": 1,
-    "category": "Elite Drop",
+    "category": "Enemy Drop",
     "description": "Meshing Gear ascension material.",
     "combinable": true,
     "combineRatio": 3,
@@ -1642,6 +2236,83 @@ export const seedMaterials: SeedMaterial[] = [
     "parentMaterialId": null
   },
   {
+    "id": "mist-veiled-gold-elixir",
+    "name": "Mist Veiled Gold Elixir",
+    "image": "/images/materials/weapon-ascension/mist-veiled-gold-elixir",
+    "rarity": 4,
+    "category": "Weapon Ascension",
+    "description": "Mist Veiled Gold Elixir weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "mist-veiled-primo-elixir"
+  },
+  {
+    "id": "mist-veiled-lead-elixir",
+    "name": "Mist Veiled Lead Elixir",
+    "image": "/images/materials/weapon-ascension/mist-veiled-lead-elixir",
+    "rarity": 2,
+    "category": "Weapon Ascension",
+    "description": "Mist Veiled Lead Elixir weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "mist-veiled-mercury-elixir"
+  },
+  {
+    "id": "mist-veiled-mercury-elixir",
+    "name": "Mist Veiled Mercury Elixir",
+    "image": "/images/materials/weapon-ascension/mist-veiled-mercury-elixir",
+    "rarity": 3,
+    "category": "Weapon Ascension",
+    "description": "Mist Veiled Mercury Elixir weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "mist-veiled-gold-elixir"
+  },
+  {
+    "id": "mist-veiled-primo-elixir",
+    "name": "Mist Veiled Primo Elixir",
+    "image": "/images/materials/weapon-ascension/mist-veiled-primo-elixir",
+    "rarity": 5,
+    "category": "Weapon Ascension",
+    "description": "Mist Veiled Primo Elixir weapon ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null
+  },
+  {
+    "id": "mistshroud-helmet",
+    "name": "Mistshroud Helmet",
+    "image": "/images/materials/common-ascension/mistshroud-helmet",
+    "rarity": 4,
+    "category": "Elite Drop",
+    "description": "Mistshroud Helmet ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null
+  },
+  {
+    "id": "mistshroud-manifestation",
+    "name": "Mistshroud Manifestation",
+    "image": "/images/materials/common-ascension/mistshroud-manifestation",
+    "rarity": 2,
+    "category": "Elite Drop",
+    "description": "Mistshroud Manifestation ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "mistshroud-plate"
+  },
+  {
+    "id": "mistshroud-plate",
+    "name": "Mistshroud Plate",
+    "image": "/images/materials/common-ascension/mistshroud-plate",
+    "rarity": 3,
+    "category": "Elite Drop",
+    "description": "Mistshroud Plate ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "mistshroud-helmet"
+  },
+  {
     "id": "molten-moment",
     "name": "Molten Moment",
     "image": "/images/materials/talent-boss/molten-moment",
@@ -1673,6 +2344,17 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
+  },
+  {
+    "id": "movement-of-an-ancient-chord",
+    "name": "Movement of an Ancient Chord",
+    "image": "/images/materials/weapon-ascension/movement-of-an-ancient-chord",
+    "rarity": 4,
+    "category": "Weapon Ascension",
+    "description": "Movement of an Ancient Chord weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "echo-of-an-ancient-chord"
   },
   {
     "id": "mudra-of-the-malefic-general",
@@ -1741,11 +2423,55 @@ export const seedMaterials: SeedMaterial[] = [
     "parentMaterialId": null
   },
   {
+    "id": "narukami-s-affection",
+    "name": "Narukami's Affection",
+    "image": "/images/materials/weapon-ascension/narukami-s-affection",
+    "rarity": 4,
+    "category": "Weapon Ascension",
+    "description": "Narukami's Affection weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "narukami-s-valor"
+  },
+  {
+    "id": "narukami-s-joy",
+    "name": "Narukami's Joy",
+    "image": "/images/materials/weapon-ascension/narukami-s-joy",
+    "rarity": 3,
+    "category": "Weapon Ascension",
+    "description": "Narukami's Joy weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "narukami-s-affection"
+  },
+  {
+    "id": "narukami-s-valor",
+    "name": "Narukami's Valor",
+    "image": "/images/materials/weapon-ascension/narukami-s-valor",
+    "rarity": 5,
+    "category": "Weapon Ascension",
+    "description": "Narukami's Valor weapon ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null
+  },
+  {
+    "id": "narukami-s-wisdom",
+    "name": "Narukami's Wisdom",
+    "image": "/images/materials/weapon-ascension/narukami-s-wisdom",
+    "rarity": 2,
+    "category": "Weapon Ascension",
+    "description": "Narukami's Wisdom weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "narukami-s-joy"
+  },
+  {
     "id": "newborn-tainted-hydro-phantasm",
     "name": "Newborn Tainted Hydro Phantasm",
     "image": "/images/materials/common-ascension/newborn-tainted-hydro-phantasm",
     "rarity": 4,
-    "category": "Enemy Drop",
+    "category": "Elite Drop",
     "description": "Newborn Tainted Hydro Phantasm ascension material.",
     "combinable": false,
     "combineRatio": null,
@@ -1774,6 +2500,50 @@ export const seedMaterials: SeedMaterial[] = [
     "parentMaterialId": null
   },
   {
+    "id": "oasis-garden-s-kindness",
+    "name": "Oasis Garden's Kindness",
+    "image": "/images/materials/weapon-ascension/oasis-garden-s-kindness",
+    "rarity": 3,
+    "category": "Weapon Ascension",
+    "description": "Oasis Garden's Kindness weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "oasis-garden-s-mourning"
+  },
+  {
+    "id": "oasis-garden-s-mourning",
+    "name": "Oasis Garden's Mourning",
+    "image": "/images/materials/weapon-ascension/oasis-garden-s-mourning",
+    "rarity": 4,
+    "category": "Weapon Ascension",
+    "description": "Oasis Garden's Mourning weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "oasis-garden-s-truth"
+  },
+  {
+    "id": "oasis-garden-s-reminiscence",
+    "name": "Oasis Garden's Reminiscence",
+    "image": "/images/materials/weapon-ascension/oasis-garden-s-reminiscence",
+    "rarity": 2,
+    "category": "Weapon Ascension",
+    "description": "Oasis Garden's Reminiscence weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "oasis-garden-s-kindness"
+  },
+  {
+    "id": "oasis-garden-s-truth",
+    "name": "Oasis Garden's Truth",
+    "image": "/images/materials/weapon-ascension/oasis-garden-s-truth",
+    "rarity": 5,
+    "category": "Weapon Ascension",
+    "description": "Oasis Garden's Truth weapon ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null
+  },
+  {
     "id": "old-handguard",
     "name": "Old Handguard",
     "image": "/images/materials/common-ascension/old-handguard",
@@ -1789,11 +2559,22 @@ export const seedMaterials: SeedMaterial[] = [
     "name": "Old Operative's Pocket Watch",
     "image": "/images/materials/common-ascension/old-operative-s-pocket-watch",
     "rarity": 2,
-    "category": "Enemy Drop",
+    "category": "Elite Drop",
     "description": "Old Operative's Pocket Watch ascension material.",
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "operative-s-standard-pocket-watch"
+  },
+  {
+    "id": "olden-days-of-scorching-might",
+    "name": "Olden Days of Scorching Might",
+    "image": "/images/materials/weapon-ascension/olden-days-of-scorching-might",
+    "rarity": 5,
+    "category": "Weapon Ascension",
+    "description": "Olden Days of Scorching Might weapon ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null
   },
   {
     "id": "ominous-mask",
@@ -1822,7 +2603,7 @@ export const seedMaterials: SeedMaterial[] = [
     "name": "Operative's Constancy",
     "image": "/images/materials/common-ascension/operative-s-constancy",
     "rarity": 4,
-    "category": "Enemy Drop",
+    "category": "Elite Drop",
     "description": "Operative's Constancy ascension material.",
     "combinable": false,
     "combineRatio": null,
@@ -1833,7 +2614,7 @@ export const seedMaterials: SeedMaterial[] = [
     "name": "Operative's Standard Pocket Watch",
     "image": "/images/materials/common-ascension/operative-s-standard-pocket-watch",
     "rarity": 3,
-    "category": "Enemy Drop",
+    "category": "Elite Drop",
     "description": "Operative's Standard Pocket Watch ascension material.",
     "combinable": true,
     "combineRatio": 3,
@@ -1961,6 +2742,17 @@ export const seedMaterials: SeedMaterial[] = [
     "parentMaterialId": null
   },
   {
+    "id": "philosophies-of-elysium",
+    "name": "Philosophies of Elysium",
+    "image": "/images/materials/talent-book/philosophies-of-elysium",
+    "rarity": 4,
+    "category": "Talent Book",
+    "description": "Philosophies of Elysium talent material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null
+  },
+  {
     "id": "philosophies-of-equity",
     "name": "Philosophies of Equity",
     "image": "/images/materials/talent-book/philosophies-of-equity",
@@ -2038,6 +2830,17 @@ export const seedMaterials: SeedMaterial[] = [
     "parentMaterialId": null
   },
   {
+    "id": "philosophies-of-moonlight",
+    "name": "Philosophies of Moonlight",
+    "image": "/images/materials/talent-book/philosophies-of-moonlight",
+    "rarity": 4,
+    "category": "Talent Book",
+    "description": "Philosophies of Moonlight talent material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null
+  },
+  {
     "id": "philosophies-of-order",
     "name": "Philosophies of Order",
     "image": "/images/materials/talent-book/philosophies-of-order",
@@ -2093,6 +2896,28 @@ export const seedMaterials: SeedMaterial[] = [
     "parentMaterialId": null
   },
   {
+    "id": "philosophies-of-vagrancy",
+    "name": "Philosophies of Vagrancy",
+    "image": "/images/materials/talent-book/philosophies-of-vagrancy",
+    "rarity": 4,
+    "category": "Talent Book",
+    "description": "Philosophies of Vagrancy talent material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null
+  },
+  {
+    "id": "piece-of-aerosiderite",
+    "name": "Piece of Aerosiderite",
+    "image": "/images/materials/weapon-ascension/piece-of-aerosiderite",
+    "rarity": 3,
+    "category": "Weapon Ascension",
+    "description": "Piece of Aerosiderite weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "bit-of-aerosiderite"
+  },
+  {
     "id": "pine-amber",
     "name": "Pine Amber",
     "image": "/images/materials/local-specialties/pine-amber",
@@ -2104,11 +2929,22 @@ export const seedMaterials: SeedMaterial[] = [
     "parentMaterialId": null
   },
   {
+    "id": "plume-of-the-fallen-watcher",
+    "name": "Plume of the Fallen Watcher",
+    "image": "/images/materials/boss-material/plume-of-the-fallen-watcher",
+    "rarity": 4,
+    "category": "Boss Material",
+    "description": "Plume of the Fallen Watcher character ascension boss material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null
+  },
+  {
     "id": "polarizing-prism",
     "name": "Polarizing Prism",
     "image": "/images/materials/common-ascension/polarizing-prism",
     "rarity": 4,
-    "category": "Enemy Drop",
+    "category": "Elite Drop",
     "description": "Polarizing Prism ascension material.",
     "combinable": false,
     "combineRatio": null,
@@ -2154,6 +2990,17 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 5,
     "category": "Boss Material",
     "description": "Primordial Greenbloom weekly boss talent material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null
+  },
+  {
+    "id": "prismatic-severed-tail",
+    "name": "Prismatic Severed Tail",
+    "image": "/images/materials/boss-material/prismatic-severed-tail",
+    "rarity": 4,
+    "category": "Boss Material",
+    "description": "Prismatic Severed Tail character ascension boss material.",
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -2269,11 +3116,22 @@ export const seedMaterials: SeedMaterial[] = [
     "parentMaterialId": null
   },
   {
+    "id": "radiant-exoskeleton",
+    "name": "Radiant Exoskeleton",
+    "image": "/images/materials/common-ascension/radiant-exoskeleton",
+    "rarity": 4,
+    "category": "Elite Drop",
+    "description": "Radiant Exoskeleton ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null
+  },
+  {
     "id": "radiant-prism",
     "name": "Radiant Prism",
     "image": "/images/materials/common-ascension/radiant-prism",
     "rarity": 4,
-    "category": "Enemy Drop",
+    "category": "Elite Drop",
     "description": "Radiant Prism ascension material.",
     "combinable": false,
     "combineRatio": null,
@@ -2313,6 +3171,28 @@ export const seedMaterials: SeedMaterial[] = [
     "parentMaterialId": null
   },
   {
+    "id": "relic-from-guyun",
+    "name": "Relic from Guyun",
+    "image": "/images/materials/weapon-ascension/relic-from-guyun",
+    "rarity": 4,
+    "category": "Weapon Ascension",
+    "description": "Relic from Guyun weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "divine-body-from-guyun"
+  },
+  {
+    "id": "remnant-glow-of-scorching-might",
+    "name": "Remnant Glow of Scorching Might",
+    "image": "/images/materials/weapon-ascension/remnant-glow-of-scorching-might",
+    "rarity": 3,
+    "category": "Weapon Ascension",
+    "description": "Remnant Glow of Scorching Might weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "dream-of-scorching-might"
+  },
+  {
     "id": "remnant-of-the-dreadwing",
     "name": "Remnant of the Dreadwing",
     "image": "/images/materials/boss-material/remnant-of-the-dreadwing",
@@ -2328,7 +3208,7 @@ export const seedMaterials: SeedMaterial[] = [
     "name": "Rich Red Brocade",
     "image": "/images/materials/common-ascension/rich-red-brocade",
     "rarity": 3,
-    "category": "Elite Drop",
+    "category": "Enemy Drop",
     "description": "Rich Red Brocade ascension material.",
     "combinable": false,
     "combineRatio": null,
@@ -2339,7 +3219,7 @@ export const seedMaterials: SeedMaterial[] = [
     "name": "Rift Core",
     "image": "/images/materials/common-ascension/rift-core",
     "rarity": 2,
-    "category": "Enemy Drop",
+    "category": "Elite Drop",
     "description": "Rift Core ascension material.",
     "combinable": true,
     "combineRatio": 3,
@@ -2372,7 +3252,7 @@ export const seedMaterials: SeedMaterial[] = [
     "name": "Robust Fungal Nucleus",
     "image": "/images/materials/common-ascension/robust-fungal-nucleus",
     "rarity": 4,
-    "category": "Enemy Drop",
+    "category": "Elite Drop",
     "description": "Robust Fungal Nucleus ascension material.",
     "combinable": false,
     "combineRatio": null,
@@ -2394,7 +3274,7 @@ export const seedMaterials: SeedMaterial[] = [
     "name": "Ruined Hilt",
     "image": "/images/materials/common-ascension/ruined-hilt",
     "rarity": 2,
-    "category": "Enemy Drop",
+    "category": "Elite Drop",
     "description": "Ruined Hilt ascension material.",
     "combinable": true,
     "combineRatio": 3,
@@ -2489,11 +3369,22 @@ export const seedMaterials: SeedMaterial[] = [
     "parentMaterialId": null
   },
   {
+    "id": "scattered-piece-of-decarabian-s-dream",
+    "name": "Scattered Piece of Decarabian's Dream",
+    "image": "/images/materials/weapon-ascension/scattered-piece-of-decarabian-s-dream",
+    "rarity": 5,
+    "category": "Weapon Ascension",
+    "description": "Scattered Piece of Decarabian's Dream weapon ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null
+  },
+  {
     "id": "scoop-of-tainted-water",
     "name": "Scoop of Tainted Water",
     "image": "/images/materials/common-ascension/scoop-of-tainted-water",
     "rarity": 3,
-    "category": "Enemy Drop",
+    "category": "Elite Drop",
     "description": "Scoop of Tainted Water ascension material.",
     "combinable": true,
     "combineRatio": 3,
@@ -2526,7 +3417,7 @@ export const seedMaterials: SeedMaterial[] = [
     "name": "Seasoned Fang",
     "image": "/images/materials/common-ascension/seasoned-fang",
     "rarity": 3,
-    "category": "Enemy Drop",
+    "category": "Elite Drop",
     "description": "Seasoned Fang ascension material.",
     "combinable": true,
     "combineRatio": 3,
@@ -2566,6 +3457,17 @@ export const seedMaterials: SeedMaterial[] = [
     "parentMaterialId": "lieutenant-s-insignia"
   },
   {
+    "id": "shackles-of-the-dandelion-gladiator",
+    "name": "Shackles of the Dandelion Gladiator",
+    "image": "/images/materials/weapon-ascension/shackles-of-the-dandelion-gladiator",
+    "rarity": 4,
+    "category": "Weapon Ascension",
+    "description": "Shackles of the Dandelion Gladiator weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "dream-of-the-dandelion-gladiator"
+  },
+  {
     "id": "shadow-of-the-warrior",
     "name": "Shadow of the Warrior",
     "image": "/images/materials/talent-boss/shadow-of-the-warrior",
@@ -2586,6 +3488,17 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
+  },
+  {
+    "id": "shard-of-a-shattered-will",
+    "name": "Shard of a Shattered Will",
+    "image": "/images/materials/common-ascension/shard-of-a-shattered-will",
+    "rarity": 2,
+    "category": "Elite Drop",
+    "description": "Shard of a Shattered Will ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "locus-of-a-clear-will"
   },
   {
     "id": "sharp-arrowhead",
@@ -2654,6 +3567,17 @@ export const seedMaterials: SeedMaterial[] = [
     "parentMaterialId": "shivada-jade-fragment"
   },
   {
+    "id": "sigil-of-a-striding-will",
+    "name": "Sigil of a Striding Will",
+    "image": "/images/materials/common-ascension/sigil-of-a-striding-will",
+    "rarity": 4,
+    "category": "Elite Drop",
+    "description": "Sigil of a Striding Will ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null
+  },
+  {
     "id": "silk-flower",
     "name": "Silk Flower",
     "image": "/images/materials/local-specialties/silk-flower",
@@ -2676,6 +3600,17 @@ export const seedMaterials: SeedMaterial[] = [
     "parentMaterialId": null
   },
   {
+    "id": "silver-goblet-of-the-pristine-sea",
+    "name": "Silver Goblet of the Pristine Sea",
+    "image": "/images/materials/weapon-ascension/silver-goblet-of-the-pristine-sea",
+    "rarity": 4,
+    "category": "Weapon Ascension",
+    "description": "Silver Goblet of the Pristine Sea weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "golden-goblet-of-the-pristine-sea"
+  },
+  {
     "id": "silver-raven-insignia",
     "name": "Silver Raven Insignia",
     "image": "/images/materials/common-ascension/silver-raven-insignia",
@@ -2685,6 +3620,17 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "golden-raven-insignia"
+  },
+  {
+    "id": "silver-talisman-of-the-forest-dew",
+    "name": "Silver Talisman of the Forest Dew",
+    "image": "/images/materials/weapon-ascension/silver-talisman-of-the-forest-dew",
+    "rarity": 4,
+    "category": "Weapon Ascension",
+    "description": "Silver Talisman of the Forest Dew weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "golden-talisman-of-the-forest-dew"
   },
   {
     "id": "skysplit-gembloom",
@@ -2812,7 +3758,7 @@ export const seedMaterials: SeedMaterial[] = [
     "name": "Splintered Hilt",
     "image": "/images/materials/common-ascension/splintered-hilt",
     "rarity": 3,
-    "category": "Enemy Drop",
+    "category": "Elite Drop",
     "description": "Splintered Hilt ascension material.",
     "combinable": true,
     "combineRatio": 3,
@@ -2828,6 +3774,17 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
+  },
+  {
+    "id": "spring-of-pure-sacred-dewdrop",
+    "name": "Spring of Pure Sacred Dewdrop",
+    "image": "/images/materials/weapon-ascension/spring-of-pure-sacred-dewdrop",
+    "rarity": 4,
+    "category": "Weapon Ascension",
+    "description": "Spring of Pure Sacred Dewdrop weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "essence-of-pure-sacred-dewdrop"
   },
   {
     "id": "spring-of-the-first-dewdrop",
@@ -2867,7 +3824,7 @@ export const seedMaterials: SeedMaterial[] = [
     "name": "Still-Smoldering Hilt",
     "image": "/images/materials/common-ascension/still-smoldering-hilt",
     "rarity": 4,
-    "category": "Enemy Drop",
+    "category": "Elite Drop",
     "description": "Still-Smoldering Hilt ascension material.",
     "combinable": false,
     "combineRatio": null,
@@ -2900,7 +3857,7 @@ export const seedMaterials: SeedMaterial[] = [
     "name": "Sturdy Shell",
     "image": "/images/materials/common-ascension/sturdy-shell",
     "rarity": 3,
-    "category": "Enemy Drop",
+    "category": "Elite Drop",
     "description": "Sturdy Shell ascension material.",
     "combinable": true,
     "combineRatio": 3,
@@ -2916,6 +3873,17 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
+  },
+  {
+    "id": "sublimation-of-pure-sacred-dewdrop",
+    "name": "Sublimation of Pure Sacred Dewdrop",
+    "image": "/images/materials/weapon-ascension/sublimation-of-pure-sacred-dewdrop",
+    "rarity": 3,
+    "category": "Weapon Ascension",
+    "description": "Sublimation of Pure Sacred Dewdrop weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "spring-of-pure-sacred-dewdrop"
   },
   {
     "id": "tail-of-boreas",
@@ -3017,6 +3985,17 @@ export const seedMaterials: SeedMaterial[] = [
     "parentMaterialId": "guide-to-elegance"
   },
   {
+    "id": "teachings-of-elysium",
+    "name": "Teachings of Elysium",
+    "image": "/images/materials/talent-book/teachings-of-elysium",
+    "rarity": 2,
+    "category": "Talent Book",
+    "description": "Teachings of Elysium talent material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "guide-to-elysium"
+  },
+  {
     "id": "teachings-of-equity",
     "name": "Teachings of Equity",
     "image": "/images/materials/talent-book/teachings-of-equity",
@@ -3094,6 +4073,17 @@ export const seedMaterials: SeedMaterial[] = [
     "parentMaterialId": "guide-to-light"
   },
   {
+    "id": "teachings-of-moonlight",
+    "name": "Teachings of Moonlight",
+    "image": "/images/materials/talent-book/teachings-of-moonlight",
+    "rarity": 2,
+    "category": "Talent Book",
+    "description": "Teachings of Moonlight talent material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "guide-to-moonlight"
+  },
+  {
     "id": "teachings-of-order",
     "name": "Teachings of Order",
     "image": "/images/materials/talent-book/teachings-of-order",
@@ -3149,12 +4139,34 @@ export const seedMaterials: SeedMaterial[] = [
     "parentMaterialId": "guide-to-transience"
   },
   {
+    "id": "teachings-of-vagrancy",
+    "name": "Teachings of Vagrancy",
+    "image": "/images/materials/talent-book/teachings-of-vagrancy",
+    "rarity": 2,
+    "category": "Talent Book",
+    "description": "Teachings of Vagrancy talent material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "guide-to-vagrancy"
+  },
+  {
     "id": "tears-of-the-calamitous-god",
     "name": "Tears of the Calamitous God",
     "image": "/images/materials/talent-boss/tears-of-the-calamitous-god",
     "rarity": 5,
     "category": "Boss Material",
     "description": "Tears of the Calamitous God weekly boss talent material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null
+  },
+  {
+    "id": "the-cornerstone-of-stars-and-flames",
+    "name": "The Cornerstone of Stars and Flames",
+    "image": "/images/materials/boss-material/the-cornerstone-of-stars-and-flames",
+    "rarity": 4,
+    "category": "Boss Material",
+    "description": "The Cornerstone of Stars and Flames character ascension boss material.",
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -3180,6 +4192,17 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
+  },
+  {
+    "id": "tile-of-decarabian-s-tower",
+    "name": "Tile of Decarabian's Tower",
+    "image": "/images/materials/weapon-ascension/tile-of-decarabian-s-tower",
+    "rarity": 2,
+    "category": "Weapon Ascension",
+    "description": "Tile of Decarabian's Tower weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "debris-of-decarabian-s-city"
   },
   {
     "id": "tourbillon-device",
@@ -3230,7 +4253,7 @@ export const seedMaterials: SeedMaterial[] = [
     "name": "Treasured Flower",
     "image": "/images/materials/common-ascension/treasured-flower",
     "rarity": 3,
-    "category": "Enemy Drop",
+    "category": "Elite Drop",
     "description": "Treasured Flower ascension material.",
     "combinable": true,
     "combineRatio": 3,
@@ -3241,7 +4264,7 @@ export const seedMaterials: SeedMaterial[] = [
     "name": "Trimmed Red Silk",
     "image": "/images/materials/common-ascension/trimmed-red-silk",
     "rarity": 2,
-    "category": "Elite Drop",
+    "category": "Enemy Drop",
     "description": "Trimmed Red Silk ascension material.",
     "combinable": true,
     "combineRatio": 3,
@@ -3263,7 +4286,7 @@ export const seedMaterials: SeedMaterial[] = [
     "name": "Turbid Prism",
     "image": "/images/materials/common-ascension/turbid-prism",
     "rarity": 3,
-    "category": "Enemy Drop",
+    "category": "Elite Drop",
     "description": "Turbid Prism ascension material.",
     "combinable": true,
     "combineRatio": 3,
@@ -3285,7 +4308,7 @@ export const seedMaterials: SeedMaterial[] = [
     "name": "Tyrant's Fang",
     "image": "/images/materials/common-ascension/tyrant-s-fang",
     "rarity": 4,
-    "category": "Enemy Drop",
+    "category": "Elite Drop",
     "description": "Tyrant's Fang ascension material.",
     "combinable": false,
     "combineRatio": null,
@@ -3450,7 +4473,7 @@ export const seedMaterials: SeedMaterial[] = [
     "name": "Wanderer's Blooming Flower",
     "image": "/images/materials/common-ascension/wanderer-s-blooming-flower",
     "rarity": 4,
-    "category": "Enemy Drop",
+    "category": "Elite Drop",
     "description": "Wanderer's Blooming Flower ascension material.",
     "combinable": false,
     "combineRatio": null,
@@ -3510,6 +4533,17 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
+  },
+  {
+    "id": "wine-goblet-of-the-pristine-sea",
+    "name": "Wine Goblet of the Pristine Sea",
+    "image": "/images/materials/weapon-ascension/wine-goblet-of-the-pristine-sea",
+    "rarity": 3,
+    "category": "Weapon Ascension",
+    "description": "Wine Goblet of the Pristine Sea weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "silver-goblet-of-the-pristine-sea"
   },
   {
     "id": "winter-icelea",

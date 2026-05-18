@@ -49,6 +49,9 @@ export const materialCategories = [
   "Enemy Drop",
   "Local Specialty",
   "Talent Book",
+  "Weapon Ascension",
+  "Boss Material",
+  "Gem",
 ] as const;
 
 export const categorySchema = z.enum(materialCategories);
