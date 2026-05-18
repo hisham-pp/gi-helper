@@ -146,6 +146,39 @@ export const seedMaterials: SeedMaterial[] = [
     "parentMaterialId": null
   },
   {
+    "id": "ascended-sample-knight",
+    "name": "Ascended Sample: Knight",
+    "image": "/images/materials/talent-boss/ascended-sample-knight",
+    "rarity": 5,
+    "category": "Boss Material",
+    "description": "Ascended Sample: Knight weekly boss talent material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null
+  },
+  {
+    "id": "ascended-sample-queen",
+    "name": "Ascended Sample: Queen",
+    "image": "/images/materials/talent-boss/ascended-sample-queen",
+    "rarity": 5,
+    "category": "Boss Material",
+    "description": "Ascended Sample: Queen weekly boss talent material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null
+  },
+  {
+    "id": "ascended-sample-rook",
+    "name": "Ascended Sample: Rook",
+    "image": "/images/materials/talent-boss/ascended-sample-rook",
+    "rarity": 5,
+    "category": "Boss Material",
+    "description": "Ascended Sample: Rook weekly boss talent material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null
+  },
+  {
     "id": "ashen-heart",
     "name": "Ashen Heart",
     "image": "/images/materials/talent-boss/ashen-heart",
@@ -1015,6 +1048,17 @@ export const seedMaterials: SeedMaterial[] = [
     "parentMaterialId": "remnant-glow-of-scorching-might"
   },
   {
+    "id": "elixir-of-the-heretic",
+    "name": "Elixir of the Heretic",
+    "image": "/images/materials/talent-boss/elixir-of-the-heretic",
+    "rarity": 5,
+    "category": "Boss Material",
+    "description": "Elixir of the Heretic weekly boss talent material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null
+  },
+  {
     "id": "emperor-s-resolution",
     "name": "Emperor's Resolution",
     "image": "/images/materials/boss-material/emperor-s-resolution",
@@ -1043,6 +1087,39 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 4,
     "category": "Boss Material",
     "description": "Ensnaring Gaze character ascension boss material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null
+  },
+  {
+    "id": "eroded-horn",
+    "name": "Eroded Horn",
+    "image": "/images/materials/talent-boss/eroded-horn",
+    "rarity": 5,
+    "category": "Boss Material",
+    "description": "Eroded Horn weekly boss talent material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null
+  },
+  {
+    "id": "eroded-scale-feather",
+    "name": "Eroded Scale-Feather",
+    "image": "/images/materials/talent-boss/eroded-scale-feather",
+    "rarity": 5,
+    "category": "Boss Material",
+    "description": "Eroded Scale-Feather weekly boss talent material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null
+  },
+  {
+    "id": "eroded-sunfire",
+    "name": "Eroded Sunfire",
+    "image": "/images/materials/talent-boss/eroded-sunfire",
+    "rarity": 5,
+    "category": "Boss Material",
+    "description": "Eroded Sunfire weekly boss talent material.",
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -2082,6 +2159,17 @@ export const seedMaterials: SeedMaterial[] = [
     "parentMaterialId": "relic-from-guyun"
   },
   {
+    "id": "madman-s-restraint",
+    "name": "Madman's Restraint",
+    "image": "/images/materials/talent-boss/madman-s-restraint",
+    "rarity": 5,
+    "category": "Boss Material",
+    "description": "Madman's Restraint weekly boss talent material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null
+  },
+  {
     "id": "majestic-hooked-beak",
     "name": "Majestic Hooked Beak",
     "image": "/images/materials/boss-material/majestic-hooked-beak",
@@ -2157,6 +2245,17 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "mask-of-the-one-horned"
+  },
+  {
+    "id": "mask-of-the-virtuous-doctor",
+    "name": "Mask of the Virtuous Doctor",
+    "image": "/images/materials/talent-boss/mask-of-the-virtuous-doctor",
+    "rarity": 5,
+    "category": "Boss Material",
+    "description": "Mask of the Virtuous Doctor weekly boss talent material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null
   },
   {
     "id": "mask-of-the-wicked-lieutenant",
