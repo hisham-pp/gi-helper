@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowLeft, CheckSquare, Square, Target } from "lucide-react";
+import { ArrowLeft, CheckSquare, Square, Target, X } from "lucide-react";
 import { toast } from "sonner";
 
 import { createGoalsFromTemplatesAction } from "@/app/actions";
@@ -32,10 +32,14 @@ export type CharacterDetail = {
   templates: CharacterTemplate[];
 };
 
-export function CharacterGoalBuilder({ character }: { character: CharacterDetail }) {
+export function CharacterGoalBuilder({
+  character,
+}: {
+  character: CharacterDetail;
+}) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
-  const [selected, setSelected] = useState<Set<string>>(new Set());
+  const [selected, setSelected] = useState<Map<string, number>>(new Map());
 
   const groupedTemplates = useMemo(() => {
     const groups = new Map<string, CharacterTemplate[]>();
@@ -53,36 +57,68 @@ export function CharacterGoalBuilder({ character }: { character: CharacterDetail
     return [...groups.entries()].sort(([a], [b]) => a.localeCompare(b));
   }, [character.templates]);
 
-  function toggleTemplate(templateId: string) {
+  const selectedGoalCount = useMemo(
+    () => [...selected.values()].reduce((sum, count) => sum + count, 0),
+    [selected],
+  );
+
+  function isRepeatableTalentTemplate(template: CharacterTemplate) {
+    return (
+      template.category === "talent" && !template.name.startsWith("All Talents")
+    );
+  }
+
+  function toggleTemplate(template: CharacterTemplate) {
     setSelected((prev) => {
-      const next = new Set(prev);
-      if (next.has(templateId)) {
-        next.delete(templateId);
+      const next = new Map(prev);
+      const current = next.get(template.id) ?? 0;
+
+      if (isRepeatableTalentTemplate(template)) {
+        next.set(template.id, Math.min(current + 1, 3));
+        return next;
+      }
+
+      if (current > 0) {
+        next.delete(template.id);
       } else {
-        next.add(templateId);
+        next.set(template.id, 1);
       }
       return next;
     });
   }
 
+  function clearTemplate(templateId: string) {
+    setSelected((prev) => {
+      const next = new Map(prev);
+      next.delete(templateId);
+      return next;
+    });
+  }
+
   function selectAll() {
-    setSelected(new Set(character.templates.map((template) => template.id)));
+    setSelected(
+      new Map(character.templates.map((template) => [template.id, 1])),
+    );
   }
 
   function clearSelection() {
-    setSelected(new Set());
+    setSelected(new Map());
   }
 
   function handleCreateGoals() {
-    if (selected.size === 0) {
+    if (selectedGoalCount === 0) {
       toast.error("Select at least one template.");
       return;
     }
 
+    const templateIds = [...selected.entries()].flatMap(([templateId, count]) =>
+      Array.from({ length: count }, () => templateId),
+    );
+
     startTransition(async () => {
       const result = await createGoalsFromTemplatesAction({
         type: "character",
-        templateIds: [...selected],
+        templateIds,
       });
 
       if (!result.success) {
@@ -91,7 +127,7 @@ export function CharacterGoalBuilder({ character }: { character: CharacterDetail
       }
 
       toast.success(
-        `Created ${selected.size} goal${selected.size === 1 ? "" : "s"} from templates.`,
+        `Created ${selectedGoalCount} goal${selectedGoalCount === 1 ? "" : "s"} from templates.`,
       );
       router.push("/goals");
     });
@@ -136,13 +172,13 @@ export function CharacterGoalBuilder({ character }: { character: CharacterDetail
           </Button>
           <Button
             className="gap-2"
-            disabled={isPending || selected.size === 0}
+            disabled={isPending || selectedGoalCount === 0}
             onClick={handleCreateGoals}
           >
             <Target className="h-4 w-4" />
             {isPending
               ? "Creating..."
-              : `Create ${selected.size || ""} goal${selected.size === 1 ? "" : "s"}`}
+              : `Create ${selectedGoalCount || ""} goal${selectedGoalCount === 1 ? "" : "s"}`}
           </Button>
         </div>
       </div>
@@ -166,37 +202,59 @@ export function CharacterGoalBuilder({ character }: { character: CharacterDetail
                 </h2>
                 <div className="grid gap-2 sm:grid-cols-2">
                   {templates.map((template) => {
-                    const isSelected = selected.has(template.id);
+                    const selectedCount = selected.get(template.id) ?? 0;
+                    const isSelected = selectedCount > 0;
+                    const isRepeatable = isRepeatableTalentTemplate(template);
 
                     return (
-                      <button
+                      <div
                         key={template.id}
-                        type="button"
-                        disabled={isPending}
-                        onClick={() => toggleTemplate(template.id)}
                         className={cn(
-                          "flex w-full items-start gap-3 rounded-xl border p-3 text-left transition-colors",
+                          "flex w-full items-start gap-2 rounded-xl border p-3 transition-colors",
                           isSelected
                             ? "border-primary bg-primary-container/30"
                             : "border-outline-variant/50 hover:bg-surface-variant/40",
                         )}
                       >
-                        {isSelected ? (
-                          <CheckSquare className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
-                        ) : (
-                          <Square className="text-on-surface-variant mt-0.5 h-4 w-4 flex-shrink-0" />
-                        )}
-                        <span className="min-w-0">
-                          <span className="text-on-surface block text-sm font-medium">
-                            {template.name}
-                          </span>
-                          {template.description ? (
-                            <span className="text-on-surface-variant mt-0.5 block text-xs line-clamp-2">
-                              {template.description}
+                        <button
+                          type="button"
+                          disabled={isPending}
+                          onClick={() => toggleTemplate(template)}
+                          className="flex min-w-0 flex-1 items-start gap-3 text-left"
+                        >
+                          {isSelected ? (
+                            <CheckSquare className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
+                          ) : (
+                            <Square className="text-on-surface-variant mt-0.5 h-4 w-4 flex-shrink-0" />
+                          )}
+                          <span className="min-w-0">
+                            <span className="text-on-surface block text-sm font-medium">
+                              {template.name}
                             </span>
-                          ) : null}
-                        </span>
-                      </button>
+                            {template.description ? (
+                              <span className="text-on-surface-variant mt-0.5 line-clamp-2 block text-xs">
+                                {template.description}
+                              </span>
+                            ) : null}
+                          </span>
+                        </button>
+                        {isRepeatable && isSelected ? (
+                          <div className="flex flex-shrink-0 items-center gap-1">
+                            <span className="text-on-primary inline-flex h-6 min-w-7 items-center justify-center rounded-full bg-primary px-2 text-xs font-bold">
+                              x{selectedCount}
+                            </span>
+                            <button
+                              type="button"
+                              disabled={isPending}
+                              onClick={() => clearTemplate(template.id)}
+                              aria-label={`Clear ${template.name}`}
+                              className="text-on-surface-variant hover:text-on-surface inline-flex h-6 w-6 items-center justify-center rounded-full transition-colors hover:bg-surface-variant"
+                            >
+                              <X className="h-3.5 w-3.5" />
+                            </button>
+                          </div>
+                        ) : null}
+                      </div>
                     );
                   })}
                 </div>
