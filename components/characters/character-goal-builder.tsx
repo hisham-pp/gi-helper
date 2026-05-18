@@ -101,6 +101,20 @@ export function CharacterGoalBuilder({
     );
   }
 
+  function selectAllSingleTalents() {
+    setSelected((prev) => {
+      const next = new Map(prev);
+
+      for (const template of character.templates) {
+        if (isRepeatableTalentTemplate(template)) {
+          next.set(template.id, 3);
+        }
+      }
+
+      return next;
+    });
+  }
+
   function clearSelection() {
     setSelected(new Map());
   }
@@ -132,6 +146,10 @@ export function CharacterGoalBuilder({
       router.push("/goals");
     });
   }
+
+  const hasSingleTalentTemplates = character.templates.some(
+    isRepeatableTalentTemplate,
+  );
 
   return (
     <div className="space-y-8">
@@ -167,6 +185,15 @@ export function CharacterGoalBuilder({
           <Button variant="outlined" onClick={selectAll} disabled={isPending}>
             Select all
           </Button>
+          {hasSingleTalentTemplates ? (
+            <Button
+              variant="outlined"
+              onClick={selectAllSingleTalents}
+              disabled={isPending}
+            >
+              Select 3x single talents
+            </Button>
+          ) : null}
           <Button variant="text" onClick={clearSelection} disabled={isPending}>
             Clear
           </Button>
