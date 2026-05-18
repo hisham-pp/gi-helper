@@ -22,6 +22,7 @@ import {
   goalSchema,
   inventorySchema,
   materialSchema,
+  completeGoalSchema,
 } from "@/lib/validation";
 import { getDashboardData } from "@/lib/data";
 
@@ -67,6 +68,84 @@ export async function saveInventoryAction(
     return {
       success: false,
       error: "Unable to save inventory right now.",
+    };
+  }
+
+  return refreshDashboard();
+}
+
+export async function completeGoalAction(
+  input: unknown,
+): Promise<ActionResponse<DashboardData>> {
+  const user = await requireUser();
+  const parsed = completeGoalSchema.safeParse(input);
+
+  if (!parsed.success) {
+    return {
+      success: false,
+      error: "Invalid goal id.",
+    };
+  }
+
+  try {
+    const goal = await prisma.goal.findFirst({
+      where: {
+        id: parsed.data.goalId,
+        userId: user.id,
+      },
+      include: {
+        goalMaterials: true,
+      },
+    });
+
+    if (!goal) {
+      return {
+        success: false,
+        error: "Goal not found.",
+      };
+    }
+
+    if (goal.completed) {
+      return {
+        success: false,
+        error: "Goal is already completed.",
+      };
+    }
+
+    // Transaction to update inventory and mark goal as completed
+    await prisma.$transaction(async (tx) => {
+      for (const item of goal.goalMaterials) {
+        await tx.inventory.upsert({
+          where: {
+            userId_materialId: {
+              userId: user.id,
+              materialId: item.materialId,
+            },
+          },
+          update: {
+            quantity: {
+              increment: item.required,
+            },
+          },
+          create: {
+            userId: user.id,
+            materialId: item.materialId,
+            quantity: item.required,
+          },
+        });
+      }
+
+      await tx.goal.update({
+        where: { id: goal.id },
+        data: { completed: true },
+      });
+    });
+  } catch (error) {
+    console.error("Goal completion failed", error);
+
+    return {
+      success: false,
+      error: "Unable to complete that goal.",
     };
   }
 
