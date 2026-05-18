@@ -324,13 +324,13 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "broken-drive-shaft",
     "name": "Broken Drive Shaft",
-    "image": "/images/materials/boss-material/broken-drive-shaft",
-    "rarity": 4,
-    "category": "Boss Material",
-    "description": "Broken Drive Shaft character ascension boss material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
+    "image": "/images/materials/common-ascension/broken-drive-shaft",
+    "rarity": 1,
+    "category": "Enemy Drop",
+    "description": "Broken Drive Shaft ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "reinforced-drive-shaft"
   },
   {
     "id": "broken-goblet-of-the-pristine-sea",
@@ -1281,10 +1281,10 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "frost-etched-warrant",
     "name": "Frost-Etched Warrant",
-    "image": "/images/materials/boss-material/frost-etched-warrant",
-    "rarity": 4,
-    "category": "Boss Material",
-    "description": "Frost-Etched Warrant character ascension boss material.",
+    "image": "/images/materials/common-ascension/frost-etched-warrant",
+    "rarity": 3,
+    "category": "Enemy Drop",
+    "description": "Frost-Etched Warrant ascension material.",
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -1765,13 +1765,13 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "immaculate-warrant",
     "name": "Immaculate Warrant",
-    "image": "/images/materials/boss-material/immaculate-warrant",
-    "rarity": 4,
-    "category": "Boss Material",
-    "description": "Immaculate Warrant character ascension boss material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
+    "image": "/images/materials/common-ascension/immaculate-warrant",
+    "rarity": 2,
+    "category": "Enemy Drop",
+    "description": "Immaculate Warrant ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "frost-etched-warrant"
   },
   {
     "id": "inactivated-fungal-nucleus",
@@ -2964,10 +2964,10 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "precision-drive-shaft",
     "name": "Precision Drive Shaft",
-    "image": "/images/materials/boss-material/precision-drive-shaft",
-    "rarity": 4,
-    "category": "Boss Material",
-    "description": "Precision Drive Shaft character ascension boss material.",
+    "image": "/images/materials/common-ascension/precision-drive-shaft",
+    "rarity": 3,
+    "category": "Enemy Drop",
+    "description": "Precision Drive Shaft ascension material.",
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -3162,13 +3162,13 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "reinforced-drive-shaft",
     "name": "Reinforced Drive Shaft",
-    "image": "/images/materials/boss-material/reinforced-drive-shaft",
-    "rarity": 4,
-    "category": "Boss Material",
-    "description": "Reinforced Drive Shaft character ascension boss material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
+    "image": "/images/materials/common-ascension/reinforced-drive-shaft",
+    "rarity": 2,
+    "category": "Enemy Drop",
+    "description": "Reinforced Drive Shaft ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "precision-drive-shaft"
   },
   {
     "id": "relic-from-guyun",
@@ -3910,13 +3910,13 @@ export const seedMaterials: SeedMaterial[] = [
   {
     "id": "tattered-warrant",
     "name": "Tattered Warrant",
-    "image": "/images/materials/boss-material/tattered-warrant",
-    "rarity": 4,
-    "category": "Boss Material",
-    "description": "Tattered Warrant character ascension boss material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
+    "image": "/images/materials/common-ascension/tattered-warrant",
+    "rarity": 1,
+    "category": "Enemy Drop",
+    "description": "Tattered Warrant ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "immaculate-warrant"
   },
   {
     "id": "teachings-of-admonition",

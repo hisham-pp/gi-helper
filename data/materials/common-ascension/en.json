@@ -1277,6 +1277,48 @@
     ],
     "sources": ["Wasteland Wild Hunt"]
   },
+  "kuuvahki-mechanism": {
+    "characters": ["aino", "flins", "illuga", "jahoda"],
+    "items": [
+      {
+        "id": "broken-drive-shaft",
+        "name": "Broken Drive Shaft",
+        "rarity": 1
+      },
+      {
+        "id": "reinforced-drive-shaft",
+        "name": "Reinforced Drive Shaft",
+        "rarity": 2
+      },
+      {
+        "id": "precision-drive-shaft",
+        "name": "Precision Drive Shaft",
+        "rarity": 3
+      }
+    ],
+    "sources": ["Kuuvahki Experimental Design Bureau"]
+  },
+  "frostnight-herald": {
+    "characters": ["durin", "lauma", "nefer", "zibai"],
+    "items": [
+      {
+        "id": "tattered-warrant",
+        "name": "Tattered Warrant",
+        "rarity": 1
+      },
+      {
+        "id": "immaculate-warrant",
+        "name": "Immaculate Warrant",
+        "rarity": 2
+      },
+      {
+        "id": "frost-etched-warrant",
+        "name": "Frost-Etched Warrant",
+        "rarity": 3
+      }
+    ],
+    "sources": ["Frostnight Herra"]
+  },
   "domain-keeper": {
     "weapons": [
       "golden-frostbound-oath"
