@@ -3,7 +3,7 @@ import { buildDashboardData, evaluateGoal } from "@/lib/crafting";
 import type { DashboardData, MaterialNode } from "@/lib/types";
 
 export async function getDashboardData(userId: string): Promise<DashboardData> {
-  const [materials, goals] = await Promise.all([
+  const [materials, goals, characters] = await Promise.all([
     prisma.material.findMany({
       include: {
         inventories: {
@@ -29,28 +29,10 @@ export async function getDashboardData(userId: string): Promise<DashboardData> {
         createdAt: "desc",
       },
     }),
+    prisma.character.findMany(),
   ]);
 
-  // Fetch templates for goals that have them
-  const characterTemplateIds = goals
-    .filter((g) => g.templateType === "character" && g.templateId)
-    .map((g) => g.templateId as string);
-  const weaponTemplateIds = goals
-    .filter((g) => g.templateType === "weapon" && g.templateId)
-    .map((g) => g.templateId as string);
-
-  const [characterTemplates, weaponTemplates] = await Promise.all([
-    prisma.characterGoalTemplate.findMany({
-      where: { id: { in: characterTemplateIds } },
-      include: { character: true },
-    }),
-    prisma.weaponGoalTemplate.findMany({
-      where: { id: { in: weaponTemplateIds } },
-    }),
-  ]);
-
-  const charTemplateMap = new Map(characterTemplates.map((t) => [t.id, t]));
-  const weaponTemplateMap = new Map(weaponTemplates.map((t) => [t.id, t]));
+  const characterMap = new Map(characters.map((c) => [c.id, c.name]));
 
   const materialNodes: MaterialNode[] = materials.map((material) => ({
     id: material.id,
@@ -70,33 +52,17 @@ export async function getDashboardData(userId: string): Promise<DashboardData> {
   );
 
   const goalViews = goals.map((goal) => {
-    let characterId: string | undefined;
-    let characterName: string | undefined;
-    let category: string | undefined = "Custom";
-
-    if (goal.templateType === "character" && goal.templateId) {
-      const template = charTemplateMap.get(goal.templateId);
-      if (template) {
-        characterId = template.characterId;
-        characterName = template.character.name;
-        category = template.category;
-      }
-    } else if (goal.templateType === "weapon" && goal.templateId) {
-      const template = weaponTemplateMap.get(goal.templateId);
-      if (template) {
-        category = template.category;
-      }
-    }
-
     return evaluateGoal(
       {
         id: goal.id,
         name: goal.name,
         description: goal.description,
         completed: goal.completed,
-        characterId,
-        characterName,
-        category,
+        characterId: goal.characterId || undefined,
+        characterName: goal.characterId
+          ? characterMap.get(goal.characterId)
+          : undefined,
+        category: goal.category || "Custom",
         materials: goal.goalMaterials.map((item) => ({
           id: item.id,
           materialId: item.materialId,

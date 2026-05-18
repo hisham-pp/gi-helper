@@ -243,6 +243,8 @@ export async function createGoalsFromTemplatesAction(
             description: template.description,
             templateType: "character",
             templateId: template.id,
+            category: template.category,
+            characterId: template.characterId,
           },
         });
 
@@ -280,6 +282,7 @@ export async function createGoalsFromTemplatesAction(
             description: template.description,
             templateType: "weapon",
             templateId: template.id,
+            category: template.category,
           },
         });
 
