@@ -93,6 +93,7 @@ const materialCategorySchema = z.enum([
   "Enemy Drop",
   "Local Specialty",
   "Talent Book",
+  "Weapon Ascension",
   "Boss Material",
   "Gem",
 ]);
@@ -417,6 +418,25 @@ export function buildMaterialCatalog(): MaterialCatalog {
       "Talent Book",
       "talent-book",
       (name) => `${name} talent material.`,
+    );
+  }
+
+  const weaponAscension = readJsonWithSchema(
+    "data/materials/weapon-ascension/en.json",
+    z.record(
+      z.string(),
+      z
+        .object({ items: z.array(commonFamilyItemSchema).length(4) })
+        .passthrough(),
+    ),
+  );
+
+  for (const family of Object.values(weaponAscension)) {
+    createFamily(
+      family.items,
+      "Weapon Ascension",
+      "weapon-ascension",
+      (name) => `${name} weapon ascension material.`,
     );
   }
 

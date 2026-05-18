@@ -163,6 +163,21 @@
     "name": "Mark of the Binding Blessing",
     "source": "Holawaqa Ngoubou",
     "characters": ["mualani"]
+  },
+  "the-cornerstone-of-stars-and-flames": {
+    "name": "The Cornerstone of Stars and Flames",
+    "source": "Natlan quests",
+    "characters": ["traveler-pyro"]
+  },
+  "prismatic-severed-tail": {
+    "name": "Prismatic Severed Tail",
+    "source": "Radiant Moongecko",
+    "characters": ["varka"]
+  },
+  "plume-of-the-fallen-watcher": {
+    "name": "Plume of the Fallen Watcher",
+    "source": "Watcher: Fallen Vigil",
+    "characters": ["linnea"]
   }
 
 }

@@ -444,5 +444,71 @@
         "rarity": 4
       }
     ]
+  },
+  "moonlight": {
+    "characters": ["columbina", "lauma"],
+    "availability": ["Monday", "Thursday", "Sunday"],
+    "source": "lightless-capital",
+    "items": [
+      {
+        "id": "teachings-of-moonlight",
+        "name": "Teachings of Moonlight",
+        "rarity": 2
+      },
+      {
+        "id": "guide-to-moonlight",
+        "name": "Guide to Moonlight",
+        "rarity": 3
+      },
+      {
+        "id": "philosophies-of-moonlight",
+        "name": "Philosophies of Moonlight",
+        "rarity": 4
+      }
+    ]
+  },
+  "elysium": {
+    "characters": ["aino", "illuga", "nefer"],
+    "availability": ["Tuesday", "Friday", "Sunday"],
+    "source": "lightless-capital",
+    "items": [
+      {
+        "id": "teachings-of-elysium",
+        "name": "Teachings of Elysium",
+        "rarity": 2
+      },
+      {
+        "id": "guide-to-elysium",
+        "name": "Guide to Elysium",
+        "rarity": 3
+      },
+      {
+        "id": "philosophies-of-elysium",
+        "name": "Philosophies of Elysium",
+        "rarity": 4
+      }
+    ]
+  },
+  "vagrancy": {
+    "characters": ["flins", "jahoda", "linnea"],
+    "availability": ["Wednesday", "Saturday", "Sunday"],
+    "source": "lightless-capital",
+    "items": [
+      {
+        "id": "teachings-of-vagrancy",
+        "name": "Teachings of Vagrancy",
+        "rarity": 2
+      },
+      {
+        "id": "guide-to-vagrancy",
+        "name": "Guide to Vagrancy",
+        "rarity": 3
+      },
+      {
+        "id": "philosophies-of-vagrancy",
+        "name": "Philosophies of Vagrancy",
+        "rarity": 4
+      }
+    ]
   }
 }
