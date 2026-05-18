@@ -127,6 +127,7 @@ export function Select({
     <div className={cn("group relative w-full", className)}>
       <ReactSelect
         id={id}
+        inputId={id}
         instanceId={id}
         styles={customStyles}
         options={options}
@@ -140,6 +141,7 @@ export function Select({
       />
       {label && (
         <label
+          htmlFor={id}
           className={cn(
             "pointer-events-none absolute left-4 z-10 transition-all",
             selectedOption || isFocused
