@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "prisma migrate deploy && prisma db seed && next start",
+    "start": "prisma migrate deploy && prisma db seed && tsx scripts/repair-traveler-talent-goals.ts && next start",
     "lint": "eslint .",
     "format": "prettier --write .",
     "db:migrate": "prisma migrate dev",
@@ -18,6 +18,7 @@
     "seed:sync:materials": "tsx scripts/sync-material-seed.ts",
     "seed:sync:characters": "tsx scripts/sync-character-seed.ts",
     "seed:sync:character-goals": "tsx scripts/sync-character-goal-templates.ts",
+    "db:repair:traveler-goals": "tsx scripts/repair-traveler-talent-goals.ts",
     "prisma:generate": "prisma generate",
     "postinstall": "prisma generate"
   },

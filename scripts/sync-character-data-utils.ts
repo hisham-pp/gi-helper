@@ -77,10 +77,7 @@ const sourceCharacterSchema = z
     ascension_materials: z
       .record(
         z.string(),
-        z.array(
-          z
-            .record(z.string(), z.union([z.string(), z.number()])),
-        ),
+        z.array(z.record(z.string(), z.union([z.string(), z.number()]))),
       )
       .optional(),
   })
@@ -155,6 +152,15 @@ const characterDirectories = fs
   .filter((entry) => entry.isDirectory())
   .map((entry) => entry.name)
   .sort((left, right) => left.localeCompare(right));
+
+const travelerTalentBookFamilyIds: Record<string, string[]> = {
+  "traveler-anemo": ["freedom", "resistance", "ballad"],
+  "traveler-geo": ["prosperity", "diligence", "gold"],
+  "traveler-electro": ["transience", "elegance", "light"],
+  "traveler-dendro": ["admonition", "ingenuity", "praxis"],
+  "traveler-hydro": ["equity", "justice", "order"],
+  "traveler-pyro": ["contention", "kindling", "conflict"],
+};
 
 export function buildCharacters(): CharacterRecord[] {
   const characters = characterDirectories.map((folderName) => {
@@ -262,11 +268,18 @@ function buildTalentTemplates(
   folderName: string,
   characterName: string,
 ): CharacterGoalTemplateRecord[] {
-  const talentFamily = relationFamilyForCharacter(talentBooks, folderName);
+  const isTraveler = characterId.startsWith("traveler-");
+  const talentFamilies = isTraveler
+    ? talentBookFamiliesForTraveler(characterId)
+    : relationFamiliesForCharacter(talentBooks, folderName);
   const enemyFamily = relationFamilyForCharacter(commonAscension, folderName);
   const bossFamily = relationFamilyForCharacter(talentBoss, folderName);
 
-  const talentItems = talentFamily?.items;
+  const talentItemsByFamily = talentFamilies
+    .map((family) => family.items)
+    .filter((items): items is NonNullable<RelationFamily["items"]> =>
+      Boolean(items),
+    );
   const enemyItems = enemyFamily?.items;
   const bossItems =
     bossFamily?.items ??
@@ -274,98 +287,115 @@ function buildTalentTemplates(
       ? [{ id: bossFamily.id, name: bossFamily.name }]
       : undefined);
 
-  if (!talentItems || !enemyItems || !bossItems?.[0]) {
-    throw new Error(`Missing template source data for character: ${characterId}`);
+  if (!talentItemsByFamily.length || !enemyItems || !bossItems?.[0]) {
+    throw new Error(
+      `Missing template source data for character: ${characterId}`,
+    );
   }
 
-  const [teachings, guide, philosophies] = talentItems;
+  const talentMaterialFamilies = isTraveler
+    ? talentItemsByFamily
+    : [talentItemsByFamily[0]];
   const [enemyOne, enemyTwo, enemyThree] = enemyItems;
   const weeklyBoss = bossItems[0];
+
+  const talentMaterialsForTier = (familyItemIndex: number, quantity: number) =>
+    talentMaterialFamilies.map((items) => ({
+      id: items[familyItemIndex].id,
+      qty: quantity,
+    }));
+
+  const commonEnemyQuantity = (quantity: number) =>
+    isTraveler ? quantity * talentMaterialFamilies.length : quantity;
+
+  const crownQuantity = isTraveler ? talentMaterialFamilies.length : 1;
+  const talentGoalPrefix = isTraveler ? "All Talents" : "Talent";
+  const talentGoalDescription = isTraveler ? "all talents" : "a single talent";
 
   const levelCosts = [
     {
       from: 1,
       to: 2,
       materials: [
-        { id: teachings.id, qty: 3 },
-        { id: enemyOne.id, qty: 6 },
+        ...talentMaterialsForTier(0, 3),
+        { id: enemyOne.id, qty: commonEnemyQuantity(6) },
       ],
     },
     {
       from: 2,
       to: 3,
       materials: [
-        { id: guide.id, qty: 2 },
-        { id: enemyTwo.id, qty: 3 },
+        ...talentMaterialsForTier(1, 2),
+        { id: enemyTwo.id, qty: commonEnemyQuantity(3) },
       ],
     },
     {
       from: 3,
       to: 4,
       materials: [
-        { id: guide.id, qty: 4 },
-        { id: enemyTwo.id, qty: 4 },
+        ...talentMaterialsForTier(1, 4),
+        { id: enemyTwo.id, qty: commonEnemyQuantity(4) },
       ],
     },
     {
       from: 4,
       to: 5,
       materials: [
-        { id: guide.id, qty: 6 },
-        { id: enemyTwo.id, qty: 6 },
+        ...talentMaterialsForTier(1, 6),
+        { id: enemyTwo.id, qty: commonEnemyQuantity(6) },
       ],
     },
     {
       from: 5,
       to: 6,
       materials: [
-        { id: guide.id, qty: 9 },
-        { id: enemyTwo.id, qty: 9 },
+        ...talentMaterialsForTier(1, 9),
+        { id: enemyTwo.id, qty: commonEnemyQuantity(9) },
       ],
     },
     {
       from: 6,
       to: 7,
       materials: [
-        { id: philosophies.id, qty: 4 },
-        { id: enemyThree.id, qty: 4 },
-        { id: weeklyBoss.id, qty: 1 },
+        ...talentMaterialsForTier(2, 4),
+        { id: enemyThree.id, qty: commonEnemyQuantity(4) },
+        { id: weeklyBoss.id, qty: commonEnemyQuantity(1) },
       ],
     },
     {
       from: 7,
       to: 8,
       materials: [
-        { id: philosophies.id, qty: 6 },
-        { id: enemyThree.id, qty: 6 },
-        { id: weeklyBoss.id, qty: 1 },
+        ...talentMaterialsForTier(2, 6),
+        { id: enemyThree.id, qty: commonEnemyQuantity(6) },
+        { id: weeklyBoss.id, qty: commonEnemyQuantity(1) },
       ],
     },
     {
       from: 8,
       to: 9,
       materials: [
-        { id: philosophies.id, qty: 12 },
-        { id: enemyThree.id, qty: 9 },
-        { id: weeklyBoss.id, qty: 2 },
+        ...talentMaterialsForTier(2, 12),
+        { id: enemyThree.id, qty: commonEnemyQuantity(9) },
+        { id: weeklyBoss.id, qty: commonEnemyQuantity(2) },
       ],
     },
     {
       from: 9,
       to: 10,
       materials: [
-        { id: philosophies.id, qty: 16 },
-        { id: enemyThree.id, qty: 12 },
-        { id: weeklyBoss.id, qty: 2 },
-        { id: "crown-of-insight", qty: 1 },
+        ...talentMaterialsForTier(2, 16),
+        { id: enemyThree.id, qty: commonEnemyQuantity(12) },
+        { id: weeklyBoss.id, qty: commonEnemyQuantity(2) },
+        { id: "crown-of-insight", qty: crownQuantity },
       ],
     },
   ];
 
   const individualTemplates = levelCosts.map((tier, index) => ({
     characterId,
-    name: `Talent Level ${tier.from} -> ${tier.to}`,
-    description: `Materials to level a single talent from ${tier.from} to ${tier.to} for ${characterName}`,
+    name: `${talentGoalPrefix} Level ${tier.from} -> ${tier.to}`,
+    description: `Materials to level ${talentGoalDescription} from ${tier.from} to ${tier.to} for ${characterName}`,
     category: "talent",
     sortOrder: index + 1,
     materials: tier.materials.map((m) => ({
@@ -378,28 +408,37 @@ function buildTalentTemplates(
   const combinedTemplates = [
     {
       characterId,
-      name: "Single Talent Level 1 -> 6",
-      description: `Materials to level one talent from 1 to 6 for ${characterName}`,
+      name: `${talentGoalPrefix} Level 1 -> 6`,
+      description: `Materials to level ${talentGoalDescription} from 1 to 6 for ${characterName}`,
       category: "talent",
       sortOrder: levelCosts.length + 1,
       materials: [
-        { materialId: teachings.id, required: 3 },
-        { materialId: guide.id, required: 21 },
-        { materialId: enemyOne.id, required: 6 },
-        { materialId: enemyTwo.id, required: 22 },
+        ...talentMaterialFamilies.map((items) => ({
+          materialId: items[0].id,
+          required: 3,
+        })),
+        ...talentMaterialFamilies.map((items) => ({
+          materialId: items[1].id,
+          required: 21,
+        })),
+        { materialId: enemyOne.id, required: commonEnemyQuantity(6) },
+        { materialId: enemyTwo.id, required: commonEnemyQuantity(22) },
       ],
     },
     {
       characterId,
-      name: "Single Talent Level 6 -> 10",
-      description: `Materials to max one talent from level 6 to 10 for ${characterName}`,
+      name: `${talentGoalPrefix} Level 6 -> 10`,
+      description: `Materials to max ${talentGoalDescription} from level 6 to 10 for ${characterName}`,
       category: "talent",
       sortOrder: levelCosts.length + 2,
       materials: [
-        { materialId: philosophies.id, required: 38 },
-        { materialId: enemyThree.id, required: 31 },
-        { materialId: weeklyBoss.id, required: 6 },
-        { materialId: "crown-of-insight", required: 1 },
+        ...talentMaterialFamilies.map((items) => ({
+          materialId: items[2].id,
+          required: 38,
+        })),
+        { materialId: enemyThree.id, required: commonEnemyQuantity(31) },
+        { materialId: weeklyBoss.id, required: commonEnemyQuantity(6) },
+        { materialId: "crown-of-insight", required: crownQuantity },
       ],
     },
   ];
@@ -411,13 +450,38 @@ function relationFamilyForCharacter(
   families: Record<string, RelationFamily>,
   folderName: string,
 ): RelationFamily | undefined {
+  return relationFamiliesForCharacter(families, folderName)[0];
+}
+
+function relationFamiliesForCharacter(
+  families: Record<string, RelationFamily>,
+  folderName: string,
+): RelationFamily[] {
   const aliases = new Set([folderName, relationAlias(folderName)]);
 
-  return Object.values(families).find((family) =>
+  return Object.values(families).filter((family) =>
     (family.characters ?? []).some((character) =>
       aliases.has(relationAlias(character)),
     ),
   );
+}
+
+function talentBookFamiliesForTraveler(characterId: string): RelationFamily[] {
+  const familyIds = travelerTalentBookFamilyIds[characterId];
+
+  if (!familyIds) {
+    throw new Error(`Missing Traveler talent book mapping for: ${characterId}`);
+  }
+
+  return familyIds.map((familyId) => {
+    const family = talentBooks[familyId];
+
+    if (!family) {
+      throw new Error(`Missing Traveler talent book family: ${familyId}`);
+    }
+
+    return family;
+  });
 }
 
 function relationAlias(value: string): string {
@@ -489,7 +553,9 @@ function validateGeneratedCharacterGoalTemplates(
 
     const key = `${template.characterId}:${template.category}:${template.sortOrder}`;
     if (seenKeys.has(key)) {
-      throw new Error(`Duplicate character goal template key generated: ${key}`);
+      throw new Error(
+        `Duplicate character goal template key generated: ${key}`,
+      );
     }
     seenKeys.add(key);
 
