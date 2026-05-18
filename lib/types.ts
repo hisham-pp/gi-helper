@@ -31,6 +31,7 @@ export type GoalView = {
   progressPercent: number;
   totalRequired: number;
   totalAllocated: number;
+  completed: boolean;
   materials: GoalMaterialView[];
 };
 

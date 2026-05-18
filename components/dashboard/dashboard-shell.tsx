@@ -78,6 +78,7 @@ export function DashboardShell({
       ? tabFromUrl
       : "materials";
   const [activeTab, setActiveTab] = useState<DashboardTab>(initialTab);
+  const [inventoryTab, setInventoryTab] = useState<"needed" | "edit">("needed");
 
   useEffect(() => {
     if (view !== "tracker") {
@@ -352,94 +353,185 @@ export function DashboardShell({
       ) : null}
 
       {showInventory ? (
-        <section className="grid gap-8 lg:grid-cols-[1.5fr_0.9fr]">
-          <Card className="flex flex-col overflow-hidden" variant="outlined">
-            <div className="border-b border-outline-variant bg-surface p-6">
-              <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                <div>
+        <div className="space-y-6">
+          <nav className="flex items-center justify-center">
+            <div className="flex gap-2 rounded-full bg-surface-variant/50 p-1">
+              <Button
+                variant={inventoryTab === "needed" ? "filled" : "text"}
+                onClick={() => setInventoryTab("needed")}
+                className="h-10 px-6"
+              >
+                Shopping List
+              </Button>
+              <Button
+                variant={inventoryTab === "edit" ? "filled" : "text"}
+                onClick={() => setInventoryTab("edit")}
+                className="h-10 px-6"
+              >
+                Manage Inventory
+              </Button>
+            </div>
+          </nav>
+
+          {inventoryTab === "needed" ? (
+            <section className="grid gap-8 lg:grid-cols-[1.5fr_0.9fr]">
+              <Card
+                className="flex flex-col overflow-hidden"
+                variant="outlined"
+              >
+                <div className="border-b border-outline-variant bg-surface p-6">
                   <h2 className="text-on-surface text-xl font-bold">
-                    Inventory
+                    Shopping List
                   </h2>
                   <p className="text-on-surface-variant text-sm">
-                    Search, filter, and update owned quantities.
+                    Aggregated material requirements for all active goals.
                   </p>
                 </div>
-                <div className="flex flex-col gap-3 sm:flex-row">
-                  <TextField
-                    label="Search"
-                    variant="outlined"
-                    className="h-12"
-                    value={search}
-                    onChange={(event) => setSearch(event.target.value)}
-                  />
-                  <Select
-                    label="Category"
-                    variant="outlined"
-                    className="h-12"
-                    value={categoryFilter}
-                    onChange={setCategoryFilter}
-                    options={categories.map((category) => ({
-                      label: category,
-                      value: category,
-                    }))}
-                  />
+
+                <div className="p-4 sm:p-6">
+                  <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+                    {data.materialsStillNeeded.length === 0 ? (
+                      <EmptyState
+                        icon={<Sparkles className="h-8 w-8" />}
+                        title="Everything covered"
+                        description="You have enough materials for all your goals!"
+                      />
+                    ) : (
+                      data.materialsStillNeeded.map((item) => (
+                        <Card
+                          key={item.materialId}
+                          variant="outlined"
+                          className={cn(
+                            "flex items-center gap-4 p-4",
+                            rarityBorderMap[item.rarity] ?? rarityBorderMap[1],
+                          )}
+                        >
+                          <div
+                            className={cn(
+                              "relative h-12 w-12 flex-shrink-0 overflow-hidden rounded-xl bg-gradient-to-br",
+                              rarityColorMap[item.rarity] ?? rarityColorMap[1],
+                            )}
+                          >
+                            <Image
+                              src={`/api/material-image/${item.materialId}`}
+                              alt={item.materialName}
+                              fill
+                              className="object-contain p-1.5"
+                              sizes="48px"
+                            />
+                          </div>
+                          <div className="min-w-0 flex-1">
+                            <h3 className="text-on-surface truncate text-sm font-bold">
+                              {item.materialName}
+                            </h3>
+                            <p className="mt-0.5 text-lg font-black text-primary">
+                              {formatNumber(item.remaining)}
+                            </p>
+                          </div>
+                        </Card>
+                      ))
+                    )}
+                  </div>
                 </div>
-              </div>
-            </div>
+              </Card>
 
-            <div className="p-4 sm:p-6">
-              <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
-                {filteredMaterials.length === 0 ? (
-                  <EmptyState
-                    icon={<PackageSearch className="h-8 w-8" />}
-                    title="No materials"
-                    description="No materials match your search or filters."
-                  />
-                ) : (
-                  filteredMaterials.map((material) => (
-                    <MaterialCard
-                      key={material.id}
-                      material={material}
-                      quantity={inventoryDraft[material.id] ?? 0}
-                      onChange={(value) =>
-                        setInventoryDraft((prev) => ({
-                          ...prev,
-                          [material.id]: value,
-                        }))
-                      }
-                      onSave={() => handleInventorySave(material.id)}
-                    />
-                  ))
-                )}
+              <div className="space-y-8">
+                <SummaryList
+                  items={data.completedMaterials.slice(0, 8).map((item) => ({
+                    id: item.id,
+                    title: item.materialName,
+                    subtitle: `${formatNumber(item.required)} ready`,
+                    image: item.materialId,
+                  }))}
+                  title="Completed Materials"
+                  description="Goal requirements satisfied by current inventory."
+                  emptyText="Completed requirements will appear here."
+                />
               </div>
-            </div>
-          </Card>
+            </section>
+          ) : (
+            <section className="grid gap-8 lg:grid-cols-[1.5fr_0.9fr]">
+              <Card
+                className="flex flex-col overflow-hidden"
+                variant="outlined"
+              >
+                <div className="border-b border-outline-variant bg-surface p-6">
+                  <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                    <div>
+                      <h2 className="text-on-surface text-xl font-bold">
+                        Inventory
+                      </h2>
+                      <p className="text-on-surface-variant text-sm">
+                        Search, filter, and update owned quantities.
+                      </p>
+                    </div>
+                    <div className="flex flex-col gap-3 sm:flex-row">
+                      <TextField
+                        label="Search"
+                        variant="outlined"
+                        className="h-12"
+                        value={search}
+                        onChange={(event) => setSearch(event.target.value)}
+                      />
+                      <Select
+                        label="Category"
+                        variant="outlined"
+                        className="h-12"
+                        value={categoryFilter}
+                        onChange={setCategoryFilter}
+                        options={categories.map((category) => ({
+                          label: category,
+                          value: category,
+                        }))}
+                      />
+                    </div>
+                  </div>
+                </div>
 
-          <div className="space-y-8">
-            <SummaryList
-              items={data.materialsStillNeeded.slice(0, 8).map((item) => ({
-                id: item.id,
-                title: item.materialName,
-                subtitle: `${formatNumber(item.remaining)} still needed`,
-                image: item.materialId,
-              }))}
-              title="Materials Still Needed"
-              description="Highest deficits across all farming goals."
-              emptyText="No shortages. All goals are covered."
-            />
-            <SummaryList
-              items={data.completedMaterials.slice(0, 8).map((item) => ({
-                id: item.id,
-                title: item.materialName,
-                subtitle: `${formatNumber(item.required)} ready`,
-                image: item.materialId,
-              }))}
-              title="Completed Materials"
-              description="Goal requirements satisfied by current inventory."
-              emptyText="Completed requirements will appear here."
-            />
-          </div>
-        </section>
+                <div className="p-4 sm:p-6">
+                  <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+                    {filteredMaterials.length === 0 ? (
+                      <EmptyState
+                        icon={<PackageSearch className="h-8 w-8" />}
+                        title="No materials"
+                        description="No materials match your search or filters."
+                      />
+                    ) : (
+                      filteredMaterials.map((material) => (
+                        <MaterialCard
+                          key={material.id}
+                          material={material}
+                          quantity={inventoryDraft[material.id] ?? 0}
+                          onChange={(value) =>
+                            setInventoryDraft((prev) => ({
+                              ...prev,
+                              [material.id]: value,
+                            }))
+                          }
+                          onSave={() => handleInventorySave(material.id)}
+                        />
+                      ))
+                    )}
+                  </div>
+                </div>
+              </Card>
+
+              <div className="space-y-8">
+                <SummaryList
+                  items={data.materialsStillNeeded.slice(0, 8).map((item) => ({
+                    id: item.id,
+                    title: item.materialName,
+                    subtitle: `${formatNumber(item.remaining)} still needed`,
+                    image: item.materialId,
+                  }))}
+                  title="Shortages Overview"
+                  description="Highest deficits across all farming goals."
+                  emptyText="No shortages. All goals are covered."
+                />
+              </div>
+            </section>
+          )}
+        </div>
       ) : null}
 
       {showGoals ? (
@@ -488,9 +580,14 @@ export function DashboardShell({
                     <div className="space-y-4">
                       <div className="flex items-start justify-between gap-3">
                         <div className="min-w-0 flex-1">
-                          <h3 className="text-on-surface truncate font-bold">
-                            {goal.name}
-                          </h3>
+                          <div className="flex items-center gap-2">
+                            <h3 className="text-on-surface truncate font-bold">
+                              {goal.name}
+                            </h3>
+                            {goal.completed && (
+                              <Sparkles className="h-3.5 w-3.5 text-primary" />
+                            )}
+                          </div>
                           <p className="text-on-surface-variant mt-1 line-clamp-2 text-sm">
                             {goal.description ?? "Custom farming plan"}
                           </p>
@@ -504,11 +601,11 @@ export function DashboardShell({
                             Progress
                           </span>
                           <span className="font-bold text-primary">
-                            {goal.progressPercent}%
+                            {goal.completed ? 100 : goal.progressPercent}%
                           </span>
                         </div>
                         <Progress
-                          value={goal.progressPercent}
+                          value={goal.completed ? 100 : goal.progressPercent}
                           className="h-2"
                         />
                       </div>

@@ -4,10 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useTransition, useState } from "react";
-import { ArrowLeft, Trash2, Target } from "lucide-react";
+import { ArrowLeft, Trash2, Target, CheckCircle2 } from "lucide-react";
 import { toast } from "sonner";
 
 import {
+  completeGoalAction,
   deleteGoalAction,
   deleteGoalMaterialAction,
   saveGoalMaterialAction,
@@ -60,6 +61,20 @@ export function GoalEdit({ goal, materials }: GoalEditProps) {
     });
   }
 
+  function handleCompleteGoal() {
+    startTransition(async () => {
+      const result = await completeGoalAction({ goalId: goal.id });
+
+      if (!result.success || !result.data) {
+        toast.error(result.error ?? "Unable to complete goal.");
+        return;
+      }
+
+      toast.success("Goal completed! Materials added to inventory.");
+      router.refresh();
+    });
+  }
+
   function handleDeleteGoal() {
     startTransition(async () => {
       const result = await deleteGoalAction({ goalId: goal.id });
@@ -97,22 +112,43 @@ export function GoalEdit({ goal, materials }: GoalEditProps) {
           </Button>
         </Link>
         <div className="flex-1">
-          <h1 className="text-on-surface text-3xl font-bold tracking-tight">
-            {goal.name}
-          </h1>
+          <div className="flex items-center gap-3">
+            <h1 className="text-on-surface text-3xl font-bold tracking-tight">
+              {goal.name}
+            </h1>
+            {goal.completed && (
+              <span className="flex items-center gap-1 rounded-full bg-primary/10 px-3 py-1 text-xs font-bold text-primary">
+                <CheckCircle2 className="h-3.5 w-3.5" />
+                Completed
+              </span>
+            )}
+          </div>
           <p className="text-on-surface-variant mt-1">
             {goal.description ?? "Custom farming plan."}
           </p>
         </div>
-        <Button
-          variant="text"
-          className="text-error hover:bg-error/5"
-          onClick={handleDeleteGoal}
-          disabled={isPending}
-        >
-          <Trash2 className="mr-2 h-4 w-4" />
-          Delete
-        </Button>
+        <div className="flex items-center gap-2">
+          {!goal.completed && (
+            <Button
+              variant="tonal"
+              className="bg-primary/10 text-primary hover:bg-primary/20"
+              onClick={handleCompleteGoal}
+              disabled={isPending || goal.materials.length === 0}
+            >
+              <CheckCircle2 className="mr-2 h-4 w-4" />
+              Complete Goal
+            </Button>
+          )}
+          <Button
+            variant="text"
+            className="text-error hover:bg-error/5"
+            onClick={handleDeleteGoal}
+            disabled={isPending}
+          >
+            <Trash2 className="mr-2 h-4 w-4" />
+            Delete
+          </Button>
+        </div>
       </div>
 
       <section className="grid gap-8 lg:grid-cols-[0.95fr_1.4fr]">
@@ -130,6 +166,7 @@ export function GoalEdit({ goal, materials }: GoalEditProps) {
                 label: material.name,
                 value: material.id,
               }))}
+              isDisabled={goal.completed}
             />
             <TextField
               label="Required Quantity"
@@ -141,14 +178,19 @@ export function GoalEdit({ goal, materials }: GoalEditProps) {
                 setGoalMaterialRequired(Number(event.target.value))
               }
               helperText="How many of this material do you need?"
+              disabled={goal.completed}
             />
             <Button
               className="w-full"
               variant="tonal"
               onClick={handleSaveGoalMaterial}
-              disabled={isPending}
+              disabled={isPending || goal.completed}
             >
-              {isPending ? "Adding..." : "Add Requirement"}
+              {isPending
+                ? "Adding..."
+                : goal.completed
+                  ? "Goal Completed"
+                  : "Add Requirement"}
             </Button>
           </div>
         </Panel>
@@ -160,10 +202,13 @@ export function GoalEdit({ goal, materials }: GoalEditProps) {
                 Overall Progress
               </span>
               <span className="font-bold text-primary">
-                {goal.progressPercent}%
+                {goal.completed ? 100 : goal.progressPercent}%
               </span>
             </div>
-            <Progress value={goal.progressPercent} className="h-2" />
+            <Progress
+              value={goal.completed ? 100 : goal.progressPercent}
+              className="h-2"
+            />
           </div>
 
           <Card variant="outlined" className="p-6">
@@ -209,24 +254,29 @@ export function GoalEdit({ goal, materials }: GoalEditProps) {
                             {item.materialName}
                           </p>
                           <p className="text-on-surface-variant text-xs">
-                            {formatNumber(item.allocated)} /{" "}
-                            {formatNumber(item.required)} allocated
+                            {goal.completed
+                              ? `${formatNumber(item.required)} / ${formatNumber(item.required)} collected`
+                              : `${formatNumber(item.allocated)} / ${formatNumber(item.required)} allocated`}
                           </p>
                         </div>
                       </div>
-                      <Button
-                        variant="text"
-                        className="text-on-surface-variant h-8 w-8 p-0 hover:bg-error/5 hover:text-error"
-                        onClick={() => handleDeleteGoalMaterial(item.id)}
-                        disabled={isPending}
-                      >
-                        <Trash2 className="h-4 w-4" />
-                      </Button>
+                      {!goal.completed && (
+                        <Button
+                          variant="text"
+                          className="text-on-surface-variant h-8 w-8 p-0 hover:bg-error/5 hover:text-error"
+                          onClick={() => handleDeleteGoalMaterial(item.id)}
+                          disabled={isPending}
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </Button>
+                      )}
                     </div>
                     <div className="mt-4">
                       <Progress
                         value={
-                          (item.allocated / Math.max(item.required, 1)) * 100
+                          goal.completed
+                            ? 100
+                            : (item.allocated / Math.max(item.required, 1)) * 100
                         }
                         className="h-1.5"
                       />
