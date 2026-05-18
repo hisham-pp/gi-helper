@@ -32,6 +32,18 @@ export type CharacterDetail = {
   templates: CharacterTemplate[];
 };
 
+type TemplateGroup = {
+  key: string;
+  title: string;
+  templates: CharacterTemplate[];
+};
+
+function isRepeatableTalentTemplate(template: CharacterTemplate) {
+  return (
+    template.category === "talent" && !template.name.startsWith("All Talents")
+  );
+}
+
 export function CharacterGoalBuilder({
   character,
 }: {
@@ -41,7 +53,7 @@ export function CharacterGoalBuilder({
   const [isPending, startTransition] = useTransition();
   const [selected, setSelected] = useState<Map<string, number>>(new Map());
 
-  const groupedTemplates = useMemo(() => {
+  const groupedTemplates = useMemo<TemplateGroup[]>(() => {
     const groups = new Map<string, CharacterTemplate[]>();
 
     for (const template of character.templates) {
@@ -54,7 +66,45 @@ export function CharacterGoalBuilder({
       list.sort((a, b) => a.sortOrder - b.sortOrder);
     }
 
-    return [...groups.entries()].sort(([a], [b]) => a.localeCompare(b));
+    return [...groups.entries()]
+      .sort(([a], [b]) => a.localeCompare(b))
+      .flatMap(([category, templates]) => {
+        if (category !== "talent") {
+          return [
+            {
+              key: category,
+              title: category,
+              templates,
+            },
+          ];
+        }
+
+        const singleTalentTemplates = templates.filter((template) =>
+          isRepeatableTalentTemplate(template),
+        );
+        const multipleTalentTemplates = templates.filter(
+          (template) => !isRepeatableTalentTemplate(template),
+        );
+        const talentGroups: TemplateGroup[] = [];
+
+        if (singleTalentTemplates.length > 0) {
+          talentGroups.push({
+            key: "talent-single",
+            title: "Single Talent",
+            templates: singleTalentTemplates,
+          });
+        }
+
+        if (multipleTalentTemplates.length > 0) {
+          talentGroups.push({
+            key: "talent-multiple",
+            title: "All Talents",
+            templates: multipleTalentTemplates,
+          });
+        }
+
+        return talentGroups;
+      });
   }, [character.templates]);
 
   const selectedGoalCount = useMemo(
@@ -62,19 +112,17 @@ export function CharacterGoalBuilder({
     [selected],
   );
 
-  function isRepeatableTalentTemplate(template: CharacterTemplate) {
-    return (
-      template.category === "talent" && !template.name.startsWith("All Talents")
-    );
-  }
-
   function toggleTemplate(template: CharacterTemplate) {
     setSelected((prev) => {
       const next = new Map(prev);
       const current = next.get(template.id) ?? 0;
 
       if (isRepeatableTalentTemplate(template)) {
-        next.set(template.id, Math.min(current + 1, 3));
+        if (current >= 3) {
+          next.delete(template.id);
+        } else {
+          next.set(template.id, current + 1);
+        }
         return next;
       }
 
@@ -222,13 +270,13 @@ export function CharacterGoalBuilder({
           </p>
         ) : (
           <div className="space-y-6">
-            {groupedTemplates.map(([category, templates]) => (
-              <section key={category}>
+            {groupedTemplates.map((group) => (
+              <section key={group.key}>
                 <h2 className="text-on-surface-variant mb-3 text-xs font-bold uppercase tracking-wider">
-                  {category}
+                  {group.title}
                 </h2>
                 <div className="grid gap-2 sm:grid-cols-2">
-                  {templates.map((template) => {
+                  {group.templates.map((template) => {
                     const selectedCount = selected.get(template.id) ?? 0;
                     const isSelected = selectedCount > 0;
                     const isRepeatable = isRepeatableTalentTemplate(template);
