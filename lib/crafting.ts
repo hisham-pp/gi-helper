@@ -207,6 +207,9 @@ export function evaluateGoal(
     name: string;
     description: string | null;
     completed: boolean;
+    characterId?: string;
+    characterName?: string;
+    category?: string;
     materials: Array<{ id: string; materialId: string; required: number }>;
   },
   materials: MaterialNode[],
@@ -259,6 +262,9 @@ export function evaluateGoal(
     name: goal.name,
     description: goal.description,
     completed: goal.completed,
+    characterId: goal.characterId,
+    characterName: goal.characterName,
+    category: goal.category,
     progressPercent:
       totalRequired === 0
         ? 0

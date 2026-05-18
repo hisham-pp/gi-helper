@@ -32,6 +32,9 @@ export type GoalView = {
   totalRequired: number;
   totalAllocated: number;
   completed: boolean;
+  characterId?: string;
+  characterName?: string;
+  category?: string;
   materials: GoalMaterialView[];
 };
 
