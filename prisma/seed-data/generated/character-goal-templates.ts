@@ -323,8 +323,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "aino",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Aino",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Aino",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -348,8 +348,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "aino",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Aino",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Aino",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -692,8 +692,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "albedo",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Albedo",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Albedo",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -717,8 +717,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "albedo",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Albedo",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Albedo",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -1061,8 +1061,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "alhaitham",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Alhaitham",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Alhaitham",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -1086,8 +1086,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "alhaitham",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Alhaitham",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Alhaitham",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -1430,8 +1430,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "aloy",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Aloy",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Aloy",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -1455,8 +1455,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "aloy",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Aloy",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Aloy",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -1799,8 +1799,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "amber",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Amber",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Amber",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -1824,8 +1824,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "amber",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Amber",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Amber",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -2168,8 +2168,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "arataki-itto",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Arataki Itto",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Arataki Itto",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -2193,8 +2193,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "arataki-itto",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Arataki Itto",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Arataki Itto",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -2537,8 +2537,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "arlecchino",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Arlecchino",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Arlecchino",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -2562,8 +2562,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "arlecchino",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Arlecchino",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Arlecchino",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -2906,8 +2906,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "ayaka",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Kamisato Ayaka",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Kamisato Ayaka",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -2931,8 +2931,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "ayaka",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Kamisato Ayaka",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Kamisato Ayaka",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -3275,8 +3275,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "ayato",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Kamisato Ayato",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Kamisato Ayato",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -3300,8 +3300,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "ayato",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Kamisato Ayato",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Kamisato Ayato",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -3644,8 +3644,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "baizhu",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Baizhu",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Baizhu",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -3669,8 +3669,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "baizhu",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Baizhu",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Baizhu",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -4013,8 +4013,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "barbara",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Barbara",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Barbara",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -4038,8 +4038,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "barbara",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Barbara",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Barbara",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -4382,8 +4382,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "beidou",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Beidou",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Beidou",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -4407,8 +4407,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "beidou",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Beidou",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Beidou",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -4751,8 +4751,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "bennett",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Bennett",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Bennett",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -4776,8 +4776,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "bennett",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Bennett",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Bennett",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -5120,8 +5120,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "candace",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Candace",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Candace",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -5145,8 +5145,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "candace",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Candace",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Candace",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -5489,8 +5489,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "charlotte",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Charlotte",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Charlotte",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -5514,8 +5514,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "charlotte",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Charlotte",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Charlotte",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -5858,8 +5858,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "chasca",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Chasca",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Chasca",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -5883,8 +5883,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "chasca",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Chasca",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Chasca",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -6227,8 +6227,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "chevreuse",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Chevreuse",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Chevreuse",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -6252,8 +6252,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "chevreuse",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Chevreuse",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Chevreuse",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -6596,8 +6596,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "chiori",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Chiori",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Chiori",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -6621,8 +6621,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "chiori",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Chiori",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Chiori",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -6965,8 +6965,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "chongyun",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Chongyun",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Chongyun",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -6990,8 +6990,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "chongyun",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Chongyun",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Chongyun",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -7334,8 +7334,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "citlali",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Citlali",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Citlali",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -7359,8 +7359,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "citlali",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Citlali",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Citlali",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -7703,8 +7703,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "clorinde",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Clorinde",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Clorinde",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -7728,8 +7728,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "clorinde",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Clorinde",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Clorinde",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -8072,8 +8072,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "collei",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Collei",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Collei",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -8097,8 +8097,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "collei",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Collei",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Collei",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -8441,8 +8441,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "columbina",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Columbina",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Columbina",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -8466,8 +8466,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "columbina",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Columbina",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Columbina",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -8810,8 +8810,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "cyno",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Cyno",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Cyno",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -8835,8 +8835,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "cyno",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Cyno",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Cyno",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -9179,8 +9179,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "dahlia",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Dahlia",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Dahlia",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -9204,8 +9204,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "dahlia",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Dahlia",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Dahlia",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -9548,8 +9548,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "dehya",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Dehya",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Dehya",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -9573,8 +9573,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "dehya",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Dehya",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Dehya",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -9917,8 +9917,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "diluc",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Diluc",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Diluc",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -9942,8 +9942,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "diluc",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Diluc",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Diluc",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -10286,8 +10286,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "diona",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Diona",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Diona",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -10311,8 +10311,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "diona",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Diona",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Diona",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -10655,8 +10655,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "dori",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Dori",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Dori",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -10680,8 +10680,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "dori",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Dori",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Dori",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -11024,8 +11024,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "durin",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Durin",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Durin",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -11049,8 +11049,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "durin",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Durin",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Durin",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -11397,8 +11397,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "emilie",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Emilie",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Emilie",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -11422,8 +11422,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "emilie",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Emilie",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Emilie",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -11766,8 +11766,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "escoffier",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Escoffier",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Escoffier",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -11791,8 +11791,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "escoffier",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Escoffier",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Escoffier",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -12135,8 +12135,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "eula",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Eula",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Eula",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -12160,8 +12160,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "eula",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Eula",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Eula",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -12504,8 +12504,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "faruzan",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Faruzan",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Faruzan",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -12529,8 +12529,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "faruzan",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Faruzan",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Faruzan",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -12873,8 +12873,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "fischl",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Fischl",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Fischl",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -12898,8 +12898,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "fischl",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Fischl",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Fischl",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -13242,8 +13242,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "flins",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Flins",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Flins",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -13267,8 +13267,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "flins",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Flins",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Flins",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -13611,8 +13611,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "freminet",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Freminet",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Freminet",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -13636,8 +13636,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "freminet",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Freminet",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Freminet",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -13980,8 +13980,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "furina",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Furina",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Furina",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -14005,8 +14005,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "furina",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Furina",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Furina",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -14349,8 +14349,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "gaming",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Gaming",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Gaming",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -14374,8 +14374,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "gaming",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Gaming",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Gaming",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -14718,8 +14718,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "ganyu",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Ganyu",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Ganyu",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -14743,8 +14743,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "ganyu",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Ganyu",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Ganyu",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -15087,8 +15087,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "gorou",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Gorou",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Gorou",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -15112,8 +15112,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "gorou",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Gorou",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Gorou",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -15456,8 +15456,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "hu-tao",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Hu Tao",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Hu Tao",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -15481,8 +15481,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "hu-tao",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Hu Tao",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Hu Tao",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -15825,8 +15825,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "iansan",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Iansan",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Iansan",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -15850,8 +15850,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "iansan",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Iansan",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Iansan",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -16194,8 +16194,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "ifa",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Ifa",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Ifa",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -16219,8 +16219,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "ifa",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Ifa",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Ifa",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -16563,8 +16563,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "illuga",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Illuga",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Illuga",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -16588,8 +16588,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "illuga",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Illuga",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Illuga",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -16932,8 +16932,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "ineffa",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Ineffa",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Ineffa",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -16957,8 +16957,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "ineffa",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Ineffa",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Ineffa",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -17301,8 +17301,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "jahoda",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Jahoda",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Jahoda",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -17326,8 +17326,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "jahoda",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Jahoda",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Jahoda",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -17670,8 +17670,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "jean",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Jean",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Jean",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -17695,8 +17695,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "jean",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Jean",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Jean",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -18039,8 +18039,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kachina",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Kachina",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Kachina",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -18064,8 +18064,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kachina",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Kachina",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Kachina",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -18408,8 +18408,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kaeya",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Kaeya",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Kaeya",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -18433,8 +18433,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kaeya",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Kaeya",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Kaeya",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -18777,8 +18777,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kaveh",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Kaveh",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Kaveh",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -18802,8 +18802,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kaveh",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Kaveh",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Kaveh",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -19146,8 +19146,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kazuha",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Kaedehara Kazuha",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Kaedehara Kazuha",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -19171,8 +19171,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kazuha",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Kaedehara Kazuha",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Kaedehara Kazuha",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -19515,8 +19515,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "keqing",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Keqing",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Keqing",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -19540,8 +19540,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "keqing",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Keqing",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Keqing",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -19884,8 +19884,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kinich",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Kinich",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Kinich",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -19909,8 +19909,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kinich",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Kinich",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Kinich",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -20253,8 +20253,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kirara",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Kirara",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Kirara",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -20278,8 +20278,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kirara",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Kirara",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Kirara",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -20622,8 +20622,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "klee",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Klee",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Klee",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -20647,8 +20647,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "klee",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Klee",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Klee",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -20991,8 +20991,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kokomi",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Sangonomiya Kokomi",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Sangonomiya Kokomi",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -21016,8 +21016,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kokomi",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Sangonomiya Kokomi",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Sangonomiya Kokomi",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -21360,8 +21360,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kuki-shinobu",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Kuki Shinobu",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Kuki Shinobu",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -21385,8 +21385,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "kuki-shinobu",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Kuki Shinobu",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Kuki Shinobu",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -21729,8 +21729,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "lan-yan",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Lan Yan",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Lan Yan",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -21754,8 +21754,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "lan-yan",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Lan Yan",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Lan Yan",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -22098,8 +22098,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "lauma",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Lauma",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Lauma",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -22123,8 +22123,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "lauma",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Lauma",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Lauma",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -22467,8 +22467,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "layla",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Layla",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Layla",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -22492,8 +22492,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "layla",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Layla",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Layla",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -22836,8 +22836,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "linnea",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Linnea",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Linnea",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -22861,8 +22861,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "linnea",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Linnea",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Linnea",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -23205,8 +23205,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "lisa",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Lisa",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Lisa",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -23230,8 +23230,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "lisa",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Lisa",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Lisa",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -23574,8 +23574,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "lynette",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Lynette",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Lynette",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -23599,8 +23599,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "lynette",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Lynette",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Lynette",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -23943,8 +23943,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "lyney",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Lyney",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Lyney",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -23968,8 +23968,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "lyney",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Lyney",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Lyney",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -24312,8 +24312,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "mavuika",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Mavuika",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Mavuika",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -24337,8 +24337,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "mavuika",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Mavuika",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Mavuika",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -24681,8 +24681,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "mika",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Mika",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Mika",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -24706,8 +24706,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "mika",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Mika",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Mika",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -25050,8 +25050,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "mona",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Mona",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Mona",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -25075,8 +25075,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "mona",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Mona",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Mona",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -25419,8 +25419,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "mualani",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Mualani",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Mualani",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -25444,8 +25444,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "mualani",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Mualani",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Mualani",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -25788,8 +25788,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "nahida",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Nahida",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Nahida",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -25813,8 +25813,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "nahida",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Nahida",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Nahida",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -26157,8 +26157,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "navia",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Navia",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Navia",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -26182,8 +26182,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "navia",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Navia",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Navia",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -26526,8 +26526,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "nefer",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Nefer",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Nefer",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -26551,8 +26551,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "nefer",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Nefer",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Nefer",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -26895,8 +26895,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "neuvillette",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Neuvillette",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Neuvillette",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -26920,8 +26920,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "neuvillette",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Neuvillette",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Neuvillette",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -27264,8 +27264,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "nilou",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Nilou",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Nilou",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -27289,8 +27289,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "nilou",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Nilou",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Nilou",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -27633,8 +27633,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "ningguang",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Ningguang",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Ningguang",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -27658,8 +27658,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "ningguang",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Ningguang",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Ningguang",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -28002,8 +28002,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "noelle",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Noelle",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Noelle",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -28027,8 +28027,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "noelle",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Noelle",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Noelle",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -28371,8 +28371,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "ororon",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Ororon",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Ororon",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -28396,8 +28396,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "ororon",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Ororon",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Ororon",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -28740,8 +28740,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "qiqi",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Qiqi",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Qiqi",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -28765,8 +28765,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "qiqi",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Qiqi",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Qiqi",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -29109,8 +29109,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "raiden",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Raiden Shogun",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Raiden Shogun",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -29134,8 +29134,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "raiden",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Raiden Shogun",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Raiden Shogun",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -29478,8 +29478,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "razor",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Razor",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Razor",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -29503,8 +29503,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "razor",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Razor",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Razor",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -29847,8 +29847,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "rosaria",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Rosaria",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Rosaria",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -29872,8 +29872,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "rosaria",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Rosaria",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Rosaria",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -30216,8 +30216,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "sara",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Kujou Sara",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Kujou Sara",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -30241,8 +30241,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "sara",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Kujou Sara",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Kujou Sara",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -30585,8 +30585,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "sayu",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Sayu",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Sayu",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -30610,8 +30610,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "sayu",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Sayu",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Sayu",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -30954,8 +30954,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "sethos",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Sethos",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Sethos",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -30979,8 +30979,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "sethos",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Sethos",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Sethos",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -31323,8 +31323,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "shenhe",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Shenhe",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Shenhe",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -31348,8 +31348,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "shenhe",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Shenhe",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Shenhe",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -31692,8 +31692,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "shikanoin-heizou",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Shikanoin Heizou",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Shikanoin Heizou",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -31717,8 +31717,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "shikanoin-heizou",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Shikanoin Heizou",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Shikanoin Heizou",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -32061,8 +32061,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "sigewinne",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Sigewinne",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Sigewinne",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -32086,8 +32086,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "sigewinne",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Sigewinne",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Sigewinne",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -32430,8 +32430,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "skirk",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Skirk",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Skirk",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -32455,8 +32455,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "skirk",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Skirk",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Skirk",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -32799,8 +32799,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "sucrose",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Sucrose",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Sucrose",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -32824,8 +32824,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "sucrose",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Sucrose",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Sucrose",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -33168,8 +33168,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "tartaglia",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Tartaglia",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Tartaglia",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -33193,8 +33193,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "tartaglia",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Tartaglia",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Tartaglia",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -33537,8 +33537,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "thoma",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Thoma",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Thoma",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -33562,8 +33562,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "thoma",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Thoma",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Thoma",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -33906,8 +33906,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "tighnari",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Tighnari",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Tighnari",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -33931,8 +33931,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "tighnari",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Tighnari",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Tighnari",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -34082,8 +34082,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "traveler-anemo",
-    "name": "Talent Level 1 -> 2",
-    "description": "Materials to level a single talent from 1 to 2 for Traveler",
+    "name": "All Talents Level 1 -> 2",
+    "description": "Materials to level all talents from 1 to 2 for Traveler",
     "category": "talent",
     "sortOrder": 1,
     "materials": [
@@ -34092,15 +34092,23 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 3
       },
       {
+        "materialId": "teachings-of-resistance",
+        "required": 3
+      },
+      {
+        "materialId": "teachings-of-ballad",
+        "required": 3
+      },
+      {
         "materialId": "damaged-mask",
-        "required": 6
+        "required": 18
       }
     ]
   },
   {
     "characterId": "traveler-anemo",
-    "name": "Talent Level 2 -> 3",
-    "description": "Materials to level a single talent from 2 to 3 for Traveler",
+    "name": "All Talents Level 2 -> 3",
+    "description": "Materials to level all talents from 2 to 3 for Traveler",
     "category": "talent",
     "sortOrder": 2,
     "materials": [
@@ -34109,15 +34117,23 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 2
       },
       {
+        "materialId": "guide-to-resistance",
+        "required": 2
+      },
+      {
+        "materialId": "guide-to-ballad",
+        "required": 2
+      },
+      {
         "materialId": "stained-mask",
-        "required": 3
+        "required": 9
       }
     ]
   },
   {
     "characterId": "traveler-anemo",
-    "name": "Talent Level 3 -> 4",
-    "description": "Materials to level a single talent from 3 to 4 for Traveler",
+    "name": "All Talents Level 3 -> 4",
+    "description": "Materials to level all talents from 3 to 4 for Traveler",
     "category": "talent",
     "sortOrder": 3,
     "materials": [
@@ -34126,15 +34142,23 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 4
       },
       {
-        "materialId": "stained-mask",
+        "materialId": "guide-to-resistance",
         "required": 4
+      },
+      {
+        "materialId": "guide-to-ballad",
+        "required": 4
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 12
       }
     ]
   },
   {
     "characterId": "traveler-anemo",
-    "name": "Talent Level 4 -> 5",
-    "description": "Materials to level a single talent from 4 to 5 for Traveler",
+    "name": "All Talents Level 4 -> 5",
+    "description": "Materials to level all talents from 4 to 5 for Traveler",
     "category": "talent",
     "sortOrder": 4,
     "materials": [
@@ -34143,15 +34167,23 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 6
       },
       {
-        "materialId": "stained-mask",
+        "materialId": "guide-to-resistance",
         "required": 6
+      },
+      {
+        "materialId": "guide-to-ballad",
+        "required": 6
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 18
       }
     ]
   },
   {
     "characterId": "traveler-anemo",
-    "name": "Talent Level 5 -> 6",
-    "description": "Materials to level a single talent from 5 to 6 for Traveler",
+    "name": "All Talents Level 5 -> 6",
+    "description": "Materials to level all talents from 5 to 6 for Traveler",
     "category": "talent",
     "sortOrder": 5,
     "materials": [
@@ -34160,15 +34192,23 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 9
       },
       {
-        "materialId": "stained-mask",
+        "materialId": "guide-to-resistance",
         "required": 9
+      },
+      {
+        "materialId": "guide-to-ballad",
+        "required": 9
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 27
       }
     ]
   },
   {
     "characterId": "traveler-anemo",
-    "name": "Talent Level 6 -> 7",
-    "description": "Materials to level a single talent from 6 to 7 for Traveler",
+    "name": "All Talents Level 6 -> 7",
+    "description": "Materials to level all talents from 6 to 7 for Traveler",
     "category": "talent",
     "sortOrder": 6,
     "materials": [
@@ -34177,19 +34217,27 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 4
       },
       {
-        "materialId": "ominous-mask",
+        "materialId": "philosophies-of-resistance",
         "required": 4
       },
       {
+        "materialId": "philosophies-of-ballad",
+        "required": 4
+      },
+      {
+        "materialId": "ominous-mask",
+        "required": 12
+      },
+      {
         "materialId": "dvalin's-sigh",
-        "required": 1
+        "required": 3
       }
     ]
   },
   {
     "characterId": "traveler-anemo",
-    "name": "Talent Level 7 -> 8",
-    "description": "Materials to level a single talent from 7 to 8 for Traveler",
+    "name": "All Talents Level 7 -> 8",
+    "description": "Materials to level all talents from 7 to 8 for Traveler",
     "category": "talent",
     "sortOrder": 7,
     "materials": [
@@ -34198,19 +34246,27 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 6
       },
       {
-        "materialId": "ominous-mask",
+        "materialId": "philosophies-of-resistance",
         "required": 6
       },
       {
+        "materialId": "philosophies-of-ballad",
+        "required": 6
+      },
+      {
+        "materialId": "ominous-mask",
+        "required": 18
+      },
+      {
         "materialId": "dvalin's-sigh",
-        "required": 1
+        "required": 3
       }
     ]
   },
   {
     "characterId": "traveler-anemo",
-    "name": "Talent Level 8 -> 9",
-    "description": "Materials to level a single talent from 8 to 9 for Traveler",
+    "name": "All Talents Level 8 -> 9",
+    "description": "Materials to level all talents from 8 to 9 for Traveler",
     "category": "talent",
     "sortOrder": 8,
     "materials": [
@@ -34219,19 +34275,27 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 12
       },
       {
+        "materialId": "philosophies-of-resistance",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-ballad",
+        "required": 12
+      },
+      {
         "materialId": "ominous-mask",
-        "required": 9
+        "required": 27
       },
       {
         "materialId": "dvalin's-sigh",
-        "required": 2
+        "required": 6
       }
     ]
   },
   {
     "characterId": "traveler-anemo",
-    "name": "Talent Level 9 -> 10",
-    "description": "Materials to level a single talent from 9 to 10 for Traveler",
+    "name": "All Talents Level 9 -> 10",
+    "description": "Materials to level all talents from 9 to 10 for Traveler",
     "category": "talent",
     "sortOrder": 9,
     "materials": [
@@ -34240,23 +34304,31 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 16
       },
       {
+        "materialId": "philosophies-of-resistance",
+        "required": 16
+      },
+      {
+        "materialId": "philosophies-of-ballad",
+        "required": 16
+      },
+      {
         "materialId": "ominous-mask",
-        "required": 12
+        "required": 36
       },
       {
         "materialId": "dvalin's-sigh",
-        "required": 2
+        "required": 6
       },
       {
         "materialId": "crown-of-insight",
-        "required": 1
+        "required": 3
       }
     ]
   },
   {
     "characterId": "traveler-anemo",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Traveler",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all talents from 1 to 6 for Traveler",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -34265,23 +34337,39 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 3
       },
       {
+        "materialId": "teachings-of-resistance",
+        "required": 3
+      },
+      {
+        "materialId": "teachings-of-ballad",
+        "required": 3
+      },
+      {
         "materialId": "guide-to-freedom",
         "required": 21
       },
       {
+        "materialId": "guide-to-resistance",
+        "required": 21
+      },
+      {
+        "materialId": "guide-to-ballad",
+        "required": 21
+      },
+      {
         "materialId": "damaged-mask",
-        "required": 6
+        "required": 18
       },
       {
         "materialId": "stained-mask",
-        "required": 22
+        "required": 66
       }
     ]
   },
   {
     "characterId": "traveler-anemo",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Traveler",
+    "name": "All Talents Level 6 -> 10",
+    "description": "Materials to max all talents from level 6 to 10 for Traveler",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -34290,16 +34378,24 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 38
       },
       {
+        "materialId": "philosophies-of-resistance",
+        "required": 38
+      },
+      {
+        "materialId": "philosophies-of-ballad",
+        "required": 38
+      },
+      {
         "materialId": "ominous-mask",
-        "required": 31
+        "required": 93
       },
       {
         "materialId": "dvalin's-sigh",
-        "required": 6
+        "required": 18
       },
       {
         "materialId": "crown-of-insight",
-        "required": 1
+        "required": 3
       }
     ]
   },
@@ -34431,8 +34527,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "traveler-dendro",
-    "name": "Talent Level 1 -> 2",
-    "description": "Materials to level a single talent from 1 to 2 for Traveler",
+    "name": "All Talents Level 1 -> 2",
+    "description": "Materials to level all talents from 1 to 2 for Traveler",
     "category": "talent",
     "sortOrder": 1,
     "materials": [
@@ -34441,15 +34537,23 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 3
       },
       {
+        "materialId": "teachings-of-ingenuity",
+        "required": 3
+      },
+      {
+        "materialId": "teachings-of-praxis",
+        "required": 3
+      },
+      {
         "materialId": "damaged-mask",
-        "required": 6
+        "required": 18
       }
     ]
   },
   {
     "characterId": "traveler-dendro",
-    "name": "Talent Level 2 -> 3",
-    "description": "Materials to level a single talent from 2 to 3 for Traveler",
+    "name": "All Talents Level 2 -> 3",
+    "description": "Materials to level all talents from 2 to 3 for Traveler",
     "category": "talent",
     "sortOrder": 2,
     "materials": [
@@ -34458,15 +34562,23 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 2
       },
       {
+        "materialId": "guide-to-ingenuity",
+        "required": 2
+      },
+      {
+        "materialId": "guide-to-praxis",
+        "required": 2
+      },
+      {
         "materialId": "stained-mask",
-        "required": 3
+        "required": 9
       }
     ]
   },
   {
     "characterId": "traveler-dendro",
-    "name": "Talent Level 3 -> 4",
-    "description": "Materials to level a single talent from 3 to 4 for Traveler",
+    "name": "All Talents Level 3 -> 4",
+    "description": "Materials to level all talents from 3 to 4 for Traveler",
     "category": "talent",
     "sortOrder": 3,
     "materials": [
@@ -34475,15 +34587,23 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 4
       },
       {
-        "materialId": "stained-mask",
+        "materialId": "guide-to-ingenuity",
         "required": 4
+      },
+      {
+        "materialId": "guide-to-praxis",
+        "required": 4
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 12
       }
     ]
   },
   {
     "characterId": "traveler-dendro",
-    "name": "Talent Level 4 -> 5",
-    "description": "Materials to level a single talent from 4 to 5 for Traveler",
+    "name": "All Talents Level 4 -> 5",
+    "description": "Materials to level all talents from 4 to 5 for Traveler",
     "category": "talent",
     "sortOrder": 4,
     "materials": [
@@ -34492,15 +34612,23 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 6
       },
       {
-        "materialId": "stained-mask",
+        "materialId": "guide-to-ingenuity",
         "required": 6
+      },
+      {
+        "materialId": "guide-to-praxis",
+        "required": 6
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 18
       }
     ]
   },
   {
     "characterId": "traveler-dendro",
-    "name": "Talent Level 5 -> 6",
-    "description": "Materials to level a single talent from 5 to 6 for Traveler",
+    "name": "All Talents Level 5 -> 6",
+    "description": "Materials to level all talents from 5 to 6 for Traveler",
     "category": "talent",
     "sortOrder": 5,
     "materials": [
@@ -34509,15 +34637,23 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 9
       },
       {
-        "materialId": "stained-mask",
+        "materialId": "guide-to-ingenuity",
         "required": 9
+      },
+      {
+        "materialId": "guide-to-praxis",
+        "required": 9
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 27
       }
     ]
   },
   {
     "characterId": "traveler-dendro",
-    "name": "Talent Level 6 -> 7",
-    "description": "Materials to level a single talent from 6 to 7 for Traveler",
+    "name": "All Talents Level 6 -> 7",
+    "description": "Materials to level all talents from 6 to 7 for Traveler",
     "category": "talent",
     "sortOrder": 6,
     "materials": [
@@ -34526,19 +34662,27 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 4
       },
       {
-        "materialId": "ominous-mask",
+        "materialId": "philosophies-of-ingenuity",
         "required": 4
       },
       {
+        "materialId": "philosophies-of-praxis",
+        "required": 4
+      },
+      {
+        "materialId": "ominous-mask",
+        "required": 12
+      },
+      {
         "materialId": "mudra-of-the-malefic-general",
-        "required": 1
+        "required": 3
       }
     ]
   },
   {
     "characterId": "traveler-dendro",
-    "name": "Talent Level 7 -> 8",
-    "description": "Materials to level a single talent from 7 to 8 for Traveler",
+    "name": "All Talents Level 7 -> 8",
+    "description": "Materials to level all talents from 7 to 8 for Traveler",
     "category": "talent",
     "sortOrder": 7,
     "materials": [
@@ -34547,19 +34691,27 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 6
       },
       {
-        "materialId": "ominous-mask",
+        "materialId": "philosophies-of-ingenuity",
         "required": 6
       },
       {
+        "materialId": "philosophies-of-praxis",
+        "required": 6
+      },
+      {
+        "materialId": "ominous-mask",
+        "required": 18
+      },
+      {
         "materialId": "mudra-of-the-malefic-general",
-        "required": 1
+        "required": 3
       }
     ]
   },
   {
     "characterId": "traveler-dendro",
-    "name": "Talent Level 8 -> 9",
-    "description": "Materials to level a single talent from 8 to 9 for Traveler",
+    "name": "All Talents Level 8 -> 9",
+    "description": "Materials to level all talents from 8 to 9 for Traveler",
     "category": "talent",
     "sortOrder": 8,
     "materials": [
@@ -34568,19 +34720,27 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 12
       },
       {
+        "materialId": "philosophies-of-ingenuity",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-praxis",
+        "required": 12
+      },
+      {
         "materialId": "ominous-mask",
-        "required": 9
+        "required": 27
       },
       {
         "materialId": "mudra-of-the-malefic-general",
-        "required": 2
+        "required": 6
       }
     ]
   },
   {
     "characterId": "traveler-dendro",
-    "name": "Talent Level 9 -> 10",
-    "description": "Materials to level a single talent from 9 to 10 for Traveler",
+    "name": "All Talents Level 9 -> 10",
+    "description": "Materials to level all talents from 9 to 10 for Traveler",
     "category": "talent",
     "sortOrder": 9,
     "materials": [
@@ -34589,23 +34749,31 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 16
       },
       {
+        "materialId": "philosophies-of-ingenuity",
+        "required": 16
+      },
+      {
+        "materialId": "philosophies-of-praxis",
+        "required": 16
+      },
+      {
         "materialId": "ominous-mask",
-        "required": 12
+        "required": 36
       },
       {
         "materialId": "mudra-of-the-malefic-general",
-        "required": 2
+        "required": 6
       },
       {
         "materialId": "crown-of-insight",
-        "required": 1
+        "required": 3
       }
     ]
   },
   {
     "characterId": "traveler-dendro",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Traveler",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all talents from 1 to 6 for Traveler",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -34614,23 +34782,39 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 3
       },
       {
+        "materialId": "teachings-of-ingenuity",
+        "required": 3
+      },
+      {
+        "materialId": "teachings-of-praxis",
+        "required": 3
+      },
+      {
         "materialId": "guide-to-admonition",
         "required": 21
       },
       {
+        "materialId": "guide-to-ingenuity",
+        "required": 21
+      },
+      {
+        "materialId": "guide-to-praxis",
+        "required": 21
+      },
+      {
         "materialId": "damaged-mask",
-        "required": 6
+        "required": 18
       },
       {
         "materialId": "stained-mask",
-        "required": 22
+        "required": 66
       }
     ]
   },
   {
     "characterId": "traveler-dendro",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Traveler",
+    "name": "All Talents Level 6 -> 10",
+    "description": "Materials to max all talents from level 6 to 10 for Traveler",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -34639,16 +34823,24 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 38
       },
       {
+        "materialId": "philosophies-of-ingenuity",
+        "required": 38
+      },
+      {
+        "materialId": "philosophies-of-praxis",
+        "required": 38
+      },
+      {
         "materialId": "ominous-mask",
-        "required": 31
+        "required": 93
       },
       {
         "materialId": "mudra-of-the-malefic-general",
-        "required": 6
+        "required": 18
       },
       {
         "materialId": "crown-of-insight",
-        "required": 1
+        "required": 3
       }
     ]
   },
@@ -34780,8 +34972,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "traveler-electro",
-    "name": "Talent Level 1 -> 2",
-    "description": "Materials to level a single talent from 1 to 2 for Traveler",
+    "name": "All Talents Level 1 -> 2",
+    "description": "Materials to level all talents from 1 to 2 for Traveler",
     "category": "talent",
     "sortOrder": 1,
     "materials": [
@@ -34790,15 +34982,23 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 3
       },
       {
+        "materialId": "teachings-of-elegance",
+        "required": 3
+      },
+      {
+        "materialId": "teachings-of-light",
+        "required": 3
+      },
+      {
         "materialId": "damaged-mask",
-        "required": 6
+        "required": 18
       }
     ]
   },
   {
     "characterId": "traveler-electro",
-    "name": "Talent Level 2 -> 3",
-    "description": "Materials to level a single talent from 2 to 3 for Traveler",
+    "name": "All Talents Level 2 -> 3",
+    "description": "Materials to level all talents from 2 to 3 for Traveler",
     "category": "talent",
     "sortOrder": 2,
     "materials": [
@@ -34807,15 +35007,23 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 2
       },
       {
+        "materialId": "guide-to-elegance",
+        "required": 2
+      },
+      {
+        "materialId": "guide-to-light",
+        "required": 2
+      },
+      {
         "materialId": "stained-mask",
-        "required": 3
+        "required": 9
       }
     ]
   },
   {
     "characterId": "traveler-electro",
-    "name": "Talent Level 3 -> 4",
-    "description": "Materials to level a single talent from 3 to 4 for Traveler",
+    "name": "All Talents Level 3 -> 4",
+    "description": "Materials to level all talents from 3 to 4 for Traveler",
     "category": "talent",
     "sortOrder": 3,
     "materials": [
@@ -34824,15 +35032,23 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 4
       },
       {
-        "materialId": "stained-mask",
+        "materialId": "guide-to-elegance",
         "required": 4
+      },
+      {
+        "materialId": "guide-to-light",
+        "required": 4
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 12
       }
     ]
   },
   {
     "characterId": "traveler-electro",
-    "name": "Talent Level 4 -> 5",
-    "description": "Materials to level a single talent from 4 to 5 for Traveler",
+    "name": "All Talents Level 4 -> 5",
+    "description": "Materials to level all talents from 4 to 5 for Traveler",
     "category": "talent",
     "sortOrder": 4,
     "materials": [
@@ -34841,15 +35057,23 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 6
       },
       {
-        "materialId": "stained-mask",
+        "materialId": "guide-to-elegance",
         "required": 6
+      },
+      {
+        "materialId": "guide-to-light",
+        "required": 6
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 18
       }
     ]
   },
   {
     "characterId": "traveler-electro",
-    "name": "Talent Level 5 -> 6",
-    "description": "Materials to level a single talent from 5 to 6 for Traveler",
+    "name": "All Talents Level 5 -> 6",
+    "description": "Materials to level all talents from 5 to 6 for Traveler",
     "category": "talent",
     "sortOrder": 5,
     "materials": [
@@ -34858,15 +35082,23 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 9
       },
       {
-        "materialId": "stained-mask",
+        "materialId": "guide-to-elegance",
         "required": 9
+      },
+      {
+        "materialId": "guide-to-light",
+        "required": 9
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 27
       }
     ]
   },
   {
     "characterId": "traveler-electro",
-    "name": "Talent Level 6 -> 7",
-    "description": "Materials to level a single talent from 6 to 7 for Traveler",
+    "name": "All Talents Level 6 -> 7",
+    "description": "Materials to level all talents from 6 to 7 for Traveler",
     "category": "talent",
     "sortOrder": 6,
     "materials": [
@@ -34875,19 +35107,27 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 4
       },
       {
-        "materialId": "ominous-mask",
+        "materialId": "philosophies-of-elegance",
         "required": 4
       },
       {
+        "materialId": "philosophies-of-light",
+        "required": 4
+      },
+      {
+        "materialId": "ominous-mask",
+        "required": 12
+      },
+      {
         "materialId": "dragon-lord's-crown",
-        "required": 1
+        "required": 3
       }
     ]
   },
   {
     "characterId": "traveler-electro",
-    "name": "Talent Level 7 -> 8",
-    "description": "Materials to level a single talent from 7 to 8 for Traveler",
+    "name": "All Talents Level 7 -> 8",
+    "description": "Materials to level all talents from 7 to 8 for Traveler",
     "category": "talent",
     "sortOrder": 7,
     "materials": [
@@ -34896,19 +35136,27 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 6
       },
       {
-        "materialId": "ominous-mask",
+        "materialId": "philosophies-of-elegance",
         "required": 6
       },
       {
+        "materialId": "philosophies-of-light",
+        "required": 6
+      },
+      {
+        "materialId": "ominous-mask",
+        "required": 18
+      },
+      {
         "materialId": "dragon-lord's-crown",
-        "required": 1
+        "required": 3
       }
     ]
   },
   {
     "characterId": "traveler-electro",
-    "name": "Talent Level 8 -> 9",
-    "description": "Materials to level a single talent from 8 to 9 for Traveler",
+    "name": "All Talents Level 8 -> 9",
+    "description": "Materials to level all talents from 8 to 9 for Traveler",
     "category": "talent",
     "sortOrder": 8,
     "materials": [
@@ -34917,19 +35165,27 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 12
       },
       {
+        "materialId": "philosophies-of-elegance",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-light",
+        "required": 12
+      },
+      {
         "materialId": "ominous-mask",
-        "required": 9
+        "required": 27
       },
       {
         "materialId": "dragon-lord's-crown",
-        "required": 2
+        "required": 6
       }
     ]
   },
   {
     "characterId": "traveler-electro",
-    "name": "Talent Level 9 -> 10",
-    "description": "Materials to level a single talent from 9 to 10 for Traveler",
+    "name": "All Talents Level 9 -> 10",
+    "description": "Materials to level all talents from 9 to 10 for Traveler",
     "category": "talent",
     "sortOrder": 9,
     "materials": [
@@ -34938,23 +35194,31 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 16
       },
       {
+        "materialId": "philosophies-of-elegance",
+        "required": 16
+      },
+      {
+        "materialId": "philosophies-of-light",
+        "required": 16
+      },
+      {
         "materialId": "ominous-mask",
-        "required": 12
+        "required": 36
       },
       {
         "materialId": "dragon-lord's-crown",
-        "required": 2
+        "required": 6
       },
       {
         "materialId": "crown-of-insight",
-        "required": 1
+        "required": 3
       }
     ]
   },
   {
     "characterId": "traveler-electro",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Traveler",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all talents from 1 to 6 for Traveler",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -34963,23 +35227,39 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 3
       },
       {
+        "materialId": "teachings-of-elegance",
+        "required": 3
+      },
+      {
+        "materialId": "teachings-of-light",
+        "required": 3
+      },
+      {
         "materialId": "guide-to-transience",
         "required": 21
       },
       {
+        "materialId": "guide-to-elegance",
+        "required": 21
+      },
+      {
+        "materialId": "guide-to-light",
+        "required": 21
+      },
+      {
         "materialId": "damaged-mask",
-        "required": 6
+        "required": 18
       },
       {
         "materialId": "stained-mask",
-        "required": 22
+        "required": 66
       }
     ]
   },
   {
     "characterId": "traveler-electro",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Traveler",
+    "name": "All Talents Level 6 -> 10",
+    "description": "Materials to max all talents from level 6 to 10 for Traveler",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -34988,16 +35268,24 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 38
       },
       {
+        "materialId": "philosophies-of-elegance",
+        "required": 38
+      },
+      {
+        "materialId": "philosophies-of-light",
+        "required": 38
+      },
+      {
         "materialId": "ominous-mask",
-        "required": 31
+        "required": 93
       },
       {
         "materialId": "dragon-lord's-crown",
-        "required": 6
+        "required": 18
       },
       {
         "materialId": "crown-of-insight",
-        "required": 1
+        "required": 3
       }
     ]
   },
@@ -35129,224 +35417,320 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "traveler-geo",
-    "name": "Talent Level 1 -> 2",
-    "description": "Materials to level a single talent from 1 to 2 for Traveler",
+    "name": "All Talents Level 1 -> 2",
+    "description": "Materials to level all talents from 1 to 2 for Traveler",
     "category": "talent",
     "sortOrder": 1,
     "materials": [
       {
-        "materialId": "teachings-of-freedom",
+        "materialId": "teachings-of-prosperity",
+        "required": 3
+      },
+      {
+        "materialId": "teachings-of-diligence",
+        "required": 3
+      },
+      {
+        "materialId": "teachings-of-gold",
         "required": 3
       },
       {
         "materialId": "damaged-mask",
-        "required": 6
+        "required": 18
       }
     ]
   },
   {
     "characterId": "traveler-geo",
-    "name": "Talent Level 2 -> 3",
-    "description": "Materials to level a single talent from 2 to 3 for Traveler",
+    "name": "All Talents Level 2 -> 3",
+    "description": "Materials to level all talents from 2 to 3 for Traveler",
     "category": "talent",
     "sortOrder": 2,
     "materials": [
       {
-        "materialId": "guide-to-freedom",
+        "materialId": "guide-to-prosperity",
+        "required": 2
+      },
+      {
+        "materialId": "guide-to-diligence",
+        "required": 2
+      },
+      {
+        "materialId": "guide-to-gold",
         "required": 2
       },
       {
         "materialId": "stained-mask",
+        "required": 9
+      }
+    ]
+  },
+  {
+    "characterId": "traveler-geo",
+    "name": "All Talents Level 3 -> 4",
+    "description": "Materials to level all talents from 3 to 4 for Traveler",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-prosperity",
+        "required": 4
+      },
+      {
+        "materialId": "guide-to-diligence",
+        "required": 4
+      },
+      {
+        "materialId": "guide-to-gold",
+        "required": 4
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 12
+      }
+    ]
+  },
+  {
+    "characterId": "traveler-geo",
+    "name": "All Talents Level 4 -> 5",
+    "description": "Materials to level all talents from 4 to 5 for Traveler",
+    "category": "talent",
+    "sortOrder": 4,
+    "materials": [
+      {
+        "materialId": "guide-to-prosperity",
+        "required": 6
+      },
+      {
+        "materialId": "guide-to-diligence",
+        "required": 6
+      },
+      {
+        "materialId": "guide-to-gold",
+        "required": 6
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 18
+      }
+    ]
+  },
+  {
+    "characterId": "traveler-geo",
+    "name": "All Talents Level 5 -> 6",
+    "description": "Materials to level all talents from 5 to 6 for Traveler",
+    "category": "talent",
+    "sortOrder": 5,
+    "materials": [
+      {
+        "materialId": "guide-to-prosperity",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-diligence",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-gold",
+        "required": 9
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 27
+      }
+    ]
+  },
+  {
+    "characterId": "traveler-geo",
+    "name": "All Talents Level 6 -> 7",
+    "description": "Materials to level all talents from 6 to 7 for Traveler",
+    "category": "talent",
+    "sortOrder": 6,
+    "materials": [
+      {
+        "materialId": "philosophies-of-prosperity",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-diligence",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-gold",
+        "required": 4
+      },
+      {
+        "materialId": "ominous-mask",
+        "required": 12
+      },
+      {
+        "materialId": "tail-of-boreas",
         "required": 3
       }
     ]
   },
   {
     "characterId": "traveler-geo",
-    "name": "Talent Level 3 -> 4",
-    "description": "Materials to level a single talent from 3 to 4 for Traveler",
-    "category": "talent",
-    "sortOrder": 3,
-    "materials": [
-      {
-        "materialId": "guide-to-freedom",
-        "required": 4
-      },
-      {
-        "materialId": "stained-mask",
-        "required": 4
-      }
-    ]
-  },
-  {
-    "characterId": "traveler-geo",
-    "name": "Talent Level 4 -> 5",
-    "description": "Materials to level a single talent from 4 to 5 for Traveler",
-    "category": "talent",
-    "sortOrder": 4,
-    "materials": [
-      {
-        "materialId": "guide-to-freedom",
-        "required": 6
-      },
-      {
-        "materialId": "stained-mask",
-        "required": 6
-      }
-    ]
-  },
-  {
-    "characterId": "traveler-geo",
-    "name": "Talent Level 5 -> 6",
-    "description": "Materials to level a single talent from 5 to 6 for Traveler",
-    "category": "talent",
-    "sortOrder": 5,
-    "materials": [
-      {
-        "materialId": "guide-to-freedom",
-        "required": 9
-      },
-      {
-        "materialId": "stained-mask",
-        "required": 9
-      }
-    ]
-  },
-  {
-    "characterId": "traveler-geo",
-    "name": "Talent Level 6 -> 7",
-    "description": "Materials to level a single talent from 6 to 7 for Traveler",
-    "category": "talent",
-    "sortOrder": 6,
-    "materials": [
-      {
-        "materialId": "philosophies-of-freedom",
-        "required": 4
-      },
-      {
-        "materialId": "ominous-mask",
-        "required": 4
-      },
-      {
-        "materialId": "tail-of-boreas",
-        "required": 1
-      }
-    ]
-  },
-  {
-    "characterId": "traveler-geo",
-    "name": "Talent Level 7 -> 8",
-    "description": "Materials to level a single talent from 7 to 8 for Traveler",
+    "name": "All Talents Level 7 -> 8",
+    "description": "Materials to level all talents from 7 to 8 for Traveler",
     "category": "talent",
     "sortOrder": 7,
     "materials": [
       {
-        "materialId": "philosophies-of-freedom",
+        "materialId": "philosophies-of-prosperity",
+        "required": 6
+      },
+      {
+        "materialId": "philosophies-of-diligence",
+        "required": 6
+      },
+      {
+        "materialId": "philosophies-of-gold",
         "required": 6
       },
       {
         "materialId": "ominous-mask",
-        "required": 6
+        "required": 18
       },
       {
         "materialId": "tail-of-boreas",
-        "required": 1
+        "required": 3
       }
     ]
   },
   {
     "characterId": "traveler-geo",
-    "name": "Talent Level 8 -> 9",
-    "description": "Materials to level a single talent from 8 to 9 for Traveler",
+    "name": "All Talents Level 8 -> 9",
+    "description": "Materials to level all talents from 8 to 9 for Traveler",
     "category": "talent",
     "sortOrder": 8,
     "materials": [
       {
-        "materialId": "philosophies-of-freedom",
+        "materialId": "philosophies-of-prosperity",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-diligence",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-gold",
         "required": 12
       },
       {
         "materialId": "ominous-mask",
-        "required": 9
+        "required": 27
       },
       {
         "materialId": "tail-of-boreas",
-        "required": 2
+        "required": 6
       }
     ]
   },
   {
     "characterId": "traveler-geo",
-    "name": "Talent Level 9 -> 10",
-    "description": "Materials to level a single talent from 9 to 10 for Traveler",
+    "name": "All Talents Level 9 -> 10",
+    "description": "Materials to level all talents from 9 to 10 for Traveler",
     "category": "talent",
     "sortOrder": 9,
     "materials": [
       {
-        "materialId": "philosophies-of-freedom",
+        "materialId": "philosophies-of-prosperity",
+        "required": 16
+      },
+      {
+        "materialId": "philosophies-of-diligence",
+        "required": 16
+      },
+      {
+        "materialId": "philosophies-of-gold",
         "required": 16
       },
       {
         "materialId": "ominous-mask",
-        "required": 12
+        "required": 36
       },
       {
         "materialId": "tail-of-boreas",
-        "required": 2
+        "required": 6
       },
       {
         "materialId": "crown-of-insight",
-        "required": 1
+        "required": 3
       }
     ]
   },
   {
     "characterId": "traveler-geo",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Traveler",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all talents from 1 to 6 for Traveler",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
       {
-        "materialId": "teachings-of-freedom",
+        "materialId": "teachings-of-prosperity",
         "required": 3
       },
       {
-        "materialId": "guide-to-freedom",
+        "materialId": "teachings-of-diligence",
+        "required": 3
+      },
+      {
+        "materialId": "teachings-of-gold",
+        "required": 3
+      },
+      {
+        "materialId": "guide-to-prosperity",
+        "required": 21
+      },
+      {
+        "materialId": "guide-to-diligence",
+        "required": 21
+      },
+      {
+        "materialId": "guide-to-gold",
         "required": 21
       },
       {
         "materialId": "damaged-mask",
-        "required": 6
+        "required": 18
       },
       {
         "materialId": "stained-mask",
-        "required": 22
+        "required": 66
       }
     ]
   },
   {
     "characterId": "traveler-geo",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Traveler",
+    "name": "All Talents Level 6 -> 10",
+    "description": "Materials to max all talents from level 6 to 10 for Traveler",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
       {
-        "materialId": "philosophies-of-freedom",
+        "materialId": "philosophies-of-prosperity",
+        "required": 38
+      },
+      {
+        "materialId": "philosophies-of-diligence",
+        "required": 38
+      },
+      {
+        "materialId": "philosophies-of-gold",
         "required": 38
       },
       {
         "materialId": "ominous-mask",
-        "required": 31
+        "required": 93
       },
       {
         "materialId": "tail-of-boreas",
-        "required": 6
+        "required": 18
       },
       {
         "materialId": "crown-of-insight",
-        "required": 1
+        "required": 3
       }
     ]
   },
@@ -35478,8 +35862,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "traveler-hydro",
-    "name": "Talent Level 1 -> 2",
-    "description": "Materials to level a single talent from 1 to 2 for Traveler",
+    "name": "All Talents Level 1 -> 2",
+    "description": "Materials to level all talents from 1 to 2 for Traveler",
     "category": "talent",
     "sortOrder": 1,
     "materials": [
@@ -35488,15 +35872,23 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 3
       },
       {
+        "materialId": "teachings-of-justice",
+        "required": 3
+      },
+      {
+        "materialId": "teachings-of-order",
+        "required": 3
+      },
+      {
         "materialId": "damaged-mask",
-        "required": 6
+        "required": 18
       }
     ]
   },
   {
     "characterId": "traveler-hydro",
-    "name": "Talent Level 2 -> 3",
-    "description": "Materials to level a single talent from 2 to 3 for Traveler",
+    "name": "All Talents Level 2 -> 3",
+    "description": "Materials to level all talents from 2 to 3 for Traveler",
     "category": "talent",
     "sortOrder": 2,
     "materials": [
@@ -35505,15 +35897,23 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 2
       },
       {
+        "materialId": "guide-to-justice",
+        "required": 2
+      },
+      {
+        "materialId": "guide-to-order",
+        "required": 2
+      },
+      {
         "materialId": "stained-mask",
-        "required": 3
+        "required": 9
       }
     ]
   },
   {
     "characterId": "traveler-hydro",
-    "name": "Talent Level 3 -> 4",
-    "description": "Materials to level a single talent from 3 to 4 for Traveler",
+    "name": "All Talents Level 3 -> 4",
+    "description": "Materials to level all talents from 3 to 4 for Traveler",
     "category": "talent",
     "sortOrder": 3,
     "materials": [
@@ -35522,15 +35922,23 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 4
       },
       {
-        "materialId": "stained-mask",
+        "materialId": "guide-to-justice",
         "required": 4
+      },
+      {
+        "materialId": "guide-to-order",
+        "required": 4
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 12
       }
     ]
   },
   {
     "characterId": "traveler-hydro",
-    "name": "Talent Level 4 -> 5",
-    "description": "Materials to level a single talent from 4 to 5 for Traveler",
+    "name": "All Talents Level 4 -> 5",
+    "description": "Materials to level all talents from 4 to 5 for Traveler",
     "category": "talent",
     "sortOrder": 4,
     "materials": [
@@ -35539,15 +35947,23 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 6
       },
       {
-        "materialId": "stained-mask",
+        "materialId": "guide-to-justice",
         "required": 6
+      },
+      {
+        "materialId": "guide-to-order",
+        "required": 6
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 18
       }
     ]
   },
   {
     "characterId": "traveler-hydro",
-    "name": "Talent Level 5 -> 6",
-    "description": "Materials to level a single talent from 5 to 6 for Traveler",
+    "name": "All Talents Level 5 -> 6",
+    "description": "Materials to level all talents from 5 to 6 for Traveler",
     "category": "talent",
     "sortOrder": 5,
     "materials": [
@@ -35556,15 +35972,23 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 9
       },
       {
-        "materialId": "stained-mask",
+        "materialId": "guide-to-justice",
         "required": 9
+      },
+      {
+        "materialId": "guide-to-order",
+        "required": 9
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 27
       }
     ]
   },
   {
     "characterId": "traveler-hydro",
-    "name": "Talent Level 6 -> 7",
-    "description": "Materials to level a single talent from 6 to 7 for Traveler",
+    "name": "All Talents Level 6 -> 7",
+    "description": "Materials to level all talents from 6 to 7 for Traveler",
     "category": "talent",
     "sortOrder": 6,
     "materials": [
@@ -35573,19 +35997,27 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 4
       },
       {
-        "materialId": "ominous-mask",
+        "materialId": "philosophies-of-justice",
         "required": 4
       },
       {
+        "materialId": "philosophies-of-order",
+        "required": 4
+      },
+      {
+        "materialId": "ominous-mask",
+        "required": 12
+      },
+      {
         "materialId": "worldspan-fern",
-        "required": 1
+        "required": 3
       }
     ]
   },
   {
     "characterId": "traveler-hydro",
-    "name": "Talent Level 7 -> 8",
-    "description": "Materials to level a single talent from 7 to 8 for Traveler",
+    "name": "All Talents Level 7 -> 8",
+    "description": "Materials to level all talents from 7 to 8 for Traveler",
     "category": "talent",
     "sortOrder": 7,
     "materials": [
@@ -35594,19 +36026,27 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 6
       },
       {
-        "materialId": "ominous-mask",
+        "materialId": "philosophies-of-justice",
         "required": 6
       },
       {
+        "materialId": "philosophies-of-order",
+        "required": 6
+      },
+      {
+        "materialId": "ominous-mask",
+        "required": 18
+      },
+      {
         "materialId": "worldspan-fern",
-        "required": 1
+        "required": 3
       }
     ]
   },
   {
     "characterId": "traveler-hydro",
-    "name": "Talent Level 8 -> 9",
-    "description": "Materials to level a single talent from 8 to 9 for Traveler",
+    "name": "All Talents Level 8 -> 9",
+    "description": "Materials to level all talents from 8 to 9 for Traveler",
     "category": "talent",
     "sortOrder": 8,
     "materials": [
@@ -35615,19 +36055,27 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 12
       },
       {
+        "materialId": "philosophies-of-justice",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-order",
+        "required": 12
+      },
+      {
         "materialId": "ominous-mask",
-        "required": 9
+        "required": 27
       },
       {
         "materialId": "worldspan-fern",
-        "required": 2
+        "required": 6
       }
     ]
   },
   {
     "characterId": "traveler-hydro",
-    "name": "Talent Level 9 -> 10",
-    "description": "Materials to level a single talent from 9 to 10 for Traveler",
+    "name": "All Talents Level 9 -> 10",
+    "description": "Materials to level all talents from 9 to 10 for Traveler",
     "category": "talent",
     "sortOrder": 9,
     "materials": [
@@ -35636,23 +36084,31 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 16
       },
       {
+        "materialId": "philosophies-of-justice",
+        "required": 16
+      },
+      {
+        "materialId": "philosophies-of-order",
+        "required": 16
+      },
+      {
         "materialId": "ominous-mask",
-        "required": 12
+        "required": 36
       },
       {
         "materialId": "worldspan-fern",
-        "required": 2
+        "required": 6
       },
       {
         "materialId": "crown-of-insight",
-        "required": 1
+        "required": 3
       }
     ]
   },
   {
     "characterId": "traveler-hydro",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Traveler",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all talents from 1 to 6 for Traveler",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -35661,23 +36117,39 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 3
       },
       {
+        "materialId": "teachings-of-justice",
+        "required": 3
+      },
+      {
+        "materialId": "teachings-of-order",
+        "required": 3
+      },
+      {
         "materialId": "guide-to-equity",
         "required": 21
       },
       {
+        "materialId": "guide-to-justice",
+        "required": 21
+      },
+      {
+        "materialId": "guide-to-order",
+        "required": 21
+      },
+      {
         "materialId": "damaged-mask",
-        "required": 6
+        "required": 18
       },
       {
         "materialId": "stained-mask",
-        "required": 22
+        "required": 66
       }
     ]
   },
   {
     "characterId": "traveler-hydro",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Traveler",
+    "name": "All Talents Level 6 -> 10",
+    "description": "Materials to max all talents from level 6 to 10 for Traveler",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -35686,16 +36158,24 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
         "required": 38
       },
       {
+        "materialId": "philosophies-of-justice",
+        "required": 38
+      },
+      {
+        "materialId": "philosophies-of-order",
+        "required": 38
+      },
+      {
         "materialId": "ominous-mask",
-        "required": 31
+        "required": 93
       },
       {
         "materialId": "worldspan-fern",
-        "required": 6
+        "required": 18
       },
       {
         "materialId": "crown-of-insight",
-        "required": 1
+        "required": 3
       }
     ]
   },
@@ -35827,187 +36307,275 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "traveler-pyro",
-    "name": "Talent Level 1 -> 2",
-    "description": "Materials to level a single talent from 1 to 2 for Traveler",
+    "name": "All Talents Level 1 -> 2",
+    "description": "Materials to level all talents from 1 to 2 for Traveler",
     "category": "talent",
     "sortOrder": 1,
     "materials": [
+      {
+        "materialId": "teachings-of-contention",
+        "required": 3
+      },
+      {
+        "materialId": "teachings-of-kindling",
+        "required": 3
+      },
       {
         "materialId": "teachings-of-conflict",
         "required": 3
       },
       {
         "materialId": "damaged-mask",
-        "required": 6
+        "required": 18
       }
     ]
   },
   {
     "characterId": "traveler-pyro",
-    "name": "Talent Level 2 -> 3",
-    "description": "Materials to level a single talent from 2 to 3 for Traveler",
+    "name": "All Talents Level 2 -> 3",
+    "description": "Materials to level all talents from 2 to 3 for Traveler",
     "category": "talent",
     "sortOrder": 2,
     "materials": [
+      {
+        "materialId": "guide-to-contention",
+        "required": 2
+      },
+      {
+        "materialId": "guide-to-kindling",
+        "required": 2
+      },
       {
         "materialId": "guide-to-conflict",
         "required": 2
       },
       {
         "materialId": "stained-mask",
+        "required": 9
+      }
+    ]
+  },
+  {
+    "characterId": "traveler-pyro",
+    "name": "All Talents Level 3 -> 4",
+    "description": "Materials to level all talents from 3 to 4 for Traveler",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-contention",
+        "required": 4
+      },
+      {
+        "materialId": "guide-to-kindling",
+        "required": 4
+      },
+      {
+        "materialId": "guide-to-conflict",
+        "required": 4
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 12
+      }
+    ]
+  },
+  {
+    "characterId": "traveler-pyro",
+    "name": "All Talents Level 4 -> 5",
+    "description": "Materials to level all talents from 4 to 5 for Traveler",
+    "category": "talent",
+    "sortOrder": 4,
+    "materials": [
+      {
+        "materialId": "guide-to-contention",
+        "required": 6
+      },
+      {
+        "materialId": "guide-to-kindling",
+        "required": 6
+      },
+      {
+        "materialId": "guide-to-conflict",
+        "required": 6
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 18
+      }
+    ]
+  },
+  {
+    "characterId": "traveler-pyro",
+    "name": "All Talents Level 5 -> 6",
+    "description": "Materials to level all talents from 5 to 6 for Traveler",
+    "category": "talent",
+    "sortOrder": 5,
+    "materials": [
+      {
+        "materialId": "guide-to-contention",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-kindling",
+        "required": 9
+      },
+      {
+        "materialId": "guide-to-conflict",
+        "required": 9
+      },
+      {
+        "materialId": "stained-mask",
+        "required": 27
+      }
+    ]
+  },
+  {
+    "characterId": "traveler-pyro",
+    "name": "All Talents Level 6 -> 7",
+    "description": "Materials to level all talents from 6 to 7 for Traveler",
+    "category": "talent",
+    "sortOrder": 6,
+    "materials": [
+      {
+        "materialId": "philosophies-of-contention",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-kindling",
+        "required": 4
+      },
+      {
+        "materialId": "philosophies-of-conflict",
+        "required": 4
+      },
+      {
+        "materialId": "ominous-mask",
+        "required": 12
+      },
+      {
+        "materialId": "denial-and-judgment",
         "required": 3
       }
     ]
   },
   {
     "characterId": "traveler-pyro",
-    "name": "Talent Level 3 -> 4",
-    "description": "Materials to level a single talent from 3 to 4 for Traveler",
-    "category": "talent",
-    "sortOrder": 3,
-    "materials": [
-      {
-        "materialId": "guide-to-conflict",
-        "required": 4
-      },
-      {
-        "materialId": "stained-mask",
-        "required": 4
-      }
-    ]
-  },
-  {
-    "characterId": "traveler-pyro",
-    "name": "Talent Level 4 -> 5",
-    "description": "Materials to level a single talent from 4 to 5 for Traveler",
-    "category": "talent",
-    "sortOrder": 4,
-    "materials": [
-      {
-        "materialId": "guide-to-conflict",
-        "required": 6
-      },
-      {
-        "materialId": "stained-mask",
-        "required": 6
-      }
-    ]
-  },
-  {
-    "characterId": "traveler-pyro",
-    "name": "Talent Level 5 -> 6",
-    "description": "Materials to level a single talent from 5 to 6 for Traveler",
-    "category": "talent",
-    "sortOrder": 5,
-    "materials": [
-      {
-        "materialId": "guide-to-conflict",
-        "required": 9
-      },
-      {
-        "materialId": "stained-mask",
-        "required": 9
-      }
-    ]
-  },
-  {
-    "characterId": "traveler-pyro",
-    "name": "Talent Level 6 -> 7",
-    "description": "Materials to level a single talent from 6 to 7 for Traveler",
-    "category": "talent",
-    "sortOrder": 6,
-    "materials": [
-      {
-        "materialId": "philosophies-of-conflict",
-        "required": 4
-      },
-      {
-        "materialId": "ominous-mask",
-        "required": 4
-      },
-      {
-        "materialId": "denial-and-judgment",
-        "required": 1
-      }
-    ]
-  },
-  {
-    "characterId": "traveler-pyro",
-    "name": "Talent Level 7 -> 8",
-    "description": "Materials to level a single talent from 7 to 8 for Traveler",
+    "name": "All Talents Level 7 -> 8",
+    "description": "Materials to level all talents from 7 to 8 for Traveler",
     "category": "talent",
     "sortOrder": 7,
     "materials": [
       {
+        "materialId": "philosophies-of-contention",
+        "required": 6
+      },
+      {
+        "materialId": "philosophies-of-kindling",
+        "required": 6
+      },
+      {
         "materialId": "philosophies-of-conflict",
         "required": 6
       },
       {
         "materialId": "ominous-mask",
-        "required": 6
+        "required": 18
       },
       {
         "materialId": "denial-and-judgment",
-        "required": 1
+        "required": 3
       }
     ]
   },
   {
     "characterId": "traveler-pyro",
-    "name": "Talent Level 8 -> 9",
-    "description": "Materials to level a single talent from 8 to 9 for Traveler",
+    "name": "All Talents Level 8 -> 9",
+    "description": "Materials to level all talents from 8 to 9 for Traveler",
     "category": "talent",
     "sortOrder": 8,
     "materials": [
+      {
+        "materialId": "philosophies-of-contention",
+        "required": 12
+      },
+      {
+        "materialId": "philosophies-of-kindling",
+        "required": 12
+      },
       {
         "materialId": "philosophies-of-conflict",
         "required": 12
       },
       {
         "materialId": "ominous-mask",
-        "required": 9
+        "required": 27
       },
       {
         "materialId": "denial-and-judgment",
-        "required": 2
+        "required": 6
       }
     ]
   },
   {
     "characterId": "traveler-pyro",
-    "name": "Talent Level 9 -> 10",
-    "description": "Materials to level a single talent from 9 to 10 for Traveler",
+    "name": "All Talents Level 9 -> 10",
+    "description": "Materials to level all talents from 9 to 10 for Traveler",
     "category": "talent",
     "sortOrder": 9,
     "materials": [
+      {
+        "materialId": "philosophies-of-contention",
+        "required": 16
+      },
+      {
+        "materialId": "philosophies-of-kindling",
+        "required": 16
+      },
       {
         "materialId": "philosophies-of-conflict",
         "required": 16
       },
       {
         "materialId": "ominous-mask",
-        "required": 12
+        "required": 36
       },
       {
         "materialId": "denial-and-judgment",
-        "required": 2
+        "required": 6
       },
       {
         "materialId": "crown-of-insight",
-        "required": 1
+        "required": 3
       }
     ]
   },
   {
     "characterId": "traveler-pyro",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Traveler",
+    "name": "All Talents Level 1 -> 6",
+    "description": "Materials to level all talents from 1 to 6 for Traveler",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
       {
+        "materialId": "teachings-of-contention",
+        "required": 3
+      },
+      {
+        "materialId": "teachings-of-kindling",
+        "required": 3
+      },
+      {
         "materialId": "teachings-of-conflict",
         "required": 3
+      },
+      {
+        "materialId": "guide-to-contention",
+        "required": 21
+      },
+      {
+        "materialId": "guide-to-kindling",
+        "required": 21
       },
       {
         "materialId": "guide-to-conflict",
@@ -36015,36 +36583,44 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       },
       {
         "materialId": "damaged-mask",
-        "required": 6
+        "required": 18
       },
       {
         "materialId": "stained-mask",
-        "required": 22
+        "required": 66
       }
     ]
   },
   {
     "characterId": "traveler-pyro",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Traveler",
+    "name": "All Talents Level 6 -> 10",
+    "description": "Materials to max all talents from level 6 to 10 for Traveler",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
+      {
+        "materialId": "philosophies-of-contention",
+        "required": 38
+      },
+      {
+        "materialId": "philosophies-of-kindling",
+        "required": 38
+      },
       {
         "materialId": "philosophies-of-conflict",
         "required": 38
       },
       {
         "materialId": "ominous-mask",
-        "required": 31
+        "required": 93
       },
       {
         "materialId": "denial-and-judgment",
-        "required": 6
+        "required": 18
       },
       {
         "materialId": "crown-of-insight",
-        "required": 1
+        "required": 3
       }
     ]
   },
@@ -36369,8 +36945,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "varesa",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Varesa",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Varesa",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -36394,8 +36970,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "varesa",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Varesa",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Varesa",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -36738,8 +37314,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "varka",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Varka",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Varka",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -36763,8 +37339,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "varka",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Varka",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Varka",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -37107,8 +37683,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "venti",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Venti",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Venti",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -37132,8 +37708,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "venti",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Venti",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Venti",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -37476,8 +38052,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "wanderer",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Wanderer",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Wanderer",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -37501,8 +38077,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "wanderer",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Wanderer",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Wanderer",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -37845,8 +38421,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "wriothesley",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Wriothesley",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Wriothesley",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -37870,8 +38446,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "wriothesley",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Wriothesley",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Wriothesley",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -38214,8 +38790,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "xiangling",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Xiangling",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Xiangling",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -38239,8 +38815,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "xiangling",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Xiangling",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Xiangling",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -38583,8 +39159,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "xianyun",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Xianyun",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Xianyun",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -38608,8 +39184,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "xianyun",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Xianyun",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Xianyun",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -38952,8 +39528,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "xiao",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Xiao",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Xiao",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -38977,8 +39553,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "xiao",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Xiao",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Xiao",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -39321,8 +39897,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "xilonen",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Xilonen",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Xilonen",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -39346,8 +39922,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "xilonen",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Xilonen",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Xilonen",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -39690,8 +40266,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "xingqiu",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Xingqiu",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Xingqiu",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -39715,8 +40291,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "xingqiu",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Xingqiu",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Xingqiu",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -40059,8 +40635,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "xinyan",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Xinyan",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Xinyan",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -40084,8 +40660,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "xinyan",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Xinyan",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Xinyan",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -40428,8 +41004,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "yae-miko",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Yae Miko",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Yae Miko",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -40453,8 +41029,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "yae-miko",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Yae Miko",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Yae Miko",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -40797,8 +41373,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "yanfei",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Yanfei",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Yanfei",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -40822,8 +41398,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "yanfei",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Yanfei",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Yanfei",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -41166,8 +41742,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "yaoyao",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Yaoyao",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Yaoyao",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -41191,8 +41767,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "yaoyao",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Yaoyao",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Yaoyao",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -41535,8 +42111,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "yelan",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Yelan",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Yelan",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -41560,8 +42136,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "yelan",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Yelan",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Yelan",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -41904,8 +42480,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "yoimiya",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Yoimiya",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Yoimiya",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -41929,8 +42505,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "yoimiya",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Yoimiya",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Yoimiya",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -42273,8 +42849,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "yumemizuki-mizuki",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Yumemizuki Mizuki",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Yumemizuki Mizuki",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -42298,8 +42874,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "yumemizuki-mizuki",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Yumemizuki Mizuki",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Yumemizuki Mizuki",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -42642,8 +43218,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "yun-jin",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Yun Jin",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Yun Jin",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -42667,8 +43243,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "yun-jin",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Yun Jin",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Yun Jin",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -43011,8 +43587,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "zhongli",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Zhongli",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Zhongli",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -43036,8 +43612,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "zhongli",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Zhongli",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Zhongli",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
@@ -43380,8 +43956,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "zibai",
-    "name": "Single Talent Level 1 -> 6",
-    "description": "Materials to level one talent from 1 to 6 for Zibai",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Zibai",
     "category": "talent",
     "sortOrder": 10,
     "materials": [
@@ -43405,8 +43981,8 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
   },
   {
     "characterId": "zibai",
-    "name": "Single Talent Level 6 -> 10",
-    "description": "Materials to max one talent from level 6 to 10 for Zibai",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Zibai",
     "category": "talent",
     "sortOrder": 11,
     "materials": [
