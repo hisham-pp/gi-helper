@@ -263,11 +263,13 @@ export function GoalEdit({ goal, materials }: GoalEditProps) {
                       {!goal.completed && (
                         <Button
                           variant="text"
-                          className="text-on-surface-variant h-8 w-8 p-0 hover:bg-error/5 hover:text-error"
+                          className="h-8 px-3 text-error hover:bg-error/5"
                           onClick={() => handleDeleteGoalMaterial(item.id)}
                           disabled={isPending}
+                          aria-label={`Remove ${item.materialName} from goal`}
                         >
                           <Trash2 className="h-4 w-4" />
+                          Remove
                         </Button>
                       )}
                     </div>
