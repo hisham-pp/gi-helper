@@ -31,6 +31,10 @@ export const deleteGoalSchema = z.object({
   goalId: z.string().min(1),
 });
 
+export const completeGoalSchema = z.object({
+  goalId: z.string().min(1),
+});
+
 export const deleteGoalMaterialSchema = z.object({
   goalMaterialId: z.string().min(1),
 });

@@ -206,12 +206,14 @@ export function evaluateGoal(
     id: string;
     name: string;
     description: string | null;
+    completed: boolean;
     materials: Array<{ id: string; materialId: string; required: number }>;
   },
   materials: MaterialNode[],
+  externalStock?: InventoryMap,
 ): GoalView {
   const graph = buildGraph(materials);
-  const stock = copyStock(materials);
+  const stock = externalStock ?? copyStock(materials);
   const byId = graph.byId;
 
   const orderedRequirements = [...goal.materials].sort((left, right) => {
@@ -256,6 +258,7 @@ export function evaluateGoal(
     id: goal.id,
     name: goal.name,
     description: goal.description,
+    completed: goal.completed,
     progressPercent:
       totalRequired === 0
         ? 0
@@ -280,11 +283,41 @@ export function buildDashboardData(
   materials: MaterialNode[],
   goals: GoalView[],
 ): DashboardData {
-  const materialsStillNeeded = goals.flatMap((goal) =>
+  const activeGoals = goals.filter((goal) => !goal.completed);
+  const materialsStillNeededRaw = activeGoals.flatMap((goal) =>
     goal.materials.filter((item) => item.remaining > 0),
   );
-  const completedMaterials = goals.flatMap((goal) =>
+
+  // Aggregate by materialId
+  const aggregatedNeeds: Record<string, GoalMaterialView> = {};
+  for (const item of materialsStillNeededRaw) {
+    if (aggregatedNeeds[item.materialId]) {
+      aggregatedNeeds[item.materialId].remaining += item.remaining;
+      aggregatedNeeds[item.materialId].required += item.required;
+    } else {
+      aggregatedNeeds[item.materialId] = { ...item };
+    }
+  }
+
+  const materialsStillNeeded = Object.values(aggregatedNeeds).sort(
+    (left, right) => right.remaining - left.remaining,
+  );
+
+  const completedMaterialsRaw = goals.flatMap((goal) =>
     goal.materials.filter((item) => item.complete),
+  );
+
+  const aggregatedCompleted: Record<string, GoalMaterialView> = {};
+  for (const item of completedMaterialsRaw) {
+    if (aggregatedCompleted[item.materialId]) {
+      aggregatedCompleted[item.materialId].required += item.required;
+    } else {
+      aggregatedCompleted[item.materialId] = { ...item };
+    }
+  }
+
+  const completedMaterials = Object.values(aggregatedCompleted).sort(
+    (left, right) => right.required - left.required,
   );
   const materialViews = buildMaterialViews(materials);
 
@@ -295,18 +328,17 @@ export function buildDashboardData(
         (sum, material) => sum + material.quantity,
         0,
       ),
-      activeGoals: goals.length,
-      completedGoals: goals.filter((goal) => goal.progressPercent >= 100)
-        .length,
+      activeGoals: activeGoals.length,
+      completedGoals: goals.filter(
+        (goal) => goal.completed || goal.progressPercent >= 100,
+      ).length,
       craftableMaterials: materialViews.filter(
         (material) => material.craftableExtra > 0,
       ).length,
     },
     materials: materialViews,
     goals,
-    materialsStillNeeded: materialsStillNeeded.sort(
-      (left, right) => right.remaining - left.remaining,
-    ),
+    materialsStillNeeded,
     completedMaterials,
   };
 }
