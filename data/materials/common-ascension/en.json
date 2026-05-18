@@ -1143,5 +1143,161 @@
       }
     ],
     "sources": ["Koholasaurus","Tepetlisaurus", "Yumkasaurus"]
+  },
+  "xuanwen-beast": {
+    "weapons": [
+      "crane-s-echoing-call",
+      "silvershower-heartstrings",
+      "chain-breaker",
+      "dialogues-of-the-desert-sages"
+    ],
+    "items": [
+      {
+        "id": "feathery-fin",
+        "name": "Feathery Fin",
+        "rarity": 2
+      },
+      {
+        "id": "lunar-fin",
+        "name": "Lunar Fin",
+        "rarity": 3
+      },
+      {
+        "id": "chasmlight-fin",
+        "name": "Chasmlight Fin",
+        "rarity": 4
+      }
+    ],
+    "sources": ["Xuanwen Beast"]
+  },
+  "wayob-manifestation": {
+    "weapons": [
+      "starcaller-s-watch",
+      "surf-s-up",
+      "ring-of-yaxche",
+      "sturdy-bone",
+      "waveriding-whirl"
+    ],
+    "items": [
+      {
+        "id": "shard-of-a-shattered-will",
+        "name": "Shard of a Shattered Will",
+        "rarity": 2
+      },
+      {
+        "id": "locus-of-a-clear-will",
+        "name": "Locus of a Clear Will",
+        "rarity": 3
+      },
+      {
+        "id": "sigil-of-a-striding-will",
+        "name": "Sigil of a Striding Will",
+        "rarity": 4
+      }
+    ],
+    "sources": ["Wayob Manifestation"]
+  },
+  "frostnight-scion": {
+    "weapons": [
+      "athame-artis",
+      "nightweaver-s-looking-glass",
+      "blackmarrow-lantern",
+      "dawning-frost",
+      "serenity-s-call"
+    ],
+    "items": [
+      {
+        "id": "frostnight-s-glimmer",
+        "name": "Frostnight's Glimmer",
+        "rarity": 2
+      },
+      {
+        "id": "frostnight-s-glow",
+        "name": "Frostnight's Glow",
+        "rarity": 3
+      },
+      {
+        "id": "frostnight-s-glory",
+        "name": "Frostnight's Glory",
+        "rarity": 4
+      }
+    ],
+    "sources": ["Frostnight Scion"]
+  },
+  "radiant-beast": {
+    "weapons": [
+      "reliquary-of-truth",
+      "etherlight-spindlelute",
+      "master-key",
+      "moonweaver-s-dawn"
+    ],
+    "items": [
+      {
+        "id": "lightless-bone",
+        "name": "Lightless Bone",
+        "rarity": 2
+      },
+      {
+        "id": "glowing-remains",
+        "name": "Glowing Remains",
+        "rarity": 3
+      },
+      {
+        "id": "radiant-exoskeleton",
+        "name": "Radiant Exoskeleton",
+        "rarity": 4
+      }
+    ],
+    "sources": ["Radiant Beast"]
+  },
+  "wasteland-wild-hunt": {
+    "weapons": [
+      "bloodsoaked-ruins",
+      "lightbearing-moonshard",
+      "prospector-s-shovel",
+      "sacrificer-s-staff",
+      "snare-hook"
+    ],
+    "items": [
+      {
+        "id": "mistshroud-manifestation",
+        "name": "Mistshroud Manifestation",
+        "rarity": 2
+      },
+      {
+        "id": "mistshroud-plate",
+        "name": "Mistshroud Plate",
+        "rarity": 3
+      },
+      {
+        "id": "mistshroud-helmet",
+        "name": "Mistshroud Helmet",
+        "rarity": 4
+      }
+    ],
+    "sources": ["Wasteland Wild Hunt"]
+  },
+  "domain-keeper": {
+    "weapons": [
+      "golden-frostbound-oath"
+    ],
+    "items": [
+      {
+        "id": "faded-flaming-hilt",
+        "name": "Faded Flaming Hilt",
+        "rarity": 2
+      },
+      {
+        "id": "fractured-flaming-hilt",
+        "name": "Fractured Flaming Hilt",
+        "rarity": 3
+      },
+      {
+        "id": "jeweled-flaming-hilt",
+        "name": "Jeweled Flaming Hilt",
+        "rarity": 4
+      }
+    ],
+    "sources": ["Domain Keeper"]
   }
 }

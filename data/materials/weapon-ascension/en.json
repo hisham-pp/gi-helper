@@ -596,5 +596,37 @@
         "rarity": 5
       }
     ]
+  },
+  "artful-device": {
+    "weapons": [
+      "nightweaver-s-looking-glass",
+      "blackmarrow-lantern",
+      "dawning-frost",
+      "serenity-s-call"
+    ],
+    "availability": ["Monday", "Thursday", "Sunday"],
+    "source": "lost-mooncourt",
+    "items": [
+      {
+        "id": "artful-device-fragment",
+        "name": "Artful Device Fragment",
+        "rarity": 2
+      },
+      {
+        "id": "artful-device-replica",
+        "name": "Artful Device Replica",
+        "rarity": 3
+      },
+      {
+        "id": "artful-device-inheritance",
+        "name": "Artful Device Inheritance",
+        "rarity": 4
+      },
+      {
+        "id": "artful-device-wish",
+        "name": "Artful Device Wish",
+        "rarity": 5
+      }
+    ]
   }
 }
