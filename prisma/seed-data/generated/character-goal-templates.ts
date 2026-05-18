@@ -149,6 +149,229 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
+    "characterId": "aino",
+    "name": "Talent Level 1 -> 2",
+    "description": "Materials to level a single talent from 1 to 2 for Aino",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-elysium",
+        "required": 3
+      },
+      {
+        "materialId": "broken-drive-shaft",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "aino",
+    "name": "Talent Level 2 -> 3",
+    "description": "Materials to level a single talent from 2 to 3 for Aino",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-elysium",
+        "required": 2
+      },
+      {
+        "materialId": "reinforced-drive-shaft",
+        "required": 3
+      }
+    ]
+  },
+  {
+    "characterId": "aino",
+    "name": "Talent Level 3 -> 4",
+    "description": "Materials to level a single talent from 3 to 4 for Aino",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-elysium",
+        "required": 4
+      },
+      {
+        "materialId": "reinforced-drive-shaft",
+        "required": 4
+      }
+    ]
+  },
+  {
+    "characterId": "aino",
+    "name": "Talent Level 4 -> 5",
+    "description": "Materials to level a single talent from 4 to 5 for Aino",
+    "category": "talent",
+    "sortOrder": 4,
+    "materials": [
+      {
+        "materialId": "guide-to-elysium",
+        "required": 6
+      },
+      {
+        "materialId": "reinforced-drive-shaft",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "aino",
+    "name": "Talent Level 5 -> 6",
+    "description": "Materials to level a single talent from 5 to 6 for Aino",
+    "category": "talent",
+    "sortOrder": 5,
+    "materials": [
+      {
+        "materialId": "guide-to-elysium",
+        "required": 9
+      },
+      {
+        "materialId": "reinforced-drive-shaft",
+        "required": 9
+      }
+    ]
+  },
+  {
+    "characterId": "aino",
+    "name": "Talent Level 6 -> 7",
+    "description": "Materials to level a single talent from 6 to 7 for Aino",
+    "category": "talent",
+    "sortOrder": 6,
+    "materials": [
+      {
+        "materialId": "philosophies-of-elysium",
+        "required": 4
+      },
+      {
+        "materialId": "precision-drive-shaft",
+        "required": 4
+      },
+      {
+        "materialId": "silken-feather",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "aino",
+    "name": "Talent Level 7 -> 8",
+    "description": "Materials to level a single talent from 7 to 8 for Aino",
+    "category": "talent",
+    "sortOrder": 7,
+    "materials": [
+      {
+        "materialId": "philosophies-of-elysium",
+        "required": 6
+      },
+      {
+        "materialId": "precision-drive-shaft",
+        "required": 6
+      },
+      {
+        "materialId": "silken-feather",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "aino",
+    "name": "Talent Level 8 -> 9",
+    "description": "Materials to level a single talent from 8 to 9 for Aino",
+    "category": "talent",
+    "sortOrder": 8,
+    "materials": [
+      {
+        "materialId": "philosophies-of-elysium",
+        "required": 12
+      },
+      {
+        "materialId": "precision-drive-shaft",
+        "required": 9
+      },
+      {
+        "materialId": "silken-feather",
+        "required": 2
+      }
+    ]
+  },
+  {
+    "characterId": "aino",
+    "name": "Talent Level 9 -> 10",
+    "description": "Materials to level a single talent from 9 to 10 for Aino",
+    "category": "talent",
+    "sortOrder": 9,
+    "materials": [
+      {
+        "materialId": "philosophies-of-elysium",
+        "required": 16
+      },
+      {
+        "materialId": "precision-drive-shaft",
+        "required": 12
+      },
+      {
+        "materialId": "silken-feather",
+        "required": 2
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "aino",
+    "name": "Single Talent Level 1 -> 6",
+    "description": "Materials to level one talent from 1 to 6 for Aino",
+    "category": "talent",
+    "sortOrder": 10,
+    "materials": [
+      {
+        "materialId": "teachings-of-elysium",
+        "required": 3
+      },
+      {
+        "materialId": "guide-to-elysium",
+        "required": 21
+      },
+      {
+        "materialId": "broken-drive-shaft",
+        "required": 6
+      },
+      {
+        "materialId": "reinforced-drive-shaft",
+        "required": 22
+      }
+    ]
+  },
+  {
+    "characterId": "aino",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Aino",
+    "category": "talent",
+    "sortOrder": 11,
+    "materials": [
+      {
+        "materialId": "philosophies-of-elysium",
+        "required": 38
+      },
+      {
+        "materialId": "precision-drive-shaft",
+        "required": 31
+      },
+      {
+        "materialId": "silken-feather",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
     "characterId": "albedo",
     "name": "Ascension 1 (Lv. 20 -> 40)",
     "description": "First ascension materials for Albedo",
@@ -2136,6 +2359,229 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "lieutenant-s-insignia",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "arlecchino",
+    "name": "Talent Level 1 -> 2",
+    "description": "Materials to level a single talent from 1 to 2 for Arlecchino",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-order",
+        "required": 3
+      },
+      {
+        "materialId": "recruit-s-insignia",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "arlecchino",
+    "name": "Talent Level 2 -> 3",
+    "description": "Materials to level a single talent from 2 to 3 for Arlecchino",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-order",
+        "required": 2
+      },
+      {
+        "materialId": "sergeant-s-insignia",
+        "required": 3
+      }
+    ]
+  },
+  {
+    "characterId": "arlecchino",
+    "name": "Talent Level 3 -> 4",
+    "description": "Materials to level a single talent from 3 to 4 for Arlecchino",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-order",
+        "required": 4
+      },
+      {
+        "materialId": "sergeant-s-insignia",
+        "required": 4
+      }
+    ]
+  },
+  {
+    "characterId": "arlecchino",
+    "name": "Talent Level 4 -> 5",
+    "description": "Materials to level a single talent from 4 to 5 for Arlecchino",
+    "category": "talent",
+    "sortOrder": 4,
+    "materials": [
+      {
+        "materialId": "guide-to-order",
+        "required": 6
+      },
+      {
+        "materialId": "sergeant-s-insignia",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "arlecchino",
+    "name": "Talent Level 5 -> 6",
+    "description": "Materials to level a single talent from 5 to 6 for Arlecchino",
+    "category": "talent",
+    "sortOrder": 5,
+    "materials": [
+      {
+        "materialId": "guide-to-order",
+        "required": 9
+      },
+      {
+        "materialId": "sergeant-s-insignia",
+        "required": 9
+      }
+    ]
+  },
+  {
+    "characterId": "arlecchino",
+    "name": "Talent Level 6 -> 7",
+    "description": "Materials to level a single talent from 6 to 7 for Arlecchino",
+    "category": "talent",
+    "sortOrder": 6,
+    "materials": [
+      {
+        "materialId": "philosophies-of-order",
+        "required": 4
+      },
+      {
+        "materialId": "lieutenant-s-insignia",
+        "required": 4
+      },
+      {
+        "materialId": "fading-candle",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "arlecchino",
+    "name": "Talent Level 7 -> 8",
+    "description": "Materials to level a single talent from 7 to 8 for Arlecchino",
+    "category": "talent",
+    "sortOrder": 7,
+    "materials": [
+      {
+        "materialId": "philosophies-of-order",
+        "required": 6
+      },
+      {
+        "materialId": "lieutenant-s-insignia",
+        "required": 6
+      },
+      {
+        "materialId": "fading-candle",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "arlecchino",
+    "name": "Talent Level 8 -> 9",
+    "description": "Materials to level a single talent from 8 to 9 for Arlecchino",
+    "category": "talent",
+    "sortOrder": 8,
+    "materials": [
+      {
+        "materialId": "philosophies-of-order",
+        "required": 12
+      },
+      {
+        "materialId": "lieutenant-s-insignia",
+        "required": 9
+      },
+      {
+        "materialId": "fading-candle",
+        "required": 2
+      }
+    ]
+  },
+  {
+    "characterId": "arlecchino",
+    "name": "Talent Level 9 -> 10",
+    "description": "Materials to level a single talent from 9 to 10 for Arlecchino",
+    "category": "talent",
+    "sortOrder": 9,
+    "materials": [
+      {
+        "materialId": "philosophies-of-order",
+        "required": 16
+      },
+      {
+        "materialId": "lieutenant-s-insignia",
+        "required": 12
+      },
+      {
+        "materialId": "fading-candle",
+        "required": 2
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "arlecchino",
+    "name": "Single Talent Level 1 -> 6",
+    "description": "Materials to level one talent from 1 to 6 for Arlecchino",
+    "category": "talent",
+    "sortOrder": 10,
+    "materials": [
+      {
+        "materialId": "teachings-of-order",
+        "required": 3
+      },
+      {
+        "materialId": "guide-to-order",
+        "required": 21
+      },
+      {
+        "materialId": "recruit-s-insignia",
+        "required": 6
+      },
+      {
+        "materialId": "sergeant-s-insignia",
+        "required": 22
+      }
+    ]
+  },
+  {
+    "characterId": "arlecchino",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Arlecchino",
+    "category": "talent",
+    "sortOrder": 11,
+    "materials": [
+      {
+        "materialId": "philosophies-of-order",
+        "required": 38
+      },
+      {
+        "materialId": "lieutenant-s-insignia",
+        "required": 31
+      },
+      {
+        "materialId": "fading-candle",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
       }
     ]
   },
@@ -5238,6 +5684,229 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
+    "characterId": "chasca",
+    "name": "Talent Level 1 -> 2",
+    "description": "Materials to level a single talent from 1 to 2 for Chasca",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-conflict",
+        "required": 3
+      },
+      {
+        "materialId": "juvenile-fang",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "chasca",
+    "name": "Talent Level 2 -> 3",
+    "description": "Materials to level a single talent from 2 to 3 for Chasca",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-conflict",
+        "required": 2
+      },
+      {
+        "materialId": "seasoned-fang",
+        "required": 3
+      }
+    ]
+  },
+  {
+    "characterId": "chasca",
+    "name": "Talent Level 3 -> 4",
+    "description": "Materials to level a single talent from 3 to 4 for Chasca",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-conflict",
+        "required": 4
+      },
+      {
+        "materialId": "seasoned-fang",
+        "required": 4
+      }
+    ]
+  },
+  {
+    "characterId": "chasca",
+    "name": "Talent Level 4 -> 5",
+    "description": "Materials to level a single talent from 4 to 5 for Chasca",
+    "category": "talent",
+    "sortOrder": 4,
+    "materials": [
+      {
+        "materialId": "guide-to-conflict",
+        "required": 6
+      },
+      {
+        "materialId": "seasoned-fang",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "chasca",
+    "name": "Talent Level 5 -> 6",
+    "description": "Materials to level a single talent from 5 to 6 for Chasca",
+    "category": "talent",
+    "sortOrder": 5,
+    "materials": [
+      {
+        "materialId": "guide-to-conflict",
+        "required": 9
+      },
+      {
+        "materialId": "seasoned-fang",
+        "required": 9
+      }
+    ]
+  },
+  {
+    "characterId": "chasca",
+    "name": "Talent Level 6 -> 7",
+    "description": "Materials to level a single talent from 6 to 7 for Chasca",
+    "category": "talent",
+    "sortOrder": 6,
+    "materials": [
+      {
+        "materialId": "philosophies-of-conflict",
+        "required": 4
+      },
+      {
+        "materialId": "tyrant-s-fang",
+        "required": 4
+      },
+      {
+        "materialId": "silken-feather",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "chasca",
+    "name": "Talent Level 7 -> 8",
+    "description": "Materials to level a single talent from 7 to 8 for Chasca",
+    "category": "talent",
+    "sortOrder": 7,
+    "materials": [
+      {
+        "materialId": "philosophies-of-conflict",
+        "required": 6
+      },
+      {
+        "materialId": "tyrant-s-fang",
+        "required": 6
+      },
+      {
+        "materialId": "silken-feather",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "chasca",
+    "name": "Talent Level 8 -> 9",
+    "description": "Materials to level a single talent from 8 to 9 for Chasca",
+    "category": "talent",
+    "sortOrder": 8,
+    "materials": [
+      {
+        "materialId": "philosophies-of-conflict",
+        "required": 12
+      },
+      {
+        "materialId": "tyrant-s-fang",
+        "required": 9
+      },
+      {
+        "materialId": "silken-feather",
+        "required": 2
+      }
+    ]
+  },
+  {
+    "characterId": "chasca",
+    "name": "Talent Level 9 -> 10",
+    "description": "Materials to level a single talent from 9 to 10 for Chasca",
+    "category": "talent",
+    "sortOrder": 9,
+    "materials": [
+      {
+        "materialId": "philosophies-of-conflict",
+        "required": 16
+      },
+      {
+        "materialId": "tyrant-s-fang",
+        "required": 12
+      },
+      {
+        "materialId": "silken-feather",
+        "required": 2
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "chasca",
+    "name": "Single Talent Level 1 -> 6",
+    "description": "Materials to level one talent from 1 to 6 for Chasca",
+    "category": "talent",
+    "sortOrder": 10,
+    "materials": [
+      {
+        "materialId": "teachings-of-conflict",
+        "required": 3
+      },
+      {
+        "materialId": "guide-to-conflict",
+        "required": 21
+      },
+      {
+        "materialId": "juvenile-fang",
+        "required": 6
+      },
+      {
+        "materialId": "seasoned-fang",
+        "required": 22
+      }
+    ]
+  },
+  {
+    "characterId": "chasca",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Chasca",
+    "category": "talent",
+    "sortOrder": 11,
+    "materials": [
+      {
+        "materialId": "philosophies-of-conflict",
+        "required": 38
+      },
+      {
+        "materialId": "tyrant-s-fang",
+        "required": 31
+      },
+      {
+        "materialId": "silken-feather",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
     "characterId": "chevreuse",
     "name": "Ascension 1 (Lv. 20 -> 40)",
     "description": "First ascension materials for Chevreuse",
@@ -5753,6 +6422,229 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
+    "characterId": "chiori",
+    "name": "Talent Level 1 -> 2",
+    "description": "Materials to level a single talent from 1 to 2 for Chiori",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-light",
+        "required": 3
+      },
+      {
+        "materialId": "spectral-husk",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "chiori",
+    "name": "Talent Level 2 -> 3",
+    "description": "Materials to level a single talent from 2 to 3 for Chiori",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-light",
+        "required": 2
+      },
+      {
+        "materialId": "spectral-heart",
+        "required": 3
+      }
+    ]
+  },
+  {
+    "characterId": "chiori",
+    "name": "Talent Level 3 -> 4",
+    "description": "Materials to level a single talent from 3 to 4 for Chiori",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-light",
+        "required": 4
+      },
+      {
+        "materialId": "spectral-heart",
+        "required": 4
+      }
+    ]
+  },
+  {
+    "characterId": "chiori",
+    "name": "Talent Level 4 -> 5",
+    "description": "Materials to level a single talent from 4 to 5 for Chiori",
+    "category": "talent",
+    "sortOrder": 4,
+    "materials": [
+      {
+        "materialId": "guide-to-light",
+        "required": 6
+      },
+      {
+        "materialId": "spectral-heart",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "chiori",
+    "name": "Talent Level 5 -> 6",
+    "description": "Materials to level a single talent from 5 to 6 for Chiori",
+    "category": "talent",
+    "sortOrder": 5,
+    "materials": [
+      {
+        "materialId": "guide-to-light",
+        "required": 9
+      },
+      {
+        "materialId": "spectral-heart",
+        "required": 9
+      }
+    ]
+  },
+  {
+    "characterId": "chiori",
+    "name": "Talent Level 6 -> 7",
+    "description": "Materials to level a single talent from 6 to 7 for Chiori",
+    "category": "talent",
+    "sortOrder": 6,
+    "materials": [
+      {
+        "materialId": "philosophies-of-light",
+        "required": 4
+      },
+      {
+        "materialId": "spectral-nucleus",
+        "required": 4
+      },
+      {
+        "materialId": "lightless-silk-string",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "chiori",
+    "name": "Talent Level 7 -> 8",
+    "description": "Materials to level a single talent from 7 to 8 for Chiori",
+    "category": "talent",
+    "sortOrder": 7,
+    "materials": [
+      {
+        "materialId": "philosophies-of-light",
+        "required": 6
+      },
+      {
+        "materialId": "spectral-nucleus",
+        "required": 6
+      },
+      {
+        "materialId": "lightless-silk-string",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "chiori",
+    "name": "Talent Level 8 -> 9",
+    "description": "Materials to level a single talent from 8 to 9 for Chiori",
+    "category": "talent",
+    "sortOrder": 8,
+    "materials": [
+      {
+        "materialId": "philosophies-of-light",
+        "required": 12
+      },
+      {
+        "materialId": "spectral-nucleus",
+        "required": 9
+      },
+      {
+        "materialId": "lightless-silk-string",
+        "required": 2
+      }
+    ]
+  },
+  {
+    "characterId": "chiori",
+    "name": "Talent Level 9 -> 10",
+    "description": "Materials to level a single talent from 9 to 10 for Chiori",
+    "category": "talent",
+    "sortOrder": 9,
+    "materials": [
+      {
+        "materialId": "philosophies-of-light",
+        "required": 16
+      },
+      {
+        "materialId": "spectral-nucleus",
+        "required": 12
+      },
+      {
+        "materialId": "lightless-silk-string",
+        "required": 2
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "chiori",
+    "name": "Single Talent Level 1 -> 6",
+    "description": "Materials to level one talent from 1 to 6 for Chiori",
+    "category": "talent",
+    "sortOrder": 10,
+    "materials": [
+      {
+        "materialId": "teachings-of-light",
+        "required": 3
+      },
+      {
+        "materialId": "guide-to-light",
+        "required": 21
+      },
+      {
+        "materialId": "spectral-husk",
+        "required": 6
+      },
+      {
+        "materialId": "spectral-heart",
+        "required": 22
+      }
+    ]
+  },
+  {
+    "characterId": "chiori",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Chiori",
+    "category": "talent",
+    "sortOrder": 11,
+    "materials": [
+      {
+        "materialId": "philosophies-of-light",
+        "required": 38
+      },
+      {
+        "materialId": "spectral-nucleus",
+        "required": 31
+      },
+      {
+        "materialId": "lightless-silk-string",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
     "characterId": "chongyun",
     "name": "Ascension 1 (Lv. 20 -> 40)",
     "description": "First ascension materials for Chongyun",
@@ -6264,6 +7156,229 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "tyrant-s-fang",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "citlali",
+    "name": "Talent Level 1 -> 2",
+    "description": "Materials to level a single talent from 1 to 2 for Citlali",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-kindling",
+        "required": 3
+      },
+      {
+        "materialId": "juvenile-fang",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "citlali",
+    "name": "Talent Level 2 -> 3",
+    "description": "Materials to level a single talent from 2 to 3 for Citlali",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-kindling",
+        "required": 2
+      },
+      {
+        "materialId": "seasoned-fang",
+        "required": 3
+      }
+    ]
+  },
+  {
+    "characterId": "citlali",
+    "name": "Talent Level 3 -> 4",
+    "description": "Materials to level a single talent from 3 to 4 for Citlali",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-kindling",
+        "required": 4
+      },
+      {
+        "materialId": "seasoned-fang",
+        "required": 4
+      }
+    ]
+  },
+  {
+    "characterId": "citlali",
+    "name": "Talent Level 4 -> 5",
+    "description": "Materials to level a single talent from 4 to 5 for Citlali",
+    "category": "talent",
+    "sortOrder": 4,
+    "materials": [
+      {
+        "materialId": "guide-to-kindling",
+        "required": 6
+      },
+      {
+        "materialId": "seasoned-fang",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "citlali",
+    "name": "Talent Level 5 -> 6",
+    "description": "Materials to level a single talent from 5 to 6 for Citlali",
+    "category": "talent",
+    "sortOrder": 5,
+    "materials": [
+      {
+        "materialId": "guide-to-kindling",
+        "required": 9
+      },
+      {
+        "materialId": "seasoned-fang",
+        "required": 9
+      }
+    ]
+  },
+  {
+    "characterId": "citlali",
+    "name": "Talent Level 6 -> 7",
+    "description": "Materials to level a single talent from 6 to 7 for Citlali",
+    "category": "talent",
+    "sortOrder": 6,
+    "materials": [
+      {
+        "materialId": "philosophies-of-kindling",
+        "required": 4
+      },
+      {
+        "materialId": "tyrant-s-fang",
+        "required": 4
+      },
+      {
+        "materialId": "denial-and-judgment",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "citlali",
+    "name": "Talent Level 7 -> 8",
+    "description": "Materials to level a single talent from 7 to 8 for Citlali",
+    "category": "talent",
+    "sortOrder": 7,
+    "materials": [
+      {
+        "materialId": "philosophies-of-kindling",
+        "required": 6
+      },
+      {
+        "materialId": "tyrant-s-fang",
+        "required": 6
+      },
+      {
+        "materialId": "denial-and-judgment",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "citlali",
+    "name": "Talent Level 8 -> 9",
+    "description": "Materials to level a single talent from 8 to 9 for Citlali",
+    "category": "talent",
+    "sortOrder": 8,
+    "materials": [
+      {
+        "materialId": "philosophies-of-kindling",
+        "required": 12
+      },
+      {
+        "materialId": "tyrant-s-fang",
+        "required": 9
+      },
+      {
+        "materialId": "denial-and-judgment",
+        "required": 2
+      }
+    ]
+  },
+  {
+    "characterId": "citlali",
+    "name": "Talent Level 9 -> 10",
+    "description": "Materials to level a single talent from 9 to 10 for Citlali",
+    "category": "talent",
+    "sortOrder": 9,
+    "materials": [
+      {
+        "materialId": "philosophies-of-kindling",
+        "required": 16
+      },
+      {
+        "materialId": "tyrant-s-fang",
+        "required": 12
+      },
+      {
+        "materialId": "denial-and-judgment",
+        "required": 2
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "citlali",
+    "name": "Single Talent Level 1 -> 6",
+    "description": "Materials to level one talent from 1 to 6 for Citlali",
+    "category": "talent",
+    "sortOrder": 10,
+    "materials": [
+      {
+        "materialId": "teachings-of-kindling",
+        "required": 3
+      },
+      {
+        "materialId": "guide-to-kindling",
+        "required": 21
+      },
+      {
+        "materialId": "juvenile-fang",
+        "required": 6
+      },
+      {
+        "materialId": "seasoned-fang",
+        "required": 22
+      }
+    ]
+  },
+  {
+    "characterId": "citlali",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Citlali",
+    "category": "talent",
+    "sortOrder": 11,
+    "materials": [
+      {
+        "materialId": "philosophies-of-kindling",
+        "required": 38
+      },
+      {
+        "materialId": "tyrant-s-fang",
+        "required": 31
+      },
+      {
+        "materialId": "denial-and-judgment",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
       }
     ]
   },
@@ -7152,6 +8267,229 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
+    "characterId": "columbina",
+    "name": "Talent Level 1 -> 2",
+    "description": "Materials to level a single talent from 1 to 2 for Columbina",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-moonlight",
+        "required": 3
+      },
+      {
+        "materialId": "slime-condensate",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "columbina",
+    "name": "Talent Level 2 -> 3",
+    "description": "Materials to level a single talent from 2 to 3 for Columbina",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-moonlight",
+        "required": 2
+      },
+      {
+        "materialId": "slime-secretions",
+        "required": 3
+      }
+    ]
+  },
+  {
+    "characterId": "columbina",
+    "name": "Talent Level 3 -> 4",
+    "description": "Materials to level a single talent from 3 to 4 for Columbina",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-moonlight",
+        "required": 4
+      },
+      {
+        "materialId": "slime-secretions",
+        "required": 4
+      }
+    ]
+  },
+  {
+    "characterId": "columbina",
+    "name": "Talent Level 4 -> 5",
+    "description": "Materials to level a single talent from 4 to 5 for Columbina",
+    "category": "talent",
+    "sortOrder": 4,
+    "materials": [
+      {
+        "materialId": "guide-to-moonlight",
+        "required": 6
+      },
+      {
+        "materialId": "slime-secretions",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "columbina",
+    "name": "Talent Level 5 -> 6",
+    "description": "Materials to level a single talent from 5 to 6 for Columbina",
+    "category": "talent",
+    "sortOrder": 5,
+    "materials": [
+      {
+        "materialId": "guide-to-moonlight",
+        "required": 9
+      },
+      {
+        "materialId": "slime-secretions",
+        "required": 9
+      }
+    ]
+  },
+  {
+    "characterId": "columbina",
+    "name": "Talent Level 6 -> 7",
+    "description": "Materials to level a single talent from 6 to 7 for Columbina",
+    "category": "talent",
+    "sortOrder": 6,
+    "materials": [
+      {
+        "materialId": "philosophies-of-moonlight",
+        "required": 4
+      },
+      {
+        "materialId": "slime-concentrate",
+        "required": 4
+      },
+      {
+        "materialId": "mask-of-the-virtuous-doctor",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "columbina",
+    "name": "Talent Level 7 -> 8",
+    "description": "Materials to level a single talent from 7 to 8 for Columbina",
+    "category": "talent",
+    "sortOrder": 7,
+    "materials": [
+      {
+        "materialId": "philosophies-of-moonlight",
+        "required": 6
+      },
+      {
+        "materialId": "slime-concentrate",
+        "required": 6
+      },
+      {
+        "materialId": "mask-of-the-virtuous-doctor",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "columbina",
+    "name": "Talent Level 8 -> 9",
+    "description": "Materials to level a single talent from 8 to 9 for Columbina",
+    "category": "talent",
+    "sortOrder": 8,
+    "materials": [
+      {
+        "materialId": "philosophies-of-moonlight",
+        "required": 12
+      },
+      {
+        "materialId": "slime-concentrate",
+        "required": 9
+      },
+      {
+        "materialId": "mask-of-the-virtuous-doctor",
+        "required": 2
+      }
+    ]
+  },
+  {
+    "characterId": "columbina",
+    "name": "Talent Level 9 -> 10",
+    "description": "Materials to level a single talent from 9 to 10 for Columbina",
+    "category": "talent",
+    "sortOrder": 9,
+    "materials": [
+      {
+        "materialId": "philosophies-of-moonlight",
+        "required": 16
+      },
+      {
+        "materialId": "slime-concentrate",
+        "required": 12
+      },
+      {
+        "materialId": "mask-of-the-virtuous-doctor",
+        "required": 2
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "columbina",
+    "name": "Single Talent Level 1 -> 6",
+    "description": "Materials to level one talent from 1 to 6 for Columbina",
+    "category": "talent",
+    "sortOrder": 10,
+    "materials": [
+      {
+        "materialId": "teachings-of-moonlight",
+        "required": 3
+      },
+      {
+        "materialId": "guide-to-moonlight",
+        "required": 21
+      },
+      {
+        "materialId": "slime-condensate",
+        "required": 6
+      },
+      {
+        "materialId": "slime-secretions",
+        "required": 22
+      }
+    ]
+  },
+  {
+    "characterId": "columbina",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Columbina",
+    "category": "talent",
+    "sortOrder": 11,
+    "materials": [
+      {
+        "materialId": "philosophies-of-moonlight",
+        "required": 38
+      },
+      {
+        "materialId": "slime-concentrate",
+        "required": 31
+      },
+      {
+        "materialId": "mask-of-the-virtuous-doctor",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
     "characterId": "cyno",
     "name": "Ascension 1 (Lv. 20 -> 40)",
     "description": "First ascension materials for Cyno",
@@ -7663,6 +9001,229 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "weathered-arrowhead",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "dahlia",
+    "name": "Talent Level 1 -> 2",
+    "description": "Materials to level a single talent from 1 to 2 for Dahlia",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-ballad",
+        "required": 3
+      },
+      {
+        "materialId": "firm-arrowhead",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "dahlia",
+    "name": "Talent Level 2 -> 3",
+    "description": "Materials to level a single talent from 2 to 3 for Dahlia",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-ballad",
+        "required": 2
+      },
+      {
+        "materialId": "sharp-arrowhead",
+        "required": 3
+      }
+    ]
+  },
+  {
+    "characterId": "dahlia",
+    "name": "Talent Level 3 -> 4",
+    "description": "Materials to level a single talent from 3 to 4 for Dahlia",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-ballad",
+        "required": 4
+      },
+      {
+        "materialId": "sharp-arrowhead",
+        "required": 4
+      }
+    ]
+  },
+  {
+    "characterId": "dahlia",
+    "name": "Talent Level 4 -> 5",
+    "description": "Materials to level a single talent from 4 to 5 for Dahlia",
+    "category": "talent",
+    "sortOrder": 4,
+    "materials": [
+      {
+        "materialId": "guide-to-ballad",
+        "required": 6
+      },
+      {
+        "materialId": "sharp-arrowhead",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "dahlia",
+    "name": "Talent Level 5 -> 6",
+    "description": "Materials to level a single talent from 5 to 6 for Dahlia",
+    "category": "talent",
+    "sortOrder": 5,
+    "materials": [
+      {
+        "materialId": "guide-to-ballad",
+        "required": 9
+      },
+      {
+        "materialId": "sharp-arrowhead",
+        "required": 9
+      }
+    ]
+  },
+  {
+    "characterId": "dahlia",
+    "name": "Talent Level 6 -> 7",
+    "description": "Materials to level a single talent from 6 to 7 for Dahlia",
+    "category": "talent",
+    "sortOrder": 6,
+    "materials": [
+      {
+        "materialId": "philosophies-of-ballad",
+        "required": 4
+      },
+      {
+        "materialId": "weathered-arrowhead",
+        "required": 4
+      },
+      {
+        "materialId": "eroded-scale-feather",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "dahlia",
+    "name": "Talent Level 7 -> 8",
+    "description": "Materials to level a single talent from 7 to 8 for Dahlia",
+    "category": "talent",
+    "sortOrder": 7,
+    "materials": [
+      {
+        "materialId": "philosophies-of-ballad",
+        "required": 6
+      },
+      {
+        "materialId": "weathered-arrowhead",
+        "required": 6
+      },
+      {
+        "materialId": "eroded-scale-feather",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "dahlia",
+    "name": "Talent Level 8 -> 9",
+    "description": "Materials to level a single talent from 8 to 9 for Dahlia",
+    "category": "talent",
+    "sortOrder": 8,
+    "materials": [
+      {
+        "materialId": "philosophies-of-ballad",
+        "required": 12
+      },
+      {
+        "materialId": "weathered-arrowhead",
+        "required": 9
+      },
+      {
+        "materialId": "eroded-scale-feather",
+        "required": 2
+      }
+    ]
+  },
+  {
+    "characterId": "dahlia",
+    "name": "Talent Level 9 -> 10",
+    "description": "Materials to level a single talent from 9 to 10 for Dahlia",
+    "category": "talent",
+    "sortOrder": 9,
+    "materials": [
+      {
+        "materialId": "philosophies-of-ballad",
+        "required": 16
+      },
+      {
+        "materialId": "weathered-arrowhead",
+        "required": 12
+      },
+      {
+        "materialId": "eroded-scale-feather",
+        "required": 2
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "dahlia",
+    "name": "Single Talent Level 1 -> 6",
+    "description": "Materials to level one talent from 1 to 6 for Dahlia",
+    "category": "talent",
+    "sortOrder": 10,
+    "materials": [
+      {
+        "materialId": "teachings-of-ballad",
+        "required": 3
+      },
+      {
+        "materialId": "guide-to-ballad",
+        "required": 21
+      },
+      {
+        "materialId": "firm-arrowhead",
+        "required": 6
+      },
+      {
+        "materialId": "sharp-arrowhead",
+        "required": 22
+      }
+    ]
+  },
+  {
+    "characterId": "dahlia",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Dahlia",
+    "category": "talent",
+    "sortOrder": 11,
+    "materials": [
+      {
+        "materialId": "philosophies-of-ballad",
+        "required": 38
+      },
+      {
+        "materialId": "weathered-arrowhead",
+        "required": 31
+      },
+      {
+        "materialId": "eroded-scale-feather",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
       }
     ]
   },
@@ -9289,6 +10850,229 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
+    "characterId": "durin",
+    "name": "Talent Level 1 -> 2",
+    "description": "Materials to level a single talent from 1 to 2 for Durin",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-ballad",
+        "required": 3
+      },
+      {
+        "materialId": "tattered-warrant",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "durin",
+    "name": "Talent Level 2 -> 3",
+    "description": "Materials to level a single talent from 2 to 3 for Durin",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-ballad",
+        "required": 2
+      },
+      {
+        "materialId": "immaculate-warrant",
+        "required": 3
+      }
+    ]
+  },
+  {
+    "characterId": "durin",
+    "name": "Talent Level 3 -> 4",
+    "description": "Materials to level a single talent from 3 to 4 for Durin",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-ballad",
+        "required": 4
+      },
+      {
+        "materialId": "immaculate-warrant",
+        "required": 4
+      }
+    ]
+  },
+  {
+    "characterId": "durin",
+    "name": "Talent Level 4 -> 5",
+    "description": "Materials to level a single talent from 4 to 5 for Durin",
+    "category": "talent",
+    "sortOrder": 4,
+    "materials": [
+      {
+        "materialId": "guide-to-ballad",
+        "required": 6
+      },
+      {
+        "materialId": "immaculate-warrant",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "durin",
+    "name": "Talent Level 5 -> 6",
+    "description": "Materials to level a single talent from 5 to 6 for Durin",
+    "category": "talent",
+    "sortOrder": 5,
+    "materials": [
+      {
+        "materialId": "guide-to-ballad",
+        "required": 9
+      },
+      {
+        "materialId": "immaculate-warrant",
+        "required": 9
+      }
+    ]
+  },
+  {
+    "characterId": "durin",
+    "name": "Talent Level 6 -> 7",
+    "description": "Materials to level a single talent from 6 to 7 for Durin",
+    "category": "talent",
+    "sortOrder": 6,
+    "materials": [
+      {
+        "materialId": "philosophies-of-ballad",
+        "required": 4
+      },
+      {
+        "materialId": "frost-etched-warrant",
+        "required": 4
+      },
+      {
+        "materialId": "eroded-sunfire",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "durin",
+    "name": "Talent Level 7 -> 8",
+    "description": "Materials to level a single talent from 7 to 8 for Durin",
+    "category": "talent",
+    "sortOrder": 7,
+    "materials": [
+      {
+        "materialId": "philosophies-of-ballad",
+        "required": 6
+      },
+      {
+        "materialId": "frost-etched-warrant",
+        "required": 6
+      },
+      {
+        "materialId": "eroded-sunfire",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "durin",
+    "name": "Talent Level 8 -> 9",
+    "description": "Materials to level a single talent from 8 to 9 for Durin",
+    "category": "talent",
+    "sortOrder": 8,
+    "materials": [
+      {
+        "materialId": "philosophies-of-ballad",
+        "required": 12
+      },
+      {
+        "materialId": "frost-etched-warrant",
+        "required": 9
+      },
+      {
+        "materialId": "eroded-sunfire",
+        "required": 2
+      }
+    ]
+  },
+  {
+    "characterId": "durin",
+    "name": "Talent Level 9 -> 10",
+    "description": "Materials to level a single talent from 9 to 10 for Durin",
+    "category": "talent",
+    "sortOrder": 9,
+    "materials": [
+      {
+        "materialId": "philosophies-of-ballad",
+        "required": 16
+      },
+      {
+        "materialId": "frost-etched-warrant",
+        "required": 12
+      },
+      {
+        "materialId": "eroded-sunfire",
+        "required": 2
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "durin",
+    "name": "Single Talent Level 1 -> 6",
+    "description": "Materials to level one talent from 1 to 6 for Durin",
+    "category": "talent",
+    "sortOrder": 10,
+    "materials": [
+      {
+        "materialId": "teachings-of-ballad",
+        "required": 3
+      },
+      {
+        "materialId": "guide-to-ballad",
+        "required": 21
+      },
+      {
+        "materialId": "tattered-warrant",
+        "required": 6
+      },
+      {
+        "materialId": "immaculate-warrant",
+        "required": 22
+      }
+    ]
+  },
+  {
+    "characterId": "durin",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Durin",
+    "category": "talent",
+    "sortOrder": 11,
+    "materials": [
+      {
+        "materialId": "philosophies-of-ballad",
+        "required": 38
+      },
+      {
+        "materialId": "frost-etched-warrant",
+        "required": 31
+      },
+      {
+        "materialId": "eroded-sunfire",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
     "characterId": "emilie",
     "name": "Ascension 1 (Lv. 20 -> 40)",
     "description": "First ascension materials for Emilie",
@@ -9439,6 +11223,229 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
+    "characterId": "emilie",
+    "name": "Talent Level 1 -> 2",
+    "description": "Materials to level a single talent from 1 to 2 for Emilie",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-order",
+        "required": 3
+      },
+      {
+        "materialId": "meshing-gear",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "emilie",
+    "name": "Talent Level 2 -> 3",
+    "description": "Materials to level a single talent from 2 to 3 for Emilie",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-order",
+        "required": 2
+      },
+      {
+        "materialId": "mechanical-spur-gear",
+        "required": 3
+      }
+    ]
+  },
+  {
+    "characterId": "emilie",
+    "name": "Talent Level 3 -> 4",
+    "description": "Materials to level a single talent from 3 to 4 for Emilie",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-order",
+        "required": 4
+      },
+      {
+        "materialId": "mechanical-spur-gear",
+        "required": 4
+      }
+    ]
+  },
+  {
+    "characterId": "emilie",
+    "name": "Talent Level 4 -> 5",
+    "description": "Materials to level a single talent from 4 to 5 for Emilie",
+    "category": "talent",
+    "sortOrder": 4,
+    "materials": [
+      {
+        "materialId": "guide-to-order",
+        "required": 6
+      },
+      {
+        "materialId": "mechanical-spur-gear",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "emilie",
+    "name": "Talent Level 5 -> 6",
+    "description": "Materials to level a single talent from 5 to 6 for Emilie",
+    "category": "talent",
+    "sortOrder": 5,
+    "materials": [
+      {
+        "materialId": "guide-to-order",
+        "required": 9
+      },
+      {
+        "materialId": "mechanical-spur-gear",
+        "required": 9
+      }
+    ]
+  },
+  {
+    "characterId": "emilie",
+    "name": "Talent Level 6 -> 7",
+    "description": "Materials to level a single talent from 6 to 7 for Emilie",
+    "category": "talent",
+    "sortOrder": 6,
+    "materials": [
+      {
+        "materialId": "philosophies-of-order",
+        "required": 4
+      },
+      {
+        "materialId": "artificed-dynamic-gear",
+        "required": 4
+      },
+      {
+        "materialId": "silken-feather",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "emilie",
+    "name": "Talent Level 7 -> 8",
+    "description": "Materials to level a single talent from 7 to 8 for Emilie",
+    "category": "talent",
+    "sortOrder": 7,
+    "materials": [
+      {
+        "materialId": "philosophies-of-order",
+        "required": 6
+      },
+      {
+        "materialId": "artificed-dynamic-gear",
+        "required": 6
+      },
+      {
+        "materialId": "silken-feather",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "emilie",
+    "name": "Talent Level 8 -> 9",
+    "description": "Materials to level a single talent from 8 to 9 for Emilie",
+    "category": "talent",
+    "sortOrder": 8,
+    "materials": [
+      {
+        "materialId": "philosophies-of-order",
+        "required": 12
+      },
+      {
+        "materialId": "artificed-dynamic-gear",
+        "required": 9
+      },
+      {
+        "materialId": "silken-feather",
+        "required": 2
+      }
+    ]
+  },
+  {
+    "characterId": "emilie",
+    "name": "Talent Level 9 -> 10",
+    "description": "Materials to level a single talent from 9 to 10 for Emilie",
+    "category": "talent",
+    "sortOrder": 9,
+    "materials": [
+      {
+        "materialId": "philosophies-of-order",
+        "required": 16
+      },
+      {
+        "materialId": "artificed-dynamic-gear",
+        "required": 12
+      },
+      {
+        "materialId": "silken-feather",
+        "required": 2
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "emilie",
+    "name": "Single Talent Level 1 -> 6",
+    "description": "Materials to level one talent from 1 to 6 for Emilie",
+    "category": "talent",
+    "sortOrder": 10,
+    "materials": [
+      {
+        "materialId": "teachings-of-order",
+        "required": 3
+      },
+      {
+        "materialId": "guide-to-order",
+        "required": 21
+      },
+      {
+        "materialId": "meshing-gear",
+        "required": 6
+      },
+      {
+        "materialId": "mechanical-spur-gear",
+        "required": 22
+      }
+    ]
+  },
+  {
+    "characterId": "emilie",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Emilie",
+    "category": "talent",
+    "sortOrder": 11,
+    "materials": [
+      {
+        "materialId": "philosophies-of-order",
+        "required": 38
+      },
+      {
+        "materialId": "artificed-dynamic-gear",
+        "required": 31
+      },
+      {
+        "materialId": "silken-feather",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
     "characterId": "escoffier",
     "name": "Ascension 1 (Lv. 20 -> 40)",
     "description": "First ascension materials for Escoffier",
@@ -9581,6 +11588,229 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "artificed-dynamic-gear",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "escoffier",
+    "name": "Talent Level 1 -> 2",
+    "description": "Materials to level a single talent from 1 to 2 for Escoffier",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-justice",
+        "required": 3
+      },
+      {
+        "materialId": "meshing-gear",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "escoffier",
+    "name": "Talent Level 2 -> 3",
+    "description": "Materials to level a single talent from 2 to 3 for Escoffier",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-justice",
+        "required": 2
+      },
+      {
+        "materialId": "mechanical-spur-gear",
+        "required": 3
+      }
+    ]
+  },
+  {
+    "characterId": "escoffier",
+    "name": "Talent Level 3 -> 4",
+    "description": "Materials to level a single talent from 3 to 4 for Escoffier",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-justice",
+        "required": 4
+      },
+      {
+        "materialId": "mechanical-spur-gear",
+        "required": 4
+      }
+    ]
+  },
+  {
+    "characterId": "escoffier",
+    "name": "Talent Level 4 -> 5",
+    "description": "Materials to level a single talent from 4 to 5 for Escoffier",
+    "category": "talent",
+    "sortOrder": 4,
+    "materials": [
+      {
+        "materialId": "guide-to-justice",
+        "required": 6
+      },
+      {
+        "materialId": "mechanical-spur-gear",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "escoffier",
+    "name": "Talent Level 5 -> 6",
+    "description": "Materials to level a single talent from 5 to 6 for Escoffier",
+    "category": "talent",
+    "sortOrder": 5,
+    "materials": [
+      {
+        "materialId": "guide-to-justice",
+        "required": 9
+      },
+      {
+        "materialId": "mechanical-spur-gear",
+        "required": 9
+      }
+    ]
+  },
+  {
+    "characterId": "escoffier",
+    "name": "Talent Level 6 -> 7",
+    "description": "Materials to level a single talent from 6 to 7 for Escoffier",
+    "category": "talent",
+    "sortOrder": 6,
+    "materials": [
+      {
+        "materialId": "philosophies-of-justice",
+        "required": 4
+      },
+      {
+        "materialId": "artificed-dynamic-gear",
+        "required": 4
+      },
+      {
+        "materialId": "eroded-horn",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "escoffier",
+    "name": "Talent Level 7 -> 8",
+    "description": "Materials to level a single talent from 7 to 8 for Escoffier",
+    "category": "talent",
+    "sortOrder": 7,
+    "materials": [
+      {
+        "materialId": "philosophies-of-justice",
+        "required": 6
+      },
+      {
+        "materialId": "artificed-dynamic-gear",
+        "required": 6
+      },
+      {
+        "materialId": "eroded-horn",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "escoffier",
+    "name": "Talent Level 8 -> 9",
+    "description": "Materials to level a single talent from 8 to 9 for Escoffier",
+    "category": "talent",
+    "sortOrder": 8,
+    "materials": [
+      {
+        "materialId": "philosophies-of-justice",
+        "required": 12
+      },
+      {
+        "materialId": "artificed-dynamic-gear",
+        "required": 9
+      },
+      {
+        "materialId": "eroded-horn",
+        "required": 2
+      }
+    ]
+  },
+  {
+    "characterId": "escoffier",
+    "name": "Talent Level 9 -> 10",
+    "description": "Materials to level a single talent from 9 to 10 for Escoffier",
+    "category": "talent",
+    "sortOrder": 9,
+    "materials": [
+      {
+        "materialId": "philosophies-of-justice",
+        "required": 16
+      },
+      {
+        "materialId": "artificed-dynamic-gear",
+        "required": 12
+      },
+      {
+        "materialId": "eroded-horn",
+        "required": 2
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "escoffier",
+    "name": "Single Talent Level 1 -> 6",
+    "description": "Materials to level one talent from 1 to 6 for Escoffier",
+    "category": "talent",
+    "sortOrder": 10,
+    "materials": [
+      {
+        "materialId": "teachings-of-justice",
+        "required": 3
+      },
+      {
+        "materialId": "guide-to-justice",
+        "required": 21
+      },
+      {
+        "materialId": "meshing-gear",
+        "required": 6
+      },
+      {
+        "materialId": "mechanical-spur-gear",
+        "required": 22
+      }
+    ]
+  },
+  {
+    "characterId": "escoffier",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Escoffier",
+    "category": "talent",
+    "sortOrder": 11,
+    "materials": [
+      {
+        "materialId": "philosophies-of-justice",
+        "required": 38
+      },
+      {
+        "materialId": "artificed-dynamic-gear",
+        "required": 31
+      },
+      {
+        "materialId": "eroded-horn",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
       }
     ]
   },
@@ -10834,6 +13064,229 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "precision-drive-shaft",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "flins",
+    "name": "Talent Level 1 -> 2",
+    "description": "Materials to level a single talent from 1 to 2 for Flins",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-vagrancy",
+        "required": 3
+      },
+      {
+        "materialId": "broken-drive-shaft",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "flins",
+    "name": "Talent Level 2 -> 3",
+    "description": "Materials to level a single talent from 2 to 3 for Flins",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-vagrancy",
+        "required": 2
+      },
+      {
+        "materialId": "reinforced-drive-shaft",
+        "required": 3
+      }
+    ]
+  },
+  {
+    "characterId": "flins",
+    "name": "Talent Level 3 -> 4",
+    "description": "Materials to level a single talent from 3 to 4 for Flins",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-vagrancy",
+        "required": 4
+      },
+      {
+        "materialId": "reinforced-drive-shaft",
+        "required": 4
+      }
+    ]
+  },
+  {
+    "characterId": "flins",
+    "name": "Talent Level 4 -> 5",
+    "description": "Materials to level a single talent from 4 to 5 for Flins",
+    "category": "talent",
+    "sortOrder": 4,
+    "materials": [
+      {
+        "materialId": "guide-to-vagrancy",
+        "required": 6
+      },
+      {
+        "materialId": "reinforced-drive-shaft",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "flins",
+    "name": "Talent Level 5 -> 6",
+    "description": "Materials to level a single talent from 5 to 6 for Flins",
+    "category": "talent",
+    "sortOrder": 5,
+    "materials": [
+      {
+        "materialId": "guide-to-vagrancy",
+        "required": 9
+      },
+      {
+        "materialId": "reinforced-drive-shaft",
+        "required": 9
+      }
+    ]
+  },
+  {
+    "characterId": "flins",
+    "name": "Talent Level 6 -> 7",
+    "description": "Materials to level a single talent from 6 to 7 for Flins",
+    "category": "talent",
+    "sortOrder": 6,
+    "materials": [
+      {
+        "materialId": "philosophies-of-vagrancy",
+        "required": 4
+      },
+      {
+        "materialId": "precision-drive-shaft",
+        "required": 4
+      },
+      {
+        "materialId": "ascended-sample-queen",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "flins",
+    "name": "Talent Level 7 -> 8",
+    "description": "Materials to level a single talent from 7 to 8 for Flins",
+    "category": "talent",
+    "sortOrder": 7,
+    "materials": [
+      {
+        "materialId": "philosophies-of-vagrancy",
+        "required": 6
+      },
+      {
+        "materialId": "precision-drive-shaft",
+        "required": 6
+      },
+      {
+        "materialId": "ascended-sample-queen",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "flins",
+    "name": "Talent Level 8 -> 9",
+    "description": "Materials to level a single talent from 8 to 9 for Flins",
+    "category": "talent",
+    "sortOrder": 8,
+    "materials": [
+      {
+        "materialId": "philosophies-of-vagrancy",
+        "required": 12
+      },
+      {
+        "materialId": "precision-drive-shaft",
+        "required": 9
+      },
+      {
+        "materialId": "ascended-sample-queen",
+        "required": 2
+      }
+    ]
+  },
+  {
+    "characterId": "flins",
+    "name": "Talent Level 9 -> 10",
+    "description": "Materials to level a single talent from 9 to 10 for Flins",
+    "category": "talent",
+    "sortOrder": 9,
+    "materials": [
+      {
+        "materialId": "philosophies-of-vagrancy",
+        "required": 16
+      },
+      {
+        "materialId": "precision-drive-shaft",
+        "required": 12
+      },
+      {
+        "materialId": "ascended-sample-queen",
+        "required": 2
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "flins",
+    "name": "Single Talent Level 1 -> 6",
+    "description": "Materials to level one talent from 1 to 6 for Flins",
+    "category": "talent",
+    "sortOrder": 10,
+    "materials": [
+      {
+        "materialId": "teachings-of-vagrancy",
+        "required": 3
+      },
+      {
+        "materialId": "guide-to-vagrancy",
+        "required": 21
+      },
+      {
+        "materialId": "broken-drive-shaft",
+        "required": 6
+      },
+      {
+        "materialId": "reinforced-drive-shaft",
+        "required": 22
+      }
+    ]
+  },
+  {
+    "characterId": "flins",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Flins",
+    "category": "talent",
+    "sortOrder": 11,
+    "materials": [
+      {
+        "materialId": "philosophies-of-vagrancy",
+        "required": 38
+      },
+      {
+        "materialId": "precision-drive-shaft",
+        "required": 31
+      },
+      {
+        "materialId": "ascended-sample-queen",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
       }
     ]
   },
@@ -13198,6 +15651,229 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
+    "characterId": "iansan",
+    "name": "Talent Level 1 -> 2",
+    "description": "Materials to level a single talent from 1 to 2 for Iansan",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-contention",
+        "required": 3
+      },
+      {
+        "materialId": "sentry-s-wooden-whistle",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "iansan",
+    "name": "Talent Level 2 -> 3",
+    "description": "Materials to level a single talent from 2 to 3 for Iansan",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-contention",
+        "required": 2
+      },
+      {
+        "materialId": "warriors-s-metal-whistle",
+        "required": 3
+      }
+    ]
+  },
+  {
+    "characterId": "iansan",
+    "name": "Talent Level 3 -> 4",
+    "description": "Materials to level a single talent from 3 to 4 for Iansan",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-contention",
+        "required": 4
+      },
+      {
+        "materialId": "warriors-s-metal-whistle",
+        "required": 4
+      }
+    ]
+  },
+  {
+    "characterId": "iansan",
+    "name": "Talent Level 4 -> 5",
+    "description": "Materials to level a single talent from 4 to 5 for Iansan",
+    "category": "talent",
+    "sortOrder": 4,
+    "materials": [
+      {
+        "materialId": "guide-to-contention",
+        "required": 6
+      },
+      {
+        "materialId": "warriors-s-metal-whistle",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "iansan",
+    "name": "Talent Level 5 -> 6",
+    "description": "Materials to level a single talent from 5 to 6 for Iansan",
+    "category": "talent",
+    "sortOrder": 5,
+    "materials": [
+      {
+        "materialId": "guide-to-contention",
+        "required": 9
+      },
+      {
+        "materialId": "warriors-s-metal-whistle",
+        "required": 9
+      }
+    ]
+  },
+  {
+    "characterId": "iansan",
+    "name": "Talent Level 6 -> 7",
+    "description": "Materials to level a single talent from 6 to 7 for Iansan",
+    "category": "talent",
+    "sortOrder": 6,
+    "materials": [
+      {
+        "materialId": "philosophies-of-contention",
+        "required": 4
+      },
+      {
+        "materialId": "saurian-crowned-warrior-s-golden-whistle",
+        "required": 4
+      },
+      {
+        "materialId": "denial-and-judgment",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "iansan",
+    "name": "Talent Level 7 -> 8",
+    "description": "Materials to level a single talent from 7 to 8 for Iansan",
+    "category": "talent",
+    "sortOrder": 7,
+    "materials": [
+      {
+        "materialId": "philosophies-of-contention",
+        "required": 6
+      },
+      {
+        "materialId": "saurian-crowned-warrior-s-golden-whistle",
+        "required": 6
+      },
+      {
+        "materialId": "denial-and-judgment",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "iansan",
+    "name": "Talent Level 8 -> 9",
+    "description": "Materials to level a single talent from 8 to 9 for Iansan",
+    "category": "talent",
+    "sortOrder": 8,
+    "materials": [
+      {
+        "materialId": "philosophies-of-contention",
+        "required": 12
+      },
+      {
+        "materialId": "saurian-crowned-warrior-s-golden-whistle",
+        "required": 9
+      },
+      {
+        "materialId": "denial-and-judgment",
+        "required": 2
+      }
+    ]
+  },
+  {
+    "characterId": "iansan",
+    "name": "Talent Level 9 -> 10",
+    "description": "Materials to level a single talent from 9 to 10 for Iansan",
+    "category": "talent",
+    "sortOrder": 9,
+    "materials": [
+      {
+        "materialId": "philosophies-of-contention",
+        "required": 16
+      },
+      {
+        "materialId": "saurian-crowned-warrior-s-golden-whistle",
+        "required": 12
+      },
+      {
+        "materialId": "denial-and-judgment",
+        "required": 2
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "iansan",
+    "name": "Single Talent Level 1 -> 6",
+    "description": "Materials to level one talent from 1 to 6 for Iansan",
+    "category": "talent",
+    "sortOrder": 10,
+    "materials": [
+      {
+        "materialId": "teachings-of-contention",
+        "required": 3
+      },
+      {
+        "materialId": "guide-to-contention",
+        "required": 21
+      },
+      {
+        "materialId": "sentry-s-wooden-whistle",
+        "required": 6
+      },
+      {
+        "materialId": "warriors-s-metal-whistle",
+        "required": 22
+      }
+    ]
+  },
+  {
+    "characterId": "iansan",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Iansan",
+    "category": "talent",
+    "sortOrder": 11,
+    "materials": [
+      {
+        "materialId": "philosophies-of-contention",
+        "required": 38
+      },
+      {
+        "materialId": "saurian-crowned-warrior-s-golden-whistle",
+        "required": 31
+      },
+      {
+        "materialId": "denial-and-judgment",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
     "characterId": "ifa",
     "name": "Ascension 1 (Lv. 20 -> 40)",
     "description": "First ascension materials for Ifa",
@@ -13340,6 +16016,229 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "tyrant-s-fang",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "ifa",
+    "name": "Talent Level 1 -> 2",
+    "description": "Materials to level a single talent from 1 to 2 for Ifa",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-conflict",
+        "required": 3
+      },
+      {
+        "materialId": "juvenile-fang",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "ifa",
+    "name": "Talent Level 2 -> 3",
+    "description": "Materials to level a single talent from 2 to 3 for Ifa",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-conflict",
+        "required": 2
+      },
+      {
+        "materialId": "seasoned-fang",
+        "required": 3
+      }
+    ]
+  },
+  {
+    "characterId": "ifa",
+    "name": "Talent Level 3 -> 4",
+    "description": "Materials to level a single talent from 3 to 4 for Ifa",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-conflict",
+        "required": 4
+      },
+      {
+        "materialId": "seasoned-fang",
+        "required": 4
+      }
+    ]
+  },
+  {
+    "characterId": "ifa",
+    "name": "Talent Level 4 -> 5",
+    "description": "Materials to level a single talent from 4 to 5 for Ifa",
+    "category": "talent",
+    "sortOrder": 4,
+    "materials": [
+      {
+        "materialId": "guide-to-conflict",
+        "required": 6
+      },
+      {
+        "materialId": "seasoned-fang",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "ifa",
+    "name": "Talent Level 5 -> 6",
+    "description": "Materials to level a single talent from 5 to 6 for Ifa",
+    "category": "talent",
+    "sortOrder": 5,
+    "materials": [
+      {
+        "materialId": "guide-to-conflict",
+        "required": 9
+      },
+      {
+        "materialId": "seasoned-fang",
+        "required": 9
+      }
+    ]
+  },
+  {
+    "characterId": "ifa",
+    "name": "Talent Level 6 -> 7",
+    "description": "Materials to level a single talent from 6 to 7 for Ifa",
+    "category": "talent",
+    "sortOrder": 6,
+    "materials": [
+      {
+        "materialId": "philosophies-of-conflict",
+        "required": 4
+      },
+      {
+        "materialId": "tyrant-s-fang",
+        "required": 4
+      },
+      {
+        "materialId": "ascended-sample-rook",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "ifa",
+    "name": "Talent Level 7 -> 8",
+    "description": "Materials to level a single talent from 7 to 8 for Ifa",
+    "category": "talent",
+    "sortOrder": 7,
+    "materials": [
+      {
+        "materialId": "philosophies-of-conflict",
+        "required": 6
+      },
+      {
+        "materialId": "tyrant-s-fang",
+        "required": 6
+      },
+      {
+        "materialId": "ascended-sample-rook",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "ifa",
+    "name": "Talent Level 8 -> 9",
+    "description": "Materials to level a single talent from 8 to 9 for Ifa",
+    "category": "talent",
+    "sortOrder": 8,
+    "materials": [
+      {
+        "materialId": "philosophies-of-conflict",
+        "required": 12
+      },
+      {
+        "materialId": "tyrant-s-fang",
+        "required": 9
+      },
+      {
+        "materialId": "ascended-sample-rook",
+        "required": 2
+      }
+    ]
+  },
+  {
+    "characterId": "ifa",
+    "name": "Talent Level 9 -> 10",
+    "description": "Materials to level a single talent from 9 to 10 for Ifa",
+    "category": "talent",
+    "sortOrder": 9,
+    "materials": [
+      {
+        "materialId": "philosophies-of-conflict",
+        "required": 16
+      },
+      {
+        "materialId": "tyrant-s-fang",
+        "required": 12
+      },
+      {
+        "materialId": "ascended-sample-rook",
+        "required": 2
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "ifa",
+    "name": "Single Talent Level 1 -> 6",
+    "description": "Materials to level one talent from 1 to 6 for Ifa",
+    "category": "talent",
+    "sortOrder": 10,
+    "materials": [
+      {
+        "materialId": "teachings-of-conflict",
+        "required": 3
+      },
+      {
+        "materialId": "guide-to-conflict",
+        "required": 21
+      },
+      {
+        "materialId": "juvenile-fang",
+        "required": 6
+      },
+      {
+        "materialId": "seasoned-fang",
+        "required": 22
+      }
+    ]
+  },
+  {
+    "characterId": "ifa",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Ifa",
+    "category": "talent",
+    "sortOrder": 11,
+    "materials": [
+      {
+        "materialId": "philosophies-of-conflict",
+        "required": 38
+      },
+      {
+        "materialId": "tyrant-s-fang",
+        "required": 31
+      },
+      {
+        "materialId": "ascended-sample-rook",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
       }
     ]
   },
@@ -13490,6 +16389,229 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
+    "characterId": "illuga",
+    "name": "Talent Level 1 -> 2",
+    "description": "Materials to level a single talent from 1 to 2 for Illuga",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-elysium",
+        "required": 3
+      },
+      {
+        "materialId": "broken-drive-shaft",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "illuga",
+    "name": "Talent Level 2 -> 3",
+    "description": "Materials to level a single talent from 2 to 3 for Illuga",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-elysium",
+        "required": 2
+      },
+      {
+        "materialId": "reinforced-drive-shaft",
+        "required": 3
+      }
+    ]
+  },
+  {
+    "characterId": "illuga",
+    "name": "Talent Level 3 -> 4",
+    "description": "Materials to level a single talent from 3 to 4 for Illuga",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-elysium",
+        "required": 4
+      },
+      {
+        "materialId": "reinforced-drive-shaft",
+        "required": 4
+      }
+    ]
+  },
+  {
+    "characterId": "illuga",
+    "name": "Talent Level 4 -> 5",
+    "description": "Materials to level a single talent from 4 to 5 for Illuga",
+    "category": "talent",
+    "sortOrder": 4,
+    "materials": [
+      {
+        "materialId": "guide-to-elysium",
+        "required": 6
+      },
+      {
+        "materialId": "reinforced-drive-shaft",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "illuga",
+    "name": "Talent Level 5 -> 6",
+    "description": "Materials to level a single talent from 5 to 6 for Illuga",
+    "category": "talent",
+    "sortOrder": 5,
+    "materials": [
+      {
+        "materialId": "guide-to-elysium",
+        "required": 9
+      },
+      {
+        "materialId": "reinforced-drive-shaft",
+        "required": 9
+      }
+    ]
+  },
+  {
+    "characterId": "illuga",
+    "name": "Talent Level 6 -> 7",
+    "description": "Materials to level a single talent from 6 to 7 for Illuga",
+    "category": "talent",
+    "sortOrder": 6,
+    "materials": [
+      {
+        "materialId": "philosophies-of-elysium",
+        "required": 4
+      },
+      {
+        "materialId": "precision-drive-shaft",
+        "required": 4
+      },
+      {
+        "materialId": "eroded-horn",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "illuga",
+    "name": "Talent Level 7 -> 8",
+    "description": "Materials to level a single talent from 7 to 8 for Illuga",
+    "category": "talent",
+    "sortOrder": 7,
+    "materials": [
+      {
+        "materialId": "philosophies-of-elysium",
+        "required": 6
+      },
+      {
+        "materialId": "precision-drive-shaft",
+        "required": 6
+      },
+      {
+        "materialId": "eroded-horn",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "illuga",
+    "name": "Talent Level 8 -> 9",
+    "description": "Materials to level a single talent from 8 to 9 for Illuga",
+    "category": "talent",
+    "sortOrder": 8,
+    "materials": [
+      {
+        "materialId": "philosophies-of-elysium",
+        "required": 12
+      },
+      {
+        "materialId": "precision-drive-shaft",
+        "required": 9
+      },
+      {
+        "materialId": "eroded-horn",
+        "required": 2
+      }
+    ]
+  },
+  {
+    "characterId": "illuga",
+    "name": "Talent Level 9 -> 10",
+    "description": "Materials to level a single talent from 9 to 10 for Illuga",
+    "category": "talent",
+    "sortOrder": 9,
+    "materials": [
+      {
+        "materialId": "philosophies-of-elysium",
+        "required": 16
+      },
+      {
+        "materialId": "precision-drive-shaft",
+        "required": 12
+      },
+      {
+        "materialId": "eroded-horn",
+        "required": 2
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "illuga",
+    "name": "Single Talent Level 1 -> 6",
+    "description": "Materials to level one talent from 1 to 6 for Illuga",
+    "category": "talent",
+    "sortOrder": 10,
+    "materials": [
+      {
+        "materialId": "teachings-of-elysium",
+        "required": 3
+      },
+      {
+        "materialId": "guide-to-elysium",
+        "required": 21
+      },
+      {
+        "materialId": "broken-drive-shaft",
+        "required": 6
+      },
+      {
+        "materialId": "reinforced-drive-shaft",
+        "required": 22
+      }
+    ]
+  },
+  {
+    "characterId": "illuga",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Illuga",
+    "category": "talent",
+    "sortOrder": 11,
+    "materials": [
+      {
+        "materialId": "philosophies-of-elysium",
+        "required": 38
+      },
+      {
+        "materialId": "precision-drive-shaft",
+        "required": 31
+      },
+      {
+        "materialId": "eroded-horn",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
     "characterId": "ineffa",
     "name": "Ascension 1 (Lv. 20 -> 40)",
     "description": "First ascension materials for Ineffa",
@@ -13636,6 +16758,229 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
+    "characterId": "ineffa",
+    "name": "Talent Level 1 -> 2",
+    "description": "Materials to level a single talent from 1 to 2 for Ineffa",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-conflict",
+        "required": 3
+      },
+      {
+        "materialId": "sentry-s-wooden-whistle",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "ineffa",
+    "name": "Talent Level 2 -> 3",
+    "description": "Materials to level a single talent from 2 to 3 for Ineffa",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-conflict",
+        "required": 2
+      },
+      {
+        "materialId": "warriors-s-metal-whistle",
+        "required": 3
+      }
+    ]
+  },
+  {
+    "characterId": "ineffa",
+    "name": "Talent Level 3 -> 4",
+    "description": "Materials to level a single talent from 3 to 4 for Ineffa",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-conflict",
+        "required": 4
+      },
+      {
+        "materialId": "warriors-s-metal-whistle",
+        "required": 4
+      }
+    ]
+  },
+  {
+    "characterId": "ineffa",
+    "name": "Talent Level 4 -> 5",
+    "description": "Materials to level a single talent from 4 to 5 for Ineffa",
+    "category": "talent",
+    "sortOrder": 4,
+    "materials": [
+      {
+        "materialId": "guide-to-conflict",
+        "required": 6
+      },
+      {
+        "materialId": "warriors-s-metal-whistle",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "ineffa",
+    "name": "Talent Level 5 -> 6",
+    "description": "Materials to level a single talent from 5 to 6 for Ineffa",
+    "category": "talent",
+    "sortOrder": 5,
+    "materials": [
+      {
+        "materialId": "guide-to-conflict",
+        "required": 9
+      },
+      {
+        "materialId": "warriors-s-metal-whistle",
+        "required": 9
+      }
+    ]
+  },
+  {
+    "characterId": "ineffa",
+    "name": "Talent Level 6 -> 7",
+    "description": "Materials to level a single talent from 6 to 7 for Ineffa",
+    "category": "talent",
+    "sortOrder": 6,
+    "materials": [
+      {
+        "materialId": "philosophies-of-conflict",
+        "required": 4
+      },
+      {
+        "materialId": "saurian-crowned-warrior-s-golden-whistle",
+        "required": 4
+      },
+      {
+        "materialId": "eroded-sunfire",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "ineffa",
+    "name": "Talent Level 7 -> 8",
+    "description": "Materials to level a single talent from 7 to 8 for Ineffa",
+    "category": "talent",
+    "sortOrder": 7,
+    "materials": [
+      {
+        "materialId": "philosophies-of-conflict",
+        "required": 6
+      },
+      {
+        "materialId": "saurian-crowned-warrior-s-golden-whistle",
+        "required": 6
+      },
+      {
+        "materialId": "eroded-sunfire",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "ineffa",
+    "name": "Talent Level 8 -> 9",
+    "description": "Materials to level a single talent from 8 to 9 for Ineffa",
+    "category": "talent",
+    "sortOrder": 8,
+    "materials": [
+      {
+        "materialId": "philosophies-of-conflict",
+        "required": 12
+      },
+      {
+        "materialId": "saurian-crowned-warrior-s-golden-whistle",
+        "required": 9
+      },
+      {
+        "materialId": "eroded-sunfire",
+        "required": 2
+      }
+    ]
+  },
+  {
+    "characterId": "ineffa",
+    "name": "Talent Level 9 -> 10",
+    "description": "Materials to level a single talent from 9 to 10 for Ineffa",
+    "category": "talent",
+    "sortOrder": 9,
+    "materials": [
+      {
+        "materialId": "philosophies-of-conflict",
+        "required": 16
+      },
+      {
+        "materialId": "saurian-crowned-warrior-s-golden-whistle",
+        "required": 12
+      },
+      {
+        "materialId": "eroded-sunfire",
+        "required": 2
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "ineffa",
+    "name": "Single Talent Level 1 -> 6",
+    "description": "Materials to level one talent from 1 to 6 for Ineffa",
+    "category": "talent",
+    "sortOrder": 10,
+    "materials": [
+      {
+        "materialId": "teachings-of-conflict",
+        "required": 3
+      },
+      {
+        "materialId": "guide-to-conflict",
+        "required": 21
+      },
+      {
+        "materialId": "sentry-s-wooden-whistle",
+        "required": 6
+      },
+      {
+        "materialId": "warriors-s-metal-whistle",
+        "required": 22
+      }
+    ]
+  },
+  {
+    "characterId": "ineffa",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Ineffa",
+    "category": "talent",
+    "sortOrder": 11,
+    "materials": [
+      {
+        "materialId": "philosophies-of-conflict",
+        "required": 38
+      },
+      {
+        "materialId": "saurian-crowned-warrior-s-golden-whistle",
+        "required": 31
+      },
+      {
+        "materialId": "eroded-sunfire",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
     "characterId": "jahoda",
     "name": "Ascension 1 (Lv. 20 -> 40)",
     "description": "First ascension materials for Jahoda",
@@ -13778,6 +17123,229 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "precision-drive-shaft",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "jahoda",
+    "name": "Talent Level 1 -> 2",
+    "description": "Materials to level a single talent from 1 to 2 for Jahoda",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-vagrancy",
+        "required": 3
+      },
+      {
+        "materialId": "broken-drive-shaft",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "jahoda",
+    "name": "Talent Level 2 -> 3",
+    "description": "Materials to level a single talent from 2 to 3 for Jahoda",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-vagrancy",
+        "required": 2
+      },
+      {
+        "materialId": "reinforced-drive-shaft",
+        "required": 3
+      }
+    ]
+  },
+  {
+    "characterId": "jahoda",
+    "name": "Talent Level 3 -> 4",
+    "description": "Materials to level a single talent from 3 to 4 for Jahoda",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-vagrancy",
+        "required": 4
+      },
+      {
+        "materialId": "reinforced-drive-shaft",
+        "required": 4
+      }
+    ]
+  },
+  {
+    "characterId": "jahoda",
+    "name": "Talent Level 4 -> 5",
+    "description": "Materials to level a single talent from 4 to 5 for Jahoda",
+    "category": "talent",
+    "sortOrder": 4,
+    "materials": [
+      {
+        "materialId": "guide-to-vagrancy",
+        "required": 6
+      },
+      {
+        "materialId": "reinforced-drive-shaft",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "jahoda",
+    "name": "Talent Level 5 -> 6",
+    "description": "Materials to level a single talent from 5 to 6 for Jahoda",
+    "category": "talent",
+    "sortOrder": 5,
+    "materials": [
+      {
+        "materialId": "guide-to-vagrancy",
+        "required": 9
+      },
+      {
+        "materialId": "reinforced-drive-shaft",
+        "required": 9
+      }
+    ]
+  },
+  {
+    "characterId": "jahoda",
+    "name": "Talent Level 6 -> 7",
+    "description": "Materials to level a single talent from 6 to 7 for Jahoda",
+    "category": "talent",
+    "sortOrder": 6,
+    "materials": [
+      {
+        "materialId": "philosophies-of-vagrancy",
+        "required": 4
+      },
+      {
+        "materialId": "precision-drive-shaft",
+        "required": 4
+      },
+      {
+        "materialId": "ascended-sample-knight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "jahoda",
+    "name": "Talent Level 7 -> 8",
+    "description": "Materials to level a single talent from 7 to 8 for Jahoda",
+    "category": "talent",
+    "sortOrder": 7,
+    "materials": [
+      {
+        "materialId": "philosophies-of-vagrancy",
+        "required": 6
+      },
+      {
+        "materialId": "precision-drive-shaft",
+        "required": 6
+      },
+      {
+        "materialId": "ascended-sample-knight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "jahoda",
+    "name": "Talent Level 8 -> 9",
+    "description": "Materials to level a single talent from 8 to 9 for Jahoda",
+    "category": "talent",
+    "sortOrder": 8,
+    "materials": [
+      {
+        "materialId": "philosophies-of-vagrancy",
+        "required": 12
+      },
+      {
+        "materialId": "precision-drive-shaft",
+        "required": 9
+      },
+      {
+        "materialId": "ascended-sample-knight",
+        "required": 2
+      }
+    ]
+  },
+  {
+    "characterId": "jahoda",
+    "name": "Talent Level 9 -> 10",
+    "description": "Materials to level a single talent from 9 to 10 for Jahoda",
+    "category": "talent",
+    "sortOrder": 9,
+    "materials": [
+      {
+        "materialId": "philosophies-of-vagrancy",
+        "required": 16
+      },
+      {
+        "materialId": "precision-drive-shaft",
+        "required": 12
+      },
+      {
+        "materialId": "ascended-sample-knight",
+        "required": 2
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "jahoda",
+    "name": "Single Talent Level 1 -> 6",
+    "description": "Materials to level one talent from 1 to 6 for Jahoda",
+    "category": "talent",
+    "sortOrder": 10,
+    "materials": [
+      {
+        "materialId": "teachings-of-vagrancy",
+        "required": 3
+      },
+      {
+        "materialId": "guide-to-vagrancy",
+        "required": 21
+      },
+      {
+        "materialId": "broken-drive-shaft",
+        "required": 6
+      },
+      {
+        "materialId": "reinforced-drive-shaft",
+        "required": 22
+      }
+    ]
+  },
+  {
+    "characterId": "jahoda",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Jahoda",
+    "category": "talent",
+    "sortOrder": 11,
+    "materials": [
+      {
+        "materialId": "philosophies-of-vagrancy",
+        "required": 38
+      },
+      {
+        "materialId": "precision-drive-shaft",
+        "required": 31
+      },
+      {
+        "materialId": "ascended-sample-knight",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
       }
     ]
   },
@@ -17987,6 +21555,229 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
+    "characterId": "lan-yan",
+    "name": "Talent Level 1 -> 2",
+    "description": "Materials to level a single talent from 1 to 2 for Lan Yan",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-diligence",
+        "required": 3
+      },
+      {
+        "materialId": "whopperflower-nectar",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "lan-yan",
+    "name": "Talent Level 2 -> 3",
+    "description": "Materials to level a single talent from 2 to 3 for Lan Yan",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-diligence",
+        "required": 2
+      },
+      {
+        "materialId": "shimmering-nectar",
+        "required": 3
+      }
+    ]
+  },
+  {
+    "characterId": "lan-yan",
+    "name": "Talent Level 3 -> 4",
+    "description": "Materials to level a single talent from 3 to 4 for Lan Yan",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-diligence",
+        "required": 4
+      },
+      {
+        "materialId": "shimmering-nectar",
+        "required": 4
+      }
+    ]
+  },
+  {
+    "characterId": "lan-yan",
+    "name": "Talent Level 4 -> 5",
+    "description": "Materials to level a single talent from 4 to 5 for Lan Yan",
+    "category": "talent",
+    "sortOrder": 4,
+    "materials": [
+      {
+        "materialId": "guide-to-diligence",
+        "required": 6
+      },
+      {
+        "materialId": "shimmering-nectar",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "lan-yan",
+    "name": "Talent Level 5 -> 6",
+    "description": "Materials to level a single talent from 5 to 6 for Lan Yan",
+    "category": "talent",
+    "sortOrder": 5,
+    "materials": [
+      {
+        "materialId": "guide-to-diligence",
+        "required": 9
+      },
+      {
+        "materialId": "shimmering-nectar",
+        "required": 9
+      }
+    ]
+  },
+  {
+    "characterId": "lan-yan",
+    "name": "Talent Level 6 -> 7",
+    "description": "Materials to level a single talent from 6 to 7 for Lan Yan",
+    "category": "talent",
+    "sortOrder": 6,
+    "materials": [
+      {
+        "materialId": "philosophies-of-diligence",
+        "required": 4
+      },
+      {
+        "materialId": "energy-nectar",
+        "required": 4
+      },
+      {
+        "materialId": "eroded-sunfire",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "lan-yan",
+    "name": "Talent Level 7 -> 8",
+    "description": "Materials to level a single talent from 7 to 8 for Lan Yan",
+    "category": "talent",
+    "sortOrder": 7,
+    "materials": [
+      {
+        "materialId": "philosophies-of-diligence",
+        "required": 6
+      },
+      {
+        "materialId": "energy-nectar",
+        "required": 6
+      },
+      {
+        "materialId": "eroded-sunfire",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "lan-yan",
+    "name": "Talent Level 8 -> 9",
+    "description": "Materials to level a single talent from 8 to 9 for Lan Yan",
+    "category": "talent",
+    "sortOrder": 8,
+    "materials": [
+      {
+        "materialId": "philosophies-of-diligence",
+        "required": 12
+      },
+      {
+        "materialId": "energy-nectar",
+        "required": 9
+      },
+      {
+        "materialId": "eroded-sunfire",
+        "required": 2
+      }
+    ]
+  },
+  {
+    "characterId": "lan-yan",
+    "name": "Talent Level 9 -> 10",
+    "description": "Materials to level a single talent from 9 to 10 for Lan Yan",
+    "category": "talent",
+    "sortOrder": 9,
+    "materials": [
+      {
+        "materialId": "philosophies-of-diligence",
+        "required": 16
+      },
+      {
+        "materialId": "energy-nectar",
+        "required": 12
+      },
+      {
+        "materialId": "eroded-sunfire",
+        "required": 2
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "lan-yan",
+    "name": "Single Talent Level 1 -> 6",
+    "description": "Materials to level one talent from 1 to 6 for Lan Yan",
+    "category": "talent",
+    "sortOrder": 10,
+    "materials": [
+      {
+        "materialId": "teachings-of-diligence",
+        "required": 3
+      },
+      {
+        "materialId": "guide-to-diligence",
+        "required": 21
+      },
+      {
+        "materialId": "whopperflower-nectar",
+        "required": 6
+      },
+      {
+        "materialId": "shimmering-nectar",
+        "required": 22
+      }
+    ]
+  },
+  {
+    "characterId": "lan-yan",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Lan Yan",
+    "category": "talent",
+    "sortOrder": 11,
+    "materials": [
+      {
+        "materialId": "philosophies-of-diligence",
+        "required": 38
+      },
+      {
+        "materialId": "energy-nectar",
+        "required": 31
+      },
+      {
+        "materialId": "eroded-sunfire",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
     "characterId": "lauma",
     "name": "Ascension 1 (Lv. 20 -> 40)",
     "description": "First ascension materials for Lauma",
@@ -18129,6 +21920,229 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "frost-etched-warrant",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "lauma",
+    "name": "Talent Level 1 -> 2",
+    "description": "Materials to level a single talent from 1 to 2 for Lauma",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-moonlight",
+        "required": 3
+      },
+      {
+        "materialId": "tattered-warrant",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "lauma",
+    "name": "Talent Level 2 -> 3",
+    "description": "Materials to level a single talent from 2 to 3 for Lauma",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-moonlight",
+        "required": 2
+      },
+      {
+        "materialId": "immaculate-warrant",
+        "required": 3
+      }
+    ]
+  },
+  {
+    "characterId": "lauma",
+    "name": "Talent Level 3 -> 4",
+    "description": "Materials to level a single talent from 3 to 4 for Lauma",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-moonlight",
+        "required": 4
+      },
+      {
+        "materialId": "immaculate-warrant",
+        "required": 4
+      }
+    ]
+  },
+  {
+    "characterId": "lauma",
+    "name": "Talent Level 4 -> 5",
+    "description": "Materials to level a single talent from 4 to 5 for Lauma",
+    "category": "talent",
+    "sortOrder": 4,
+    "materials": [
+      {
+        "materialId": "guide-to-moonlight",
+        "required": 6
+      },
+      {
+        "materialId": "immaculate-warrant",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "lauma",
+    "name": "Talent Level 5 -> 6",
+    "description": "Materials to level a single talent from 5 to 6 for Lauma",
+    "category": "talent",
+    "sortOrder": 5,
+    "materials": [
+      {
+        "materialId": "guide-to-moonlight",
+        "required": 9
+      },
+      {
+        "materialId": "immaculate-warrant",
+        "required": 9
+      }
+    ]
+  },
+  {
+    "characterId": "lauma",
+    "name": "Talent Level 6 -> 7",
+    "description": "Materials to level a single talent from 6 to 7 for Lauma",
+    "category": "talent",
+    "sortOrder": 6,
+    "materials": [
+      {
+        "materialId": "philosophies-of-moonlight",
+        "required": 4
+      },
+      {
+        "materialId": "frost-etched-warrant",
+        "required": 4
+      },
+      {
+        "materialId": "eroded-scale-feather",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "lauma",
+    "name": "Talent Level 7 -> 8",
+    "description": "Materials to level a single talent from 7 to 8 for Lauma",
+    "category": "talent",
+    "sortOrder": 7,
+    "materials": [
+      {
+        "materialId": "philosophies-of-moonlight",
+        "required": 6
+      },
+      {
+        "materialId": "frost-etched-warrant",
+        "required": 6
+      },
+      {
+        "materialId": "eroded-scale-feather",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "lauma",
+    "name": "Talent Level 8 -> 9",
+    "description": "Materials to level a single talent from 8 to 9 for Lauma",
+    "category": "talent",
+    "sortOrder": 8,
+    "materials": [
+      {
+        "materialId": "philosophies-of-moonlight",
+        "required": 12
+      },
+      {
+        "materialId": "frost-etched-warrant",
+        "required": 9
+      },
+      {
+        "materialId": "eroded-scale-feather",
+        "required": 2
+      }
+    ]
+  },
+  {
+    "characterId": "lauma",
+    "name": "Talent Level 9 -> 10",
+    "description": "Materials to level a single talent from 9 to 10 for Lauma",
+    "category": "talent",
+    "sortOrder": 9,
+    "materials": [
+      {
+        "materialId": "philosophies-of-moonlight",
+        "required": 16
+      },
+      {
+        "materialId": "frost-etched-warrant",
+        "required": 12
+      },
+      {
+        "materialId": "eroded-scale-feather",
+        "required": 2
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "lauma",
+    "name": "Single Talent Level 1 -> 6",
+    "description": "Materials to level one talent from 1 to 6 for Lauma",
+    "category": "talent",
+    "sortOrder": 10,
+    "materials": [
+      {
+        "materialId": "teachings-of-moonlight",
+        "required": 3
+      },
+      {
+        "materialId": "guide-to-moonlight",
+        "required": 21
+      },
+      {
+        "materialId": "tattered-warrant",
+        "required": 6
+      },
+      {
+        "materialId": "immaculate-warrant",
+        "required": 22
+      }
+    ]
+  },
+  {
+    "characterId": "lauma",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Lauma",
+    "category": "talent",
+    "sortOrder": 11,
+    "materials": [
+      {
+        "materialId": "philosophies-of-moonlight",
+        "required": 38
+      },
+      {
+        "materialId": "frost-etched-warrant",
+        "required": 31
+      },
+      {
+        "materialId": "eroded-scale-feather",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
       }
     ]
   },
@@ -20124,6 +24138,229 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
+    "characterId": "mavuika",
+    "name": "Talent Level 1 -> 2",
+    "description": "Materials to level a single talent from 1 to 2 for Mavuika",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-contention",
+        "required": 3
+      },
+      {
+        "materialId": "sentry-s-wooden-whistle",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "mavuika",
+    "name": "Talent Level 2 -> 3",
+    "description": "Materials to level a single talent from 2 to 3 for Mavuika",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-contention",
+        "required": 2
+      },
+      {
+        "materialId": "warriors-s-metal-whistle",
+        "required": 3
+      }
+    ]
+  },
+  {
+    "characterId": "mavuika",
+    "name": "Talent Level 3 -> 4",
+    "description": "Materials to level a single talent from 3 to 4 for Mavuika",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-contention",
+        "required": 4
+      },
+      {
+        "materialId": "warriors-s-metal-whistle",
+        "required": 4
+      }
+    ]
+  },
+  {
+    "characterId": "mavuika",
+    "name": "Talent Level 4 -> 5",
+    "description": "Materials to level a single talent from 4 to 5 for Mavuika",
+    "category": "talent",
+    "sortOrder": 4,
+    "materials": [
+      {
+        "materialId": "guide-to-contention",
+        "required": 6
+      },
+      {
+        "materialId": "warriors-s-metal-whistle",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "mavuika",
+    "name": "Talent Level 5 -> 6",
+    "description": "Materials to level a single talent from 5 to 6 for Mavuika",
+    "category": "talent",
+    "sortOrder": 5,
+    "materials": [
+      {
+        "materialId": "guide-to-contention",
+        "required": 9
+      },
+      {
+        "materialId": "warriors-s-metal-whistle",
+        "required": 9
+      }
+    ]
+  },
+  {
+    "characterId": "mavuika",
+    "name": "Talent Level 6 -> 7",
+    "description": "Materials to level a single talent from 6 to 7 for Mavuika",
+    "category": "talent",
+    "sortOrder": 6,
+    "materials": [
+      {
+        "materialId": "philosophies-of-contention",
+        "required": 4
+      },
+      {
+        "materialId": "saurian-crowned-warrior-s-golden-whistle",
+        "required": 4
+      },
+      {
+        "materialId": "eroded-horn",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "mavuika",
+    "name": "Talent Level 7 -> 8",
+    "description": "Materials to level a single talent from 7 to 8 for Mavuika",
+    "category": "talent",
+    "sortOrder": 7,
+    "materials": [
+      {
+        "materialId": "philosophies-of-contention",
+        "required": 6
+      },
+      {
+        "materialId": "saurian-crowned-warrior-s-golden-whistle",
+        "required": 6
+      },
+      {
+        "materialId": "eroded-horn",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "mavuika",
+    "name": "Talent Level 8 -> 9",
+    "description": "Materials to level a single talent from 8 to 9 for Mavuika",
+    "category": "talent",
+    "sortOrder": 8,
+    "materials": [
+      {
+        "materialId": "philosophies-of-contention",
+        "required": 12
+      },
+      {
+        "materialId": "saurian-crowned-warrior-s-golden-whistle",
+        "required": 9
+      },
+      {
+        "materialId": "eroded-horn",
+        "required": 2
+      }
+    ]
+  },
+  {
+    "characterId": "mavuika",
+    "name": "Talent Level 9 -> 10",
+    "description": "Materials to level a single talent from 9 to 10 for Mavuika",
+    "category": "talent",
+    "sortOrder": 9,
+    "materials": [
+      {
+        "materialId": "philosophies-of-contention",
+        "required": 16
+      },
+      {
+        "materialId": "saurian-crowned-warrior-s-golden-whistle",
+        "required": 12
+      },
+      {
+        "materialId": "eroded-horn",
+        "required": 2
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "mavuika",
+    "name": "Single Talent Level 1 -> 6",
+    "description": "Materials to level one talent from 1 to 6 for Mavuika",
+    "category": "talent",
+    "sortOrder": 10,
+    "materials": [
+      {
+        "materialId": "teachings-of-contention",
+        "required": 3
+      },
+      {
+        "materialId": "guide-to-contention",
+        "required": 21
+      },
+      {
+        "materialId": "sentry-s-wooden-whistle",
+        "required": 6
+      },
+      {
+        "materialId": "warriors-s-metal-whistle",
+        "required": 22
+      }
+    ]
+  },
+  {
+    "characterId": "mavuika",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Mavuika",
+    "category": "talent",
+    "sortOrder": 11,
+    "materials": [
+      {
+        "materialId": "philosophies-of-contention",
+        "required": 38
+      },
+      {
+        "materialId": "saurian-crowned-warrior-s-golden-whistle",
+        "required": 31
+      },
+      {
+        "materialId": "eroded-horn",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
     "characterId": "mika",
     "name": "Ascension 1 (Lv. 20 -> 40)",
     "description": "First ascension materials for Mika",
@@ -22115,6 +26352,229 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
+    "characterId": "nefer",
+    "name": "Talent Level 1 -> 2",
+    "description": "Materials to level a single talent from 1 to 2 for Nefer",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-elysium",
+        "required": 3
+      },
+      {
+        "materialId": "tattered-warrant",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "nefer",
+    "name": "Talent Level 2 -> 3",
+    "description": "Materials to level a single talent from 2 to 3 for Nefer",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-elysium",
+        "required": 2
+      },
+      {
+        "materialId": "immaculate-warrant",
+        "required": 3
+      }
+    ]
+  },
+  {
+    "characterId": "nefer",
+    "name": "Talent Level 3 -> 4",
+    "description": "Materials to level a single talent from 3 to 4 for Nefer",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-elysium",
+        "required": 4
+      },
+      {
+        "materialId": "immaculate-warrant",
+        "required": 4
+      }
+    ]
+  },
+  {
+    "characterId": "nefer",
+    "name": "Talent Level 4 -> 5",
+    "description": "Materials to level a single talent from 4 to 5 for Nefer",
+    "category": "talent",
+    "sortOrder": 4,
+    "materials": [
+      {
+        "materialId": "guide-to-elysium",
+        "required": 6
+      },
+      {
+        "materialId": "immaculate-warrant",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "nefer",
+    "name": "Talent Level 5 -> 6",
+    "description": "Materials to level a single talent from 5 to 6 for Nefer",
+    "category": "talent",
+    "sortOrder": 5,
+    "materials": [
+      {
+        "materialId": "guide-to-elysium",
+        "required": 9
+      },
+      {
+        "materialId": "immaculate-warrant",
+        "required": 9
+      }
+    ]
+  },
+  {
+    "characterId": "nefer",
+    "name": "Talent Level 6 -> 7",
+    "description": "Materials to level a single talent from 6 to 7 for Nefer",
+    "category": "talent",
+    "sortOrder": 6,
+    "materials": [
+      {
+        "materialId": "philosophies-of-elysium",
+        "required": 4
+      },
+      {
+        "materialId": "frost-etched-warrant",
+        "required": 4
+      },
+      {
+        "materialId": "ascended-sample-rook",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "nefer",
+    "name": "Talent Level 7 -> 8",
+    "description": "Materials to level a single talent from 7 to 8 for Nefer",
+    "category": "talent",
+    "sortOrder": 7,
+    "materials": [
+      {
+        "materialId": "philosophies-of-elysium",
+        "required": 6
+      },
+      {
+        "materialId": "frost-etched-warrant",
+        "required": 6
+      },
+      {
+        "materialId": "ascended-sample-rook",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "nefer",
+    "name": "Talent Level 8 -> 9",
+    "description": "Materials to level a single talent from 8 to 9 for Nefer",
+    "category": "talent",
+    "sortOrder": 8,
+    "materials": [
+      {
+        "materialId": "philosophies-of-elysium",
+        "required": 12
+      },
+      {
+        "materialId": "frost-etched-warrant",
+        "required": 9
+      },
+      {
+        "materialId": "ascended-sample-rook",
+        "required": 2
+      }
+    ]
+  },
+  {
+    "characterId": "nefer",
+    "name": "Talent Level 9 -> 10",
+    "description": "Materials to level a single talent from 9 to 10 for Nefer",
+    "category": "talent",
+    "sortOrder": 9,
+    "materials": [
+      {
+        "materialId": "philosophies-of-elysium",
+        "required": 16
+      },
+      {
+        "materialId": "frost-etched-warrant",
+        "required": 12
+      },
+      {
+        "materialId": "ascended-sample-rook",
+        "required": 2
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "nefer",
+    "name": "Single Talent Level 1 -> 6",
+    "description": "Materials to level one talent from 1 to 6 for Nefer",
+    "category": "talent",
+    "sortOrder": 10,
+    "materials": [
+      {
+        "materialId": "teachings-of-elysium",
+        "required": 3
+      },
+      {
+        "materialId": "guide-to-elysium",
+        "required": 21
+      },
+      {
+        "materialId": "tattered-warrant",
+        "required": 6
+      },
+      {
+        "materialId": "immaculate-warrant",
+        "required": 22
+      }
+    ]
+  },
+  {
+    "characterId": "nefer",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Nefer",
+    "category": "talent",
+    "sortOrder": 11,
+    "materials": [
+      {
+        "materialId": "philosophies-of-elysium",
+        "required": 38
+      },
+      {
+        "materialId": "frost-etched-warrant",
+        "required": 31
+      },
+      {
+        "materialId": "ascended-sample-rook",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
     "characterId": "neuvillette",
     "name": "Ascension 1 (Lv. 20 -> 40)",
     "description": "First ascension materials for Neuvillette",
@@ -23733,6 +28193,229 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "tyrant-s-fang",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "ororon",
+    "name": "Talent Level 1 -> 2",
+    "description": "Materials to level a single talent from 1 to 2 for Ororon",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-kindling",
+        "required": 3
+      },
+      {
+        "materialId": "juvenile-fang",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "ororon",
+    "name": "Talent Level 2 -> 3",
+    "description": "Materials to level a single talent from 2 to 3 for Ororon",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-kindling",
+        "required": 2
+      },
+      {
+        "materialId": "seasoned-fang",
+        "required": 3
+      }
+    ]
+  },
+  {
+    "characterId": "ororon",
+    "name": "Talent Level 3 -> 4",
+    "description": "Materials to level a single talent from 3 to 4 for Ororon",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-kindling",
+        "required": 4
+      },
+      {
+        "materialId": "seasoned-fang",
+        "required": 4
+      }
+    ]
+  },
+  {
+    "characterId": "ororon",
+    "name": "Talent Level 4 -> 5",
+    "description": "Materials to level a single talent from 4 to 5 for Ororon",
+    "category": "talent",
+    "sortOrder": 4,
+    "materials": [
+      {
+        "materialId": "guide-to-kindling",
+        "required": 6
+      },
+      {
+        "materialId": "seasoned-fang",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "ororon",
+    "name": "Talent Level 5 -> 6",
+    "description": "Materials to level a single talent from 5 to 6 for Ororon",
+    "category": "talent",
+    "sortOrder": 5,
+    "materials": [
+      {
+        "materialId": "guide-to-kindling",
+        "required": 9
+      },
+      {
+        "materialId": "seasoned-fang",
+        "required": 9
+      }
+    ]
+  },
+  {
+    "characterId": "ororon",
+    "name": "Talent Level 6 -> 7",
+    "description": "Materials to level a single talent from 6 to 7 for Ororon",
+    "category": "talent",
+    "sortOrder": 6,
+    "materials": [
+      {
+        "materialId": "philosophies-of-kindling",
+        "required": 4
+      },
+      {
+        "materialId": "tyrant-s-fang",
+        "required": 4
+      },
+      {
+        "materialId": "lightless-silk-string",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "ororon",
+    "name": "Talent Level 7 -> 8",
+    "description": "Materials to level a single talent from 7 to 8 for Ororon",
+    "category": "talent",
+    "sortOrder": 7,
+    "materials": [
+      {
+        "materialId": "philosophies-of-kindling",
+        "required": 6
+      },
+      {
+        "materialId": "tyrant-s-fang",
+        "required": 6
+      },
+      {
+        "materialId": "lightless-silk-string",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "ororon",
+    "name": "Talent Level 8 -> 9",
+    "description": "Materials to level a single talent from 8 to 9 for Ororon",
+    "category": "talent",
+    "sortOrder": 8,
+    "materials": [
+      {
+        "materialId": "philosophies-of-kindling",
+        "required": 12
+      },
+      {
+        "materialId": "tyrant-s-fang",
+        "required": 9
+      },
+      {
+        "materialId": "lightless-silk-string",
+        "required": 2
+      }
+    ]
+  },
+  {
+    "characterId": "ororon",
+    "name": "Talent Level 9 -> 10",
+    "description": "Materials to level a single talent from 9 to 10 for Ororon",
+    "category": "talent",
+    "sortOrder": 9,
+    "materials": [
+      {
+        "materialId": "philosophies-of-kindling",
+        "required": 16
+      },
+      {
+        "materialId": "tyrant-s-fang",
+        "required": 12
+      },
+      {
+        "materialId": "lightless-silk-string",
+        "required": 2
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "ororon",
+    "name": "Single Talent Level 1 -> 6",
+    "description": "Materials to level one talent from 1 to 6 for Ororon",
+    "category": "talent",
+    "sortOrder": 10,
+    "materials": [
+      {
+        "materialId": "teachings-of-kindling",
+        "required": 3
+      },
+      {
+        "materialId": "guide-to-kindling",
+        "required": 21
+      },
+      {
+        "materialId": "juvenile-fang",
+        "required": 6
+      },
+      {
+        "materialId": "seasoned-fang",
+        "required": 22
+      }
+    ]
+  },
+  {
+    "characterId": "ororon",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Ororon",
+    "category": "talent",
+    "sortOrder": 11,
+    "materials": [
+      {
+        "materialId": "philosophies-of-kindling",
+        "required": 38
+      },
+      {
+        "materialId": "tyrant-s-fang",
+        "required": 31
+      },
+      {
+        "materialId": "lightless-silk-string",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
       }
     ]
   },
@@ -27573,6 +32256,229 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
+    "characterId": "skirk",
+    "name": "Talent Level 1 -> 2",
+    "description": "Materials to level a single talent from 1 to 2 for Skirk",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-contention",
+        "required": 3
+      },
+      {
+        "materialId": "meshing-gear",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "skirk",
+    "name": "Talent Level 2 -> 3",
+    "description": "Materials to level a single talent from 2 to 3 for Skirk",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-contention",
+        "required": 2
+      },
+      {
+        "materialId": "mechanical-spur-gear",
+        "required": 3
+      }
+    ]
+  },
+  {
+    "characterId": "skirk",
+    "name": "Talent Level 3 -> 4",
+    "description": "Materials to level a single talent from 3 to 4 for Skirk",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-contention",
+        "required": 4
+      },
+      {
+        "materialId": "mechanical-spur-gear",
+        "required": 4
+      }
+    ]
+  },
+  {
+    "characterId": "skirk",
+    "name": "Talent Level 4 -> 5",
+    "description": "Materials to level a single talent from 4 to 5 for Skirk",
+    "category": "talent",
+    "sortOrder": 4,
+    "materials": [
+      {
+        "materialId": "guide-to-contention",
+        "required": 6
+      },
+      {
+        "materialId": "mechanical-spur-gear",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "skirk",
+    "name": "Talent Level 5 -> 6",
+    "description": "Materials to level a single talent from 5 to 6 for Skirk",
+    "category": "talent",
+    "sortOrder": 5,
+    "materials": [
+      {
+        "materialId": "guide-to-contention",
+        "required": 9
+      },
+      {
+        "materialId": "mechanical-spur-gear",
+        "required": 9
+      }
+    ]
+  },
+  {
+    "characterId": "skirk",
+    "name": "Talent Level 6 -> 7",
+    "description": "Materials to level a single talent from 6 to 7 for Skirk",
+    "category": "talent",
+    "sortOrder": 6,
+    "materials": [
+      {
+        "materialId": "philosophies-of-contention",
+        "required": 4
+      },
+      {
+        "materialId": "artificed-dynamic-gear",
+        "required": 4
+      },
+      {
+        "materialId": "ascended-sample-knight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "skirk",
+    "name": "Talent Level 7 -> 8",
+    "description": "Materials to level a single talent from 7 to 8 for Skirk",
+    "category": "talent",
+    "sortOrder": 7,
+    "materials": [
+      {
+        "materialId": "philosophies-of-contention",
+        "required": 6
+      },
+      {
+        "materialId": "artificed-dynamic-gear",
+        "required": 6
+      },
+      {
+        "materialId": "ascended-sample-knight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "skirk",
+    "name": "Talent Level 8 -> 9",
+    "description": "Materials to level a single talent from 8 to 9 for Skirk",
+    "category": "talent",
+    "sortOrder": 8,
+    "materials": [
+      {
+        "materialId": "philosophies-of-contention",
+        "required": 12
+      },
+      {
+        "materialId": "artificed-dynamic-gear",
+        "required": 9
+      },
+      {
+        "materialId": "ascended-sample-knight",
+        "required": 2
+      }
+    ]
+  },
+  {
+    "characterId": "skirk",
+    "name": "Talent Level 9 -> 10",
+    "description": "Materials to level a single talent from 9 to 10 for Skirk",
+    "category": "talent",
+    "sortOrder": 9,
+    "materials": [
+      {
+        "materialId": "philosophies-of-contention",
+        "required": 16
+      },
+      {
+        "materialId": "artificed-dynamic-gear",
+        "required": 12
+      },
+      {
+        "materialId": "ascended-sample-knight",
+        "required": 2
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "skirk",
+    "name": "Single Talent Level 1 -> 6",
+    "description": "Materials to level one talent from 1 to 6 for Skirk",
+    "category": "talent",
+    "sortOrder": 10,
+    "materials": [
+      {
+        "materialId": "teachings-of-contention",
+        "required": 3
+      },
+      {
+        "materialId": "guide-to-contention",
+        "required": 21
+      },
+      {
+        "materialId": "meshing-gear",
+        "required": 6
+      },
+      {
+        "materialId": "mechanical-spur-gear",
+        "required": 22
+      }
+    ]
+  },
+  {
+    "characterId": "skirk",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Skirk",
+    "category": "talent",
+    "sortOrder": 11,
+    "materials": [
+      {
+        "materialId": "philosophies-of-contention",
+        "required": 38
+      },
+      {
+        "materialId": "artificed-dynamic-gear",
+        "required": 31
+      },
+      {
+        "materialId": "ascended-sample-knight",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
     "characterId": "sucrose",
     "name": "Ascension 1 (Lv. 20 -> 40)",
     "description": "First ascension materials for Sucrose",
@@ -31289,6 +36195,229 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
+    "characterId": "varesa",
+    "name": "Talent Level 1 -> 2",
+    "description": "Materials to level a single talent from 1 to 2 for Varesa",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-conflict",
+        "required": 3
+      },
+      {
+        "materialId": "juvenile-fang",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "varesa",
+    "name": "Talent Level 2 -> 3",
+    "description": "Materials to level a single talent from 2 to 3 for Varesa",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-conflict",
+        "required": 2
+      },
+      {
+        "materialId": "seasoned-fang",
+        "required": 3
+      }
+    ]
+  },
+  {
+    "characterId": "varesa",
+    "name": "Talent Level 3 -> 4",
+    "description": "Materials to level a single talent from 3 to 4 for Varesa",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-conflict",
+        "required": 4
+      },
+      {
+        "materialId": "seasoned-fang",
+        "required": 4
+      }
+    ]
+  },
+  {
+    "characterId": "varesa",
+    "name": "Talent Level 4 -> 5",
+    "description": "Materials to level a single talent from 4 to 5 for Varesa",
+    "category": "talent",
+    "sortOrder": 4,
+    "materials": [
+      {
+        "materialId": "guide-to-conflict",
+        "required": 6
+      },
+      {
+        "materialId": "seasoned-fang",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "varesa",
+    "name": "Talent Level 5 -> 6",
+    "description": "Materials to level a single talent from 5 to 6 for Varesa",
+    "category": "talent",
+    "sortOrder": 5,
+    "materials": [
+      {
+        "materialId": "guide-to-conflict",
+        "required": 9
+      },
+      {
+        "materialId": "seasoned-fang",
+        "required": 9
+      }
+    ]
+  },
+  {
+    "characterId": "varesa",
+    "name": "Talent Level 6 -> 7",
+    "description": "Materials to level a single talent from 6 to 7 for Varesa",
+    "category": "talent",
+    "sortOrder": 6,
+    "materials": [
+      {
+        "materialId": "philosophies-of-conflict",
+        "required": 4
+      },
+      {
+        "materialId": "tyrant-s-fang",
+        "required": 4
+      },
+      {
+        "materialId": "eroded-scale-feather",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "varesa",
+    "name": "Talent Level 7 -> 8",
+    "description": "Materials to level a single talent from 7 to 8 for Varesa",
+    "category": "talent",
+    "sortOrder": 7,
+    "materials": [
+      {
+        "materialId": "philosophies-of-conflict",
+        "required": 6
+      },
+      {
+        "materialId": "tyrant-s-fang",
+        "required": 6
+      },
+      {
+        "materialId": "eroded-scale-feather",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "varesa",
+    "name": "Talent Level 8 -> 9",
+    "description": "Materials to level a single talent from 8 to 9 for Varesa",
+    "category": "talent",
+    "sortOrder": 8,
+    "materials": [
+      {
+        "materialId": "philosophies-of-conflict",
+        "required": 12
+      },
+      {
+        "materialId": "tyrant-s-fang",
+        "required": 9
+      },
+      {
+        "materialId": "eroded-scale-feather",
+        "required": 2
+      }
+    ]
+  },
+  {
+    "characterId": "varesa",
+    "name": "Talent Level 9 -> 10",
+    "description": "Materials to level a single talent from 9 to 10 for Varesa",
+    "category": "talent",
+    "sortOrder": 9,
+    "materials": [
+      {
+        "materialId": "philosophies-of-conflict",
+        "required": 16
+      },
+      {
+        "materialId": "tyrant-s-fang",
+        "required": 12
+      },
+      {
+        "materialId": "eroded-scale-feather",
+        "required": 2
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "varesa",
+    "name": "Single Talent Level 1 -> 6",
+    "description": "Materials to level one talent from 1 to 6 for Varesa",
+    "category": "talent",
+    "sortOrder": 10,
+    "materials": [
+      {
+        "materialId": "teachings-of-conflict",
+        "required": 3
+      },
+      {
+        "materialId": "guide-to-conflict",
+        "required": 21
+      },
+      {
+        "materialId": "juvenile-fang",
+        "required": 6
+      },
+      {
+        "materialId": "seasoned-fang",
+        "required": 22
+      }
+    ]
+  },
+  {
+    "characterId": "varesa",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Varesa",
+    "category": "talent",
+    "sortOrder": 11,
+    "materials": [
+      {
+        "materialId": "philosophies-of-conflict",
+        "required": 38
+      },
+      {
+        "materialId": "tyrant-s-fang",
+        "required": 31
+      },
+      {
+        "materialId": "eroded-scale-feather",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
     "characterId": "varka",
     "name": "Ascension 1 (Lv. 20 -> 40)",
     "description": "First ascension materials for Varka",
@@ -34014,6 +39143,229 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "saurian-crowned-warrior-s-golden-whistle",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "xilonen",
+    "name": "Talent Level 1 -> 2",
+    "description": "Materials to level a single talent from 1 to 2 for Xilonen",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-kindling",
+        "required": 3
+      },
+      {
+        "materialId": "sentry-s-wooden-whistle",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "xilonen",
+    "name": "Talent Level 2 -> 3",
+    "description": "Materials to level a single talent from 2 to 3 for Xilonen",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-kindling",
+        "required": 2
+      },
+      {
+        "materialId": "warriors-s-metal-whistle",
+        "required": 3
+      }
+    ]
+  },
+  {
+    "characterId": "xilonen",
+    "name": "Talent Level 3 -> 4",
+    "description": "Materials to level a single talent from 3 to 4 for Xilonen",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-kindling",
+        "required": 4
+      },
+      {
+        "materialId": "warriors-s-metal-whistle",
+        "required": 4
+      }
+    ]
+  },
+  {
+    "characterId": "xilonen",
+    "name": "Talent Level 4 -> 5",
+    "description": "Materials to level a single talent from 4 to 5 for Xilonen",
+    "category": "talent",
+    "sortOrder": 4,
+    "materials": [
+      {
+        "materialId": "guide-to-kindling",
+        "required": 6
+      },
+      {
+        "materialId": "warriors-s-metal-whistle",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "xilonen",
+    "name": "Talent Level 5 -> 6",
+    "description": "Materials to level a single talent from 5 to 6 for Xilonen",
+    "category": "talent",
+    "sortOrder": 5,
+    "materials": [
+      {
+        "materialId": "guide-to-kindling",
+        "required": 9
+      },
+      {
+        "materialId": "warriors-s-metal-whistle",
+        "required": 9
+      }
+    ]
+  },
+  {
+    "characterId": "xilonen",
+    "name": "Talent Level 6 -> 7",
+    "description": "Materials to level a single talent from 6 to 7 for Xilonen",
+    "category": "talent",
+    "sortOrder": 6,
+    "materials": [
+      {
+        "materialId": "philosophies-of-kindling",
+        "required": 4
+      },
+      {
+        "materialId": "saurian-crowned-warrior-s-golden-whistle",
+        "required": 4
+      },
+      {
+        "materialId": "daka-s-bell",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "xilonen",
+    "name": "Talent Level 7 -> 8",
+    "description": "Materials to level a single talent from 7 to 8 for Xilonen",
+    "category": "talent",
+    "sortOrder": 7,
+    "materials": [
+      {
+        "materialId": "philosophies-of-kindling",
+        "required": 6
+      },
+      {
+        "materialId": "saurian-crowned-warrior-s-golden-whistle",
+        "required": 6
+      },
+      {
+        "materialId": "daka-s-bell",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "xilonen",
+    "name": "Talent Level 8 -> 9",
+    "description": "Materials to level a single talent from 8 to 9 for Xilonen",
+    "category": "talent",
+    "sortOrder": 8,
+    "materials": [
+      {
+        "materialId": "philosophies-of-kindling",
+        "required": 12
+      },
+      {
+        "materialId": "saurian-crowned-warrior-s-golden-whistle",
+        "required": 9
+      },
+      {
+        "materialId": "daka-s-bell",
+        "required": 2
+      }
+    ]
+  },
+  {
+    "characterId": "xilonen",
+    "name": "Talent Level 9 -> 10",
+    "description": "Materials to level a single talent from 9 to 10 for Xilonen",
+    "category": "talent",
+    "sortOrder": 9,
+    "materials": [
+      {
+        "materialId": "philosophies-of-kindling",
+        "required": 16
+      },
+      {
+        "materialId": "saurian-crowned-warrior-s-golden-whistle",
+        "required": 12
+      },
+      {
+        "materialId": "daka-s-bell",
+        "required": 2
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "xilonen",
+    "name": "Single Talent Level 1 -> 6",
+    "description": "Materials to level one talent from 1 to 6 for Xilonen",
+    "category": "talent",
+    "sortOrder": 10,
+    "materials": [
+      {
+        "materialId": "teachings-of-kindling",
+        "required": 3
+      },
+      {
+        "materialId": "guide-to-kindling",
+        "required": 21
+      },
+      {
+        "materialId": "sentry-s-wooden-whistle",
+        "required": 6
+      },
+      {
+        "materialId": "warriors-s-metal-whistle",
+        "required": 22
+      }
+    ]
+  },
+  {
+    "characterId": "xilonen",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Xilonen",
+    "category": "talent",
+    "sortOrder": 11,
+    "materials": [
+      {
+        "materialId": "philosophies-of-kindling",
+        "required": 38
+      },
+      {
+        "materialId": "saurian-crowned-warrior-s-golden-whistle",
+        "required": 31
+      },
+      {
+        "materialId": "daka-s-bell",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
       }
     ]
   },
@@ -36747,6 +42099,229 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
+    "characterId": "yumemizuki-mizuki",
+    "name": "Talent Level 1 -> 2",
+    "description": "Materials to level a single talent from 1 to 2 for Yumemizuki Mizuki",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-transience",
+        "required": 3
+      },
+      {
+        "materialId": "old-handguard",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "yumemizuki-mizuki",
+    "name": "Talent Level 2 -> 3",
+    "description": "Materials to level a single talent from 2 to 3 for Yumemizuki Mizuki",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-transience",
+        "required": 2
+      },
+      {
+        "materialId": "kageuchi-handguard",
+        "required": 3
+      }
+    ]
+  },
+  {
+    "characterId": "yumemizuki-mizuki",
+    "name": "Talent Level 3 -> 4",
+    "description": "Materials to level a single talent from 3 to 4 for Yumemizuki Mizuki",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-transience",
+        "required": 4
+      },
+      {
+        "materialId": "kageuchi-handguard",
+        "required": 4
+      }
+    ]
+  },
+  {
+    "characterId": "yumemizuki-mizuki",
+    "name": "Talent Level 4 -> 5",
+    "description": "Materials to level a single talent from 4 to 5 for Yumemizuki Mizuki",
+    "category": "talent",
+    "sortOrder": 4,
+    "materials": [
+      {
+        "materialId": "guide-to-transience",
+        "required": 6
+      },
+      {
+        "materialId": "kageuchi-handguard",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "yumemizuki-mizuki",
+    "name": "Talent Level 5 -> 6",
+    "description": "Materials to level a single talent from 5 to 6 for Yumemizuki Mizuki",
+    "category": "talent",
+    "sortOrder": 5,
+    "materials": [
+      {
+        "materialId": "guide-to-transience",
+        "required": 9
+      },
+      {
+        "materialId": "kageuchi-handguard",
+        "required": 9
+      }
+    ]
+  },
+  {
+    "characterId": "yumemizuki-mizuki",
+    "name": "Talent Level 6 -> 7",
+    "description": "Materials to level a single talent from 6 to 7 for Yumemizuki Mizuki",
+    "category": "talent",
+    "sortOrder": 6,
+    "materials": [
+      {
+        "materialId": "philosophies-of-transience",
+        "required": 4
+      },
+      {
+        "materialId": "famed-handguard",
+        "required": 4
+      },
+      {
+        "materialId": "fading-candle",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "yumemizuki-mizuki",
+    "name": "Talent Level 7 -> 8",
+    "description": "Materials to level a single talent from 7 to 8 for Yumemizuki Mizuki",
+    "category": "talent",
+    "sortOrder": 7,
+    "materials": [
+      {
+        "materialId": "philosophies-of-transience",
+        "required": 6
+      },
+      {
+        "materialId": "famed-handguard",
+        "required": 6
+      },
+      {
+        "materialId": "fading-candle",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "yumemizuki-mizuki",
+    "name": "Talent Level 8 -> 9",
+    "description": "Materials to level a single talent from 8 to 9 for Yumemizuki Mizuki",
+    "category": "talent",
+    "sortOrder": 8,
+    "materials": [
+      {
+        "materialId": "philosophies-of-transience",
+        "required": 12
+      },
+      {
+        "materialId": "famed-handguard",
+        "required": 9
+      },
+      {
+        "materialId": "fading-candle",
+        "required": 2
+      }
+    ]
+  },
+  {
+    "characterId": "yumemizuki-mizuki",
+    "name": "Talent Level 9 -> 10",
+    "description": "Materials to level a single talent from 9 to 10 for Yumemizuki Mizuki",
+    "category": "talent",
+    "sortOrder": 9,
+    "materials": [
+      {
+        "materialId": "philosophies-of-transience",
+        "required": 16
+      },
+      {
+        "materialId": "famed-handguard",
+        "required": 12
+      },
+      {
+        "materialId": "fading-candle",
+        "required": 2
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "yumemizuki-mizuki",
+    "name": "Single Talent Level 1 -> 6",
+    "description": "Materials to level one talent from 1 to 6 for Yumemizuki Mizuki",
+    "category": "talent",
+    "sortOrder": 10,
+    "materials": [
+      {
+        "materialId": "teachings-of-transience",
+        "required": 3
+      },
+      {
+        "materialId": "guide-to-transience",
+        "required": 21
+      },
+      {
+        "materialId": "old-handguard",
+        "required": 6
+      },
+      {
+        "materialId": "kageuchi-handguard",
+        "required": 22
+      }
+    ]
+  },
+  {
+    "characterId": "yumemizuki-mizuki",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Yumemizuki Mizuki",
+    "category": "talent",
+    "sortOrder": 11,
+    "materials": [
+      {
+        "materialId": "philosophies-of-transience",
+        "required": 38
+      },
+      {
+        "materialId": "famed-handguard",
+        "required": 31
+      },
+      {
+        "materialId": "fading-candle",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
     "characterId": "yun-jin",
     "name": "Ascension 1 (Lv. 20 -> 40)",
     "description": "First ascension materials for Yun Jin",
@@ -37627,6 +43202,229 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       {
         "materialId": "frost-etched-warrant",
         "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "zibai",
+    "name": "Talent Level 1 -> 2",
+    "description": "Materials to level a single talent from 1 to 2 for Zibai",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-gold",
+        "required": 3
+      },
+      {
+        "materialId": "tattered-warrant",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "zibai",
+    "name": "Talent Level 2 -> 3",
+    "description": "Materials to level a single talent from 2 to 3 for Zibai",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-gold",
+        "required": 2
+      },
+      {
+        "materialId": "immaculate-warrant",
+        "required": 3
+      }
+    ]
+  },
+  {
+    "characterId": "zibai",
+    "name": "Talent Level 3 -> 4",
+    "description": "Materials to level a single talent from 3 to 4 for Zibai",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-gold",
+        "required": 4
+      },
+      {
+        "materialId": "immaculate-warrant",
+        "required": 4
+      }
+    ]
+  },
+  {
+    "characterId": "zibai",
+    "name": "Talent Level 4 -> 5",
+    "description": "Materials to level a single talent from 4 to 5 for Zibai",
+    "category": "talent",
+    "sortOrder": 4,
+    "materials": [
+      {
+        "materialId": "guide-to-gold",
+        "required": 6
+      },
+      {
+        "materialId": "immaculate-warrant",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "zibai",
+    "name": "Talent Level 5 -> 6",
+    "description": "Materials to level a single talent from 5 to 6 for Zibai",
+    "category": "talent",
+    "sortOrder": 5,
+    "materials": [
+      {
+        "materialId": "guide-to-gold",
+        "required": 9
+      },
+      {
+        "materialId": "immaculate-warrant",
+        "required": 9
+      }
+    ]
+  },
+  {
+    "characterId": "zibai",
+    "name": "Talent Level 6 -> 7",
+    "description": "Materials to level a single talent from 6 to 7 for Zibai",
+    "category": "talent",
+    "sortOrder": 6,
+    "materials": [
+      {
+        "materialId": "philosophies-of-gold",
+        "required": 4
+      },
+      {
+        "materialId": "frost-etched-warrant",
+        "required": 4
+      },
+      {
+        "materialId": "ascended-sample-queen",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "zibai",
+    "name": "Talent Level 7 -> 8",
+    "description": "Materials to level a single talent from 7 to 8 for Zibai",
+    "category": "talent",
+    "sortOrder": 7,
+    "materials": [
+      {
+        "materialId": "philosophies-of-gold",
+        "required": 6
+      },
+      {
+        "materialId": "frost-etched-warrant",
+        "required": 6
+      },
+      {
+        "materialId": "ascended-sample-queen",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "zibai",
+    "name": "Talent Level 8 -> 9",
+    "description": "Materials to level a single talent from 8 to 9 for Zibai",
+    "category": "talent",
+    "sortOrder": 8,
+    "materials": [
+      {
+        "materialId": "philosophies-of-gold",
+        "required": 12
+      },
+      {
+        "materialId": "frost-etched-warrant",
+        "required": 9
+      },
+      {
+        "materialId": "ascended-sample-queen",
+        "required": 2
+      }
+    ]
+  },
+  {
+    "characterId": "zibai",
+    "name": "Talent Level 9 -> 10",
+    "description": "Materials to level a single talent from 9 to 10 for Zibai",
+    "category": "talent",
+    "sortOrder": 9,
+    "materials": [
+      {
+        "materialId": "philosophies-of-gold",
+        "required": 16
+      },
+      {
+        "materialId": "frost-etched-warrant",
+        "required": 12
+      },
+      {
+        "materialId": "ascended-sample-queen",
+        "required": 2
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "zibai",
+    "name": "Single Talent Level 1 -> 6",
+    "description": "Materials to level one talent from 1 to 6 for Zibai",
+    "category": "talent",
+    "sortOrder": 10,
+    "materials": [
+      {
+        "materialId": "teachings-of-gold",
+        "required": 3
+      },
+      {
+        "materialId": "guide-to-gold",
+        "required": 21
+      },
+      {
+        "materialId": "tattered-warrant",
+        "required": 6
+      },
+      {
+        "materialId": "immaculate-warrant",
+        "required": 22
+      }
+    ]
+  },
+  {
+    "characterId": "zibai",
+    "name": "Single Talent Level 6 -> 10",
+    "description": "Materials to max one talent from level 6 to 10 for Zibai",
+    "category": "talent",
+    "sortOrder": 11,
+    "materials": [
+      {
+        "materialId": "philosophies-of-gold",
+        "required": 38
+      },
+      {
+        "materialId": "frost-etched-warrant",
+        "required": 31
+      },
+      {
+        "materialId": "ascended-sample-queen",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
       }
     ]
   }

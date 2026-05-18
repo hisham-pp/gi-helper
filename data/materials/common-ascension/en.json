@@ -1,6 +1,16 @@
 {
   "slime": {
-    "characters": ["lisa", "venti", "xiangling", "zhongli", "arataki-itto", "xiao", "yaoyao", "gaming"],
+    "characters": [
+      "lisa",
+      "venti",
+      "xiangling",
+      "zhongli",
+      "arataki-itto",
+      "xiao",
+      "yaoyao",
+      "gaming",
+      "columbina"
+    ],
     "weapons": [
       "amos-bow",
       "lost-prayer-to-the-sacred-winds",
@@ -42,12 +52,28 @@
         "rarity": 3
       }
     ],
-    "sources": ["Slime"]
+    "sources": [
+      "Slime"
+    ]
   },
   "hilichurl-masks": {
-    "characters": ["jean", "noelle", "razor", "chongyun", "xingqiu", "sara",
-      "eula", "yun-jin", "traveler-anemo", "traveler-geo", "traveler-electro",
-      "traveler-dendro","traveler-hydro", "traveler-pyro", "varka"],
+    "characters": [
+      "jean",
+      "noelle",
+      "razor",
+      "chongyun",
+      "xingqiu",
+      "sara",
+      "eula",
+      "yun-jin",
+      "traveler-anemo",
+      "traveler-geo",
+      "traveler-electro",
+      "traveler-dendro",
+      "traveler-hydro",
+      "traveler-pyro",
+      "varka"
+    ],
     "weapons": [
       "wolf-fang",
       "apprentice-s-notes",
@@ -84,10 +110,22 @@
         "rarity": 3
       }
     ],
-    "sources": ["Hilichurl", "Samachurl", "Mitachurl", "Lawachurl"]
+    "sources": [
+      "Hilichurl",
+      "Samachurl",
+      "Mitachurl",
+      "Lawachurl"
+    ]
   },
   "hilichurl-arrowheads": {
-    "characters": ["amber", "diona", "fischl", "collei", "linnea"],
+    "characters": [
+      "amber",
+      "diona",
+      "fischl",
+      "collei",
+      "linnea",
+      "dahlia"
+    ],
     "weapons": [
       "aquila-favonia",
       "skyward-atlas",
@@ -130,7 +168,9 @@
         "rarity": 3
       }
     ],
-    "sources": ["Hilichurl Archer"]
+    "sources": [
+      "Hilichurl Archer"
+    ]
   },
   "samachurl-scrolls": {
     "characters": [
@@ -180,11 +220,21 @@
         "rarity": 3
       }
     ],
-    "sources": ["Samachurl"]
+    "sources": [
+      "Samachurl"
+    ]
   },
   "treasure-hoarder-insignias": {
-    "characters": ["kaeya", "bennett", "beidou", "xinyan", "yanfei", "kazuha",
-      "shikanoin-heizou", "thoma"],
+    "characters": [
+      "kaeya",
+      "bennett",
+      "beidou",
+      "xinyan",
+      "yanfei",
+      "kazuha",
+      "shikanoin-heizou",
+      "thoma"
+    ],
     "weapons": [
       "primordial-jade-cutter",
       "the-unforged",
@@ -224,10 +274,21 @@
         "rarity": 3
       }
     ],
-    "sources": ["Treasure Hoarder"]
+    "sources": [
+      "Treasure Hoarder"
+    ]
   },
   "fatui-insignias": {
-    "characters": ["diluc", "ningguang", "tartaglia", "lyney", "mika", "rosaria", "yelan"],
+    "characters": [
+      "diluc",
+      "ningguang",
+      "tartaglia",
+      "lyney",
+      "mika",
+      "rosaria",
+      "yelan",
+      "arlecchino"
+    ],
     "weapons": [
       "elegy-for-the-end",
       "primordial-jade-winged-spear",
@@ -262,11 +323,24 @@
         "rarity": 3
       }
     ],
-    "sources": ["Fatui Skirmisher", "Fatui Cicin Mage", "Fatui Agent"]
+    "sources": [
+      "Fatui Skirmisher",
+      "Fatui Cicin Mage",
+      "Fatui Agent"
+    ]
   },
   "whopperflower-nectar": {
-    "characters": ["mona", "sucrose", "keqing", "ganyu", "hu-tao",
-      "furina", "sayu", "shenhe"],
+    "characters": [
+      "mona",
+      "sucrose",
+      "keqing",
+      "ganyu",
+      "hu-tao",
+      "furina",
+      "sayu",
+      "shenhe",
+      "lan-yan"
+    ],
     "weapons": [
       "calamity-queller",
       "ballad-of-the-fjords",
@@ -299,7 +373,9 @@
         "rarity": 3
       }
     ],
-    "sources": ["Whopperflower"]
+    "sources": [
+      "Whopperflower"
+    ]
   },
   "hilichurl-horns": {
     "weapons": [
@@ -343,7 +419,10 @@
         "rarity": 4
       }
     ],
-    "sources": ["Mitachurl", "Lawachurl"]
+    "sources": [
+      "Mitachurl",
+      "Lawachurl"
+    ]
   },
   "ley-line": {
     "weapons": [
@@ -372,7 +451,6 @@
       "waster-greatsword",
       "windblume-ode",
       "wine-and-song"
-
     ],
     "items": [
       {
@@ -391,10 +469,19 @@
         "rarity": 4
       }
     ],
-    "sources": ["Abyss Mage"]
+    "sources": [
+      "Abyss Mage"
+    ]
   },
   "nobushi": {
-    "characters": ["ayaka", "ayato", "raiden", "wanderer", "yae-miko"],
+    "characters": [
+      "ayaka",
+      "ayato",
+      "raiden",
+      "wanderer",
+      "yae-miko",
+      "yumemizuki-mizuki"
+    ],
     "weapons": [
       "engulfing-lightning",
       "haran-geppaku-futsu",
@@ -424,7 +511,9 @@
         "rarity": 3
       }
     ],
-    "sources": ["Nobushi"]
+    "sources": [
+      "Nobushi"
+    ]
   },
   "bone-shards": {
     "weapons": [
@@ -460,7 +549,9 @@
         "rarity": 4
       }
     ],
-    "sources": ["Geovishap Hatchling"]
+    "sources": [
+      "Geovishap Hatchling"
+    ]
   },
   "mist-grass": {
     "weapons": [
@@ -500,7 +591,9 @@
         "rarity": 4
       }
     ],
-    "sources": ["Fatui Cicin Mage"]
+    "sources": [
+      "Fatui Cicin Mage"
+    ]
   },
   "fatui-knives": {
     "weapons": [
@@ -538,10 +631,19 @@
         "rarity": 4
       }
     ],
-    "sources": ["Fatui Agent"]
+    "sources": [
+      "Fatui Agent"
+    ]
   },
   "specters": {
-    "characters": ["aloy", "gorou", "kirara", "kuki-shinobu", "kokomi"],
+    "characters": [
+      "aloy",
+      "gorou",
+      "kirara",
+      "kuki-shinobu",
+      "kokomi",
+      "chiori"
+    ],
     "weapons": [
       "aqua-simulacra",
       "everlasting-moonglow",
@@ -570,7 +672,9 @@
         "rarity": 3
       }
     ],
-    "sources": ["Specter"]
+    "sources": [
+      "Specter"
+    ]
   },
   "chaos-parts": {
     "weapons": [
@@ -613,10 +717,21 @@
         "rarity": 4
       }
     ],
-    "sources": ["Ruin Guard", "Ruin Hunter", "Ruin Grader"]
+    "sources": [
+      "Ruin Guard",
+      "Ruin Hunter",
+      "Ruin Grader"
+    ]
   },
   "eremites-red": {
-    "characters": ["faruzan", "dori", "alhaitham", "dehya", "candace", "sethos"],
+    "characters": [
+      "faruzan",
+      "dori",
+      "alhaitham",
+      "dehya",
+      "candace",
+      "sethos"
+    ],
     "weapons": [
       "beacon-of-the-reed-sea",
       "hunter-s-path",
@@ -644,10 +759,18 @@
         "rarity": 3
       }
     ],
-    "sources": ["Eremites"]
+    "sources": [
+      "Eremites"
+    ]
   },
   "fungals-spores": {
-    "characters": ["nahida", "baizhu", "kaveh", "nilou", "tighnari"],
+    "characters": [
+      "nahida",
+      "baizhu",
+      "kaveh",
+      "nilou",
+      "tighnari"
+    ],
     "weapons": [
       "a-thousand-floating-dreams",
       "jadefall-s-splendor",
@@ -676,10 +799,24 @@
         "rarity": 3
       }
     ],
-    "sources": ["Fungus", "Geoshroom", "Hydroshroom", "Cryoshroom", "Dendroshroom"]
+    "sources": [
+      "Fungus",
+      "Geoshroom",
+      "Hydroshroom",
+      "Cryoshroom",
+      "Dendroshroom"
+    ]
   },
   "clockwork-meka": {
-    "characters": ["lynette", "charlotte", "chevreuse", "wriothesley"],
+    "characters": [
+      "lynette",
+      "charlotte",
+      "chevreuse",
+      "wriothesley",
+      "emilie",
+      "escoffier",
+      "skirk"
+    ],
     "weapons": [
       "tome-of-the-eternal",
       "verdict",
@@ -706,10 +843,18 @@
         "rarity": 3
       }
     ],
-    "sources": ["Clockwork Mek"]
+    "sources": [
+      "Clockwork Mek"
+    ]
   },
   "fontemer-aberrant": {
-    "characters": ["navia", "freminet", "neuvillette", "sigewinne", "clorinde"],
+    "characters": [
+      "navia",
+      "freminet",
+      "neuvillette",
+      "sigewinne",
+      "clorinde"
+    ],
     "weapons": [
       "cashflow-supervision",
       "splendor-of-tranquil-waters",
@@ -737,8 +882,16 @@
         "rarity": 3
       }
     ],
-    "sources": ["Angelic Sea Hare", "Armored and Sternshield Crabs", "Ball Octopus",
-      "Blubberbeast", "Hunter's Ray", "Hat Jellyfish", "Cherubic Sea Hare", "Bubbly Seahorse"]
+    "sources": [
+      "Angelic Sea Hare",
+      "Armored and Sternshield Crabs",
+      "Ball Octopus",
+      "Blubberbeast",
+      "Hunter's Ray",
+      "Hat Jellyfish",
+      "Cherubic Sea Hare",
+      "Bubbly Seahorse"
+    ]
   },
   "primal-construct-prisms": {
     "weapons": [
@@ -764,7 +917,9 @@
         "rarity": 4
       }
     ],
-    "sources": ["Primal Constructs"]
+    "sources": [
+      "Primal Constructs"
+    ]
   },
   "breacher-primus": {
     "weapons": [
@@ -792,7 +947,10 @@
         "rarity": 4
       }
     ],
-    "sources": ["Shatterstone Breacher Primus", "Overgrown Breacher Primus"]
+    "sources": [
+      "Shatterstone Breacher Primus",
+      "Overgrown Breacher Primus"
+    ]
   },
   "black-serpents": {
     "weapons": [
@@ -819,7 +977,11 @@
         "rarity": 4
       }
     ],
-    "sources": ["Abyss Heralds", "Black Serpent Knight", "Shadowy Husks"]
+    "sources": [
+      "Abyss Heralds",
+      "Black Serpent Knight",
+      "Shadowy Husks"
+    ]
   },
   "hilichurl-rogue": {
     "weapons": [
@@ -845,7 +1007,9 @@
         "rarity": 4
       }
     ],
-    "sources": ["Hilichurl Rogue"]
+    "sources": [
+      "Hilichurl Rogue"
+    ]
   },
   "consecrated-beast": {
     "weapons": [
@@ -871,8 +1035,13 @@
         "rarity": 4
       }
     ],
-    "sources": ["Consecrated Scorpion", "Consecrated Red Vulture", "Consecrated Fanged Beast",
-      "Consecrated Horned Crocodile", "Consecrated Flying Serpent"]
+    "sources": [
+      "Consecrated Scorpion",
+      "Consecrated Red Vulture",
+      "Consecrated Fanged Beast",
+      "Consecrated Horned Crocodile",
+      "Consecrated Flying Serpent"
+    ]
   },
   "fatui-operative": {
     "weapons": [
@@ -899,7 +1068,10 @@
         "rarity": 4
       }
     ],
-    "sources": ["Frost Operative", "Wind Operative"]
+    "sources": [
+      "Frost Operative",
+      "Wind Operative"
+    ]
   },
   "mirror-maiden-prisms": {
     "weapons": [
@@ -927,7 +1099,9 @@
         "rarity": 4
       }
     ],
-    "sources": ["Mirror Maiden"]
+    "sources": [
+      "Mirror Maiden"
+    ]
   },
   "ruin-sentinels-chaos": {
     "weapons": [
@@ -955,7 +1129,12 @@
         "rarity": 4
       }
     ],
-    "sources": ["Ruin Cruiser", "Ruin Defender", "Ruin Destroyer", "Ruin Scout"]
+    "sources": [
+      "Ruin Cruiser",
+      "Ruin Defender",
+      "Ruin Destroyer",
+      "Ruin Scout"
+    ]
   },
   "riftwolf-concealds": {
     "weapons": [
@@ -983,7 +1162,10 @@
         "rarity": 4
       }
     ],
-    "sources": ["Rifthound", "Rifthound Whelp"]
+    "sources": [
+      "Rifthound",
+      "Rifthound Whelp"
+    ]
   },
   "tainted-hydro-phantasm": {
     "weapons": [
@@ -1011,7 +1193,9 @@
         "rarity": 4
       }
     ],
-    "sources": ["Tainted Hydro Phantasm"]
+    "sources": [
+      "Tainted Hydro Phantasm"
+    ]
   },
   "state-shifted-fungus": {
     "weapons": [
@@ -1038,7 +1222,13 @@
         "rarity": 4
       }
     ],
-    "sources": ["Fungus", "Geoshroom", "Hydroshroom", "Cryoshroom", "Dendroshroom"]
+    "sources": [
+      "Fungus",
+      "Geoshroom",
+      "Hydroshroom",
+      "Cryoshroom",
+      "Dendroshroom"
+    ]
   },
   "ruin-drakes-chaos": {
     "weapons": [
@@ -1065,7 +1255,9 @@
         "rarity": 4
       }
     ],
-    "sources": ["Ruin Drakes"]
+    "sources": [
+      "Ruin Drakes"
+    ]
   },
   "hilt": {
     "weapons": [
@@ -1088,10 +1280,19 @@
         "rarity": 4
       }
     ],
-    "sources": ["Praetorian Golem"]
+    "sources": [
+      "Praetorian Golem"
+    ]
   },
   "whistle": {
-    "characters": ["kachina", "mualani"],
+    "characters": [
+      "kachina",
+      "mualani",
+      "iansan",
+      "ineffa",
+      "mavuika",
+      "xilonen"
+    ],
     "weapons": [
       "earth-shaker",
       "footprint-of-the-rainbow"
@@ -1106,18 +1307,31 @@
         "id": "warriors-s-metal-whistle",
         "name": "Warriors's Metal Whistle",
         "rarity": 3
-      }
-      ,
+      },
       {
         "id": "saurian-crowned-warrior-s-golden-whistle",
         "name": "Saurian-Crowned Warriors's Golden Whistle",
         "rarity": 4
       }
     ],
-    "sources": ["Flowing Blade", "Forged Sand", "Koholasaurus Warrior", "Swiftstep", "Tepetlisaurus Warrior", "Yumkasaurus Warrior"]
+    "sources": [
+      "Flowing Blade",
+      "Forged Sand",
+      "Koholasaurus Warrior",
+      "Swiftstep",
+      "Tepetlisaurus Warrior",
+      "Yumkasaurus Warrior"
+    ]
   },
   "fang": {
-    "characters": ["kinich"],
+    "characters": [
+      "kinich",
+      "chasca",
+      "citlali",
+      "ifa",
+      "ororon",
+      "varesa"
+    ],
     "weapons": [
       "surf-s-up",
       "ash-graven-drinking-horn",
@@ -1134,15 +1348,18 @@
         "id": "seasoned-fang",
         "name": "Seasoned Fang",
         "rarity": 3
-      }
-      ,
+      },
       {
         "id": "tyrant-s-fang",
         "name": "Tyrant's Fang",
         "rarity": 4
       }
     ],
-    "sources": ["Koholasaurus","Tepetlisaurus", "Yumkasaurus"]
+    "sources": [
+      "Koholasaurus",
+      "Tepetlisaurus",
+      "Yumkasaurus"
+    ]
   },
   "xuanwen-beast": {
     "weapons": [
@@ -1168,7 +1385,9 @@
         "rarity": 4
       }
     ],
-    "sources": ["Xuanwen Beast"]
+    "sources": [
+      "Xuanwen Beast"
+    ]
   },
   "wayob-manifestation": {
     "weapons": [
@@ -1195,7 +1414,9 @@
         "rarity": 4
       }
     ],
-    "sources": ["Wayob Manifestation"]
+    "sources": [
+      "Wayob Manifestation"
+    ]
   },
   "frostnight-scion": {
     "weapons": [
@@ -1222,7 +1443,9 @@
         "rarity": 4
       }
     ],
-    "sources": ["Frostnight Scion"]
+    "sources": [
+      "Frostnight Scion"
+    ]
   },
   "radiant-beast": {
     "weapons": [
@@ -1248,7 +1471,9 @@
         "rarity": 4
       }
     ],
-    "sources": ["Radiant Beast"]
+    "sources": [
+      "Radiant Beast"
+    ]
   },
   "wasteland-wild-hunt": {
     "weapons": [
@@ -1275,10 +1500,17 @@
         "rarity": 4
       }
     ],
-    "sources": ["Wasteland Wild Hunt"]
+    "sources": [
+      "Wasteland Wild Hunt"
+    ]
   },
   "kuuvahki-mechanism": {
-    "characters": ["aino", "flins", "illuga", "jahoda"],
+    "characters": [
+      "aino",
+      "flins",
+      "illuga",
+      "jahoda"
+    ],
     "items": [
       {
         "id": "broken-drive-shaft",
@@ -1296,10 +1528,17 @@
         "rarity": 3
       }
     ],
-    "sources": ["Kuuvahki Experimental Design Bureau"]
+    "sources": [
+      "Kuuvahki Experimental Design Bureau"
+    ]
   },
   "frostnight-herald": {
-    "characters": ["durin", "lauma", "nefer", "zibai"],
+    "characters": [
+      "durin",
+      "lauma",
+      "nefer",
+      "zibai"
+    ],
     "items": [
       {
         "id": "tattered-warrant",
@@ -1317,7 +1556,9 @@
         "rarity": 3
       }
     ],
-    "sources": ["Frostnight Herra"]
+    "sources": [
+      "Frostnight Herra"
+    ]
   },
   "domain-keeper": {
     "weapons": [
@@ -1340,6 +1581,8 @@
         "rarity": 4
       }
     ],
-    "sources": ["Domain Keeper"]
+    "sources": [
+      "Domain Keeper"
+    ]
   }
 }
