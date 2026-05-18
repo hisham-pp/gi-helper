@@ -1,0 +1,47 @@
+import { ReactNode } from 'react';
+import { StackProps } from '@mui/material';
+import { BoxProps } from '@mui/material/Box';
+import { CardProps } from '@mui/material/Card';
+import { PaperProps } from '@mui/material/Paper';
+import { exportMenuProps, SimpleHeaderProps } from '@/components/page-headers/types';
+import { AppTableProps, Header } from '@/core/components/app-table/types';
+import { PaginationProps } from '@/core/components/pagination/types';
+
+export type MasterListProps = {
+  title: ReactNode;
+  page?: number;
+  bordered?: boolean;
+  headers?: Header[];
+  rows?: AppTableProps['rows'];
+  variant?: SimpleHeaderProps['variant'];
+  totalCount?: number;
+  dataLoading?: boolean;
+  paperProps?: PaperProps;
+  headerCardProps?: CardProps;
+  searchContainerProps?: BoxProps;
+  containedButtonLabel?: string;
+  showContainedButton?: boolean;
+  showOutlineButton?: boolean;
+  outlineButtonLabel?: string;
+  showSearch?: boolean;
+  showExportMenu?: boolean;
+  exportMenuProps?: exportMenuProps;
+  stackProps?: StackProps;
+  titleSize?: SimpleHeaderProps['titleSize'];
+  onCreate?: () => void;
+  onClickOutlinedButton?: () => void;
+  onRowClick?: AppTableProps['onRowClick'];
+  sortOptions?: AppTableProps['sortOptions'];
+  onPageChange?: PaginationProps['onChange'];
+  onSearchChange?: (value: string) => void;
+  extendTitleEnd?: () => React.JSX.Element;
+  extendSearchEnd?: () => React.JSX.Element;
+  extendSearchBottom?: () => React.JSX.Element;
+  containedButtonPermissionKeys?: string[];
+  showCount?: boolean;
+  children?: ReactNode;
+  // Inline filtering support
+  enableInlineFilters?: boolean;
+  filterValues?: AppTableProps['filterValues'];
+  onFilterChange?: AppTableProps['onFilterChange'];
+};
