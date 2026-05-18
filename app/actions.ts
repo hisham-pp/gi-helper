@@ -228,11 +228,9 @@ export async function createGoalsFromTemplatesAction(
     };
   }
 
-  const uniqueTemplateIds = [...new Set(parsed.data.templateIds)];
-
   try {
     if (parsed.data.type === "character") {
-      for (const templateId of uniqueTemplateIds) {
+      for (const templateId of parsed.data.templateIds) {
         const template = await prisma.characterGoalTemplate.findUnique({
           where: { id: templateId },
           include: {
@@ -271,7 +269,7 @@ export async function createGoalsFromTemplatesAction(
         }
       }
     } else {
-      for (const templateId of uniqueTemplateIds) {
+      for (const templateId of parsed.data.templateIds) {
         const template = await prisma.weaponGoalTemplate.findUnique({
           where: { id: templateId },
           include: {
