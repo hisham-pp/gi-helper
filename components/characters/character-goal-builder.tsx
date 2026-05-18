@@ -39,9 +39,7 @@ type TemplateGroup = {
 };
 
 function isRepeatableTalentTemplate(template: CharacterTemplate) {
-  return (
-    template.category === "talent" && !template.name.startsWith("All Talents")
-  );
+  return template.category === "talent" && template.sortOrder <= 9;
 }
 
 export function CharacterGoalBuilder({
