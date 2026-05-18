@@ -10,16 +10,31 @@ export interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputEleme
 
 const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
   (
-    { className, type, label, variant = "filled", helperText, error, ...props },
+    {
+      className,
+      type,
+      label,
+      variant = "filled",
+      helperText,
+      error,
+      id,
+      ...props
+    },
     ref,
   ) => {
+    const generatedId = React.useId();
+    const inputId = id ?? generatedId;
+    const helperId = helperText ? `${inputId}-helper` : undefined;
     const isOutlined = variant === "outlined";
 
     return (
       <div className="w-full">
         <div className="group relative w-full">
           <input
+            id={inputId}
             type={type}
+            aria-describedby={helperId}
+            aria-invalid={error || undefined}
             className={cn(
               "text-on-surface peer flex h-14 w-full px-4 pt-4 transition-all placeholder:text-transparent focus:outline-none focus:ring-0",
               isOutlined
@@ -37,6 +52,7 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
           />
           {label && (
             <label
+              htmlFor={inputId}
               className={cn(
                 "pointer-events-none absolute left-4 transition-all",
                 isOutlined
@@ -53,6 +69,7 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
         </div>
         {helperText && (
           <p
+            id={helperId}
             className={cn(
               "mt-1 px-4 text-xs",
               error ? "text-error" : "text-on-surface-variant",
