@@ -8,22 +8,22 @@ datasource db {
 }
 
 model Material {
-  id                        String                           @id
-  name                      String                           @unique
-  image                     String
-  rarity                    Int
-  category                  String
-  description               String
-  combinable                Boolean                          @default(false)
-  combineRatio              Int?
-  parentMaterialId          String?
-  createdAt                 DateTime                         @default(now())
-  updatedAt                 DateTime                         @updatedAt
-  inventories               Inventory[]
-  parentMaterial            Material?                        @relation("MaterialTree", fields: [parentMaterialId], references: [id], onDelete: SetNull)
-  childMaterials            Material[]                       @relation("MaterialTree")
-  goalMaterials             GoalMaterial[]
+  id                         String                          @id
+  name                       String                          @unique
+  image                      String
+  rarity                     Int
+  category                   String
+  description                String
+  combinable                 Boolean                         @default(false)
+  combineRatio               Int?
+  parentMaterialId           String?
+  createdAt                  DateTime                        @default(now())
+  updatedAt                  DateTime                        @updatedAt
   characterTemplateMaterials CharacterGoalTemplateMaterial[] @relation("CharacterTemplateMaterials")
+  goalMaterials              GoalMaterial[]
+  inventories                Inventory[]
+  parentMaterial             Material?                       @relation("MaterialTree", fields: [parentMaterialId], references: [id])
+  childMaterials             Material[]                      @relation("MaterialTree")
   weaponTemplateMaterials    WeaponGoalTemplateMaterial[]    @relation("WeaponTemplateMaterials")
 
   @@index([category])
@@ -35,24 +35,24 @@ model User {
   id           String      @id @default(cuid())
   username     String      @unique
   passwordHash String
-  role         String      @default("user")
   createdAt    DateTime    @default(now())
   updatedAt    DateTime    @updatedAt
-  sessions     Session[]
-  inventory    Inventory[]
+  role         String      @default("user")
   goals        Goal[]
+  inventory    Inventory[]
+  sessions     Session[]
 
   @@map("users")
 }
 
 model Session {
   id        String   @id @default(cuid())
-  userId     String
-  tokenHash  String   @unique
-  expiresAt  DateTime
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  tokenHash String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
   @@index([expiresAt])
@@ -79,16 +79,20 @@ model Goal {
   userId        String
   name          String
   description   String?
-  templateType  String?
-  templateId    String?
-  completed     Boolean        @default(false)
   createdAt     DateTime       @default(now())
   updatedAt     DateTime       @updatedAt
+  templateId    String?
+  templateType  String?
+  completed     Boolean        @default(false)
+  category      String?
+  characterId   String?
   goalMaterials GoalMaterial[]
   user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
   @@index([templateType, templateId])
+  @@index([category])
+  @@index([characterId])
   @@map("goals")
 }
 
@@ -108,16 +112,16 @@ model GoalMaterial {
 }
 
 model Character {
-  id          String                    @id
-  name        String
-  image       String
-  rarity      Int
-  element     String
-  weaponType  String
-  region      String
-  createdAt   DateTime                  @default(now())
-  updatedAt   DateTime                  @updatedAt
-  templates   CharacterGoalTemplate[]
+  id         String                  @id
+  name       String
+  image      String
+  rarity     Int
+  element    String
+  weaponType String
+  region     String
+  createdAt  DateTime                @default(now())
+  updatedAt  DateTime                @updatedAt
+  templates  CharacterGoalTemplate[]
 
   @@index([rarity])
   @@index([element])
@@ -125,14 +129,14 @@ model Character {
 }
 
 model Weapon {
-  id          String                 @id
-  name        String                 @unique
-  image       String
-  rarity      Int
-  weaponType  String
-  createdAt   DateTime               @default(now())
-  updatedAt   DateTime               @updatedAt
-  templates   WeaponGoalTemplate[]
+  id         String               @id
+  name       String               @unique
+  image      String
+  rarity     Int
+  weaponType String
+  createdAt  DateTime             @default(now())
+  updatedAt  DateTime             @updatedAt
+  templates  WeaponGoalTemplate[]
 
   @@index([rarity])
   @@index([weaponType])
@@ -140,16 +144,16 @@ model Weapon {
 }
 
 model CharacterGoalTemplate {
-  id                  String                           @id @default(cuid())
-  characterId         String
-  name                String
-  description         String?
-  category            String
-  sortOrder           Int                              @default(0)
-  createdAt           DateTime                         @default(now())
-  updatedAt           DateTime                         @updatedAt
-  character           Character                        @relation(fields: [characterId], references: [id], onDelete: Cascade)
-  materials           CharacterGoalTemplateMaterial[]
+  id          String                          @id @default(cuid())
+  characterId String
+  name        String
+  description String?
+  category    String
+  sortOrder   Int                             @default(0)
+  createdAt   DateTime                        @default(now())
+  updatedAt   DateTime                        @updatedAt
+  materials   CharacterGoalTemplateMaterial[]
+  character   Character                       @relation(fields: [characterId], references: [id], onDelete: Cascade)
 
   @@index([characterId])
   @@index([category])
@@ -163,8 +167,8 @@ model CharacterGoalTemplateMaterial {
   required   Int
   createdAt  DateTime              @default(now())
   updatedAt  DateTime              @updatedAt
-  template   CharacterGoalTemplate @relation(fields: [templateId], references: [id], onDelete: Cascade)
   material   Material              @relation("CharacterTemplateMaterials", fields: [materialId], references: [id], onDelete: Cascade)
+  template   CharacterGoalTemplate @relation(fields: [templateId], references: [id], onDelete: Cascade)
 
   @@unique([templateId, materialId])
   @@index([materialId])
@@ -172,16 +176,16 @@ model CharacterGoalTemplateMaterial {
 }
 
 model WeaponGoalTemplate {
-  id                  String                        @id @default(cuid())
-  weaponId            String
-  name                String
-  description         String?
-  category            String
-  sortOrder           Int                           @default(0)
-  createdAt           DateTime                      @default(now())
-  updatedAt           DateTime                      @updatedAt
-  weapon              Weapon                        @relation(fields: [weaponId], references: [id], onDelete: Cascade)
-  materials           WeaponGoalTemplateMaterial[]
+  id          String                       @id @default(cuid())
+  weaponId    String
+  name        String
+  description String?
+  category    String
+  sortOrder   Int                          @default(0)
+  createdAt   DateTime                     @default(now())
+  updatedAt   DateTime                     @updatedAt
+  materials   WeaponGoalTemplateMaterial[]
+  weapon      Weapon                       @relation(fields: [weaponId], references: [id], onDelete: Cascade)
 
   @@index([weaponId])
   @@index([category])
@@ -195,8 +199,8 @@ model WeaponGoalTemplateMaterial {
   required   Int
   createdAt  DateTime           @default(now())
   updatedAt  DateTime           @updatedAt
-  template   WeaponGoalTemplate @relation(fields: [templateId], references: [id], onDelete: Cascade)
   material   Material           @relation("WeaponTemplateMaterials", fields: [materialId], references: [id], onDelete: Cascade)
+  template   WeaponGoalTemplate @relation(fields: [templateId], references: [id], onDelete: Cascade)
 
   @@unique([templateId, materialId])
   @@index([materialId])
