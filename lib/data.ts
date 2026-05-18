@@ -44,12 +44,17 @@ export async function getDashboardData(userId: string): Promise<DashboardData> {
     quantity: material.inventories[0]?.quantity ?? 0,
   }));
 
+  const stock = Object.fromEntries(
+    materialNodes.map((material) => [material.id, material.quantity]),
+  );
+
   const goalViews = goals.map((goal) =>
     evaluateGoal(
       {
         id: goal.id,
         name: goal.name,
         description: goal.description,
+        completed: goal.completed,
         materials: goal.goalMaterials.map((item) => ({
           id: item.id,
           materialId: item.materialId,
@@ -57,6 +62,7 @@ export async function getDashboardData(userId: string): Promise<DashboardData> {
         })),
       },
       materialNodes,
+      stock,
     ),
   );
 
