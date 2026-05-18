@@ -124,13 +124,13 @@ export async function completeGoalAction(
           },
           update: {
             quantity: {
-              increment: item.required,
+              decrement: item.required,
             },
           },
           create: {
             userId: user.id,
             materialId: item.materialId,
-            quantity: item.required,
+            quantity: -item.required,
           },
         });
       }

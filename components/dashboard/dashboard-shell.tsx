@@ -79,6 +79,7 @@ export function DashboardShell({
       : "materials";
   const [activeTab, setActiveTab] = useState<DashboardTab>(initialTab);
   const [inventoryTab, setInventoryTab] = useState<"needed" | "edit">("needed");
+  const [goalFilter, setGoalFilter] = useState<"incomplete" | "completed" | "all">("incomplete");
 
   useEffect(() => {
     if (view !== "tracker") {
@@ -536,7 +537,7 @@ export function DashboardShell({
 
       {showGoals ? (
         <section className="space-y-6">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <h2 className="text-on-surface text-2xl font-bold tracking-tight">
                 Farming Goals
@@ -545,15 +546,27 @@ export function DashboardShell({
                 Track and manage your farming objectives.
               </p>
             </div>
-            <div className="flex gap-2">
+            <div className="flex flex-wrap gap-3">
+              <Select
+                label="Status"
+                variant="outlined"
+                className="h-10 w-40"
+                value={goalFilter}
+                onChange={(val) => setGoalFilter(val as any)}
+                options={[
+                  { label: "Incomplete", value: "incomplete" },
+                  { label: "Completed", value: "completed" },
+                  { label: "All", value: "all" },
+                ]}
+              />
               <Link href={"/goal-templates" as any}>
-                <Button variant="outlined" className="gap-2">
+                <Button variant="outlined" className="h-10 gap-2">
                   <Sparkles className="h-4 w-4" />
                   Templates
                 </Button>
               </Link>
               <Link href={"/goals/new" as any}>
-                <Button className="gap-2">
+                <Button className="h-10 gap-2">
                   <Target className="h-4 w-4" />
                   Custom Goal
                 </Button>
@@ -561,68 +574,86 @@ export function DashboardShell({
             </div>
           </div>
 
-          {data.goals.length === 0 ? (
+          {data.goals.filter((g) => {
+            if (goalFilter === "all") return true;
+            if (goalFilter === "completed") return g.completed;
+            return !g.completed;
+          }).length === 0 ? (
             <Card variant="outlined" className="p-8">
               <EmptyState
                 icon={<Target className="h-12 w-12" />}
-                title="No Goals Yet"
-                description="Create a goal from templates or build a custom one."
+                title={
+                  goalFilter === "completed"
+                    ? "No Completed Goals"
+                    : "No Active Goals"
+                }
+                description={
+                  goalFilter === "completed"
+                    ? "Your completed farming objectives will appear here."
+                    : "Create a goal from templates or build a custom one."
+                }
               />
             </Card>
           ) : (
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-              {data.goals.map((goal) => (
-                <Link key={goal.id} href={`/goals/${goal.id}` as any}>
-                  <Card
-                    variant="outlined"
-                    className="h-full cursor-pointer p-6 transition-all hover:border-primary hover:shadow-lg"
-                  >
-                    <div className="space-y-4">
-                      <div className="flex items-start justify-between gap-3">
-                        <div className="min-w-0 flex-1">
-                          <div className="flex items-center gap-2">
-                            <h3 className="text-on-surface truncate font-bold">
-                              {goal.name}
-                            </h3>
-                            {goal.completed && (
-                              <Sparkles className="h-3.5 w-3.5 text-primary" />
-                            )}
+              {data.goals
+                .filter((g) => {
+                  if (goalFilter === "all") return true;
+                  if (goalFilter === "completed") return g.completed;
+                  return !g.completed;
+                })
+                .map((goal) => (
+                  <Link key={goal.id} href={`/goals/${goal.id}` as any}>
+                    <Card
+                      variant="outlined"
+                      className="h-full cursor-pointer p-6 transition-all hover:border-primary hover:shadow-lg"
+                    >
+                      <div className="space-y-4">
+                        <div className="flex items-start justify-between gap-3">
+                          <div className="min-w-0 flex-1">
+                            <div className="flex items-center gap-2">
+                              <h3 className="text-on-surface truncate font-bold">
+                                {goal.name}
+                              </h3>
+                              {goal.completed && (
+                                <Sparkles className="h-3.5 w-3.5 text-primary" />
+                              )}
+                            </div>
+                            <p className="text-on-surface-variant mt-1 line-clamp-2 text-sm">
+                              {goal.description ?? "Custom farming plan"}
+                            </p>
                           </div>
-                          <p className="text-on-surface-variant mt-1 line-clamp-2 text-sm">
-                            {goal.description ?? "Custom farming plan"}
-                          </p>
+                          <ChevronRight className="text-on-surface-variant h-5 w-5 flex-shrink-0" />
                         </div>
-                        <ChevronRight className="text-on-surface-variant h-5 w-5 flex-shrink-0" />
-                      </div>
 
-                      <div className="space-y-2">
-                        <div className="flex items-center justify-between text-sm">
-                          <span className="text-on-surface-variant">
-                            Progress
+                        <div className="space-y-2">
+                          <div className="flex items-center justify-between text-sm">
+                            <span className="text-on-surface-variant">
+                              Progress
+                            </span>
+                            <span className="font-bold text-primary">
+                              {goal.completed ? 100 : goal.progressPercent}%
+                            </span>
+                          </div>
+                          <Progress
+                            value={goal.completed ? 100 : goal.progressPercent}
+                            className="h-2"
+                          />
+                        </div>
+
+                        <div className="text-on-surface-variant flex items-center justify-between border-t border-outline-variant pt-2 text-xs">
+                          <span>
+                            {goal.materials.length} material
+                            {goal.materials.length !== 1 ? "s" : ""}
                           </span>
-                          <span className="font-bold text-primary">
-                            {goal.completed ? 100 : goal.progressPercent}%
+                          <span>
+                            {formatNumber(goal.totalRequired)} total needed
                           </span>
                         </div>
-                        <Progress
-                          value={goal.completed ? 100 : goal.progressPercent}
-                          className="h-2"
-                        />
                       </div>
-
-                      <div className="text-on-surface-variant flex items-center justify-between border-t border-outline-variant pt-2 text-xs">
-                        <span>
-                          {goal.materials.length} material
-                          {goal.materials.length !== 1 ? "s" : ""}
-                        </span>
-                        <span>
-                          {formatNumber(goal.totalRequired)} total needed
-                        </span>
-                      </div>
-                    </div>
-                  </Card>
-                </Link>
-              ))}
+                    </Card>
+                  </Link>
+                ))}
             </div>
           )}
         </section>
