@@ -62,7 +62,7 @@ export function MaterialCard({
       <div className="mt-4 flex items-center gap-2">
         <div className="flex-1">
           <TextField
-            label={`${material.name} quantity`}
+            label={'Quantity'}
             variant="outlined"
             type="number"
             min={0}
