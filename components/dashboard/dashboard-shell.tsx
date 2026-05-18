@@ -80,6 +80,9 @@ export function DashboardShell({
   const [activeTab, setActiveTab] = useState<DashboardTab>(initialTab);
   const [inventoryTab, setInventoryTab] = useState<"needed" | "edit">("needed");
   const [goalFilter, setGoalFilter] = useState<"incomplete" | "completed" | "all">("incomplete");
+  const [goalSearch, setGoalSearch] = useState("");
+  const [goalCharacterFilter, setGoalCharacterFilter] = useState("All");
+  const [goalCategoryFilter, setGoalCategoryFilter] = useState("All");
 
   useEffect(() => {
     if (view !== "tracker") {
@@ -292,6 +295,61 @@ export function DashboardShell({
       }
     });
   }
+
+  const goalCharacters = useMemo(() => {
+    const chars = new Set(
+      data.goals
+        .map((g) => g.characterName)
+        .filter((name): name is string => !!name),
+    );
+    return ["All", ...Array.from(chars).sort()];
+  }, [data.goals]);
+
+  const goalCategories = useMemo(() => {
+    const cats = new Set(
+      data.goals
+        .map((g) => g.category)
+        .filter((cat): cat is string => !!cat),
+    );
+    return ["All", ...Array.from(cats).sort()];
+  }, [data.goals]);
+
+  const filteredGoals = useMemo(() => {
+    return data.goals.filter((g) => {
+      // Status Filter
+      if (goalFilter === "completed" && !g.completed) return false;
+      if (goalFilter === "incomplete" && g.completed) return false;
+
+      // Character Filter
+      if (
+        goalCharacterFilter !== "All" &&
+        g.characterName !== goalCharacterFilter
+      )
+        return false;
+
+      // Category Filter
+      if (goalCategoryFilter !== "All" && g.category !== goalCategoryFilter)
+        return false;
+
+      // Search Filter
+      if (goalSearch) {
+        const searchLower = goalSearch.toLowerCase();
+        const matchesName = g.name.toLowerCase().includes(searchLower);
+        const matchesDesc = (g.description ?? "")
+          .toLowerCase()
+          .includes(searchLower);
+        if (!matchesName && !matchesDesc) return false;
+      }
+
+      return true;
+    });
+  }, [
+    data.goals,
+    goalFilter,
+    goalCharacterFilter,
+    goalCategoryFilter,
+    goalSearch,
+  ]);
 
   const pageTitle =
     view === "inventory"
@@ -537,7 +595,7 @@ export function DashboardShell({
 
       {showGoals ? (
         <section className="space-y-6">
-          <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
             <div>
               <h2 className="text-on-surface text-2xl font-bold tracking-tight">
                 Farming Goals
@@ -546,11 +604,36 @@ export function DashboardShell({
                 Track and manage your farming objectives.
               </p>
             </div>
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-2">
+              <Link href={"/goal-templates" as any}>
+                <Button variant="outlined" className="h-11 gap-2">
+                  <Sparkles className="h-4 w-4" />
+                  Templates
+                </Button>
+              </Link>
+              <Link href={"/goals/new" as any}>
+                <Button className="h-11 gap-2">
+                  <Target className="h-4 w-4" />
+                  Custom Goal
+                </Button>
+              </Link>
+            </div>
+          </div>
+
+          <Card variant="outlined" className="p-4">
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+              <TextField
+                label="Search Goals"
+                variant="outlined"
+                className="h-11"
+                value={goalSearch}
+                onChange={(e) => setGoalSearch(e.target.value)}
+                placeholder="Name or description..."
+              />
               <Select
                 label="Status"
                 variant="outlined"
-                className="h-10 w-40"
+                className="h-11"
                 value={goalFilter}
                 onChange={(val) => setGoalFilter(val as any)}
                 options={[
@@ -559,101 +642,102 @@ export function DashboardShell({
                   { label: "All", value: "all" },
                 ]}
               />
-              <Link href={"/goal-templates" as any}>
-                <Button variant="outlined" className="h-10 gap-2">
-                  <Sparkles className="h-4 w-4" />
-                  Templates
-                </Button>
-              </Link>
-              <Link href={"/goals/new" as any}>
-                <Button className="h-10 gap-2">
-                  <Target className="h-4 w-4" />
-                  Custom Goal
-                </Button>
-              </Link>
+              <Select
+                label="Character"
+                variant="outlined"
+                className="h-11"
+                value={goalCharacterFilter}
+                onChange={setGoalCharacterFilter}
+                options={goalCharacters.map((c) => ({ label: c, value: c }))}
+              />
+              <Select
+                label="Category"
+                variant="outlined"
+                className="h-11"
+                value={goalCategoryFilter}
+                onChange={setGoalCategoryFilter}
+                options={goalCategories.map((c) => ({
+                  label: c.charAt(0).toUpperCase() + c.slice(1),
+                  value: c,
+                }))}
+              />
             </div>
-          </div>
+          </Card>
 
-          {data.goals.filter((g) => {
-            if (goalFilter === "all") return true;
-            if (goalFilter === "completed") return g.completed;
-            return !g.completed;
-          }).length === 0 ? (
-            <Card variant="outlined" className="p-8">
+          {filteredGoals.length === 0 ? (
+            <Card variant="outlined" className="p-12">
               <EmptyState
                 icon={<Target className="h-12 w-12" />}
-                title={
-                  goalFilter === "completed"
-                    ? "No Completed Goals"
-                    : "No Active Goals"
-                }
-                description={
-                  goalFilter === "completed"
-                    ? "Your completed farming objectives will appear here."
-                    : "Create a goal from templates or build a custom one."
-                }
+                title="No Goals Found"
+                description="Try adjusting your filters or search terms to find what you're looking for."
               />
             </Card>
           ) : (
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-              {data.goals
-                .filter((g) => {
-                  if (goalFilter === "all") return true;
-                  if (goalFilter === "completed") return g.completed;
-                  return !g.completed;
-                })
-                .map((goal) => (
-                  <Link key={goal.id} href={`/goals/${goal.id}` as any}>
-                    <Card
-                      variant="outlined"
-                      className="h-full cursor-pointer p-6 transition-all hover:border-primary hover:shadow-lg"
-                    >
-                      <div className="space-y-4">
-                        <div className="flex items-start justify-between gap-3">
-                          <div className="min-w-0 flex-1">
-                            <div className="flex items-center gap-2">
-                              <h3 className="text-on-surface truncate font-bold">
-                                {goal.name}
-                              </h3>
-                              {goal.completed && (
-                                <Sparkles className="h-3.5 w-3.5 text-primary" />
-                              )}
-                            </div>
-                            <p className="text-on-surface-variant mt-1 line-clamp-2 text-sm">
-                              {goal.description ?? "Custom farming plan"}
-                            </p>
+              {filteredGoals.map((goal) => (
+                <Link key={goal.id} href={`/goals/${goal.id}` as any}>
+                  <Card
+                    variant="outlined"
+                    className="h-full cursor-pointer p-6 transition-all hover:border-primary hover:shadow-lg"
+                  >
+                    <div className="space-y-4">
+                      <div className="flex items-start justify-between gap-3">
+                        <div className="min-w-0 flex-1">
+                          <div className="flex items-center gap-2">
+                            <h3 className="text-on-surface truncate font-bold">
+                              {goal.name}
+                            </h3>
+                            {goal.completed && (
+                              <Sparkles className="h-3.5 w-3.5 text-primary" />
+                            )}
                           </div>
-                          <ChevronRight className="text-on-surface-variant h-5 w-5 flex-shrink-0" />
-                        </div>
-
-                        <div className="space-y-2">
-                          <div className="flex items-center justify-between text-sm">
-                            <span className="text-on-surface-variant">
-                              Progress
-                            </span>
-                            <span className="font-bold text-primary">
-                              {goal.completed ? 100 : goal.progressPercent}%
-                            </span>
+                          <div className="mt-1 flex flex-wrap gap-2">
+                            {goal.characterName && (
+                              <span className="bg-secondary-container text-secondary-on-container rounded-full px-2 py-0.5 text-[10px] font-bold">
+                                {goal.characterName}
+                              </span>
+                            )}
+                            {goal.category && (
+                              <span className="bg-surface-variant text-on-surface-variant rounded-full border border-outline-variant px-2 py-0.5 text-[10px] font-bold capitalize">
+                                {goal.category}
+                              </span>
+                            )}
                           </div>
-                          <Progress
-                            value={goal.completed ? 100 : goal.progressPercent}
-                            className="h-2"
-                          />
+                          <p className="text-on-surface-variant mt-2 line-clamp-2 text-sm">
+                            {goal.description ?? "Custom farming plan"}
+                          </p>
                         </div>
-
-                        <div className="text-on-surface-variant flex items-center justify-between border-t border-outline-variant pt-2 text-xs">
-                          <span>
-                            {goal.materials.length} material
-                            {goal.materials.length !== 1 ? "s" : ""}
-                          </span>
-                          <span>
-                            {formatNumber(goal.totalRequired)} total needed
-                          </span>
-                        </div>
+                        <ChevronRight className="text-on-surface-variant h-5 w-5 flex-shrink-0" />
                       </div>
-                    </Card>
-                  </Link>
-                ))}
+
+                      <div className="space-y-2">
+                        <div className="flex items-center justify-between text-sm">
+                          <span className="text-on-surface-variant">
+                            Progress
+                          </span>
+                          <span className="font-bold text-primary">
+                            {goal.completed ? 100 : goal.progressPercent}%
+                          </span>
+                        </div>
+                        <Progress
+                          value={goal.completed ? 100 : goal.progressPercent}
+                          className="h-2"
+                        />
+                      </div>
+
+                      <div className="text-on-surface-variant flex items-center justify-between border-t border-outline-variant pt-2 text-xs">
+                        <span>
+                          {goal.materials.length} material
+                          {goal.materials.length !== 1 ? "s" : ""}
+                        </span>
+                        <span>
+                          {formatNumber(goal.totalRequired)} total needed
+                        </span>
+                      </div>
+                    </div>
+                  </Card>
+                </Link>
+              ))}
             </div>
           )}
         </section>
