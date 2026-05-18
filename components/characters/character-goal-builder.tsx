@@ -210,7 +210,7 @@ export function CharacterGoalBuilder({
                       <div
                         key={template.id}
                         className={cn(
-                          "flex w-full items-start gap-2 rounded-xl border p-3 transition-colors",
+                          "flex w-full select-none items-start gap-2 rounded-xl border p-3 transition-colors",
                           isSelected
                             ? "border-primary bg-primary-container/30"
                             : "border-outline-variant/50 hover:bg-surface-variant/40",
@@ -220,7 +220,7 @@ export function CharacterGoalBuilder({
                           type="button"
                           disabled={isPending}
                           onClick={() => toggleTemplate(template)}
-                          className="flex min-w-0 flex-1 items-start gap-3 text-left"
+                          className="flex min-w-0 flex-1 select-none items-start gap-3 text-left"
                         >
                           {isSelected ? (
                             <CheckSquare className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
