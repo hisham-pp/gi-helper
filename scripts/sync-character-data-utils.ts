@@ -282,18 +282,111 @@ function buildTalentTemplates(
   const [enemyOne, enemyTwo, enemyThree] = enemyItems;
   const weeklyBoss = bossItems[0];
 
-  return [
+  const levelCosts = [
+    {
+      from: 1,
+      to: 2,
+      materials: [
+        { id: teachings.id, qty: 3 },
+        { id: enemyOne.id, qty: 6 },
+      ],
+    },
+    {
+      from: 2,
+      to: 3,
+      materials: [
+        { id: guide.id, qty: 2 },
+        { id: enemyTwo.id, qty: 3 },
+      ],
+    },
+    {
+      from: 3,
+      to: 4,
+      materials: [
+        { id: guide.id, qty: 4 },
+        { id: enemyTwo.id, qty: 4 },
+      ],
+    },
+    {
+      from: 4,
+      to: 5,
+      materials: [
+        { id: guide.id, qty: 6 },
+        { id: enemyTwo.id, qty: 6 },
+      ],
+    },
+    {
+      from: 5,
+      to: 6,
+      materials: [
+        { id: guide.id, qty: 9 },
+        { id: enemyTwo.id, qty: 9 },
+      ],
+    },
+    {
+      from: 6,
+      to: 7,
+      materials: [
+        { id: philosophies.id, qty: 4 },
+        { id: enemyThree.id, qty: 4 },
+        { id: weeklyBoss.id, qty: 1 },
+      ],
+    },
+    {
+      from: 7,
+      to: 8,
+      materials: [
+        { id: philosophies.id, qty: 6 },
+        { id: enemyThree.id, qty: 6 },
+        { id: weeklyBoss.id, qty: 1 },
+      ],
+    },
+    {
+      from: 8,
+      to: 9,
+      materials: [
+        { id: philosophies.id, qty: 12 },
+        { id: enemyThree.id, qty: 9 },
+        { id: weeklyBoss.id, qty: 2 },
+      ],
+    },
+    {
+      from: 9,
+      to: 10,
+      materials: [
+        { id: philosophies.id, qty: 16 },
+        { id: enemyThree.id, qty: 12 },
+        { id: weeklyBoss.id, qty: 2 },
+        { id: "crown-of-insight", qty: 1 },
+      ],
+    },
+  ];
+
+  const individualTemplates = levelCosts.map((tier, index) => ({
+    characterId,
+    name: `Talent Level ${tier.from} -> ${tier.to}`,
+    description: `Materials to level a single talent from ${tier.from} to ${tier.to} for ${characterName}`,
+    category: "talent",
+    sortOrder: index + 1,
+    materials: tier.materials.map((m) => ({
+      materialId: m.id,
+      required: m.qty,
+    })),
+  }));
+
+  // Add some helpful combined templates at the end
+  const combinedTemplates = [
     {
       characterId,
-      name: "All Talents Level 1 -> 6",
-      description: `Materials to level all three talents from 1 to 6 for ${characterName}`,
+      name: "Single Talent Level 1 -> 6",
+      description: `Materials to level one talent from 1 to 6 for ${characterName}`,
       category: "talent",
-      sortOrder: 1,
+      sortOrder: levelCosts.length + 1,
       materials: [
-        { materialId: teachings.id, required: 9 },
-        { materialId: guide.id, required: 63 },
-        { materialId: enemyOne.id, required: 18 },
-        { materialId: enemyTwo.id, required: 66 },
+        { materialId: teachings.id, required: 3 },
+        { materialId: guide.id, required: 21 },
+        { materialId: enemyOne.id, required: 6 },
+        { materialId: enemyTwo.id, required: 22 },
       ],
     },
     {
@@ -301,32 +394,17 @@ function buildTalentTemplates(
       name: "Single Talent Level 6 -> 10",
       description: `Materials to max one talent from level 6 to 10 for ${characterName}`,
       category: "talent",
-      sortOrder: 2,
+      sortOrder: levelCosts.length + 2,
       materials: [
-        { materialId: guide.id, required: 4 },
         { materialId: philosophies.id, required: 38 },
-        { materialId: enemyTwo.id, required: 6 },
-        { materialId: enemyThree.id, required: 22 },
+        { materialId: enemyThree.id, required: 31 },
         { materialId: weeklyBoss.id, required: 6 },
         { materialId: "crown-of-insight", required: 1 },
       ],
     },
-    {
-      characterId,
-      name: "Triple Crown (All Talents 6 -> 10)",
-      description: `Materials to max all three talents from level 6 to 10 for ${characterName}`,
-      category: "talent",
-      sortOrder: 3,
-      materials: [
-        { materialId: guide.id, required: 12 },
-        { materialId: philosophies.id, required: 114 },
-        { materialId: enemyTwo.id, required: 18 },
-        { materialId: enemyThree.id, required: 66 },
-        { materialId: weeklyBoss.id, required: 18 },
-        { materialId: "crown-of-insight", required: 3 },
-      ],
-    },
   ];
+
+  return [...individualTemplates, ...combinedTemplates];
 }
 
 function relationFamilyForCharacter(
