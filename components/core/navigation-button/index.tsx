@@ -15,6 +15,7 @@ import type { NavigationButtonProps } from "./types";
 export default function NavigationButton({
   active = false,
   component,
+  disabled = false,
   href,
   icon,
   label,
@@ -23,6 +24,7 @@ export default function NavigationButton({
   const theme = useTheme();
 
   const sharedProps = {
+    disabled,
     onClick,
     selected: active,
     sx: {
