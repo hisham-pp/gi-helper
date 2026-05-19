@@ -10,7 +10,7 @@ import type {
 } from "@/components/dashboard/inventory/types";
 import { Card } from "@/components/ui/card";
 import { Select } from "@/components/ui/select";
-import { TextField } from "@/components/ui/text-field";
+import AppTextField from "@/components/core/app-textfield";
 import type { MaterialView } from "@/lib/types";
 
 export function ManageInventoryPanel({
@@ -45,7 +45,7 @@ export function ManageInventoryPanel({
             </p>
           </div>
           <div className="grid gap-3 sm:grid-cols-[minmax(18rem,1.5fr)_minmax(14rem,1fr)] lg:w-[42rem]">
-            <TextField
+            <AppTextField
               label="Search"
               variant="outlined"
               className="h-12"

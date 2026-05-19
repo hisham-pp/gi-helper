@@ -325,14 +325,14 @@ export function DashboardShell({
     setIsEditorOpen(true);
   }
 
-  async function handleEditorSave() {
+  async function handleEditorSave(values: MaterialEditorForm) {
     const previous = data;
 
     startTransition(async () => {
       try {
         const result = editing
-          ? await updateMaterialAction(editorForm)
-          : await createMaterialAction(editorForm);
+          ? await updateMaterialAction(values)
+          : await createMaterialAction(values);
 
         if (!result.success || !result.data) {
           toast.error(result.error ?? "Unable to save material.");
@@ -391,7 +391,6 @@ export function DashboardShell({
               parentOptions={parentMaterialOptions}
               search={search}
               setCategoryFilter={setCategoryFilter}
-              setEditorForm={setEditorForm}
               setSearch={setSearch}
               onCreate={openEditorForCreate}
               onEdit={openEditorForEdit}

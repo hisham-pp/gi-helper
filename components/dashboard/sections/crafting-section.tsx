@@ -3,7 +3,7 @@
 import { CraftingResult } from "@/components/dashboard/crafting/crafting-result";
 import { Panel } from "@/components/dashboard/common/panel";
 import { Select } from "@/components/ui/select";
-import { TextField } from "@/components/ui/text-field";
+import AppTextField from "@/components/core/app-textfield";
 import type { CraftingSimulation, MaterialView } from "@/lib/types";
 
 export function CraftingSection({
@@ -35,7 +35,7 @@ export function CraftingSection({
               value: material.id,
             }))}
           />
-          <TextField
+          <AppTextField
             label="Required Quantity"
             variant="outlined"
             type="number"
