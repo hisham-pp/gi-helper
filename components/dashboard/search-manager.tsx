@@ -132,7 +132,7 @@ export function SearchManager({ characters, materials }: SearchManagerProps) {
                         )}
                       >
                         <Image
-                          src={character.image}
+                          src={`/api/character-image/${character.id}`}
                           alt={character.name}
                           fill
                           className="object-cover"
