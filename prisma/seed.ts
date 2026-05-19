@@ -28,13 +28,21 @@ function materialSeedData(material: SeedMaterial) {
 
 async function main() {
   // Ensure a development 'master' user exists so materials can be managed.
-  const masterPassword = process.env.SEED_MASTER_PASSWORD ?? "changeme";
-  const masterHash = hashPassword(masterPassword);
+  const masterPassword = process.env.SEED_MASTER_PASSWORD;
+  const fallbackMasterPassword = "changeme";
+  const masterHash = masterPassword ? hashPassword(masterPassword) : null;
 
   await prisma.user.upsert({
     where: { username: "master" },
-    update: { passwordHash: masterHash, role: "master" },
-    create: { username: "master", passwordHash: masterHash, role: "master" },
+    update: {
+      ...(masterHash ? { passwordHash: masterHash } : {}),
+      role: "master",
+    },
+    create: {
+      username: "master",
+      passwordHash: hashPassword(masterPassword ?? fallbackMasterPassword),
+      role: "master",
+    },
   });
 
   // Match materials by name so re-seeding stays idempotent when seed ids change.
