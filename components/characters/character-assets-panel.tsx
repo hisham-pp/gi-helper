@@ -4,6 +4,7 @@ import Image from "next/image";
 
 import { Card } from "@/components/ui/card";
 import type { CharacterAsset } from "@/components/characters/character-goal-builder";
+import { localImageSrc } from "@/lib/image-src";
 
 export function CharacterAssetsPanel({ assets }: { assets: CharacterAsset[] }) {
   if (assets.length === 0) {
@@ -22,7 +23,7 @@ export function CharacterAssetsPanel({ assets }: { assets: CharacterAsset[] }) {
         <Card key={asset.key} variant="outlined" className="overflow-hidden">
           <div className="relative aspect-[4/3] bg-surface-variant/30">
             <Image
-              src={asset.path}
+              src={localImageSrc(asset.path)}
               alt={asset.label}
               fill
               className="object-contain p-4"
