@@ -285,29 +285,77 @@ export function evaluateGoal(
   };
 }
 
+export function aggregateNeededMaterials(
+  goals: GoalView[],
+  materials: MaterialNode[],
+  searchLower = "",
+): GoalMaterialView[] {
+  const graph = buildGraph(materials);
+  const stock = copyStock(materials);
+  const requirements: Record<string, GoalMaterialView> = {};
+
+  for (const goal of goals) {
+    const matchesGoal =
+      searchLower.length === 0 ||
+      goal.name.toLowerCase().includes(searchLower) ||
+      (goal.description ?? "").toLowerCase().includes(searchLower);
+
+    for (const item of goal.materials) {
+      const matchesMaterial = item.materialName
+        .toLowerCase()
+        .includes(searchLower);
+
+      if (searchLower.length > 0 && !matchesGoal && !matchesMaterial) {
+        continue;
+      }
+
+      if (requirements[item.materialId]) {
+        requirements[item.materialId].required += item.required;
+      } else {
+        requirements[item.materialId] = {
+          ...item,
+          allocated: 0,
+          remaining: item.required,
+          ownedNeeded: 0,
+          complete: false,
+        };
+      }
+    }
+  }
+
+  const orderedRequirements = Object.values(requirements).sort((left, right) => {
+    return (
+      getFamilyDepth(right.materialId, graph.byId) -
+      getFamilyDepth(left.materialId, graph.byId)
+    );
+  });
+
+  for (const item of orderedRequirements) {
+    ensureStock(item.materialId, item.required, stock, graph);
+
+    const allocated = Math.min(stock[item.materialId] ?? 0, item.required);
+    stock[item.materialId] = Math.max(
+      (stock[item.materialId] ?? 0) - allocated,
+      0,
+    );
+
+    item.allocated = allocated;
+    item.ownedNeeded = allocated;
+    item.remaining = Math.max(item.required - allocated, 0);
+    item.complete = allocated >= item.required;
+  }
+
+  return orderedRequirements
+    .filter((item) => item.remaining > 0)
+    .sort((left, right) => right.remaining - left.remaining);
+}
+
 export function buildDashboardData(
   materials: MaterialNode[],
   goals: GoalView[],
 ): DashboardData {
   const activeGoals = goals.filter((goal) => !goal.completed);
-  const materialsStillNeededRaw = activeGoals.flatMap((goal) =>
-    goal.materials.filter((item) => item.remaining > 0),
-  );
-
-  // Aggregate by materialId
-  const aggregatedNeeds: Record<string, GoalMaterialView> = {};
-  for (const item of materialsStillNeededRaw) {
-    if (aggregatedNeeds[item.materialId]) {
-      aggregatedNeeds[item.materialId].remaining += item.remaining;
-      aggregatedNeeds[item.materialId].required += item.required;
-    } else {
-      aggregatedNeeds[item.materialId] = { ...item };
-    }
-  }
-
-  const materialsStillNeeded = Object.values(aggregatedNeeds).sort(
-    (left, right) => right.remaining - left.remaining,
-  );
+  const materialsStillNeeded = aggregateNeededMaterials(activeGoals, materials);
 
   const completedMaterialsRaw = goals.flatMap((goal) =>
     goal.materials.filter((item) => item.complete),

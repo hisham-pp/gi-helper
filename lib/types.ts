@@ -21,6 +21,7 @@ export type GoalMaterialView = {
   allocated: number;
   totalCraftable: number;
   remaining: number;
+  ownedNeeded?: number;
   complete: boolean;
 };
 

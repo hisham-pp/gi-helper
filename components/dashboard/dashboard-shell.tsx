@@ -22,11 +22,10 @@ import { CraftingSection } from "@/components/dashboard/sections/crafting-sectio
 import { GoalsSection } from "@/components/dashboard/sections/goals-section";
 import { InventorySection } from "@/components/dashboard/inventory/inventory-section";
 import { MaterialsSection } from "@/components/dashboard/sections/materials-section";
-import { simulateCraftingNeed } from "@/lib/crafting";
+import { aggregateNeededMaterials, simulateCraftingNeed } from "@/lib/crafting";
 import type { DashboardTab } from "@/lib/constants";
 import type {
   DashboardData,
-  GoalMaterialView,
   GoalView,
   MaterialView,
 } from "@/lib/types";
@@ -229,9 +228,10 @@ export function DashboardShell({
       return true;
     });
 
-    return aggregateShoppingMaterials(goals, searchLower);
+    return aggregateNeededMaterials(goals, data.materials, searchLower);
   }, [
     data.goals,
+    data.materials,
     shoppingCharacterFilter,
     shoppingGoalTypeFilter,
     shoppingSearch,
@@ -457,45 +457,6 @@ export function DashboardShell({
 function buildInventoryDraft(data: DashboardData): InventoryDraft {
   return Object.fromEntries(
     data.materials.map((material) => [material.id, material.quantity]),
-  );
-}
-
-function aggregateShoppingMaterials(
-  goals: GoalView[],
-  searchLower: string,
-): GoalMaterialView[] {
-  const aggregated: Record<string, GoalMaterialView> = {};
-
-  for (const goal of goals) {
-    const matchesGoal =
-      searchLower.length === 0 ||
-      goal.name.toLowerCase().includes(searchLower) ||
-      (goal.description ?? "").toLowerCase().includes(searchLower);
-
-    for (const item of goal.materials) {
-      if (item.remaining <= 0) {
-        continue;
-      }
-
-      const matchesMaterial = item.materialName
-        .toLowerCase()
-        .includes(searchLower);
-
-      if (searchLower.length > 0 && !matchesGoal && !matchesMaterial) {
-        continue;
-      }
-
-      if (aggregated[item.materialId]) {
-        aggregated[item.materialId].remaining += item.remaining;
-        aggregated[item.materialId].required += item.required;
-      } else {
-        aggregated[item.materialId] = { ...item };
-      }
-    }
-  }
-
-  return Object.values(aggregated).sort(
-    (left, right) => right.remaining - left.remaining,
   );
 }
 
