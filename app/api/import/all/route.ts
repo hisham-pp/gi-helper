@@ -456,9 +456,7 @@ export async function POST(request: Request) {
               WRITE_BATCH_SIZE,
             )) {
               const data = goalMaterialChunk
-                .filter((item: BackupGoalMaterial) =>
-                  Boolean(item?.materialId),
-                )
+                .filter((item: BackupGoalMaterial) => Boolean(item?.materialId))
                 .map((item) => ({
                   goalId,
                   materialId: item.materialId,

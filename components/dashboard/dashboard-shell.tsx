@@ -22,7 +22,11 @@ import { CraftingSection } from "@/components/dashboard/sections/crafting-sectio
 import { GoalsSection } from "@/components/dashboard/sections/goals-section";
 import { InventorySection } from "@/components/dashboard/inventory/inventory-section";
 import { MaterialsSection } from "@/components/dashboard/sections/materials-section";
-import { aggregateNeededMaterials, simulateCraftingNeed } from "@/lib/crafting";
+import {
+  aggregateNeededMaterials,
+  isGoalEffectivelyCompleted,
+  simulateCraftingNeed,
+} from "@/lib/crafting";
 import type { DashboardTab } from "@/lib/constants";
 import type { DashboardData, GoalView, MaterialView } from "@/lib/types";
 
@@ -184,7 +188,7 @@ export function DashboardShell({
   const shoppingCharacters = useMemo(() => {
     const chars = new Set(
       data.goals
-        .filter((goal) => !goal.completed)
+        .filter((goal) => !isGoalEffectivelyCompleted(goal))
         .map((goal) => goal.characterName)
         .filter((name): name is string => Boolean(name)),
     );
@@ -194,7 +198,7 @@ export function DashboardShell({
   const shoppingGoalTypes = useMemo(() => {
     const types = new Set(
       data.goals
-        .filter((goal) => !goal.completed)
+        .filter((goal) => !isGoalEffectivelyCompleted(goal))
         .map((goal) => goal.category)
         .filter((category): category is string => Boolean(category)),
     );
@@ -205,7 +209,7 @@ export function DashboardShell({
     const searchLower = shoppingSearch.trim().toLowerCase();
 
     const goals = data.goals.filter((goal) => {
-      if (goal.completed) {
+      if (isGoalEffectivelyCompleted(goal)) {
         return false;
       }
       if (
@@ -235,8 +239,10 @@ export function DashboardShell({
 
   const filteredGoals = useMemo(() => {
     return data.goals.filter((goal) => {
-      if (goalFilter === "completed" && !goal.completed) return false;
-      if (goalFilter === "incomplete" && goal.completed) return false;
+      const isCompleted = isGoalEffectivelyCompleted(goal);
+
+      if (goalFilter === "completed" && !isCompleted) return false;
+      if (goalFilter === "incomplete" && isCompleted) return false;
       if (
         goalCharacterFilter !== "All" &&
         goal.characterName !== goalCharacterFilter
