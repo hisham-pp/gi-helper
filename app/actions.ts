@@ -16,6 +16,8 @@ import type { ActionResponse, DashboardData } from "@/lib/types";
 import {
   authSchema,
   characterSchema,
+  cookRecipeSchema,
+  cookingProgressSchema,
   createGoalsFromTemplatesSchema,
   deleteGoalMaterialSchema,
   deleteGoalSchema,
@@ -26,6 +28,7 @@ import {
   completeGoalSchema,
 } from "@/lib/validation";
 import { getDashboardData } from "@/lib/data";
+import { getCookingData, type CookingData } from "@/lib/cooking-data";
 
 async function refreshDashboard(): Promise<ActionResponse<DashboardData>> {
   const user = await requireUser();
@@ -42,6 +45,18 @@ function revalidateDashboardPages() {
   revalidatePath("/materials");
   revalidatePath("/inventory");
   revalidatePath("/goals");
+  revalidatePath("/cooking");
+}
+
+async function refreshCooking(
+  userId: string,
+): Promise<ActionResponse<CookingData>> {
+  const data = await getCookingData(userId);
+
+  return {
+    success: true,
+    data,
+  };
 }
 
 export async function saveInventoryAction(
@@ -81,6 +96,45 @@ export async function saveInventoryAction(
 
   revalidateDashboardPages();
   return refreshDashboard();
+}
+
+export async function saveCookingInventoryAction(
+  input: unknown,
+): Promise<ActionResponse<CookingData>> {
+  const user = await requireUser();
+  const parsed = inventorySchema.safeParse(input);
+
+  if (!parsed.success) {
+    return {
+      success: false,
+      error: "Invalid inventory payload.",
+    };
+  }
+
+  const { materialId, quantity } = parsed.data;
+
+  try {
+    await prisma.inventory.upsert({
+      where: {
+        userId_materialId: {
+          userId: user.id,
+          materialId,
+        },
+      },
+      update: { quantity },
+      create: { userId: user.id, materialId, quantity },
+    });
+  } catch (error) {
+    console.error("Cooking inventory save failed", error);
+
+    return {
+      success: false,
+      error: "Unable to save inventory right now.",
+    };
+  }
+
+  revalidateDashboardPages();
+  return refreshCooking(user.id);
 }
 
 export async function completeGoalAction(
@@ -161,6 +215,129 @@ export async function completeGoalAction(
   revalidateDashboardPages();
   revalidatePath(`/goals/${parsed.data.goalId}`);
   return refreshDashboard();
+}
+
+export async function saveCookingProgressAction(
+  input: unknown,
+): Promise<ActionResponse<CookingData>> {
+  const user = await requireUser();
+  const parsed = cookingProgressSchema.safeParse(input);
+
+  if (!parsed.success) {
+    return {
+      success: false,
+      error: "Invalid cooking progress payload.",
+    };
+  }
+
+  try {
+    await prisma.cookingProgress.upsert({
+      where: {
+        userId_recipeId: {
+          userId: user.id,
+          recipeId: parsed.data.recipeId,
+        },
+      },
+      update: {
+        completedCount: parsed.data.completedCount,
+      },
+      create: {
+        userId: user.id,
+        recipeId: parsed.data.recipeId,
+        completedCount: parsed.data.completedCount,
+      },
+    });
+  } catch (error) {
+    console.error("Cooking progress save failed", error);
+
+    return {
+      success: false,
+      error: "Unable to save cooking progress right now.",
+    };
+  }
+
+  revalidatePath("/cooking");
+  return refreshCooking(user.id);
+}
+
+export async function cookRecipeAction(
+  input: unknown,
+): Promise<ActionResponse<CookingData>> {
+  const user = await requireUser();
+  const parsed = cookRecipeSchema.safeParse(input);
+
+  if (!parsed.success) {
+    return {
+      success: false,
+      error: "Invalid cooking payload.",
+    };
+  }
+
+  const cookingData = await getCookingData(user.id);
+  const recipe = cookingData.recipes.find(
+    (item) => item.id === parsed.data.recipeId,
+  );
+
+  if (!recipe) {
+    return {
+      success: false,
+      error: "Recipe not found.",
+    };
+  }
+
+  try {
+    await prisma.$transaction(async (tx) => {
+      for (const ingredient of recipe.ingredients) {
+        await tx.inventory.upsert({
+          where: {
+            userId_materialId: {
+              userId: user.id,
+              materialId: ingredient.materialId,
+            },
+          },
+          update: {
+            quantity: {
+              decrement: ingredient.quantity * parsed.data.quantity,
+            },
+          },
+          create: {
+            userId: user.id,
+            materialId: ingredient.materialId,
+            quantity: -(ingredient.quantity * parsed.data.quantity),
+          },
+        });
+      }
+
+      await tx.cookingProgress.upsert({
+        where: {
+          userId_recipeId: {
+            userId: user.id,
+            recipeId: recipe.id,
+          },
+        },
+        update: {
+          completedCount: {
+            increment: parsed.data.quantity,
+          },
+        },
+        create: {
+          userId: user.id,
+          recipeId: recipe.id,
+          completedCount: parsed.data.quantity,
+        },
+      });
+    });
+  } catch (error) {
+    console.error("Cook recipe failed", error);
+
+    return {
+      success: false,
+      error: "Unable to mark that recipe cooked.",
+    };
+  }
+
+  revalidateDashboardPages();
+  return refreshCooking(user.id);
 }
 
 export async function createGoalAction(

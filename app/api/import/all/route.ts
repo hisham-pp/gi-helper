@@ -33,10 +33,16 @@ type BackupGoal = {
   goalMaterials?: BackupGoalMaterial[];
 };
 
+type BackupCookingProgress = {
+  recipeId: string;
+  completedCount?: number;
+};
+
 type BackupPayload = {
   materials?: BackupMaterial[];
   inventory?: BackupInventoryItem[];
   goals?: BackupGoal[];
+  cookingProgress?: BackupCookingProgress[];
 };
 
 export async function POST(request: Request) {
@@ -52,6 +58,9 @@ export async function POST(request: Request) {
     const materials = Array.isArray(payload.materials) ? payload.materials : [];
     const inventory = Array.isArray(payload.inventory) ? payload.inventory : [];
     const goals = Array.isArray(payload.goals) ? payload.goals : [];
+    const cookingProgress = Array.isArray(payload.cookingProgress)
+      ? payload.cookingProgress
+      : [];
 
     await prisma.$transaction(async (tx) => {
       const existingGoals = await tx.goal.findMany({
@@ -124,6 +133,12 @@ export async function POST(request: Request) {
         },
       });
 
+      await tx.cookingProgress.deleteMany({
+        where: {
+          userId: user.id,
+        },
+      });
+
       if (inventory.length > 0) {
         await tx.inventory.createMany({
           data: inventory
@@ -166,6 +181,19 @@ export async function POST(request: Request) {
               })),
           });
         }
+      }
+
+      if (cookingProgress.length > 0) {
+        await tx.cookingProgress.createMany({
+          data: cookingProgress
+            .filter((item: BackupCookingProgress) => Boolean(item?.recipeId))
+            .map((item) => ({
+              userId: user.id,
+              recipeId: item.recipeId,
+              completedCount: Number(item.completedCount ?? 0),
+            })),
+          skipDuplicates: true,
+        });
       }
     });
 

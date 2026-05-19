@@ -2,6 +2,7 @@ import Link from "next/link";
 import {
   ArrowRight,
   Compass,
+  CookingPot,
   Gem,
   Shield,
   Sparkles,
@@ -34,6 +35,13 @@ const modules = [
     title: "Material Library",
     description: "Browse materials, crafting chains, and simulations.",
     icon: Gem,
+    status: "Active",
+  },
+  {
+    href: "/cooking",
+    title: "Cooking",
+    description: "Track recipe proficiency, ingredients, and auto cooking.",
+    icon: CookingPot,
     status: "Active",
   },
   {

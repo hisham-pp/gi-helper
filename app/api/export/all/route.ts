@@ -10,7 +10,7 @@ export async function GET() {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const [materials, inventory, goals] = await Promise.all([
+  const [materials, inventory, goals, cookingProgress] = await Promise.all([
     prisma.material.findMany({
       orderBy: [{ category: "asc" }, { rarity: "desc" }, { name: "asc" }],
     }),
@@ -26,6 +26,10 @@ export async function GET() {
         },
       },
       orderBy: { createdAt: "desc" },
+    }),
+    prisma.cookingProgress.findMany({
+      where: { userId: user.id },
+      orderBy: { recipeId: "asc" },
     }),
   ]);
 
@@ -59,6 +63,10 @@ export async function GET() {
         materialId: entry.materialId,
         required: entry.required,
       })),
+    })),
+    cookingProgress: cookingProgress.map((item) => ({
+      recipeId: item.recipeId,
+      completedCount: item.completedCount,
     })),
   });
 }
