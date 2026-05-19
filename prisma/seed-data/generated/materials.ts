@@ -86,6 +86,12 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Amakumo Fruit local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "kirara",
+        "raiden"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -152,6 +158,12 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 5,
     "category": "Boss Material",
     "description": "Ascended Sample: Knight weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "jahoda",
+        "skirk"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -163,6 +175,12 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 5,
     "category": "Boss Material",
     "description": "Ascended Sample: Queen weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "flins",
+        "zibai"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -174,6 +192,12 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 5,
     "category": "Boss Material",
     "description": "Ascended Sample: Rook weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "ifa",
+        "nefer"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -185,6 +209,13 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 5,
     "category": "Boss Material",
     "description": "Ashen Heart weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "sara",
+        "arataki-itto",
+        "yun-jin"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -196,6 +227,15 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 4,
     "category": "Boss Material",
     "description": "Basalt Pillar character ascension boss material.",
+    "details": {
+      "source": "Geo Hypostasis",
+      "usedByCharacters": [
+        "albedo",
+        "ningguang",
+        "noelle",
+        "zhongli"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -207,6 +247,11 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Beryl Conch local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "charlotte"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -251,6 +296,13 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 5,
     "category": "Boss Material",
     "description": "Bloodjade Branch weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "ayaka",
+        "yanfei",
+        "dori"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -383,6 +435,12 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Calla Lily local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "diona",
+        "kaeya"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -394,6 +452,12 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Cecilia local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "albedo",
+        "venti"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -548,6 +612,15 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 4,
     "category": "Boss Material",
     "description": "Cleansing Heart character ascension boss material.",
+    "details": {
+      "source": "Oceanid",
+      "usedByCharacters": [
+        "barbara",
+        "mona",
+        "tartaglia",
+        "xingqiu"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -559,6 +632,11 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Clearwater Jade local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "xianyun"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -570,6 +648,13 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 4,
     "category": "Boss Material",
     "description": "Cloudseam Scale character ascension boss material.",
+    "details": {
+      "source": "Solitary Suanni",
+      "usedByCharacters": [
+        "xianyun",
+        "sethos"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -614,6 +699,12 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 4,
     "category": "Boss Material",
     "description": "Artificed Spare Clockwork Component — Coppelia character ascension boss material.",
+    "details": {
+      "source": "Icewind Suite",
+      "usedByCharacters": [
+        "lynette"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -625,6 +716,13 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 4,
     "category": "Boss Material",
     "description": "Artificed Spare Clockwork Component — Coppelius character ascension boss material.",
+    "details": {
+      "source": "Icewind Suite",
+      "usedByCharacters": [
+        "navia",
+        "freminet"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -647,6 +745,13 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Cor Lapis local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "chongyun",
+        "keqing",
+        "zhongli"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -680,6 +785,12 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Crystal Marrow local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "aloy",
+        "sayu"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -702,6 +813,13 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 4,
     "category": "Boss Material",
     "description": "Crystalline Bloom character ascension boss material.",
+    "details": {
+      "source": "Cryo Hypostasis",
+      "usedByCharacters": [
+        "aloy",
+        "eula"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -735,6 +853,14 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 5,
     "category": "Boss Material",
     "description": "Daka's Bell weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "wanderer",
+        "yaoyao",
+        "sethos",
+        "xilonen"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -768,6 +894,12 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Dandelion Seed local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "jean",
+        "eula"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -834,6 +966,11 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Dendrobium local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "sara"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -845,6 +982,14 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 5,
     "category": "Boss Material",
     "description": "Denial and Judgment weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "kinich",
+        "traveler-pyro",
+        "citlali",
+        "iansan"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -867,6 +1012,13 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 4,
     "category": "Boss Material",
     "description": "Dew of Repudiation character ascension boss material.",
+    "details": {
+      "source": "Hydro Hypostasis",
+      "usedByCharacters": [
+        "kokomi",
+        "ayato"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -933,6 +1085,13 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 5,
     "category": "Boss Material",
     "description": "Dragon Lord's Crown weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "eula",
+        "yoimiya",
+        "traveler-electro"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -944,6 +1103,13 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 4,
     "category": "Boss Material",
     "description": "Dragonheir's False Fin character ascension boss material.",
+    "details": {
+      "source": "Coral Defenders",
+      "usedByCharacters": [
+        "shenhe",
+        "yae-miko"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -999,6 +1165,14 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 5,
     "category": "Boss Material",
     "description": "Dvalin's Claw weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "lisa",
+        "noelle",
+        "razor",
+        "xiangling"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -1010,6 +1184,13 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 5,
     "category": "Boss Material",
     "description": "Dvalin's Plume weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "bennett",
+        "diluc",
+        "jean"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -1021,6 +1202,15 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 5,
     "category": "Boss Material",
     "description": "Dvalin's Sigh weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "amber",
+        "beidou",
+        "chongyun",
+        "traveler-anemo",
+        "traveler-geo"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -1054,6 +1244,9 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 5,
     "category": "Boss Material",
     "description": "Elixir of the Heretic weekly boss talent material.",
+    "details": {
+      "usedByCharacters": []
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -1065,6 +1258,13 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 4,
     "category": "Boss Material",
     "description": "Emperor's Resolution character ascension boss material.",
+    "details": {
+      "source": "Emperor of Fire and Iron",
+      "usedByCharacters": [
+        "lyney",
+        "gaming"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -1098,6 +1298,13 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 5,
     "category": "Boss Material",
     "description": "Eroded Horn weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "escoffier",
+        "illuga",
+        "mavuika"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -1109,6 +1316,13 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 5,
     "category": "Boss Material",
     "description": "Eroded Scale-Feather weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "dahlia",
+        "lauma",
+        "varesa"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -1120,6 +1334,13 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 5,
     "category": "Boss Material",
     "description": "Eroded Sunfire weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "durin",
+        "ineffa",
+        "lan-yan"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -1142,6 +1363,14 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 5,
     "category": "Boss Material",
     "description": "Everamber weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "lynette",
+        "neuvillette",
+        "kirara",
+        "clorinde"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -1153,6 +1382,17 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 4,
     "category": "Boss Material",
     "description": "Everflame Seed character ascension boss material.",
+    "details": {
+      "source": "Pyro Regisvine",
+      "usedByCharacters": [
+        "amber",
+        "bennett",
+        "diluc",
+        "klee",
+        "xiangling",
+        "xinyan"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -1164,6 +1404,13 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 4,
     "category": "Boss Material",
     "description": "Evergloom Ring character ascension boss material.",
+    "details": {
+      "source": "Iniquitous Baptist",
+      "usedByCharacters": [
+        "kirara",
+        "baizhu"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -1197,6 +1444,13 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 5,
     "category": "Boss Material",
     "description": "Fading Candle weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "arlecchino",
+        "kachina",
+        "yumemizuki-mizuki"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -1252,6 +1506,11 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Fluorescent Fungus local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "thoma"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -1263,6 +1522,14 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 4,
     "category": "Boss Material",
     "description": "Fontemer Unihorn character ascension boss material.",
+    "details": {
+      "source": "Millennial Pearl Seahorse",
+      "usedByCharacters": [
+        "chevreuse",
+        "neuvillette",
+        "clorinde"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -1329,6 +1596,12 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 4,
     "category": "Boss Material",
     "description": "Fragment of a Golden Melody character ascension boss material.",
+    "details": {
+      "source": "Statue of Marble and Brass",
+      "usedByCharacters": [
+        "arlecchino"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -1428,6 +1701,13 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 5,
     "category": "Boss Material",
     "description": "Gilded Scale weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "kazuha",
+        "sayu",
+        "yelan"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -1439,6 +1719,12 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Glaze Lily local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "ningguang",
+        "yun-jin"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -1791,6 +2077,13 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 5,
     "category": "Boss Material",
     "description": "Hellfire Butterfly weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "kokomi",
+        "thoma",
+        "shenhe"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -1802,6 +2095,12 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Henna Berry local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "faruzan",
+        "candace"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -1813,6 +2112,17 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 4,
     "category": "Boss Material",
     "description": "Hoarfrost Core character ascension boss material.",
+    "details": {
+      "source": "Cryo Regisvine",
+      "usedByCharacters": [
+        "chongyun",
+        "diona",
+        "ganyu",
+        "kaeya",
+        "qiqi",
+        "rosaria"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -1835,6 +2145,14 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 4,
     "category": "Boss Material",
     "description": "Hurricane Seed character ascension boss material.",
+    "details": {
+      "source": "Anemo Hypostasis",
+      "usedByCharacters": [
+        "jean",
+        "sucrose",
+        "venti"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -1923,6 +2241,12 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Jueyun Chili local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "xiangling",
+        "yaoyao"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -1945,6 +2269,14 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 4,
     "category": "Boss Material",
     "description": "Juvenile Jade character ascension boss material.",
+    "details": {
+      "source": "Primo Geovishap",
+      "usedByCharacters": [
+        "hu-tao",
+        "xiao",
+        "yanfei"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -1967,6 +2299,12 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Kalpalata Lotus local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "dori",
+        "nahida"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -1978,6 +2316,11 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Lakelight Lily local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "furina"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -2011,6 +2354,14 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 4,
     "category": "Boss Material",
     "description": "Light Guiding Tetrahedron character ascension boss material.",
+    "details": {
+      "source": "Algorithm of Semi-Intransient Matrix of Overseer Network",
+      "usedByCharacters": [
+        "candace",
+        "faruzan",
+        "dehya"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -2044,6 +2395,13 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 5,
     "category": "Boss Material",
     "description": "Lightless Eye of the Maelstrom weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "chevreuse",
+        "xianyun",
+        "sigewinne"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -2055,6 +2413,13 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 5,
     "category": "Boss Material",
     "description": "Lightless Mass weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "furina",
+        "gaming",
+        "mualani"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -2066,6 +2431,14 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 5,
     "category": "Boss Material",
     "description": "Lightless Silk String weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "charlotte",
+        "navia",
+        "chiori",
+        "ororon"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -2077,6 +2450,16 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 4,
     "category": "Boss Material",
     "description": "Lightning Prism character ascension boss material.",
+    "details": {
+      "source": "Electro Hypostasis",
+      "usedByCharacters": [
+        "beidou",
+        "fischl",
+        "keqing",
+        "lisa",
+        "razor"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -2099,6 +2482,12 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Lumidouce Bell local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "lynette",
+        "chevreuse"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -2132,6 +2521,12 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Lumitoile local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "neuvillette",
+        "clorinde"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -2165,6 +2560,9 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 5,
     "category": "Boss Material",
     "description": "Madman's Restraint weekly boss talent material.",
+    "details": {
+      "usedByCharacters": []
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -2176,6 +2574,13 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 4,
     "category": "Boss Material",
     "description": "Majestic Hooked Beak character ascension boss material.",
+    "details": {
+      "source": "Jadeplume Terrorshroom",
+      "usedByCharacters": [
+        "collei",
+        "tighnari"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -2187,6 +2592,13 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 4,
     "category": "Boss Material",
     "description": "Marionette Core character ascension boss material.",
+    "details": {
+      "source": "Maguu Kenki",
+      "usedByCharacters": [
+        "kazuha",
+        "sayu"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -2198,6 +2610,12 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 4,
     "category": "Boss Material",
     "description": "Mark of the Binding Blessing character ascension boss material.",
+    "details": {
+      "source": "Holawaqa Ngoubou",
+      "usedByCharacters": [
+        "mualani"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -2253,6 +2671,11 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 5,
     "category": "Boss Material",
     "description": "Mask of the Virtuous Doctor weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "columbina"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -2297,6 +2720,13 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 5,
     "category": "Boss Material",
     "description": "Mirror of Mushin weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "alhaitham",
+        "layla",
+        "mika"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -2418,6 +2848,13 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 5,
     "category": "Boss Material",
     "description": "Molten Moment weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "raiden",
+        "aloy",
+        "gorou"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -2440,6 +2877,11 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Mourning Flower local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "kaveh"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -2462,6 +2904,13 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 5,
     "category": "Boss Material",
     "description": "Mudra of the Malefic General weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "cyno",
+        "ayato",
+        "traveler-dendro"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -2517,6 +2966,12 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Naku Weed local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "yoimiya",
+        "kuki-shinobu"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -2583,6 +3038,12 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Nilotpala Lotus local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "tighnari",
+        "layla"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -2594,6 +3055,12 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Noctilucous Jade local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "beidou",
+        "yanfei"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -2693,6 +3160,12 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Onikabuto local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "arataki-itto",
+        "shikanoin-heizou"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -2726,6 +3199,13 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 4,
     "category": "Boss Material",
     "description": "Overripe Flamegranate character ascension boss material.",
+    "details": {
+      "source": "Kongamato",
+      "usedByCharacters": [
+        "kachina",
+        "kinich"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -2737,6 +3217,11 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Padisarah local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "nilou"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -2748,6 +3233,14 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 4,
     "category": "Boss Material",
     "description": "Perpetual Caliber character ascension boss material.",
+    "details": {
+      "source": "Aeonblight Drake",
+      "usedByCharacters": [
+        "layla",
+        "nilou",
+        "wanderer"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -2759,6 +3252,13 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 4,
     "category": "Boss Material",
     "description": "Perpetual Heart character ascension boss material.",
+    "details": {
+      "source": "Perpetual Mechanical Array",
+      "usedByCharacters": [
+        "gorou",
+        "ayaka"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -2770,6 +3270,13 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Philanemo Mushroom local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "barbara",
+        "klee",
+        "mona"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -3034,6 +3541,12 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 4,
     "category": "Boss Material",
     "description": "Plume of the Fallen Watcher character ascension boss material.",
+    "details": {
+      "source": "Watcher: Fallen Vigil",
+      "usedByCharacters": [
+        "linnea"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -3089,6 +3602,13 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 5,
     "category": "Boss Material",
     "description": "Primordial Greenbloom weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "lyney",
+        "wriothesley",
+        "kaveh"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -3100,6 +3620,12 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 4,
     "category": "Boss Material",
     "description": "Prismatic Severed Tail character ascension boss material.",
+    "details": {
+      "source": "Radiant Moongecko",
+      "usedByCharacters": [
+        "varka"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -3155,6 +3681,13 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 4,
     "category": "Boss Material",
     "description": "Pseudo-Stamens character ascension boss material.",
+    "details": {
+      "source": "Setekh Wenut",
+      "usedByCharacters": [
+        "mika",
+        "alhaitham"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -3166,6 +3699,13 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 5,
     "category": "Boss Material",
     "description": "Puppet Strings weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "dehya",
+        "faruzan",
+        "nahida"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -3177,6 +3717,13 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Qingxin local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "ganyu",
+        "xiao",
+        "shenhe"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -3188,6 +3735,14 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 4,
     "category": "Boss Material",
     "description": "Quelled Creeper character ascension boss material.",
+    "details": {
+      "source": "Dendro Hypostasis",
+      "usedByCharacters": [
+        "nahida",
+        "yaoyao",
+        "kaveh"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -3199,6 +3754,11 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Quenepa Berry local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "kachina"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -3243,6 +3803,11 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Rainbow Rose local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "lyney"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -3331,6 +3896,13 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 4,
     "category": "Boss Material",
     "description": "Riftborn Regalia character ascension boss material.",
+    "details": {
+      "source": "Golden Wolflord",
+      "usedByCharacters": [
+        "arataki-itto",
+        "yun-jin"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -3342,6 +3914,15 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 5,
     "category": "Boss Material",
     "description": "Ring of Boreas weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "barbara",
+        "keqing",
+        "klee",
+        "mona",
+        "linnea"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -3364,6 +3945,12 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Romaritime Flower local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "freminet",
+        "sigewinne"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -3386,6 +3973,12 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Rukkhashava Mushrooms local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "wanderer",
+        "collei"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -3397,6 +3990,14 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 4,
     "category": "Boss Material",
     "description": "Runic Fang character ascension boss material.",
+    "details": {
+      "source": "Ruin Serpent",
+      "usedByCharacters": [
+        "yelan",
+        "shikanoin-heizou",
+        "kuki-shinobu"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -3408,6 +4009,12 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Sakura Bloom local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "ayaka",
+        "ayato"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -3419,6 +4026,12 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Sand Grease Pupa local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "alhaitham",
+        "dehya"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -3430,6 +4043,12 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Sango Pearl local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "gorou",
+        "kokomi"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -3441,6 +4060,11 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Saurian Claw Succulent local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "kinich"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -3463,6 +4087,11 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Scarab local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "cyno"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -3496,6 +4125,12 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Sea Ganoderma local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "kazuha",
+        "yae-miko"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -3573,6 +4208,13 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 5,
     "category": "Boss Material",
     "description": "Shadow of the Warrior weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "ganyu",
+        "rosaria",
+        "xiao"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -3584,6 +4226,13 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 5,
     "category": "Boss Material",
     "description": "Shard of a Foul Legacy weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "diona",
+        "hu-tao",
+        "tartaglia"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -3683,6 +4332,12 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Silk Flower local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "xingqiu",
+        "hu-tao"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -3694,6 +4349,13 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 5,
     "category": "Boss Material",
     "description": "Silken Feather weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "aino",
+        "chasca",
+        "emilie"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -3782,6 +4444,13 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Small Lamp Grass local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "amber",
+        "diluc",
+        "fischl"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -3793,6 +4462,13 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 4,
     "category": "Boss Material",
     "description": "Smoldering Pearl character ascension boss material.",
+    "details": {
+      "source": "Pyro Hypostasis",
+      "usedByCharacters": [
+        "thoma",
+        "yoimiya"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -3848,6 +4524,15 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 5,
     "category": "Boss Material",
     "description": "Spirit Locket of Boreas weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "fischl",
+        "kaeya",
+        "ningguang",
+        "sucrose",
+        "varka"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -3870,6 +4555,11 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Sprayfeather Gill local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "mualani"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -3892,6 +4582,11 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Spring of the First Dewdrop local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "navia"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -3914,6 +4609,13 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Starconch local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "tartaglia",
+        "yelan",
+        "gaming"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -3936,6 +4638,13 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 4,
     "category": "Boss Material",
     "description": "Storm Beads character ascension boss material.",
+    "details": {
+      "source": "Thunder Manifestation",
+      "usedByCharacters": [
+        "sara",
+        "raiden"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -3969,6 +4678,11 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Subdetection Unit local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "wriothesley"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -3991,6 +4705,14 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 5,
     "category": "Boss Material",
     "description": "Tail of Boreas weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "qiqi",
+        "venti",
+        "xingqiu",
+        "traveler-geo"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -4255,6 +4977,14 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 5,
     "category": "Boss Material",
     "description": "Tears of the Calamitous God weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "candace",
+        "collei",
+        "kuki-shinobu",
+        "nilou"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -4266,6 +4996,12 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 4,
     "category": "Boss Material",
     "description": "The Cornerstone of Stars and Flames character ascension boss material.",
+    "details": {
+      "source": "Natlan quests",
+      "usedByCharacters": [
+        "traveler-pyro"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -4277,6 +5013,13 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 5,
     "category": "Boss Material",
     "description": "The Meaning of Aeons weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "shikanoin-heizou",
+        "tighnari",
+        "yae-miko"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -4288,6 +5031,13 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 4,
     "category": "Boss Material",
     "description": "Thunderclap Fruitcore character ascension boss material.",
+    "details": {
+      "source": "Electro Regisvine",
+      "usedByCharacters": [
+        "cyno",
+        "dori"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -4310,6 +5060,13 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 4,
     "category": "Boss Material",
     "description": "Tourbillon Device character ascension boss material.",
+    "details": {
+      "source": "Prototype Cal. Breguet",
+      "usedByCharacters": [
+        "charlotte",
+        "wriothesley"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -4376,6 +5133,11 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Trishiraite local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "sethos"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -4398,6 +5160,13 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 5,
     "category": "Boss Material",
     "description": "Tusk of Monoceros Caeli weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "albedo",
+        "xinyan",
+        "zhongli"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -4464,6 +5233,13 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Valberry local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "lisa",
+        "noelle",
+        "rosaria"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -4563,6 +5339,13 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Violetgrass local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "qiqi",
+        "xinyan",
+        "baizhu"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -4596,6 +5379,13 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 4,
     "category": "Boss Material",
     "description": "Water That Failed To Transcend character ascension boss material.",
+    "details": {
+      "source": "Hydro Tulpa",
+      "usedByCharacters": [
+        "furina",
+        "sigewinne"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -4629,6 +5419,18 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Windwheel Aster local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "bennett",
+        "sucrose",
+        "traveler-anemo",
+        "traveler-geo",
+        "traveler-electro",
+        "traveler-dendro",
+        "traveler-hydro",
+        "traveler-pyro"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -4673,6 +5475,12 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 1,
     "category": "Local Specialty",
     "description": "Wolfhook local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "razor",
+        "mika"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null
@@ -4684,6 +5492,13 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 5,
     "category": "Boss Material",
     "description": "Worldspan Fern weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "baizhu",
+        "freminet",
+        "traveler-hydro"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null

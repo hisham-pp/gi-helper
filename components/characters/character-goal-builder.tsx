@@ -4,7 +4,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowLeft, CheckSquare, Square, Target, X } from "lucide-react";
+import {
+  ArrowLeft,
+  CheckSquare,
+  Images,
+  Info,
+  ListChecks,
+  Square,
+  Target,
+  X,
+} from "lucide-react";
 import { toast } from "sonner";
 
 import { createGoalsFromTemplatesAction } from "@/app/actions";
@@ -12,6 +21,9 @@ import { rarityColorMap } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { CharacterAssetsPanel } from "@/components/characters/character-assets-panel";
+import { CharacterDetailsPanel } from "@/components/characters/character-details-panel";
+import { CharacterDetailTabButton } from "@/components/characters/character-detail-tab-button";
 
 export type CharacterTemplate = {
   id: string;
@@ -19,6 +31,16 @@ export type CharacterTemplate = {
   description: string | null;
   category: string;
   sortOrder: number;
+  materials?: Array<{
+    id: string;
+    required: number;
+    material: {
+      id: string;
+      name: string;
+      rarity: number;
+      image: string;
+    };
+  }>;
 };
 
 export type CharacterDetail = {
@@ -29,7 +51,43 @@ export type CharacterDetail = {
   element: string;
   weaponType: string;
   region: string;
+  details?: CharacterDetails | null;
+  assets?: CharacterAsset[] | null;
   templates: CharacterTemplate[];
+};
+
+export type CharacterDetails = {
+  title?: string | null;
+  gender?: string | null;
+  affiliation?: string | null;
+  specialDish?: string | null;
+  release?: string | null;
+  constellation?: string | null;
+  birthday?: string | null;
+  description?: string | null;
+  skillTalents?: Array<{
+    name?: string;
+    unlock?: string;
+    description?: string;
+  }>;
+  passiveTalents?: Array<{
+    name?: string;
+    unlock?: string;
+    description?: string;
+  }>;
+  constellations?: Array<{
+    name?: string;
+    unlock?: string;
+    description?: string;
+    level?: number;
+  }>;
+  ascensionData?: Array<Record<string, string>>;
+};
+
+export type CharacterAsset = {
+  key: string;
+  label: string;
+  path: string;
 };
 
 type TemplateGroup = {
@@ -62,6 +120,9 @@ export function CharacterGoalBuilder({
   const isTraveler = character.id.startsWith("traveler-");
   const [isPending, startTransition] = useTransition();
   const [selected, setSelected] = useState<Map<string, number>>(new Map());
+  const [activeTab, setActiveTab] = useState<
+    "details" | "templates" | "assets"
+  >("details");
 
   const groupedTemplates = useMemo<TemplateGroup[]>(() => {
     const groups = new Map<string, CharacterTemplate[]>();
@@ -213,6 +274,8 @@ export function CharacterGoalBuilder({
   const hasRepeatableTalentTemplates = character.templates.some(
     isRepeatableTalentTemplate,
   );
+  const details = character.details;
+  const assets = character.assets ?? [];
 
   return (
     <div className="space-y-8">
@@ -241,7 +304,14 @@ export function CharacterGoalBuilder({
             {character.name}
           </h1>
           <p className="text-on-surface-variant mt-1 text-sm">
-            {character.element} · {character.weaponType} · {character.region}
+            {[
+              details?.title,
+              character.element,
+              character.weaponType,
+              character.region,
+            ]
+              .filter(Boolean)
+              .join(" · ")}
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
@@ -252,7 +322,9 @@ export function CharacterGoalBuilder({
             <Button
               variant="outlined"
               onClick={selectAllSingleTalents}
-              disabled={isPending || isTraveler || !hasRepeatableTalentTemplates}
+              disabled={
+                isPending || isTraveler || !hasRepeatableTalentTemplates
+              }
             >
               Select 3x single talents
             </Button>
@@ -273,86 +345,124 @@ export function CharacterGoalBuilder({
         </div>
       </div>
 
-      <Card variant="outlined" className="p-4 sm:p-6">
-        <p className="text-on-surface-variant mb-4 text-sm">
-          Select one or more goal templates to add separate farming goals. Each
-          template becomes its own goal with materials pre-filled.
-        </p>
+      <div className="flex flex-wrap gap-2 border-b border-outline-variant">
+        <CharacterDetailTabButton
+          active={activeTab === "details"}
+          icon={<Info className="h-4 w-4" />}
+          onClick={() => setActiveTab("details")}
+        >
+          Details
+        </CharacterDetailTabButton>
+        <CharacterDetailTabButton
+          active={activeTab === "templates"}
+          icon={<ListChecks className="h-4 w-4" />}
+          onClick={() => setActiveTab("templates")}
+        >
+          Templates
+        </CharacterDetailTabButton>
+        <CharacterDetailTabButton
+          active={activeTab === "assets"}
+          icon={<Images className="h-4 w-4" />}
+          onClick={() => setActiveTab("assets")}
+        >
+          Assets
+        </CharacterDetailTabButton>
+      </div>
 
-        {groupedTemplates.length === 0 ? (
-          <p className="text-on-surface-variant text-sm italic">
-            No goal templates are available for this character yet.
+      {activeTab === "details" ? (
+        <CharacterDetailsPanel character={character} details={details} />
+      ) : null}
+
+      {activeTab === "templates" ? (
+        <Card variant="outlined" className="p-4 sm:p-6">
+          <p className="text-on-surface-variant mb-4 text-sm">
+            Select one or more goal templates to add separate farming goals.
+            Each template becomes its own goal with materials pre-filled.
           </p>
-        ) : (
-          <div className="space-y-6">
-            {groupedTemplates.map((group) => (
-              <section key={group.key}>
-                <h2 className="text-on-surface-variant mb-3 text-xs font-bold uppercase tracking-wider">
-                  {group.title}
-                </h2>
-                <div className="grid gap-2 sm:grid-cols-2">
-                  {group.templates.map((template) => {
-                    const selectedCount = selected.get(template.id) ?? 0;
-                    const isSelected = selectedCount > 0;
-                    const isRepeatable = isRepeatableTalentTemplate(template);
 
-                    return (
-                      <div
-                        key={template.id}
-                        className={cn(
-                          "flex w-full select-none items-start gap-2 rounded-xl border p-3 transition-colors",
-                          isSelected
-                            ? "border-primary bg-primary-container/30"
-                            : "border-outline-variant/50 hover:bg-surface-variant/40",
-                        )}
-                      >
-                        <button
-                          type="button"
-                          disabled={isPending}
-                          onClick={() => toggleTemplate(template)}
-                          className="flex min-w-0 flex-1 select-none items-start gap-3 text-left"
-                        >
-                          {isSelected ? (
-                            <CheckSquare className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
-                          ) : (
-                            <Square className="text-on-surface-variant mt-0.5 h-4 w-4 flex-shrink-0" />
+          {groupedTemplates.length === 0 ? (
+            <p className="text-on-surface-variant text-sm italic">
+              No goal templates are available for this character yet.
+            </p>
+          ) : (
+            <div className="space-y-6">
+              {groupedTemplates.map((group) => (
+                <section key={group.key}>
+                  <h2 className="text-on-surface-variant mb-3 text-xs font-bold uppercase tracking-wider">
+                    {group.title}
+                  </h2>
+                  <div className="grid gap-2 sm:grid-cols-2">
+                    {group.templates.map((template) => {
+                      const selectedCount = selected.get(template.id) ?? 0;
+                      const isSelected = selectedCount > 0;
+                      const isRepeatable = isRepeatableTalentTemplate(template);
+
+                      return (
+                        <div
+                          key={template.id}
+                          className={cn(
+                            "flex w-full select-none items-start gap-2 rounded-xl border p-3 transition-colors",
+                            isSelected
+                              ? "border-primary bg-primary-container/30"
+                              : "border-outline-variant/50 hover:bg-surface-variant/40",
                           )}
-                          <span className="min-w-0">
-                            <span className="text-on-surface block text-sm font-medium">
-                              {template.name}
-                            </span>
-                            {template.description ? (
-                              <span className="text-on-surface-variant mt-0.5 line-clamp-2 block text-xs">
-                                {template.description}
+                        >
+                          <button
+                            type="button"
+                            disabled={isPending}
+                            onClick={() => toggleTemplate(template)}
+                            className="flex min-w-0 flex-1 select-none items-start gap-3 text-left"
+                          >
+                            {isSelected ? (
+                              <CheckSquare className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
+                            ) : (
+                              <Square className="text-on-surface-variant mt-0.5 h-4 w-4 flex-shrink-0" />
+                            )}
+                            <span className="min-w-0">
+                              <span className="text-on-surface block text-sm font-medium">
+                                {template.name}
                               </span>
-                            ) : null}
-                          </span>
-                        </button>
-                        {isRepeatable && isSelected ? (
-                          <div className="flex flex-shrink-0 items-center gap-1">
-                            <span className="text-on-primary inline-flex h-6 min-w-7 items-center justify-center rounded-full bg-primary px-2 text-xs font-bold">
-                              x{selectedCount}
+                              {template.description ? (
+                                <span className="text-on-surface-variant mt-0.5 line-clamp-2 block text-xs">
+                                  {template.description}
+                                </span>
+                              ) : null}
+                              {template.materials?.length ? (
+                                <span className="text-on-surface-variant mt-2 block text-xs">
+                                  {template.materials.length} material
+                                  {template.materials.length === 1 ? "" : "s"}
+                                </span>
+                              ) : null}
                             </span>
-                            <button
-                              type="button"
-                              disabled={isPending}
-                              onClick={() => clearTemplate(template.id)}
-                              aria-label={`Clear ${template.name}`}
-                              className="text-on-surface-variant hover:text-on-surface inline-flex h-6 w-6 items-center justify-center rounded-full transition-colors hover:bg-surface-variant"
-                            >
-                              <X className="h-3.5 w-3.5" />
-                            </button>
-                          </div>
-                        ) : null}
-                      </div>
-                    );
-                  })}
-                </div>
-              </section>
-            ))}
-          </div>
-        )}
-      </Card>
+                          </button>
+                          {isRepeatable && isSelected ? (
+                            <div className="flex flex-shrink-0 items-center gap-1">
+                              <span className="text-on-primary inline-flex h-6 min-w-7 items-center justify-center rounded-full bg-primary px-2 text-xs font-bold">
+                                x{selectedCount}
+                              </span>
+                              <button
+                                type="button"
+                                disabled={isPending}
+                                onClick={() => clearTemplate(template.id)}
+                                aria-label={`Clear ${template.name}`}
+                                className="text-on-surface-variant hover:text-on-surface inline-flex h-6 w-6 items-center justify-center rounded-full transition-colors hover:bg-surface-variant"
+                              >
+                                <X className="h-3.5 w-3.5" />
+                              </button>
+                            </div>
+                          ) : null}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </section>
+              ))}
+            </div>
+          )}
+        </Card>
+      ) : null}
+
+      {activeTab === "assets" ? <CharacterAssetsPanel assets={assets} /> : null}
     </div>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -49,6 +50,12 @@ export function MaterialLibraryCard({
                   Edit
                 </Button>
               ) : null}
+              <Link
+                href={`/materials/${material.id}`}
+                className="inline-flex h-10 items-center justify-center rounded-full px-6 text-sm font-medium text-primary transition-all hover:bg-primary/5"
+              >
+                Details
+              </Link>
               <span className="rounded-full bg-secondary-container px-2.5 py-1 text-xs font-medium text-secondary-on-container">
                 {material.category}
               </span>

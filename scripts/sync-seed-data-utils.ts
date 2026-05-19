@@ -26,6 +26,8 @@ type LocalSpecialtyEntry = {
 
 type BossMaterialEntry = {
   name: string;
+  source?: string;
+  characters?: string[];
 };
 
 type TalentBossEntry = {
@@ -66,6 +68,7 @@ export type SeedMaterialRecord = {
   rarity: number;
   category: string;
   description: string;
+  details?: Record<string, unknown>;
   combinable: boolean;
   combineRatio: number | null;
   parentMaterialId: string | null;
@@ -170,6 +173,7 @@ const seedMaterialSchema = z
     rarity: z.number().int().min(1).max(5),
     category: materialCategorySchema,
     description: z.string().trim().min(1),
+    details: z.record(z.string(), z.unknown()).optional(),
     combinable: z.boolean(),
     combineRatio: z.number().int().positive().nullable(),
     parentMaterialId: seedIdSchema.nullable(),
@@ -372,6 +376,9 @@ export function buildMaterialCatalog(): MaterialCatalog {
         rarity: 1,
         category: "Local Specialty",
         description: `${entry.name.trim()} local specialty.`,
+        details: {
+          usedByCharacters: entry.characters ?? [],
+        },
         combinable: false,
         combineRatio: null,
         parentMaterialId: null,
@@ -453,6 +460,10 @@ export function buildMaterialCatalog(): MaterialCatalog {
       rarity: 4,
       category: "Boss Material",
       description: `${canonicalizeSourceMaterialName(item.name.trim())} character ascension boss material.`,
+      details: {
+        source: item.source ?? null,
+        usedByCharacters: item.characters ?? [],
+      },
       combinable: false,
       combineRatio: null,
       parentMaterialId: null,
@@ -472,6 +483,9 @@ export function buildMaterialCatalog(): MaterialCatalog {
       rarity: 5,
       category: "Boss Material",
       description: `${canonicalizeSourceMaterialName(item.name.trim())} weekly boss talent material.`,
+      details: {
+        usedByCharacters: item.characters,
+      },
       combinable: false,
       combineRatio: null,
       parentMaterialId: null,

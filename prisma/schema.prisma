@@ -14,6 +14,7 @@ model Material {
   rarity                     Int
   category                   String
   description                String
+  details                    Json?
   combinable                 Boolean                         @default(false)
   combineRatio               Int?
   parentMaterialId           String?
@@ -119,6 +120,8 @@ model Character {
   element    String
   weaponType String
   region     String
+  details    Json?
+  assets     Json?
   createdAt  DateTime                @default(now())
   updatedAt  DateTime                @updatedAt
   templates  CharacterGoalTemplate[]
