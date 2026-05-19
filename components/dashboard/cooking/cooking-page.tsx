@@ -544,7 +544,7 @@ function RecipeCard({
           )}
         >
           <Image
-            src={recipe.image}
+            src={`/api/recipe-image/${recipe.id}`}
             alt=""
             fill
             className="object-contain p-1.5"
