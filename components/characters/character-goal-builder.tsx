@@ -39,7 +39,18 @@ type TemplateGroup = {
 };
 
 function isRepeatableTalentTemplate(template: CharacterTemplate) {
-  return template.category === "talent" && template.sortOrder <= 9;
+  return (
+    template.category === "talent" &&
+    template.sortOrder <= 9 &&
+    template.name.startsWith("Talent Level ")
+  );
+}
+
+function isSingleTalentTemplate(template: CharacterTemplate) {
+  return (
+    template.category === "talent" &&
+    !template.name.startsWith("All Talents Level ")
+  );
 }
 
 export function CharacterGoalBuilder({
@@ -48,6 +59,7 @@ export function CharacterGoalBuilder({
   character: CharacterDetail;
 }) {
   const router = useRouter();
+  const isTraveler = character.id.startsWith("traveler-");
   const [isPending, startTransition] = useTransition();
   const [selected, setSelected] = useState<Map<string, number>>(new Map());
 
@@ -77,11 +89,9 @@ export function CharacterGoalBuilder({
           ];
         }
 
-        const singleTalentTemplates = templates.filter((template) =>
-          isRepeatableTalentTemplate(template),
-        );
+        const singleTalentTemplates = templates.filter(isSingleTalentTemplate);
         const multipleTalentTemplates = templates.filter(
-          (template) => !isRepeatableTalentTemplate(template),
+          (template) => !isSingleTalentTemplate(template),
         );
         const talentGroups: TemplateGroup[] = [];
 
@@ -148,12 +158,16 @@ export function CharacterGoalBuilder({
   }
 
   function selectAllSingleTalents() {
+    if (isTraveler) {
+      return;
+    }
+
     setSelected((prev) => {
       const next = new Map(prev);
 
       for (const template of character.templates) {
-        if (isRepeatableTalentTemplate(template)) {
-          next.set(template.id, 3);
+        if (isSingleTalentTemplate(template)) {
+          next.set(template.id, isRepeatableTalentTemplate(template) ? 3 : 1);
         }
       }
 
@@ -194,6 +208,9 @@ export function CharacterGoalBuilder({
   }
 
   const hasSingleTalentTemplates = character.templates.some(
+    isSingleTalentTemplate,
+  );
+  const hasRepeatableTalentTemplates = character.templates.some(
     isRepeatableTalentTemplate,
   );
 
@@ -235,7 +252,7 @@ export function CharacterGoalBuilder({
             <Button
               variant="outlined"
               onClick={selectAllSingleTalents}
-              disabled={isPending}
+              disabled={isPending || isTraveler || !hasRepeatableTalentTemplates}
             >
               Select 3x single talents
             </Button>

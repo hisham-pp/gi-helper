@@ -162,6 +162,12 @@ const travelerTalentBookFamilyIds: Record<string, string[]> = {
   "traveler-pyro": ["contention", "kindling", "conflict"],
 };
 
+const travelerTalentNames = [
+  "Normal Attack",
+  "Elemental Skill",
+  "Elemental Burst",
+] as const;
+
 export function buildCharacters(): CharacterRecord[] {
   const characters = characterDirectories.map((folderName) => {
     const characterData = readJsonWithSchema(
@@ -176,7 +182,7 @@ export function buildCharacters(): CharacterRecord[] {
 
     return {
       id: seedId,
-      name: characterData.name,
+      name: displayCharacterName(seedId, characterData),
       image: toImagePath("characters", folderName, "icon-big"),
       rarity: characterData.rarity,
       element: characterData.vision,
@@ -203,9 +209,12 @@ export function buildCharacterGoalTemplates(): CharacterGoalTemplateRecord[] {
       normalizeLookupKey(characterData.name),
     );
     const seedId = existing?.id ?? folderName;
+    const characterName = displayCharacterName(seedId, characterData);
 
     try {
-      templates.push(...buildAscensionTemplates(seedId, characterData));
+      templates.push(
+        ...buildAscensionTemplates(seedId, characterData, characterName),
+      );
     } catch (error) {
       console.warn(
         `Skipping ascension templates for ${seedId}: ${(error as Error).message}`,
@@ -214,7 +223,7 @@ export function buildCharacterGoalTemplates(): CharacterGoalTemplateRecord[] {
 
     try {
       templates.push(
-        ...buildTalentTemplates(seedId, folderName, characterData.name),
+        ...buildTalentTemplates(seedId, folderName, characterName),
       );
     } catch (error) {
       console.warn(
@@ -230,6 +239,7 @@ export function buildCharacterGoalTemplates(): CharacterGoalTemplateRecord[] {
 function buildAscensionTemplates(
   characterId: string,
   characterData: CharacterData,
+  characterName: string,
 ): CharacterGoalTemplateRecord[] {
   const ascensionMaterials = characterData.ascension_materials ?? {};
   const levels = Object.keys(ascensionMaterials)
@@ -255,7 +265,7 @@ function buildAscensionTemplates(
     return {
       characterId,
       name: `Ascension ${index + 1} (Lv. ${level} -> ${nextLevel})`,
-      description: `${ordinal(index + 1)} ascension materials for ${characterData.name}`,
+      description: `${ordinal(index + 1)} ascension materials for ${characterName}`,
       category: "ascension",
       sortOrder: index + 1,
       materials,
@@ -293,9 +303,17 @@ function buildTalentTemplates(
     );
   }
 
-  const talentMaterialFamilies = isTraveler
-    ? talentItemsByFamily
-    : [talentItemsByFamily[0]];
+  if (isTraveler) {
+    return buildTravelerTalentTemplates(
+      characterId,
+      characterName,
+      talentItemsByFamily,
+      enemyItems,
+      bossItems[0],
+    );
+  }
+
+  const talentMaterialFamilies = [talentItemsByFamily[0]];
   const [enemyOne, enemyTwo, enemyThree] = enemyItems;
   const weeklyBoss = bossItems[0];
 
@@ -305,12 +323,10 @@ function buildTalentTemplates(
       qty: quantity,
     }));
 
-  const commonEnemyQuantity = (quantity: number) =>
-    isTraveler ? quantity * talentMaterialFamilies.length : quantity;
-
-  const crownQuantity = isTraveler ? talentMaterialFamilies.length : 1;
-  const talentGoalPrefix = isTraveler ? "All Talents" : "Talent";
-  const talentGoalDescription = isTraveler ? "all talents" : "a single talent";
+  const commonEnemyQuantity = (quantity: number) => quantity;
+  const crownQuantity = 1;
+  const talentGoalPrefix = "Talent";
+  const talentGoalDescription = "a single talent";
 
   const levelCosts = [
     {
@@ -446,6 +462,159 @@ function buildTalentTemplates(
   return [...individualTemplates, ...combinedTemplates];
 }
 
+function buildTravelerTalentTemplates(
+  characterId: string,
+  characterName: string,
+  talentItemsByFamily: NonNullable<RelationFamily["items"]>[],
+  enemyItems: NonNullable<RelationFamily["items"]>,
+  weeklyBoss: { id: string; name: string },
+): CharacterGoalTemplateRecord[] {
+  if (talentItemsByFamily.length !== travelerTalentNames.length) {
+    throw new Error(
+      `Traveler ${characterId} must have ${travelerTalentNames.length} talent book families`,
+    );
+  }
+
+  const [enemyOne, enemyTwo, enemyThree] = enemyItems;
+
+  if (!enemyOne || !enemyTwo || !enemyThree) {
+    throw new Error(`Missing Traveler enemy material tiers: ${characterId}`);
+  }
+
+  const levelCostsForFamily = (
+    talentItems: NonNullable<RelationFamily["items"]>,
+  ) => [
+    {
+      from: 1,
+      to: 2,
+      materials: [
+        { id: talentItems[0].id, qty: 3 },
+        { id: enemyOne.id, qty: 6 },
+      ],
+    },
+    {
+      from: 2,
+      to: 3,
+      materials: [
+        { id: talentItems[1].id, qty: 2 },
+        { id: enemyTwo.id, qty: 3 },
+      ],
+    },
+    {
+      from: 3,
+      to: 4,
+      materials: [
+        { id: talentItems[1].id, qty: 4 },
+        { id: enemyTwo.id, qty: 4 },
+      ],
+    },
+    {
+      from: 4,
+      to: 5,
+      materials: [
+        { id: talentItems[1].id, qty: 6 },
+        { id: enemyTwo.id, qty: 6 },
+      ],
+    },
+    {
+      from: 5,
+      to: 6,
+      materials: [
+        { id: talentItems[1].id, qty: 9 },
+        { id: enemyTwo.id, qty: 9 },
+      ],
+    },
+    {
+      from: 6,
+      to: 7,
+      materials: [
+        { id: talentItems[2].id, qty: 4 },
+        { id: enemyThree.id, qty: 4 },
+        { id: weeklyBoss.id, qty: 1 },
+      ],
+    },
+    {
+      from: 7,
+      to: 8,
+      materials: [
+        { id: talentItems[2].id, qty: 6 },
+        { id: enemyThree.id, qty: 6 },
+        { id: weeklyBoss.id, qty: 1 },
+      ],
+    },
+    {
+      from: 8,
+      to: 9,
+      materials: [
+        { id: talentItems[2].id, qty: 12 },
+        { id: enemyThree.id, qty: 9 },
+        { id: weeklyBoss.id, qty: 2 },
+      ],
+    },
+    {
+      from: 9,
+      to: 10,
+      materials: [
+        { id: talentItems[2].id, qty: 16 },
+        { id: enemyThree.id, qty: 12 },
+        { id: weeklyBoss.id, qty: 2 },
+        { id: "crown-of-insight", qty: 1 },
+      ],
+    },
+  ];
+
+  const templates = talentItemsByFamily.flatMap((talentItems, talentIndex) =>
+    levelCostsForFamily(talentItems).map((tier, levelIndex) => ({
+      characterId,
+      name: `${travelerTalentNames[talentIndex]} Level ${tier.from} -> ${tier.to}`,
+      description: `Materials to level ${travelerTalentNames[talentIndex].toLowerCase()} from ${tier.from} to ${tier.to} for ${characterName}`,
+      category: "talent",
+      sortOrder: talentIndex * 9 + levelIndex + 1,
+      materials: tier.materials.map((material) => ({
+        materialId: material.id,
+        required: material.qty,
+      })),
+    })),
+  );
+
+  const allLevelOneToSix = talentItemsByFamily.flatMap((items) => [
+    { materialId: items[0].id, required: 3 },
+    { materialId: items[1].id, required: 21 },
+  ]);
+  const allLevelSixToTen = talentItemsByFamily.flatMap((items) => [
+    { materialId: items[2].id, required: 38 },
+  ]);
+
+  return [
+    ...templates,
+    {
+      characterId,
+      name: "All Talents Level 1 -> 6",
+      description: `Materials to level all talents from 1 to 6 for ${characterName}`,
+      category: "talent",
+      sortOrder: templates.length + 1,
+      materials: [
+        ...allLevelOneToSix,
+        { materialId: enemyOne.id, required: 18 },
+        { materialId: enemyTwo.id, required: 66 },
+      ],
+    },
+    {
+      characterId,
+      name: "All Talents Level 6 -> 10",
+      description: `Materials to max all talents from level 6 to 10 for ${characterName}`,
+      category: "talent",
+      sortOrder: templates.length + 2,
+      materials: [
+        ...allLevelSixToTen,
+        { materialId: enemyThree.id, required: 93 },
+        { materialId: weeklyBoss.id, required: 18 },
+        { materialId: "crown-of-insight", required: 3 },
+      ],
+    },
+  ];
+}
+
 function relationFamilyForCharacter(
   families: Record<string, RelationFamily>,
   folderName: string,
@@ -508,6 +677,17 @@ function materialIdForName(name: string, characterId: string): string {
   }
 
   return material.id;
+}
+
+function displayCharacterName(
+  characterId: string,
+  characterData: CharacterData,
+): string {
+  if (characterId.startsWith("traveler-")) {
+    return `Traveler (${characterData.vision})`;
+  }
+
+  return characterData.name;
 }
 
 function validateGeneratedCharacters(characters: CharacterRecord[]): void {
