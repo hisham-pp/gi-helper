@@ -12,7 +12,6 @@ import { cn } from "@/lib/utils";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Panel } from "@/components/ui/panel";
-import { localImageSrc } from "@/lib/image-src";
 
 type Character = {
   id: string;
@@ -118,7 +117,7 @@ export function GoalTemplates({ characters, weapons }: GoalTemplatesProps) {
                   )}
                 >
                   <Image
-                    src={localImageSrc(character.image)}
+                    src={character.image}
                     alt={character.name}
                     fill
                     className="object-cover"
@@ -183,7 +182,7 @@ export function GoalTemplates({ characters, weapons }: GoalTemplatesProps) {
                   )}
                 >
                   <Image
-                    src={localImageSrc(weapon.image)}
+                    src={weapon.image}
                     alt={weapon.name}
                     fill
                     className="object-contain p-2"

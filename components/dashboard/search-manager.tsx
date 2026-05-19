@@ -9,7 +9,6 @@ import AppTextField from "@/components/core/app-textfield";
 import { Card } from "@/components/ui/card";
 import { CharacterList } from "@/components/dashboard/character-list";
 import { rarityColorMap, rarityBorderMap } from "@/lib/constants";
-import { localImageSrc } from "@/lib/image-src";
 import { cn, formatNumber } from "@/lib/utils";
 
 type Material = {
@@ -133,7 +132,7 @@ export function SearchManager({ characters, materials }: SearchManagerProps) {
                         )}
                       >
                         <Image
-                          src={localImageSrc(character.image)}
+                          src={character.image}
                           alt={character.name}
                           fill
                           className="object-cover"
