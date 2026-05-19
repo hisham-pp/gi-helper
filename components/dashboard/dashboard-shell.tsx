@@ -24,11 +24,7 @@ import { InventorySection } from "@/components/dashboard/inventory/inventory-sec
 import { MaterialsSection } from "@/components/dashboard/sections/materials-section";
 import { aggregateNeededMaterials, simulateCraftingNeed } from "@/lib/crafting";
 import type { DashboardTab } from "@/lib/constants";
-import type {
-  DashboardData,
-  GoalView,
-  MaterialView,
-} from "@/lib/types";
+import type { DashboardData, GoalView, MaterialView } from "@/lib/types";
 
 type DashboardShellProps = {
   initialData: DashboardData;
@@ -384,14 +380,19 @@ export function DashboardShell({
           <DashboardTabs activeTab={activeTab} onChange={setActiveTab} />
           {activeTab === "materials" ? (
             <MaterialsSection
+              categories={categories}
+              categoryFilter={categoryFilter}
               categoryOptions={materialCategoryOptions}
               closeEditor={() => setIsEditorOpen(false)}
               editorForm={editorForm}
               isEditorOpen={isEditorOpen}
               isMaster={role === "master"}
-              materials={data.materials}
+              materials={filteredMaterials}
               parentOptions={parentMaterialOptions}
+              search={search}
+              setCategoryFilter={setCategoryFilter}
               setEditorForm={setEditorForm}
+              setSearch={setSearch}
               onCreate={openEditorForCreate}
               onEdit={openEditorForEdit}
               onSave={handleEditorSave}
