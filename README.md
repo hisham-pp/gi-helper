@@ -147,7 +147,9 @@ app's `start` script. The included [vercel.json](./vercel.json) points Vercel at
 and then builds Next.js.
 
 Make sure the Vercel project has `DATABASE_URL` and `DIRECT_URL` configured for
-the production PostgreSQL database.
+the production PostgreSQL database. Set `SEED_MASTER_PASSWORD` on the first
+deploy if you want the seeded `master` account to use a password other than the
+local fallback.
 
 ## Railway Deployment
 
