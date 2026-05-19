@@ -10,7 +10,6 @@ import { Card } from "@/components/ui/card";
 import AppTextField from "@/components/core/app-textfield";
 import { Select } from "@/components/ui/select";
 import { rarityColorMap } from "@/lib/constants";
-import { localImageSrc } from "@/lib/image-src";
 import { cn } from "@/lib/utils";
 
 type CharacterWithTemplates = {
@@ -113,7 +112,7 @@ export function CharacterList({ characters }: CharacterListProps) {
                 )}
               >
                 <Image
-                  src={localImageSrc(character.image)}
+                  src={character.image}
                   alt={character.name}
                   fill
                   className="object-cover"

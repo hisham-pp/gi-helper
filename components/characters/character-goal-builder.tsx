@@ -24,7 +24,6 @@ import { Card } from "@/components/ui/card";
 import { CharacterAssetsPanel } from "@/components/characters/character-assets-panel";
 import { CharacterDetailsPanel } from "@/components/characters/character-details-panel";
 import { CharacterDetailTabButton } from "@/components/characters/character-detail-tab-button";
-import { localImageSrc } from "@/lib/image-src";
 
 export type CharacterTemplate = {
   id: string;
@@ -293,7 +292,7 @@ export function CharacterGoalBuilder({
           )}
         >
           <Image
-            src={localImageSrc(character.image)}
+            src={character.image}
             alt={character.name}
             fill
             className="object-cover"

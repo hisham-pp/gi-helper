@@ -26,7 +26,6 @@ import { Progress } from "@/components/ui/progress";
 import { Select } from "@/components/ui/select";
 import { rarityBorderMap, rarityColorMap } from "@/lib/constants";
 import type { CookingData, CookingRecipeView } from "@/lib/cooking-data";
-import { localImageSrc } from "@/lib/image-src";
 import { cn, formatNumber } from "@/lib/utils";
 
 type CookingTab = "needed" | "inventory" | "recipes";
@@ -545,10 +544,9 @@ function RecipeCard({
           )}
         >
           <Image
-            src={localImageSrc(recipe.image)}
+            src={recipe.image}
             alt=""
             fill
-            unoptimized
             className="object-contain p-1.5"
             sizes="64px"
           />
