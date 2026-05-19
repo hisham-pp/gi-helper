@@ -1,7 +1,10 @@
 import { NextResponse } from "next/server";
+import { randomUUID } from "node:crypto";
 
 import { getCurrentUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+
+const WRITE_BATCH_SIZE = 500;
 
 type BackupMaterial = {
   id: string;
@@ -64,6 +67,68 @@ function hasImportableData(payload: BackupPayload) {
   );
 }
 
+function normalizeQuantity(value: unknown) {
+  const quantity = Number(value ?? 0);
+
+  if (!Number.isFinite(quantity)) {
+    return 0;
+  }
+
+  return Math.max(0, Math.trunc(quantity));
+}
+
+function uniqueInventoryItems(items: BackupInventoryItem[]) {
+  const byMaterialId = new Map<string, BackupInventoryItem>();
+
+  for (const item of items) {
+    if (!item?.materialId) {
+      continue;
+    }
+
+    byMaterialId.set(item.materialId, item);
+  }
+
+  return [...byMaterialId.values()];
+}
+
+function uniqueGoalMaterials(items: BackupGoalMaterial[]) {
+  const byMaterialId = new Map<string, BackupGoalMaterial>();
+
+  for (const item of items) {
+    if (!item?.materialId) {
+      continue;
+    }
+
+    byMaterialId.set(item.materialId, item);
+  }
+
+  return [...byMaterialId.values()];
+}
+
+function uniqueCookingProgress(items: BackupCookingProgress[]) {
+  const byRecipeId = new Map<string, BackupCookingProgress>();
+
+  for (const item of items) {
+    if (!item?.recipeId) {
+      continue;
+    }
+
+    byRecipeId.set(item.recipeId, item);
+  }
+
+  return [...byRecipeId.values()];
+}
+
+function chunk<T>(items: T[], size: number) {
+  const chunks: T[][] = [];
+
+  for (let index = 0; index < items.length; index += size) {
+    chunks.push(items.slice(index, index + size));
+  }
+
+  return chunks;
+}
+
 export async function POST(request: Request) {
   try {
     const user = await getCurrentUser();
@@ -87,11 +152,13 @@ export async function POST(request: Request) {
       canImportSharedData && Array.isArray(payload.materials)
         ? payload.materials
         : [];
-    const inventory = Array.isArray(payload.inventory) ? payload.inventory : [];
+    const inventory = uniqueInventoryItems(
+      Array.isArray(payload.inventory) ? payload.inventory : [],
+    );
     const goals = Array.isArray(payload.goals) ? payload.goals : [];
-    const cookingProgress = Array.isArray(payload.cookingProgress)
-      ? payload.cookingProgress
-      : [];
+    const cookingProgress = uniqueCookingProgress(
+      Array.isArray(payload.cookingProgress) ? payload.cookingProgress : [],
+    );
 
     const materialIds = [
       ...inventory
@@ -137,147 +204,146 @@ export async function POST(request: Request) {
       }
     }
 
-    await prisma.$transaction(async (tx) => {
-      const existingGoals = await tx.goal.findMany({
-        where: {
-          userId: user.id,
-        },
-        select: {
-          id: true,
-        },
-      });
-
-      for (const material of materials) {
-        if (!material?.id || !material?.name) {
-          continue;
-        }
-
-        await tx.material.upsert({
-          where: { id: material.id },
-          update: {
-            name: material.name,
-            image: material.image ?? "",
-            rarity: Number(material.rarity ?? 1),
-            category: material.category ?? "Unknown",
-            description: material.description ?? "",
-            details: material.details ?? undefined,
-            combinable: Boolean(material.combinable),
-            combineRatio:
-              material.combineRatio === null ||
-              material.combineRatio === undefined
-                ? null
-                : Number(material.combineRatio),
-            parentMaterialId: material.parentMaterialId ?? null,
-          },
-          create: {
-            id: material.id,
-            name: material.name,
-            image: material.image ?? "",
-            rarity: Number(material.rarity ?? 1),
-            category: material.category ?? "Unknown",
-            description: material.description ?? "",
-            details: material.details ?? undefined,
-            combinable: Boolean(material.combinable),
-            combineRatio:
-              material.combineRatio === null ||
-              material.combineRatio === undefined
-                ? null
-                : Number(material.combineRatio),
-            parentMaterialId: material.parentMaterialId ?? null,
-          },
-        });
+    for (const material of materials) {
+      if (!material?.id || !material?.name) {
+        continue;
       }
 
-      if (existingGoals.length > 0) {
-        await tx.goalMaterial.deleteMany({
-          where: {
-            goalId: {
-              in: existingGoals.map((goal) => goal.id),
-            },
-          },
-        });
-      }
-
-      await tx.goal.deleteMany({
-        where: {
-          userId: user.id,
+      await prisma.material.upsert({
+        where: { id: material.id },
+        update: {
+          name: material.name,
+          image: material.image ?? "",
+          rarity: Number(material.rarity ?? 1),
+          category: material.category ?? "Unknown",
+          description: material.description ?? "",
+          details: material.details ?? undefined,
+          combinable: Boolean(material.combinable),
+          combineRatio:
+            material.combineRatio === null || material.combineRatio === undefined
+              ? null
+              : Number(material.combineRatio),
+          parentMaterialId: material.parentMaterialId ?? null,
+        },
+        create: {
+          id: material.id,
+          name: material.name,
+          image: material.image ?? "",
+          rarity: Number(material.rarity ?? 1),
+          category: material.category ?? "Unknown",
+          description: material.description ?? "",
+          details: material.details ?? undefined,
+          combinable: Boolean(material.combinable),
+          combineRatio:
+            material.combineRatio === null || material.combineRatio === undefined
+              ? null
+              : Number(material.combineRatio),
+          parentMaterialId: material.parentMaterialId ?? null,
         },
       });
+    }
 
-      await tx.inventory.deleteMany({
-        where: {
-          userId: user.id,
-        },
-      });
-
-      await tx.cookingProgress.deleteMany({
-        where: {
-          userId: user.id,
-        },
-      });
-
-      if (inventory.length > 0) {
-        await tx.inventory.createMany({
-          data: inventory
-            .filter((item: BackupInventoryItem) => Boolean(item?.materialId))
-            .map((item) => ({
-              userId: user.id,
-              materialId: item.materialId,
-              quantity: Number(item.quantity ?? 0),
-            })),
-        });
-      }
-
-      for (const goal of goals) {
-        if (!goal?.id || !goal?.name) {
-          continue;
-        }
-
-        await tx.goal.create({
-          data: {
-            id: goal.id,
-            userId: user.id,
-            name: goal.name,
-            description: goal.description ?? null,
-            templateId: goal.templateId ?? null,
-            templateType: goal.templateType ?? null,
-            completed: Boolean(goal.completed),
-            category: goal.category ?? null,
-            characterId: goal.characterId ?? null,
-          },
-        });
-
-        const goalMaterials = Array.isArray(goal.goalMaterials)
-          ? goal.goalMaterials
-          : [];
-
-        if (goalMaterials.length > 0) {
-          await tx.goalMaterial.createMany({
-            data: goalMaterials
-              .filter((entry: BackupGoalMaterial) => Boolean(entry?.materialId))
-              .map((entry) => ({
-                id: entry.id,
-                goalId: goal.id,
-                materialId: entry.materialId,
-                required: Number(entry.required ?? 0),
-              })),
-          });
-        }
-      }
-
-      if (cookingProgress.length > 0) {
-        await tx.cookingProgress.createMany({
-          data: cookingProgress
-            .filter((item: BackupCookingProgress) => Boolean(item?.recipeId))
-            .map((item) => ({
-              userId: user.id,
-              recipeId: item.recipeId,
-              completedCount: Number(item.completedCount ?? 0),
-            })),
-          skipDuplicates: true,
-        });
-      }
+    const existingGoals = await prisma.goal.findMany({
+      where: {
+        userId: user.id,
+      },
+      select: {
+        id: true,
+      },
     });
+
+    for (const goalChunk of chunk(existingGoals, WRITE_BATCH_SIZE)) {
+      await prisma.goalMaterial.deleteMany({
+        where: {
+          goalId: {
+            in: goalChunk.map((goal) => goal.id),
+          },
+        },
+      });
+    }
+
+    await prisma.goal.deleteMany({
+      where: {
+        userId: user.id,
+      },
+    });
+
+    await prisma.inventory.deleteMany({
+      where: {
+        userId: user.id,
+      },
+    });
+
+    await prisma.cookingProgress.deleteMany({
+      where: {
+        userId: user.id,
+      },
+    });
+
+    for (const inventoryChunk of chunk(inventory, WRITE_BATCH_SIZE)) {
+      await prisma.inventory.createMany({
+        data: inventoryChunk
+          .filter((item: BackupInventoryItem) => Boolean(item?.materialId))
+          .map((item) => ({
+            userId: user.id,
+            materialId: item.materialId,
+            quantity: normalizeQuantity(item.quantity),
+          })),
+      });
+    }
+
+    for (const goal of goals) {
+      if (!goal?.id || !goal?.name) {
+        continue;
+      }
+
+      const goalId = randomUUID();
+      const goalMaterials = Array.isArray(goal.goalMaterials)
+        ? uniqueGoalMaterials(goal.goalMaterials)
+        : [];
+
+      await prisma.goal.create({
+        data: {
+          id: goalId,
+          userId: user.id,
+          name: goal.name,
+          description: goal.description ?? null,
+          templateId: goal.templateId ?? null,
+          templateType: goal.templateType ?? null,
+          completed: Boolean(goal.completed),
+          category: goal.category ?? null,
+          characterId: goal.characterId ?? null,
+        },
+      });
+
+      for (const goalMaterialChunk of chunk(goalMaterials, WRITE_BATCH_SIZE)) {
+        await prisma.goalMaterial.createMany({
+          data: goalMaterialChunk
+            .filter((item: BackupGoalMaterial) => Boolean(item?.materialId))
+            .map((item) => ({
+              goalId,
+              materialId: item.materialId,
+              required: normalizeQuantity(item.required),
+            })),
+        });
+      }
+    }
+
+    for (const cookingProgressChunk of chunk(
+      cookingProgress,
+      WRITE_BATCH_SIZE,
+    )) {
+      await prisma.cookingProgress.createMany({
+        data: cookingProgressChunk
+          .filter((item: BackupCookingProgress) => Boolean(item?.recipeId))
+          .map((item) => ({
+            userId: user.id,
+            recipeId: item.recipeId,
+            completedCount: normalizeQuantity(item.completedCount),
+          })),
+        skipDuplicates: true,
+      });
+    }
 
     return NextResponse.json({
       success: true,
