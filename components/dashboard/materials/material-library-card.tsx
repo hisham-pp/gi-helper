@@ -38,7 +38,7 @@ export function MaterialLibraryCard({
             alt=""
             fill
             className="object-contain p-2"
-            sizes="64px"
+            sizes="72px"
           />
         </div>
         <div className="min-w-0 flex-1">
