@@ -5,7 +5,7 @@ import { Save } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { TextField } from "@/components/ui/text-field";
+import AppTextField from "@/components/core/app-textfield";
 import { rarityBorderMap, rarityColorMap } from "@/lib/constants";
 import type { MaterialView } from "@/lib/types";
 import { cn, formatNumber } from "@/lib/utils";
@@ -61,7 +61,7 @@ export function MaterialCard({
 
       <div className="mt-4 flex items-center gap-2">
         <div className="flex-1">
-          <TextField
+          <AppTextField
             label={'Quantity'}
             variant="outlined"
             type="number"

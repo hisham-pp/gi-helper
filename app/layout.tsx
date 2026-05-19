@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import { Toaster } from "sonner";
 
 import "@/app/globals.css";
@@ -25,11 +26,13 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={plusJakartaSans.variable}>
-        <ThemeProvider>
-          <ServiceWorkerRegister />
-          {children}
-          <Toaster richColors position="top-right" />
-        </ThemeProvider>
+        <AppRouterCacheProvider>
+          <ThemeProvider>
+            <ServiceWorkerRegister />
+            {children}
+            <Toaster richColors position="top-right" />
+          </ThemeProvider>
+        </AppRouterCacheProvider>
       </body>
     </html>
   );

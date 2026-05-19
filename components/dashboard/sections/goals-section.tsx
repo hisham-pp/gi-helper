@@ -8,7 +8,7 @@ import { GoalCard } from "@/components/dashboard/goals/goal-card";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Select } from "@/components/ui/select";
-import { TextField } from "@/components/ui/text-field";
+import AppTextField from "@/components/core/app-textfield";
 import type { GoalView } from "@/lib/types";
 
 export function GoalsSection({
@@ -68,7 +68,7 @@ export function GoalsSection({
 
       <Card variant="outlined" className="p-4">
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          <TextField
+          <AppTextField
             label="Search Goals"
             variant="outlined"
             className="h-11"
