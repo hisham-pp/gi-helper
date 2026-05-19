@@ -5,7 +5,7 @@ import { Search, Users, Gem, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-import { TextField } from "@/components/ui/text-field";
+import AppTextField from "@/components/core/app-textfield";
 import { Card } from "@/components/ui/card";
 import { CharacterList } from "@/components/dashboard/character-list";
 import { rarityColorMap, rarityBorderMap } from "@/lib/constants";
@@ -50,7 +50,7 @@ export function SearchManager({ characters, materials }: SearchManagerProps) {
   return (
     <div className="space-y-8">
       <div className="max-w-xl">
-        <TextField
+        <AppTextField
           label="Search anything..."
           variant="outlined"
           className="h-14 text-lg"

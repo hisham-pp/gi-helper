@@ -11,7 +11,7 @@ import { MaterialLibraryCard } from "@/components/dashboard/materials/material-l
 import { Panel } from "@/components/dashboard/common/panel";
 import { Button } from "@/components/ui/button";
 import { Select } from "@/components/ui/select";
-import { TextField } from "@/components/ui/text-field";
+import AppTextField from "@/components/core/app-textfield";
 import type { MaterialView } from "@/lib/types";
 
 export function MaterialsSection({
@@ -25,7 +25,6 @@ export function MaterialsSection({
   search,
   setCategoryFilter,
   editorForm,
-  setEditorForm,
   setSearch,
   closeEditor,
   onCreate,
@@ -42,12 +41,11 @@ export function MaterialsSection({
   search: string;
   setCategoryFilter: (category: string) => void;
   editorForm: MaterialEditorForm;
-  setEditorForm: (next: MaterialEditorForm) => void;
   setSearch: (search: string) => void;
   closeEditor: () => void;
   onCreate: () => void;
   onEdit: (material: MaterialView) => void;
-  onSave: () => Promise<void> | void;
+  onSave: (values: MaterialEditorForm) => Promise<void> | void;
 }) {
   const hasFilters = search.length > 0 || categoryFilter !== "All";
 
@@ -71,7 +69,7 @@ export function MaterialsSection({
             {materials.length === 1 ? "" : "s"}
           </p>
           <div className="grid gap-3 sm:grid-cols-[minmax(18rem,1.5fr)_minmax(14rem,1fr)_auto] lg:w-[48rem]">
-            <TextField
+            <AppTextField
               label="Search materials"
               variant="outlined"
               className="h-12"
@@ -127,7 +125,6 @@ export function MaterialsSection({
         open={isEditorOpen}
         close={closeEditor}
         form={editorForm}
-        setForm={setEditorForm}
         onSave={onSave}
         categoryOptions={categoryOptions}
         parentOptions={parentOptions}

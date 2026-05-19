@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import type { Route } from "next";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   Compass,
@@ -44,6 +44,7 @@ import Typography from "@mui/material/Typography";
 import { alpha, styled, useTheme } from "@mui/material/styles";
 
 import { logoutAction } from "@/app/actions";
+import AppTextField from "@/components/core/app-textfield";
 import AppButton from "@/components/core/button";
 import AppIconButton from "@/components/core/icon-button";
 import NavigationButton from "@/components/core/navigation-button";
@@ -123,20 +124,6 @@ export function AppShell({
   }, []);
 
   useEffect(() => {
-    const previousBodyOverflow = document.body.style.overflow;
-    const previousHtmlOverflow = document.documentElement.style.overflow;
-
-    document.body.style.overflow = "hidden";
-    document.documentElement.style.overflow = "hidden";
-
-    return () => {
-      document.body.style.overflow = previousBodyOverflow;
-      document.documentElement.style.overflow = previousHtmlOverflow;
-    };
-  }, []);
-
-  // Close sidebar on navigation
-  useEffect(() => {
     setIsSidebarOpen(false);
   }, [pathname]);
 
@@ -166,6 +153,7 @@ export function AppShell({
   async function handleImportAll(event: ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0];
     if (!file) return;
+
     try {
       const text = await file.text();
       const parsed = JSON.parse(text);
@@ -185,49 +173,19 @@ export function AppShell({
     }
   }
 
-  return (
-    <div className="fixed inset-0 flex min-h-0 overflow-hidden bg-background text-on-background">
-      {/* Mobile Top App Bar */}
-      <header className="fixed left-0 right-0 top-0 z-30 flex h-16 items-center justify-between border-b border-outline-variant bg-surface/80 px-4 backdrop-blur-md lg:hidden">
-        <div className="flex items-center gap-3">
-          <Button
-            variant="text"
-            className="h-10 w-10 p-0"
-            onClick={() => setIsSidebarOpen(true)}
-          >
-            <Menu className="h-6 w-6" />
-          </Button>
-          <div className="flex items-center gap-2">
-            <Target className="h-6 w-6 text-primary" />
-            <span className="font-bold tracking-tight">GMT</span>
-          </div>
-        </div>
-
-        <div className="flex items-center gap-2">
-          <Button
-            variant="text"
-            className="h-10 w-10 rounded-full p-0"
-            onClick={() => setTheme(isDark ? "light" : "dark")}
-          >
-            {isDark ? (
-              <SunMedium className="h-5 w-5" />
-            ) : (
-              <MoonStar className="h-5 w-5" />
-            )}
-          </Button>
-        </div>
-      </header>
-
-      {/* Sidebar / Navigation Drawer */}
-      <aside
-        className={cn(
-          "fixed inset-y-0 left-0 z-50 flex w-72 flex-col border-r border-outline-variant bg-surface transition-transform duration-300 lg:static lg:min-h-0 lg:translate-x-0",
-          isSidebarOpen ? "translate-x-0" : "-translate-x-full",
-        )}
+  const drawer = (
+    <DrawerContent>
+      <Box
+        sx={{
+          alignItems: "center",
+          display: "flex",
+          gap: 1.5,
+          justifyContent: "space-between",
+          minHeight: 72,
+          px: 2.5,
+        }}
       >
-        <Box
-          sx={{ display: "flex", minWidth: 0, alignItems: "center", gap: 1.5 }}
-        >
+        <Box sx={{ alignItems: "center", display: "flex", gap: 1.5 }}>
           <BrandMark>
             <Target size={24} />
           </BrandMark>
@@ -261,10 +219,19 @@ export function AppShell({
         </AppIconButton>
       </Box>
 
-        <nav className="min-h-0 flex-1 space-y-1 overflow-y-auto px-3 py-4">
-          <div className="text-on-surface-variant mb-4 px-3 text-[11px] font-bold uppercase tracking-wider opacity-60">
-            Navigation
-          </div>
+      <Box sx={{ flex: 1, minHeight: 0, overflowY: "auto", px: 1.5, py: 1 }}>
+        <Typography
+          variant="overline"
+          sx={{
+            color: "text.secondary",
+            display: "block",
+            fontWeight: 800,
+            px: 1.5,
+          }}
+        >
+          Navigation
+        </Typography>
+        <List disablePadding sx={{ mt: 1 }}>
           {navItems.map((item) => {
             const active =
               pathname === item.href ||
@@ -318,8 +285,8 @@ export function AppShell({
         <Box sx={{ borderTop: `1px solid ${muiTheme.palette.divider}`, p: 2 }}>
           <Box
             sx={{
-              display: "flex",
               alignItems: "center",
+              display: "flex",
               gap: 1.5,
               px: 1,
               pb: 2,
@@ -375,14 +342,81 @@ export function AppShell({
     </DrawerContent>
   );
 
-      {/* Main Content Area */}
-      <main className="min-h-0 min-w-0 flex-1 overflow-y-auto pt-16 lg:pt-0">
-        <input
-          ref={importInputRef}
-          hidden
-          onChange={handleImportAll}
+  return (
+    <ShellRoot>
+      <AppBar
+        color="default"
+        elevation={0}
+        position="fixed"
+        sx={{
+          borderBottom: `1px solid ${muiTheme.palette.divider}`,
+          display: { lg: "none" },
+        }}
+      >
+        <Toolbar sx={{ justifyContent: "space-between" }}>
+          <Box sx={{ alignItems: "center", display: "flex", gap: 1 }}>
+            <AppIconButton
+              aria-label="Open navigation"
+              onClick={() => setIsSidebarOpen(true)}
+            >
+              <Menu size={22} />
+            </AppIconButton>
+            <Box sx={{ alignItems: "center", display: "flex", gap: 1 }}>
+              <Target size={22} />
+              <Typography variant="subtitle1" sx={{ fontWeight: 800 }}>
+                GMT
+              </Typography>
+            </Box>
+          </Box>
+          <AppIconButton
+            aria-label="Toggle color mode"
+            onClick={() => setTheme(isDark ? "light" : "dark")}
+          >
+            {isDark ? <SunMedium size={20} /> : <MoonStar size={20} />}
+          </AppIconButton>
+        </Toolbar>
+      </AppBar>
+
+      <Box
+        component="nav"
+        sx={{ flexShrink: { lg: 0 }, width: { lg: drawerWidth } }}
+      >
+        <Drawer
+          open={isSidebarOpen}
+          variant="temporary"
+          onClose={() => setIsSidebarOpen(false)}
+          ModalProps={{ keepMounted: true }}
+          sx={{
+            display: { xs: "block", lg: "none" },
+            "& .MuiDrawer-paper": { width: drawerWidth },
+          }}
+        >
+          {drawer}
+        </Drawer>
+        <Drawer
+          open
+          variant="permanent"
+          sx={{
+            display: { xs: "none", lg: "block" },
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+              width: drawerWidth,
+            },
+          }}
+        >
+          {drawer}
+        </Drawer>
+      </Box>
+
+      <Main>
+        <AppTextField
+          inputRef={importInputRef}
           type="file"
-          accept="application/json"
+          onChange={(event) =>
+            handleImportAll(event as ChangeEvent<HTMLInputElement>)
+          }
+          slotProps={{ htmlInput: { accept: "application/json" } }}
+          sx={{ display: "none" }}
         />
         <Box
           sx={{

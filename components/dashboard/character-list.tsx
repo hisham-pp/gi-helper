@@ -7,7 +7,7 @@ import { Search, ChevronRight } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 
 import { Card } from "@/components/ui/card";
-import { TextField } from "@/components/ui/text-field";
+import AppTextField from "@/components/core/app-textfield";
 import { Select } from "@/components/ui/select";
 import { rarityColorMap } from "@/lib/constants";
 import { cn } from "@/lib/utils";
@@ -70,7 +70,7 @@ export function CharacterList({ characters }: CharacterListProps) {
     <div className="space-y-6">
       <header className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div className="max-w-sm flex-1">
-          <TextField
+          <AppTextField
             label="Search Characters"
             variant="outlined"
             className="h-12"
