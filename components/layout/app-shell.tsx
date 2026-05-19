@@ -273,7 +273,9 @@ export function AppShell({
     } catch (error) {
       console.error("Import all failed", error);
       toast.error(
-        error instanceof Error ? error.message : "Unable to import backup file.",
+        error instanceof Error
+          ? error.message
+          : "Unable to import backup file.",
       );
     } finally {
       setIsImporting(false);

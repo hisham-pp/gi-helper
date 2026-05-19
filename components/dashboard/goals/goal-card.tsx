@@ -5,10 +5,13 @@ import { ChevronRight, Sparkles } from "lucide-react";
 
 import { Card } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
+import { isGoalEffectivelyCompleted } from "@/lib/crafting";
 import type { GoalView } from "@/lib/types";
 import { formatNumber } from "@/lib/utils";
 
 export function GoalCard({ goal }: { goal: GoalView }) {
+  const isCompleted = isGoalEffectivelyCompleted(goal);
+
   return (
     <Link href={`/goals/${goal.id}` as any} aria-label={`Open ${goal.name}`}>
       <Card
@@ -22,7 +25,7 @@ export function GoalCard({ goal }: { goal: GoalView }) {
                 <h3 className="text-on-surface truncate font-bold">
                   {goal.name}
                 </h3>
-                {goal.completed && (
+                {isCompleted && (
                   <Sparkles
                     className="h-3.5 w-3.5 text-primary"
                     aria-hidden="true"
@@ -31,12 +34,12 @@ export function GoalCard({ goal }: { goal: GoalView }) {
               </div>
               <div className="mt-1 flex flex-wrap gap-2">
                 {goal.characterName && (
-                  <span className="bg-secondary-container text-secondary-on-container rounded-full px-2 py-0.5 text-[10px] font-bold">
+                  <span className="rounded-full bg-secondary-container px-2 py-0.5 text-[10px] font-bold text-secondary-on-container">
                     {goal.characterName}
                   </span>
                 )}
                 {goal.category && (
-                  <span className="bg-surface-variant text-on-surface-variant rounded-full border border-outline-variant px-2 py-0.5 text-[10px] font-bold capitalize">
+                  <span className="text-on-surface-variant rounded-full border border-outline-variant bg-surface-variant px-2 py-0.5 text-[10px] font-bold capitalize">
                     {goal.category}
                   </span>
                 )}
@@ -55,11 +58,11 @@ export function GoalCard({ goal }: { goal: GoalView }) {
             <div className="flex items-center justify-between text-sm">
               <span className="text-on-surface-variant">Progress</span>
               <span className="font-bold text-primary">
-                {goal.completed ? 100 : goal.progressPercent}%
+                {isCompleted ? 100 : goal.progressPercent}%
               </span>
             </div>
             <Progress
-              value={goal.completed ? 100 : goal.progressPercent}
+              value={isCompleted ? 100 : goal.progressPercent}
               className="h-2"
             />
           </div>
