@@ -39,6 +39,7 @@ import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
+import LinearProgress from "@mui/material/LinearProgress";
 import List from "@mui/material/List";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -51,6 +52,33 @@ import AppIconButton from "@/components/core/icon-button";
 import NavigationButton from "@/components/core/navigation-button";
 
 const drawerWidth = 288;
+
+type ImportProgress = {
+  label: string;
+  completed: number;
+  total: number;
+};
+
+type ImportStreamEvent =
+  | {
+      type: "progress";
+      label: string;
+      completed: number;
+      total: number;
+    }
+  | {
+      type: "complete";
+      imported: {
+        materials: number;
+        inventory: number;
+        goals: number;
+        cookingProgress: number;
+      };
+    }
+  | {
+      type: "error";
+      error: string;
+    };
 
 const navItems = [
   { href: "/", label: "Dashboard", icon: Home },
@@ -119,6 +147,10 @@ export function AppShell({
   const { resolvedTheme, setTheme } = useNextTheme();
   const [mounted, setMounted] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isImporting, setIsImporting] = useState(false);
+  const [importProgress, setImportProgress] = useState<ImportProgress | null>(
+    null,
+  );
   const importInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -160,8 +192,15 @@ export function AppShell({
   async function handleImportAll(event: ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0];
     if (!file) return;
+    if (isImporting) return;
 
     try {
+      setIsImporting(true);
+      setImportProgress({
+        label: "Reading backup file...",
+        completed: 0,
+        total: 1,
+      });
       const text = await file.text();
       const parsed = JSON.parse(text);
       const response = await fetch("/api/import/all", {
@@ -173,7 +212,63 @@ export function AppShell({
         const payload = await response.json().catch(() => null);
         throw new Error(payload?.error ?? "Import failed");
       }
-      toast.success("Backup imported.");
+
+      if (!response.body) {
+        throw new Error("Import progress stream was not available.");
+      }
+
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+      let buffer = "";
+      let importCompleted = false;
+
+      while (true) {
+        const { done, value } = await reader.read();
+        buffer += decoder.decode(value, { stream: !done });
+        const lines = buffer.split("\n");
+        buffer = lines.pop() ?? "";
+
+        for (const line of lines) {
+          if (!line.trim()) {
+            continue;
+          }
+
+          const event = JSON.parse(line) as ImportStreamEvent;
+
+          if (event.type === "progress") {
+            setImportProgress({
+              label: event.label,
+              completed: event.completed,
+              total: event.total,
+            });
+          }
+
+          if (event.type === "error") {
+            throw new Error(event.error);
+          }
+
+          if (event.type === "complete") {
+            importCompleted = true;
+            setImportProgress({
+              label: "Import complete.",
+              completed: 1,
+              total: 1,
+            });
+            toast.success(
+              `Backup imported: ${event.imported.inventory} inventory items, ${event.imported.goals} goals.`,
+            );
+          }
+        }
+
+        if (done) {
+          break;
+        }
+      }
+
+      if (!importCompleted) {
+        throw new Error("Import stopped before it finished.");
+      }
+
       window.location.reload();
     } catch (error) {
       console.error("Import all failed", error);
@@ -181,6 +276,8 @@ export function AppShell({
         error instanceof Error ? error.message : "Unable to import backup file.",
       );
     } finally {
+      setIsImporting(false);
+      setImportProgress(null);
       event.target.value = "";
     }
   }
@@ -283,10 +380,55 @@ export function AppShell({
           />
           <NavigationButton
             icon={<Upload size={20} />}
-            label={userRole === "master" ? "Import Backup" : "Import My Data"}
+            label={
+              isImporting
+                ? "Importing..."
+                : userRole === "master"
+                  ? "Import Backup"
+                  : "Import My Data"
+            }
+            disabled={isImporting}
             onClick={() => importInputRef.current?.click()}
           />
         </List>
+        {importProgress && (
+          <Box sx={{ px: 1.5, py: 1 }}>
+            <Box
+              sx={{
+                alignItems: "center",
+                display: "flex",
+                gap: 1,
+                justifyContent: "space-between",
+              }}
+            >
+              <Typography
+                variant="caption"
+                sx={{ color: "text.secondary", fontWeight: 800 }}
+              >
+                {importProgress.label}
+              </Typography>
+              <Typography
+                variant="caption"
+                sx={{ color: "text.secondary", fontWeight: 800 }}
+              >
+                {Math.round(
+                  (importProgress.completed /
+                    Math.max(1, importProgress.total)) *
+                    100,
+                )}
+                %
+              </Typography>
+            </Box>
+            <LinearProgress
+              value={
+                (importProgress.completed / Math.max(1, importProgress.total)) *
+                100
+              }
+              variant="determinate"
+              sx={{ mt: 1, borderRadius: 999 }}
+            />
+          </Box>
+        )}
       </Box>
 
       {userLabel && (
