@@ -6,7 +6,7 @@ import { EmptyState } from "@/components/dashboard/common/empty-state";
 import { NeedCard } from "@/components/dashboard/inventory/need-card";
 import { Card } from "@/components/ui/card";
 import { Select } from "@/components/ui/select";
-import { TextField } from "@/components/ui/text-field";
+import AppTextField from "@/components/core/app-textfield";
 import type { GoalMaterialView } from "@/lib/types";
 
 export function ShoppingListPanel({
@@ -41,7 +41,7 @@ export function ShoppingListPanel({
             </p>
           </div>
           <div className="grid gap-3 md:grid-cols-[minmax(16rem,1.4fr)_minmax(12rem,1fr)_minmax(12rem,1fr)] xl:w-[46rem]">
-            <TextField
+            <AppTextField
               label="Search"
               variant="outlined"
               className="h-12"

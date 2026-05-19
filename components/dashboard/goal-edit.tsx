@@ -3,7 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useTransition, useState } from "react";
+import { useTransition } from "react";
+import { Controller, useForm } from "react-hook-form";
 import { ArrowLeft, Trash2, Target, CheckCircle2 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -18,7 +19,7 @@ import type { GoalView, MaterialView } from "@/lib/types";
 import { cn, formatNumber } from "@/lib/utils";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { TextField } from "@/components/ui/text-field";
+import AppTextField from "@/components/core/app-textfield";
 import { Select } from "@/components/ui/select";
 import { Progress } from "@/components/ui/progress";
 import { Panel } from "@/components/ui/panel";
@@ -28,35 +29,46 @@ type GoalEditProps = {
   materials: MaterialView[];
 };
 
+type GoalMaterialFormValues = {
+  materialId: string;
+  required: number;
+};
+
 export function GoalEdit({ goal, materials }: GoalEditProps) {
   const router = useRouter();
-  const [selectedMaterialId, setSelectedMaterialId] = useState(
-    materials[0]?.id ?? "",
-  );
-  const [goalMaterialRequired, setGoalMaterialRequired] = useState(1);
   const [isPending, startTransition] = useTransition();
+  const {
+    control,
+    formState: { errors },
+    handleSubmit,
+    register,
+    reset,
+    setError,
+  } = useForm<GoalMaterialFormValues>({
+    defaultValues: {
+      materialId: materials[0]?.id ?? "",
+      required: 1,
+    },
+  });
 
-  function handleSaveGoalMaterial() {
-    if (!goal.id || !selectedMaterialId) {
-      toast.error("Select a material.");
-      return;
-    }
-
+  function handleSaveGoalMaterial(values: GoalMaterialFormValues) {
     startTransition(async () => {
       const result = await saveGoalMaterialAction({
         goalId: goal.id,
-        materialId: selectedMaterialId,
-        required: goalMaterialRequired,
+        materialId: values.materialId,
+        required: values.required,
       });
 
       if (!result.success || !result.data) {
+        setError("root", {
+          message: result.error ?? "Unable to save requirement.",
+        });
         toast.error(result.error ?? "Unable to save requirement.");
         return;
       }
 
       toast.success("Requirement added.");
-      setSelectedMaterialId("");
-      setGoalMaterialRequired(1);
+      reset({ materialId: "", required: 1 });
       router.refresh();
     });
   }
@@ -156,34 +168,62 @@ export function GoalEdit({ goal, materials }: GoalEditProps) {
           title="Add Requirement"
           description="Attach materials to this goal."
         >
-          <div className="mt-6 space-y-6">
-            <Select
-              label="Select Material"
-              variant="outlined"
-              value={selectedMaterialId}
-              onChange={setSelectedMaterialId}
-              options={materials.map((material) => ({
-                label: material.name,
-                value: material.id,
-              }))}
-              isDisabled={goal.completed}
+          <form
+            className="mt-6 space-y-6"
+            onSubmit={handleSubmit(handleSaveGoalMaterial)}
+          >
+            <Controller
+              control={control}
+              name="materialId"
+              rules={{ required: "Select a material." }}
+              render={({ field }) => (
+                <Select
+                  label="Select Material"
+                  variant="outlined"
+                  value={field.value}
+                  onChange={field.onChange}
+                  options={materials.map((material) => ({
+                    label: material.name,
+                    value: material.id,
+                  }))}
+                  isDisabled={goal.completed}
+                />
+              )}
             />
-            <TextField
+            {errors.materialId?.message && (
+              <p className="-mt-4 text-sm font-medium text-error">
+                {errors.materialId.message}
+              </p>
+            )}
+            <AppTextField
               label="Required Quantity"
               variant="outlined"
               type="number"
               min={0}
-              value={goalMaterialRequired}
-              onChange={(event) =>
-                setGoalMaterialRequired(Number(event.target.value))
+              error={Boolean(errors.required)}
+              helperText={
+                errors.required?.message ??
+                "How many of this material do you need?"
               }
-              helperText="How many of this material do you need?"
               disabled={goal.completed}
+              {...register("required", {
+                min: {
+                  value: 0,
+                  message: "Required quantity cannot be negative.",
+                },
+                required: "Required quantity is required.",
+                valueAsNumber: true,
+              })}
             />
+            {errors.root?.message && (
+              <p className="text-sm font-medium text-error">
+                {errors.root.message}
+              </p>
+            )}
             <Button
               className="w-full"
               variant="tonal"
-              onClick={handleSaveGoalMaterial}
+              type="submit"
               disabled={isPending || goal.completed}
             >
               {isPending
@@ -192,7 +232,7 @@ export function GoalEdit({ goal, materials }: GoalEditProps) {
                   ? "Goal Completed"
                   : "Add Requirement"}
             </Button>
-          </div>
+          </form>
         </Panel>
 
         <div className="space-y-6">

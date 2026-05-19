@@ -3,35 +3,46 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
+import { useForm } from "react-hook-form";
 import { ArrowLeft } from "lucide-react";
 import { toast } from "sonner";
 
 import { createGoalAction } from "@/app/actions";
-import { TextField } from "@/components/ui/text-field";
-import { Textarea } from "@/components/ui/textarea";
+import AppTextField from "@/components/core/app-textfield";
 import { Button } from "@/components/ui/button";
 import { Panel } from "@/components/ui/panel";
-import { useState } from "react";
+
+type CreateGoalFormValues = {
+  name: string;
+  description: string;
+};
 
 export function CreateGoal() {
   const router = useRouter();
-  const [goalName, setGoalName] = useState("");
-  const [goalDescription, setGoalDescription] = useState("");
   const [isPending, startTransition] = useTransition();
+  const {
+    formState: { errors },
+    handleSubmit,
+    register,
+    setError,
+  } = useForm<CreateGoalFormValues>({
+    defaultValues: {
+      description: "",
+      name: "",
+    },
+  });
 
-  function handleCreateGoal() {
-    if (!goalName.trim()) {
-      toast.error("Goal name is required.");
-      return;
-    }
-
+  function handleCreateGoal(values: CreateGoalFormValues) {
     startTransition(async () => {
       const result = await createGoalAction({
-        name: goalName,
-        description: goalDescription,
+        name: values.name,
+        description: values.description,
       });
 
       if (!result.success || !result.data) {
+        setError("root", {
+          message: result.error ?? "Unable to create goal.",
+        });
         toast.error(result.error ?? "Unable to create goal.");
         return;
       }
@@ -69,36 +80,64 @@ export function CreateGoal() {
           title="Goal Details"
           description="Basic information about your farming goal."
         >
-          <div className="mt-6 space-y-6">
-            <TextField
+          <form
+            className="mt-6 space-y-6"
+            onSubmit={handleSubmit(handleCreateGoal)}
+          >
+            <AppTextField
               label="Goal name"
               variant="outlined"
-              value={goalName}
-              onChange={(event) => setGoalName(event.target.value)}
-              helperText="Give your farming goal a memorable name (e.g., 'Ascend Nahida to 90')"
+              error={Boolean(errors.name)}
+              helperText={
+                errors.name?.message ??
+                "Give your farming goal a memorable name (e.g., 'Ascend Nahida to 90')"
+              }
+              {...register("name", {
+                maxLength: {
+                  value: 60,
+                  message: "Goal name must be 60 characters or fewer.",
+                },
+                minLength: {
+                  value: 2,
+                  message: "Goal name must be at least 2 characters.",
+                },
+                required: "Goal name is required.",
+              })}
             />
-            <Textarea
+            <AppTextField
               label="Description (optional)"
               variant="outlined"
-              value={goalDescription}
-              onChange={(event) => setGoalDescription(event.target.value)}
+              multiline
+              error={Boolean(errors.description)}
+              helperText={errors.description?.message}
               rows={4}
+              {...register("description", {
+                maxLength: {
+                  value: 180,
+                  message: "Description must be 180 characters or fewer.",
+                },
+              })}
             />
+            {errors.root?.message && (
+              <p className="text-sm font-medium text-error">
+                {errors.root.message}
+              </p>
+            )}
             <div className="flex gap-3">
               <Button
                 className="flex-1"
-                onClick={handleCreateGoal}
                 disabled={isPending}
+                type="submit"
               >
                 {isPending ? "Creating..." : "Create Goal"}
               </Button>
               <Link href="/goals" className="flex-1">
-                <Button variant="outlined" className="w-full">
+                <Button type="button" variant="outlined" className="w-full">
                   Cancel
                 </Button>
               </Link>
             </div>
-          </div>
+          </form>
         </Panel>
       </div>
     </div>
