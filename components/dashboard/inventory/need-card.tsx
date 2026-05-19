@@ -38,6 +38,10 @@ export function NeedCard({ item }: { item: GoalMaterialView }) {
           <span className="sr-only">Remaining: </span>
           {formatNumber(item.remaining)}
         </p>
+        <p className="text-on-surface-variant text-xs font-medium">
+          {formatNumber(item.ownedNeeded ?? item.allocated)} /{" "}
+          {formatNumber(item.required)} owned
+        </p>
       </div>
     </Card>
   );
