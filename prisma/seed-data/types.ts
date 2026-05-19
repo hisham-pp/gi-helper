@@ -6,6 +6,12 @@ export type SeedCharacter = {
   element: string;
   weaponType: string;
   region: string;
+  details?: Record<string, unknown>;
+  assets?: Array<{
+    key: string;
+    label: string;
+    path: string;
+  }>;
 };
 
 export type SeedCharacterGoalTemplate = {
@@ -47,6 +53,7 @@ export type SeedMaterial = {
   rarity: number;
   category: string;
   description: string;
+  details?: Record<string, unknown>;
   combinable: boolean;
   combineRatio: number | null;
   parentMaterialId: string | null;

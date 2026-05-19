@@ -16,6 +16,18 @@ export default async function CharacterDetailPage({
     where: { id: characterId },
     include: {
       templates: {
+        include: {
+          materials: {
+            include: {
+              material: true,
+            },
+            orderBy: {
+              material: {
+                name: "asc",
+              },
+            },
+          },
+        },
         orderBy: [{ category: "asc" }, { sortOrder: "asc" }],
       },
     },
@@ -25,5 +37,5 @@ export default async function CharacterDetailPage({
     notFound();
   }
 
-  return <CharacterGoalBuilder character={character} />;
+  return <CharacterGoalBuilder character={character as any} />;
 }

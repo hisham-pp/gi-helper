@@ -16,10 +16,22 @@ import {
 
 type CharacterData = {
   name: string;
+  title?: string;
   vision: string;
   weapon: string;
+  gender?: string;
   rarity: number;
   nation?: string | null;
+  affiliation?: string;
+  specialDish?: string;
+  release?: string;
+  constellation?: string;
+  birthday?: string;
+  description?: string;
+  skillTalents?: unknown[];
+  passiveTalents?: unknown[];
+  constellations?: unknown[];
+  outfits?: unknown[];
   ascension_materials?: Record<
     string,
     Array<{
@@ -47,6 +59,12 @@ export type CharacterRecord = {
   element: string;
   weaponType: string;
   region: string;
+  details?: Record<string, unknown>;
+  assets?: Array<{
+    key: string;
+    label: string;
+    path: string;
+  }>;
 };
 
 export type CharacterGoalTemplateRecord = {
@@ -72,8 +90,20 @@ const sourceCharacterSchema = z
     name: z.string().trim().min(1),
     vision: z.string().trim().min(1),
     weapon: z.string().trim().min(1),
+    title: z.string().optional(),
+    gender: z.string().optional(),
     rarity: z.number().int().min(4).max(5),
     nation: z.string().trim().min(1).nullable().optional(),
+    affiliation: z.string().optional(),
+    specialDish: z.string().optional(),
+    release: z.string().optional(),
+    constellation: z.string().optional(),
+    birthday: z.string().optional(),
+    description: z.string().optional(),
+    skillTalents: z.array(z.unknown()).optional(),
+    passiveTalents: z.array(z.unknown()).optional(),
+    constellations: z.array(z.unknown()).optional(),
+    outfits: z.array(z.unknown()).optional(),
     ascension_materials: z
       .record(
         z.string(),
@@ -111,6 +141,16 @@ const characterRecordSchema = z
     element: z.string().trim().min(1),
     weaponType: z.string().trim().min(1),
     region: z.string().trim().min(1),
+    details: z.record(z.string(), z.unknown()).optional(),
+    assets: z
+      .array(
+        z.object({
+          key: z.string(),
+          label: z.string(),
+          path: imagePathSchema,
+        }),
+      )
+      .optional(),
   })
   .strict();
 
@@ -188,11 +228,103 @@ export function buildCharacters(): CharacterRecord[] {
       element: characterData.vision,
       weaponType: characterData.weapon,
       region,
+      details: buildCharacterDetails(characterData),
+      assets: buildCharacterAssets(folderName),
     };
   });
 
   validateGeneratedCharacters(characters);
   return characters;
+}
+
+function buildCharacterDetails(
+  characterData: CharacterData,
+): Record<string, unknown> {
+  return {
+    title: characterData.title ?? null,
+    gender: characterData.gender ?? null,
+    affiliation: characterData.affiliation ?? null,
+    specialDish: characterData.specialDish ?? null,
+    release: characterData.release ?? null,
+    constellation: characterData.constellation ?? null,
+    birthday: characterData.birthday ?? null,
+    description: characterData.description ?? null,
+    skillTalents: summarizeNamedEntries(characterData.skillTalents ?? []),
+    passiveTalents: summarizeNamedEntries(characterData.passiveTalents ?? []),
+    constellations: summarizeNamedEntries(characterData.constellations ?? []),
+    outfits: summarizeNamedEntries(characterData.outfits ?? []),
+  };
+}
+
+function summarizeNamedEntries(entries: unknown[]) {
+  return entries
+    .filter((entry): entry is Record<string, unknown> =>
+      Boolean(entry && typeof entry === "object"),
+    )
+    .map((entry) => ({
+      name: typeof entry.name === "string" ? entry.name : null,
+      unlock: typeof entry.unlock === "string" ? entry.unlock : null,
+      description:
+        typeof entry.description === "string" ? entry.description : null,
+      level: typeof entry.level === "number" ? entry.level : null,
+      type: typeof entry.type === "string" ? entry.type : null,
+    }));
+}
+
+function buildCharacterAssets(folderName: string): CharacterRecord["assets"] {
+  const assetOrder: Array<[string, string]> = [
+    ["card", "Card"],
+    ["portrait", "Portrait"],
+    ["icon-big", "Icon"],
+    ["icon-side", "Side Icon"],
+    ["gacha-card", "Gacha Card"],
+    ["gacha-splash", "Gacha Splash"],
+    ["namecard-background", "Namecard"],
+    ["constellation", "Constellation"],
+    ["constellation-shape", "Constellation Shape"],
+    ["talent-na", "Normal Attack"],
+    ["talent-skill", "Skill"],
+    ["talent-burst", "Burst"],
+    ["talent-passive-0", "Passive 1"],
+    ["talent-passive-1", "Passive 2"],
+    ["talent-passive-2", "Passive 3"],
+  ];
+
+  const base = path.join(
+    repoRoot,
+    "public",
+    "images",
+    "characters",
+    folderName,
+  );
+  const existingFiles = fs.existsSync(base) ? fs.readdirSync(base) : [];
+  const assets = assetOrder
+    .filter(([key]) => existingFiles.includes(key))
+    .map(([key, label]) => ({
+      key,
+      label,
+      path: toImagePath("characters", folderName, key),
+    }));
+
+  for (const file of existingFiles.filter((entry) =>
+    entry.startsWith("outfit-"),
+  )) {
+    assets.push({
+      key: file,
+      label: titleFromAssetKey(file),
+      path: toImagePath("characters", folderName, file),
+    });
+  }
+
+  return assets;
+}
+
+function titleFromAssetKey(key: string): string {
+  return key
+    .split("-")
+    .filter(Boolean)
+    .map((part) => `${part[0]?.toUpperCase() ?? ""}${part.slice(1)}`)
+    .join(" ");
 }
 
 export function buildCharacterGoalTemplates(): CharacterGoalTemplateRecord[] {
