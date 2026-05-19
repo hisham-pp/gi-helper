@@ -117,7 +117,7 @@ export function GoalTemplates({ characters, weapons }: GoalTemplatesProps) {
                   )}
                 >
                   <Image
-                    src={character.image}
+                    src={`/api/character-image/${character.id}`}
                     alt={character.name}
                     fill
                     className="object-cover"
