@@ -9,6 +9,7 @@ import {
   weaponGoalTemplates,
 } from "@/prisma/seed-data";
 import type { SeedMaterial } from "@/prisma/seed-data";
+import { getCookingIngredientSeeds } from "@/lib/cooking-data";
 
 const prisma = new PrismaClient();
 
@@ -39,7 +40,7 @@ async function main() {
   // Match materials by name so re-seeding stays idempotent when seed ids change.
   const materialIdBySeedId = new Map<string, string>();
 
-  for (const material of seedMaterials) {
+  for (const material of [...seedMaterials, ...getCookingIngredientSeeds()]) {
     const data = materialSeedData(material);
     const saved = await prisma.material.upsert({
       where: { name: material.name },

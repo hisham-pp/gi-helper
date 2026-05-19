@@ -35,6 +35,16 @@ export const completeGoalSchema = z.object({
   goalId: z.string().min(1),
 });
 
+export const cookingProgressSchema = z.object({
+  recipeId: z.string().min(1),
+  completedCount: z.coerce.number().int().min(0).max(999999),
+});
+
+export const cookRecipeSchema = z.object({
+  recipeId: z.string().min(1),
+  quantity: z.coerce.number().int().min(1).max(999),
+});
+
 export const deleteGoalMaterialSchema = z.object({
   goalMaterialId: z.string().min(1),
 });
@@ -45,6 +55,7 @@ export const createGoalsFromTemplatesSchema = z.object({
 });
 
 export const materialCategories = [
+  "Cooking Ingredient",
   "Elite Drop",
   "Enemy Drop",
   "Local Specialty",

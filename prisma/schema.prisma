@@ -33,12 +33,13 @@ model Material {
 }
 
 model User {
-  id           String      @id @default(cuid())
-  username     String      @unique
+  id           String            @id @default(cuid())
+  username     String            @unique
   passwordHash String
-  createdAt    DateTime    @default(now())
-  updatedAt    DateTime    @updatedAt
-  role         String      @default("user")
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+  role         String            @default("user")
+  cooking      CookingProgress[]
   goals        Goal[]
   inventory    Inventory[]
   sessions     Session[]
@@ -208,4 +209,18 @@ model WeaponGoalTemplateMaterial {
   @@unique([templateId, materialId])
   @@index([materialId])
   @@map("weapon_goal_template_materials")
+}
+
+model CookingProgress {
+  id             String   @id @default(cuid())
+  userId         String
+  recipeId       String
+  completedCount Int      @default(0)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, recipeId])
+  @@index([recipeId])
+  @@map("cooking_progress")
 }

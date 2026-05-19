@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   Compass,
+  CookingPot,
   Download,
   Gem,
   Home,
@@ -55,6 +56,7 @@ const navItems = [
   { href: "/", label: "Dashboard", icon: Home },
   { href: "/search", label: "Search", icon: Search },
   { href: "/inventory", label: "Inventory", icon: PackageSearch },
+  { href: "/cooking", label: "Cooking", icon: CookingPot },
   { href: "/goals", label: "Goals", icon: Target },
   { href: "/materials", label: "Materials", icon: Gem },
   { href: "/characters", label: "Characters", icon: Users },
