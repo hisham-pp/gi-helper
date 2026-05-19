@@ -18,6 +18,7 @@ function materialSeedData(material: SeedMaterial) {
     rarity: material.rarity,
     category: material.category,
     description: material.description,
+    details: material.details ?? {},
     combinable: material.combinable,
     combineRatio: material.combineRatio,
     parentMaterialId: null,
@@ -42,12 +43,12 @@ async function main() {
     const data = materialSeedData(material);
     const saved = await prisma.material.upsert({
       where: { name: material.name },
-      update: data,
+      update: data as any,
       create: {
         id: material.id,
         name: material.name,
         ...data,
-      },
+      } as any,
     });
     materialIdBySeedId.set(material.id, saved.id);
   }
@@ -73,17 +74,21 @@ async function main() {
 
   // Seed characters
   for (const character of characters) {
+    const characterData = {
+      name: character.name,
+      image: character.image,
+      rarity: character.rarity,
+      element: character.element,
+      weaponType: character.weaponType,
+      region: character.region,
+      details: character.details ?? {},
+      assets: character.assets ?? [],
+    };
+
     await prisma.character.upsert({
       where: { id: character.id },
-      update: {
-        name: character.name,
-        image: character.image,
-        rarity: character.rarity,
-        element: character.element,
-        weaponType: character.weaponType,
-        region: character.region,
-      },
-      create: character,
+      update: characterData as any,
+      create: { ...character, ...characterData } as any,
     });
   }
 
