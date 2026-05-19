@@ -10,6 +10,7 @@ type BackupMaterial = {
   rarity?: number;
   category?: string;
   description?: string;
+  details?: unknown;
   combinable?: boolean;
   combineRatio?: number | null;
   parentMaterialId?: string | null;
@@ -30,6 +31,11 @@ type BackupGoal = {
   id: string;
   name: string;
   description?: string | null;
+  templateId?: string | null;
+  templateType?: string | null;
+  completed?: boolean;
+  category?: string | null;
+  characterId?: string | null;
   goalMaterials?: BackupGoalMaterial[];
 };
 
@@ -45,6 +51,19 @@ type BackupPayload = {
   cookingProgress?: BackupCookingProgress[];
 };
 
+function isBackupPayload(value: unknown): value is BackupPayload {
+  return Boolean(value) && typeof value === "object" && !Array.isArray(value);
+}
+
+function hasImportableData(payload: BackupPayload) {
+  return (
+    Array.isArray(payload.materials) ||
+    Array.isArray(payload.inventory) ||
+    Array.isArray(payload.goals) ||
+    Array.isArray(payload.cookingProgress)
+  );
+}
+
 export async function POST(request: Request) {
   try {
     const user = await getCurrentUser();
@@ -54,13 +73,69 @@ export async function POST(request: Request) {
     }
 
     const body = await request.json();
+
+    if (!isBackupPayload(body) || !hasImportableData(body)) {
+      return NextResponse.json(
+        { error: "Invalid backup file. No importable data was found." },
+        { status: 400 },
+      );
+    }
+
     const payload = body as BackupPayload;
-    const materials = Array.isArray(payload.materials) ? payload.materials : [];
+    const canImportSharedData = user.role === "master";
+    const materials =
+      canImportSharedData && Array.isArray(payload.materials)
+        ? payload.materials
+        : [];
     const inventory = Array.isArray(payload.inventory) ? payload.inventory : [];
     const goals = Array.isArray(payload.goals) ? payload.goals : [];
     const cookingProgress = Array.isArray(payload.cookingProgress)
       ? payload.cookingProgress
       : [];
+
+    const materialIds = [
+      ...inventory
+        .filter((item) => Boolean(item?.materialId))
+        .map((item) => item.materialId),
+      ...goals.flatMap((goal) =>
+        Array.isArray(goal?.goalMaterials)
+          ? goal.goalMaterials
+              .filter((entry) => Boolean(entry?.materialId))
+              .map((entry) => entry.materialId)
+          : [],
+      ),
+    ];
+
+    if (materialIds.length > 0) {
+      const uniqueMaterialIds = [...new Set(materialIds)];
+      const existingMaterials = await prisma.material.findMany({
+        where: {
+          id: {
+            in: uniqueMaterialIds,
+          },
+        },
+        select: {
+          id: true,
+        },
+      });
+      const existingMaterialIds = new Set(
+        existingMaterials.map((material) => material.id),
+      );
+      const missingMaterialIds = uniqueMaterialIds.filter(
+        (materialId) => !existingMaterialIds.has(materialId),
+      );
+
+      if (missingMaterialIds.length > 0 && !canImportSharedData) {
+        return NextResponse.json(
+          {
+            error:
+              "This backup references materials that do not exist in this app.",
+            missingMaterialIds,
+          },
+          { status: 400 },
+        );
+      }
+    }
 
     await prisma.$transaction(async (tx) => {
       const existingGoals = await tx.goal.findMany({
@@ -85,6 +160,7 @@ export async function POST(request: Request) {
             rarity: Number(material.rarity ?? 1),
             category: material.category ?? "Unknown",
             description: material.description ?? "",
+            details: material.details ?? undefined,
             combinable: Boolean(material.combinable),
             combineRatio:
               material.combineRatio === null ||
@@ -100,6 +176,7 @@ export async function POST(request: Request) {
             rarity: Number(material.rarity ?? 1),
             category: material.category ?? "Unknown",
             description: material.description ?? "",
+            details: material.details ?? undefined,
             combinable: Boolean(material.combinable),
             combineRatio:
               material.combineRatio === null ||
@@ -162,6 +239,11 @@ export async function POST(request: Request) {
             userId: user.id,
             name: goal.name,
             description: goal.description ?? null,
+            templateId: goal.templateId ?? null,
+            templateType: goal.templateType ?? null,
+            completed: Boolean(goal.completed),
+            category: goal.category ?? null,
+            characterId: goal.characterId ?? null,
           },
         });
 
@@ -199,6 +281,12 @@ export async function POST(request: Request) {
 
     return NextResponse.json({
       success: true,
+      imported: {
+        materials: materials.length,
+        inventory: inventory.length,
+        goals: goals.length,
+        cookingProgress: cookingProgress.length,
+      },
     });
   } catch (error) {
     console.error("Import all failed", error);

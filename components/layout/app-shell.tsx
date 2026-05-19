@@ -134,7 +134,10 @@ export function AppShell({
   async function handleExportAll() {
     try {
       const response = await fetch("/api/export/all");
-      if (!response.ok) throw new Error("Export failed");
+      if (!response.ok) {
+        const payload = await response.json().catch(() => null);
+        throw new Error(payload?.error ?? "Export failed");
+      }
       const payload = await response.json();
       const blob = new Blob([JSON.stringify(payload, null, 2)], {
         type: "application/json",
@@ -145,10 +148,12 @@ export function AppShell({
       anchor.download = "genshin-material-tracker-all-data.json";
       anchor.click();
       URL.revokeObjectURL(url);
-      toast.success("All data exported.");
+      toast.success("Backup exported.");
     } catch (error) {
       console.error("Export all failed", error);
-      toast.error("Unable to export all data.");
+      toast.error(
+        error instanceof Error ? error.message : "Unable to export backup.",
+      );
     }
   }
 
@@ -164,12 +169,17 @@ export function AppShell({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(parsed),
       });
-      if (!response.ok) throw new Error("Import failed");
-      toast.success("All data imported.");
+      if (!response.ok) {
+        const payload = await response.json().catch(() => null);
+        throw new Error(payload?.error ?? "Import failed");
+      }
+      toast.success("Backup imported.");
       window.location.reload();
     } catch (error) {
       console.error("Import all failed", error);
-      toast.error("Unable to import backup file.");
+      toast.error(
+        error instanceof Error ? error.message : "Unable to import backup file.",
+      );
     } finally {
       event.target.value = "";
     }
@@ -253,34 +263,30 @@ export function AppShell({
           })}
         </List>
 
-        {userRole === "master" && (
-          <>
-            <Divider sx={{ my: 2.5 }} />
-            <Typography
-              variant="overline"
-              sx={{
-                color: "text.secondary",
-                display: "block",
-                fontWeight: 800,
-                px: 1.5,
-              }}
-            >
-              Tools & Actions
-            </Typography>
-            <List disablePadding sx={{ mt: 1 }}>
-              <NavigationButton
-                icon={<Download size={20} />}
-                label="Export All Data"
-                onClick={handleExportAll}
-              />
-              <NavigationButton
-                icon={<Upload size={20} />}
-                label="Import Backup"
-                onClick={() => importInputRef.current?.click()}
-              />
-            </List>
-          </>
-        )}
+        <Divider sx={{ my: 2.5 }} />
+        <Typography
+          variant="overline"
+          sx={{
+            color: "text.secondary",
+            display: "block",
+            fontWeight: 800,
+            px: 1.5,
+          }}
+        >
+          Tools & Actions
+        </Typography>
+        <List disablePadding sx={{ mt: 1 }}>
+          <NavigationButton
+            icon={<Download size={20} />}
+            label={userRole === "master" ? "Export All Data" : "Export My Data"}
+            onClick={handleExportAll}
+          />
+          <NavigationButton
+            icon={<Upload size={20} />}
+            label={userRole === "master" ? "Import Backup" : "Import My Data"}
+            onClick={() => importInputRef.current?.click()}
+          />
+        </List>
       </Box>
 
       {userLabel && (
