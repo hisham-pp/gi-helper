@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
+import { localImageSrc } from "@/lib/image-src";
 import type React from "react";
 
 export default function IconGrid({
@@ -25,7 +26,7 @@ export default function IconGrid({
         <div key={it.id} className="flex flex-col items-center gap-2 p-2">
           <div className="relative h-14 w-14 overflow-hidden rounded-lg bg-surface-variant">
             <Image
-              src={it.image}
+              src={localImageSrc(it.image)}
               alt={it.name}
               fill
               className="object-contain p-2"
