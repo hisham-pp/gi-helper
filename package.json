@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "vercel-build": "prisma migrate deploy && next build",
+    "vercel-build": "prisma migrate deploy && prisma db seed && next build",
     "start": "prisma migrate deploy && prisma db seed && next start",
     "lint": "eslint .",
     "format": "prettier --write .",

@@ -139,6 +139,16 @@ NEXT_PUBLIC_APP_NAME="Genshin Material Tracker"
 - Seed data is split under [prisma/seed-data](./prisma/seed-data) and re-exported by [lib/material-seed.ts](./lib/material-seed.ts).
 - The seed script uses `upsert`, so rerunning it adds or updates shared material reference data without clearing user data. That makes it safe to run on every deployment start.
 
+## Vercel Deployment
+
+Vercel runs the configured build command for deployments, but it does not run the
+app's `start` script. The included [vercel.json](./vercel.json) points Vercel at
+`pnpm vercel-build`, which runs Prisma migrations, seeds shared reference data,
+and then builds Next.js.
+
+Make sure the Vercel project has `DATABASE_URL` and `DIRECT_URL` configured for
+the production PostgreSQL database.
+
 ## Railway Deployment
 
 This application is optimized for deployment on Railway with a PostgreSQL database.
