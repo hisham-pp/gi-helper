@@ -24,7 +24,6 @@ import { InventorySection } from "@/components/dashboard/inventory/inventory-sec
 import { MaterialsSection } from "@/components/dashboard/sections/materials-section";
 import {
   aggregateNeededMaterials,
-  isGoalEffectivelyCompleted,
   simulateCraftingNeed,
 } from "@/lib/crafting";
 import type { DashboardTab } from "@/lib/constants";
@@ -188,7 +187,7 @@ export function DashboardShell({
   const shoppingCharacters = useMemo(() => {
     const chars = new Set(
       data.goals
-        .filter((goal) => !isGoalEffectivelyCompleted(goal))
+        .filter((goal) => !goal.completed)
         .map((goal) => goal.characterName)
         .filter((name): name is string => Boolean(name)),
     );
@@ -198,7 +197,7 @@ export function DashboardShell({
   const shoppingGoalTypes = useMemo(() => {
     const types = new Set(
       data.goals
-        .filter((goal) => !isGoalEffectivelyCompleted(goal))
+        .filter((goal) => !goal.completed)
         .map((goal) => goal.category)
         .filter((category): category is string => Boolean(category)),
     );
@@ -209,7 +208,7 @@ export function DashboardShell({
     const searchLower = shoppingSearch.trim().toLowerCase();
 
     const goals = data.goals.filter((goal) => {
-      if (isGoalEffectivelyCompleted(goal)) {
+      if (goal.completed) {
         return false;
       }
       if (
@@ -239,7 +238,7 @@ export function DashboardShell({
 
   const filteredGoals = useMemo(() => {
     return data.goals.filter((goal) => {
-      const isCompleted = isGoalEffectivelyCompleted(goal);
+      const isCompleted = goal.completed;
 
       if (goalFilter === "completed" && !isCompleted) return false;
       if (goalFilter === "incomplete" && isCompleted) return false;
