@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import {
   Check,
@@ -15,6 +14,7 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 
+import { LoginRequiredDialog } from "@/components/auth/login-required-dialog";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import {
@@ -568,57 +568,10 @@ export function InteractiveTeyvatMap({
         </aside>
       </section>
 
-      {showLoginPrompt && (
-        <div
-          aria-modal="true"
-          className="bg-scrim/55 fixed inset-0 z-50 grid place-items-center p-4"
-          role="dialog"
-        >
-          <Card
-            variant="outlined"
-            className="w-full max-w-md rounded-lg bg-surface p-6 shadow-xl"
-          >
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <p className="text-on-surface-variant text-sm font-bold">
-                  Login required
-                </p>
-                <h2 className="text-on-surface mt-1 text-xl font-bold">
-                  Save exploration progress
-                </h2>
-              </div>
-              <button
-                aria-label="Close login prompt"
-                className="text-on-surface grid h-9 w-9 place-items-center rounded-lg border border-outline-variant transition hover:bg-primary/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-                type="button"
-                onClick={() => setShowLoginPrompt(false)}
-              >
-                x
-              </button>
-            </div>
-            <p className="text-on-surface-variant mt-4 text-sm leading-6">
-              You can browse every layer and marker without an account. Login or
-              register when you want to mark collectibles complete.
-            </p>
-            <div className="mt-6 flex flex-col gap-2 sm:flex-row">
-              <Link className="w-full" href="/login">
-                <Button className="w-full rounded-lg" type="button">
-                  Login
-                </Button>
-              </Link>
-              <Link className="w-full" href="/register">
-                <Button
-                  className="w-full rounded-lg"
-                  type="button"
-                  variant="outlined"
-                >
-                  Create account
-                </Button>
-              </Link>
-            </div>
-          </Card>
-        </div>
-      )}
+      <LoginRequiredDialog
+        open={showLoginPrompt}
+        onClose={() => setShowLoginPrompt(false)}
+      />
     </div>
   );
 }
