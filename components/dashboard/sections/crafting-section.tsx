@@ -2,7 +2,7 @@
 
 import { CraftingResult } from "@/components/dashboard/crafting/crafting-result";
 import { Panel } from "@/components/dashboard/common/panel";
-import { Select } from "@/components/ui/select";
+import { Select } from "@/components/core/app-select";
 import AppTextField from "@/components/core/app-textfield";
 import type { CraftingSimulation, MaterialView } from "@/lib/types";
 
@@ -23,7 +23,10 @@ export function CraftingSection({
 }) {
   return (
     <section className="grid gap-8 lg:grid-cols-[0.9fr_1.3fr]">
-      <Panel title="Crafting Simulator" description="Recursive 3:1 crafting preview.">
+      <Panel
+        title="Crafting Simulator"
+        description="Recursive 3:1 crafting preview."
+      >
         <div className="mt-4 space-y-4">
           <Select
             label="Select Material"
@@ -46,7 +49,10 @@ export function CraftingSection({
         </div>
       </Panel>
 
-      <Panel title="Simulation Result" description="Craftability and recursive breakdown.">
+      <Panel
+        title="Simulation Result"
+        description="Craftability and recursive breakdown."
+      >
         <CraftingResult materials={materials} simulation={simulation} />
       </Panel>
     </section>

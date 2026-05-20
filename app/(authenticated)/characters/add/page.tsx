@@ -10,7 +10,7 @@ import Link from "next/link";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import AppTextField from "@/components/core/app-textfield";
-import { Select } from "@/components/ui/select";
+import { Select } from "@/components/core/app-select";
 import { createCharacterAction } from "@/app/actions";
 
 type CharacterFormValues = {
@@ -107,9 +107,7 @@ export default function AddCharacterPage() {
             <AppTextField
               label="Name"
               error={Boolean(errors.name)}
-              helperText={
-                errors.name?.message ?? "Display name, e.g., 'Amber'"
-              }
+              helperText={errors.name?.message ?? "Display name, e.g., 'Amber'"}
               {...register("name", {
                 maxLength: {
                   value: 200,

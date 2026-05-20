@@ -6,7 +6,7 @@ import { Controller, useForm } from "react-hook-form";
 import AppTextField from "@/components/core/app-textfield";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Select } from "@/components/ui/select";
+import { Select } from "@/components/core/app-select";
 
 export type MaterialEditorForm = {
   id: string;

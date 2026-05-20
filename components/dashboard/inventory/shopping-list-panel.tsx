@@ -5,7 +5,7 @@ import { Sparkles } from "lucide-react";
 import { EmptyState } from "@/components/dashboard/common/empty-state";
 import { NeedCard } from "@/components/dashboard/inventory/need-card";
 import { Card } from "@/components/ui/card";
-import { Select } from "@/components/ui/select";
+import { Select } from "@/components/core/app-select";
 import AppTextField from "@/components/core/app-textfield";
 import type { GoalMaterialView } from "@/lib/types";
 

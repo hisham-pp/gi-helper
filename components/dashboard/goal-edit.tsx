@@ -20,7 +20,7 @@ import { cn, formatNumber } from "@/lib/utils";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import AppTextField from "@/components/core/app-textfield";
-import { Select } from "@/components/ui/select";
+import { Select } from "@/components/core/app-select";
 import { Progress } from "@/components/ui/progress";
 import { Panel } from "@/components/ui/panel";
 
@@ -318,7 +318,8 @@ export function GoalEdit({ goal, materials }: GoalEditProps) {
                         value={
                           goal.completed
                             ? 100
-                            : (item.allocated / Math.max(item.required, 1)) * 100
+                            : (item.allocated / Math.max(item.required, 1)) *
+                              100
                         }
                         className="h-1.5"
                       />

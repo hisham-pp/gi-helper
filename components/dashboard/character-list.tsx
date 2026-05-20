@@ -8,7 +8,7 @@ import { useSearchParams } from "next/navigation";
 
 import { Card } from "@/components/ui/card";
 import AppTextField from "@/components/core/app-textfield";
-import { Select } from "@/components/ui/select";
+import { Select } from "@/components/core/app-select";
 import { rarityColorMap } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
