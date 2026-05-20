@@ -19,8 +19,10 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import {
   collectibleMeta,
+  mapDataSource,
   mapLayers,
   teyvatCollectibles,
+  totalImportedMarkers,
   type CollectibleKind,
   type MapCollectible,
   type MapLayerId,
@@ -34,10 +36,6 @@ const layerBackdrop: Record<MapLayerId, string> = {
     "from-emerald-100 via-sky-100 to-red-100 dark:from-emerald-950 dark:via-sky-950 dark:to-red-950",
   underground:
     "from-stone-200 via-teal-100 to-amber-100 dark:from-stone-950 dark:via-teal-950 dark:to-amber-950",
-  enkanomiya:
-    "from-indigo-100 via-cyan-100 to-slate-100 dark:from-indigo-950 dark:via-cyan-950 dark:to-slate-950",
-  "sea-of-bygone-eras":
-    "from-sky-100 via-cyan-100 to-violet-100 dark:from-sky-950 dark:via-cyan-950 dark:to-violet-950",
 };
 
 function loadCompletedPins() {
@@ -67,6 +65,12 @@ function getMeta(kind: CollectibleKind) {
 
 function formatPercent(value: number) {
   return `${Math.round(value * 100)}%`;
+}
+
+function formatSourceCoordinates(pin: MapCollectible) {
+  return pin.sourceCoordinates
+    .map((coordinate) => coordinate.toFixed(3))
+    .join(", ");
 }
 
 export function InteractiveTeyvatMap({
@@ -179,6 +183,10 @@ export function InteractiveTeyvatMap({
           <h1 className="text-on-surface mt-1 text-3xl font-bold">
             Teyvat Interactive Map
           </h1>
+          <p className="text-on-surface-variant mt-2 text-sm">
+            {totalImportedMarkers} individual markers imported from{" "}
+            {mapDataSource.name}.
+          </p>
         </div>
         <div className="grid grid-cols-3 gap-2 sm:w-auto sm:min-w-96">
           <Card variant="outlined" className="rounded-lg px-4 py-3">
@@ -397,23 +405,11 @@ export function InteractiveTeyvatMap({
               <div className="text-on-surface absolute left-[18%] top-[20%] rounded-lg bg-surface/90 px-3 py-2 text-xs font-bold shadow-sm">
                 Mondstadt
               </div>
-              <div className="text-on-surface absolute left-[33%] top-[57%] rounded-lg bg-surface/90 px-3 py-2 text-xs font-bold shadow-sm">
+              <div className="text-on-surface absolute left-[36%] top-[36%] rounded-lg bg-surface/90 px-3 py-2 text-xs font-bold shadow-sm">
+                Dragonspine
+              </div>
+              <div className="text-on-surface absolute left-[62%] top-[62%] rounded-lg bg-surface/90 px-3 py-2 text-xs font-bold shadow-sm">
                 Liyue
-              </div>
-              <div className="text-on-surface absolute left-[60%] top-[59%] rounded-lg bg-surface/90 px-3 py-2 text-xs font-bold shadow-sm">
-                Inazuma
-              </div>
-              <div className="text-on-surface absolute left-[43%] top-[37%] rounded-lg bg-surface/90 px-3 py-2 text-xs font-bold shadow-sm">
-                Sumeru
-              </div>
-              <div className="text-on-surface absolute left-[54%] top-[24%] rounded-lg bg-surface/90 px-3 py-2 text-xs font-bold shadow-sm">
-                Fontaine
-              </div>
-              <div className="text-on-surface absolute left-[28%] top-[77%] rounded-lg bg-surface/90 px-3 py-2 text-xs font-bold shadow-sm">
-                Natlan
-              </div>
-              <div className="text-on-surface absolute left-[73%] top-[23%] rounded-lg bg-surface/90 px-3 py-2 text-xs font-bold shadow-sm">
-                Nod-Krai
               </div>
             </div>
           </div>
@@ -448,6 +444,9 @@ export function InteractiveTeyvatMap({
                 <p className="text-on-surface mt-1 text-sm leading-6">
                   {selectedPin.hint}
                 </p>
+                <p className="text-on-surface-variant mt-2 text-xs font-bold">
+                  Raw source coordinates: {formatSourceCoordinates(selectedPin)}
+                </p>
               </div>
               <div>
                 <p className="text-on-surface-variant text-xs font-bold">
@@ -459,11 +458,11 @@ export function InteractiveTeyvatMap({
               </div>
               <div className="grid grid-cols-2 gap-2">
                 <Card variant="filled" className="rounded-lg px-3 py-3">
-                  <p className="text-on-surface text-sm font-bold capitalize">
-                    {selectedPin.elevation}
+                  <p className="text-on-surface text-sm font-bold">
+                    #{selectedPin.sourceId}
                   </p>
                   <p className="text-on-surface-variant text-xs font-bold">
-                    Level
+                    Source marker
                   </p>
                 </Card>
                 <Card variant="filled" className="rounded-lg px-3 py-3">
