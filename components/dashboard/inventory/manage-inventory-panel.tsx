@@ -9,7 +9,7 @@ import type {
   InventoryDraftSetter,
 } from "@/components/dashboard/inventory/types";
 import { Card } from "@/components/ui/card";
-import { Select } from "@/components/ui/select";
+import { Select } from "@/components/core/app-select";
 import AppTextField from "@/components/core/app-textfield";
 import type { MaterialView } from "@/lib/types";
 

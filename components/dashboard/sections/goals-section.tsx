@@ -7,7 +7,7 @@ import { EmptyState } from "@/components/dashboard/common/empty-state";
 import { GoalCard } from "@/components/dashboard/goals/goal-card";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Select } from "@/components/ui/select";
+import { Select } from "@/components/core/app-select";
 import AppTextField from "@/components/core/app-textfield";
 import type { GoalView } from "@/lib/types";
 

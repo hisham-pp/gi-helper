@@ -23,7 +23,7 @@ import { EmptyState } from "@/components/dashboard/common/empty-state";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { Select } from "@/components/ui/select";
+import { Select } from "@/components/core/app-select";
 import { rarityBorderMap, rarityColorMap } from "@/lib/constants";
 import type { CookingData, CookingRecipeView } from "@/lib/cooking-data";
 import { cn, formatNumber } from "@/lib/utils";

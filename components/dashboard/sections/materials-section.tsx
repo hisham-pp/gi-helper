@@ -10,7 +10,7 @@ import { EmptyState } from "@/components/dashboard/common/empty-state";
 import { MaterialLibraryCard } from "@/components/dashboard/materials/material-library-card";
 import { Panel } from "@/components/dashboard/common/panel";
 import { Button } from "@/components/ui/button";
-import { Select } from "@/components/ui/select";
+import { Select } from "@/components/core/app-select";
 import AppTextField from "@/components/core/app-textfield";
 import type { MaterialView } from "@/lib/types";
 
