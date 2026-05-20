@@ -1,13 +1,12 @@
 import { prisma } from "@/lib/prisma";
-import { requireUser } from "@/lib/auth";
-import { CharacterList } from "@/components/dashboard/character-list";
+import { getCurrentUser } from "@/lib/auth";
 import { Search } from "lucide-react";
 import { getDashboardData } from "@/lib/data";
 import { SearchManager } from "@/components/dashboard/search-manager";
 
 export default async function GlobalSearchPage() {
-  const user = await requireUser();
-  const dashboardData = await getDashboardData(user.id);
+  const user = await getCurrentUser();
+  const dashboardData = await getDashboardData(user?.id);
 
   const characters = await prisma.character.findMany({
     include: {

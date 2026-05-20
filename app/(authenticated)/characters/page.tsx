@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/prisma";
-import { requireUser } from "@/lib/auth";
+import { getCurrentUser } from "@/lib/auth";
 import { CharacterList } from "@/components/dashboard/character-list";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -7,7 +7,7 @@ import { Users } from "lucide-react";
 import { Suspense } from "react";
 
 export default async function CharactersPage() {
-  const user = await requireUser();
+  const user = await getCurrentUser();
 
   const characters = await prisma.character.findMany({
     include: {
@@ -29,7 +29,7 @@ export default async function CharactersPage() {
             Browse characters and open a card to create one or more farming goals.
           </p>
         </div>
-        {user.role === "master" && (
+        {user?.role === "master" && (
           <Link href="/characters/add">
             <Button className="gap-2">
               <Users className="h-4 w-4" />

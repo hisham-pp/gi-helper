@@ -1,12 +1,12 @@
 import { Suspense } from "react";
 
 import { DashboardShell } from "@/components/dashboard/dashboard-shell";
-import { requireUser } from "@/lib/auth";
+import { getCurrentUser } from "@/lib/auth";
 import { getDashboardData } from "@/lib/data";
 
 export default async function MaterialsPage() {
-  const user = await requireUser();
-  const data = await getDashboardData(user.id);
+  const user = await getCurrentUser();
+  const data = await getDashboardData(user?.id);
 
   return (
     <Suspense
@@ -16,8 +16,8 @@ export default async function MaterialsPage() {
     >
       <DashboardShell
         initialData={data}
-        username={user.username}
-        role={user.role}
+        username={user?.username ?? "Traveler"}
+        role={user?.role}
         view="tracker"
       />
     </Suspense>

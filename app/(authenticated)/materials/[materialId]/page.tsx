@@ -5,7 +5,6 @@ import { ArrowLeft } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { requireUser } from "@/lib/auth";
 import { rarityColorMap } from "@/lib/constants";
 import { prisma } from "@/lib/prisma";
 import { cn } from "@/lib/utils";
@@ -20,7 +19,6 @@ export default async function MaterialDetailPage({
 }: {
   params: Promise<{ materialId: string }>;
 }) {
-  await requireUser();
   const { materialId } = await params;
 
   const material = await prisma.material.findUnique({

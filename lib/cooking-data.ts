@@ -124,23 +124,29 @@ export function getCookingIngredientSeeds(): CookingIngredientSeed[] {
   }));
 }
 
-export async function getCookingData(userId: string): Promise<CookingData> {
+export async function getCookingData(
+  userId?: string | null,
+): Promise<CookingData> {
   const [materials, progress] = await Promise.all([
     prisma.material.findMany({
       include: {
-        inventories: {
-          where: {
-            userId,
-          },
-        },
+        inventories: userId
+          ? {
+              where: {
+                userId,
+              },
+            }
+          : false,
       },
       orderBy: [{ category: "asc" }, { rarity: "desc" }, { name: "asc" }],
     }),
-    prisma.cookingProgress.findMany({
-      where: {
-        userId,
-      },
-    }),
+    userId
+      ? prisma.cookingProgress.findMany({
+          where: {
+            userId,
+          },
+        })
+      : Promise.resolve([]),
   ]);
 
   const materialByName = new Map(
@@ -149,7 +155,7 @@ export async function getCookingData(userId: string): Promise<CookingData> {
   const quantityByMaterialId = new Map(
     materials.map((material) => [
       material.id,
-      material.inventories[0]?.quantity ?? 0,
+      "inventories" in material ? (material.inventories[0]?.quantity ?? 0) : 0,
     ]),
   );
   const progressByRecipeId = new Map(
@@ -265,8 +271,10 @@ export async function getCookingData(userId: string): Promise<CookingData> {
       combinable: material.combinable,
       combineRatio: material.combineRatio,
       parentMaterialId: material.parentMaterialId,
-      quantity: material.inventories[0]?.quantity ?? 0,
-      totalCraftable: material.inventories[0]?.quantity ?? 0,
+      quantity:
+        "inventories" in material ? (material.inventories[0]?.quantity ?? 0) : 0,
+      totalCraftable:
+        "inventories" in material ? (material.inventories[0]?.quantity ?? 0) : 0,
       craftableExtra: 0,
       familyDepth: 0,
     }))
