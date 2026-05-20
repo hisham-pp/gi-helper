@@ -20,7 +20,7 @@ export default async function GlobalSearchPage() {
   return (
     <div className="space-y-8">
       <div className="flex items-center gap-3">
-        <div className="bg-primary-container p-2 rounded-xl">
+        <div className="rounded-xl bg-primary-container p-2">
           <Search className="h-6 w-6 text-primary" />
         </div>
         <div>

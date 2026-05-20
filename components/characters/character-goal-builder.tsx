@@ -17,6 +17,7 @@ import {
 import { toast } from "sonner";
 
 import { createGoalsFromTemplatesAction } from "@/app/actions";
+import { LoginRequiredDialog } from "@/components/auth/login-required-dialog";
 import { rarityColorMap } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -113,8 +114,10 @@ function isSingleTalentTemplate(template: CharacterTemplate) {
 
 export function CharacterGoalBuilder({
   character,
+  isAuthenticated = true,
 }: {
   character: CharacterDetail;
+  isAuthenticated?: boolean;
 }) {
   const router = useRouter();
   const isTraveler = character.id.startsWith("traveler-");
@@ -123,6 +126,7 @@ export function CharacterGoalBuilder({
   const [activeTab, setActiveTab] = useState<
     "details" | "templates" | "assets"
   >("details");
+  const [showLoginPrompt, setShowLoginPrompt] = useState(false);
 
   const groupedTemplates = useMemo<TemplateGroup[]>(() => {
     const groups = new Map<string, CharacterTemplate[]>();
@@ -241,6 +245,11 @@ export function CharacterGoalBuilder({
   }
 
   function handleCreateGoals() {
+    if (!isAuthenticated) {
+      setShowLoginPrompt(true);
+      return;
+    }
+
     if (selectedGoalCount === 0) {
       toast.error("Select at least one template.");
       return;
@@ -463,6 +472,10 @@ export function CharacterGoalBuilder({
       ) : null}
 
       {activeTab === "assets" ? <CharacterAssetsPanel assets={assets} /> : null}
+      <LoginRequiredDialog
+        open={showLoginPrompt}
+        onClose={() => setShowLoginPrompt(false)}
+      />
     </div>
   );
 }

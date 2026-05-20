@@ -19,9 +19,7 @@ export default async function GoalEditPage({
     if (!user) {
       return (
         <div className="mx-auto max-w-xl rounded-lg border border-outline-variant bg-surface p-8">
-          <h1 className="text-on-surface text-2xl font-bold">
-            Login required
-          </h1>
+          <h1 className="text-on-surface text-2xl font-bold">Login required</h1>
           <p className="text-on-surface-variant mt-3 text-sm leading-6">
             Goal editing is personal data. Login to save and edit your goals.
           </p>
@@ -46,9 +44,7 @@ export default async function GoalEditPage({
       redirect("/goals");
     }
 
-    return (
-      <GoalEdit goal={goal} materials={data.materials} />
-    );
+    return <GoalEdit goal={goal} materials={data.materials} />;
   } catch (error) {
     // Log server-side error for debugging and redirect to materials to avoid leaking details to client
     // eslint-disable-next-line no-console

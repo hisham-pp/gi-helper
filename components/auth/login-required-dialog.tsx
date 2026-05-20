@@ -19,7 +19,7 @@ export function LoginRequiredDialog({
   return (
     <div
       aria-modal="true"
-      className="fixed inset-0 z-50 grid place-items-center bg-scrim/55 p-4"
+      className="bg-scrim/55 fixed inset-0 z-50 grid place-items-center p-4"
       role="dialog"
     >
       <Card
@@ -37,7 +37,7 @@ export function LoginRequiredDialog({
           </div>
           <button
             aria-label="Close login prompt"
-            className="grid h-9 w-9 place-items-center rounded-lg border border-outline-variant text-on-surface transition hover:bg-primary/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            className="text-on-surface grid h-9 w-9 place-items-center rounded-lg border border-outline-variant transition hover:bg-primary/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             type="button"
             onClick={onClose}
           >
@@ -55,7 +55,11 @@ export function LoginRequiredDialog({
             </Button>
           </Link>
           <Link className="w-full" href="/register">
-            <Button className="w-full rounded-lg" type="button" variant="outlined">
+            <Button
+              className="w-full rounded-lg"
+              type="button"
+              variant="outlined"
+            >
               Create account
             </Button>
           </Link>

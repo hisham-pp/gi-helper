@@ -6,5 +6,5 @@ export default async function CookingRoute() {
   const user = await getCurrentUser();
   const data = await getCookingData(user?.id);
 
-  return <CookingPage initialData={data} />;
+  return <CookingPage initialData={data} isAuthenticated={Boolean(user)} />;
 }

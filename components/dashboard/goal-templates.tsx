@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import { Sparkles, Swords, ChevronRight } from "lucide-react";
 
 import { createGoalFromTemplateAction } from "@/app/actions";
+import { LoginRequiredDialog } from "@/components/auth/login-required-dialog";
 import { rarityColorMap } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { Card } from "@/components/ui/card";
@@ -46,20 +47,31 @@ type Weapon = {
 
 type GoalTemplatesProps = {
   characters: Character[];
+  isAuthenticated?: boolean;
   weapons: Weapon[];
 };
 
-export function GoalTemplates({ characters, weapons }: GoalTemplatesProps) {
+export function GoalTemplates({
+  characters,
+  isAuthenticated = true,
+  weapons,
+}: GoalTemplatesProps) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const [selectedTab, setSelectedTab] = useState<"characters" | "weapons">(
     "characters",
   );
+  const [showLoginPrompt, setShowLoginPrompt] = useState(false);
 
   function handleCreateFromTemplate(
     type: "character" | "weapon",
     templateId: string,
   ) {
+    if (!isAuthenticated) {
+      setShowLoginPrompt(true);
+      return;
+    }
+
     startTransition(async () => {
       const result = await createGoalFromTemplateAction({
         type,
@@ -149,7 +161,7 @@ export function GoalTemplates({ characters, weapons }: GoalTemplatesProps) {
                         handleCreateFromTemplate("character", template.id)
                       }
                       disabled={isPending}
-                      className="text-on-surface-variant hover:bg-surface-variant/50 flex w-full items-center justify-between rounded-lg p-3 text-left text-sm transition-colors"
+                      className="text-on-surface-variant flex w-full items-center justify-between rounded-lg p-3 text-left text-sm transition-colors hover:bg-surface-variant/50"
                     >
                       <div>
                         <p className="text-on-surface font-medium">
@@ -212,7 +224,7 @@ export function GoalTemplates({ characters, weapons }: GoalTemplatesProps) {
                         handleCreateFromTemplate("weapon", template.id)
                       }
                       disabled={isPending}
-                      className="text-on-surface-variant hover:bg-surface-variant/50 flex w-full items-center justify-between rounded-lg p-3 text-left text-sm transition-colors"
+                      className="text-on-surface-variant flex w-full items-center justify-between rounded-lg p-3 text-left text-sm transition-colors hover:bg-surface-variant/50"
                     >
                       <div>
                         <p className="text-on-surface font-medium">
@@ -232,6 +244,10 @@ export function GoalTemplates({ characters, weapons }: GoalTemplatesProps) {
           ))}
         </div>
       )}
+      <LoginRequiredDialog
+        open={showLoginPrompt}
+        onClose={() => setShowLoginPrompt(false)}
+      />
     </div>
   );
 }

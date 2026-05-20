@@ -272,9 +272,13 @@ export async function getCookingData(
       combineRatio: material.combineRatio,
       parentMaterialId: material.parentMaterialId,
       quantity:
-        "inventories" in material ? (material.inventories[0]?.quantity ?? 0) : 0,
+        "inventories" in material
+          ? (material.inventories[0]?.quantity ?? 0)
+          : 0,
       totalCraftable:
-        "inventories" in material ? (material.inventories[0]?.quantity ?? 0) : 0,
+        "inventories" in material
+          ? (material.inventories[0]?.quantity ?? 0)
+          : 0,
       craftableExtra: 0,
       familyDepth: 0,
     }))
