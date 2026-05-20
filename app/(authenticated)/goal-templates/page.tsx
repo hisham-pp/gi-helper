@@ -1,14 +1,11 @@
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
-import { requireUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { Button } from "@/components/ui/button";
 import { GoalTemplates } from "@/components/dashboard/goal-templates";
 
 export default async function GoalTemplatesPage() {
-  await requireUser();
-
   const characters = await prisma.character.findMany({
     include: {
       templates: {

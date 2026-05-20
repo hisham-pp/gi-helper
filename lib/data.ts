@@ -2,33 +2,39 @@ import { prisma } from "@/lib/prisma";
 import { buildDashboardData, evaluateGoal } from "@/lib/crafting";
 import type { DashboardData, MaterialNode } from "@/lib/types";
 
-export async function getDashboardData(userId: string): Promise<DashboardData> {
+export async function getDashboardData(
+  userId?: string | null,
+): Promise<DashboardData> {
   const [materials, goals, characters] = await Promise.all([
     prisma.material.findMany({
       include: {
-        inventories: {
-          where: {
-            userId,
-          },
-        },
+        inventories: userId
+          ? {
+              where: {
+                userId,
+              },
+            }
+          : false,
       },
       orderBy: [{ category: "asc" }, { rarity: "desc" }, { name: "asc" }],
     }),
-    prisma.goal.findMany({
-      where: {
-        userId,
-      },
-      include: {
-        goalMaterials: {
-          orderBy: {
-            createdAt: "asc",
+    userId
+      ? prisma.goal.findMany({
+          where: {
+            userId,
           },
-        },
-      },
-      orderBy: {
-        createdAt: "desc",
-      },
-    }),
+          include: {
+            goalMaterials: {
+              orderBy: {
+                createdAt: "asc",
+              },
+            },
+          },
+          orderBy: {
+            createdAt: "desc",
+          },
+        })
+      : Promise.resolve([]),
     prisma.character.findMany(),
   ]);
 
@@ -44,7 +50,7 @@ export async function getDashboardData(userId: string): Promise<DashboardData> {
     combinable: material.combinable,
     combineRatio: material.combineRatio,
     parentMaterialId: material.parentMaterialId,
-    quantity: material.inventories[0]?.quantity ?? 0,
+    quantity: "inventories" in material ? (material.inventories[0]?.quantity ?? 0) : 0,
   }));
 
   const stock = Object.fromEntries(
