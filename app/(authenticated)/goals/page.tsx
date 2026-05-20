@@ -16,6 +16,7 @@ export default async function GoalsPage() {
     >
       <DashboardShell
         initialData={data}
+        isAuthenticated={Boolean(user)}
         username={user?.username ?? "Traveler"}
         role={user?.role}
         view="goals"

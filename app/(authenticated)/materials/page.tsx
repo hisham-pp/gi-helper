@@ -16,6 +16,7 @@ export default async function MaterialsPage() {
     >
       <DashboardShell
         initialData={data}
+        isAuthenticated={Boolean(user)}
         username={user?.username ?? "Traveler"}
         role={user?.role}
         view="tracker"
