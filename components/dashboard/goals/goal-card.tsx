@@ -5,12 +5,11 @@ import { ChevronRight, Sparkles } from "lucide-react";
 
 import { Card } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { isGoalEffectivelyCompleted } from "@/lib/crafting";
 import type { GoalView } from "@/lib/types";
 import { formatNumber } from "@/lib/utils";
 
 export function GoalCard({ goal }: { goal: GoalView }) {
-  const isCompleted = isGoalEffectivelyCompleted(goal);
+  const isCompleted = goal.completed;
 
   return (
     <Link href={`/goals/${goal.id}` as any} aria-label={`Open ${goal.name}`}>

@@ -352,17 +352,11 @@ export function aggregateNeededMaterials(
     .sort((left, right) => right.remaining - left.remaining);
 }
 
-export function isGoalEffectivelyCompleted(
-  goal: Pick<GoalView, "completed" | "progressPercent">,
-) {
-  return goal.completed || goal.progressPercent >= 100;
-}
-
 export function buildDashboardData(
   materials: MaterialNode[],
   goals: GoalView[],
 ): DashboardData {
-  const activeGoals = goals.filter((goal) => !isGoalEffectivelyCompleted(goal));
+  const activeGoals = goals.filter((goal) => !goal.completed);
   const materialsStillNeeded = aggregateNeededMaterials(activeGoals, materials);
 
   const completedMaterialsRaw = goals.flatMap((goal) =>
@@ -391,7 +385,7 @@ export function buildDashboardData(
         0,
       ),
       activeGoals: activeGoals.length,
-      completedGoals: goals.filter(isGoalEffectivelyCompleted).length,
+      completedGoals: goals.filter((goal) => goal.completed).length,
       craftableMaterials: materialViews.filter(
         (material) => material.craftableExtra > 0,
       ).length,
