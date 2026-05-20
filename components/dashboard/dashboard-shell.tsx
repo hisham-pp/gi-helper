@@ -15,6 +15,7 @@ import {
   saveInventoryAction,
   updateMaterialAction,
 } from "@/app/actions";
+import { LoginRequiredDialog } from "@/components/auth/login-required-dialog";
 import { DashboardTabs } from "@/components/dashboard/dashboard-tabs";
 import type { MaterialEditorForm } from "@/components/dashboard/material-editor";
 import { OverviewStatsGrid } from "@/components/dashboard/overview-stats";
@@ -33,6 +34,7 @@ type DashboardShellProps = {
   initialData: DashboardData;
   username: string;
   role?: string;
+  isAuthenticated?: boolean;
   view?: "tracker" | "inventory" | "goals";
 };
 
@@ -52,6 +54,7 @@ const emptyEditorForm: MaterialEditorForm = {
 
 export function DashboardShell({
   initialData,
+  isAuthenticated = true,
   role,
   view = "tracker",
 }: DashboardShellProps) {
@@ -88,6 +91,7 @@ export function DashboardShell({
   const [editing, setEditing] = useState<MaterialView | null>(null);
   const [editorForm, setEditorForm] =
     useState<MaterialEditorForm>(emptyEditorForm);
+  const [showLoginPrompt, setShowLoginPrompt] = useState(false);
   const [, startTransition] = useTransition();
 
   useEffect(() => {
@@ -274,6 +278,11 @@ export function DashboardShell({
   ]);
 
   function handleInventorySave(materialId: string) {
+    if (!isAuthenticated) {
+      setShowLoginPrompt(true);
+      return;
+    }
+
     const nextQuantity = Math.max(0, Number(inventoryDraft[materialId] ?? 0));
     const previous = data;
 
@@ -331,6 +340,11 @@ export function DashboardShell({
   }
 
   async function handleEditorSave(values: MaterialEditorForm) {
+    if (!isAuthenticated) {
+      setShowLoginPrompt(true);
+      return;
+    }
+
     const previous = data;
 
     startTransition(async () => {
@@ -455,6 +469,10 @@ export function DashboardShell({
           setStatusFilter={setGoalFilter}
         />
       ) : null}
+      <LoginRequiredDialog
+        open={showLoginPrompt}
+        onClose={() => setShowLoginPrompt(false)}
+      />
     </div>
   );
 }
