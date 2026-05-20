@@ -50,7 +50,8 @@ export async function getDashboardData(
     combinable: material.combinable,
     combineRatio: material.combineRatio,
     parentMaterialId: material.parentMaterialId,
-    quantity: "inventories" in material ? (material.inventories[0]?.quantity ?? 0) : 0,
+    quantity:
+      "inventories" in material ? (material.inventories[0]?.quantity ?? 0) : 0,
   }));
 
   const stock = Object.fromEntries(

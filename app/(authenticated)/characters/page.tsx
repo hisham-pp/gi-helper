@@ -26,7 +26,8 @@ export default async function CharactersPage() {
             Characters
           </h1>
           <p className="text-on-surface-variant mt-1">
-            Browse characters and open a card to create one or more farming goals.
+            Browse characters and open a card to create one or more farming
+            goals.
           </p>
         </div>
         {user?.role === "master" && (
@@ -39,7 +40,11 @@ export default async function CharactersPage() {
         )}
       </div>
 
-      <Suspense fallback={<div className="h-96 animate-pulse bg-surface-variant/20 rounded-2xl" />}>
+      <Suspense
+        fallback={
+          <div className="h-96 animate-pulse rounded-2xl bg-surface-variant/20" />
+        }
+      >
         <CharacterList characters={characters} />
       </Suspense>
     </div>

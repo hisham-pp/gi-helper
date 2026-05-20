@@ -18,6 +18,7 @@ import {
   saveCookingInventoryAction,
   saveCookingProgressAction,
 } from "@/app/actions";
+import { LoginRequiredDialog } from "@/components/auth/login-required-dialog";
 import AppTextField from "@/components/core/app-textfield";
 import { EmptyState } from "@/components/dashboard/common/empty-state";
 import { Button } from "@/components/ui/button";
@@ -31,7 +32,13 @@ import { cn, formatNumber } from "@/lib/utils";
 type CookingTab = "needed" | "inventory" | "recipes";
 type QuantityDraft = Record<string, number>;
 
-export function CookingPage({ initialData }: { initialData: CookingData }) {
+export function CookingPage({
+  initialData,
+  isAuthenticated = true,
+}: {
+  initialData: CookingData;
+  isAuthenticated?: boolean;
+}) {
   const [data, setData] = useState(initialData);
   const [activeTab, setActiveTab] = useState<CookingTab>("needed");
   const [search, setSearch] = useState("");
@@ -43,6 +50,7 @@ export function CookingPage({ initialData }: { initialData: CookingData }) {
   const [progressDraft, setProgressDraft] = useState<QuantityDraft>(
     buildProgressDraft(initialData),
   );
+  const [showLoginPrompt, setShowLoginPrompt] = useState(false);
   const [, startTransition] = useTransition();
 
   const syncCooking = (nextData: CookingData) => {
@@ -99,6 +107,11 @@ export function CookingPage({ initialData }: { initialData: CookingData }) {
   }, [data.ingredients, search]);
 
   function handleInventorySave(materialId: string) {
+    if (!isAuthenticated) {
+      setShowLoginPrompt(true);
+      return;
+    }
+
     const nextQuantity = Math.max(0, Number(inventoryDraft[materialId] ?? 0));
 
     startTransition(async () => {
@@ -118,6 +131,11 @@ export function CookingPage({ initialData }: { initialData: CookingData }) {
   }
 
   function handleProgressSave(recipeId: string) {
+    if (!isAuthenticated) {
+      setShowLoginPrompt(true);
+      return;
+    }
+
     const nextCount = Math.max(0, Number(progressDraft[recipeId] ?? 0));
 
     startTransition(async () => {
@@ -137,6 +155,11 @@ export function CookingPage({ initialData }: { initialData: CookingData }) {
   }
 
   function handleCook(recipeId: string) {
+    if (!isAuthenticated) {
+      setShowLoginPrompt(true);
+      return;
+    }
+
     startTransition(async () => {
       const result = await cookRecipeAction({
         recipeId,
@@ -227,6 +250,10 @@ export function CookingPage({ initialData }: { initialData: CookingData }) {
           onSave={handleProgressSave}
         />
       )}
+      <LoginRequiredDialog
+        open={showLoginPrompt}
+        onClose={() => setShowLoginPrompt(false)}
+      />
     </div>
   );
 }

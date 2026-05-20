@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 
 import { CharacterGoalBuilder } from "@/components/characters/character-goal-builder";
+import { getCurrentUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 
 export default async function CharacterDetailPage({
@@ -8,6 +9,7 @@ export default async function CharacterDetailPage({
 }: {
   params: Promise<{ characterId: string }>;
 }) {
+  const user = await getCurrentUser();
   const { characterId } = await params;
 
   const character = await prisma.character.findUnique({
@@ -35,5 +37,10 @@ export default async function CharacterDetailPage({
     notFound();
   }
 
-  return <CharacterGoalBuilder character={character as any} />;
+  return (
+    <CharacterGoalBuilder
+      character={character as any}
+      isAuthenticated={Boolean(user)}
+    />
+  );
 }

@@ -9,6 +9,7 @@ import {
   Download,
   Gem,
   Home,
+  LogIn,
   LogOut,
   Menu,
   MoonStar,
@@ -20,6 +21,7 @@ import {
   Swords,
   Target,
   Upload,
+  UserPlus,
   Users,
   X,
 } from "lucide-react";
@@ -433,64 +435,89 @@ export function AppShell({
         )}
       </Box>
 
-      {userLabel && (
-        <Box sx={{ borderTop: `1px solid ${muiTheme.palette.divider}`, p: 2 }}>
-          <Box
-            sx={{
-              alignItems: "center",
-              display: "flex",
-              gap: 1.5,
-              px: 1,
-              pb: 2,
-            }}
-          >
-            <Avatar
+      <Box sx={{ borderTop: `1px solid ${muiTheme.palette.divider}`, p: 2 }}>
+        {userLabel ? (
+          <>
+            <Box
               sx={{
-                bgcolor: "secondary.main",
-                color: "secondary.contrastText",
+                alignItems: "center",
+                display: "flex",
+                gap: 1.5,
+                px: 1,
+                pb: 2,
               }}
             >
-              {userLabel[0].toUpperCase()}
-            </Avatar>
-            <Box sx={{ minWidth: 0, flex: 1 }}>
-              <Typography noWrap variant="body2" sx={{ fontWeight: 800 }}>
-                @{userLabel}
-              </Typography>
-              <Typography
-                noWrap
-                variant="caption"
-                sx={{ color: "text.secondary" }}
+              <Avatar
+                sx={{
+                  bgcolor: "secondary.main",
+                  color: "secondary.contrastText",
+                }}
               >
-                Standard Plan
-              </Typography>
+                {userLabel[0].toUpperCase()}
+              </Avatar>
+              <Box sx={{ minWidth: 0, flex: 1 }}>
+                <Typography noWrap variant="body2" sx={{ fontWeight: 800 }}>
+                  @{userLabel}
+                </Typography>
+                <Typography
+                  noWrap
+                  variant="caption"
+                  sx={{ color: "text.secondary" }}
+                >
+                  Standard Plan
+                </Typography>
+              </Box>
             </Box>
-          </Box>
-          <Box sx={{ display: "flex", gap: 1 }}>
+            <Box sx={{ display: "flex", gap: 1 }}>
+              <AppButton
+                fullWidth
+                color="secondary"
+                startIcon={
+                  isDark ? <SunMedium size={17} /> : <MoonStar size={17} />
+                }
+                variant="filled"
+                onClick={() => setTheme(isDark ? "light" : "dark")}
+              >
+                {isDark ? "Light" : "Dark"}
+              </AppButton>
+              <Box component="form" action={logoutAction} sx={{ flex: 1 }}>
+                <AppButton
+                  fullWidth
+                  color="error"
+                  startIcon={<LogOut size={17} />}
+                  type="submit"
+                  variant="outlined"
+                >
+                  Logout
+                </AppButton>
+              </Box>
+            </Box>
+          </>
+        ) : (
+          <Box sx={{ display: "grid", gap: 1 }}>
+            <AppButton
+              fullWidth
+              color="primary"
+              component={Link as ElementType}
+              href={"/login" as Route}
+              startIcon={<LogIn size={17} />}
+              variant="filled"
+            >
+              Login
+            </AppButton>
             <AppButton
               fullWidth
               color="secondary"
-              startIcon={
-                isDark ? <SunMedium size={17} /> : <MoonStar size={17} />
-              }
-              variant="filled"
-              onClick={() => setTheme(isDark ? "light" : "dark")}
+              component={Link as ElementType}
+              href={"/register" as Route}
+              startIcon={<UserPlus size={17} />}
+              variant="outlined"
             >
-              {isDark ? "Light" : "Dark"}
+              Register
             </AppButton>
-            <Box component="form" action={logoutAction} sx={{ flex: 1 }}>
-              <AppButton
-                fullWidth
-                color="error"
-                startIcon={<LogOut size={17} />}
-                type="submit"
-                variant="outlined"
-              >
-                Logout
-              </AppButton>
-            </Box>
           </Box>
-        </Box>
-      )}
+        )}
+      </Box>
     </DrawerContent>
   );
 

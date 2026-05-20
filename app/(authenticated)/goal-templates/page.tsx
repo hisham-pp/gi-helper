@@ -1,11 +1,14 @@
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
+import { getCurrentUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { Button } from "@/components/ui/button";
 import { GoalTemplates } from "@/components/dashboard/goal-templates";
 
 export default async function GoalTemplatesPage() {
+  const user = await getCurrentUser();
+
   const characters = await prisma.character.findMany({
     include: {
       templates: {
@@ -42,7 +45,11 @@ export default async function GoalTemplatesPage() {
         </div>
       </div>
 
-      <GoalTemplates characters={characters} weapons={weapons} />
+      <GoalTemplates
+        characters={characters}
+        isAuthenticated={Boolean(user)}
+        weapons={weapons}
+      />
     </div>
   );
 }

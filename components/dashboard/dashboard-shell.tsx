@@ -23,10 +23,7 @@ import { CraftingSection } from "@/components/dashboard/sections/crafting-sectio
 import { GoalsSection } from "@/components/dashboard/sections/goals-section";
 import { InventorySection } from "@/components/dashboard/inventory/inventory-section";
 import { MaterialsSection } from "@/components/dashboard/sections/materials-section";
-import {
-  aggregateNeededMaterials,
-  simulateCraftingNeed,
-} from "@/lib/crafting";
+import { aggregateNeededMaterials, simulateCraftingNeed } from "@/lib/crafting";
 import type { DashboardTab } from "@/lib/constants";
 import type { DashboardData, GoalView, MaterialView } from "@/lib/types";
 
