@@ -1,23 +1,19 @@
 import { prisma } from "@/lib/prisma";
 import { buildDashboardData, evaluateGoal } from "@/lib/crafting";
 import type { DashboardData, MaterialNode } from "@/lib/types";
+import { getAllCharacters, getAllMaterials } from "@/lib/static-data";
 
 export async function getDashboardData(
   userId?: string | null,
 ): Promise<DashboardData> {
-  const [materials, goals, characters] = await Promise.all([
-    prisma.material.findMany({
-      include: {
-        inventories: userId
-          ? {
-              where: {
-                userId,
-              },
-            }
-          : false,
-      },
-      orderBy: [{ category: "asc" }, { rarity: "desc" }, { name: "asc" }],
-    }),
+  const [inventories, goals] = await Promise.all([
+    userId
+      ? prisma.inventory.findMany({
+          where: {
+            userId,
+          },
+        })
+      : Promise.resolve([]),
     userId
       ? prisma.goal.findMany({
           where: {
@@ -35,12 +31,14 @@ export async function getDashboardData(
           },
         })
       : Promise.resolve([]),
-    prisma.character.findMany(),
   ]);
 
-  const characterMap = new Map(characters.map((c) => [c.id, c.name]));
+  const characterMap = new Map(getAllCharacters().map((c) => [c.id, c.name]));
+  const quantityByMaterialId = new Map(
+    inventories.map((item) => [item.materialId, item.quantity]),
+  );
 
-  const materialNodes: MaterialNode[] = materials.map((material) => ({
+  const materialNodes: MaterialNode[] = getAllMaterials().map((material) => ({
     id: material.id,
     name: material.name,
     image: material.image,
@@ -50,8 +48,7 @@ export async function getDashboardData(
     combinable: material.combinable,
     combineRatio: material.combineRatio,
     parentMaterialId: material.parentMaterialId,
-    quantity:
-      "inventories" in material ? (material.inventories[0]?.quantity ?? 0) : 0,
+    quantity: quantityByMaterialId.get(material.id) ?? 0,
   }));
 
   const stock = Object.fromEntries(

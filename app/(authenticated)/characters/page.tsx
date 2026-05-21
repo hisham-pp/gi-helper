@@ -1,5 +1,5 @@
-import { prisma } from "@/lib/prisma";
 import { getCurrentUser } from "@/lib/auth";
+import { getAllCharacters } from "@/lib/static-data";
 import { CharacterList } from "@/components/dashboard/character-list";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -9,14 +9,7 @@ import { Suspense } from "react";
 export default async function CharactersPage() {
   const user = await getCurrentUser();
 
-  const characters = await prisma.character.findMany({
-    include: {
-      templates: {
-        orderBy: [{ category: "asc" }, { sortOrder: "asc" }],
-      },
-    },
-    orderBy: [{ rarity: "desc" }, { name: "asc" }],
-  });
+  const characters = getAllCharacters();
 
   return (
     <div className="space-y-8">

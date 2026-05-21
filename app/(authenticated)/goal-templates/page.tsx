@@ -2,30 +2,15 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
 import { getCurrentUser } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
+import { getAllCharacters, getAllWeapons } from "@/lib/static-data";
 import { Button } from "@/components/ui/button";
 import { GoalTemplates } from "@/components/dashboard/goal-templates";
 
 export default async function GoalTemplatesPage() {
   const user = await getCurrentUser();
 
-  const characters = await prisma.character.findMany({
-    include: {
-      templates: {
-        orderBy: [{ category: "asc" }, { sortOrder: "asc" }],
-      },
-    },
-    orderBy: [{ rarity: "desc" }, { name: "asc" }],
-  });
-
-  const weapons = await prisma.weapon.findMany({
-    include: {
-      templates: {
-        orderBy: [{ category: "asc" }, { sortOrder: "asc" }],
-      },
-    },
-    orderBy: [{ rarity: "desc" }, { name: "asc" }],
-  });
+  const characters = getAllCharacters();
+  const weapons = getAllWeapons();
 
   return (
     <div className="space-y-8">

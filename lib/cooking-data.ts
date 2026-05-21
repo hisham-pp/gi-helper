@@ -1,14 +1,11 @@
 import foodData from "@/data/consumables/food/en.json";
-import cookingIngredientData from "@/data/materials/cooking-ingredients/en.json";
 import { prisma } from "@/lib/prisma";
+import {
+  getAllMaterials,
+  getCookingIngredientSeeds,
+  getMaterialByName,
+} from "@/lib/static-data";
 import type { MaterialView } from "@/lib/types";
-
-type RawIngredient = {
-  name: string;
-  description?: string;
-  rarity?: number;
-  sources?: string[];
-};
 
 type RawRecipeIngredient = {
   item: string;
@@ -25,21 +22,6 @@ type RawFood = {
   proficiency?: number | string;
   baseDish?: string;
   recipe?: RawRecipeIngredient[];
-};
-
-export type CookingIngredientSeed = {
-  id: string;
-  name: string;
-  image: string;
-  rarity: number;
-  category: "Cooking Ingredient";
-  description: string;
-  details: {
-    sources: string[];
-  };
-  combinable: false;
-  combineRatio: null;
-  parentMaterialId: null;
 };
 
 export type CookingRecipeIngredient = {
@@ -88,15 +70,7 @@ export type CookingData = {
   };
 };
 
-const rawIngredients = cookingIngredientData as unknown as Record<
-  string,
-  RawIngredient
->;
 const rawFood = foodData as unknown as Record<string, RawFood>;
-
-function normalizeName(value: string) {
-  return value.toLowerCase().replace(/["'’]/g, "").replace(/\s+/g, " ").trim();
-}
 
 export function slugifyCookingId(value: string) {
   return value
@@ -106,40 +80,17 @@ export function slugifyCookingId(value: string) {
     .replace(/^-+|-+$/g, "");
 }
 
-export function getCookingIngredientSeeds(): CookingIngredientSeed[] {
-  return Object.entries(rawIngredients).map(([id, ingredient]) => ({
-    id,
-    name: ingredient.name,
-    image: `/images/materials/cooking-ingredients/${id}`,
-    rarity: ingredient.rarity ?? 1,
-    category: "Cooking Ingredient",
-    description:
-      ingredient.description ?? `${ingredient.name} cooking ingredient.`,
-    details: {
-      sources: ingredient.sources ?? [],
-    },
-    combinable: false,
-    combineRatio: null,
-    parentMaterialId: null,
-  }));
-}
-
 export async function getCookingData(
   userId?: string | null,
 ): Promise<CookingData> {
-  const [materials, progress] = await Promise.all([
-    prisma.material.findMany({
-      include: {
-        inventories: userId
-          ? {
-              where: {
-                userId,
-              },
-            }
-          : false,
-      },
-      orderBy: [{ category: "asc" }, { rarity: "desc" }, { name: "asc" }],
-    }),
+  const [inventory, progress] = await Promise.all([
+    userId
+      ? prisma.inventory.findMany({
+          where: {
+            userId,
+          },
+        })
+      : Promise.resolve([]),
     userId
       ? prisma.cookingProgress.findMany({
           where: {
@@ -149,14 +100,9 @@ export async function getCookingData(
       : Promise.resolve([]),
   ]);
 
-  const materialByName = new Map(
-    materials.map((material) => [normalizeName(material.name), material]),
-  );
+  const materials = getAllMaterials();
   const quantityByMaterialId = new Map(
-    materials.map((material) => [
-      material.id,
-      "inventories" in material ? (material.inventories[0]?.quantity ?? 0) : 0,
-    ]),
+    inventory.map((item) => [item.materialId, item.quantity]),
   );
   const progressByRecipeId = new Map(
     progress.map((item) => [item.recipeId, item.completedCount]),
@@ -179,7 +125,7 @@ export async function getCookingData(
 
       const ingredients = (recipe.recipe ?? [])
         .map((ingredient) => {
-          const material = materialByName.get(normalizeName(ingredient.item));
+          const material = getMaterialByName(ingredient.item);
 
           if (!material) {
             return null;
@@ -239,7 +185,7 @@ export async function getCookingData(
 
     for (const ingredient of recipe.ingredients) {
       const existing = neededByMaterial.get(ingredient.materialId);
-      const material = materialByName.get(normalizeName(ingredient.name));
+      const material = getMaterialByName(ingredient.name);
       const rarity = material?.rarity ?? 1;
 
       if (existing) {
@@ -271,14 +217,8 @@ export async function getCookingData(
       combinable: material.combinable,
       combineRatio: material.combineRatio,
       parentMaterialId: material.parentMaterialId,
-      quantity:
-        "inventories" in material
-          ? (material.inventories[0]?.quantity ?? 0)
-          : 0,
-      totalCraftable:
-        "inventories" in material
-          ? (material.inventories[0]?.quantity ?? 0)
-          : 0,
+      quantity: quantityByMaterialId.get(material.id) ?? 0,
+      totalCraftable: quantityByMaterialId.get(material.id) ?? 0,
       craftableExtra: 0,
       familyDepth: 0,
     }))

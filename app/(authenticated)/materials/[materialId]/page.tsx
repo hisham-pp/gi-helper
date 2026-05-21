@@ -6,7 +6,11 @@ import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { rarityColorMap } from "@/lib/constants";
-import { prisma } from "@/lib/prisma";
+import {
+  getMaterialById,
+  getMaterialChildren,
+  getMaterialTemplateUsage,
+} from "@/lib/static-data";
 import { cn } from "@/lib/utils";
 
 type MaterialDetails = {
@@ -21,40 +25,18 @@ export default async function MaterialDetailPage({
 }) {
   const { materialId } = await params;
 
-  const material = await prisma.material.findUnique({
-    where: { id: materialId },
-    include: {
-      parentMaterial: true,
-      childMaterials: {
-        orderBy: [{ rarity: "desc" }, { name: "asc" }],
-      },
-      characterTemplateMaterials: {
-        include: {
-          template: {
-            include: {
-              character: true,
-            },
-          },
-        },
-        take: 12,
-      },
-      weaponTemplateMaterials: {
-        include: {
-          template: {
-            include: {
-              weapon: true,
-            },
-          },
-        },
-        take: 12,
-      },
-    },
-  });
+  const material = getMaterialById(materialId);
 
   if (!material) {
     notFound();
   }
 
+  const parentMaterial = material.parentMaterialId
+    ? getMaterialById(material.parentMaterialId)
+    : null;
+  const childMaterials = getMaterialChildren(material.id);
+  const { characterTemplateMaterials, weaponTemplateMaterials } =
+    getMaterialTemplateUsage(material.id);
   const details = ((material as any).details ?? {}) as MaterialDetails;
   const usedByCharacters = details.usedByCharacters ?? [];
 
@@ -104,8 +86,8 @@ export default async function MaterialDetailPage({
               ["Source", details.source ?? "No source data yet"],
               [
                 "Crafting",
-                material.combinable && material.parentMaterial
-                  ? `${material.combineRatio ?? 3}:1 into ${material.parentMaterial.name}`
+                material.combinable && parentMaterial
+                  ? `${material.combineRatio ?? 3}:1 into ${parentMaterial.name}`
                   : "Highest tier or not craftable",
               ],
             ].map(([label, value]) => (
@@ -127,20 +109,20 @@ export default async function MaterialDetailPage({
         <Card variant="outlined" className="p-5 sm:p-6">
           <h2 className="text-on-surface text-lg font-bold">Material Chain</h2>
           <div className="mt-4 space-y-3">
-            {material.parentMaterial ? (
+            {parentMaterial ? (
               <Link
-                href={`/materials/${material.parentMaterial.id}`}
+                href={`/materials/${parentMaterial.id}`}
                 className="block rounded-lg border border-outline-variant p-3 transition-colors hover:bg-surface-variant/40"
               >
                 <p className="text-on-surface-variant text-xs font-semibold uppercase">
                   Crafts Into
                 </p>
                 <p className="text-on-surface mt-1 text-sm font-semibold">
-                  {material.parentMaterial.name}
+                  {parentMaterial.name}
                 </p>
               </Link>
             ) : null}
-            {material.childMaterials.map((child) => (
+            {childMaterials.map((child) => (
               <Link
                 key={child.id}
                 href={`/materials/${child.id}`}
@@ -154,8 +136,7 @@ export default async function MaterialDetailPage({
                 </p>
               </Link>
             ))}
-            {!material.parentMaterial &&
-            material.childMaterials.length === 0 ? (
+            {!parentMaterial && childMaterials.length === 0 ? (
               <p className="text-on-surface-variant text-sm">
                 No crafting chain is linked for this material.
               </p>
@@ -184,13 +165,13 @@ export default async function MaterialDetailPage({
           )}
 
           <div className="mt-6 grid gap-3 md:grid-cols-2">
-            {material.characterTemplateMaterials.map((item) => (
+            {characterTemplateMaterials.map((item) => (
               <div
                 key={item.id}
                 className="rounded-lg border border-outline-variant p-3"
               >
                 <p className="text-on-surface text-sm font-semibold">
-                  {item.template.character.name}
+                  {item.template.character?.name}
                 </p>
                 <p className="text-on-surface-variant mt-1 text-xs">
                   {item.template.name}
@@ -200,13 +181,13 @@ export default async function MaterialDetailPage({
                 </p>
               </div>
             ))}
-            {material.weaponTemplateMaterials.map((item) => (
+            {weaponTemplateMaterials.map((item) => (
               <div
                 key={item.id}
                 className="rounded-lg border border-outline-variant p-3"
               >
                 <p className="text-on-surface text-sm font-semibold">
-                  {item.template.weapon.name}
+                  {item.template.weapon?.name}
                 </p>
                 <p className="text-on-surface-variant mt-1 text-xs">
                   {item.template.name}

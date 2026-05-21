@@ -98,7 +98,10 @@ const navItems = [
 
 const ShellRoot = styled(Box)(({ theme }) => ({
   display: "flex",
-  minHeight: "100vh",
+  position: "fixed",
+  inset: 0,
+  height: "100dvh",
+  width: "100%",
   overflow: "hidden",
   backgroundColor: theme.palette.background.default,
   color: theme.palette.text.primary,
@@ -106,8 +109,9 @@ const ShellRoot = styled(Box)(({ theme }) => ({
 
 const Main = styled("main")(({ theme }) => ({
   flex: 1,
+  minHeight: 0,
   minWidth: 0,
-  height: "100vh",
+  height: "100dvh",
   overflowY: "auto",
   paddingTop: 64,
   [theme.breakpoints.up("lg")]: {
