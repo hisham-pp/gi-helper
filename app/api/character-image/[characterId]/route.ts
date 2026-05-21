@@ -1,3 +1,6 @@
+import { readFile } from "node:fs/promises";
+import path from "node:path";
+
 import { NextRequest, NextResponse } from "next/server";
 
 import { getCharacterById } from "@/lib/static-data";
@@ -15,10 +18,18 @@ export async function GET(
   }
 
   try {
-    const imageUrl = character.image.startsWith("http")
-      ? character.image
-      : new URL(character.image, request.nextUrl.origin).toString();
+    if (!character.image.startsWith("http")) {
+      const image = await readPublicImage(character.image);
 
+      return new NextResponse(image, {
+        headers: imageHeaders(image),
+      });
+    }
+
+    const imageUrl = new URL(
+      character.image,
+      request.nextUrl.origin,
+    ).toString();
     const response = await fetch(imageUrl, {
       cache: "force-cache",
       next: {
@@ -31,15 +42,14 @@ export async function GET(
     }
 
     const arrayBuffer = await response.arrayBuffer();
-    const contentType =
-      getImageContentType(arrayBuffer) ??
-      response.headers.get("content-type") ??
-      "image/png";
 
     return new NextResponse(arrayBuffer, {
       headers: {
-        "Content-Type": contentType,
-        "Cache-Control": "public, max-age=31536000, immutable",
+        ...imageHeaders(arrayBuffer),
+        "Content-Type":
+          getImageContentType(arrayBuffer) ??
+          response.headers.get("content-type") ??
+          "image/png",
       },
     });
   } catch (error) {
@@ -51,7 +61,21 @@ export async function GET(
   }
 }
 
-function getImageContentType(arrayBuffer: ArrayBuffer) {
+async function readPublicImage(imagePath: string) {
+  const normalizedPath = imagePath.replace(/^\/+/, "");
+  const absolutePath = path.join(process.cwd(), "public", normalizedPath);
+
+  return readFile(absolutePath);
+}
+
+function imageHeaders(image: ArrayBuffer | Buffer) {
+  return {
+    "Content-Type": getImageContentType(image) ?? "image/png",
+    "Cache-Control": "public, max-age=31536000, immutable",
+  };
+}
+
+function getImageContentType(arrayBuffer: ArrayBuffer | Buffer) {
   const bytes = new Uint8Array(arrayBuffer.slice(0, 12));
 
   if (

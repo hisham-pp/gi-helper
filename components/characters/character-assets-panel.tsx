@@ -5,7 +5,13 @@ import Image from "next/image";
 import { Card } from "@/components/ui/card";
 import type { CharacterAsset } from "@/components/characters/character-goal-builder";
 
-export function CharacterAssetsPanel({ assets }: { assets: CharacterAsset[] }) {
+export function CharacterAssetsPanel({
+  assets,
+  characterId,
+}: {
+  assets: CharacterAsset[];
+  characterId: string;
+}) {
   if (assets.length === 0) {
     return (
       <Card variant="outlined" className="p-6">
@@ -22,7 +28,7 @@ export function CharacterAssetsPanel({ assets }: { assets: CharacterAsset[] }) {
         <Card key={asset.key} variant="outlined" className="overflow-hidden">
           <div className="relative aspect-[4/3] bg-surface-variant/30">
             <Image
-              src={asset.path}
+              src={`/api/character-asset/${characterId}/${asset.key}`}
               alt={asset.label}
               fill
               className="object-contain p-4"

@@ -5425,5 +5425,1152 @@
         "quantity": 1
       }
     ]
+  },
+  "honey-char-siu": {
+    "name": "Honey Char Siu",
+    "rarity": 1,
+    "type": "Recovery Dish",
+    "effect": "Restores 8~10% of Max HP to the selected character. Regenerates 210~300 HP every 5s for the next 30s.",
+    "hasRecipe": true,
+    "description": "A type of roasted meat from Liyue. Richly red in color, aromatic, and intensely flavorful. Why, one might even faint from gluttony if one stares at it for too long. Between mouthfuls of delicious meat and rich sauce, one bowl of rice might seem too measly a match for this taste experience!",
+    "proficiency": 5,
+    "recipe": [
+      {
+        "item": "Raw Meat",
+        "quantity": 1
+      },
+      {
+        "item": "Sugar",
+        "quantity": 1
+      }
+    ]
+  },
+  "duck-confit": {
+    "name": "Duck Confit",
+    "rarity": 1,
+    "type": "Recovery Dish",
+    "effect": "Restores 8~10% of Max HP and an additional 800~1,200 HP to the selected character.",
+    "hasRecipe": true,
+    "description": "A pan-fried dish. With the magic of \"confit,\" the plump and meaty duck leg is cooked until crispy on the outside and meltingly tender on the inside ~ one cannot help but exclaim that every second spent on this dish is worth it!",
+    "proficiency": 5,
+    "recipe": [
+      {
+        "item": "Fowl",
+        "quantity": 1
+      },
+      {
+        "item": "Potato",
+        "quantity": 1
+      }
+    ]
+  },
+  "cup-o-grainfruit": {
+    "name": "Cup O' Grainfruit",
+    "rarity": 1,
+    "type": "Recovery Dish",
+    "effect": "Restores 8~10% of Max HP to the selected character. Regenerates 210~300 HP every 5s for the next 30s.",
+    "hasRecipe": true,
+    "description": "A snack made from Grainfruit. The fresh, plump kernels explode on the tip of your tongue, like a lively party that leaves a lingering sweet aftertaste.",
+    "proficiency": 5,
+    "recipe": [
+      {
+        "item": "Grainfruit",
+        "quantity": 1
+      },
+      {
+        "item": "Embercore Flower",
+        "quantity": 1
+      }
+    ]
+  },
+  "cream-of-mushroom-soup": {
+    "name": "Cream of Mushroom Soup",
+    "rarity": 2,
+    "type": "Recovery Dish",
+    "effect": "Revives the selected character. Restores 250~550 HP.",
+    "hasRecipe": true,
+    "description": "A bisque that can be found everywhere. Its creamy texture feels like a silky garment, and you seem to be dancing on the stage in this beautiful attire... The curtain has fallen, but the memory lingers.",
+    "proficiency": 10,
+    "recipe": [
+      {
+        "item": "Mushroom",
+        "quantity": 3
+      },
+      {
+        "item": "Cream",
+        "quantity": 3
+      }
+    ]
+  },
+  "grainfruit-meat-soup": {
+    "name": "Grainfruit Meat Soup",
+    "rarity": 2,
+    "type": "Recovery Dish",
+    "effect": "Restores 20-24% of Max HP to the selected character and an additional 900-1,500 HP.",
+    "hasRecipe": true,
+    "description": "A soup that consists of a mixture of meat and vegetables. Any single spoonful includes soft meat, crunchy veggies, and a titillating spiciness... This cornucopia of shifting flavors decrees that you entertain seconds!",
+    "proficiency": 10,
+    "recipe": [
+      {
+        "item": "Cabbage",
+        "quantity": 1
+      },
+      {
+        "item": "Fowl",
+        "quantity": 1
+      },
+      {
+        "item": "Onion",
+        "quantity": 1
+      },
+      {
+        "item": "Grainfruit",
+        "quantity": 2
+      }
+    ]
+  },
+  "lohikeitto": {
+    "name": "Lohikeitto",
+    "rarity": 2,
+    "type": "Recovery Dish",
+    "effect": "Restores 18~22% of Max HP to the selected character. Regenerates 300~470 HP every 5s for the next 30s.",
+    "hasRecipe": true,
+    "description": "A classic soup from the frigid regions. The creamy chowder, smooth as flowing silk, envelops each ingredient in its smooth embrace. As you take your first sip, you feel a gentle, cozy warmth spread throughout you, as if a vivid, golden sunrise is taking place inside your stomach.",
+    "proficiency": 10,
+    "recipe": [
+      {
+        "item": "Carrot",
+        "quantity": 1
+      },
+      {
+        "item": "Potato",
+        "quantity": 1
+      },
+      {
+        "item": "Fish",
+        "quantity": 2
+      },
+      {
+        "item": "Cream",
+        "quantity": 1
+      }
+    ]
+  },
+  "tripes-du-port": {
+    "name": "Tripes du Port",
+    "rarity": 3,
+    "type": "Recovery Dish",
+    "effect": "Revives the selected character. Restores 900~1,500 HP.",
+    "hasRecipe": true,
+    "description": "An offal dish. The flaky yet soft cow's stomach has an almost fruity fragrance. Unlike other surprising delicacies that take the world by storm, the dish is overflowing with rich traditional savor, and once you have a single bite, you simply cannot stop!",
+    "proficiency": 15,
+    "recipe": [
+      {
+        "item": "Carrot",
+        "quantity": 3
+      },
+      {
+        "item": "Raw Meat",
+        "quantity": 3
+      },
+      {
+        "item": "Onion",
+        "quantity": 2
+      },
+      {
+        "item": "Fermented Juice",
+        "quantity": 1
+      }
+    ]
+  },
+  "drink-455": {
+    "name": "Drink 455",
+    "rarity": 3,
+    "type": "Recovery Dish",
+    "effect": "Revives the selected character. Restores 900~1,500 HP.",
+    "hasRecipe": true,
+    "description": "A specially-blended drink that's all the rage right now. Refreshing beyond belief, this invigorating beverage washes over you like sweet rain after a long drought, instantly melting away all fatigue and restlessness. \"It's as if everything's finally right with the world!\" was one customer's glowing review after finishing their glass.",
+    "proficiency": 15,
+    "recipe": [
+      {
+        "item": "Mint",
+        "quantity": 2
+      },
+      {
+        "item": "Salt",
+        "quantity": 1
+      },
+      {
+        "item": "Sakura Bloom",
+        "quantity": 2
+      }
+    ]
+  },
+  "fontaine-aspic": {
+    "name": "Fontaine Aspic",
+    "rarity": 2,
+    "type": "ATK-Boosting Dish",
+    "effect": "Increases all party members' CRIT Rate by 6~12% for 300s. In Co-Op Mode, this effect only applies to your own character(s).",
+    "hasRecipe": true,
+    "description": "A cold dish made from seafood. The fish roe in the aspic explodes on your tastebuds, igniting delightful surprises. It didn't take long before you clean your plate. Since there is no one around... it's okay to lick the plate, right?",
+    "proficiency": 10,
+    "recipe": [
+      {
+        "item": "Fowl",
+        "quantity": 2
+      },
+      {
+        "item": "Fish",
+        "quantity": 2
+      },
+      {
+        "item": "Cream",
+        "quantity": 1
+      }
+    ]
+  },
+  "sing-your-heart-out": {
+    "name": "Sing Your Heart Out",
+    "rarity": 4,
+    "type": "Other Dish",
+    "effect": "A little surprise from the Flower-Feather Clan.",
+    "hasRecipe": true,
+    "description": "A cool-flavored throat lozenge. These exquisitely crafted candies seem to send a wave of coolness down your throat, relieving hoarseness like bubbling springwater spilling forth and cleansing parched earth. Your voice is left sounding as clear as a newly-fledged hatchling, eager to spread its wings and fly up into the sky.",
+    "proficiency": 20,
+    "recipe": [
+      {
+        "item": "Mint",
+        "quantity": 1
+      },
+      {
+        "item": "Embercore Flower",
+        "quantity": 1
+      },
+      {
+        "item": "Sugar",
+        "quantity": 1
+      },
+      {
+        "item": "Jam",
+        "quantity": 1
+      }
+    ]
+  },
+  "tomates-narbonnaises": {
+    "name": "Tomates Narbonnaises",
+    "rarity": 3,
+    "type": "ATK-Boosting Dish",
+    "effect": "Increases all party members' ATK by 160~228 for 300s. In Co-Op Mode, this effect only applies to your own character(s).",
+    "hasRecipe": true,
+    "description": "A dish of meat and vegetables. Juicy mouthwatering tomatoes filled with hearty meat, each one has an agile, charming aroma, which explodes into a splendid savor after biting into it. After eating a single one, all the dark clouds in your heart will have been banished by the rich deliciousness emanating from your tongue.",
+    "proficiency": 15,
+    "recipe": [
+      {
+        "item": "Raw Meat",
+        "quantity": 3
+      },
+      {
+        "item": "Onion",
+        "quantity": 1
+      },
+      {
+        "item": "Tomato",
+        "quantity": 3
+      },
+      {
+        "item": "Bacon",
+        "quantity": 1
+      }
+    ]
+  },
+  "consomme": {
+    "name": "Consomme",
+    "rarity": 3,
+    "type": "ATK-Boosting Dish",
+    "effect": "Increases all party members' CRIT Rate by 10~20% for 300s. In Co-Op Mode, this effect only applies to your own character(s).",
+    "hasRecipe": true,
+    "description": "A soup with a complex recipe. A clear soup that combines the essence of the boundless blue skies above and the limitless land below, the aromas of meat and vegetables blended seamlessly into a greater whole. No wonder a columnist for The Steambird, once unable to squeeze out a single word onto the blank paper before them, drank a single bowl and immediately became a font of literary genius, every word nearly as exquisite as this dish.",
+    "proficiency": 15,
+    "recipe": [
+      {
+        "item": "Carrot",
+        "quantity": 2
+      },
+      {
+        "item": "Bird Egg",
+        "quantity": 3
+      },
+      {
+        "item": "Fowl",
+        "quantity": 3
+      },
+      {
+        "item": "Marcotte",
+        "quantity": 1
+      }
+    ]
+  },
+  "fricassee-de-poulet": {
+    "name": "Fricassee de Poulet",
+    "rarity": 3,
+    "type": "ATK-Boosting Dish",
+    "effect": "Increases all party members' ATK by 160~228 for 300s. In Co-Op Mode, this effect only applies to your own character(s).",
+    "hasRecipe": true,
+    "description": "A well-known Fontainian meat dish. The romantic rendezvous of cream and chicken instantly catalyzes a deep, rich aroma that lifts the spirits. It is said to be a favorite amongst Fontainians... One could feast on this fare for a lifetime and not fatigue of its fantastic flavor.",
+    "proficiency": 15,
+    "recipe": [
+      {
+        "item": "Fowl",
+        "quantity": 4
+      },
+      {
+        "item": "Onion",
+        "quantity": 3
+      },
+      {
+        "item": "Fermented Juice",
+        "quantity": 3
+      },
+      {
+        "item": "Cream",
+        "quantity": 2
+      }
+    ]
+  },
+  "meatnado": {
+    "name": "Meatnado",
+    "rarity": 3,
+    "type": "Adventurer's Dish",
+    "effect": "Restore 15~25 Stamina after any party member defeats an opponent. This effect can be triggered once every 3s. Lasts 900s. In Co-Op Mode, this effect only applies to your own character(s).",
+    "hasRecipe": true,
+    "description": "A rather popular meat dish. The rich meat fragrance sweeps through you, body and soul, satisfying what your imagination envisions for bountiful meat. No wonder, then, that this dish often finds itself a place at any joyous gathering.",
+    "proficiency": 15,
+    "recipe": [
+      {
+        "item": "Raw Meat",
+        "quantity": 2
+      },
+      {
+        "item": "Onion",
+        "quantity": 1
+      },
+      {
+        "item": "Potato",
+        "quantity": 1
+      },
+      {
+        "item": "Bacon",
+        "quantity": 2
+      }
+    ]
+  },
+  "fontainian-foie-gras": {
+    "name": "Fontainian Foie Gras",
+    "rarity": 3,
+    "type": "DEF-Boosting Dish",
+    "effect": "Increases all party members' DEF by 165~235 for 300s. In Co-Op Mode, this effect only applies to your own character(s).",
+    "hasRecipe": true,
+    "description": "A traditional dish of Fontaine. The tender and buttery foie gras greets your tastebuds with silky dance moves before waltzing down your throat like smooth satin. Such a supreme delight makes all other dishes you will have in the future taste bland in comparison ~ that being said, you can hardly regret eating it, can you?",
+    "proficiency": 15,
+    "recipe": [
+      {
+        "item": "Fowl",
+        "quantity": 2
+      },
+      {
+        "item": "Marcotte",
+        "quantity": 1
+      },
+      {
+        "item": "Jam",
+        "quantity": 1
+      }
+    ]
+  },
+  "cassoulet": {
+    "name": "Cassoulet",
+    "rarity": 3,
+    "type": "DEF-Boosting Dish",
+    "effect": "Increases all party members' Shield Strength by 20~30% for 300s. In Co-Op Mode, this effect only applies to your own character(s).",
+    "hasRecipe": true,
+    "description": "A simple rustic stew. Time is the most wondrous of weapons for catalyzing the creation of deliciousness, and time allows the meat in this dish to soak up the ocean of stewed flavor it is bathing in, becoming soft and fragrant. Together with the rich aroma of the beans, it conjures a warm delight in one's mouth that stirs the spirit.",
+    "proficiency": 15,
+    "recipe": [
+      {
+        "item": "Fowl",
+        "quantity": 1
+      },
+      {
+        "item": "Glabrous Beans",
+        "quantity": 1
+      },
+      {
+        "item": "Marcotte",
+        "quantity": 1
+      },
+      {
+        "item": "Sausage",
+        "quantity": 2
+      }
+    ]
+  },
+  "xocoatl": {
+    "name": "Xocoatl",
+    "rarity": 3,
+    "type": "DEF-Boosting Dish",
+    "effect": "Increases all party members' DEF by 165~235 for 300s. In Co-Op Mode, this effect only applies to your own character(s).",
+    "hasRecipe": true,
+    "description": "A Natlan drink made from Cacahuatl. The rich, deep fragrance of the Cacahuatl is infused with a pure creaminess, tenderly caressing your tongue with the softness of smooth silk, leaving behind a touch of sweetness that is more than enough to melt your heart.",
+    "proficiency": 15,
+    "recipe": [
+      {
+        "item": "Mint",
+        "quantity": 3
+      },
+      {
+        "item": "Milk",
+        "quantity": 3
+      },
+      {
+        "item": "Cacahuatl",
+        "quantity": 3
+      },
+      {
+        "item": "Sugar",
+        "quantity": 1
+      }
+    ]
+  },
+  "fatteh": {
+    "name": "Fatteh",
+    "rarity": 2,
+    "type": "Recovery Dish",
+    "effect": "Revives the selected character. Restores 250~550 HP.",
+    "hasRecipe": true,
+    "description": "A dish from ancient Sumeru. With the Glabrous Beans coated in the silken smoothness of the yogurt sauce, the smooth texture greets your tongue like a blissful dream. And even after you have awoken, you might still taste the filling fragrance of baked flatbread between your teeth.",
+    "proficiency": 10,
+    "recipe": [
+      {
+        "item": "Mint",
+        "quantity": 1
+      },
+      {
+        "item": "Milk",
+        "quantity": 2
+      },
+      {
+        "item": "Glabrous Beans",
+        "quantity": 2
+      },
+      {
+        "item": "Flour",
+        "quantity": 3
+      }
+    ]
+  },
+  "ile-flottante": {
+    "name": "Ile flottante",
+    "rarity": 2,
+    "type": "Recovery Dish",
+    "effect": "Restores 18~22% of Max HP to the selected character. Regenerates 300~470 HP every 5s for the next 30s.",
+    "hasRecipe": true,
+    "description": "A dessert made of egg whites. Light egg-white dew that floats on the creamy sauce is like mysterious treasure chests awaiting travelers' exploration. \"Enjoyment\" would be an understatement, for the dessert brings you the joy of opening a luxurious chest!",
+    "proficiency": 10,
+    "recipe": [
+      {
+        "item": "Bird Egg",
+        "quantity": 1
+      },
+      {
+        "item": "Sugar",
+        "quantity": 2
+      }
+    ]
+  },
+  "berries-and-fried-meat": {
+    "name": "Berries and Fried Meat",
+    "rarity": 2,
+    "type": "Recovery Dish",
+    "effect": "Revives the selected character. Restores 250~550 HP.",
+    "hasRecipe": true,
+    "description": "Fried meat accompanied by mashed potatoes. The marbled meat is savory and flavorful. When paired with the natural sweetness of the berries, it feels like your tongue is wandering through the wilderness ~ full of delight and healing for the soul.",
+    "proficiency": 10,
+    "recipe": [
+      {
+        "item": "Raw Meat",
+        "quantity": 1
+      },
+      {
+        "item": "Potato",
+        "quantity": 1
+      },
+      {
+        "item": "Lakkaberry",
+        "quantity": 1
+      },
+      {
+        "item": "Midsommar Berry",
+        "quantity": 1
+      }
+    ]
+  },
+  "fine-tea-full-moon": {
+    "name": "Fine Tea, Full Moon",
+    "rarity": 3,
+    "type": "Recovery Dish",
+    "effect": "Restores 30~34% of Max HP and an additional 600~1,900 HP to the selected character.",
+    "hasRecipe": true,
+    "description": "A tea pastry containing egg yolk. The loose and delicate texture of the grainy egg yolk mingles with a faint fragrance of tea. One small mouthful brings earthy happiness enough to make you swoon. You could pop several in your mouth at once, and woe betide any who should seek to steal a single crumb from the corner of your lips.",
+    "proficiency": 15,
+    "recipe": [
+      {
+        "item": "Bird Egg",
+        "quantity": 2
+      },
+      {
+        "item": "Chenyu Adeptea",
+        "quantity": 3
+      },
+      {
+        "item": "Flour",
+        "quantity": 2
+      },
+      {
+        "item": "Sugar",
+        "quantity": 1
+      }
+    ]
+  },
+  "lasagna": {
+    "name": "Lasagna",
+    "rarity": 3,
+    "type": "Recovery Dish",
+    "effect": "Restores 30~34% of Max HP and an additional 600~1,900 HP to the selected character.",
+    "hasRecipe": true,
+    "description": "A baked pasta dish. The Song of Pots and Fire eulogizes the meat sauce's ascension to the Pasta Throne. The moment it enters your mouth, it graces you with bliss so unparalleled that you almost want to make today Lasagna Day!",
+    "proficiency": 15,
+    "recipe": [
+      {
+        "item": "Raw Meat",
+        "quantity": 2
+      },
+      {
+        "item": "Flour",
+        "quantity": 3
+      },
+      {
+        "item": "Butter",
+        "quantity": 1
+      },
+      {
+        "item": "Cheese",
+        "quantity": 2
+      }
+    ]
+  },
+  "steak-tartare": {
+    "name": "Steak Tartare",
+    "rarity": 3,
+    "type": "Recovery Dish",
+    "effect": "Restores 30~34% of Max HP and an additional 600~1,900 HP to the selected character.",
+    "hasRecipe": true,
+    "description": "A fresh dish of raw meat. Tender meat that is minced properly and coated with egg yolk that tastes exceptionally juicy and sweet. The aromatic juice of the meat fills your mouth with euphoria, giving people an exceptionally pure and primitive gourmet delight.",
+    "proficiency": 15,
+    "recipe": [
+      {
+        "item": "Raw Meat",
+        "quantity": 3
+      },
+      {
+        "item": "Bird Egg",
+        "quantity": 3
+      },
+      {
+        "item": "Onion",
+        "quantity": 2
+      },
+      {
+        "item": "Marcotte",
+        "quantity": 2
+      }
+    ]
+  },
+  "poisson-seafood-soup": {
+    "name": "Poisson Seafood Soup",
+    "rarity": 3,
+    "type": "Recovery Dish",
+    "effect": "Restores 26~30% of Max HP to the selected character. Regenerates 450~790 HP every 5s for the next 30s.",
+    "hasRecipe": true,
+    "description": "A seafood soup. The buttery soup resembles gilded waves under the bright sun, as the rich seafood aromas melt in your mouth. The bounties of the ocean form a harmonious masterpiece. After emptying the bowl quickly, you can't help but dip the bread in what remains ~ it would be a great loss to miss even one drop of it!",
+    "proficiency": 15,
+    "recipe": [
+      {
+        "item": "Mint",
+        "quantity": 2
+      },
+      {
+        "item": "Tomato",
+        "quantity": 2
+      },
+      {
+        "item": "Fish",
+        "quantity": 4
+      },
+      {
+        "item": "Marcotte",
+        "quantity": 2
+      }
+    ]
+  },
+  "todays-boon": {
+    "name": "Today's Boon",
+    "rarity": 3,
+    "type": "Recovery Dish",
+    "effect": "Restores 26~30% of Max HP to the selected character. Regenerates 450~790 HP every 5s for the next 30s.",
+    "hasRecipe": true,
+    "description": "A vegetable salad. A vibrant array of vegetables is given sweetness by the presence of juicy berries and delicately garnished with petals, creating a bountiful feast that blossoms across the taste buds.",
+    "proficiency": 15,
+    "recipe": [
+      {
+        "item": "Mushroom",
+        "quantity": 1
+      },
+      {
+        "item": "Nocturnal Blossom",
+        "quantity": 2
+      },
+      {
+        "item": "Lakkaberry",
+        "quantity": 2
+      },
+      {
+        "item": "Midsommar Berry",
+        "quantity": 3
+      }
+    ]
+  },
+  "midsommar-torte": {
+    "name": "Midsommar Torte",
+    "rarity": 3,
+    "type": "Recovery Dish",
+    "effect": "Revives the selected character. Restores 900~1,500 HP.",
+    "hasRecipe": true,
+    "description": "A small cake made from Midsommar Berries. One spoonful is all it takes to whisk you away to a lush berry forest. Amid the vibrant, lively sweetness, there is a hint of refreshing tartness imparted by the Smetana. This cake raises the festive mood to the peak!",
+    "proficiency": 15,
+    "recipe": [
+      {
+        "item": "Bird Egg",
+        "quantity": 2
+      },
+      {
+        "item": "Midsommar Berry",
+        "quantity": 3
+      },
+      {
+        "item": "Flour",
+        "quantity": 3
+      },
+      {
+        "item": "Smetana",
+        "quantity": 1
+      }
+    ]
+  },
+  "lucky-snow-delight": {
+    "name": "Lucky Snow Delight",
+    "rarity": 4,
+    "type": "Recovery Dish",
+    "effect": "Restores 30~35% of Max HP to the selected character. Regenerates 510~930 HP every 5s for the next 30s.",
+    "hasRecipe": true,
+    "description": "A Liyue confection made from rice. Pure and white as fresh snow, it melts the moment it touches your tongue, offering a clean, delicate sweetness that lingers like a gentle echo.",
+    "proficiency": 20,
+    "recipe": [
+      {
+        "item": "Lotus Head",
+        "quantity": 3
+      },
+      {
+        "item": "Qingxin",
+        "quantity": 2
+      },
+      {
+        "item": "Rice",
+        "quantity": 3
+      },
+      {
+        "item": "Sugar",
+        "quantity": 1
+      }
+    ]
+  },
+  "nod-krai-hot-dog": {
+    "name": "Nod-Krai Hot Dog",
+    "rarity": 2,
+    "type": "ATK-Boosting Dish",
+    "effect": "Increases all party members' CRIT Rate by 6~12% for 300s. In Co-Op Mode, this effect only applies to your own character(s).",
+    "hasRecipe": true,
+    "description": "Classic convenience food. Freshly cooked sausage paired with freshly baked bread. With each bite, the irresistible aroma of fat fills the palate. It's gone in a few quick bites, leaving you craving another.",
+    "proficiency": 10,
+    "recipe": [
+      {
+        "item": "Onion",
+        "quantity": 1
+      },
+      {
+        "item": "Tomato",
+        "quantity": 1
+      },
+      {
+        "item": "Flour",
+        "quantity": 1
+      },
+      {
+        "item": "Sausage",
+        "quantity": 1
+      }
+    ]
+  },
+  "blubber-profiterole": {
+    "name": "Blubber Profiterole",
+    "rarity": 3,
+    "type": "ATK-Boosting Dish",
+    "effect": "Increases all party members' Physical DMG by 20~40% for 300s. In Co-Op Mode, this effect only applies to your own character(s).",
+    "hasRecipe": true,
+    "description": "A cream-filled dessert. After the first morsel crosses your lips, you simply cannot help but scarf the rest down! Even the remnants of the cream lingering on the corners of your mouth is enough to flood your heart with contented bliss. If only every meal could be followed by such sweet perfection... Ah! How wondrous would this adventurous life be!",
+    "proficiency": 15,
+    "recipe": [
+      {
+        "item": "Bird Egg",
+        "quantity": 4
+      },
+      {
+        "item": "Milk",
+        "quantity": 3
+      },
+      {
+        "item": "Flour",
+        "quantity": 3
+      },
+      {
+        "item": "Cream",
+        "quantity": 2
+      }
+    ]
+  },
+  "magmic-ode": {
+    "name": "Magmic Ode",
+    "rarity": 3,
+    "type": "ATK-Boosting Dish",
+    "effect": "Increases all party members' CRIT Rate by 10~20% for 300s. In Co-Op Mode, this effect only applies to your own character(s).",
+    "hasRecipe": true,
+    "description": "An ancient Natlan dish. The meticulous roasting locks the juices tightly within the ingredients, while a subtle smokiness lingers like faint golden threads sewn on rare woven scrolls, elevating the flavor to new heights. A single bite will make anyone uncontrollably cheer in delight.",
+    "proficiency": 15,
+    "recipe": [
+      {
+        "item": "Onion",
+        "quantity": 2
+      },
+      {
+        "item": "Potato",
+        "quantity": 2
+      },
+      {
+        "item": "Fish",
+        "quantity": 2
+      },
+      {
+        "item": "Grainfruit",
+        "quantity": 4
+      }
+    ]
+  },
+  "crispy-roast": {
+    "name": "Crispy Roast",
+    "rarity": 3,
+    "type": "ATK-Boosting Dish",
+    "effect": "Increases all party members' ATK by 160~228 for 300s. In Co-Op Mode, this effect only applies to your own character(s).",
+    "hasRecipe": true,
+    "description": "Large chunks of roasted meat. The moment it comes out of the oven, the rich, meaty aroma fills your soul. No wonder so many people from Nod-Krai say this roasted meat is like the warm sun when the cold falls and the biting winds blow.",
+    "proficiency": 15,
+    "recipe": [
+      {
+        "item": "Raw Meat",
+        "quantity": 4
+      },
+      {
+        "item": "Salt",
+        "quantity": 2
+      },
+      {
+        "item": "Potato",
+        "quantity": 3
+      },
+      {
+        "item": "Smetana",
+        "quantity": 1
+      }
+    ]
+  },
+  "petit-gateau-debord-revised-version": {
+    "name": "Petit Gateau Debord: Revised Version",
+    "rarity": 4,
+    "type": "ATK-Boosting Dish",
+    "effect": "Increases all party members' ATK by 224~320 and CRIT Rate by 6~10% for 300s. In Co-Op Mode, this effect only applies to your own character(s).",
+    "hasRecipe": true,
+    "description": "A petite version of the famous Gateau Debord. The velvety sauce is like elusive silk, slipping between your fingers and alighting on your tongue, while the gentle melodies of afternoon tea circle in the air, enchanting your heart... Perhaps this little treat will appear before you again in your dreams tonight...",
+    "proficiency": 20,
+    "recipe": [
+      {
+        "item": "Bird Egg",
+        "quantity": 3
+      },
+      {
+        "item": "Romaritime Flower",
+        "quantity": 3
+      },
+      {
+        "item": "Flour",
+        "quantity": 2
+      },
+      {
+        "item": "Cream",
+        "quantity": 2
+      }
+    ]
+  },
+  "boudin-noir-aux-pommes": {
+    "name": "Boudin Noir aux Pommes",
+    "rarity": 2,
+    "type": "Adventurer's Dish",
+    "effect": "Decreases all party members' sprinting Stamina consumption by 15~25% for 900s. In Co-Op Mode, this effect only applies to your own character(s).",
+    "hasRecipe": true,
+    "description": "A traditional Fontainian dish. A perfect combination, with the sweet fragrance of the apples neutralizing the fat of the blood sausage. An enticing, slightly burnt smell wafts upwards from the plate, and the eyes of those who see it light up as they shout with joy and anticipation.",
+    "proficiency": 10,
+    "recipe": [
+      {
+        "item": "Apple",
+        "quantity": 2
+      },
+      {
+        "item": "Raw Meat",
+        "quantity": 1
+      },
+      {
+        "item": "Butter",
+        "quantity": 1
+      }
+    ]
+  },
+  "bulle-sauce-duck-breast": {
+    "name": "Bulle Sauce Duck Breast",
+    "rarity": 2,
+    "type": "Adventurer's Dish",
+    "effect": "Restores 40~60 stamina.",
+    "hasRecipe": true,
+    "description": "A meat dish with the fragrant fullness of fruit. The citrusy flavor of tangerine gives the succulent duck a unique, fresh sweetness. It's so irresistibly delicious that you can barely stop yourself from reaching for the next piece even before you've swallowed the last one. No matter how much Fontaine's food culture has evolved over the years, it's no surprise that this dish has always kept its place among the classics.",
+    "proficiency": 10,
+    "recipe": [
+      {
+        "item": "Fowl",
+        "quantity": 2
+      },
+      {
+        "item": "Bulle Fruit",
+        "quantity": 2
+      }
+    ]
+  },
+  "apple-roly-poly": {
+    "name": "Apple Roly Poly",
+    "rarity": 3,
+    "type": "Adventurer's Dish",
+    "effect": "After you activate a Petrified Tree, a Ley Line Outcrop, or open a Treasure Chest, restore 16%~20% HP and an extra 600~1,200 HP to all party members. This effect can occur once every 5s. Lasts 900s. In Co-Op Mode, this effect only applies to your own character(s).",
+    "hasRecipe": true,
+    "description": "A traditional apple dessert. The mere aroma of the apples gives a feeling akin to situating oneself before a warm hearth. Before you can even think to slowly appreciate it, your hands move as if compelled by some other person, knife and fork in tow, reaching out for the next piece.",
+    "proficiency": 15,
+    "recipe": [
+      {
+        "item": "Apple",
+        "quantity": 4
+      },
+      {
+        "item": "Bird Egg",
+        "quantity": 2
+      },
+      {
+        "item": "Flour",
+        "quantity": 2
+      },
+      {
+        "item": "Butter",
+        "quantity": 1
+      }
+    ]
+  },
+  "bathhouse-manjuu": {
+    "name": "Bathhouse Manjuu",
+    "rarity": 3,
+    "type": "Adventurer's Dish",
+    "effect": "Restores 70~100 Stamina.",
+    "hasRecipe": true,
+    "description": "A filled Inazuman dessert. The crispy, flaky outer casing protects a rich and delicate filling, its sweetness dissolving on your tongue like worries melting away in a hot spring. As you eat, your tiredness vanishes without a trace, leaving you relaxed and at ease.",
+    "proficiency": 15,
+    "recipe": [
+      {
+        "item": "Lavender Melon",
+        "quantity": 3
+      },
+      {
+        "item": "Flour",
+        "quantity": 4
+      },
+      {
+        "item": "Sugar",
+        "quantity": 2
+      }
+    ]
+  },
+  "fruity-trio": {
+    "name": "Fruity Trio",
+    "rarity": 3,
+    "type": "Adventurer's Dish",
+    "effect": "Decreases Stamina depleted by climbing and sprinting for all party members by 15~25% for 900s. In Co-Op Mode, this effect only applies to your own character(s).",
+    "hasRecipe": true,
+    "description": "A dessert with a romantic flair. The crispy and flaky tart shell and refreshing fruit fillings melt in your mouth. The harmonious coalescence of brown and white colors on the meringue reminds one of a stretch of gilded cloud in the warm sunlight. A pleasant surprise to your tastebuds indeed.",
+    "proficiency": 15,
+    "recipe": [
+      {
+        "item": "Bird Egg",
+        "quantity": 1
+      },
+      {
+        "item": "Bulle Fruit",
+        "quantity": 1
+      },
+      {
+        "item": "Marcotte",
+        "quantity": 2
+      },
+      {
+        "item": "Jam",
+        "quantity": 1
+      }
+    ]
+  },
+  "crepes-suzette": {
+    "name": "Crepes Suzette",
+    "rarity": 3,
+    "type": "Adventurer's Dish",
+    "effect": "Decreases all party members' gliding and sprinting Stamina consumption by 15~25% for 900s. In Co-Op Mode, this effect only applies to your own character(s).",
+    "hasRecipe": true,
+    "description": "Crepes with fillings. The light cream and delectable jam are composed into a symphony of flavor, folded into a masterfully cooked soft crepe, as though robed in silken perfection, inviting your tongue to join an elegant, endless waltz of culinary delight.",
+    "proficiency": 15,
+    "recipe": [
+      {
+        "item": "Bulle Fruit",
+        "quantity": 2
+      },
+      {
+        "item": "Flour",
+        "quantity": 1
+      },
+      {
+        "item": "Cream",
+        "quantity": 1
+      },
+      {
+        "item": "Jam",
+        "quantity": 1
+      }
+    ]
+  },
+  "rainbow-macarons": {
+    "name": "Rainbow Macarons",
+    "rarity": 3,
+    "type": "Adventurer's Dish",
+    "effect": "Decreases Stamina depleted by climbing and sprinting for all party members by 15~25% for 900s. In Co-Op Mode, this effect only applies to your own character(s).",
+    "hasRecipe": true,
+    "description": "Small, multi-colored round pastries. The crisp shell wraps a thick, soft filling, and all is right with the world. Try one, and it shall be as if a little kitten's nose is nuzzling against your chest. Surely no one could help but fall for such an experience.",
+    "proficiency": 15,
+    "recipe": [
+      {
+        "item": "Bird Egg",
+        "quantity": 3
+      },
+      {
+        "item": "Almond",
+        "quantity": 2
+      },
+      {
+        "item": "Bulle Fruit",
+        "quantity": 1
+      },
+      {
+        "item": "Sugar",
+        "quantity": 2
+      }
+    ]
+  },
+  "roulette-special": {
+    "name": "Roulette Special",
+    "rarity": 3,
+    "type": "Adventurer's Dish",
+    "effect": "Decreases Stamina depleted by climbing and sprinting for all party members by 15~25% for 900s. In Co-Op Mode, this effect only applies to your own character(s).",
+    "hasRecipe": true,
+    "description": "Colorful drinks. The sweet and refreshing notes of flowers and fruit are perfectly balanced. Having one glass is never enough, and before one moves the pointer, an inner prayer rises quietly ~ please point to a full cup!",
+    "proficiency": 15,
+    "recipe": [
+      {
+        "item": "Mint",
+        "quantity": 1
+      },
+      {
+        "item": "Nocturnal Blossom",
+        "quantity": 2
+      },
+      {
+        "item": "Lakkaberry",
+        "quantity": 3
+      },
+      {
+        "item": "Midsommar Berry",
+        "quantity": 3
+      }
+    ]
+  },
+  "lakkaberry-pie": {
+    "name": "Lakkaberry Pie",
+    "rarity": 3,
+    "type": "Adventurer's Dish",
+    "effect": "Restores 70~100 Stamina.",
+    "hasRecipe": true,
+    "description": "A sweet treat from the borderlands. The comforting aroma of freshly baked pastry blends perfectly with the sweet yet tart flavor of the succulent two-berry filling. Rich flavors dance vividly across your tongue ~ no wonder this delightfully punchy treat has become a beloved and comforting staple on the tables of Nod-Krai.",
+    "proficiency": 15,
+    "recipe": [
+      {
+        "item": "Lakkaberry",
+        "quantity": 3
+      },
+      {
+        "item": "Midsommar Berry",
+        "quantity": 3
+      },
+      {
+        "item": "Smetana",
+        "quantity": 1
+      },
+      {
+        "item": "Rye Flour",
+        "quantity": 2
+      }
+    ]
+  },
+  "crispy-spring-rolls": {
+    "name": "Crispy Spring Rolls",
+    "rarity": 3,
+    "type": "DEF-Boosting Dish",
+    "effect": "Increases all party members' DEF by 165~235 for 300s. In Co-Op Mode, this effect only applies to your own character(s).",
+    "hasRecipe": true,
+    "description": "A deep-fried Liyue snack. With a crisp crack, the juicy filling bursts forth as you bite. Beneath the golden, flaky shell are not only layers of flavor, but the vibrant, bustling spirit of Liyue itself.",
+    "proficiency": 15,
+    "recipe": [
+      {
+        "item": "Mushroom",
+        "quantity": 2
+      },
+      {
+        "item": "Fowl",
+        "quantity": 3
+      },
+      {
+        "item": "Bamboo Shoot",
+        "quantity": 2
+      },
+      {
+        "item": "Flour",
+        "quantity": 2
+      }
+    ]
+  },
+  "conch-madeleine": {
+    "name": "Conch Madeleine",
+    "rarity": 3,
+    "type": "DEF-Boosting Dish",
+    "effect": "Increases all party members' Healing Bonus by 15~20% for 300s. In Co-Op Mode, this effect only applies to your own character(s).",
+    "hasRecipe": true,
+    "description": "A lovely-looking dessert. There's a saying in Fontaine: \"There are only two types of people: those who love Conch Madeleine and those who haven't tried it.\" Everyone falls in love with this cake the instant they taste it!",
+    "proficiency": 15,
+    "recipe": [
+      {
+        "item": "Bird Egg",
+        "quantity": 3
+      },
+      {
+        "item": "Flour",
+        "quantity": 2
+      },
+      {
+        "item": "Butter",
+        "quantity": 2
+      },
+      {
+        "item": "Sugar",
+        "quantity": 1
+      }
+    ]
+  },
+  "la-lettre-a-focalors": {
+    "name": "La Lettre a Focalors",
+    "rarity": 3,
+    "type": "DEF-Boosting Dish",
+    "effect": "Increases all party members' Max HP by 20~25% for 300s. In Co-Op Mode, this effect only applies to your own character(s).",
+    "hasRecipe": true,
+    "description": "A small cake, shaped into a long rectangle. The endlessly indulgent aroma of coffee and almonds draws you in and pushes your thoughts forward, as though you absentmindedly stumbled into an extravagant opera without even realizing it. You find yourself drowning in the twists and turns of this luxurious performance, and only hope that the finale never comes.",
+    "proficiency": 15,
+    "recipe": [
+      {
+        "item": "Bird Egg",
+        "quantity": 4
+      },
+      {
+        "item": "Almond",
+        "quantity": 2
+      },
+      {
+        "item": "Coffee Beans",
+        "quantity": 3
+      },
+      {
+        "item": "Flour",
+        "quantity": 3
+      }
+    ]
+  },
+  "berry-herbal-candy": {
+    "name": "Berry Herbal Candy",
+    "rarity": 3,
+    "type": "DEF-Boosting Dish",
+    "effect": "Increases all party members' Max HP by 20~25% for 300s. In Co-Op Mode, this effect only applies to your own character(s).",
+    "hasRecipe": true,
+    "description": "A Nod-Krai candy. The moment this translucent treat touches your tongue, waves of floral fragrance and sweet-tart berries fill your senses, fresh and delightfully sweet.",
+    "proficiency": 15,
+    "recipe": [
+      {
+        "item": "Nocturnal Blossom",
+        "quantity": 2
+      },
+      {
+        "item": "Lakkaberry",
+        "quantity": 2
+      },
+      {
+        "item": "Midsommar Berry",
+        "quantity": 2
+      },
+      {
+        "item": "Winter Icelea",
+        "quantity": 2
+      }
+    ]
   }
 }

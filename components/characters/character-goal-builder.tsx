@@ -471,7 +471,9 @@ export function CharacterGoalBuilder({
         </Card>
       ) : null}
 
-      {activeTab === "assets" ? <CharacterAssetsPanel assets={assets} /> : null}
+      {activeTab === "assets" ? (
+        <CharacterAssetsPanel assets={assets} characterId={character.id} />
+      ) : null}
       <LoginRequiredDialog
         open={showLoginPrompt}
         onClose={() => setShowLoginPrompt(false)}
