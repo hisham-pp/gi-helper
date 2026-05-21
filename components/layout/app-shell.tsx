@@ -90,7 +90,7 @@ const navItems = [
   { href: "/goals", label: "Goals", icon: Target },
   { href: "/materials", label: "Materials", icon: Gem },
   { href: "/characters", label: "Characters", icon: Users },
-  { href: "/map", label: "Map", icon: Compass },
+  // { href: "/map", label: "Map", icon: Compass },
   { href: "/collectibles", label: "Items", icon: Sparkles },
   { href: "/shrines", label: "Shrines", icon: Shield },
   { href: "/challenges", label: "Combat", icon: Swords },
