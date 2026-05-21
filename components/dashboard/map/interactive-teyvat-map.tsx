@@ -30,12 +30,11 @@ import {
 import { cn } from "@/lib/utils";
 
 const STORAGE_KEY = "gi-helper.teyvat-map.completed.v1";
+const TEYVAT_SURFACE_MAP_SRC = "/images/map/teyvat-surface.png";
 
 const layerBackdrop: Record<MapLayerId, string> = {
-  teyvat:
-    "from-emerald-100 via-sky-100 to-red-100 dark:from-emerald-950 dark:via-sky-950 dark:to-red-950",
-  underground:
-    "from-stone-200 via-teal-100 to-amber-100 dark:from-stone-950 dark:via-teal-950 dark:to-amber-950",
+  teyvat: "bg-[#168ea3]",
+  underground: "bg-stone-200 dark:bg-stone-950",
 };
 
 function loadCompletedPins() {
@@ -334,45 +333,30 @@ export function InteractiveTeyvatMap({
 
           <div
             className={cn(
-              "relative h-[588px] overflow-auto bg-gradient-to-br p-4",
+              "relative h-[588px] overflow-auto p-4",
               layerBackdrop[activeLayer],
             )}
           >
             <div
-              className="relative mx-auto h-[820px] w-[1040px] origin-center transition-transform"
+              className="relative mx-auto h-[1200px] w-[1279px] origin-center overflow-hidden rounded-md shadow-inner transition-transform"
               style={{ transform: `scale(${zoom})` }}
             >
-              <svg
-                aria-hidden="true"
-                className="absolute inset-0 h-full w-full"
-                viewBox="0 0 1040 820"
-              >
-                <path
-                  d="M120 215 C165 80 315 88 365 172 C422 70 552 92 574 204 C650 165 725 192 744 282 C848 280 905 366 859 455 C941 528 886 676 744 654 C691 765 544 756 496 646 C412 727 269 686 278 566 C158 550 91 435 169 340 C119 310 100 265 120 215 Z"
-                  fill="rgb(var(--md-sys-color-surface) / 0.72)"
-                  stroke="rgb(var(--md-sys-color-outline) / 0.55)"
-                  strokeWidth="3"
+              {activeLayer === "teyvat" ? (
+                <img
+                  alt=""
+                  aria-hidden="true"
+                  className="absolute inset-0 h-full w-full select-none object-fill"
+                  draggable={false}
+                  src={TEYVAT_SURFACE_MAP_SRC}
                 />
-                <path
-                  d="M218 388 C320 324 428 330 528 392 C609 444 711 438 812 392"
-                  fill="none"
-                  stroke="rgb(var(--md-sys-color-primary) / 0.4)"
-                  strokeDasharray="10 12"
-                  strokeWidth="8"
-                />
-                <path
-                  d="M298 236 C374 270 443 270 525 227 C596 192 676 215 717 279"
-                  fill="none"
-                  stroke="rgb(var(--md-sys-color-tertiary) / 0.28)"
-                  strokeWidth="18"
-                />
-                <path
-                  d="M356 584 C445 512 556 501 664 572"
-                  fill="none"
-                  stroke="rgb(var(--md-sys-color-secondary) / 0.3)"
-                  strokeWidth="22"
-                />
-              </svg>
+              ) : (
+                <div className="absolute inset-0 grid place-items-center bg-stone-900 text-stone-100">
+                  <p className="max-w-sm text-center text-sm font-bold">
+                    Underground map art is not loaded yet. Surface pins stay
+                    hidden on this layer.
+                  </p>
+                </div>
+              )}
 
               {visiblePins.map((pin) => {
                 const meta = getMeta(pin.kind);
@@ -402,13 +386,13 @@ export function InteractiveTeyvatMap({
                 );
               })}
 
-              <div className="text-on-surface absolute left-[18%] top-[20%] rounded-lg bg-surface/90 px-3 py-2 text-xs font-bold shadow-sm">
+              <div className="text-on-surface absolute left-[74%] top-[40%] rounded-lg bg-surface/90 px-3 py-2 text-xs font-bold shadow-sm">
                 Mondstadt
               </div>
-              <div className="text-on-surface absolute left-[36%] top-[36%] rounded-lg bg-surface/90 px-3 py-2 text-xs font-bold shadow-sm">
+              <div className="text-on-surface absolute left-[78%] top-[51%] rounded-lg bg-surface/90 px-3 py-2 text-xs font-bold shadow-sm">
                 Dragonspine
               </div>
-              <div className="text-on-surface absolute left-[62%] top-[62%] rounded-lg bg-surface/90 px-3 py-2 text-xs font-bold shadow-sm">
+              <div className="text-on-surface absolute left-[65%] top-[61%] rounded-lg bg-surface/90 px-3 py-2 text-xs font-bold shadow-sm">
                 Liyue
               </div>
             </div>
