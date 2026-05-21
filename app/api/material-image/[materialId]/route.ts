@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { prisma } from "@/lib/prisma";
+import { getMaterialById } from "@/lib/static-data";
 
 export async function GET(
   request: NextRequest,
@@ -8,14 +8,7 @@ export async function GET(
 ) {
   const { materialId } = await context.params;
 
-  const material = await prisma.material.findUnique({
-    where: {
-      id: materialId,
-    },
-    select: {
-      image: true,
-    },
-  });
+  const material = getMaterialById(materialId);
 
   if (!material) {
     return new NextResponse("Not found", { status: 404 });

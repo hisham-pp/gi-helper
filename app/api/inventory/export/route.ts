@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 
 import { getCurrentUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { getMaterialById } from "@/lib/static-data";
 
 export async function GET() {
   const user = await getCurrentUser();
@@ -14,18 +15,8 @@ export async function GET() {
     where: {
       userId: user.id,
     },
-    include: {
-      material: {
-        select: {
-          id: true,
-          name: true,
-        },
-      },
-    },
     orderBy: {
-      material: {
-        name: "asc",
-      },
+      materialId: "asc",
     },
   });
 
@@ -33,7 +24,7 @@ export async function GET() {
     exportedAt: new Date().toISOString(),
     items: items.map((item) => ({
       materialId: item.materialId,
-      materialName: item.material.name,
+      materialName: getMaterialById(item.materialId)?.name ?? item.materialId,
       quantity: item.quantity,
     })),
     username: user.username,

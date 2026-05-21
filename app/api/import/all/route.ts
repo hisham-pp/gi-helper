@@ -3,23 +3,11 @@ import { randomUUID } from "node:crypto";
 
 import { getCurrentUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { getMaterialById } from "@/lib/static-data";
 
 const WRITE_BATCH_SIZE = 100;
 const MAX_DB_ATTEMPTS = 3;
 const RETRYABLE_PRISMA_CODES = new Set(["P1001", "P1002", "P1017", "P2024"]);
-
-type BackupMaterial = {
-  id: string;
-  name: string;
-  image?: string;
-  rarity?: number;
-  category?: string;
-  description?: string;
-  details?: unknown;
-  combinable?: boolean;
-  combineRatio?: number | null;
-  parentMaterialId?: string | null;
-};
 
 type BackupInventoryItem = {
   materialId: string;
@@ -50,7 +38,7 @@ type BackupCookingProgress = {
 };
 
 type BackupPayload = {
-  materials?: BackupMaterial[];
+  materials?: unknown[];
   inventory?: BackupInventoryItem[];
   goals?: BackupGoal[];
   cookingProgress?: BackupCookingProgress[];
@@ -209,11 +197,6 @@ export async function POST(request: Request) {
     }
 
     const payload = body as BackupPayload;
-    const canImportSharedData = user.role === "master";
-    const materials =
-      canImportSharedData && Array.isArray(payload.materials)
-        ? payload.materials
-        : [];
     const inventory = uniqueInventoryItems(
       Array.isArray(payload.inventory) ? payload.inventory : [],
     );
@@ -229,7 +212,6 @@ export async function POST(request: Request) {
       return total + uniqueGoalMaterials(goal.goalMaterials).length;
     }, 0);
     const totalSteps =
-      materials.length +
       inventory.length +
       goals.length +
       goalMaterialCount +
@@ -276,26 +258,11 @@ export async function POST(request: Request) {
 
           if (materialIds.length > 0) {
             const uniqueMaterialIds = [...new Set(materialIds)];
-            const existingMaterials = await withDbRetry(() =>
-              prisma.material.findMany({
-                where: {
-                  id: {
-                    in: uniqueMaterialIds,
-                  },
-                },
-                select: {
-                  id: true,
-                },
-              }),
-            );
-            const existingMaterialIds = new Set(
-              existingMaterials.map((material) => material.id),
-            );
             const missingMaterialIds = uniqueMaterialIds.filter(
-              (materialId) => !existingMaterialIds.has(materialId),
+              (materialId) => !getMaterialById(materialId),
             );
 
-            if (missingMaterialIds.length > 0 && !canImportSharedData) {
+            if (missingMaterialIds.length > 0) {
               send({
                 type: "error",
                 error:
@@ -306,51 +273,6 @@ export async function POST(request: Request) {
             }
           }
           progress("Backup data checked.");
-
-          for (const material of materials) {
-            if (!material?.id || !material?.name) {
-              progress("Skipping invalid material.");
-              continue;
-            }
-
-            await withDbRetry(() =>
-              prisma.material.upsert({
-                where: { id: material.id },
-                update: {
-                  name: material.name,
-                  image: material.image ?? "",
-                  rarity: Number(material.rarity ?? 1),
-                  category: material.category ?? "Unknown",
-                  description: material.description ?? "",
-                  details: material.details ?? undefined,
-                  combinable: Boolean(material.combinable),
-                  combineRatio:
-                    material.combineRatio === null ||
-                    material.combineRatio === undefined
-                      ? null
-                      : Number(material.combineRatio),
-                  parentMaterialId: material.parentMaterialId ?? null,
-                },
-                create: {
-                  id: material.id,
-                  name: material.name,
-                  image: material.image ?? "",
-                  rarity: Number(material.rarity ?? 1),
-                  category: material.category ?? "Unknown",
-                  description: material.description ?? "",
-                  details: material.details ?? undefined,
-                  combinable: Boolean(material.combinable),
-                  combineRatio:
-                    material.combineRatio === null ||
-                    material.combineRatio === undefined
-                      ? null
-                      : Number(material.combineRatio),
-                  parentMaterialId: material.parentMaterialId ?? null,
-                },
-              }),
-            );
-            progress(`Imported material ${material.name}.`);
-          }
 
           const existingGoals = await withDbRetry(() =>
             prisma.goal.findMany({
@@ -501,7 +423,7 @@ export async function POST(request: Request) {
           send({
             type: "complete",
             imported: {
-              materials: materials.length,
+              materials: 0,
               inventory: inventory.length,
               goals: goals.length,
               cookingProgress: cookingProgress.length,

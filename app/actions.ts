@@ -15,7 +15,6 @@ import { prisma } from "@/lib/prisma";
 import type { ActionResponse, DashboardData } from "@/lib/types";
 import {
   authSchema,
-  characterSchema,
   cookRecipeSchema,
   cookingProgressSchema,
   createGoalsFromTemplatesSchema,
@@ -24,11 +23,17 @@ import {
   goalMaterialSchema,
   goalSchema,
   inventorySchema,
-  materialSchema,
   completeGoalSchema,
 } from "@/lib/validation";
 import { getDashboardData } from "@/lib/data";
 import { getCookingData, type CookingData } from "@/lib/cooking-data";
+import {
+  getCharacterById,
+  getCharacterTemplateById,
+  getMaterialById,
+  getWeaponById,
+  getWeaponTemplateById,
+} from "@/lib/static-data";
 
 async function refreshDashboard(): Promise<ActionResponse<DashboardData>> {
   const user = await requireUser();
@@ -74,6 +79,13 @@ export async function saveInventoryAction(
 
   const { materialId, quantity } = parsed.data;
 
+  if (!getMaterialById(materialId)) {
+    return {
+      success: false,
+      error: "Material not found.",
+    };
+  }
+
   try {
     await prisma.inventory.upsert({
       where: {
@@ -112,6 +124,13 @@ export async function saveCookingInventoryAction(
   }
 
   const { materialId, quantity } = parsed.data;
+
+  if (!getMaterialById(materialId)) {
+    return {
+      success: false,
+      error: "Material not found.",
+    };
+  }
 
   try {
     await prisma.inventory.upsert({
@@ -408,15 +427,12 @@ export async function createGoalsFromTemplatesAction(
   try {
     if (parsed.data.type === "character") {
       for (const templateId of parsed.data.templateIds) {
-        const template = await prisma.characterGoalTemplate.findUnique({
-          where: { id: templateId },
-          include: {
-            character: true,
-            materials: true,
-          },
-        });
+        const template = getCharacterTemplateById(templateId);
+        const character = template?.characterId
+          ? getCharacterById(template.characterId)
+          : null;
 
-        if (!template) {
+        if (!template || !character) {
           return {
             success: false,
             error: "One or more templates were not found.",
@@ -426,7 +442,7 @@ export async function createGoalsFromTemplatesAction(
         const goal = await prisma.goal.create({
           data: {
             userId: user.id,
-            name: `${template.character.name} - ${template.name}`,
+            name: `${character.name} - ${template.name}`,
             description: template.description,
             templateType: "character",
             templateId: template.id,
@@ -447,15 +463,12 @@ export async function createGoalsFromTemplatesAction(
       }
     } else {
       for (const templateId of parsed.data.templateIds) {
-        const template = await prisma.weaponGoalTemplate.findUnique({
-          where: { id: templateId },
-          include: {
-            weapon: true,
-            materials: true,
-          },
-        });
+        const template = getWeaponTemplateById(templateId);
+        const weapon = template?.weaponId
+          ? getWeaponById(template.weaponId)
+          : null;
 
-        if (!template) {
+        if (!template || !weapon) {
           return {
             success: false,
             error: "One or more templates were not found.",
@@ -465,7 +478,7 @@ export async function createGoalsFromTemplatesAction(
         const goal = await prisma.goal.create({
           data: {
             userId: user.id,
-            name: `${template.weapon.name} - ${template.name}`,
+            name: `${weapon.name} - ${template.name}`,
             description: template.description,
             templateType: "weapon",
             templateId: template.id,
@@ -511,6 +524,13 @@ export async function saveGoalMaterialAction(
   }
 
   const { goalId, materialId, required } = parsed.data;
+
+  if (!getMaterialById(materialId)) {
+    return {
+      success: false,
+      error: "Material not found.",
+    };
+  }
 
   try {
     const goal = await prisma.goal.findFirst({
@@ -771,113 +791,46 @@ export async function logoutAction() {
   redirect("/login");
 }
 
-const externalIconUrl = (iconName: string) =>
-  `https://enka.network/ui/${iconName}.png`;
-
-export async function createMaterialAction(input: unknown) {
-  const user = await requireMaster();
-  const parsed = materialSchema.safeParse(input);
-
-  if (!parsed.success) {
-    return { success: false, error: "Invalid material payload." };
-  }
-
-  try {
-    const createData: any = { ...parsed.data };
-    createData.image = externalIconUrl(createData.iconName);
-    delete createData.iconName;
-
-    if (createData.parentMaterialId === null) {
-      delete createData.parentMaterialId;
-    }
-
-    await prisma.material.create({ data: createData });
-  } catch (error) {
-    console.error("Create material failed", error);
-    return { success: false, error: "Unable to create material right now." };
-  }
-
-  revalidateDashboardPages();
-  return refreshDashboard();
+export async function createMaterialAction(
+  input: unknown,
+): Promise<ActionResponse<DashboardData>> {
+  await requireMaster();
+  void input;
+  return {
+    success: false,
+    error: "Materials are now managed in static data files.",
+  };
 }
 
-export async function updateMaterialAction(input: unknown) {
-  const user = await requireMaster();
-  const parsed = materialSchema.safeParse(input);
-
-  if (!parsed.success) {
-    return { success: false, error: "Invalid material payload." };
-  }
-
-  try {
-    const updateData: any = { ...parsed.data };
-    const materialId = updateData.id;
-    delete updateData.id;
-    updateData.image = externalIconUrl(updateData.iconName);
-    delete updateData.iconName;
-
-    if (updateData.parentMaterialId === null) {
-      updateData.parentMaterialId = undefined;
-    }
-
-    await prisma.material.update({
-      where: { id: materialId },
-      data: updateData,
-    });
-  } catch (error) {
-    console.error("Update material failed", error);
-    return { success: false, error: "Unable to update material right now." };
-  }
-
-  revalidateDashboardPages();
-  return refreshDashboard();
+export async function updateMaterialAction(
+  input: unknown,
+): Promise<ActionResponse<DashboardData>> {
+  await requireMaster();
+  void input;
+  return {
+    success: false,
+    error: "Materials are now managed in static data files.",
+  };
 }
 
-export async function createCharacterAction(input: unknown) {
-  const user = await requireMaster();
-  const parsed = characterSchema.safeParse(input);
-
-  if (!parsed.success) {
-    return { success: false, error: "Invalid character payload." };
-  }
-
-  try {
-    const createData: any = { ...parsed.data };
-    createData.image = externalIconUrl(createData.iconName);
-    delete createData.iconName;
-
-    await prisma.character.create({ data: createData });
-  } catch (error) {
-    console.error("Create character failed", error);
-    return { success: false, error: "Unable to create character right now." };
-  }
-
-  return refreshDashboard();
+export async function createCharacterAction(
+  input: unknown,
+): Promise<ActionResponse<DashboardData>> {
+  await requireMaster();
+  void input;
+  return {
+    success: false,
+    error: "Characters are now managed in static data files.",
+  };
 }
 
-export async function updateCharacterAction(input: unknown) {
-  const user = await requireMaster();
-  const parsed = characterSchema.safeParse(input);
-
-  if (!parsed.success) {
-    return { success: false, error: "Invalid character payload." };
-  }
-
-  try {
-    const updateData: any = { ...parsed.data };
-    const characterId = updateData.id;
-    delete updateData.id;
-    updateData.image = externalIconUrl(updateData.iconName);
-    delete updateData.iconName;
-
-    await prisma.character.update({
-      where: { id: characterId },
-      data: updateData,
-    });
-  } catch (error) {
-    console.error("Update character failed", error);
-    return { success: false, error: "Unable to update character right now." };
-  }
-
-  return refreshDashboard();
+export async function updateCharacterAction(
+  input: unknown,
+): Promise<ActionResponse<DashboardData>> {
+  await requireMaster();
+  void input;
+  return {
+    success: false,
+    error: "Characters are now managed in static data files.",
+  };
 }

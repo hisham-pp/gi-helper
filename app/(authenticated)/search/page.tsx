@@ -1,21 +1,14 @@
-import { prisma } from "@/lib/prisma";
 import { getCurrentUser } from "@/lib/auth";
 import { Search } from "lucide-react";
 import { getDashboardData } from "@/lib/data";
 import { SearchManager } from "@/components/dashboard/search-manager";
+import { getAllCharacters } from "@/lib/static-data";
 
 export default async function GlobalSearchPage() {
   const user = await getCurrentUser();
   const dashboardData = await getDashboardData(user?.id);
 
-  const characters = await prisma.character.findMany({
-    include: {
-      templates: {
-        orderBy: [{ category: "asc" }, { sortOrder: "asc" }],
-      },
-    },
-    orderBy: [{ rarity: "desc" }, { name: "asc" }],
-  });
+  const characters = getAllCharacters();
 
   return (
     <div className="space-y-8">

@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 
 import { getCurrentUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { getAllMaterials } from "@/lib/static-data";
 
 export async function GET() {
   try {
@@ -13,14 +14,10 @@ export async function GET() {
 
     const includeSharedData = user.role === "master";
     const [materials, inventory, goals, cookingProgress] = await Promise.all([
-      includeSharedData
-        ? prisma.material.findMany({
-            orderBy: [{ category: "asc" }, { rarity: "desc" }, { name: "asc" }],
-          })
-        : Promise.resolve([]),
+      Promise.resolve(includeSharedData ? getAllMaterials() : []),
       prisma.inventory.findMany({
         where: { userId: user.id },
-        orderBy: [{ material: { name: "asc" } }],
+        orderBy: [{ materialId: "asc" }],
       }),
       prisma.goal.findMany({
         where: { userId: user.id },

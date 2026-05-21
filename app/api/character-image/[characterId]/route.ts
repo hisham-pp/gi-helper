@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { prisma } from "@/lib/prisma";
+import { getCharacterById } from "@/lib/static-data";
 
 export async function GET(
   request: NextRequest,
@@ -8,14 +8,7 @@ export async function GET(
 ) {
   const { characterId } = await context.params;
 
-  const character = await prisma.character.findUnique({
-    where: {
-      id: characterId,
-    },
-    select: {
-      image: true,
-    },
-  });
+  const character = getCharacterById(characterId);
 
   if (!character) {
     return new NextResponse("Not found", { status: 404 });
