@@ -1,9 +1,13 @@
 {
   "name": "Varka",
+  "title": "Knight of Boreas",
   "vision": "Anemo",
   "weapon": "Claymore",
+  "gender": "Male",
   "rarity": 5,
   "nation": "Mondstadt",
+  "affiliation": "Knights of Favonius",
+  "description": "The Grand Master of the Knights of Favonius and current Knight of Boreas. Varka is a legendary Mondstadt warrior whose long expedition left Jean serving as Acting Grand Master in his absence.",
   "ascension_materials": {
     "level_20": [
       { "name": "Vayuda Turquoise Sliver", "value": 1 },
