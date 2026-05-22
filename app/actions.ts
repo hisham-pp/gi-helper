@@ -282,7 +282,7 @@ export async function saveCookingProgressAction(
 
       if (completedDelta !== 0) {
         for (const ingredient of recipe.ingredients) {
-          const quantityDelta = ingredient.quantity * completedDelta;
+          const quantityChange = Math.abs(ingredient.quantity * completedDelta);
 
           await tx.inventory.upsert({
             where: {
@@ -292,14 +292,16 @@ export async function saveCookingProgressAction(
               },
             },
             update: {
-              quantity: {
-                decrement: quantityDelta,
-              },
+              quantity:
+                completedDelta > 0
+                  ? { decrement: quantityChange }
+                  : { increment: quantityChange },
             },
             create: {
               userId: user.id,
               materialId: ingredient.materialId,
-              quantity: -quantityDelta,
+              quantity:
+                completedDelta > 0 ? -quantityChange : quantityChange,
             },
           });
         }
