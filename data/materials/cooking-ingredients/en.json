@@ -362,6 +362,12 @@
       "Sold by Flora"
     ]
   },
+  "smetana": {
+    "name": "Smetana",
+    "description": "A dairy product produced through complex processes such as separation and fermentation. It has a smooth texture and a refreshing sourness, often serving as the finishing touch in many dishes.",
+    "rarity": 2,
+    "sources": ["Processing"]
+  },
   "smoked-fowl": {
     "name": "Smoked Fowl",
     "description": "Fowl that has been smoked. The firm texture gives new taste to dishes.Fowl must be processed first to be made into Smoked Fowl.",

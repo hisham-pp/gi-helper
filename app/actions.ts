@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import type { Prisma } from "@prisma/client";
 
 import {
   createSession,
@@ -36,6 +37,14 @@ import {
   getWeaponTemplateById,
 } from "@/lib/static-data";
 
+class ActionFailureError extends Error {}
+
+type CookingIngredientRequirement = {
+  materialId: string;
+  name: string;
+  quantity: number;
+};
+
 async function refreshDashboard(): Promise<ActionResponse<DashboardData>> {
   const user = await requireUser();
   const data = await getDashboardData(user.id);
@@ -52,6 +61,54 @@ function revalidateDashboardPages() {
   revalidatePath("/inventory");
   revalidatePath("/goals");
   revalidatePath("/cooking");
+}
+
+async function assertCookingIngredientsAvailable(
+  tx: Prisma.TransactionClient,
+  userId: string,
+  ingredients: CookingIngredientRequirement[],
+  cookDelta: number,
+) {
+  if (cookDelta <= 0) {
+    return;
+  }
+
+  const inventoryItems = await tx.inventory.findMany({
+    where: {
+      userId,
+      materialId: {
+        in: ingredients.map((ingredient) => ingredient.materialId),
+      },
+    },
+    select: {
+      materialId: true,
+      quantity: true,
+    },
+  });
+  const quantityByMaterialId = new Map(
+    inventoryItems.map((item) => [item.materialId, item.quantity]),
+  );
+  const shortages = ingredients
+    .map((ingredient) => {
+      const required = ingredient.quantity * cookDelta;
+      const available = quantityByMaterialId.get(ingredient.materialId) ?? 0;
+
+      return {
+        name: ingredient.name,
+        missing: Math.max(required - available, 0),
+      };
+    })
+    .filter((ingredient) => ingredient.missing > 0);
+
+  if (shortages.length > 0) {
+    throw new ActionFailureError(
+      `Not enough ingredients: ${shortages
+        .map(
+          (ingredient) => `${ingredient.name} needs ${ingredient.missing} more`,
+        )
+        .join(", ")}.`,
+    );
+  }
 }
 
 async function refreshCooking(
@@ -281,6 +338,13 @@ export async function saveCookingProgressAction(
         parsed.data.completedCount - previousCompletedCount;
 
       if (completedDelta !== 0) {
+        await assertCookingIngredientsAvailable(
+          tx,
+          user.id,
+          recipe.ingredients,
+          completedDelta,
+        );
+
         for (const ingredient of recipe.ingredients) {
           const quantityChange = Math.abs(ingredient.quantity * completedDelta);
 
@@ -329,7 +393,10 @@ export async function saveCookingProgressAction(
 
     return {
       success: false,
-      error: "Unable to save cooking progress right now.",
+      error:
+        error instanceof ActionFailureError
+          ? error.message
+          : "Unable to save cooking progress right now.",
     };
   }
 
@@ -430,6 +497,13 @@ export async function cookRecipeAction(
 
   try {
     await prisma.$transaction(async (tx) => {
+      await assertCookingIngredientsAvailable(
+        tx,
+        user.id,
+        recipe.ingredients,
+        parsed.data.quantity,
+      );
+
       for (const ingredient of recipe.ingredients) {
         await tx.inventory.upsert({
           where: {
@@ -475,7 +549,10 @@ export async function cookRecipeAction(
 
     return {
       success: false,
-      error: "Unable to mark that recipe cooked.",
+      error:
+        error instanceof ActionFailureError
+          ? error.message
+          : "Unable to mark that recipe cooked.",
     };
   }
 
