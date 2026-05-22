@@ -44,14 +44,12 @@ export function ShoppingListPanel({
             <AppTextField
               label="Search"
               variant="outlined"
-              className="h-12"
               value={search}
               onChange={(event) => setSearch(event.target.value)}
             />
             <Select
               label="Character"
               variant="outlined"
-              className="h-12"
               value={characterFilter}
               onChange={setCharacterFilter}
               options={characters.map((character) => ({
@@ -62,7 +60,6 @@ export function ShoppingListPanel({
             <Select
               label="Goal type"
               variant="outlined"
-              className="h-12"
               value={goalTypeFilter}
               onChange={setGoalTypeFilter}
               options={goalTypes.map((goalType) => ({
