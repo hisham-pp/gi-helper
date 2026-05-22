@@ -24,6 +24,7 @@ import { GoalsSection } from "@/components/dashboard/sections/goals-section";
 import { InventorySection } from "@/components/dashboard/inventory/inventory-section";
 import { MaterialsSection } from "@/components/dashboard/sections/materials-section";
 import { aggregateNeededMaterials, simulateCraftingNeed } from "@/lib/crafting";
+import { compareMaterialCategories } from "@/lib/material-sort";
 import type { DashboardTab } from "@/lib/constants";
 import type { DashboardData, GoalView, MaterialView } from "@/lib/types";
 
@@ -117,16 +118,18 @@ export function DashboardShell({
   const categories = useMemo(
     () => [
       "All",
-      ...new Set(data.materials.map((material) => material.category)),
+      ...Array.from(
+        new Set(data.materials.map((material) => material.category)),
+      ).sort(compareMaterialCategories),
     ],
     [data.materials],
   );
 
   const materialCategoryOptions = useMemo(
     () =>
-      Array.from(
-        new Set(data.materials.map((material) => material.category)),
-      ).map((category) => ({ label: category, value: category })),
+      Array.from(new Set(data.materials.map((material) => material.category)))
+        .sort(compareMaterialCategories)
+        .map((category) => ({ label: category, value: category })),
     [data.materials],
   );
 

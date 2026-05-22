@@ -5,6 +5,7 @@ import type {
   MaterialNode,
   MaterialView,
 } from "@/lib/types";
+import { compareMaterials } from "@/lib/material-sort";
 
 type InventoryMap = Record<string, number>;
 
@@ -160,15 +161,7 @@ export function buildMaterialViews(materials: MaterialNode[]): MaterialView[] {
       };
     })
     .sort((left, right) => {
-      if (left.category !== right.category) {
-        return left.category.localeCompare(right.category);
-      }
-
-      if (left.rarity !== right.rarity) {
-        return right.rarity - left.rarity;
-      }
-
-      return left.name.localeCompare(right.name);
+      return compareMaterials(left, right);
     });
 }
 

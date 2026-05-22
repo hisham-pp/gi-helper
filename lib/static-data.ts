@@ -6,6 +6,7 @@ import {
   weapons as seedWeapons,
   weaponGoalTemplates as seedWeaponGoalTemplates,
 } from "@/prisma/seed-data";
+import { compareMaterials } from "@/lib/material-sort";
 import type {
   SeedCharacter,
   SeedCharacterGoalTemplate,
@@ -102,18 +103,6 @@ function mergeMaterialsById(materialsToMerge: SeedMaterial[]) {
       }, new Map<string, SeedMaterial>())
       .values(),
   );
-}
-
-function compareMaterials(left: SeedMaterial, right: SeedMaterial) {
-  if (left.category !== right.category) {
-    return left.category.localeCompare(right.category);
-  }
-
-  if (left.rarity !== right.rarity) {
-    return right.rarity - left.rarity;
-  }
-
-  return left.name.localeCompare(right.name);
 }
 
 function compareTemplates(left: StaticGoalTemplate, right: StaticGoalTemplate) {
