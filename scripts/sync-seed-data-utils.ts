@@ -137,6 +137,7 @@ const relationFamilySchema = z
 const bossMaterialEntrySchema = z
   .object({
     name: z.string().trim().min(1),
+    rarity: z.number().int().min(1).max(5).optional(),
     characters: z.array(z.string()).optional(),
     source: z.string().optional(),
   })
@@ -457,7 +458,7 @@ export function buildMaterialCatalog(): MaterialCatalog {
       id,
       name: canonicalizeSourceMaterialName(item.name.trim()),
       image: toImagePath("materials", "boss-material", id),
-      rarity: 4,
+      rarity: item.rarity ?? 4,
       category: "Boss Material",
       description: `${canonicalizeSourceMaterialName(item.name.trim())} character ascension boss material.`,
       details: {

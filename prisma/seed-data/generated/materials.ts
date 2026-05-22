@@ -4993,7 +4993,7 @@ export const seedMaterials: SeedMaterial[] = [
     "id": "the-cornerstone-of-stars-and-flames",
     "name": "The Cornerstone of Stars and Flames",
     "image": "/images/materials/boss-material/the-cornerstone-of-stars-and-flames",
-    "rarity": 4,
+    "rarity": 5,
     "category": "Boss Material",
     "description": "The Cornerstone of Stars and Flames character ascension boss material.",
     "details": {
