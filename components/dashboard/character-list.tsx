@@ -2,10 +2,12 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useMemo, useEffect, useState } from "react";
-import { Search, ChevronRight } from "lucide-react";
+import { useMemo, useEffect, useState, useTransition } from "react";
+import { Search, ChevronRight, CircleCheck } from "lucide-react";
 import { useSearchParams } from "next/navigation";
+import { toast } from "sonner";
 
+import { setOwnedCharacterAction } from "@/app/actions";
 import { Card } from "@/components/ui/card";
 import AppTextField from "@/components/core/app-textfield";
 import { Select } from "@/components/core/app-select";
@@ -20,6 +22,7 @@ type CharacterWithTemplates = {
   element: string;
   weaponType: string;
   region: string;
+  isOwned?: boolean;
   templates: Array<{
     id: string;
     name: string;
@@ -31,18 +34,42 @@ type CharacterWithTemplates = {
 
 type CharacterListProps = {
   characters: CharacterWithTemplates[];
+  isAuthenticated?: boolean;
 };
 
-export function CharacterList({ characters }: CharacterListProps) {
+export function CharacterList({
+  characters,
+  isAuthenticated = true,
+}: CharacterListProps) {
   const searchParams = useSearchParams();
+  const [isPending, startTransition] = useTransition();
   const [search, setSearch] = useState(searchParams.get("search") ?? "");
   const [elementFilter, setElementFilter] = useState("All");
   const [weaponFilter, setWeaponFilter] = useState("All");
+  const [ownershipFilter, setOwnershipFilter] = useState("All");
+  const [ownedCharacterIds, setOwnedCharacterIds] = useState(
+    () =>
+      new Set(
+        characters
+          .filter((character) => character.isOwned)
+          .map((character) => character.id),
+      ),
+  );
 
   useEffect(() => {
     const s = searchParams.get("search");
     if (s) setSearch(s);
   }, [searchParams]);
+
+  useEffect(() => {
+    setOwnedCharacterIds(
+      new Set(
+        characters
+          .filter((character) => character.isOwned)
+          .map((character) => character.id),
+      ),
+    );
+  }, [characters]);
 
   const elements = useMemo(
     () => ["All", ...new Set(characters.map((c) => c.element))],
@@ -61,10 +88,70 @@ export function CharacterList({ characters }: CharacterListProps) {
         elementFilter === "All" || c.element === elementFilter;
       const matchesWeapon =
         weaponFilter === "All" || c.weaponType === weaponFilter;
+      const isOwned = ownedCharacterIds.has(c.id);
+      const matchesOwnership =
+        ownershipFilter === "All" ||
+        (ownershipFilter === "Owned" && isOwned) ||
+        (ownershipFilter === "Not owned" && !isOwned);
 
-      return matchesSearch && matchesElement && matchesWeapon;
+      return (
+        matchesSearch && matchesElement && matchesWeapon && matchesOwnership
+      );
     });
-  }, [characters, search, elementFilter, weaponFilter]);
+  }, [
+    characters,
+    search,
+    elementFilter,
+    weaponFilter,
+    ownershipFilter,
+    ownedCharacterIds,
+  ]);
+
+  function toggleOwned(character: CharacterWithTemplates) {
+    if (!isAuthenticated) {
+      toast.error("Log in to mark owned characters.");
+      return;
+    }
+
+    const nextOwned = !ownedCharacterIds.has(character.id);
+
+    setOwnedCharacterIds((current) => {
+      const next = new Set(current);
+      if (nextOwned) {
+        next.add(character.id);
+      } else {
+        next.delete(character.id);
+      }
+      return next;
+    });
+
+    startTransition(async () => {
+      const result = await setOwnedCharacterAction({
+        characterId: character.id,
+        owned: nextOwned,
+      });
+
+      if (!result.success) {
+        setOwnedCharacterIds((current) => {
+          const next = new Set(current);
+          if (nextOwned) {
+            next.delete(character.id);
+          } else {
+            next.add(character.id);
+          }
+          return next;
+        });
+        toast.error(result.error ?? "Unable to save ownership.");
+        return;
+      }
+
+      toast.success(
+        nextOwned
+          ? `${character.name} marked as owned.`
+          : `${character.name} removed from owned.`,
+      );
+    });
+  }
 
   return (
     <div className="space-y-6">
@@ -95,46 +182,91 @@ export function CharacterList({ characters }: CharacterListProps) {
             onChange={setWeaponFilter}
             options={weaponTypes.map((w) => ({ label: w, value: w }))}
           />
+          <Select
+            label="Owned"
+            variant="outlined"
+            className="h-12 w-36"
+            value={ownershipFilter}
+            onChange={setOwnershipFilter}
+            options={["All", "Owned", "Not owned"].map((value) => ({
+              label: value,
+              value,
+            }))}
+          />
         </div>
       </header>
 
       <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-        {filteredCharacters.map((character) => (
-          <Link key={character.id} href={`/characters/${character.id}`}>
+        {filteredCharacters.map((character) => {
+          const isOwned = ownedCharacterIds.has(character.id);
+
+          return (
             <Card
+              key={character.id}
               variant="outlined"
-              className="group flex h-full items-center gap-3 p-3 transition-all hover:border-primary hover:shadow-md"
+              className="group flex h-full items-center gap-2 p-3 transition-all hover:border-primary hover:shadow-md"
             >
-              <div
+              <Link
+                href={`/characters/${character.id}`}
+                className="flex min-w-0 flex-1 items-center gap-3"
+              >
+                <div
+                  className={cn(
+                    "relative h-10 w-10 flex-shrink-0 overflow-hidden rounded-lg bg-gradient-to-br",
+                    rarityColorMap[character.rarity] ?? rarityColorMap[1],
+                  )}
+                >
+                  <Image
+                    src={character.image}
+                    alt={character.name}
+                    fill
+                    unoptimized
+                    className="object-cover"
+                    sizes="40px"
+                  />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <div className="flex min-w-0 items-center gap-1.5">
+                    <h3 className="text-on-surface truncate text-sm font-bold">
+                      {character.name}
+                    </h3>
+                    {isOwned ? (
+                      <CircleCheck className="h-3.5 w-3.5 flex-shrink-0 text-primary" />
+                    ) : null}
+                  </div>
+                  <p className="text-on-surface-variant truncate text-[10px]">
+                    {character.element} · {character.weaponType}
+                  </p>
+                  <p className="text-on-surface-variant mt-0.5 text-[10px]">
+                    {character.templates.length} template
+                    {character.templates.length === 1 ? "" : "s"}
+                  </p>
+                </div>
+                <ChevronRight className="text-on-surface-variant h-4 w-4 flex-shrink-0 opacity-60 group-hover:opacity-100" />
+              </Link>
+              <button
+                type="button"
+                disabled={isPending}
+                onClick={() => toggleOwned(character)}
+                aria-pressed={isOwned}
+                aria-label={
+                  isOwned
+                    ? `Mark ${character.name} as not owned`
+                    : `Mark ${character.name} as owned`
+                }
+                title={isOwned ? "Owned" : "Mark as owned"}
                 className={cn(
-                  "relative h-10 w-10 flex-shrink-0 overflow-hidden rounded-lg bg-gradient-to-br",
-                  rarityColorMap[character.rarity] ?? rarityColorMap[1],
+                  "inline-flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border transition-colors disabled:opacity-50",
+                  isOwned
+                    ? "border-primary bg-primary-container text-primary"
+                    : "text-on-surface-variant border-outline-variant hover:border-primary hover:text-primary",
                 )}
               >
-                <Image
-                  src={`/api/character-image/${character.id}`}
-                  alt={character.name}
-                  fill
-                  className="object-cover"
-                  sizes="40px"
-                />
-              </div>
-              <div className="min-w-0 flex-1">
-                <h3 className="text-on-surface truncate text-sm font-bold">
-                  {character.name}
-                </h3>
-                <p className="text-on-surface-variant truncate text-[10px]">
-                  {character.element} · {character.weaponType}
-                </p>
-                <p className="text-on-surface-variant mt-0.5 text-[10px]">
-                  {character.templates.length} template
-                  {character.templates.length === 1 ? "" : "s"}
-                </p>
-              </div>
-              <ChevronRight className="text-on-surface-variant h-4 w-4 flex-shrink-0 opacity-60 group-hover:opacity-100" />
+                <CircleCheck className="h-4 w-4" />
+              </button>
             </Card>
-          </Link>
-        ))}
+          );
+        })}
       </div>
 
       {filteredCharacters.length === 0 && (

@@ -24,6 +24,7 @@ import {
   goalSchema,
   inventorySchema,
   completeGoalSchema,
+  ownedCharacterSchema,
 } from "@/lib/validation";
 import { getDashboardData } from "@/lib/data";
 import { getCookingData, type CookingData } from "@/lib/cooking-data";
@@ -277,6 +278,72 @@ export async function saveCookingProgressAction(
 
   revalidatePath("/cooking");
   return refreshCooking(user.id);
+}
+
+export async function setOwnedCharacterAction(
+  input: unknown,
+): Promise<ActionResponse<{ characterId: string; owned: boolean }>> {
+  const user = await requireUser();
+  const parsed = ownedCharacterSchema.safeParse(input);
+
+  if (!parsed.success) {
+    return {
+      success: false,
+      error: "Invalid character ownership payload.",
+    };
+  }
+
+  const { characterId, owned } = parsed.data;
+
+  if (!getCharacterById(characterId)) {
+    return {
+      success: false,
+      error: "Character not found.",
+    };
+  }
+
+  try {
+    if (owned) {
+      await prisma.ownedCharacter.upsert({
+        where: {
+          userId_characterId: {
+            userId: user.id,
+            characterId,
+          },
+        },
+        update: {},
+        create: {
+          userId: user.id,
+          characterId,
+        },
+      });
+    } else {
+      await prisma.ownedCharacter.deleteMany({
+        where: {
+          userId: user.id,
+          characterId,
+        },
+      });
+    }
+  } catch (error) {
+    console.error("Character ownership save failed", error);
+
+    return {
+      success: false,
+      error: "Unable to save character ownership right now.",
+    };
+  }
+
+  revalidatePath("/characters");
+  revalidatePath(`/characters/${characterId}`);
+
+  return {
+    success: true,
+    data: {
+      characterId,
+      owned,
+    },
+  };
 }
 
 export async function cookRecipeAction(

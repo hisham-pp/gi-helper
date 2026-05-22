@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import {
   ArrowLeft,
   CheckSquare,
+  CircleCheck,
   Images,
   Info,
   ListChecks,
@@ -16,7 +17,10 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 
-import { createGoalsFromTemplatesAction } from "@/app/actions";
+import {
+  createGoalsFromTemplatesAction,
+  setOwnedCharacterAction,
+} from "@/app/actions";
 import { LoginRequiredDialog } from "@/components/auth/login-required-dialog";
 import { rarityColorMap } from "@/lib/constants";
 import { cn } from "@/lib/utils";
@@ -115,9 +119,11 @@ function isSingleTalentTemplate(template: CharacterTemplate) {
 export function CharacterGoalBuilder({
   character,
   isAuthenticated = true,
+  isOwned = false,
 }: {
   character: CharacterDetail;
   isAuthenticated?: boolean;
+  isOwned?: boolean;
 }) {
   const router = useRouter();
   const isTraveler = character.id.startsWith("traveler-");
@@ -127,6 +133,7 @@ export function CharacterGoalBuilder({
     "details" | "templates" | "assets"
   >("details");
   const [showLoginPrompt, setShowLoginPrompt] = useState(false);
+  const [owned, setOwned] = useState(isOwned);
 
   const groupedTemplates = useMemo<TemplateGroup[]>(() => {
     const groups = new Map<string, CharacterTemplate[]>();
@@ -277,6 +284,35 @@ export function CharacterGoalBuilder({
     });
   }
 
+  function handleToggleOwned() {
+    if (!isAuthenticated) {
+      setShowLoginPrompt(true);
+      return;
+    }
+
+    const nextOwned = !owned;
+    setOwned(nextOwned);
+
+    startTransition(async () => {
+      const result = await setOwnedCharacterAction({
+        characterId: character.id,
+        owned: nextOwned,
+      });
+
+      if (!result.success) {
+        setOwned(!nextOwned);
+        toast.error(result.error ?? "Unable to save ownership.");
+        return;
+      }
+
+      toast.success(
+        nextOwned
+          ? `${character.name} marked as owned.`
+          : `${character.name} removed from owned.`,
+      );
+    });
+  }
+
   const hasSingleTalentTemplates = character.templates.some(
     isSingleTalentTemplate,
   );
@@ -301,9 +337,10 @@ export function CharacterGoalBuilder({
           )}
         >
           <Image
-            src={`/api/character-image/${character.id}`}
+            src={character.image}
             alt={character.name}
             fill
+            unoptimized
             className="object-cover"
             sizes="56px"
           />
@@ -324,6 +361,16 @@ export function CharacterGoalBuilder({
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
+          <Button
+            variant={owned ? "tonal" : "outlined"}
+            className="gap-2"
+            onClick={handleToggleOwned}
+            disabled={isPending}
+            aria-pressed={owned}
+          >
+            <CircleCheck className="h-4 w-4" />
+            {owned ? "Owned" : "Mark owned"}
+          </Button>
           <Button variant="outlined" onClick={selectAll} disabled={isPending}>
             Select all
           </Button>
@@ -472,7 +519,7 @@ export function CharacterGoalBuilder({
       ) : null}
 
       {activeTab === "assets" ? (
-        <CharacterAssetsPanel assets={assets} characterId={character.id} />
+        <CharacterAssetsPanel assets={assets} />
       ) : null}
       <LoginRequiredDialog
         open={showLoginPrompt}

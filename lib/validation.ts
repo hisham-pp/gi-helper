@@ -35,6 +35,11 @@ export const completeGoalSchema = z.object({
   goalId: z.string().min(1),
 });
 
+export const ownedCharacterSchema = z.object({
+  characterId: z.string().min(1),
+  owned: z.boolean(),
+});
+
 export const cookingProgressSchema = z.object({
   recipeId: z.string().min(1),
   completedCount: z.coerce.number().int().min(0).max(999999),
