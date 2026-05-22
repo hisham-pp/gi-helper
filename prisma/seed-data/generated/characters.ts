@@ -13461,6 +13461,165 @@ export const characters: SeedCharacter[] = [
     ]
   },
   {
+    "id": "nicole",
+    "name": "Nicole",
+    "image": "/images/characters/nicole/icon-big",
+    "rarity": 5,
+    "element": "Pyro",
+    "weaponType": "Catalyst",
+    "region": "Nod-Krai",
+    "details": {
+      "title": "Clamor Within",
+      "gender": "Female",
+      "affiliation": "Hexenzirkel",
+      "specialDish": "Gilded Chest",
+      "release": "2026-05-20",
+      "constellation": "Reliquiarium",
+      "birthday": "0000-09-29",
+      "description": "Nicole Reeyn is a voiceless angel and member of the Hexenzirkel, also known by the codename N.",
+      "skillTalents": [
+        {
+          "name": "Allegoria",
+          "unlock": "Normal Attack",
+          "description": "Normal Attack: Performs up to 3 attacks that deal Pyro DMG. Charged Attack: Consumes Stamina to deal AoE Pyro DMG to opponents in front of her after a short casting time. Plunging Attack: Plunges from mid-air, damaging opponents along the path and dealing AoE Pyro DMG upon impact.",
+          "level": null,
+          "type": "NORMAL_ATTACK"
+        },
+        {
+          "name": "Revelation: Uncreated Light",
+          "unlock": "Elemental Skill",
+          "description": "Bestows Grace of Kenosis on nearby party members, increasing their ATK, dealing AoE Pyro DMG, and creating a Shield of Blazing Light. The shield's DMG absorption is based on Nicole's ATK and absorbs Pyro DMG with extra effectiveness.",
+          "level": null,
+          "type": "ELEMENTAL_SKILL"
+        },
+        {
+          "name": "Revelation: Ladder of Divine Ascent",
+          "unlock": "Elemental Burst",
+          "description": "Deals AoE Pyro DMG and switches Nicole to Silent Contemplation. While active, nearby active party members who hit opponents can summon Arcane Projections that perform coordinated attacks dealing AoE Elemental DMG of the active character's corresponding Elemental Type.",
+          "level": null,
+          "type": "ELEMENTAL_BURST"
+        }
+      ],
+      "passiveTalents": [
+        {
+          "name": "Methexis",
+          "unlock": "1st Ascension Passive",
+          "description": "For 20s after using Revelation: Uncreated Light, Nicole observes other active party members. After an observed character stays on field for 3s, or immediately if they are a Hexerei character, Grace of Kenosis upgrades to Guidance of Theosis and grants additional ATK.",
+          "level": 1,
+          "type": null
+        },
+        {
+          "name": "Philokalia",
+          "unlock": "4th Ascension Passive",
+          "description": "When Elemental DMG from nearby active party members hits an opponent, Nicole's own Grace of Kenosis upgrades to Guidance of Theosis for 8s.",
+          "level": 4,
+          "type": null
+        },
+        {
+          "name": "Light in the Darkness",
+          "unlock": "Witch's Eve Rite Passive",
+          "description": "After completing Witch's Homework: The Role of a Guide...?, Nicole becomes a Hexerei character. When the party includes at least 2 Hexerei characters, Hexerei: Secret Rite increases the DMG dealt by Hexerei characters' Arcane Projections by 300% of Nicole's ATK.",
+          "level": null,
+          "type": null
+        },
+        {
+          "name": "Nepsis",
+          "unlock": "Utility Passive",
+          "description": "When in Teyvat and not in combat, Nicole's Charged Attack becomes Emissarial Guidance if the current region's Treasure Compass has been obtained, calling upon nearby Seelie to guide the way with a Treasure Compass-like effect.",
+          "level": null,
+          "type": null
+        }
+      ],
+      "constellations": [
+        {
+          "name": "Do Not Be Afraid, Child Who Is Loved",
+          "unlock": "Constellation Lv. 1",
+          "description": "When the current active party character hits an opponent, summons an additional Arcane Projection: Unity coordinated attack that deals AoE Elemental DMG of that character's corresponding Elemental Type.",
+          "level": 1,
+          "type": null
+        },
+        {
+          "name": "I Will Guide You and Show You the Path You Should Tread",
+          "unlock": "Constellation Lv. 2",
+          "description": "Enhances Revelation: Uncreated Light. Grace of Kenosis increases ATK by an additional amount, Guidance of Theosis decreases nearby opponents' corresponding Elemental RES, and nearby active party members gain Shield of Blazing Light.",
+          "level": 2,
+          "type": null
+        },
+        {
+          "name": "A Lamp by Your Side, A Light to Shine the Way",
+          "unlock": "Constellation Lv. 3",
+          "description": "Increases the Level of Revelation: Uncreated Light by 3. Maximum upgrade level is 15.",
+          "level": 3,
+          "type": null
+        },
+        {
+          "name": "Whether Left or Right, No Matter Which Way You Turn",
+          "unlock": "Constellation Lv. 4",
+          "description": "When nearby party members upgrade Grace of Kenosis to Guidance of Theosis, Nicole grants Pathfinder's Blessing, increasing their attack talent and elemental talent DMG based on Nicole's ATK for a limited number of hits.",
+          "level": 4,
+          "type": null
+        },
+        {
+          "name": "You Will Hear My Voice Beside You",
+          "unlock": "Constellation Lv. 5",
+          "description": "Increases the Level of Revelation: Ladder of Divine Ascent by 3. Maximum upgrade level is 15.",
+          "level": 5,
+          "type": null
+        },
+        {
+          "name": "This Is the Path, Walk It Without Delay",
+          "unlock": "Constellation Lv. 6",
+          "description": "When Nicole's Grace of Kenosis upgrades to Guidance of Theosis, all nearby party members' Grace of Kenosis also upgrades and no longer reverts. Characters with Guidance of Theosis ignore part of opponents' DEF when dealing DMG.",
+          "level": 6,
+          "type": null
+        }
+      ],
+      "outfits": []
+    },
+    "assets": [
+      {
+        "key": "card",
+        "label": "Card",
+        "path": "/images/characters/nicole/card"
+      },
+      {
+        "key": "portrait",
+        "label": "Portrait",
+        "path": "/images/characters/nicole/portrait"
+      },
+      {
+        "key": "icon-big",
+        "label": "Icon",
+        "path": "/images/characters/nicole/icon-big"
+      },
+      {
+        "key": "icon-side",
+        "label": "Side Icon",
+        "path": "/images/characters/nicole/icon-side"
+      },
+      {
+        "key": "gacha-card",
+        "label": "Gacha Card",
+        "path": "/images/characters/nicole/gacha-card"
+      },
+      {
+        "key": "gacha-splash",
+        "label": "Gacha Splash",
+        "path": "/images/characters/nicole/gacha-splash"
+      },
+      {
+        "key": "namecard-background",
+        "label": "Namecard",
+        "path": "/images/characters/nicole/namecard-background"
+      },
+      {
+        "key": "constellation-shape",
+        "label": "Constellation Shape",
+        "path": "/images/characters/nicole/constellation-shape"
+      }
+    ]
+  },
+  {
     "id": "nilou",
     "name": "Nilou",
     "image": "/images/characters/nilou/icon-big",
@@ -14228,6 +14387,165 @@ export const characters: SeedCharacter[] = [
         "key": "talent-passive-2",
         "label": "Passive 3",
         "path": "/images/characters/ororon/talent-passive-2"
+      }
+    ]
+  },
+  {
+    "id": "prune",
+    "name": "Prune",
+    "image": "/images/characters/prune/icon-big",
+    "rarity": 4,
+    "element": "Anemo",
+    "weaponType": "Catalyst",
+    "region": "Mondstadt",
+    "details": {
+      "title": "Childlike Dreams Cherished",
+      "gender": "Female",
+      "affiliation": "Mondstadt",
+      "specialDish": "Spinning Special",
+      "release": "2026-05-20",
+      "constellation": "Turris Venefica",
+      "birthday": "0000-11-20",
+      "description": "A self-proclaimed Witch Hunter from Nod-Krai who traveled to Mondstadt seeking revenge on Alice after believing her imaginary friend Descartes had been kidnapped.",
+      "skillTalents": [
+        {
+          "name": "Badaboom! Hexbuster Hammer",
+          "unlock": "Normal Attack",
+          "description": "Normal Attack: Performs up to 3 attacks by swinging the Banehunter Oathhammer, dealing Anemo DMG. Charged Attack: Consumes Stamina and performs an upward hammer swing, dealing Anemo DMG to opponents in front. Plunging Attack: Plunges from mid-air and deals AoE Anemo DMG upon impact.",
+          "level": null,
+          "type": "NORMAL_ATTACK"
+        },
+        {
+          "name": "Ring-A-Ding-Ding! Hexhunter Chime",
+          "unlock": "Elemental Skill",
+          "description": "Prune strikes the Witchlure Bell with her Banehunter Oathhammer, dealing Anemo DMG. If this attack triggers Swirl, the skill changes for a short time to Clang Clang! Witch-tribution Comes!, converting the hammer to the element involved in the Swirl and dealing that Elemental DMG.",
+          "level": null,
+          "type": "ELEMENTAL_SKILL"
+        },
+        {
+          "name": "The Bell Tolls! The Hunt Is On!",
+          "unlock": "Elemental Burst",
+          "description": "Prune swings the Witchlure Bell, dealing Anemo DMG to nearby opponents and placing it in Hunter-Seeker mode. In this mode, the bell follows the active character and periodically attacks nearby opponents, dealing AoE Anemo DMG considered Elemental Burst DMG.",
+          "level": null,
+          "type": "ELEMENTAL_BURST"
+        }
+      ],
+      "passiveTalents": [
+        {
+          "name": "Verdict and Punishment",
+          "unlock": "1st Ascension Passive",
+          "description": "During The Bell Tolls! The Hunt Is On!, if the Hunter-Seeker Witchlure Bell triggers Swirl after dealing DMG, it summons a Banehunter Oathhammer that deals DMG matching the Elemental Conversion from the Swirl.",
+          "level": 1,
+          "type": null
+        },
+        {
+          "name": "Tolling Synchronicity",
+          "unlock": "4th Ascension Passive",
+          "description": "After Prune hits an opponent with a Banehunter Oathhammer that has undergone Elemental Conversion, nearby party members gain Tolling Rally. Their attack talent and elemental talent DMG is increased based on the portion of Prune's ATK above 2,000.",
+          "level": 4,
+          "type": null
+        },
+        {
+          "name": "Witchseeker's Vow",
+          "unlock": "Witch's Eve Rite Passive",
+          "description": "After completing Witch's Homework: Of What Is Contested, Prune becomes a Hexerei character. When the party includes at least 2 Hexerei characters, Hexerei: Secret Rite can increase Prune's ATK and further increase the triggering character's ATK after Swirl reactions.",
+          "level": null,
+          "type": null
+        },
+        {
+          "name": "Tinker-Tink, Clank, and Bang!",
+          "unlock": "Utility Passive",
+          "description": "Has a chance to obtain 1 extra regional Character Talent Material when crafting, excluding base materials. The extra material matches the rarity of the crafted result.",
+          "level": null,
+          "type": null
+        }
+      ],
+      "constellations": [
+        {
+          "name": "With a Vow to Rescue, the Journey Begins",
+          "unlock": "Constellation Lv. 1",
+          "description": "After a Banehunter Oathhammer that has undergone Elemental Conversion hits an opponent, Prune restores Energy. This effect has a short cooldown.",
+          "level": 1,
+          "type": null
+        },
+        {
+          "name": "Useful for Cleaning Messy Baggage, Elemental Powers Are Indeed",
+          "unlock": "Constellation Lv. 2",
+          "description": "During The Bell Tolls! The Hunt Is On!, Prune gains Hunt the Witch, increasing her ATK and further increasing it when the Witchlure Bell or converted Banehunter Oathhammer hits opponents.",
+          "level": 2,
+          "type": null
+        },
+        {
+          "name": "The Caravan Exits the Mountain Pass, the Scenery Once More Changed",
+          "unlock": "Constellation Lv. 3",
+          "description": "Increases the Level of The Bell Tolls! The Hunt Is On! by 3. Maximum upgrade level is 15.",
+          "level": 3,
+          "type": null
+        },
+        {
+          "name": "Looking Back Following the Wind, One's Shadow Still Halved",
+          "unlock": "Constellation Lv. 4",
+          "description": "After a converted Banehunter Oathhammer hits an opponent, it ricochets to a nearby opponent, dealing DMG of the corresponding Elemental Type.",
+          "level": 4,
+          "type": null
+        },
+        {
+          "name": "100 Defeats? No Problem, Tomorrow, We Go Again",
+          "unlock": "Constellation Lv. 5",
+          "description": "Increases the Level of Ring-A-Ding-Ding! Hexhunter Chime by 3. Maximum upgrade level is 15.",
+          "level": 5,
+          "type": null
+        },
+        {
+          "name": "And That's the Story! Share It With Your Friends!",
+          "unlock": "Constellation Lv. 6",
+          "description": "Extends Hunter-Seeker mode from The Bell Tolls! The Hunt Is On!. After party members affected by Tolling Rally trigger an Elemental Reaction, Prune and other active characters affected by Tolling Rally gain ATK.",
+          "level": 6,
+          "type": null
+        }
+      ],
+      "outfits": []
+    },
+    "assets": [
+      {
+        "key": "card",
+        "label": "Card",
+        "path": "/images/characters/prune/card"
+      },
+      {
+        "key": "portrait",
+        "label": "Portrait",
+        "path": "/images/characters/prune/portrait"
+      },
+      {
+        "key": "icon-big",
+        "label": "Icon",
+        "path": "/images/characters/prune/icon-big"
+      },
+      {
+        "key": "icon-side",
+        "label": "Side Icon",
+        "path": "/images/characters/prune/icon-side"
+      },
+      {
+        "key": "gacha-card",
+        "label": "Gacha Card",
+        "path": "/images/characters/prune/gacha-card"
+      },
+      {
+        "key": "gacha-splash",
+        "label": "Gacha Splash",
+        "path": "/images/characters/prune/gacha-splash"
+      },
+      {
+        "key": "namecard-background",
+        "label": "Namecard",
+        "path": "/images/characters/prune/namecard-background"
+      },
+      {
+        "key": "constellation-shape",
+        "label": "Constellation Shape",
+        "path": "/images/characters/prune/constellation-shape"
       }
     ]
   },
@@ -48386,6 +48704,375 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
+    "characterId": "nicole",
+    "name": "Ascension 1 (Lv. 20 -> 40)",
+    "description": "First ascension materials for Nicole",
+    "category": "ascension",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "agnidus-agate-sliver",
+        "required": 1
+      },
+      {
+        "materialId": "pine-amber",
+        "required": 3
+      },
+      {
+        "materialId": "tattered-warrant",
+        "required": 3
+      }
+    ]
+  },
+  {
+    "characterId": "nicole",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
+    "description": "Second ascension materials for Nicole",
+    "category": "ascension",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "remnant-of-the-dreadwing",
+        "required": 2
+      },
+      {
+        "materialId": "agnidus-agate-fragment",
+        "required": 3
+      },
+      {
+        "materialId": "pine-amber",
+        "required": 10
+      },
+      {
+        "materialId": "tattered-warrant",
+        "required": 15
+      }
+    ]
+  },
+  {
+    "characterId": "nicole",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
+    "description": "Third ascension materials for Nicole",
+    "category": "ascension",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "remnant-of-the-dreadwing",
+        "required": 4
+      },
+      {
+        "materialId": "agnidus-agate-fragment",
+        "required": 6
+      },
+      {
+        "materialId": "pine-amber",
+        "required": 20
+      },
+      {
+        "materialId": "immaculate-warrant",
+        "required": 12
+      }
+    ]
+  },
+  {
+    "characterId": "nicole",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
+    "description": "Fourth ascension materials for Nicole",
+    "category": "ascension",
+    "sortOrder": 4,
+    "materials": [
+      {
+        "materialId": "remnant-of-the-dreadwing",
+        "required": 8
+      },
+      {
+        "materialId": "agnidus-agate-chunk",
+        "required": 3
+      },
+      {
+        "materialId": "pine-amber",
+        "required": 30
+      },
+      {
+        "materialId": "immaculate-warrant",
+        "required": 18
+      }
+    ]
+  },
+  {
+    "characterId": "nicole",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
+    "description": "Fifth ascension materials for Nicole",
+    "category": "ascension",
+    "sortOrder": 5,
+    "materials": [
+      {
+        "materialId": "remnant-of-the-dreadwing",
+        "required": 12
+      },
+      {
+        "materialId": "agnidus-agate-chunk",
+        "required": 6
+      },
+      {
+        "materialId": "pine-amber",
+        "required": 45
+      },
+      {
+        "materialId": "frost-etched-warrant",
+        "required": 12
+      }
+    ]
+  },
+  {
+    "characterId": "nicole",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
+    "description": "Sixth ascension materials for Nicole",
+    "category": "ascension",
+    "sortOrder": 6,
+    "materials": [
+      {
+        "materialId": "remnant-of-the-dreadwing",
+        "required": 20
+      },
+      {
+        "materialId": "agnidus-agate-gemstone",
+        "required": 6
+      },
+      {
+        "materialId": "pine-amber",
+        "required": 60
+      },
+      {
+        "materialId": "frost-etched-warrant",
+        "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "nicole",
+    "name": "Talent Level 1 -> 2",
+    "description": "Materials to level a single talent from 1 to 2 for Nicole",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-elysium",
+        "required": 3
+      },
+      {
+        "materialId": "tattered-warrant",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "nicole",
+    "name": "Talent Level 2 -> 3",
+    "description": "Materials to level a single talent from 2 to 3 for Nicole",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-elysium",
+        "required": 2
+      },
+      {
+        "materialId": "immaculate-warrant",
+        "required": 3
+      }
+    ]
+  },
+  {
+    "characterId": "nicole",
+    "name": "Talent Level 3 -> 4",
+    "description": "Materials to level a single talent from 3 to 4 for Nicole",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-elysium",
+        "required": 4
+      },
+      {
+        "materialId": "immaculate-warrant",
+        "required": 4
+      }
+    ]
+  },
+  {
+    "characterId": "nicole",
+    "name": "Talent Level 4 -> 5",
+    "description": "Materials to level a single talent from 4 to 5 for Nicole",
+    "category": "talent",
+    "sortOrder": 4,
+    "materials": [
+      {
+        "materialId": "guide-to-elysium",
+        "required": 6
+      },
+      {
+        "materialId": "immaculate-warrant",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "nicole",
+    "name": "Talent Level 5 -> 6",
+    "description": "Materials to level a single talent from 5 to 6 for Nicole",
+    "category": "talent",
+    "sortOrder": 5,
+    "materials": [
+      {
+        "materialId": "guide-to-elysium",
+        "required": 9
+      },
+      {
+        "materialId": "immaculate-warrant",
+        "required": 9
+      }
+    ]
+  },
+  {
+    "characterId": "nicole",
+    "name": "Talent Level 6 -> 7",
+    "description": "Materials to level a single talent from 6 to 7 for Nicole",
+    "category": "talent",
+    "sortOrder": 6,
+    "materials": [
+      {
+        "materialId": "philosophies-of-elysium",
+        "required": 4
+      },
+      {
+        "materialId": "frost-etched-warrant",
+        "required": 4
+      },
+      {
+        "materialId": "madman-s-restraint",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "nicole",
+    "name": "Talent Level 7 -> 8",
+    "description": "Materials to level a single talent from 7 to 8 for Nicole",
+    "category": "talent",
+    "sortOrder": 7,
+    "materials": [
+      {
+        "materialId": "philosophies-of-elysium",
+        "required": 6
+      },
+      {
+        "materialId": "frost-etched-warrant",
+        "required": 6
+      },
+      {
+        "materialId": "madman-s-restraint",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "nicole",
+    "name": "Talent Level 8 -> 9",
+    "description": "Materials to level a single talent from 8 to 9 for Nicole",
+    "category": "talent",
+    "sortOrder": 8,
+    "materials": [
+      {
+        "materialId": "philosophies-of-elysium",
+        "required": 12
+      },
+      {
+        "materialId": "frost-etched-warrant",
+        "required": 9
+      },
+      {
+        "materialId": "madman-s-restraint",
+        "required": 2
+      }
+    ]
+  },
+  {
+    "characterId": "nicole",
+    "name": "Talent Level 9 -> 10",
+    "description": "Materials to level a single talent from 9 to 10 for Nicole",
+    "category": "talent",
+    "sortOrder": 9,
+    "materials": [
+      {
+        "materialId": "philosophies-of-elysium",
+        "required": 16
+      },
+      {
+        "materialId": "frost-etched-warrant",
+        "required": 12
+      },
+      {
+        "materialId": "madman-s-restraint",
+        "required": 2
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "nicole",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Nicole",
+    "category": "talent",
+    "sortOrder": 10,
+    "materials": [
+      {
+        "materialId": "teachings-of-elysium",
+        "required": 3
+      },
+      {
+        "materialId": "guide-to-elysium",
+        "required": 21
+      },
+      {
+        "materialId": "tattered-warrant",
+        "required": 6
+      },
+      {
+        "materialId": "immaculate-warrant",
+        "required": 22
+      }
+    ]
+  },
+  {
+    "characterId": "nicole",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Nicole",
+    "category": "talent",
+    "sortOrder": 11,
+    "materials": [
+      {
+        "materialId": "philosophies-of-elysium",
+        "required": 38
+      },
+      {
+        "materialId": "frost-etched-warrant",
+        "required": 31
+      },
+      {
+        "materialId": "madman-s-restraint",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
     "characterId": "nilou",
     "name": "Ascension 1 (Lv. 20 -> 40)",
     "description": "First ascension materials for Nilou",
@@ -49853,6 +50540,375 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       },
       {
         "materialId": "lightless-silk-string",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "prune",
+    "name": "Ascension 1 (Lv. 20 -> 40)",
+    "description": "First ascension materials for Prune",
+    "category": "ascension",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "vayuda-turquoise-sliver",
+        "required": 1
+      },
+      {
+        "materialId": "winter-icelea",
+        "required": 3
+      },
+      {
+        "materialId": "treasure-hoarder-insignia",
+        "required": 3
+      }
+    ]
+  },
+  {
+    "characterId": "prune",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
+    "description": "Second ascension materials for Prune",
+    "category": "ascension",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "radiant-antler",
+        "required": 2
+      },
+      {
+        "materialId": "vayuda-turquoise-fragment",
+        "required": 3
+      },
+      {
+        "materialId": "winter-icelea",
+        "required": 10
+      },
+      {
+        "materialId": "treasure-hoarder-insignia",
+        "required": 15
+      }
+    ]
+  },
+  {
+    "characterId": "prune",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
+    "description": "Third ascension materials for Prune",
+    "category": "ascension",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "radiant-antler",
+        "required": 4
+      },
+      {
+        "materialId": "vayuda-turquoise-fragment",
+        "required": 6
+      },
+      {
+        "materialId": "winter-icelea",
+        "required": 20
+      },
+      {
+        "materialId": "silver-raven-insignia",
+        "required": 12
+      }
+    ]
+  },
+  {
+    "characterId": "prune",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
+    "description": "Fourth ascension materials for Prune",
+    "category": "ascension",
+    "sortOrder": 4,
+    "materials": [
+      {
+        "materialId": "radiant-antler",
+        "required": 8
+      },
+      {
+        "materialId": "vayuda-turquoise-chunk",
+        "required": 3
+      },
+      {
+        "materialId": "winter-icelea",
+        "required": 30
+      },
+      {
+        "materialId": "silver-raven-insignia",
+        "required": 18
+      }
+    ]
+  },
+  {
+    "characterId": "prune",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
+    "description": "Fifth ascension materials for Prune",
+    "category": "ascension",
+    "sortOrder": 5,
+    "materials": [
+      {
+        "materialId": "radiant-antler",
+        "required": 12
+      },
+      {
+        "materialId": "vayuda-turquoise-chunk",
+        "required": 6
+      },
+      {
+        "materialId": "winter-icelea",
+        "required": 45
+      },
+      {
+        "materialId": "golden-raven-insignia",
+        "required": 12
+      }
+    ]
+  },
+  {
+    "characterId": "prune",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
+    "description": "Sixth ascension materials for Prune",
+    "category": "ascension",
+    "sortOrder": 6,
+    "materials": [
+      {
+        "materialId": "radiant-antler",
+        "required": 20
+      },
+      {
+        "materialId": "vayuda-turquoise-gemstone",
+        "required": 6
+      },
+      {
+        "materialId": "winter-icelea",
+        "required": 60
+      },
+      {
+        "materialId": "golden-raven-insignia",
+        "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "prune",
+    "name": "Talent Level 1 -> 2",
+    "description": "Materials to level a single talent from 1 to 2 for Prune",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-resistance",
+        "required": 3
+      },
+      {
+        "materialId": "treasure-hoarder-insignia",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "prune",
+    "name": "Talent Level 2 -> 3",
+    "description": "Materials to level a single talent from 2 to 3 for Prune",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-resistance",
+        "required": 2
+      },
+      {
+        "materialId": "silver-raven-insignia",
+        "required": 3
+      }
+    ]
+  },
+  {
+    "characterId": "prune",
+    "name": "Talent Level 3 -> 4",
+    "description": "Materials to level a single talent from 3 to 4 for Prune",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-resistance",
+        "required": 4
+      },
+      {
+        "materialId": "silver-raven-insignia",
+        "required": 4
+      }
+    ]
+  },
+  {
+    "characterId": "prune",
+    "name": "Talent Level 4 -> 5",
+    "description": "Materials to level a single talent from 4 to 5 for Prune",
+    "category": "talent",
+    "sortOrder": 4,
+    "materials": [
+      {
+        "materialId": "guide-to-resistance",
+        "required": 6
+      },
+      {
+        "materialId": "silver-raven-insignia",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "prune",
+    "name": "Talent Level 5 -> 6",
+    "description": "Materials to level a single talent from 5 to 6 for Prune",
+    "category": "talent",
+    "sortOrder": 5,
+    "materials": [
+      {
+        "materialId": "guide-to-resistance",
+        "required": 9
+      },
+      {
+        "materialId": "silver-raven-insignia",
+        "required": 9
+      }
+    ]
+  },
+  {
+    "characterId": "prune",
+    "name": "Talent Level 6 -> 7",
+    "description": "Materials to level a single talent from 6 to 7 for Prune",
+    "category": "talent",
+    "sortOrder": 6,
+    "materials": [
+      {
+        "materialId": "philosophies-of-resistance",
+        "required": 4
+      },
+      {
+        "materialId": "golden-raven-insignia",
+        "required": 4
+      },
+      {
+        "materialId": "mask-of-the-virtuous-doctor",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "prune",
+    "name": "Talent Level 7 -> 8",
+    "description": "Materials to level a single talent from 7 to 8 for Prune",
+    "category": "talent",
+    "sortOrder": 7,
+    "materials": [
+      {
+        "materialId": "philosophies-of-resistance",
+        "required": 6
+      },
+      {
+        "materialId": "golden-raven-insignia",
+        "required": 6
+      },
+      {
+        "materialId": "mask-of-the-virtuous-doctor",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "prune",
+    "name": "Talent Level 8 -> 9",
+    "description": "Materials to level a single talent from 8 to 9 for Prune",
+    "category": "talent",
+    "sortOrder": 8,
+    "materials": [
+      {
+        "materialId": "philosophies-of-resistance",
+        "required": 12
+      },
+      {
+        "materialId": "golden-raven-insignia",
+        "required": 9
+      },
+      {
+        "materialId": "mask-of-the-virtuous-doctor",
+        "required": 2
+      }
+    ]
+  },
+  {
+    "characterId": "prune",
+    "name": "Talent Level 9 -> 10",
+    "description": "Materials to level a single talent from 9 to 10 for Prune",
+    "category": "talent",
+    "sortOrder": 9,
+    "materials": [
+      {
+        "materialId": "philosophies-of-resistance",
+        "required": 16
+      },
+      {
+        "materialId": "golden-raven-insignia",
+        "required": 12
+      },
+      {
+        "materialId": "mask-of-the-virtuous-doctor",
+        "required": 2
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "prune",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Prune",
+    "category": "talent",
+    "sortOrder": 10,
+    "materials": [
+      {
+        "materialId": "teachings-of-resistance",
+        "required": 3
+      },
+      {
+        "materialId": "guide-to-resistance",
+        "required": 21
+      },
+      {
+        "materialId": "treasure-hoarder-insignia",
+        "required": 6
+      },
+      {
+        "materialId": "silver-raven-insignia",
+        "required": 22
+      }
+    ]
+  },
+  {
+    "characterId": "prune",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Prune",
+    "category": "talent",
+    "sortOrder": 11,
+    "materials": [
+      {
+        "materialId": "philosophies-of-resistance",
+        "required": 38
+      },
+      {
+        "materialId": "golden-raven-insignia",
+        "required": 31
+      },
+      {
+        "materialId": "mask-of-the-virtuous-doctor",
         "required": 6
       },
       {
