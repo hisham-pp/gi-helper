@@ -5914,6 +5914,29 @@
       }
     ]
   },
+  "lakkaberry-madame": {
+    "name": "Lakkaberry Madame",
+    "rarity": 2,
+    "type": "Recovery Dish",
+    "effect": "Restores 22% of Max HP and an additional 1,200 HP to the selected character.",
+    "hasRecipe": true,
+    "description": "A chopped chicken dish. Said to have gained real popularity in Nod-Krai, despite being an imported recipe. It has a sweet-and-sour flavor that is indeed most delectable. A different flavor, certainly, though judging by the name... was the base dish the Sweet Madame, you wonder?",
+    "proficiency": 10,
+    "recipe": [
+      {
+        "item": "Fowl",
+        "quantity": 2
+      },
+      {
+        "item": "Lakkaberry",
+        "quantity": 1
+      },
+      {
+        "item": "Smetana",
+        "quantity": 1
+      }
+    ]
+  },
   "fine-tea-full-moon": {
     "name": "Fine Tea, Full Moon",
     "rarity": 3,
