@@ -155,19 +155,18 @@ export function CharacterList({
 
   return (
     <div className="space-y-6">
-      <header className="overflow-x-auto pb-1">
-        <div className="flex min-w-max items-start gap-3 sm:min-w-0">
+      <header>
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-[minmax(16rem,1fr)_8rem_8rem_9rem]">
           <AppTextField
             label="Search Characters"
             variant="outlined"
-            className="min-w-64 flex-1"
+            className="sm:col-span-2 lg:col-span-1"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
           <Select
             label="Element"
             variant="outlined"
-            className="w-32 flex-none"
             value={elementFilter}
             onChange={setElementFilter}
             options={elements.map((e) => ({ label: e, value: e }))}
@@ -175,7 +174,6 @@ export function CharacterList({
           <Select
             label="Weapon"
             variant="outlined"
-            className="w-32 flex-none"
             value={weaponFilter}
             onChange={setWeaponFilter}
             options={weaponTypes.map((w) => ({ label: w, value: w }))}
@@ -183,7 +181,6 @@ export function CharacterList({
           <Select
             label="Owned"
             variant="outlined"
-            className="w-36 flex-none"
             value={ownershipFilter}
             onChange={setOwnershipFilter}
             options={["All", "Owned", "Not owned"].map((value) => ({
