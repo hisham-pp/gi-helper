@@ -517,6 +517,11 @@ export const characters: SeedCharacter[] = [
         "path": "/images/characters/alhaitham/gacha-card"
       },
       {
+        "key": "gacha-splash",
+        "label": "Gacha Splash",
+        "path": "/images/characters/alhaitham/gacha-splash"
+      },
+      {
         "key": "namecard-background",
         "label": "Namecard",
         "path": "/images/characters/alhaitham/namecard-background"
@@ -1852,6 +1857,11 @@ export const characters: SeedCharacter[] = [
         "key": "gacha-card",
         "label": "Gacha Card",
         "path": "/images/characters/baizhu/gacha-card"
+      },
+      {
+        "key": "gacha-splash",
+        "label": "Gacha Splash",
+        "path": "/images/characters/baizhu/gacha-splash"
       },
       {
         "key": "namecard-background",
@@ -3928,6 +3938,16 @@ export const characters: SeedCharacter[] = [
         "path": "/images/characters/clorinde/icon-side"
       },
       {
+        "key": "gacha-card",
+        "label": "Gacha Card",
+        "path": "/images/characters/clorinde/gacha-card"
+      },
+      {
+        "key": "gacha-splash",
+        "label": "Gacha Splash",
+        "path": "/images/characters/clorinde/gacha-splash"
+      },
+      {
         "key": "namecard-background",
         "label": "Namecard",
         "path": "/images/characters/clorinde/namecard-background"
@@ -4103,6 +4123,16 @@ export const characters: SeedCharacter[] = [
         "key": "icon-side",
         "label": "Side Icon",
         "path": "/images/characters/collei/icon-side"
+      },
+      {
+        "key": "gacha-card",
+        "label": "Gacha Card",
+        "path": "/images/characters/collei/gacha-card"
+      },
+      {
+        "key": "gacha-splash",
+        "label": "Gacha Splash",
+        "path": "/images/characters/collei/gacha-splash"
       },
       {
         "key": "namecard-background",
@@ -4845,6 +4875,11 @@ export const characters: SeedCharacter[] = [
         "path": "/images/characters/dehya/gacha-card"
       },
       {
+        "key": "gacha-splash",
+        "label": "Gacha Splash",
+        "path": "/images/characters/dehya/gacha-splash"
+      },
+      {
         "key": "namecard-background",
         "label": "Namecard",
         "path": "/images/characters/dehya/namecard-background"
@@ -5414,6 +5449,11 @@ export const characters: SeedCharacter[] = [
         "path": "/images/characters/dori/gacha-card"
       },
       {
+        "key": "gacha-splash",
+        "label": "Gacha Splash",
+        "path": "/images/characters/dori/gacha-splash"
+      },
+      {
         "key": "namecard-background",
         "label": "Namecard",
         "path": "/images/characters/dori/namecard-background"
@@ -5763,6 +5803,11 @@ export const characters: SeedCharacter[] = [
         "key": "card",
         "label": "Card",
         "path": "/images/characters/emilie/card"
+      },
+      {
+        "key": "portrait",
+        "label": "Portrait",
+        "path": "/images/characters/emilie/portrait"
       },
       {
         "key": "icon-big",
@@ -6334,6 +6379,11 @@ export const characters: SeedCharacter[] = [
         "key": "gacha-card",
         "label": "Gacha Card",
         "path": "/images/characters/faruzan/gacha-card"
+      },
+      {
+        "key": "gacha-splash",
+        "label": "Gacha Splash",
+        "path": "/images/characters/faruzan/gacha-splash"
       },
       {
         "key": "namecard-background",
@@ -9186,9 +9236,39 @@ export const characters: SeedCharacter[] = [
         "path": "/images/characters/kachina/card"
       },
       {
+        "key": "portrait",
+        "label": "Portrait",
+        "path": "/images/characters/kachina/portrait"
+      },
+      {
         "key": "icon-big",
         "label": "Icon",
         "path": "/images/characters/kachina/icon-big"
+      },
+      {
+        "key": "icon-side",
+        "label": "Side Icon",
+        "path": "/images/characters/kachina/icon-side"
+      },
+      {
+        "key": "gacha-card",
+        "label": "Gacha Card",
+        "path": "/images/characters/kachina/gacha-card"
+      },
+      {
+        "key": "gacha-splash",
+        "label": "Gacha Splash",
+        "path": "/images/characters/kachina/gacha-splash"
+      },
+      {
+        "key": "namecard-background",
+        "label": "Namecard",
+        "path": "/images/characters/kachina/namecard-background"
+      },
+      {
+        "key": "constellation-shape",
+        "label": "Constellation Shape",
+        "path": "/images/characters/kachina/constellation-shape"
       }
     ]
   },
@@ -9526,6 +9606,11 @@ export const characters: SeedCharacter[] = [
         "key": "gacha-card",
         "label": "Gacha Card",
         "path": "/images/characters/kaveh/gacha-card"
+      },
+      {
+        "key": "gacha-splash",
+        "label": "Gacha Splash",
+        "path": "/images/characters/kaveh/gacha-splash"
       },
       {
         "key": "namecard-background",
@@ -10084,9 +10169,39 @@ export const characters: SeedCharacter[] = [
         "path": "/images/characters/kinich/card"
       },
       {
+        "key": "portrait",
+        "label": "Portrait",
+        "path": "/images/characters/kinich/portrait"
+      },
+      {
         "key": "icon-big",
         "label": "Icon",
         "path": "/images/characters/kinich/icon-big"
+      },
+      {
+        "key": "icon-side",
+        "label": "Side Icon",
+        "path": "/images/characters/kinich/icon-side"
+      },
+      {
+        "key": "gacha-card",
+        "label": "Gacha Card",
+        "path": "/images/characters/kinich/gacha-card"
+      },
+      {
+        "key": "gacha-splash",
+        "label": "Gacha Splash",
+        "path": "/images/characters/kinich/gacha-splash"
+      },
+      {
+        "key": "namecard-background",
+        "label": "Namecard",
+        "path": "/images/characters/kinich/namecard-background"
+      },
+      {
+        "key": "constellation-shape",
+        "label": "Constellation Shape",
+        "path": "/images/characters/kinich/constellation-shape"
       }
     ]
   },
@@ -10232,6 +10347,11 @@ export const characters: SeedCharacter[] = [
         "key": "gacha-card",
         "label": "Gacha Card",
         "path": "/images/characters/kirara/gacha-card"
+      },
+      {
+        "key": "gacha-splash",
+        "label": "Gacha Splash",
+        "path": "/images/characters/kirara/gacha-splash"
       },
       {
         "key": "namecard-background",
@@ -10810,6 +10930,16 @@ export const characters: SeedCharacter[] = [
         "path": "/images/characters/kuki-shinobu/icon-side"
       },
       {
+        "key": "gacha-card",
+        "label": "Gacha Card",
+        "path": "/images/characters/kuki-shinobu/gacha-card"
+      },
+      {
+        "key": "gacha-splash",
+        "label": "Gacha Splash",
+        "path": "/images/characters/kuki-shinobu/gacha-splash"
+      },
+      {
         "key": "namecard-background",
         "label": "Namecard",
         "path": "/images/characters/kuki-shinobu/namecard-background"
@@ -11363,6 +11493,11 @@ export const characters: SeedCharacter[] = [
         "path": "/images/characters/layla/gacha-card"
       },
       {
+        "key": "gacha-splash",
+        "label": "Gacha Splash",
+        "path": "/images/characters/layla/gacha-splash"
+      },
+      {
         "key": "namecard-background",
         "label": "Namecard",
         "path": "/images/characters/layla/namecard-background"
@@ -11433,9 +11568,44 @@ export const characters: SeedCharacter[] = [
     },
     "assets": [
       {
+        "key": "card",
+        "label": "Card",
+        "path": "/images/characters/linnea/card"
+      },
+      {
+        "key": "portrait",
+        "label": "Portrait",
+        "path": "/images/characters/linnea/portrait"
+      },
+      {
         "key": "icon-big",
         "label": "Icon",
         "path": "/images/characters/linnea/icon-big"
+      },
+      {
+        "key": "icon-side",
+        "label": "Side Icon",
+        "path": "/images/characters/linnea/icon-side"
+      },
+      {
+        "key": "gacha-card",
+        "label": "Gacha Card",
+        "path": "/images/characters/linnea/gacha-card"
+      },
+      {
+        "key": "gacha-splash",
+        "label": "Gacha Splash",
+        "path": "/images/characters/linnea/gacha-splash"
+      },
+      {
+        "key": "namecard-background",
+        "label": "Namecard",
+        "path": "/images/characters/linnea/namecard-background"
+      },
+      {
+        "key": "constellation-shape",
+        "label": "Constellation Shape",
+        "path": "/images/characters/linnea/constellation-shape"
       }
     ]
   },
@@ -12338,6 +12508,11 @@ export const characters: SeedCharacter[] = [
         "path": "/images/characters/mika/gacha-card"
       },
       {
+        "key": "gacha-splash",
+        "label": "Gacha Splash",
+        "path": "/images/characters/mika/gacha-splash"
+      },
+      {
         "key": "namecard-background",
         "label": "Namecard",
         "path": "/images/characters/mika/namecard-background"
@@ -12714,9 +12889,39 @@ export const characters: SeedCharacter[] = [
         "path": "/images/characters/mualani/card"
       },
       {
+        "key": "portrait",
+        "label": "Portrait",
+        "path": "/images/characters/mualani/portrait"
+      },
+      {
         "key": "icon-big",
         "label": "Icon",
         "path": "/images/characters/mualani/icon-big"
+      },
+      {
+        "key": "icon-side",
+        "label": "Side Icon",
+        "path": "/images/characters/mualani/icon-side"
+      },
+      {
+        "key": "gacha-card",
+        "label": "Gacha Card",
+        "path": "/images/characters/mualani/gacha-card"
+      },
+      {
+        "key": "gacha-splash",
+        "label": "Gacha Splash",
+        "path": "/images/characters/mualani/gacha-splash"
+      },
+      {
+        "key": "namecard-background",
+        "label": "Namecard",
+        "path": "/images/characters/mualani/namecard-background"
+      },
+      {
+        "key": "constellation-shape",
+        "label": "Constellation Shape",
+        "path": "/images/characters/mualani/constellation-shape"
       }
     ]
   },
@@ -12849,6 +13054,16 @@ export const characters: SeedCharacter[] = [
         "key": "icon-side",
         "label": "Side Icon",
         "path": "/images/characters/nahida/icon-side"
+      },
+      {
+        "key": "gacha-card",
+        "label": "Gacha Card",
+        "path": "/images/characters/nahida/gacha-card"
+      },
+      {
+        "key": "gacha-splash",
+        "label": "Gacha Splash",
+        "path": "/images/characters/nahida/gacha-splash"
       },
       {
         "key": "namecard-background",
@@ -13756,6 +13971,16 @@ export const characters: SeedCharacter[] = [
         "key": "icon-side",
         "label": "Side Icon",
         "path": "/images/characters/nilou/icon-side"
+      },
+      {
+        "key": "gacha-card",
+        "label": "Gacha Card",
+        "path": "/images/characters/nilou/gacha-card"
+      },
+      {
+        "key": "gacha-splash",
+        "label": "Gacha Splash",
+        "path": "/images/characters/nilou/gacha-splash"
       },
       {
         "key": "namecard-background",
@@ -15815,6 +16040,16 @@ export const characters: SeedCharacter[] = [
         "path": "/images/characters/sethos/icon-side"
       },
       {
+        "key": "gacha-card",
+        "label": "Gacha Card",
+        "path": "/images/characters/sethos/gacha-card"
+      },
+      {
+        "key": "gacha-splash",
+        "label": "Gacha Splash",
+        "path": "/images/characters/sethos/gacha-splash"
+      },
+      {
         "key": "namecard-background",
         "label": "Namecard",
         "path": "/images/characters/sethos/namecard-background"
@@ -16192,6 +16427,16 @@ export const characters: SeedCharacter[] = [
         "path": "/images/characters/shikanoin-heizou/icon-side"
       },
       {
+        "key": "gacha-card",
+        "label": "Gacha Card",
+        "path": "/images/characters/shikanoin-heizou/gacha-card"
+      },
+      {
+        "key": "gacha-splash",
+        "label": "Gacha Splash",
+        "path": "/images/characters/shikanoin-heizou/gacha-splash"
+      },
+      {
         "key": "namecard-background",
         "label": "Namecard",
         "path": "/images/characters/shikanoin-heizou/namecard-background"
@@ -16367,6 +16612,16 @@ export const characters: SeedCharacter[] = [
         "key": "icon-side",
         "label": "Side Icon",
         "path": "/images/characters/sigewinne/icon-side"
+      },
+      {
+        "key": "gacha-card",
+        "label": "Gacha Card",
+        "path": "/images/characters/sigewinne/gacha-card"
+      },
+      {
+        "key": "gacha-splash",
+        "label": "Gacha Splash",
+        "path": "/images/characters/sigewinne/gacha-splash"
       },
       {
         "key": "namecard-background",
@@ -17102,6 +17357,16 @@ export const characters: SeedCharacter[] = [
         "path": "/images/characters/thoma/icon-side"
       },
       {
+        "key": "gacha-card",
+        "label": "Gacha Card",
+        "path": "/images/characters/thoma/gacha-card"
+      },
+      {
+        "key": "gacha-splash",
+        "label": "Gacha Splash",
+        "path": "/images/characters/thoma/gacha-splash"
+      },
+      {
         "key": "namecard-background",
         "label": "Namecard",
         "path": "/images/characters/thoma/namecard-background"
@@ -17277,6 +17542,16 @@ export const characters: SeedCharacter[] = [
         "key": "icon-side",
         "label": "Side Icon",
         "path": "/images/characters/tighnari/icon-side"
+      },
+      {
+        "key": "gacha-card",
+        "label": "Gacha Card",
+        "path": "/images/characters/tighnari/gacha-card"
+      },
+      {
+        "key": "gacha-splash",
+        "label": "Gacha Splash",
+        "path": "/images/characters/tighnari/gacha-splash"
       },
       {
         "key": "namecard-background",
@@ -18380,9 +18655,44 @@ export const characters: SeedCharacter[] = [
     },
     "assets": [
       {
+        "key": "card",
+        "label": "Card",
+        "path": "/images/characters/varka/card"
+      },
+      {
+        "key": "portrait",
+        "label": "Portrait",
+        "path": "/images/characters/varka/portrait"
+      },
+      {
         "key": "icon-big",
         "label": "Icon",
         "path": "/images/characters/varka/icon-big"
+      },
+      {
+        "key": "icon-side",
+        "label": "Side Icon",
+        "path": "/images/characters/varka/icon-side"
+      },
+      {
+        "key": "gacha-card",
+        "label": "Gacha Card",
+        "path": "/images/characters/varka/gacha-card"
+      },
+      {
+        "key": "gacha-splash",
+        "label": "Gacha Splash",
+        "path": "/images/characters/varka/gacha-splash"
+      },
+      {
+        "key": "namecard-background",
+        "label": "Namecard",
+        "path": "/images/characters/varka/namecard-background"
+      },
+      {
+        "key": "constellation-shape",
+        "label": "Constellation Shape",
+        "path": "/images/characters/varka/constellation-shape"
       }
     ]
   },
@@ -18702,6 +19012,11 @@ export const characters: SeedCharacter[] = [
         "key": "icon-side",
         "label": "Side Icon",
         "path": "/images/characters/wanderer/icon-side"
+      },
+      {
+        "key": "gacha-card",
+        "label": "Gacha Card",
+        "path": "/images/characters/wanderer/gacha-card"
       },
       {
         "key": "gacha-splash",
@@ -20592,6 +20907,11 @@ export const characters: SeedCharacter[] = [
         "key": "gacha-card",
         "label": "Gacha Card",
         "path": "/images/characters/yaoyao/gacha-card"
+      },
+      {
+        "key": "gacha-splash",
+        "label": "Gacha Splash",
+        "path": "/images/characters/yaoyao/gacha-splash"
       },
       {
         "key": "namecard-background",
