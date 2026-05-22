@@ -166,6 +166,7 @@
   },
   "the-cornerstone-of-stars-and-flames": {
     "name": "The Cornerstone of Stars and Flames",
+    "rarity": 5,
     "source": "Natlan quests",
     "characters": ["traveler-pyro"]
   },
