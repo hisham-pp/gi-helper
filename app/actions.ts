@@ -250,22 +250,77 @@ export async function saveCookingProgressAction(
     };
   }
 
+  const cookingData = await getCookingData(user.id);
+  const recipe = cookingData.recipes.find(
+    (item) => item.id === parsed.data.recipeId,
+  );
+
+  if (!recipe) {
+    return {
+      success: false,
+      error: "Recipe not found.",
+    };
+  }
+
   try {
-    await prisma.cookingProgress.upsert({
-      where: {
-        userId_recipeId: {
-          userId: user.id,
-          recipeId: parsed.data.recipeId,
+    await prisma.$transaction(async (tx) => {
+      const existingProgress = await tx.cookingProgress.findUnique({
+        where: {
+          userId_recipeId: {
+            userId: user.id,
+            recipeId: recipe.id,
+          },
         },
-      },
-      update: {
-        completedCount: parsed.data.completedCount,
-      },
-      create: {
-        userId: user.id,
-        recipeId: parsed.data.recipeId,
-        completedCount: parsed.data.completedCount,
-      },
+        select: {
+          completedCount: true,
+        },
+      });
+
+      const previousCompletedCount = existingProgress?.completedCount ?? 0;
+      const completedDelta =
+        parsed.data.completedCount - previousCompletedCount;
+
+      if (completedDelta !== 0) {
+        for (const ingredient of recipe.ingredients) {
+          const quantityDelta = ingredient.quantity * completedDelta;
+
+          await tx.inventory.upsert({
+            where: {
+              userId_materialId: {
+                userId: user.id,
+                materialId: ingredient.materialId,
+              },
+            },
+            update: {
+              quantity: {
+                decrement: quantityDelta,
+              },
+            },
+            create: {
+              userId: user.id,
+              materialId: ingredient.materialId,
+              quantity: -quantityDelta,
+            },
+          });
+        }
+      }
+
+      await tx.cookingProgress.upsert({
+        where: {
+          userId_recipeId: {
+            userId: user.id,
+            recipeId: recipe.id,
+          },
+        },
+        update: {
+          completedCount: parsed.data.completedCount,
+        },
+        create: {
+          userId: user.id,
+          recipeId: recipe.id,
+          completedCount: parsed.data.completedCount,
+        },
+      });
     });
   } catch (error) {
     console.error("Cooking progress save failed", error);
@@ -276,7 +331,7 @@ export async function saveCookingProgressAction(
     };
   }
 
-  revalidatePath("/cooking");
+  revalidateDashboardPages();
   return refreshCooking(user.id);
 }
 
