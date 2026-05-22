@@ -71,7 +71,6 @@ export function GoalsSection({
           <AppTextField
             label="Search Goals"
             variant="outlined"
-            className="h-11"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Name or description..."
@@ -79,7 +78,6 @@ export function GoalsSection({
           <Select
             label="Status"
             variant="outlined"
-            className="h-11"
             value={statusFilter}
             onChange={(value) =>
               setStatusFilter(value as "incomplete" | "completed" | "all")
@@ -93,7 +91,6 @@ export function GoalsSection({
           <Select
             label="Character"
             variant="outlined"
-            className="h-11"
             value={characterFilter}
             onChange={setCharacterFilter}
             options={characters.map((character) => ({
@@ -104,7 +101,6 @@ export function GoalsSection({
           <Select
             label="Category"
             variant="outlined"
-            className="h-11"
             value={categoryFilter}
             onChange={setCategoryFilter}
             options={categories.map((category) => ({
