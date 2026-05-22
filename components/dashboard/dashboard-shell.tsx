@@ -144,10 +144,12 @@ export function DashboardShell({
   );
 
   const filteredMaterials = useMemo(() => {
+    const searchLower = search.trim().toLowerCase();
+
     return data.materials.filter((material) => {
       const matchesSearch =
-        material.name.toLowerCase().includes(search.toLowerCase()) ||
-        material.description.toLowerCase().includes(search.toLowerCase());
+        searchLower.length === 0 ||
+        getMaterialSearchText(material).includes(searchLower);
       const matchesCategory =
         categoryFilter === "All" || material.category === categoryFilter;
 
@@ -483,4 +485,20 @@ function buildInventoryDraft(data: DashboardData): InventoryDraft {
 function getIconNameFromImage(image: string) {
   const filename = image.split("/").pop() ?? "";
   return filename.replace(/\.png$/i, "");
+}
+
+function getMaterialSearchText(material: MaterialView) {
+  const categoryPlural = material.category.endsWith("s")
+    ? material.category
+    : `${material.category}s`;
+
+  return [
+    material.id,
+    material.name,
+    material.category,
+    categoryPlural,
+    material.description,
+  ]
+    .join(" ")
+    .toLowerCase();
 }
