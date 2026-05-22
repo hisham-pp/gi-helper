@@ -337,13 +337,16 @@
     "id": "mask-of-the-virtuous-doctor",
     "name": "Mask of the Virtuous Doctor",
     "characters": [
-      "columbina"
+      "columbina",
+      "prune"
     ]
   },
   "madman-s-restraint": {
     "id": "madman-s-restraint",
     "name": "Madman's Restraint",
-    "characters": []
+    "characters": [
+      "nicole"
+    ]
   },
   "elixir-of-the-heretic": {
     "id": "elixir-of-the-heretic",

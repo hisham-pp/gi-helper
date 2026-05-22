@@ -156,7 +156,7 @@ export function CharacterList({
   return (
     <div className="space-y-6">
       <header className="flex items-center gap-3 overflow-x-auto pb-1">
-        <div className="min-w-52 flex-1">
+        <div className="min-w-20 flex-1">
           <AppTextField
             label="Search Characters"
             variant="outlined"
@@ -164,8 +164,6 @@ export function CharacterList({
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
-        </div>
-        <div className="flex flex-none items-center gap-3">
           <Select
             label="Element"
             variant="outlined"
