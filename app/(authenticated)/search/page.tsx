@@ -1,12 +1,16 @@
 import { getCurrentUser } from "@/lib/auth";
 import { Search } from "lucide-react";
+import { getCookingData } from "@/lib/cooking-data";
 import { getDashboardData } from "@/lib/data";
 import { SearchManager } from "@/components/dashboard/search-manager";
 import { getAllCharacters } from "@/lib/static-data";
 
 export default async function GlobalSearchPage() {
   const user = await getCurrentUser();
-  const dashboardData = await getDashboardData(user?.id);
+  const [dashboardData, cookingData] = await Promise.all([
+    getDashboardData(user?.id),
+    getCookingData(user?.id),
+  ]);
 
   const characters = getAllCharacters();
 
@@ -21,14 +25,16 @@ export default async function GlobalSearchPage() {
             Search
           </h1>
           <p className="text-on-surface-variant mt-1">
-            Search across characters, materials, and goals.
+            Search across characters, materials, goals, and recipes.
           </p>
         </div>
       </div>
 
       <SearchManager
         characters={characters}
+        goals={dashboardData.goals}
         materials={dashboardData.materials}
+        recipes={cookingData.recipes}
       />
     </div>
   );
