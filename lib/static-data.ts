@@ -75,9 +75,10 @@ export function getCookingIngredientSeeds(): SeedMaterial[] {
   }));
 }
 
-const materials = [...seedMaterials, ...getCookingIngredientSeeds()].sort(
-  compareMaterials,
-);
+const materials = mergeMaterialsById([
+  ...seedMaterials,
+  ...getCookingIngredientSeeds(),
+]).sort(compareMaterials);
 const materialById = new Map(
   materials.map((material) => [material.id, material]),
 );
@@ -87,6 +88,20 @@ const materialByName = new Map(
 
 function normalizeName(value: string) {
   return value.toLowerCase().replace(/["'’]/g, "").replace(/\s+/g, " ").trim();
+}
+
+function mergeMaterialsById(materialsToMerge: SeedMaterial[]) {
+  return Array.from(
+    materialsToMerge
+      .reduce((merged, material) => {
+        if (!merged.has(material.id)) {
+          merged.set(material.id, material);
+        }
+
+        return merged;
+      }, new Map<string, SeedMaterial>())
+      .values(),
+  );
 }
 
 function compareMaterials(left: SeedMaterial, right: SeedMaterial) {
