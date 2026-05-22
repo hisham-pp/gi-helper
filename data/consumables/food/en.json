@@ -6461,6 +6461,89 @@
       }
     ]
   },
+  "stuffed-tofu-with-minced-meat": {
+    "name": "Stuffed Tofu with Minced Meat",
+    "rarity": 3,
+    "type": "Adventurer's Dish",
+    "effect": "Restores 70~100 Stamina.",
+    "hasRecipe": true,
+    "description": "A savory tofu dish stuffed with a succulent meat filling. Each block of tofu is hollowed out and packed with a perfectly seasoned minced meat, then seared until golden-brown before being braised in a rich, flavorful sauce. From humble, everyday ingredients emerges a taste of home, the most beloved and familiar comfort food found in every street and alleyway.",
+    "proficiency": 15,
+    "recipe": [
+      {
+        "item": "Tofu",
+        "quantity": 4
+      },
+      {
+        "item": "Raw Meat",
+        "quantity": 4
+      },
+      {
+        "item": "Mushroom",
+        "quantity": 2
+      },
+      {
+        "item": "Salt",
+        "quantity": 1
+      }
+    ]
+  },
+  "gilded-chest": {
+    "name": "Gilded Chest",
+    "rarity": 3,
+    "type": "Adventurer's Dish",
+    "effect": "Restores 130 Stamina.",
+    "hasRecipe": false,
+    "description": "Nicole's specialty. \"Surprised? I already knew how to make this a long time ago. Well, back then...\" \"Lately, I heard from Mr. Nine that it's become popular again in Liyue...\" \"A treasure chest design, and a culinary icon all in one? I'm a genius...\" As a golden \"treasure chest\" is set before you, a flood of nonstop chatter instantly fills your mind... It could only be Nicole. Your head may be left buzzing from the barrage, but the delight on your taste buds is even more rewarding than opening a luxurious treasure chest.",
+    "character": "Nicole",
+    "baseDish": "Stuffed Tofu with Minced Meat",
+    "recipe": [
+      {
+        "item": "Tofu",
+        "quantity": 4
+      },
+      {
+        "item": "Raw Meat",
+        "quantity": 4
+      },
+      {
+        "item": "Mushroom",
+        "quantity": 2
+      },
+      {
+        "item": "Salt",
+        "quantity": 1
+      }
+    ]
+  },
+  "spinning-special": {
+    "name": "Spinning Special",
+    "rarity": 3,
+    "type": "Adventurer's Dish",
+    "effect": "Decreases all party members' climbing and sprinting Stamina consumption by 25% for 1500s.",
+    "hasRecipe": false,
+    "description": "Prune's specialty. \"This Spinning Special is a game only grown-ups in Nod-Krai get to play! Hehe, I'll show you how it works.\" With a smug little flourish, she sets a drink-filled spinning tray in front of you. The juices are bright and colorful, sweet and delicious, but the moment you see the tray itself, your mind jumps to the words \"Roulette Special\"... Wait. Did she get the name wrong?",
+    "character": "Prune",
+    "baseDish": "Roulette Special",
+    "recipe": [
+      {
+        "item": "Lakkaberry",
+        "quantity": 3
+      },
+      {
+        "item": "Midsommar Berry",
+        "quantity": 3
+      },
+      {
+        "item": "Nocturnal Blossom",
+        "quantity": 2
+      },
+      {
+        "item": "Mint",
+        "quantity": 1
+      }
+    ]
+  },
   "lakkaberry-pie": {
     "name": "Lakkaberry Pie",
     "rarity": 3,
@@ -6539,6 +6622,33 @@
       {
         "item": "Sugar",
         "quantity": 1
+      }
+    ]
+  },
+  "harbor-fish-burger": {
+    "name": "Harbor Fish Burger",
+    "rarity": 3,
+    "type": "DEF-Boosting Dish",
+    "effect": "Increases all party members' Max HP by 20~25% for 300s. In Co-Op Mode, this effect only applies to your own character(s).",
+    "hasRecipe": true,
+    "description": "A fish burger. Freshly baked bread is sliced open. Then, layers of crisp greens, seasoned fish fillet, and sliced onions are added to it. Finally, it is finished with a drizzle of sauce. The burger has a savory-tart flavor that truly whets the appetite.",
+    "proficiency": 15,
+    "recipe": [
+      {
+        "item": "Fish",
+        "quantity": 3
+      },
+      {
+        "item": "Flour",
+        "quantity": 3
+      },
+      {
+        "item": "Onion",
+        "quantity": 2
+      },
+      {
+        "item": "Windrest Flower",
+        "quantity": 2
       }
     ]
   },
