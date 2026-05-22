@@ -1,4 +1,5 @@
 import { getCurrentUser } from "@/lib/auth";
+import { prisma } from "@/lib/prisma";
 import { getAllCharacters } from "@/lib/static-data";
 import { CharacterList } from "@/components/dashboard/character-list";
 import Link from "next/link";
@@ -10,6 +11,23 @@ export default async function CharactersPage() {
   const user = await getCurrentUser();
 
   const characters = getAllCharacters();
+  const ownedCharacterIds = user
+    ? await prisma.ownedCharacter.findMany({
+        where: {
+          userId: user.id,
+        },
+        select: {
+          characterId: true,
+        },
+      })
+    : [];
+  const ownedCharacterIdSet = new Set(
+    ownedCharacterIds.map((item) => item.characterId),
+  );
+  const charactersWithOwnership = characters.map((character) => ({
+    ...character,
+    isOwned: ownedCharacterIdSet.has(character.id),
+  }));
 
   return (
     <div className="space-y-8">
@@ -38,7 +56,10 @@ export default async function CharactersPage() {
           <div className="h-96 animate-pulse rounded-2xl bg-surface-variant/20" />
         }
       >
-        <CharacterList characters={characters} />
+        <CharacterList
+          characters={charactersWithOwnership}
+          isAuthenticated={Boolean(user)}
+        />
       </Suspense>
     </div>
   );

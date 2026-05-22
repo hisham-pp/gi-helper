@@ -7,10 +7,8 @@ import type { CharacterAsset } from "@/components/characters/character-goal-buil
 
 export function CharacterAssetsPanel({
   assets,
-  characterId,
 }: {
   assets: CharacterAsset[];
-  characterId: string;
 }) {
   if (assets.length === 0) {
     return (
@@ -28,9 +26,10 @@ export function CharacterAssetsPanel({
         <Card key={asset.key} variant="outlined" className="overflow-hidden">
           <div className="relative aspect-[4/3] bg-surface-variant/30">
             <Image
-              src={`/api/character-asset/${characterId}/${asset.key}`}
+              src={asset.path}
               alt={asset.label}
               fill
+              unoptimized
               className="object-contain p-4"
               sizes="(min-width: 1280px) 30vw, (min-width: 640px) 45vw, 100vw"
             />
