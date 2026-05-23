@@ -14,6 +14,20 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  outputFileTracingExcludes: {
+    "*": [
+      ".git/**/*",
+      ".next/cache/**/*",
+      "public/images/artifacts/**/*",
+      "public/images/boss/**/*",
+      "public/images/characters/**/*",
+      "public/images/consumables/**/*",
+      "public/images/enemies/**/*",
+      "public/images/map/**/*",
+      "public/images/materials/**/*",
+      "public/images/weapons/**/*",
+    ],
+  },
 };
 
 export default nextConfig;

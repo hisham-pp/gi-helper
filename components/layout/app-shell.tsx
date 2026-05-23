@@ -53,6 +53,7 @@ import AppTextField from "@/components/core/app-textfield";
 import AppButton from "@/components/core/button";
 import AppIconButton from "@/components/core/icon-button";
 import NavigationButton from "@/components/core/navigation-button";
+import { ChatAssistant } from "@/components/layout/chat-assistant";
 
 const drawerWidth = 288;
 
@@ -614,6 +615,7 @@ export function AppShell({
           {children}
         </Box>
       </Main>
+      {userLabel ? <ChatAssistant /> : null}
     </ShellRoot>
   );
 }
