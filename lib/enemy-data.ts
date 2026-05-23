@@ -1,10 +1,9 @@
-import { existsSync, readdirSync, readFileSync } from "fs";
-import { join } from "path";
-
 import bossMaterialData from "@/data/materials/boss-material/en.json";
 import commonAscensionData from "@/data/materials/common-ascension/en.json";
+import cookingIngredientData from "@/data/materials/cooking-ingredients/en.json";
 import { enemyArchiveEntries } from "@/lib/enemy-archive";
-import { getAllMaterials } from "@/lib/static-data";
+import { localEnemyEntries } from "@/lib/enemy-local";
+import { seedMaterials } from "@/prisma/seed-data/generated/materials";
 import type { SeedMaterial } from "@/prisma/seed-data";
 
 export const enemyElements = [
@@ -85,7 +84,35 @@ type RawMaterialGroup = {
   source?: string;
 };
 
-const materials = getAllMaterials();
+type RawIngredient = {
+  name: string;
+  description?: string;
+  rarity?: number;
+  sources?: string[];
+};
+
+const rawIngredients = cookingIngredientData as unknown as Record<
+  string,
+  RawIngredient
+>;
+const materials = [
+  ...seedMaterials,
+  ...Object.entries(rawIngredients).map(([id, ingredient]) => ({
+    id,
+    name: ingredient.name,
+    image: `/images/materials/cooking-ingredients/${id}`,
+    rarity: ingredient.rarity ?? 1,
+    category: "Cooking Ingredient",
+    description:
+      ingredient.description ?? `${ingredient.name} cooking ingredient.`,
+    details: {
+      sources: ingredient.sources ?? [],
+    },
+    combinable: false,
+    combineRatio: null,
+    parentMaterialId: null,
+  })),
+];
 const materialLookup = new Map(
   materials.map((material) => [normalizeLookup(material.name), material]),
 );
@@ -255,18 +282,9 @@ export function getEnemiesByMaterialId(materialId: string) {
 }
 
 function buildEnemyCatalog() {
-  const richEnemies: EnemyCatalogItem[] = [
-    ...readEnemyDirectory("data/enemies", "public/images/enemies"),
-    ...readEnemyDirectory(
-      "data/boss/weekly-boss",
-      "public/images/boss/weekly-boss",
-      {
-        defaultFamily: "Enemies of Note",
-        defaultType: "Weekly Boss",
-        defaultRegion: "Trounce Domain",
-      },
-    ),
-  ];
+  const richEnemies: EnemyCatalogItem[] = localEnemyEntries.map(
+    buildLocalEnemy,
+  );
   const enemiesById = new Map(richEnemies.map((enemy) => [enemy.id, enemy]));
 
   for (const archiveEnemy of enemyArchiveEntries.map(buildArchiveEnemy)) {
@@ -303,56 +321,29 @@ function buildEnemyCatalog() {
   });
 }
 
-function readEnemyDirectory(
-  dataDirectory: string,
-  imageDirectory: string,
-  defaults: {
-    defaultFamily?: string;
-    defaultType?: string;
-    defaultRegion?: string;
-  } = {},
-) {
-  const root = process.cwd();
-  const fullDataDirectory = join(root, dataDirectory);
+function buildLocalEnemy(localEnemy: (typeof localEnemyEntries)[number]) {
+  const elements = normalizeElements(localEnemy.elements);
+  const advice = buildAdvice(localEnemy.id, elements);
+  const bestElements = uniqueElements(
+    advice.flatMap((item) => item.bestElements),
+  );
 
-  if (!existsSync(fullDataDirectory)) {
-    return [];
-  }
-
-  return readdirSync(fullDataDirectory, { withFileTypes: true })
-    .filter((entry) => entry.isDirectory())
-    .map((entry) => {
-      const id = entry.name;
-      const raw = readJson<RawEnemy>(join(fullDataDirectory, id, "en.json"));
-      const elements = normalizeElements([
-        ...(raw.elements ?? []),
-        ...(raw["elemental-description"] ?? []).map((item) => item.element),
-        ...(raw["elemental-descriptions"] ?? []).map((item) => item.element),
-      ]);
-      const advice = buildAdvice(id, elements);
-      const bestElements = uniqueElements(
-        advice.flatMap((item) => item.bestElements),
-      );
-      const image = findPublicAsset(imageDirectory, id, "icon");
-      const portrait = findPublicAsset(imageDirectory, id, "portrait");
-
-      return {
-        id,
-        name: raw.name ?? titleize(id),
-        type: raw.type ?? defaults.defaultType ?? "Enemy",
-        family: raw.family ?? defaults.defaultFamily ?? "Unknown",
-        faction: raw.faction ?? null,
-        region: raw.region ?? defaults.defaultRegion ?? "Global",
-        description: raw.description ?? `${titleize(id)} enemy details.`,
-        elements,
-        bestElements,
-        materials: collectMaterials(raw.drops),
-        image,
-        portrait,
-        sourceUrl: null,
-        advice,
-      };
-    });
+  return {
+    id: localEnemy.id,
+    name: localEnemy.name,
+    type: localEnemy.type,
+    family: localEnemy.family,
+    faction: localEnemy.faction,
+    region: localEnemy.region,
+    description: localEnemy.description,
+    elements,
+    bestElements,
+    materials: collectMaterials(localEnemy.drops as RawEnemy["drops"]),
+    image: localEnemy.image,
+    portrait: localEnemy.portrait,
+    sourceUrl: null,
+    advice,
+  } satisfies EnemyCatalogItem;
 }
 
 function buildArchiveEnemy(archiveEnemy: (typeof enemyArchiveEntries)[number]) {
@@ -582,28 +573,7 @@ function normalizeLookup(value: string) {
     .replace(/[^a-z0-9]+/g, "");
 }
 
-function findPublicAsset(directory: string, id: string, asset: string) {
-  const fullPath = join(process.cwd(), directory, id, asset);
-
-  if (!existsSync(fullPath)) {
-    return null;
-  }
-
-  return `/${directory.replaceAll("\\", "/").replace("public/", "")}/${id}/${asset}`;
-}
-
-function readJson<T>(path: string): T {
-  return JSON.parse(readFileSync(path, "utf8")) as T;
-}
-
 function sourceLevel(source?: string) {
   const match = source?.match(/Lv\.\s*(\d+)/i);
   return match ? Number(match[1]) : null;
-}
-
-function titleize(value: string) {
-  return value
-    .split("-")
-    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-    .join(" ");
 }
