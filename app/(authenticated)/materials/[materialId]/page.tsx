@@ -1,11 +1,13 @@
 import Image from "next/image";
+import type { Route } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ShieldAlert } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { rarityColorMap } from "@/lib/constants";
+import { getEnemiesByMaterialId } from "@/lib/enemy-data";
 import {
   getMaterialById,
   getMaterialChildren,
@@ -37,6 +39,7 @@ export default async function MaterialDetailPage({
   const childMaterials = getMaterialChildren(material.id);
   const { characterTemplateMaterials, weaponTemplateMaterials } =
     getMaterialTemplateUsage(material.id);
+  const droppedByEnemies = getEnemiesByMaterialId(material.id);
   const details = ((material as any).details ?? {}) as MaterialDetails;
   const usedByCharacters = details.usedByCharacters ?? [];
 
@@ -142,6 +145,47 @@ export default async function MaterialDetailPage({
               </p>
             ) : null}
           </div>
+        </Card>
+
+        <Card variant="outlined" className="p-5 sm:p-6">
+          <h2 className="text-on-surface text-lg font-bold">
+            Dropped By Enemies
+          </h2>
+          {droppedByEnemies.length > 0 ? (
+            <div className="mt-4 space-y-3">
+              {droppedByEnemies.map((enemy) => (
+                <Link
+                  key={enemy.id}
+                  href={`/enemies/${enemy.id}` as Route}
+                  className="flex items-center gap-3 rounded-lg border border-outline-variant p-3 transition-colors hover:bg-surface-variant/40"
+                >
+                  <div className="relative grid h-10 w-10 flex-shrink-0 place-items-center overflow-hidden rounded-lg bg-surface-variant">
+                    {enemy.image ? (
+                      <img
+                        src={enemy.image}
+                        alt={enemy.name}
+                        className="h-full w-full object-contain p-1"
+                      />
+                    ) : (
+                      <ShieldAlert className="h-5 w-5 text-on-surface-variant" />
+                    )}
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-on-surface truncate text-sm font-semibold">
+                      {enemy.name}
+                    </p>
+                    <p className="text-on-surface-variant truncate text-xs">
+                      {enemy.type}
+                    </p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <p className="text-on-surface-variant mt-3 text-sm">
+              No enemy source is linked for this material yet.
+            </p>
+          )}
         </Card>
 
         <Card variant="outlined" className="p-5 sm:p-6 lg:col-span-2">
