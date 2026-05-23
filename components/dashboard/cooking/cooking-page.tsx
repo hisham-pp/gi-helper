@@ -42,6 +42,8 @@ export function CookingPage({
   const [data, setData] = useState(initialData);
   const [activeTab, setActiveTab] = useState<CookingTab>("needed");
   const [search, setSearch] = useState("");
+  const [neededSearch, setNeededSearch] = useState("");
+  const [neededRecipeId, setNeededRecipeId] = useState("All");
   const [typeFilter, setTypeFilter] = useState("All");
   const [statusFilter, setStatusFilter] = useState("All");
   const [inventoryDraft, setInventoryDraft] = useState<QuantityDraft>(
@@ -224,7 +226,13 @@ export function CookingPage({
       </nav>
 
       {activeTab === "needed" ? (
-        <NeededIngredients data={data} />
+        <NeededIngredients
+          data={data}
+          recipeId={neededRecipeId}
+          search={neededSearch}
+          setRecipeId={setNeededRecipeId}
+          setSearch={setNeededSearch}
+        />
       ) : activeTab === "inventory" ? (
         <InventoryTab
           ingredients={filteredIngredients}
@@ -294,26 +302,93 @@ function TabButton({
   );
 }
 
-function NeededIngredients({ data }: { data: CookingData }) {
+function NeededIngredients({
+  data,
+  recipeId,
+  search,
+  setRecipeId,
+  setSearch,
+}: {
+  data: CookingData;
+  recipeId: string;
+  search: string;
+  setRecipeId: (value: string) => void;
+  setSearch: (value: string) => void;
+}) {
+  const recipeOptions = useMemo(
+    () => [
+      { label: "All recipes", value: "All" },
+      ...data.recipes.map((recipe) => ({
+        label: recipe.name,
+        value: recipe.id,
+      })),
+    ],
+    [data.recipes],
+  );
+  const filteredNeededIngredients = useMemo(() => {
+    const query = search.trim().toLowerCase();
+    const rarityByMaterialId = new Map(
+      data.ingredients.map((ingredient) => [ingredient.id, ingredient.rarity]),
+    );
+    const selectedRecipe =
+      recipeId === "All"
+        ? null
+        : (data.recipes.find((recipe) => recipe.id === recipeId) ?? null);
+    const ingredients = selectedRecipe
+      ? getRecipeNeededIngredients(selectedRecipe, rarityByMaterialId)
+      : data.neededIngredients;
+
+    return ingredients.filter((ingredient) => {
+      if (ingredient.remaining <= 0) {
+        return false;
+      }
+
+      return (
+        !query ||
+        ingredient.name.toLowerCase().includes(query) ||
+        selectedRecipe?.name.toLowerCase().includes(query)
+      );
+    });
+  }, [data.ingredients, data.neededIngredients, data.recipes, recipeId, search]);
+
   return (
     <Card className="overflow-hidden" variant="outlined">
       <div className="border-b border-outline-variant bg-surface p-6">
-        <h2 className="text-on-surface text-xl font-bold">
-          Needed Ingredients
-        </h2>
-        <p className="text-on-surface-variant text-sm">
-          Ingredients still missing to unlock auto cooking for every recipe.
-        </p>
+        <div className="grid gap-4 lg:grid-cols-[1fr_minmax(14rem,20rem)_minmax(16rem,24rem)] lg:items-center">
+          <div>
+            <h2 className="text-on-surface text-xl font-bold">
+              Needed Ingredients
+            </h2>
+            <p className="text-on-surface-variant text-sm">
+              Ingredients still missing to unlock auto cooking for every recipe.
+            </p>
+          </div>
+          <AppTextField
+            label="Search ingredients"
+            variant="outlined"
+            className="h-12"
+            value={search}
+            onChange={(event) => setSearch(event.target.value)}
+          />
+          <Select
+            label="Recipe"
+            variant="outlined"
+            className="h-12"
+            value={recipeId}
+            onChange={setRecipeId}
+            options={recipeOptions}
+          />
+        </div>
       </div>
       <div className="grid gap-3 p-4 sm:grid-cols-2 sm:p-6 xl:grid-cols-3">
-        {data.neededIngredients.length === 0 ? (
+        {filteredNeededIngredients.length === 0 ? (
           <EmptyState
             icon={<Sparkles className="h-8 w-8" />}
-            title="All recipes covered"
-            description="Every tracked recipe has enough ingredients or auto cooking unlocked."
+            title="No ingredients needed"
+            description="The current recipe and search filters have no missing ingredients."
           />
         ) : (
-          data.neededIngredients.map((ingredient) => (
+          filteredNeededIngredients.map((ingredient) => (
             <Card
               key={ingredient.materialId}
               variant="outlined"
@@ -694,4 +769,28 @@ function buildProgressDraft(data: CookingData): QuantityDraft {
   return Object.fromEntries(
     data.recipes.map((recipe) => [recipe.id, recipe.completedCount]),
   );
+}
+
+function getRecipeNeededIngredients(
+  recipe: CookingRecipeView,
+  rarityByMaterialId: Map<string, number>,
+) {
+  return recipe.ingredients
+    .map((ingredient) => ({
+      materialId: ingredient.materialId,
+      name: ingredient.name,
+      image: ingredient.image,
+      rarity: rarityByMaterialId.get(ingredient.materialId) ?? 1,
+      required: ingredient.needed,
+      owned: ingredient.owned,
+      remaining: Math.max(ingredient.needed - ingredient.owned, 0),
+    }))
+    .filter((ingredient) => ingredient.remaining > 0)
+    .sort((left, right) => {
+      if (left.remaining !== right.remaining) {
+        return right.remaining - left.remaining;
+      }
+
+      return left.name.localeCompare(right.name);
+    });
 }
