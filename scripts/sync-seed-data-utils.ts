@@ -5,7 +5,9 @@ import { z } from "zod";
 
 import {
   commonAscensionFirstItemOrder,
+  cookingIngredientOrder,
   gemFamilyOrder,
+  localSpecialtyOrder,
   normalBossMaterialOrder,
   talentBookFamilyOrder,
   weaponAscensionFirstItemOrder,
@@ -31,6 +33,13 @@ type TalentBookFamily = {
 type LocalSpecialtyEntry = {
   id: string;
   name: string;
+};
+
+type CookingIngredientEntry = {
+  name: string;
+  description?: string;
+  rarity?: number;
+  sources?: string[];
 };
 
 type BossMaterialEntry = {
@@ -105,6 +114,7 @@ const materialCategorySchema = z.enum([
   "Character EXP Material",
   "Elite Drop",
   "Enemy Drop",
+  "Cooking Ingredient",
   "Local Specialty",
   "Talent Book",
   "Talent Boss",
@@ -126,6 +136,15 @@ const localSpecialtyEntrySchema = z
     id: seedIdSchema,
     name: z.string().trim().min(1),
     characters: z.array(z.string()).optional(),
+  })
+  .strict();
+
+const cookingIngredientEntrySchema = z
+  .object({
+    name: z.string().trim().min(1),
+    description: z.string().trim().min(1).optional(),
+    rarity: z.number().int().min(1).max(5).optional(),
+    sources: z.array(z.string().trim().min(1)).optional(),
   })
   .strict();
 
@@ -307,6 +326,22 @@ function sortFamiliesByFirstItemId<T extends { items: Array<{ id: string }> }>(
 
     return (left.items[0]?.id ?? "").localeCompare(right.items[0]?.id ?? "");
   });
+}
+
+function getExplicitOrderRank(order: string[]): Map<string, number> {
+  return new Map(order.map((id, index) => [id, index]));
+}
+
+function compareExplicitIds(
+  leftId: string,
+  rightId: string,
+  orderRank: Map<string, number>,
+  orderLength: number,
+) {
+  return (
+    (orderRank.get(leftId) ?? orderLength) -
+      (orderRank.get(rightId) ?? orderLength) || leftId.localeCompare(rightId)
+  );
 }
 
 export function slugifyId(value: string): string {
@@ -659,24 +694,71 @@ export function buildMaterialCatalog(): MaterialCatalog {
     "data/materials/local-specialties/en.json",
     z.record(z.string(), z.array(localSpecialtyEntrySchema)),
   );
+  const localSpecialtyRank = getExplicitOrderRank(localSpecialtyOrder);
+  const orderedLocalSpecialties = Object.values(localSpecialties)
+    .flat()
+    .sort((left, right) =>
+      compareExplicitIds(
+        left.id,
+        right.id,
+        localSpecialtyRank,
+        localSpecialtyOrder.length,
+      ),
+    );
 
-  for (const entries of Object.values(localSpecialties)) {
-    for (const entry of entries) {
-      push({
-        id: entry.id,
-        name: entry.name.trim(),
-        image: toImagePath("materials", "local-specialties", entry.id),
-        rarity: 1,
-        category: "Local Specialty",
-        description: `${entry.name.trim()} local specialty.`,
-        details: {
-          usedByCharacters: entry.characters ?? [],
-        },
-        combinable: false,
-        combineRatio: null,
-        parentMaterialId: null,
-      });
+  for (const entry of orderedLocalSpecialties) {
+    push({
+      id: entry.id,
+      name: entry.name.trim(),
+      image: toImagePath("materials", "local-specialties", entry.id),
+      rarity: 1,
+      category: "Local Specialty",
+      description: `${entry.name.trim()} local specialty.`,
+      details: {
+        usedByCharacters: entry.characters ?? [],
+      },
+      combinable: false,
+      combineRatio: null,
+      parentMaterialId: null,
+    });
+  }
+
+  const cookingIngredients = readJsonWithSchema(
+    "data/materials/cooking-ingredients/en.json",
+    z.record(z.string(), cookingIngredientEntrySchema),
+  );
+  const cookingIngredientRank = getExplicitOrderRank(cookingIngredientOrder);
+  const orderedCookingIngredients = Object.entries(cookingIngredients).sort(
+    ([leftId], [rightId]) =>
+      compareExplicitIds(
+        leftId,
+        rightId,
+        cookingIngredientRank,
+        cookingIngredientOrder.length,
+      ),
+  );
+
+  for (const [id, ingredient] of orderedCookingIngredients) {
+    if (byId.has(id)) {
+      continue;
     }
+
+    push({
+      id,
+      name: ingredient.name.trim(),
+      image: toImagePath("materials", "cooking-ingredients", id),
+      rarity: ingredient.rarity ?? 1,
+      category: "Cooking Ingredient",
+      description:
+        ingredient.description?.trim() ??
+        `${ingredient.name.trim()} cooking ingredient.`,
+      details: {
+        sources: ingredient.sources ?? [],
+      },
+      combinable: false,
+      combineRatio: null,
+      parentMaterialId: null,
+    });
   }
 
   backfillMissingAscensionMaterials(push, byName);
