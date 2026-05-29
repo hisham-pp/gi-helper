@@ -49,6 +49,7 @@ export const commonAscensionFirstItemOrder = [
 ];
 
 export const normalBossMaterialOrder = [
+  "the-cornerstone-of-stars-and-flames",
   "hurricane-seed",
   "lightning-prism",
   "basalt-pillar",
