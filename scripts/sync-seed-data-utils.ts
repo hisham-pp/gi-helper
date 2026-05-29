@@ -3,6 +3,15 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { z } from "zod";
 
+import {
+  commonAscensionFirstItemOrder,
+  gemFamilyOrder,
+  normalBossMaterialOrder,
+  talentBookFamilyOrder,
+  weaponAscensionFirstItemOrder,
+  weeklyBossMaterialOrder,
+} from "./material-sort-orders";
+
 type CommonAscensionFamily = {
   items: Array<{
     id: string;
@@ -67,6 +76,7 @@ export type SeedMaterialRecord = {
   image: string;
   rarity: number;
   category: string;
+  sortOrder: number;
   description: string;
   details?: Record<string, unknown>;
   combinable: boolean;
@@ -92,10 +102,12 @@ export const repoRoot = path.resolve(__dirname, "..");
 const seedIdSchema = z.string().regex(/^[a-z0-9]+(?:[-'][a-z0-9]+)*$/);
 const imagePathSchema = z.string().regex(/^\/images\/[a-z0-9/'-]+$/);
 const materialCategorySchema = z.enum([
+  "Character EXP Material",
   "Elite Drop",
   "Enemy Drop",
   "Local Specialty",
   "Talent Book",
+  "Talent Boss",
   "Weapon Ascension",
   "Boss Material",
   "Gem",
@@ -173,6 +185,7 @@ const seedMaterialSchema = z
     image: imagePathSchema,
     rarity: z.number().int().min(1).max(5),
     category: materialCategorySchema,
+    sortOrder: z.number().int().min(0),
     description: z.string().trim().min(1),
     details: z.record(z.string(), z.unknown()).optional(),
     combinable: z.boolean(),
@@ -268,6 +281,34 @@ function canonicalizeTalentBookItems(
   }));
 }
 
+function sortFamiliesByFirstItemId<T extends { items: Array<{ id: string }> }>(
+  families: T[],
+  firstItemOrder: string[],
+): T[] {
+  const orderRank = new Map(
+    firstItemOrder.map((itemId, index) => [itemId, index]),
+  );
+
+  return [...families].sort((left, right) => {
+    const leftRank = orderRank.get(left.items[0]?.id ?? "");
+    const rightRank = orderRank.get(right.items[0]?.id ?? "");
+
+    if (leftRank !== undefined && rightRank !== undefined) {
+      return leftRank - rightRank;
+    }
+
+    if (leftRank !== undefined) {
+      return -1;
+    }
+
+    if (rightRank !== undefined) {
+      return 1;
+    }
+
+    return (left.items[0]?.id ?? "").localeCompare(right.items[0]?.id ?? "");
+  });
+}
+
 export function slugifyId(value: string): string {
   return value
     .normalize("NFKD")
@@ -312,11 +353,17 @@ export function buildMaterialCatalog(): MaterialCatalog {
   const materials: SeedMaterialRecord[] = [];
   const byName = new Map<string, SeedMaterialRecord>();
   const byId = new Map<string, SeedMaterialRecord>();
+  let nextSortOrder = 0;
 
-  const push = (material: SeedMaterialRecord) => {
+  const push = (material: Omit<SeedMaterialRecord, "sortOrder">) => {
+    const materialWithOrder: SeedMaterialRecord = {
+      ...material,
+      sortOrder: nextSortOrder,
+    };
+
     const existingById = byId.get(material.id);
     if (existingById) {
-      if (JSON.stringify(existingById) !== JSON.stringify(material)) {
+      if (JSON.stringify(existingById) !== JSON.stringify(materialWithOrder)) {
         throw new Error(
           `Conflicting duplicate material id generated: ${material.id}`,
         );
@@ -327,7 +374,7 @@ export function buildMaterialCatalog(): MaterialCatalog {
     const normalizedName = normalizeLookupKey(material.name);
     const existingByName = byName.get(normalizedName);
     if (existingByName) {
-      if (JSON.stringify(existingByName) !== JSON.stringify(material)) {
+      if (JSON.stringify(existingByName) !== JSON.stringify(materialWithOrder)) {
         throw new Error(
           `Conflicting duplicate material name generated: ${material.name}`,
         );
@@ -335,9 +382,10 @@ export function buildMaterialCatalog(): MaterialCatalog {
       return;
     }
 
-    materials.push(material);
-    byId.set(material.id, material);
-    byName.set(normalizedName, material);
+    materials.push(materialWithOrder);
+    byId.set(material.id, materialWithOrder);
+    byName.set(normalizedName, materialWithOrder);
+    nextSortOrder += 1;
   };
 
   const createFamily = (
@@ -363,6 +411,232 @@ export function buildMaterialCatalog(): MaterialCatalog {
     });
   };
 
+  const characterExperience = readJsonWithSchema(
+    "data/materials/character-experience/en.json",
+    z.object({
+      items: z.array(
+        z
+          .object({
+            id: seedIdSchema,
+            name: z.string().trim().min(1),
+            experience: z.number().int().positive(),
+            rarity: z.number().int().min(1).max(5),
+          })
+          .strict(),
+      ),
+    }),
+  );
+
+  for (const item of [...characterExperience.items].sort(
+    (left, right) => right.rarity - left.rarity,
+  )) {
+    push({
+      id: slugifyId(item.id),
+      name: item.name.trim(),
+      image: toImagePath(
+        "materials",
+        "character-experience",
+        slugifyId(item.id),
+      ),
+      rarity: item.rarity,
+      category: "Character EXP Material",
+      description: `${item.name.trim()} character EXP material.`,
+      details: {
+        experience: item.experience,
+      },
+      combinable: false,
+      combineRatio: null,
+      parentMaterialId: null,
+    });
+  }
+
+  const commonAscension = readJsonWithSchema(
+    "data/materials/common-ascension/en.json",
+    z.record(
+      z.string(),
+      z.object({ items: z.array(commonFamilyItemSchema).min(1) }).passthrough(),
+    ),
+  );
+
+  for (const family of sortFamiliesByFirstItemId(
+    Object.values(commonAscension),
+    commonAscensionFirstItemOrder,
+  )) {
+    if (family.items.length === 0) {
+      continue;
+    }
+
+    const category = resolveCommonAscensionCategory(family);
+
+    createFamily(
+      family.items,
+      category,
+      "common-ascension",
+      (name) => `${name} ascension material.`,
+    );
+  }
+
+  const bossMaterials = readJsonWithSchema(
+    "data/materials/boss-material/en.json",
+    z.record(z.string(), bossMaterialEntrySchema),
+  );
+
+  const normalBossMaterialRank = new Map(
+    normalBossMaterialOrder.map((id, index) => [id, index]),
+  );
+  const orderedBossMaterials = Object.entries(bossMaterials).sort(
+    ([leftId], [rightId]) =>
+      (normalBossMaterialRank.get(leftId) ??
+        normalBossMaterialOrder.length) -
+        (normalBossMaterialRank.get(rightId) ??
+          normalBossMaterialOrder.length) || leftId.localeCompare(rightId),
+  );
+
+  for (const [id, item] of orderedBossMaterials) {
+    push({
+      id,
+      name: canonicalizeSourceMaterialName(item.name.trim()),
+      image: toImagePath("materials", "boss-material", id),
+      rarity: item.rarity ?? 4,
+      category: "Boss Material",
+      description: `${canonicalizeSourceMaterialName(item.name.trim())} character ascension boss material.`,
+      details: {
+        source: item.source ?? null,
+        usedByCharacters: item.characters ?? [],
+      },
+      combinable: false,
+      combineRatio: null,
+      parentMaterialId: null,
+    });
+  }
+
+  const talentBossMaterials = readJsonWithSchema(
+    "data/materials/talent-boss/en.json",
+    z.record(z.string(), talentBossEntrySchema),
+  );
+
+  const weeklyBossMaterialRank = new Map(
+    weeklyBossMaterialOrder.map((id, index) => [id, index]),
+  );
+  const orderedTalentBossMaterials = Object.entries(talentBossMaterials).sort(
+    ([leftId], [rightId]) =>
+      (weeklyBossMaterialRank.get(leftId) ?? weeklyBossMaterialOrder.length) -
+        (weeklyBossMaterialRank.get(rightId) ??
+          weeklyBossMaterialOrder.length) || leftId.localeCompare(rightId),
+  );
+
+  for (const [id, item] of orderedTalentBossMaterials) {
+    push({
+      id,
+      name: canonicalizeSourceMaterialName(item.name.trim()),
+      image: toImagePath("materials", "talent-boss", id),
+      rarity: 5,
+      category: "Talent Boss",
+      description: `${canonicalizeSourceMaterialName(item.name.trim())} weekly boss talent material.`,
+      details: {
+        usedByCharacters: item.characters,
+      },
+      combinable: false,
+      combineRatio: null,
+      parentMaterialId: null,
+    });
+  }
+
+  const ascensionFamilies = readJsonWithSchema(
+    "data/materials/character-ascension/en.json",
+    z.record(
+      z.string(),
+      z.object({
+        sliver: characterAscensionTierSchema,
+        fragment: characterAscensionTierSchema,
+        chunk: characterAscensionTierSchema,
+        gemstone: characterAscensionTierSchema,
+      }),
+    ),
+  );
+
+  const gemFamilyRank = new Map(
+    gemFamilyOrder.map((familyKey, index) => [familyKey, index]),
+  );
+  const orderedAscensionFamilies = Object.entries(ascensionFamilies).sort(
+    ([leftKey], [rightKey]) =>
+      (gemFamilyRank.get(leftKey) ?? gemFamilyOrder.length) -
+        (gemFamilyRank.get(rightKey) ?? gemFamilyOrder.length) ||
+      leftKey.localeCompare(rightKey),
+  );
+
+  for (const [, family] of orderedAscensionFamilies) {
+    createFamily(
+      [family.sliver, family.fragment, family.chunk, family.gemstone],
+      "Gem",
+      "character-ascension",
+      (name) => `${name} character ascension gem.`,
+    );
+  }
+
+  const talentBooks = readJsonWithSchema(
+    "data/materials/talent-book/en.json",
+    z.record(
+      z.string(),
+      z
+        .object({ items: z.array(commonFamilyItemSchema).length(3) })
+        .passthrough(),
+    ),
+  );
+
+  const talentBookFamilyRank = new Map(
+    talentBookFamilyOrder.map((familyKey, index) => [familyKey, index]),
+  );
+  const orderedTalentBooks = Object.entries(talentBooks).sort(
+    ([leftKey], [rightKey]) =>
+      (talentBookFamilyRank.get(leftKey) ?? talentBookFamilyOrder.length) -
+        (talentBookFamilyRank.get(rightKey) ?? talentBookFamilyOrder.length) ||
+      leftKey.localeCompare(rightKey),
+  );
+
+  for (const [familyKey, family] of orderedTalentBooks) {
+    createFamily(
+      canonicalizeTalentBookItems(familyKey, family.items),
+      "Talent Book",
+      "talent-book",
+      (name) => `${name} talent material.`,
+    );
+  }
+
+  push({
+    id: "crown-of-insight",
+    name: "Crown of Insight",
+    image: toImagePath("materials", "talent-book", "crown-of-insight"),
+    rarity: 5,
+    category: "Talent Book",
+    description: "Rare crown required to fully level a talent.",
+    combinable: false,
+    combineRatio: null,
+    parentMaterialId: null,
+  });
+
+  const weaponAscension = readJsonWithSchema(
+    "data/materials/weapon-ascension/en.json",
+    z.record(
+      z.string(),
+      z
+        .object({ items: z.array(commonFamilyItemSchema).length(4) })
+        .passthrough(),
+    ),
+  );
+
+  for (const family of sortFamiliesByFirstItemId(
+    Object.values(weaponAscension),
+    weaponAscensionFirstItemOrder,
+  )) {
+    createFamily(
+      family.items,
+      "Weapon Ascension",
+      "weapon-ascension",
+      (name) => `${name} weapon ascension material.`,
+    );
+  }
+
   const localSpecialties = readJsonWithSchema(
     "data/materials/local-specialties/en.json",
     z.record(z.string(), z.array(localSpecialtyEntrySchema)),
@@ -387,149 +661,8 @@ export function buildMaterialCatalog(): MaterialCatalog {
     }
   }
 
-  const commonAscension = readJsonWithSchema(
-    "data/materials/common-ascension/en.json",
-    z.record(
-      z.string(),
-      z.object({ items: z.array(commonFamilyItemSchema).min(1) }).passthrough(),
-    ),
-  );
-
-  for (const family of Object.values(commonAscension)) {
-    if (family.items.length === 0) {
-      continue;
-    }
-
-    const category = resolveCommonAscensionCategory(family);
-
-    createFamily(
-      family.items,
-      category,
-      "common-ascension",
-      (name) => `${name} ascension material.`,
-    );
-  }
-
-  const talentBooks = readJsonWithSchema(
-    "data/materials/talent-book/en.json",
-    z.record(
-      z.string(),
-      z
-        .object({ items: z.array(commonFamilyItemSchema).length(3) })
-        .passthrough(),
-    ),
-  );
-
-  for (const [familyKey, family] of Object.entries(talentBooks)) {
-    createFamily(
-      canonicalizeTalentBookItems(familyKey, family.items),
-      "Talent Book",
-      "talent-book",
-      (name) => `${name} talent material.`,
-    );
-  }
-
-  const weaponAscension = readJsonWithSchema(
-    "data/materials/weapon-ascension/en.json",
-    z.record(
-      z.string(),
-      z
-        .object({ items: z.array(commonFamilyItemSchema).length(4) })
-        .passthrough(),
-    ),
-  );
-
-  for (const family of Object.values(weaponAscension)) {
-    createFamily(
-      family.items,
-      "Weapon Ascension",
-      "weapon-ascension",
-      (name) => `${name} weapon ascension material.`,
-    );
-  }
-
-  const bossMaterials = readJsonWithSchema(
-    "data/materials/boss-material/en.json",
-    z.record(z.string(), bossMaterialEntrySchema),
-  );
-
-  for (const [id, item] of Object.entries(bossMaterials)) {
-    push({
-      id,
-      name: canonicalizeSourceMaterialName(item.name.trim()),
-      image: toImagePath("materials", "boss-material", id),
-      rarity: item.rarity ?? 4,
-      category: "Boss Material",
-      description: `${canonicalizeSourceMaterialName(item.name.trim())} character ascension boss material.`,
-      details: {
-        source: item.source ?? null,
-        usedByCharacters: item.characters ?? [],
-      },
-      combinable: false,
-      combineRatio: null,
-      parentMaterialId: null,
-    });
-  }
-
-  const talentBossMaterials = readJsonWithSchema(
-    "data/materials/talent-boss/en.json",
-    z.record(z.string(), talentBossEntrySchema),
-  );
-
-  for (const [id, item] of Object.entries(talentBossMaterials)) {
-    push({
-      id,
-      name: canonicalizeSourceMaterialName(item.name.trim()),
-      image: toImagePath("materials", "talent-boss", id),
-      rarity: 5,
-      category: "Boss Material",
-      description: `${canonicalizeSourceMaterialName(item.name.trim())} weekly boss talent material.`,
-      details: {
-        usedByCharacters: item.characters,
-      },
-      combinable: false,
-      combineRatio: null,
-      parentMaterialId: null,
-    });
-  }
-
-  const ascensionFamilies = readJsonWithSchema(
-    "data/materials/character-ascension/en.json",
-    z.record(
-      z.string(),
-      z.object({
-        sliver: characterAscensionTierSchema,
-        fragment: characterAscensionTierSchema,
-        chunk: characterAscensionTierSchema,
-        gemstone: characterAscensionTierSchema,
-      }),
-    ),
-  );
-
-  for (const family of Object.values(ascensionFamilies)) {
-    createFamily(
-      [family.sliver, family.fragment, family.chunk, family.gemstone],
-      "Gem",
-      "character-ascension",
-      (name) => `${name} character ascension gem.`,
-    );
-  }
-
-  push({
-    id: "crown-of-insight",
-    name: "Crown of Insight",
-    image: toImagePath("materials", "talent-book", "crown-of-insight"),
-    rarity: 5,
-    category: "Talent Book",
-    description: "Rare crown required to fully level a talent.",
-    combinable: false,
-    combineRatio: null,
-    parentMaterialId: null,
-  });
-
   backfillMissingAscensionMaterials(push, byName);
 
-  materials.sort((left, right) => left.id.localeCompare(right.id));
   validateGeneratedMaterials(materials);
 
   return { materials, byName, byId };
@@ -566,7 +699,7 @@ function resolveCommonAscensionCategory(family: CommonAscensionFamily): string {
 }
 
 function backfillMissingAscensionMaterials(
-  push: (material: SeedMaterialRecord) => void,
+  push: (material: Omit<SeedMaterialRecord, "sortOrder">) => void,
   byName: Map<string, SeedMaterialRecord>,
 ): void {
   const characterDirectory = path.join(repoRoot, "data/characters");

@@ -3,142 +3,505 @@ import type { SeedMaterial } from "../types";
 
 export const seedMaterials: SeedMaterial[] = [
   {
-    "id": "a-flower-yet-to-bloom",
-    "name": "A Flower Yet to Bloom",
-    "image": "/images/materials/common-ascension/a-flower-yet-to-bloom",
-    "rarity": 2,
-    "category": "Elite Drop",
-    "description": "A Flower Yet to Bloom ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "treasured-flower"
-  },
-  {
-    "id": "agent-s-sacrificial-knife",
-    "name": "Agent's Sacrificial Knife",
-    "image": "/images/materials/common-ascension/agent-s-sacrificial-knife",
-    "rarity": 3,
-    "category": "Elite Drop",
-    "description": "Agent's Sacrificial Knife ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "inspector-s-sacrificial-knife"
-  },
-  {
-    "id": "agnidus-agate-chunk",
-    "name": "Agnidus Agate Chunk",
-    "image": "/images/materials/character-ascension/agnidus-agate-chunk",
+    "id": "hero-s-wit",
+    "name": "Hero's Wit",
+    "image": "/images/materials/character-experience/hero-s-wit",
     "rarity": 4,
-    "category": "Gem",
-    "description": "Agnidus Agate Chunk character ascension gem.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "agnidus-agate-gemstone"
-  },
-  {
-    "id": "agnidus-agate-fragment",
-    "name": "Agnidus Agate Fragment",
-    "image": "/images/materials/character-ascension/agnidus-agate-fragment",
-    "rarity": 3,
-    "category": "Gem",
-    "description": "Agnidus Agate Fragment character ascension gem.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "agnidus-agate-chunk"
-  },
-  {
-    "id": "agnidus-agate-gemstone",
-    "name": "Agnidus Agate Gemstone",
-    "image": "/images/materials/character-ascension/agnidus-agate-gemstone",
-    "rarity": 5,
-    "category": "Gem",
-    "description": "Agnidus Agate Gemstone character ascension gem.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "agnidus-agate-sliver",
-    "name": "Agnidus Agate Sliver",
-    "image": "/images/materials/character-ascension/agnidus-agate-sliver",
-    "rarity": 2,
-    "category": "Gem",
-    "description": "Agnidus Agate Sliver character ascension gem.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "agnidus-agate-fragment"
-  },
-  {
-    "id": "alien-life-core",
-    "name": "Alien Life Core",
-    "image": "/images/materials/common-ascension/alien-life-core",
-    "rarity": 4,
-    "category": "Elite Drop",
-    "description": "Alien Life Core ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "amakumo-fruit",
-    "name": "Amakumo Fruit",
-    "image": "/images/materials/local-specialties/amakumo-fruit",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Amakumo Fruit local specialty.",
+    "category": "Character EXP Material",
+    "description": "Hero's Wit character EXP material.",
     "details": {
-      "usedByCharacters": [
-        "kirara",
-        "raiden"
-      ]
+      "experience": 20000
     },
     "combinable": false,
     "combineRatio": null,
-    "parentMaterialId": null
+    "parentMaterialId": null,
+    "sortOrder": 0
   },
   {
-    "id": "artful-device-fragment",
-    "name": "Artful Device Fragment",
-    "image": "/images/materials/weapon-ascension/artful-device-fragment",
-    "rarity": 2,
-    "category": "Weapon Ascension",
-    "description": "Artful Device Fragment weapon ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "artful-device-replica"
-  },
-  {
-    "id": "artful-device-inheritance",
-    "name": "Artful Device Inheritance",
-    "image": "/images/materials/weapon-ascension/artful-device-inheritance",
-    "rarity": 4,
-    "category": "Weapon Ascension",
-    "description": "Artful Device Inheritance weapon ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "artful-device-wish"
-  },
-  {
-    "id": "artful-device-replica",
-    "name": "Artful Device Replica",
-    "image": "/images/materials/weapon-ascension/artful-device-replica",
+    "id": "adventurer-s-experience",
+    "name": "Adventurer's Experience",
+    "image": "/images/materials/character-experience/adventurer-s-experience",
     "rarity": 3,
-    "category": "Weapon Ascension",
-    "description": "Artful Device Replica weapon ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "artful-device-inheritance"
-  },
-  {
-    "id": "artful-device-wish",
-    "name": "Artful Device Wish",
-    "image": "/images/materials/weapon-ascension/artful-device-wish",
-    "rarity": 5,
-    "category": "Weapon Ascension",
-    "description": "Artful Device Wish weapon ascension material.",
+    "category": "Character EXP Material",
+    "description": "Adventurer's Experience character EXP material.",
+    "details": {
+      "experience": 5000
+    },
     "combinable": false,
     "combineRatio": null,
-    "parentMaterialId": null
+    "parentMaterialId": null,
+    "sortOrder": 1
+  },
+  {
+    "id": "wanderer-s-advice",
+    "name": "Wanderer's Advice",
+    "image": "/images/materials/character-experience/wanderer-s-advice",
+    "rarity": 2,
+    "category": "Character EXP Material",
+    "description": "Wanderer's Advice character EXP material.",
+    "details": {
+      "experience": 1000
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 2
+  },
+  {
+    "id": "slime-condensate",
+    "name": "Slime Condensate",
+    "image": "/images/materials/common-ascension/slime-condensate",
+    "rarity": 1,
+    "category": "Enemy Drop",
+    "description": "Slime Condensate ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "slime-secretions",
+    "sortOrder": 3
+  },
+  {
+    "id": "slime-secretions",
+    "name": "Slime Secretions",
+    "image": "/images/materials/common-ascension/slime-secretions",
+    "rarity": 2,
+    "category": "Enemy Drop",
+    "description": "Slime Secretions ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "slime-concentrate",
+    "sortOrder": 4
+  },
+  {
+    "id": "slime-concentrate",
+    "name": "Slime Concentrate",
+    "image": "/images/materials/common-ascension/slime-concentrate",
+    "rarity": 3,
+    "category": "Enemy Drop",
+    "description": "Slime Concentrate ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 5
+  },
+  {
+    "id": "damaged-mask",
+    "name": "Damaged Mask",
+    "image": "/images/materials/common-ascension/damaged-mask",
+    "rarity": 1,
+    "category": "Enemy Drop",
+    "description": "Damaged Mask ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "stained-mask",
+    "sortOrder": 6
+  },
+  {
+    "id": "stained-mask",
+    "name": "Stained Mask",
+    "image": "/images/materials/common-ascension/stained-mask",
+    "rarity": 2,
+    "category": "Enemy Drop",
+    "description": "Stained Mask ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "ominous-mask",
+    "sortOrder": 7
+  },
+  {
+    "id": "ominous-mask",
+    "name": "Ominous Mask",
+    "image": "/images/materials/common-ascension/ominous-mask",
+    "rarity": 3,
+    "category": "Enemy Drop",
+    "description": "Ominous Mask ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 8
+  },
+  {
+    "id": "divining-scroll",
+    "name": "Divining Scroll",
+    "image": "/images/materials/common-ascension/divining-scroll",
+    "rarity": 1,
+    "category": "Enemy Drop",
+    "description": "Divining Scroll ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "sealed-scroll",
+    "sortOrder": 9
+  },
+  {
+    "id": "sealed-scroll",
+    "name": "Sealed Scroll",
+    "image": "/images/materials/common-ascension/sealed-scroll",
+    "rarity": 2,
+    "category": "Enemy Drop",
+    "description": "Sealed Scroll ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "forbidden-curse-scroll",
+    "sortOrder": 10
+  },
+  {
+    "id": "forbidden-curse-scroll",
+    "name": "Forbidden Curse Scroll",
+    "image": "/images/materials/common-ascension/forbidden-curse-scroll",
+    "rarity": 3,
+    "category": "Enemy Drop",
+    "description": "Forbidden Curse Scroll ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 11
+  },
+  {
+    "id": "firm-arrowhead",
+    "name": "Firm Arrowhead",
+    "image": "/images/materials/common-ascension/firm-arrowhead",
+    "rarity": 1,
+    "category": "Enemy Drop",
+    "description": "Firm Arrowhead ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "sharp-arrowhead",
+    "sortOrder": 12
+  },
+  {
+    "id": "sharp-arrowhead",
+    "name": "Sharp Arrowhead",
+    "image": "/images/materials/common-ascension/sharp-arrowhead",
+    "rarity": 2,
+    "category": "Enemy Drop",
+    "description": "Sharp Arrowhead ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "weathered-arrowhead",
+    "sortOrder": 13
+  },
+  {
+    "id": "weathered-arrowhead",
+    "name": "Weathered Arrowhead",
+    "image": "/images/materials/common-ascension/weathered-arrowhead",
+    "rarity": 3,
+    "category": "Enemy Drop",
+    "description": "Weathered Arrowhead ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 14
+  },
+  {
+    "id": "recruit-s-insignia",
+    "name": "Recruit's Insignia",
+    "image": "/images/materials/common-ascension/recruit-s-insignia",
+    "rarity": 1,
+    "category": "Enemy Drop",
+    "description": "Recruit's Insignia ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "sergeant-s-insignia",
+    "sortOrder": 15
+  },
+  {
+    "id": "sergeant-s-insignia",
+    "name": "Sergeant's Insignia",
+    "image": "/images/materials/common-ascension/sergeant-s-insignia",
+    "rarity": 2,
+    "category": "Enemy Drop",
+    "description": "Sergeant's Insignia ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "lieutenant-s-insignia",
+    "sortOrder": 16
+  },
+  {
+    "id": "lieutenant-s-insignia",
+    "name": "Lieutenant's Insignia",
+    "image": "/images/materials/common-ascension/lieutenant-s-insignia",
+    "rarity": 3,
+    "category": "Enemy Drop",
+    "description": "Lieutenant's Insignia ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 17
+  },
+  {
+    "id": "treasure-hoarder-insignia",
+    "name": "Treasure Hoarder Insignia",
+    "image": "/images/materials/common-ascension/treasure-hoarder-insignia",
+    "rarity": 1,
+    "category": "Enemy Drop",
+    "description": "Treasure Hoarder Insignia ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "silver-raven-insignia",
+    "sortOrder": 18
+  },
+  {
+    "id": "silver-raven-insignia",
+    "name": "Silver Raven Insignia",
+    "image": "/images/materials/common-ascension/silver-raven-insignia",
+    "rarity": 2,
+    "category": "Enemy Drop",
+    "description": "Silver Raven Insignia ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "golden-raven-insignia",
+    "sortOrder": 19
+  },
+  {
+    "id": "golden-raven-insignia",
+    "name": "Golden Raven Insignia",
+    "image": "/images/materials/common-ascension/golden-raven-insignia",
+    "rarity": 3,
+    "category": "Enemy Drop",
+    "description": "Golden Raven Insignia ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 20
+  },
+  {
+    "id": "whopperflower-nectar",
+    "name": "Whopperflower Nectar",
+    "image": "/images/materials/common-ascension/whopperflower-nectar",
+    "rarity": 1,
+    "category": "Enemy Drop",
+    "description": "Whopperflower Nectar ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "shimmering-nectar",
+    "sortOrder": 21
+  },
+  {
+    "id": "shimmering-nectar",
+    "name": "Shimmering Nectar",
+    "image": "/images/materials/common-ascension/shimmering-nectar",
+    "rarity": 2,
+    "category": "Enemy Drop",
+    "description": "Shimmering Nectar ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "energy-nectar",
+    "sortOrder": 22
+  },
+  {
+    "id": "energy-nectar",
+    "name": "Energy Nectar",
+    "image": "/images/materials/common-ascension/energy-nectar",
+    "rarity": 3,
+    "category": "Enemy Drop",
+    "description": "Energy Nectar ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 23
+  },
+  {
+    "id": "old-handguard",
+    "name": "Old Handguard",
+    "image": "/images/materials/common-ascension/old-handguard",
+    "rarity": 1,
+    "category": "Enemy Drop",
+    "description": "Old Handguard ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "kageuchi-handguard",
+    "sortOrder": 24
+  },
+  {
+    "id": "kageuchi-handguard",
+    "name": "Kageuchi Handguard",
+    "image": "/images/materials/common-ascension/kageuchi-handguard",
+    "rarity": 2,
+    "category": "Enemy Drop",
+    "description": "Kageuchi Handguard ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "famed-handguard",
+    "sortOrder": 25
+  },
+  {
+    "id": "famed-handguard",
+    "name": "Famed Handguard",
+    "image": "/images/materials/common-ascension/famed-handguard",
+    "rarity": 3,
+    "category": "Enemy Drop",
+    "description": "Famed Handguard ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 26
+  },
+  {
+    "id": "spectral-husk",
+    "name": "Spectral Husk",
+    "image": "/images/materials/common-ascension/spectral-husk",
+    "rarity": 1,
+    "category": "Enemy Drop",
+    "description": "Spectral Husk ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "spectral-heart",
+    "sortOrder": 27
+  },
+  {
+    "id": "spectral-heart",
+    "name": "Spectral Heart",
+    "image": "/images/materials/common-ascension/spectral-heart",
+    "rarity": 2,
+    "category": "Enemy Drop",
+    "description": "Spectral Heart ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "spectral-nucleus",
+    "sortOrder": 28
+  },
+  {
+    "id": "spectral-nucleus",
+    "name": "Spectral Nucleus",
+    "image": "/images/materials/common-ascension/spectral-nucleus",
+    "rarity": 3,
+    "category": "Enemy Drop",
+    "description": "Spectral Nucleus ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 29
+  },
+  {
+    "id": "fungal-spores",
+    "name": "Fungal Spores",
+    "image": "/images/materials/common-ascension/fungal-spores",
+    "rarity": 1,
+    "category": "Enemy Drop",
+    "description": "Fungal Spores ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "luminescent-pollen",
+    "sortOrder": 30
+  },
+  {
+    "id": "luminescent-pollen",
+    "name": "Luminescent Pollen",
+    "image": "/images/materials/common-ascension/luminescent-pollen",
+    "rarity": 2,
+    "category": "Enemy Drop",
+    "description": "Luminescent Pollen ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "crystalline-cyst-dust",
+    "sortOrder": 31
+  },
+  {
+    "id": "crystalline-cyst-dust",
+    "name": "Crystalline Cyst Dust",
+    "image": "/images/materials/common-ascension/crystalline-cyst-dust",
+    "rarity": 3,
+    "category": "Enemy Drop",
+    "description": "Crystalline Cyst Dust ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 32
+  },
+  {
+    "id": "faded-red-satin",
+    "name": "Faded Red Satin",
+    "image": "/images/materials/common-ascension/faded-red-satin",
+    "rarity": 1,
+    "category": "Enemy Drop",
+    "description": "Faded Red Satin ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "trimmed-red-silk",
+    "sortOrder": 33
+  },
+  {
+    "id": "trimmed-red-silk",
+    "name": "Trimmed Red Silk",
+    "image": "/images/materials/common-ascension/trimmed-red-silk",
+    "rarity": 2,
+    "category": "Enemy Drop",
+    "description": "Trimmed Red Silk ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "rich-red-brocade",
+    "sortOrder": 34
+  },
+  {
+    "id": "rich-red-brocade",
+    "name": "Rich Red Brocade",
+    "image": "/images/materials/common-ascension/rich-red-brocade",
+    "rarity": 3,
+    "category": "Enemy Drop",
+    "description": "Rich Red Brocade ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 35
+  },
+  {
+    "id": "transoceanic-pearl",
+    "name": "Transoceanic Pearl",
+    "image": "/images/materials/common-ascension/transoceanic-pearl",
+    "rarity": 1,
+    "category": "Enemy Drop",
+    "description": "Transoceanic Pearl ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "transoceanic-chunk",
+    "sortOrder": 36
+  },
+  {
+    "id": "transoceanic-chunk",
+    "name": "Transoceanic Chunk",
+    "image": "/images/materials/common-ascension/transoceanic-chunk",
+    "rarity": 2,
+    "category": "Enemy Drop",
+    "description": "Transoceanic Chunk ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "xenochromatic-crystal",
+    "sortOrder": 37
+  },
+  {
+    "id": "xenochromatic-crystal",
+    "name": "Xenochromatic Crystal",
+    "image": "/images/materials/common-ascension/xenochromatic-crystal",
+    "rarity": 3,
+    "category": "Enemy Drop",
+    "description": "Xenochromatic Crystal ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 38
+  },
+  {
+    "id": "meshing-gear",
+    "name": "Meshing Gear",
+    "image": "/images/materials/common-ascension/meshing-gear",
+    "rarity": 1,
+    "category": "Enemy Drop",
+    "description": "Meshing Gear ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "mechanical-spur-gear",
+    "sortOrder": 39
+  },
+  {
+    "id": "mechanical-spur-gear",
+    "name": "Mechanical Spur Gear",
+    "image": "/images/materials/common-ascension/mechanical-spur-gear",
+    "rarity": 2,
+    "category": "Enemy Drop",
+    "description": "Mechanical Spur Gear ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "artificed-dynamic-gear",
+    "sortOrder": 40
   },
   {
     "id": "artificed-dynamic-gear",
@@ -149,76 +512,1130 @@ export const seedMaterials: SeedMaterial[] = [
     "description": "Artificed Dynamic Gear ascension material.",
     "combinable": false,
     "combineRatio": null,
-    "parentMaterialId": null
+    "parentMaterialId": null,
+    "sortOrder": 41
   },
   {
-    "id": "ascended-sample-knight",
-    "name": "Ascended Sample: Knight",
-    "image": "/images/materials/talent-boss/ascended-sample-knight",
-    "rarity": 5,
+    "id": "juvenile-fang",
+    "name": "Juvenile Fang",
+    "image": "/images/materials/common-ascension/juvenile-fang",
+    "rarity": 2,
+    "category": "Elite Drop",
+    "description": "Juvenile Fang ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "seasoned-fang",
+    "sortOrder": 42
+  },
+  {
+    "id": "seasoned-fang",
+    "name": "Seasoned Fang",
+    "image": "/images/materials/common-ascension/seasoned-fang",
+    "rarity": 3,
+    "category": "Elite Drop",
+    "description": "Seasoned Fang ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "tyrant-s-fang",
+    "sortOrder": 43
+  },
+  {
+    "id": "tyrant-s-fang",
+    "name": "Tyrant's Fang",
+    "image": "/images/materials/common-ascension/tyrant-s-fang",
+    "rarity": 4,
+    "category": "Elite Drop",
+    "description": "Tyrant's Fang ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 44
+  },
+  {
+    "id": "sentry-s-wooden-whistle",
+    "name": "Sentry's Wooden Whistle",
+    "image": "/images/materials/common-ascension/sentry-s-wooden-whistle",
+    "rarity": 2,
+    "category": "Elite Drop",
+    "description": "Sentry's Wooden Whistle ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "warriors-s-metal-whistle",
+    "sortOrder": 45
+  },
+  {
+    "id": "warriors-s-metal-whistle",
+    "name": "Warrior's Metal Whistle",
+    "image": "/images/materials/common-ascension/warriors-s-metal-whistle",
+    "rarity": 3,
+    "category": "Elite Drop",
+    "description": "Warrior's Metal Whistle ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "saurian-crowned-warrior-s-golden-whistle",
+    "sortOrder": 46
+  },
+  {
+    "id": "saurian-crowned-warrior-s-golden-whistle",
+    "name": "Saurian-Crowned Warrior's Golden Whistle",
+    "image": "/images/materials/common-ascension/saurian-crowned-warrior-s-golden-whistle",
+    "rarity": 4,
+    "category": "Elite Drop",
+    "description": "Saurian-Crowned Warrior's Golden Whistle ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 47
+  },
+  {
+    "id": "broken-drive-shaft",
+    "name": "Broken Drive Shaft",
+    "image": "/images/materials/common-ascension/broken-drive-shaft",
+    "rarity": 1,
+    "category": "Enemy Drop",
+    "description": "Broken Drive Shaft ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "reinforced-drive-shaft",
+    "sortOrder": 48
+  },
+  {
+    "id": "reinforced-drive-shaft",
+    "name": "Reinforced Drive Shaft",
+    "image": "/images/materials/common-ascension/reinforced-drive-shaft",
+    "rarity": 2,
+    "category": "Enemy Drop",
+    "description": "Reinforced Drive Shaft ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "precision-drive-shaft",
+    "sortOrder": 49
+  },
+  {
+    "id": "precision-drive-shaft",
+    "name": "Precision Drive Shaft",
+    "image": "/images/materials/common-ascension/precision-drive-shaft",
+    "rarity": 3,
+    "category": "Enemy Drop",
+    "description": "Precision Drive Shaft ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 50
+  },
+  {
+    "id": "tattered-warrant",
+    "name": "Tattered Warrant",
+    "image": "/images/materials/common-ascension/tattered-warrant",
+    "rarity": 1,
+    "category": "Enemy Drop",
+    "description": "Tattered Warrant ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "immaculate-warrant",
+    "sortOrder": 51
+  },
+  {
+    "id": "immaculate-warrant",
+    "name": "Immaculate Warrant",
+    "image": "/images/materials/common-ascension/immaculate-warrant",
+    "rarity": 2,
+    "category": "Enemy Drop",
+    "description": "Immaculate Warrant ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "frost-etched-warrant",
+    "sortOrder": 52
+  },
+  {
+    "id": "frost-etched-warrant",
+    "name": "Frost-Etched Warrant",
+    "image": "/images/materials/common-ascension/frost-etched-warrant",
+    "rarity": 3,
+    "category": "Enemy Drop",
+    "description": "Frost-Etched Warrant ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 53
+  },
+  {
+    "id": "heavy-horn",
+    "name": "Heavy Horn",
+    "image": "/images/materials/common-ascension/heavy-horn",
+    "rarity": 2,
+    "category": "Elite Drop",
+    "description": "Heavy Horn ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "black-bronze-horn",
+    "sortOrder": 54
+  },
+  {
+    "id": "black-bronze-horn",
+    "name": "Black Bronze Horn",
+    "image": "/images/materials/common-ascension/black-bronze-horn",
+    "rarity": 3,
+    "category": "Elite Drop",
+    "description": "Black Bronze Horn ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "black-crystal-horn",
+    "sortOrder": 55
+  },
+  {
+    "id": "black-crystal-horn",
+    "name": "Black Crystal Horn",
+    "image": "/images/materials/common-ascension/black-crystal-horn",
+    "rarity": 4,
+    "category": "Elite Drop",
+    "description": "Black Crystal Horn ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 56
+  },
+  {
+    "id": "gloomy-statuette",
+    "name": "Gloomy Statuette",
+    "image": "/images/materials/common-ascension/gloomy-statuette",
+    "rarity": 2,
+    "category": "Elite Drop",
+    "description": "Gloomy Statuette ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "dark-statuette",
+    "sortOrder": 57
+  },
+  {
+    "id": "dark-statuette",
+    "name": "Dark Statuette",
+    "image": "/images/materials/common-ascension/dark-statuette",
+    "rarity": 3,
+    "category": "Elite Drop",
+    "description": "Dark Statuette ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "deathly-statuette",
+    "sortOrder": 58
+  },
+  {
+    "id": "deathly-statuette",
+    "name": "Deathly Statuette",
+    "image": "/images/materials/common-ascension/deathly-statuette",
+    "rarity": 4,
+    "category": "Elite Drop",
+    "description": "Deathly Statuette ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 59
+  },
+  {
+    "id": "dead-ley-line-branch",
+    "name": "Dead Ley Line Branch",
+    "image": "/images/materials/common-ascension/dead-ley-line-branch",
+    "rarity": 2,
+    "category": "Elite Drop",
+    "description": "Dead Ley Line Branch ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "dead-ley-line-leaves",
+    "sortOrder": 60
+  },
+  {
+    "id": "dead-ley-line-leaves",
+    "name": "Dead Ley Line Leaves",
+    "image": "/images/materials/common-ascension/dead-ley-line-leaves",
+    "rarity": 3,
+    "category": "Elite Drop",
+    "description": "Dead Ley Line Leaves ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "ley-line-sprout",
+    "sortOrder": 61
+  },
+  {
+    "id": "ley-line-sprout",
+    "name": "Ley Line Sprout",
+    "image": "/images/materials/common-ascension/ley-line-sprout",
+    "rarity": 4,
+    "category": "Elite Drop",
+    "description": "Ley Line Sprout ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 62
+  },
+  {
+    "id": "chaos-device",
+    "name": "Chaos Device",
+    "image": "/images/materials/common-ascension/chaos-device",
+    "rarity": 2,
+    "category": "Elite Drop",
+    "description": "Chaos Device ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "chaos-circuit",
+    "sortOrder": 63
+  },
+  {
+    "id": "chaos-circuit",
+    "name": "Chaos Circuit",
+    "image": "/images/materials/common-ascension/chaos-circuit",
+    "rarity": 3,
+    "category": "Elite Drop",
+    "description": "Chaos Circuit ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "chaos-core",
+    "sortOrder": 64
+  },
+  {
+    "id": "chaos-core",
+    "name": "Chaos Core",
+    "image": "/images/materials/common-ascension/chaos-core",
+    "rarity": 4,
+    "category": "Elite Drop",
+    "description": "Chaos Core ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 65
+  },
+  {
+    "id": "mist-grass-pollen",
+    "name": "Mist Grass Pollen",
+    "image": "/images/materials/common-ascension/mist-grass-pollen",
+    "rarity": 2,
+    "category": "Elite Drop",
+    "description": "Mist Grass Pollen ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "mist-grass",
+    "sortOrder": 66
+  },
+  {
+    "id": "mist-grass",
+    "name": "Mist Grass",
+    "image": "/images/materials/common-ascension/mist-grass",
+    "rarity": 3,
+    "category": "Elite Drop",
+    "description": "Mist Grass ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "mist-grass-wick",
+    "sortOrder": 67
+  },
+  {
+    "id": "mist-grass-wick",
+    "name": "Mist Grass Wick",
+    "image": "/images/materials/common-ascension/mist-grass-wick",
+    "rarity": 4,
+    "category": "Elite Drop",
+    "description": "Mist Grass Wick ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 68
+  },
+  {
+    "id": "hunter-s-sacrificial-knife",
+    "name": "Hunter's Sacrificial Knife",
+    "image": "/images/materials/common-ascension/hunter-s-sacrificial-knife",
+    "rarity": 2,
+    "category": "Elite Drop",
+    "description": "Hunter's Sacrificial Knife ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "agent-s-sacrificial-knife",
+    "sortOrder": 69
+  },
+  {
+    "id": "agent-s-sacrificial-knife",
+    "name": "Agent's Sacrificial Knife",
+    "image": "/images/materials/common-ascension/agent-s-sacrificial-knife",
+    "rarity": 3,
+    "category": "Elite Drop",
+    "description": "Agent's Sacrificial Knife ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "inspector-s-sacrificial-knife",
+    "sortOrder": 70
+  },
+  {
+    "id": "inspector-s-sacrificial-knife",
+    "name": "Inspector's Sacrificial Knife",
+    "image": "/images/materials/common-ascension/inspector-s-sacrificial-knife",
+    "rarity": 4,
+    "category": "Elite Drop",
+    "description": "Inspector's Sacrificial Knife ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 71
+  },
+  {
+    "id": "fragile-bone-shard",
+    "name": "Fragile Bone Shard",
+    "image": "/images/materials/common-ascension/fragile-bone-shard",
+    "rarity": 2,
+    "category": "Elite Drop",
+    "description": "Fragile Bone Shard ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "sturdy-bone-shard",
+    "sortOrder": 72
+  },
+  {
+    "id": "sturdy-bone-shard",
+    "name": "Sturdy Bone Shard",
+    "image": "/images/materials/common-ascension/sturdy-bone-shard",
+    "rarity": 3,
+    "category": "Elite Drop",
+    "description": "Sturdy Bone Shard ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "fossilized-bone-shard",
+    "sortOrder": 73
+  },
+  {
+    "id": "fossilized-bone-shard",
+    "name": "Fossilized Bone Shard",
+    "image": "/images/materials/common-ascension/fossilized-bone-shard",
+    "rarity": 4,
+    "category": "Elite Drop",
+    "description": "Fossilized Bone Shard ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 74
+  },
+  {
+    "id": "chaos-gear",
+    "name": "Chaos Gear",
+    "image": "/images/materials/common-ascension/chaos-gear",
+    "rarity": 2,
+    "category": "Elite Drop",
+    "description": "Chaos Gear ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "chaos-axis",
+    "sortOrder": 75
+  },
+  {
+    "id": "chaos-axis",
+    "name": "Chaos Axis",
+    "image": "/images/materials/common-ascension/chaos-axis",
+    "rarity": 3,
+    "category": "Elite Drop",
+    "description": "Chaos Axis ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "chaos-oculus",
+    "sortOrder": 76
+  },
+  {
+    "id": "chaos-oculus",
+    "name": "Chaos Oculus",
+    "image": "/images/materials/common-ascension/chaos-oculus",
+    "rarity": 4,
+    "category": "Elite Drop",
+    "description": "Chaos Oculus ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 77
+  },
+  {
+    "id": "dismal-prism",
+    "name": "Dismal Prism",
+    "image": "/images/materials/common-ascension/dismal-prism",
+    "rarity": 2,
+    "category": "Elite Drop",
+    "description": "Dismal Prism ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "crystal-prism",
+    "sortOrder": 78
+  },
+  {
+    "id": "crystal-prism",
+    "name": "Crystal Prism",
+    "image": "/images/materials/common-ascension/crystal-prism",
+    "rarity": 3,
+    "category": "Elite Drop",
+    "description": "Crystal Prism ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "polarizing-prism",
+    "sortOrder": 79
+  },
+  {
+    "id": "polarizing-prism",
+    "name": "Polarizing Prism",
+    "image": "/images/materials/common-ascension/polarizing-prism",
+    "rarity": 4,
+    "category": "Elite Drop",
+    "description": "Polarizing Prism ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 80
+  },
+  {
+    "id": "concealed-claw",
+    "name": "Concealed Claw",
+    "image": "/images/materials/common-ascension/concealed-claw",
+    "rarity": 2,
+    "category": "Elite Drop",
+    "description": "Concealed Claw ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "concealed-unguis",
+    "sortOrder": 81
+  },
+  {
+    "id": "concealed-unguis",
+    "name": "Concealed Unguis",
+    "image": "/images/materials/common-ascension/concealed-unguis",
+    "rarity": 3,
+    "category": "Elite Drop",
+    "description": "Concealed Unguis ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "concealed-talon",
+    "sortOrder": 82
+  },
+  {
+    "id": "concealed-talon",
+    "name": "Concealed Talon",
+    "image": "/images/materials/common-ascension/concealed-talon",
+    "rarity": 4,
+    "category": "Elite Drop",
+    "description": "Concealed Talon ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 83
+  },
+  {
+    "id": "inactivated-fungal-nucleus",
+    "name": "Inactivated Fungal Nucleus",
+    "image": "/images/materials/common-ascension/inactivated-fungal-nucleus",
+    "rarity": 2,
+    "category": "Elite Drop",
+    "description": "Inactivated Fungal Nucleus ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "dormant-fungal-nucleus",
+    "sortOrder": 84
+  },
+  {
+    "id": "dormant-fungal-nucleus",
+    "name": "Dormant Fungal Nucleus",
+    "image": "/images/materials/common-ascension/dormant-fungal-nucleus",
+    "rarity": 3,
+    "category": "Elite Drop",
+    "description": "Dormant Fungal Nucleus ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "robust-fungal-nucleus",
+    "sortOrder": 85
+  },
+  {
+    "id": "robust-fungal-nucleus",
+    "name": "Robust Fungal Nucleus",
+    "image": "/images/materials/common-ascension/robust-fungal-nucleus",
+    "rarity": 4,
+    "category": "Elite Drop",
+    "description": "Robust Fungal Nucleus ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 86
+  },
+  {
+    "id": "chaos-storage",
+    "name": "Chaos Storage",
+    "image": "/images/materials/common-ascension/chaos-storage",
+    "rarity": 2,
+    "category": "Elite Drop",
+    "description": "Chaos Storage ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "chaos-module",
+    "sortOrder": 87
+  },
+  {
+    "id": "chaos-module",
+    "name": "Chaos Module",
+    "image": "/images/materials/common-ascension/chaos-module",
+    "rarity": 3,
+    "category": "Elite Drop",
+    "description": "Chaos Module ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "chaos-bolt",
+    "sortOrder": 88
+  },
+  {
+    "id": "chaos-bolt",
+    "name": "Chaos Bolt",
+    "image": "/images/materials/common-ascension/chaos-bolt",
+    "rarity": 4,
+    "category": "Elite Drop",
+    "description": "Chaos Bolt ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 89
+  },
+  {
+    "id": "damaged-prism",
+    "name": "Damaged Prism",
+    "image": "/images/materials/common-ascension/damaged-prism",
+    "rarity": 2,
+    "category": "Elite Drop",
+    "description": "Damaged Prism ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "turbid-prism",
+    "sortOrder": 90
+  },
+  {
+    "id": "turbid-prism",
+    "name": "Turbid Prism",
+    "image": "/images/materials/common-ascension/turbid-prism",
+    "rarity": 3,
+    "category": "Elite Drop",
+    "description": "Turbid Prism ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "radiant-prism",
+    "sortOrder": 91
+  },
+  {
+    "id": "radiant-prism",
+    "name": "Radiant Prism",
+    "image": "/images/materials/common-ascension/radiant-prism",
+    "rarity": 4,
+    "category": "Elite Drop",
+    "description": "Radiant Prism ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 92
+  },
+  {
+    "id": "desiccated-shell",
+    "name": "Desiccated Shell",
+    "image": "/images/materials/common-ascension/desiccated-shell",
+    "rarity": 2,
+    "category": "Elite Drop",
+    "description": "Desiccated Shell ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "sturdy-shell",
+    "sortOrder": 93
+  },
+  {
+    "id": "sturdy-shell",
+    "name": "Sturdy Shell",
+    "image": "/images/materials/common-ascension/sturdy-shell",
+    "rarity": 3,
+    "category": "Elite Drop",
+    "description": "Sturdy Shell ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "marked-shell",
+    "sortOrder": 94
+  },
+  {
+    "id": "marked-shell",
+    "name": "Marked Shell",
+    "image": "/images/materials/common-ascension/marked-shell",
+    "rarity": 4,
+    "category": "Elite Drop",
+    "description": "Marked Shell ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 95
+  },
+  {
+    "id": "a-flower-yet-to-bloom",
+    "name": "A Flower Yet to Bloom",
+    "image": "/images/materials/common-ascension/a-flower-yet-to-bloom",
+    "rarity": 2,
+    "category": "Elite Drop",
+    "description": "A Flower Yet to Bloom ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "treasured-flower",
+    "sortOrder": 96
+  },
+  {
+    "id": "treasured-flower",
+    "name": "Treasured Flower",
+    "image": "/images/materials/common-ascension/treasured-flower",
+    "rarity": 3,
+    "category": "Elite Drop",
+    "description": "Treasured Flower ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "wanderer-s-blooming-flower",
+    "sortOrder": 97
+  },
+  {
+    "id": "wanderer-s-blooming-flower",
+    "name": "Wanderer's Blooming Flower",
+    "image": "/images/materials/common-ascension/wanderer-s-blooming-flower",
+    "rarity": 4,
+    "category": "Elite Drop",
+    "description": "Wanderer's Blooming Flower ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 98
+  },
+  {
+    "id": "drop-of-tainted-water",
+    "name": "Drop of Tainted Water",
+    "image": "/images/materials/common-ascension/drop-of-tainted-water",
+    "rarity": 2,
+    "category": "Elite Drop",
+    "description": "Drop of Tainted Water ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "scoop-of-tainted-water",
+    "sortOrder": 99
+  },
+  {
+    "id": "scoop-of-tainted-water",
+    "name": "Scoop of Tainted Water",
+    "image": "/images/materials/common-ascension/scoop-of-tainted-water",
+    "rarity": 3,
+    "category": "Elite Drop",
+    "description": "Scoop of Tainted Water ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "newborn-tainted-hydro-phantasm",
+    "sortOrder": 100
+  },
+  {
+    "id": "newborn-tainted-hydro-phantasm",
+    "name": "Newborn Tainted Hydro Phantasm",
+    "image": "/images/materials/common-ascension/newborn-tainted-hydro-phantasm",
+    "rarity": 4,
+    "category": "Elite Drop",
+    "description": "Newborn Tainted Hydro Phantasm ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 101
+  },
+  {
+    "id": "rift-core",
+    "name": "Rift Core",
+    "image": "/images/materials/common-ascension/rift-core",
+    "rarity": 2,
+    "category": "Elite Drop",
+    "description": "Rift Core ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "foreign-synapse",
+    "sortOrder": 102
+  },
+  {
+    "id": "foreign-synapse",
+    "name": "Foreign Synapse",
+    "image": "/images/materials/common-ascension/foreign-synapse",
+    "rarity": 3,
+    "category": "Elite Drop",
+    "description": "Foreign Synapse ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "alien-life-core",
+    "sortOrder": 103
+  },
+  {
+    "id": "alien-life-core",
+    "name": "Alien Life Core",
+    "image": "/images/materials/common-ascension/alien-life-core",
+    "rarity": 4,
+    "category": "Elite Drop",
+    "description": "Alien Life Core ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 104
+  },
+  {
+    "id": "old-operative-s-pocket-watch",
+    "name": "Old Operative's Pocket Watch",
+    "image": "/images/materials/common-ascension/old-operative-s-pocket-watch",
+    "rarity": 2,
+    "category": "Elite Drop",
+    "description": "Old Operative's Pocket Watch ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "operative-s-standard-pocket-watch",
+    "sortOrder": 105
+  },
+  {
+    "id": "operative-s-standard-pocket-watch",
+    "name": "Operative's Standard Pocket Watch",
+    "image": "/images/materials/common-ascension/operative-s-standard-pocket-watch",
+    "rarity": 3,
+    "category": "Elite Drop",
+    "description": "Operative's Standard Pocket Watch ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "operative-s-constancy",
+    "sortOrder": 106
+  },
+  {
+    "id": "operative-s-constancy",
+    "name": "Operative's Constancy",
+    "image": "/images/materials/common-ascension/operative-s-constancy",
+    "rarity": 4,
+    "category": "Elite Drop",
+    "description": "Operative's Constancy ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 107
+  },
+  {
+    "id": "feathery-fin",
+    "name": "Feathery Fin",
+    "image": "/images/materials/common-ascension/feathery-fin",
+    "rarity": 2,
+    "category": "Elite Drop",
+    "description": "Feathery Fin ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "lunar-fin",
+    "sortOrder": 108
+  },
+  {
+    "id": "lunar-fin",
+    "name": "Lunar Fin",
+    "image": "/images/materials/common-ascension/lunar-fin",
+    "rarity": 3,
+    "category": "Elite Drop",
+    "description": "Lunar Fin ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "chasmlight-fin",
+    "sortOrder": 109
+  },
+  {
+    "id": "chasmlight-fin",
+    "name": "Chasmlight Fin",
+    "image": "/images/materials/common-ascension/chasmlight-fin",
+    "rarity": 4,
+    "category": "Elite Drop",
+    "description": "Chasmlight Fin ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 110
+  },
+  {
+    "id": "ruined-hilt",
+    "name": "Ruined Hilt",
+    "image": "/images/materials/common-ascension/ruined-hilt",
+    "rarity": 2,
+    "category": "Elite Drop",
+    "description": "Ruined Hilt ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "splintered-hilt",
+    "sortOrder": 111
+  },
+  {
+    "id": "splintered-hilt",
+    "name": "Splintered Hilt",
+    "image": "/images/materials/common-ascension/splintered-hilt",
+    "rarity": 3,
+    "category": "Elite Drop",
+    "description": "Splintered Hilt ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "still-smoldering-hilt",
+    "sortOrder": 112
+  },
+  {
+    "id": "still-smoldering-hilt",
+    "name": "Still-Smoldering Hilt",
+    "image": "/images/materials/common-ascension/still-smoldering-hilt",
+    "rarity": 4,
+    "category": "Elite Drop",
+    "description": "Still-Smoldering Hilt ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 113
+  },
+  {
+    "id": "shard-of-a-shattered-will",
+    "name": "Shard of a Shattered Will",
+    "image": "/images/materials/common-ascension/shard-of-a-shattered-will",
+    "rarity": 2,
+    "category": "Elite Drop",
+    "description": "Shard of a Shattered Will ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "locus-of-a-clear-will",
+    "sortOrder": 114
+  },
+  {
+    "id": "locus-of-a-clear-will",
+    "name": "Locus of a Clear Will",
+    "image": "/images/materials/common-ascension/locus-of-a-clear-will",
+    "rarity": 3,
+    "category": "Elite Drop",
+    "description": "Locus of a Clear Will ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "sigil-of-a-striding-will",
+    "sortOrder": 115
+  },
+  {
+    "id": "sigil-of-a-striding-will",
+    "name": "Sigil of a Striding Will",
+    "image": "/images/materials/common-ascension/sigil-of-a-striding-will",
+    "rarity": 4,
+    "category": "Elite Drop",
+    "description": "Sigil of a Striding Will ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 116
+  },
+  {
+    "id": "ignited-stone",
+    "name": "Ignited Stone",
+    "image": "/images/materials/common-ascension/ignited-stone",
+    "rarity": 2,
+    "category": "Elite Drop",
+    "description": "Ignited Stone ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "ignited-seed-of-life",
+    "sortOrder": 117
+  },
+  {
+    "id": "ignited-seed-of-life",
+    "name": "Ignited Seed of Life",
+    "image": "/images/materials/common-ascension/ignited-seed-of-life",
+    "rarity": 3,
+    "category": "Elite Drop",
+    "description": "Ignited Seed of Life ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "ignited-seeing-eye",
+    "sortOrder": 118
+  },
+  {
+    "id": "ignited-seeing-eye",
+    "name": "Ignited Seeing Eye",
+    "image": "/images/materials/common-ascension/ignited-seeing-eye",
+    "rarity": 4,
+    "category": "Elite Drop",
+    "description": "Ignited Seeing Eye ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 119
+  },
+  {
+    "id": "frostnight-s-glimmer",
+    "name": "Frostnight's Glimmer",
+    "image": "/images/materials/common-ascension/frostnight-s-glimmer",
+    "rarity": 2,
+    "category": "Elite Drop",
+    "description": "Frostnight's Glimmer ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "frostnight-s-glow",
+    "sortOrder": 120
+  },
+  {
+    "id": "frostnight-s-glow",
+    "name": "Frostnight's Glow",
+    "image": "/images/materials/common-ascension/frostnight-s-glow",
+    "rarity": 3,
+    "category": "Elite Drop",
+    "description": "Frostnight's Glow ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "frostnight-s-glory",
+    "sortOrder": 121
+  },
+  {
+    "id": "frostnight-s-glory",
+    "name": "Frostnight's Glory",
+    "image": "/images/materials/common-ascension/frostnight-s-glory",
+    "rarity": 4,
+    "category": "Elite Drop",
+    "description": "Frostnight's Glory ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 122
+  },
+  {
+    "id": "lightless-bone",
+    "name": "Lightless Bone",
+    "image": "/images/materials/common-ascension/lightless-bone",
+    "rarity": 2,
+    "category": "Elite Drop",
+    "description": "Lightless Bone ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "glowing-remains",
+    "sortOrder": 123
+  },
+  {
+    "id": "glowing-remains",
+    "name": "Glowing Remains",
+    "image": "/images/materials/common-ascension/glowing-remains",
+    "rarity": 3,
+    "category": "Elite Drop",
+    "description": "Glowing Remains ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "radiant-exoskeleton",
+    "sortOrder": 124
+  },
+  {
+    "id": "radiant-exoskeleton",
+    "name": "Radiant Exoskeleton",
+    "image": "/images/materials/common-ascension/radiant-exoskeleton",
+    "rarity": 4,
+    "category": "Elite Drop",
+    "description": "Radiant Exoskeleton ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 125
+  },
+  {
+    "id": "mistshroud-manifestation",
+    "name": "Mistshroud Manifestation",
+    "image": "/images/materials/common-ascension/mistshroud-manifestation",
+    "rarity": 2,
+    "category": "Elite Drop",
+    "description": "Mistshroud Manifestation ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "mistshroud-plate",
+    "sortOrder": 126
+  },
+  {
+    "id": "mistshroud-plate",
+    "name": "Mistshroud Plate",
+    "image": "/images/materials/common-ascension/mistshroud-plate",
+    "rarity": 3,
+    "category": "Elite Drop",
+    "description": "Mistshroud Plate ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "mistshroud-helmet",
+    "sortOrder": 127
+  },
+  {
+    "id": "mistshroud-helmet",
+    "name": "Mistshroud Helmet",
+    "image": "/images/materials/common-ascension/mistshroud-helmet",
+    "rarity": 4,
+    "category": "Elite Drop",
+    "description": "Mistshroud Helmet ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 128
+  },
+  {
+    "id": "faded-flaming-hilt",
+    "name": "Faded Flaming Hilt",
+    "image": "/images/materials/common-ascension/faded-flaming-hilt",
+    "rarity": 2,
+    "category": "Elite Drop",
+    "description": "Faded Flaming Hilt ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "fractured-flaming-hilt",
+    "sortOrder": 129
+  },
+  {
+    "id": "fractured-flaming-hilt",
+    "name": "Fractured Flaming Hilt",
+    "image": "/images/materials/common-ascension/fractured-flaming-hilt",
+    "rarity": 3,
+    "category": "Elite Drop",
+    "description": "Fractured Flaming Hilt ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "jeweled-flaming-hilt",
+    "sortOrder": 130
+  },
+  {
+    "id": "jeweled-flaming-hilt",
+    "name": "Jeweled Flaming Hilt",
+    "image": "/images/materials/common-ascension/jeweled-flaming-hilt",
+    "rarity": 4,
+    "category": "Elite Drop",
+    "description": "Jeweled Flaming Hilt ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 131
+  },
+  {
+    "id": "hurricane-seed",
+    "name": "Hurricane Seed",
+    "image": "/images/materials/boss-material/hurricane-seed",
+    "rarity": 4,
     "category": "Boss Material",
-    "description": "Ascended Sample: Knight weekly boss talent material.",
+    "description": "Hurricane Seed character ascension boss material.",
     "details": {
+      "source": "Anemo Hypostasis",
       "usedByCharacters": [
-        "jahoda",
-        "skirk"
+        "jean",
+        "sucrose",
+        "venti"
       ]
     },
     "combinable": false,
     "combineRatio": null,
-    "parentMaterialId": null
+    "parentMaterialId": null,
+    "sortOrder": 132
   },
   {
-    "id": "ascended-sample-queen",
-    "name": "Ascended Sample: Queen",
-    "image": "/images/materials/talent-boss/ascended-sample-queen",
-    "rarity": 5,
+    "id": "lightning-prism",
+    "name": "Lightning Prism",
+    "image": "/images/materials/boss-material/lightning-prism",
+    "rarity": 4,
     "category": "Boss Material",
-    "description": "Ascended Sample: Queen weekly boss talent material.",
+    "description": "Lightning Prism character ascension boss material.",
     "details": {
+      "source": "Electro Hypostasis",
       "usedByCharacters": [
-        "flins",
-        "zibai"
+        "beidou",
+        "fischl",
+        "keqing",
+        "lisa",
+        "razor"
       ]
     },
     "combinable": false,
     "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "ascended-sample-rook",
-    "name": "Ascended Sample: Rook",
-    "image": "/images/materials/talent-boss/ascended-sample-rook",
-    "rarity": 5,
-    "category": "Boss Material",
-    "description": "Ascended Sample: Rook weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "ifa",
-        "nefer"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "ashen-heart",
-    "name": "Ashen Heart",
-    "image": "/images/materials/talent-boss/ashen-heart",
-    "rarity": 5,
-    "category": "Boss Material",
-    "description": "Ashen Heart weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "sara",
-        "arataki-itto",
-        "yun-jin"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
+    "parentMaterialId": null,
+    "sortOrder": 133
   },
   {
     "id": "basalt-pillar",
@@ -238,1872 +1655,8 @@ export const seedMaterials: SeedMaterial[] = [
     },
     "combinable": false,
     "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "beryl-conch",
-    "name": "Beryl Conch",
-    "image": "/images/materials/local-specialties/beryl-conch",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Beryl Conch local specialty.",
-    "details": {
-      "usedByCharacters": [
-        "charlotte"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "bit-of-aerosiderite",
-    "name": "Bit of Aerosiderite",
-    "image": "/images/materials/weapon-ascension/bit-of-aerosiderite",
-    "rarity": 4,
-    "category": "Weapon Ascension",
-    "description": "Bit of Aerosiderite weapon ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "chunk-of-aerosiderite"
-  },
-  {
-    "id": "black-bronze-horn",
-    "name": "Black Bronze Horn",
-    "image": "/images/materials/common-ascension/black-bronze-horn",
-    "rarity": 3,
-    "category": "Elite Drop",
-    "description": "Black Bronze Horn ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "black-crystal-horn"
-  },
-  {
-    "id": "black-crystal-horn",
-    "name": "Black Crystal Horn",
-    "image": "/images/materials/common-ascension/black-crystal-horn",
-    "rarity": 4,
-    "category": "Elite Drop",
-    "description": "Black Crystal Horn ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "bloodjade-branch",
-    "name": "Bloodjade Branch",
-    "image": "/images/materials/talent-boss/bloodjade-branch",
-    "rarity": 5,
-    "category": "Boss Material",
-    "description": "Bloodjade Branch weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "ayaka",
-        "yanfei",
-        "dori"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "boreal-wolf-s-broken-fang",
-    "name": "Boreal Wolf's Broken Fang",
-    "image": "/images/materials/weapon-ascension/boreal-wolf-s-broken-fang",
-    "rarity": 4,
-    "category": "Weapon Ascension",
-    "description": "Boreal Wolf's Broken Fang weapon ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "boreal-wolf-s-nostalgia"
-  },
-  {
-    "id": "boreal-wolf-s-cracked-tooth",
-    "name": "Boreal Wolf's Cracked Tooth",
-    "image": "/images/materials/weapon-ascension/boreal-wolf-s-cracked-tooth",
-    "rarity": 3,
-    "category": "Weapon Ascension",
-    "description": "Boreal Wolf's Cracked Tooth weapon ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "boreal-wolf-s-broken-fang"
-  },
-  {
-    "id": "boreal-wolf-s-milk-tooth",
-    "name": "Boreal Wolf's Milk Tooth",
-    "image": "/images/materials/weapon-ascension/boreal-wolf-s-milk-tooth",
-    "rarity": 2,
-    "category": "Weapon Ascension",
-    "description": "Boreal Wolf's Milk Tooth weapon ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "boreal-wolf-s-cracked-tooth"
-  },
-  {
-    "id": "boreal-wolf-s-nostalgia",
-    "name": "Boreal Wolf's Nostalgia",
-    "image": "/images/materials/weapon-ascension/boreal-wolf-s-nostalgia",
-    "rarity": 5,
-    "category": "Weapon Ascension",
-    "description": "Boreal Wolf's Nostalgia weapon ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "brilliant-chrysanthemum",
-    "name": "Brilliant Chrysanthemum",
-    "image": "/images/materials/local-specialties/brilliant-chrysanthemum",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Brilliant Chrysanthemum local specialty.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "brilliant-diamond-chunk",
-    "name": "Brilliant Diamond Chunk",
-    "image": "/images/materials/character-ascension/brilliant-diamond-chunk",
-    "rarity": 4,
-    "category": "Gem",
-    "description": "Brilliant Diamond Chunk character ascension gem.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "brilliant-diamond-gemstone"
-  },
-  {
-    "id": "brilliant-diamond-fragment",
-    "name": "Brilliant Diamond Fragment",
-    "image": "/images/materials/character-ascension/brilliant-diamond-fragment",
-    "rarity": 3,
-    "category": "Gem",
-    "description": "Brilliant Diamond Fragment character ascension gem.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "brilliant-diamond-chunk"
-  },
-  {
-    "id": "brilliant-diamond-gemstone",
-    "name": "Brilliant Diamond Gemstone",
-    "image": "/images/materials/character-ascension/brilliant-diamond-gemstone",
-    "rarity": 5,
-    "category": "Gem",
-    "description": "Brilliant Diamond Gemstone character ascension gem.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "brilliant-diamond-sliver",
-    "name": "Brilliant Diamond Sliver",
-    "image": "/images/materials/character-ascension/brilliant-diamond-sliver",
-    "rarity": 2,
-    "category": "Gem",
-    "description": "Brilliant Diamond Sliver character ascension gem.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "brilliant-diamond-fragment"
-  },
-  {
-    "id": "broken-drive-shaft",
-    "name": "Broken Drive Shaft",
-    "image": "/images/materials/common-ascension/broken-drive-shaft",
-    "rarity": 1,
-    "category": "Enemy Drop",
-    "description": "Broken Drive Shaft ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "reinforced-drive-shaft"
-  },
-  {
-    "id": "broken-goblet-of-the-pristine-sea",
-    "name": "Broken Goblet of the Pristine Sea",
-    "image": "/images/materials/weapon-ascension/broken-goblet-of-the-pristine-sea",
-    "rarity": 2,
-    "category": "Weapon Ascension",
-    "description": "Broken Goblet of the Pristine Sea weapon ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "wine-goblet-of-the-pristine-sea"
-  },
-  {
-    "id": "calla-lily",
-    "name": "Calla Lily",
-    "image": "/images/materials/local-specialties/calla-lily",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Calla Lily local specialty.",
-    "details": {
-      "usedByCharacters": [
-        "diona",
-        "kaeya"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "cecilia",
-    "name": "Cecilia",
-    "image": "/images/materials/local-specialties/cecilia",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Cecilia local specialty.",
-    "details": {
-      "usedByCharacters": [
-        "albedo",
-        "venti"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "chains-of-the-dandelion-gladiator",
-    "name": "Chains of the Dandelion Gladiator",
-    "image": "/images/materials/weapon-ascension/chains-of-the-dandelion-gladiator",
-    "rarity": 3,
-    "category": "Weapon Ascension",
-    "description": "Chains of the Dandelion Gladiator weapon ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "shackles-of-the-dandelion-gladiator"
-  },
-  {
-    "id": "chaos-axis",
-    "name": "Chaos Axis",
-    "image": "/images/materials/common-ascension/chaos-axis",
-    "rarity": 3,
-    "category": "Elite Drop",
-    "description": "Chaos Axis ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "chaos-oculus"
-  },
-  {
-    "id": "chaos-bolt",
-    "name": "Chaos Bolt",
-    "image": "/images/materials/common-ascension/chaos-bolt",
-    "rarity": 4,
-    "category": "Elite Drop",
-    "description": "Chaos Bolt ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "chaos-circuit",
-    "name": "Chaos Circuit",
-    "image": "/images/materials/common-ascension/chaos-circuit",
-    "rarity": 3,
-    "category": "Elite Drop",
-    "description": "Chaos Circuit ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "chaos-core"
-  },
-  {
-    "id": "chaos-core",
-    "name": "Chaos Core",
-    "image": "/images/materials/common-ascension/chaos-core",
-    "rarity": 4,
-    "category": "Elite Drop",
-    "description": "Chaos Core ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "chaos-device",
-    "name": "Chaos Device",
-    "image": "/images/materials/common-ascension/chaos-device",
-    "rarity": 2,
-    "category": "Elite Drop",
-    "description": "Chaos Device ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "chaos-circuit"
-  },
-  {
-    "id": "chaos-gear",
-    "name": "Chaos Gear",
-    "image": "/images/materials/common-ascension/chaos-gear",
-    "rarity": 2,
-    "category": "Elite Drop",
-    "description": "Chaos Gear ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "chaos-axis"
-  },
-  {
-    "id": "chaos-module",
-    "name": "Chaos Module",
-    "image": "/images/materials/common-ascension/chaos-module",
-    "rarity": 3,
-    "category": "Elite Drop",
-    "description": "Chaos Module ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "chaos-bolt"
-  },
-  {
-    "id": "chaos-oculus",
-    "name": "Chaos Oculus",
-    "image": "/images/materials/common-ascension/chaos-oculus",
-    "rarity": 4,
-    "category": "Elite Drop",
-    "description": "Chaos Oculus ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "chaos-storage",
-    "name": "Chaos Storage",
-    "image": "/images/materials/common-ascension/chaos-storage",
-    "rarity": 2,
-    "category": "Elite Drop",
-    "description": "Chaos Storage ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "chaos-module"
-  },
-  {
-    "id": "chapter-of-an-ancient-chord",
-    "name": "Chapter of an Ancient Chord",
-    "image": "/images/materials/weapon-ascension/chapter-of-an-ancient-chord",
-    "rarity": 3,
-    "category": "Weapon Ascension",
-    "description": "Chapter of an Ancient Chord weapon ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "movement-of-an-ancient-chord"
-  },
-  {
-    "id": "chasmlight-fin",
-    "name": "Chasmlight Fin",
-    "image": "/images/materials/common-ascension/chasmlight-fin",
-    "rarity": 4,
-    "category": "Elite Drop",
-    "description": "Chasmlight Fin ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "chunk-of-aerosiderite",
-    "name": "Chunk of Aerosiderite",
-    "image": "/images/materials/weapon-ascension/chunk-of-aerosiderite",
-    "rarity": 5,
-    "category": "Weapon Ascension",
-    "description": "Chunk of Aerosiderite weapon ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "cleansing-heart",
-    "name": "Cleansing Heart",
-    "image": "/images/materials/boss-material/cleansing-heart",
-    "rarity": 4,
-    "category": "Boss Material",
-    "description": "Cleansing Heart character ascension boss material.",
-    "details": {
-      "source": "Oceanid",
-      "usedByCharacters": [
-        "barbara",
-        "mona",
-        "tartaglia",
-        "xingqiu"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "clearwater-jade",
-    "name": "Clearwater Jade",
-    "image": "/images/materials/local-specialties/clearwater-jade",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Clearwater Jade local specialty.",
-    "details": {
-      "usedByCharacters": [
-        "xianyun"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "cloudseam-scale",
-    "name": "Cloudseam Scale",
-    "image": "/images/materials/boss-material/cloudseam-scale",
-    "rarity": 4,
-    "category": "Boss Material",
-    "description": "Cloudseam Scale character ascension boss material.",
-    "details": {
-      "source": "Solitary Suanni",
-      "usedByCharacters": [
-        "xianyun",
-        "sethos"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "concealed-claw",
-    "name": "Concealed Claw",
-    "image": "/images/materials/common-ascension/concealed-claw",
-    "rarity": 2,
-    "category": "Elite Drop",
-    "description": "Concealed Claw ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "concealed-unguis"
-  },
-  {
-    "id": "concealed-talon",
-    "name": "Concealed Talon",
-    "image": "/images/materials/common-ascension/concealed-talon",
-    "rarity": 4,
-    "category": "Elite Drop",
-    "description": "Concealed Talon ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "concealed-unguis",
-    "name": "Concealed Unguis",
-    "image": "/images/materials/common-ascension/concealed-unguis",
-    "rarity": 3,
-    "category": "Elite Drop",
-    "description": "Concealed Unguis ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "concealed-talon"
-  },
-  {
-    "id": "coppelia",
-    "name": "Artificed Spare Clockwork Component — Coppelia",
-    "image": "/images/materials/boss-material/coppelia",
-    "rarity": 4,
-    "category": "Boss Material",
-    "description": "Artificed Spare Clockwork Component — Coppelia character ascension boss material.",
-    "details": {
-      "source": "Icewind Suite",
-      "usedByCharacters": [
-        "lynette"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "coppelius",
-    "name": "Artificed Spare Clockwork Component — Coppelius",
-    "image": "/images/materials/boss-material/coppelius",
-    "rarity": 4,
-    "category": "Boss Material",
-    "description": "Artificed Spare Clockwork Component — Coppelius character ascension boss material.",
-    "details": {
-      "source": "Icewind Suite",
-      "usedByCharacters": [
-        "navia",
-        "freminet"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "copper-talisman-of-the-forest-dew",
-    "name": "Copper Talisman of the Forest Dew",
-    "image": "/images/materials/weapon-ascension/copper-talisman-of-the-forest-dew",
-    "rarity": 2,
-    "category": "Weapon Ascension",
-    "description": "Copper Talisman of the Forest Dew weapon ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "iron-talisman-of-the-forest-dew"
-  },
-  {
-    "id": "cor-lapis",
-    "name": "Cor Lapis",
-    "image": "/images/materials/local-specialties/cor-lapis",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Cor Lapis local specialty.",
-    "details": {
-      "usedByCharacters": [
-        "chongyun",
-        "keqing",
-        "zhongli"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "coral-branch-of-a-distant-sea",
-    "name": "Coral Branch of a Distant Sea",
-    "image": "/images/materials/weapon-ascension/coral-branch-of-a-distant-sea",
-    "rarity": 2,
-    "category": "Weapon Ascension",
-    "description": "Coral Branch of a Distant Sea weapon ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "jeweled-branch-of-a-distant-sea"
-  },
-  {
-    "id": "crown-of-insight",
-    "name": "Crown of Insight",
-    "image": "/images/materials/talent-book/crown-of-insight",
-    "rarity": 5,
-    "category": "Talent Book",
-    "description": "Rare crown required to fully level a talent.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "crystal-marrow",
-    "name": "Crystal Marrow",
-    "image": "/images/materials/local-specialties/crystal-marrow",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Crystal Marrow local specialty.",
-    "details": {
-      "usedByCharacters": [
-        "aloy",
-        "sayu"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "crystal-prism",
-    "name": "Crystal Prism",
-    "image": "/images/materials/common-ascension/crystal-prism",
-    "rarity": 3,
-    "category": "Elite Drop",
-    "description": "Crystal Prism ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "polarizing-prism"
-  },
-  {
-    "id": "crystalline-bloom",
-    "name": "Crystalline Bloom",
-    "image": "/images/materials/boss-material/crystalline-bloom",
-    "rarity": 4,
-    "category": "Boss Material",
-    "description": "Crystalline Bloom character ascension boss material.",
-    "details": {
-      "source": "Cryo Hypostasis",
-      "usedByCharacters": [
-        "aloy",
-        "eula"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "crystalline-cyst-dust",
-    "name": "Crystalline Cyst Dust",
-    "image": "/images/materials/common-ascension/crystalline-cyst-dust",
-    "rarity": 3,
-    "category": "Enemy Drop",
-    "description": "Crystalline Cyst Dust ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "cyclic-military-kuuvahki-core",
-    "name": "Cyclic Military Kuuvahki Core",
-    "image": "/images/materials/boss-material/cyclic-military-kuuvahki-core",
-    "rarity": 4,
-    "category": "Boss Material",
-    "description": "Cyclic Military Kuuvahki Core character ascension boss material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "daka-s-bell",
-    "name": "Daka's Bell",
-    "image": "/images/materials/talent-boss/daka-s-bell",
-    "rarity": 5,
-    "category": "Boss Material",
-    "description": "Daka's Bell weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "wanderer",
-        "yaoyao",
-        "sethos",
-        "xilonen"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "damaged-mask",
-    "name": "Damaged Mask",
-    "image": "/images/materials/common-ascension/damaged-mask",
-    "rarity": 1,
-    "category": "Enemy Drop",
-    "description": "Damaged Mask ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "stained-mask"
-  },
-  {
-    "id": "damaged-prism",
-    "name": "Damaged Prism",
-    "image": "/images/materials/common-ascension/damaged-prism",
-    "rarity": 2,
-    "category": "Elite Drop",
-    "description": "Damaged Prism ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "turbid-prism"
-  },
-  {
-    "id": "dandelion-seed",
-    "name": "Dandelion Seed",
-    "image": "/images/materials/local-specialties/dandelion-seed",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Dandelion Seed local specialty.",
-    "details": {
-      "usedByCharacters": [
-        "jean",
-        "eula"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "dark-statuette",
-    "name": "Dark Statuette",
-    "image": "/images/materials/common-ascension/dark-statuette",
-    "rarity": 3,
-    "category": "Elite Drop",
-    "description": "Dark Statuette ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "deathly-statuette"
-  },
-  {
-    "id": "dead-ley-line-branch",
-    "name": "Dead Ley Line Branch",
-    "image": "/images/materials/common-ascension/dead-ley-line-branch",
-    "rarity": 2,
-    "category": "Elite Drop",
-    "description": "Dead Ley Line Branch ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "dead-ley-line-leaves"
-  },
-  {
-    "id": "dead-ley-line-leaves",
-    "name": "Dead Ley Line Leaves",
-    "image": "/images/materials/common-ascension/dead-ley-line-leaves",
-    "rarity": 3,
-    "category": "Elite Drop",
-    "description": "Dead Ley Line Leaves ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "ley-line-sprout"
-  },
-  {
-    "id": "deathly-statuette",
-    "name": "Deathly Statuette",
-    "image": "/images/materials/common-ascension/deathly-statuette",
-    "rarity": 4,
-    "category": "Elite Drop",
-    "description": "Deathly Statuette ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "debris-of-decarabian-s-city",
-    "name": "Debris of Decarabian's City",
-    "image": "/images/materials/weapon-ascension/debris-of-decarabian-s-city",
-    "rarity": 3,
-    "category": "Weapon Ascension",
-    "description": "Debris of Decarabian's City weapon ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "fragment-of-decarabian-s-epic"
-  },
-  {
-    "id": "dendrobium",
-    "name": "Dendrobium",
-    "image": "/images/materials/local-specialties/dendrobium",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Dendrobium local specialty.",
-    "details": {
-      "usedByCharacters": [
-        "sara"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "denial-and-judgment",
-    "name": "Denial and Judgment",
-    "image": "/images/materials/talent-boss/denial-and-judgment",
-    "rarity": 5,
-    "category": "Boss Material",
-    "description": "Denial and Judgment weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "kinich",
-        "traveler-pyro",
-        "citlali",
-        "iansan"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "desiccated-shell",
-    "name": "Desiccated Shell",
-    "image": "/images/materials/common-ascension/desiccated-shell",
-    "rarity": 2,
-    "category": "Elite Drop",
-    "description": "Desiccated Shell ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "sturdy-shell"
-  },
-  {
-    "id": "dew-of-repudiation",
-    "name": "Dew of Repudiation",
-    "image": "/images/materials/boss-material/dew-of-repudiation",
-    "rarity": 4,
-    "category": "Boss Material",
-    "description": "Dew of Repudiation character ascension boss material.",
-    "details": {
-      "source": "Hydro Hypostasis",
-      "usedByCharacters": [
-        "kokomi",
-        "ayato"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "dismal-prism",
-    "name": "Dismal Prism",
-    "image": "/images/materials/common-ascension/dismal-prism",
-    "rarity": 2,
-    "category": "Elite Drop",
-    "description": "Dismal Prism ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "crystal-prism"
-  },
-  {
-    "id": "divine-body-from-guyun",
-    "name": "Divine Body from Guyun",
-    "image": "/images/materials/weapon-ascension/divine-body-from-guyun",
-    "rarity": 5,
-    "category": "Weapon Ascension",
-    "description": "Divine Body from Guyun weapon ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "divining-scroll",
-    "name": "Divining Scroll",
-    "image": "/images/materials/common-ascension/divining-scroll",
-    "rarity": 1,
-    "category": "Enemy Drop",
-    "description": "Divining Scroll ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "sealed-scroll"
-  },
-  {
-    "id": "dormant-fungal-nucleus",
-    "name": "Dormant Fungal Nucleus",
-    "image": "/images/materials/common-ascension/dormant-fungal-nucleus",
-    "rarity": 3,
-    "category": "Elite Drop",
-    "description": "Dormant Fungal Nucleus ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "robust-fungal-nucleus"
-  },
-  {
-    "id": "dracolite",
-    "name": "Dracolite",
-    "image": "/images/materials/local-specialties/dracolite",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Dracolite local specialty.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "dragon-lord's-crown",
-    "name": "Dragon Lord's Crown",
-    "image": "/images/materials/talent-boss/dragon-lord's-crown",
-    "rarity": 5,
-    "category": "Boss Material",
-    "description": "Dragon Lord's Crown weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "eula",
-        "yoimiya",
-        "traveler-electro"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "dragonheir-s-false-fin",
-    "name": "Dragonheir's False Fin",
-    "image": "/images/materials/boss-material/dragonheir-s-false-fin",
-    "rarity": 4,
-    "category": "Boss Material",
-    "description": "Dragonheir's False Fin character ascension boss material.",
-    "details": {
-      "source": "Coral Defenders",
-      "usedByCharacters": [
-        "shenhe",
-        "yae-miko"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "dream-of-scorching-might",
-    "name": "Dream of Scorching Might",
-    "image": "/images/materials/weapon-ascension/dream-of-scorching-might",
-    "rarity": 4,
-    "category": "Weapon Ascension",
-    "description": "Dream of Scorching Might weapon ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "olden-days-of-scorching-might"
-  },
-  {
-    "id": "dream-of-the-dandelion-gladiator",
-    "name": "Dream of the Dandelion Gladiator",
-    "image": "/images/materials/weapon-ascension/dream-of-the-dandelion-gladiator",
-    "rarity": 5,
-    "category": "Weapon Ascension",
-    "description": "Dream of the Dandelion Gladiator weapon ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "drop-of-tainted-water",
-    "name": "Drop of Tainted Water",
-    "image": "/images/materials/common-ascension/drop-of-tainted-water",
-    "rarity": 2,
-    "category": "Elite Drop",
-    "description": "Drop of Tainted Water ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "scoop-of-tainted-water"
-  },
-  {
-    "id": "dross-of-pure-sacred-dewdrop",
-    "name": "Dross of Pure Sacred Dewdrop",
-    "image": "/images/materials/weapon-ascension/dross-of-pure-sacred-dewdrop",
-    "rarity": 2,
-    "category": "Weapon Ascension",
-    "description": "Dross of Pure Sacred Dewdrop weapon ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "sublimation-of-pure-sacred-dewdrop"
-  },
-  {
-    "id": "dvalin's-claw",
-    "name": "Dvalin's Claw",
-    "image": "/images/materials/talent-boss/dvalin's-claw",
-    "rarity": 5,
-    "category": "Boss Material",
-    "description": "Dvalin's Claw weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "lisa",
-        "noelle",
-        "razor",
-        "xiangling"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "dvalin's-plume",
-    "name": "Dvalin's Plume",
-    "image": "/images/materials/talent-boss/dvalin's-plume",
-    "rarity": 5,
-    "category": "Boss Material",
-    "description": "Dvalin's Plume weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "bennett",
-        "diluc",
-        "jean"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "dvalin's-sigh",
-    "name": "Dvalin's Sigh",
-    "image": "/images/materials/talent-boss/dvalin's-sigh",
-    "rarity": 5,
-    "category": "Boss Material",
-    "description": "Dvalin's Sigh weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "amber",
-        "beidou",
-        "chongyun",
-        "traveler-anemo",
-        "traveler-geo"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "echo-of-an-ancient-chord",
-    "name": "Echo of an Ancient Chord",
-    "image": "/images/materials/weapon-ascension/echo-of-an-ancient-chord",
-    "rarity": 5,
-    "category": "Weapon Ascension",
-    "description": "Echo of an Ancient Chord weapon ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "echo-of-scorching-might",
-    "name": "Echo of Scorching Might",
-    "image": "/images/materials/weapon-ascension/echo-of-scorching-might",
-    "rarity": 2,
-    "category": "Weapon Ascension",
-    "description": "Echo of Scorching Might weapon ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "remnant-glow-of-scorching-might"
-  },
-  {
-    "id": "elixir-of-the-heretic",
-    "name": "Elixir of the Heretic",
-    "image": "/images/materials/talent-boss/elixir-of-the-heretic",
-    "rarity": 5,
-    "category": "Boss Material",
-    "description": "Elixir of the Heretic weekly boss talent material.",
-    "details": {
-      "usedByCharacters": []
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "emperor-s-resolution",
-    "name": "Emperor's Resolution",
-    "image": "/images/materials/boss-material/emperor-s-resolution",
-    "rarity": 4,
-    "category": "Boss Material",
-    "description": "Emperor's Resolution character ascension boss material.",
-    "details": {
-      "source": "Emperor of Fire and Iron",
-      "usedByCharacters": [
-        "lyney",
-        "gaming"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "energy-nectar",
-    "name": "Energy Nectar",
-    "image": "/images/materials/common-ascension/energy-nectar",
-    "rarity": 3,
-    "category": "Enemy Drop",
-    "description": "Energy Nectar ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "ensnaring-gaze",
-    "name": "Ensnaring Gaze",
-    "image": "/images/materials/boss-material/ensnaring-gaze",
-    "rarity": 4,
-    "category": "Boss Material",
-    "description": "Ensnaring Gaze character ascension boss material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "eroded-horn",
-    "name": "Eroded Horn",
-    "image": "/images/materials/talent-boss/eroded-horn",
-    "rarity": 5,
-    "category": "Boss Material",
-    "description": "Eroded Horn weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "escoffier",
-        "illuga",
-        "mavuika"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "eroded-scale-feather",
-    "name": "Eroded Scale-Feather",
-    "image": "/images/materials/talent-boss/eroded-scale-feather",
-    "rarity": 5,
-    "category": "Boss Material",
-    "description": "Eroded Scale-Feather weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "dahlia",
-        "lauma",
-        "varesa"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "eroded-sunfire",
-    "name": "Eroded Sunfire",
-    "image": "/images/materials/talent-boss/eroded-sunfire",
-    "rarity": 5,
-    "category": "Boss Material",
-    "description": "Eroded Sunfire weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "durin",
-        "ineffa",
-        "lan-yan"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "essence-of-pure-sacred-dewdrop",
-    "name": "Essence of Pure Sacred Dewdrop",
-    "image": "/images/materials/weapon-ascension/essence-of-pure-sacred-dewdrop",
-    "rarity": 5,
-    "category": "Weapon Ascension",
-    "description": "Essence of Pure Sacred Dewdrop weapon ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "everamber",
-    "name": "Everamber",
-    "image": "/images/materials/talent-boss/everamber",
-    "rarity": 5,
-    "category": "Boss Material",
-    "description": "Everamber weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "lynette",
-        "neuvillette",
-        "kirara",
-        "clorinde"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "everflame-seed",
-    "name": "Everflame Seed",
-    "image": "/images/materials/boss-material/everflame-seed",
-    "rarity": 4,
-    "category": "Boss Material",
-    "description": "Everflame Seed character ascension boss material.",
-    "details": {
-      "source": "Pyro Regisvine",
-      "usedByCharacters": [
-        "amber",
-        "bennett",
-        "diluc",
-        "klee",
-        "xiangling",
-        "xinyan"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "evergloom-ring",
-    "name": "Evergloom Ring",
-    "image": "/images/materials/boss-material/evergloom-ring",
-    "rarity": 4,
-    "category": "Boss Material",
-    "description": "Evergloom Ring character ascension boss material.",
-    "details": {
-      "source": "Iniquitous Baptist",
-      "usedByCharacters": [
-        "kirara",
-        "baizhu"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "faded-flaming-hilt",
-    "name": "Faded Flaming Hilt",
-    "image": "/images/materials/common-ascension/faded-flaming-hilt",
-    "rarity": 2,
-    "category": "Elite Drop",
-    "description": "Faded Flaming Hilt ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "fractured-flaming-hilt"
-  },
-  {
-    "id": "faded-red-satin",
-    "name": "Faded Red Satin",
-    "image": "/images/materials/common-ascension/faded-red-satin",
-    "rarity": 1,
-    "category": "Enemy Drop",
-    "description": "Faded Red Satin ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "trimmed-red-silk"
-  },
-  {
-    "id": "fading-candle",
-    "name": "Fading Candle",
-    "image": "/images/materials/talent-boss/fading-candle",
-    "rarity": 5,
-    "category": "Boss Material",
-    "description": "Fading Candle weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "arlecchino",
-        "kachina",
-        "yumemizuki-mizuki"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "famed-handguard",
-    "name": "Famed Handguard",
-    "image": "/images/materials/common-ascension/famed-handguard",
-    "rarity": 3,
-    "category": "Enemy Drop",
-    "description": "Famed Handguard ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "feathery-fin",
-    "name": "Feathery Fin",
-    "image": "/images/materials/common-ascension/feathery-fin",
-    "rarity": 2,
-    "category": "Elite Drop",
-    "description": "Feathery Fin ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "lunar-fin"
-  },
-  {
-    "id": "fetters-of-the-dandelion-gladiator",
-    "name": "Fetters of the Dandelion Gladiator",
-    "image": "/images/materials/weapon-ascension/fetters-of-the-dandelion-gladiator",
-    "rarity": 2,
-    "category": "Weapon Ascension",
-    "description": "Fetters of the Dandelion Gladiator weapon ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "chains-of-the-dandelion-gladiator"
-  },
-  {
-    "id": "firm-arrowhead",
-    "name": "Firm Arrowhead",
-    "image": "/images/materials/common-ascension/firm-arrowhead",
-    "rarity": 1,
-    "category": "Enemy Drop",
-    "description": "Firm Arrowhead ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "sharp-arrowhead"
-  },
-  {
-    "id": "fluorescent-fungus",
-    "name": "Fluorescent Fungus",
-    "image": "/images/materials/local-specialties/fluorescent-fungus",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Fluorescent Fungus local specialty.",
-    "details": {
-      "usedByCharacters": [
-        "thoma"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "fontemer-unihorn",
-    "name": "Fontemer Unihorn",
-    "image": "/images/materials/boss-material/fontemer-unihorn",
-    "rarity": 4,
-    "category": "Boss Material",
-    "description": "Fontemer Unihorn character ascension boss material.",
-    "details": {
-      "source": "Millennial Pearl Seahorse",
-      "usedByCharacters": [
-        "chevreuse",
-        "neuvillette",
-        "clorinde"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "forbidden-curse-scroll",
-    "name": "Forbidden Curse Scroll",
-    "image": "/images/materials/common-ascension/forbidden-curse-scroll",
-    "rarity": 3,
-    "category": "Enemy Drop",
-    "description": "Forbidden Curse Scroll ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "foreign-synapse",
-    "name": "Foreign Synapse",
-    "image": "/images/materials/common-ascension/foreign-synapse",
-    "rarity": 3,
-    "category": "Elite Drop",
-    "description": "Foreign Synapse ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "alien-life-core"
-  },
-  {
-    "id": "fossilized-bone-shard",
-    "name": "Fossilized Bone Shard",
-    "image": "/images/materials/common-ascension/fossilized-bone-shard",
-    "rarity": 4,
-    "category": "Elite Drop",
-    "description": "Fossilized Bone Shard ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "fractured-flaming-hilt",
-    "name": "Fractured Flaming Hilt",
-    "image": "/images/materials/common-ascension/fractured-flaming-hilt",
-    "rarity": 3,
-    "category": "Elite Drop",
-    "description": "Fractured Flaming Hilt ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "jeweled-flaming-hilt"
-  },
-  {
-    "id": "fragile-bone-shard",
-    "name": "Fragile Bone Shard",
-    "image": "/images/materials/common-ascension/fragile-bone-shard",
-    "rarity": 2,
-    "category": "Elite Drop",
-    "description": "Fragile Bone Shard ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "sturdy-bone-shard"
-  },
-  {
-    "id": "fragment-of-a-golden-melody",
-    "name": "Fragment of a Golden Melody",
-    "image": "/images/materials/boss-material/fragment-of-a-golden-melody",
-    "rarity": 4,
-    "category": "Boss Material",
-    "description": "Fragment of a Golden Melody character ascension boss material.",
-    "details": {
-      "source": "Statue of Marble and Brass",
-      "usedByCharacters": [
-        "arlecchino"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "fragment-of-an-ancient-chord",
-    "name": "Fragment of an Ancient Chord",
-    "image": "/images/materials/weapon-ascension/fragment-of-an-ancient-chord",
-    "rarity": 2,
-    "category": "Weapon Ascension",
-    "description": "Fragment of an Ancient Chord weapon ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "chapter-of-an-ancient-chord"
-  },
-  {
-    "id": "fragment-of-decarabian-s-epic",
-    "name": "Fragment of Decarabian's Epic",
-    "image": "/images/materials/weapon-ascension/fragment-of-decarabian-s-epic",
-    "rarity": 4,
-    "category": "Weapon Ascension",
-    "description": "Fragment of Decarabian's Epic weapon ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "scattered-piece-of-decarabian-s-dream"
-  },
-  {
-    "id": "frost-etched-warrant",
-    "name": "Frost-Etched Warrant",
-    "image": "/images/materials/common-ascension/frost-etched-warrant",
-    "rarity": 3,
-    "category": "Enemy Drop",
-    "description": "Frost-Etched Warrant ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "frostlamp-flower",
-    "name": "Frostlamp Flower",
-    "image": "/images/materials/local-specialties/frostlamp-flower",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Frostlamp Flower local specialty.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "frostnight-s-glimmer",
-    "name": "Frostnight's Glimmer",
-    "image": "/images/materials/common-ascension/frostnight-s-glimmer",
-    "rarity": 2,
-    "category": "Elite Drop",
-    "description": "Frostnight's Glimmer ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "frostnight-s-glow"
-  },
-  {
-    "id": "frostnight-s-glory",
-    "name": "Frostnight's Glory",
-    "image": "/images/materials/common-ascension/frostnight-s-glory",
-    "rarity": 4,
-    "category": "Elite Drop",
-    "description": "Frostnight's Glory ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "frostnight-s-glow",
-    "name": "Frostnight's Glow",
-    "image": "/images/materials/common-ascension/frostnight-s-glow",
-    "rarity": 3,
-    "category": "Elite Drop",
-    "description": "Frostnight's Glow ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "frostnight-s-glory"
-  },
-  {
-    "id": "fungal-spores",
-    "name": "Fungal Spores",
-    "image": "/images/materials/common-ascension/fungal-spores",
-    "rarity": 1,
-    "category": "Enemy Drop",
-    "description": "Fungal Spores ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "luminescent-pollen"
-  },
-  {
-    "id": "gilded-scale",
-    "name": "Gilded Scale",
-    "image": "/images/materials/talent-boss/gilded-scale",
-    "rarity": 5,
-    "category": "Boss Material",
-    "description": "Gilded Scale weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "kazuha",
-        "sayu",
-        "yelan"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "glaze-lily",
-    "name": "Glaze Lily",
-    "image": "/images/materials/local-specialties/glaze-lily",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Glaze Lily local specialty.",
-    "details": {
-      "usedByCharacters": [
-        "ningguang",
-        "yun-jin"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "gloomy-statuette",
-    "name": "Gloomy Statuette",
-    "image": "/images/materials/common-ascension/gloomy-statuette",
-    "rarity": 2,
-    "category": "Elite Drop",
-    "description": "Gloomy Statuette ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "dark-statuette"
-  },
-  {
-    "id": "glowing-hornshroom",
-    "name": "Glowing Hornshroom",
-    "image": "/images/materials/local-specialties/glowing-hornshroom",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Glowing Hornshroom local specialty.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "glowing-remains",
-    "name": "Glowing Remains",
-    "image": "/images/materials/common-ascension/glowing-remains",
-    "rarity": 3,
-    "category": "Elite Drop",
-    "description": "Glowing Remains ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "radiant-exoskeleton"
-  },
-  {
-    "id": "gold-inscribed-secret-source-core",
-    "name": "Gold-Inscribed Secret Source Core",
-    "image": "/images/materials/boss-material/gold-inscribed-secret-source-core",
-    "rarity": 4,
-    "category": "Boss Material",
-    "description": "Gold-Inscribed Secret Source Core character ascension boss material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "golden-branch-of-a-distant-sea",
-    "name": "Golden Branch of a Distant Sea",
-    "image": "/images/materials/weapon-ascension/golden-branch-of-a-distant-sea",
-    "rarity": 5,
-    "category": "Weapon Ascension",
-    "description": "Golden Branch of a Distant Sea weapon ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "golden-goblet-of-the-pristine-sea",
-    "name": "Golden Goblet of the Pristine Sea",
-    "image": "/images/materials/weapon-ascension/golden-goblet-of-the-pristine-sea",
-    "rarity": 5,
-    "category": "Weapon Ascension",
-    "description": "Golden Goblet of the Pristine Sea weapon ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "golden-raven-insignia",
-    "name": "Golden Raven Insignia",
-    "image": "/images/materials/common-ascension/golden-raven-insignia",
-    "rarity": 3,
-    "category": "Enemy Drop",
-    "description": "Golden Raven Insignia ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "golden-talisman-of-the-forest-dew",
-    "name": "Golden Talisman of the Forest Dew",
-    "image": "/images/materials/weapon-ascension/golden-talisman-of-the-forest-dew",
-    "rarity": 5,
-    "category": "Weapon Ascension",
-    "description": "Golden Talisman of the Forest Dew weapon ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "grain-of-aerosiderite",
-    "name": "Grain of Aerosiderite",
-    "image": "/images/materials/weapon-ascension/grain-of-aerosiderite",
-    "rarity": 2,
-    "category": "Weapon Ascension",
-    "description": "Grain of Aerosiderite weapon ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "piece-of-aerosiderite"
-  },
-  {
-    "id": "guide-to-admonition",
-    "name": "Guide to Admonition",
-    "image": "/images/materials/talent-book/guide-to-admonition",
-    "rarity": 3,
-    "category": "Talent Book",
-    "description": "Guide to Admonition talent material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "philosophies-of-admonition"
-  },
-  {
-    "id": "guide-to-ballad",
-    "name": "Guide to Ballad",
-    "image": "/images/materials/talent-book/guide-to-ballad",
-    "rarity": 3,
-    "category": "Talent Book",
-    "description": "Guide to Ballad talent material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "philosophies-of-ballad"
-  },
-  {
-    "id": "guide-to-conflict",
-    "name": "Guide to Conflict",
-    "image": "/images/materials/talent-book/guide-to-conflict",
-    "rarity": 3,
-    "category": "Talent Book",
-    "description": "Guide to Conflict talent material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "philosophies-of-conflict"
-  },
-  {
-    "id": "guide-to-contention",
-    "name": "Guide to Contention",
-    "image": "/images/materials/talent-book/guide-to-contention",
-    "rarity": 3,
-    "category": "Talent Book",
-    "description": "Guide to Contention talent material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "philosophies-of-contention"
-  },
-  {
-    "id": "guide-to-diligence",
-    "name": "Guide to Diligence",
-    "image": "/images/materials/talent-book/guide-to-diligence",
-    "rarity": 3,
-    "category": "Talent Book",
-    "description": "Guide to Diligence talent material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "philosophies-of-diligence"
-  },
-  {
-    "id": "guide-to-elegance",
-    "name": "Guide to Elegance",
-    "image": "/images/materials/talent-book/guide-to-elegance",
-    "rarity": 3,
-    "category": "Talent Book",
-    "description": "Guide to Elegance talent material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "philosophies-of-elegance"
-  },
-  {
-    "id": "guide-to-elysium",
-    "name": "Guide to Elysium",
-    "image": "/images/materials/talent-book/guide-to-elysium",
-    "rarity": 3,
-    "category": "Talent Book",
-    "description": "Guide to Elysium talent material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "philosophies-of-elysium"
-  },
-  {
-    "id": "guide-to-equity",
-    "name": "Guide to Equity",
-    "image": "/images/materials/talent-book/guide-to-equity",
-    "rarity": 3,
-    "category": "Talent Book",
-    "description": "Guide to Equity talent material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "philosophies-of-equity"
-  },
-  {
-    "id": "guide-to-freedom",
-    "name": "Guide to Freedom",
-    "image": "/images/materials/talent-book/guide-to-freedom",
-    "rarity": 3,
-    "category": "Talent Book",
-    "description": "Guide to Freedom talent material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "philosophies-of-freedom"
-  },
-  {
-    "id": "guide-to-gold",
-    "name": "Guide to Gold",
-    "image": "/images/materials/talent-book/guide-to-gold",
-    "rarity": 3,
-    "category": "Talent Book",
-    "description": "Guide to Gold talent material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "philosophies-of-gold"
-  },
-  {
-    "id": "guide-to-ingenuity",
-    "name": "Guide to Ingenuity",
-    "image": "/images/materials/talent-book/guide-to-ingenuity",
-    "rarity": 3,
-    "category": "Talent Book",
-    "description": "Guide to Ingenuity talent material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "philosophies-of-ingenuity"
-  },
-  {
-    "id": "guide-to-justice",
-    "name": "Guide to Justice",
-    "image": "/images/materials/talent-book/guide-to-justice",
-    "rarity": 3,
-    "category": "Talent Book",
-    "description": "Guide to Justice talent material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "philosophies-of-justice"
-  },
-  {
-    "id": "guide-to-kindling",
-    "name": "Guide to Kindling",
-    "image": "/images/materials/talent-book/guide-to-kindling",
-    "rarity": 3,
-    "category": "Talent Book",
-    "description": "Guide to Kindling talent material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "philosophies-of-kindling"
-  },
-  {
-    "id": "guide-to-light",
-    "name": "Guide to Light",
-    "image": "/images/materials/talent-book/guide-to-light",
-    "rarity": 3,
-    "category": "Talent Book",
-    "description": "Guide to Light talent material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "philosophies-of-light"
-  },
-  {
-    "id": "guide-to-moonlight",
-    "name": "Guide to Moonlight",
-    "image": "/images/materials/talent-book/guide-to-moonlight",
-    "rarity": 3,
-    "category": "Talent Book",
-    "description": "Guide to Moonlight talent material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "philosophies-of-moonlight"
-  },
-  {
-    "id": "guide-to-order",
-    "name": "Guide to Order",
-    "image": "/images/materials/talent-book/guide-to-order",
-    "rarity": 3,
-    "category": "Talent Book",
-    "description": "Guide to Order talent material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "philosophies-of-order"
-  },
-  {
-    "id": "guide-to-praxis",
-    "name": "Guide to Praxis",
-    "image": "/images/materials/talent-book/guide-to-praxis",
-    "rarity": 3,
-    "category": "Talent Book",
-    "description": "Guide to Praxis talent material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "philosophies-of-praxis"
-  },
-  {
-    "id": "guide-to-prosperity",
-    "name": "Guide to Prosperity",
-    "image": "/images/materials/talent-book/guide-to-prosperity",
-    "rarity": 3,
-    "category": "Talent Book",
-    "description": "Guide to Prosperity talent material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "philosophies-of-prosperity"
-  },
-  {
-    "id": "guide-to-resistance",
-    "name": "Guide to Resistance",
-    "image": "/images/materials/talent-book/guide-to-resistance",
-    "rarity": 3,
-    "category": "Talent Book",
-    "description": "Guide to Resistance talent material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "philosophies-of-resistance"
-  },
-  {
-    "id": "guide-to-transience",
-    "name": "Guide to Transience",
-    "image": "/images/materials/talent-book/guide-to-transience",
-    "rarity": 3,
-    "category": "Talent Book",
-    "description": "Guide to Transience talent material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "philosophies-of-transience"
-  },
-  {
-    "id": "guide-to-vagrancy",
-    "name": "Guide to Vagrancy",
-    "image": "/images/materials/talent-book/guide-to-vagrancy",
-    "rarity": 3,
-    "category": "Talent Book",
-    "description": "Guide to Vagrancy talent material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "philosophies-of-vagrancy"
-  },
-  {
-    "id": "heavy-horn",
-    "name": "Heavy Horn",
-    "image": "/images/materials/common-ascension/heavy-horn",
-    "rarity": 2,
-    "category": "Elite Drop",
-    "description": "Heavy Horn ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "black-bronze-horn"
-  },
-  {
-    "id": "hellfire-butterfly",
-    "name": "Hellfire Butterfly",
-    "image": "/images/materials/talent-boss/hellfire-butterfly",
-    "rarity": 5,
-    "category": "Boss Material",
-    "description": "Hellfire Butterfly weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "kokomi",
-        "thoma",
-        "shenhe"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "henna-berry",
-    "name": "Henna Berry",
-    "image": "/images/materials/local-specialties/henna-berry",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Henna Berry local specialty.",
-    "details": {
-      "usedByCharacters": [
-        "faruzan",
-        "candace"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
+    "parentMaterialId": null,
+    "sortOrder": 134
   },
   {
     "id": "hoarfrost-core",
@@ -2125,142 +1678,52 @@ export const seedMaterials: SeedMaterial[] = [
     },
     "combinable": false,
     "combineRatio": null,
-    "parentMaterialId": null
+    "parentMaterialId": null,
+    "sortOrder": 135
   },
   {
-    "id": "hunter-s-sacrificial-knife",
-    "name": "Hunter's Sacrificial Knife",
-    "image": "/images/materials/common-ascension/hunter-s-sacrificial-knife",
-    "rarity": 2,
-    "category": "Elite Drop",
-    "description": "Hunter's Sacrificial Knife ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "agent-s-sacrificial-knife"
-  },
-  {
-    "id": "hurricane-seed",
-    "name": "Hurricane Seed",
-    "image": "/images/materials/boss-material/hurricane-seed",
+    "id": "everflame-seed",
+    "name": "Everflame Seed",
+    "image": "/images/materials/boss-material/everflame-seed",
     "rarity": 4,
     "category": "Boss Material",
-    "description": "Hurricane Seed character ascension boss material.",
+    "description": "Everflame Seed character ascension boss material.",
     "details": {
-      "source": "Anemo Hypostasis",
+      "source": "Pyro Regisvine",
       "usedByCharacters": [
-        "jean",
-        "sucrose",
-        "venti"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "immaculate-warrant",
-    "name": "Immaculate Warrant",
-    "image": "/images/materials/common-ascension/immaculate-warrant",
-    "rarity": 2,
-    "category": "Enemy Drop",
-    "description": "Immaculate Warrant ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "frost-etched-warrant"
-  },
-  {
-    "id": "inactivated-fungal-nucleus",
-    "name": "Inactivated Fungal Nucleus",
-    "image": "/images/materials/common-ascension/inactivated-fungal-nucleus",
-    "rarity": 2,
-    "category": "Elite Drop",
-    "description": "Inactivated Fungal Nucleus ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "dormant-fungal-nucleus"
-  },
-  {
-    "id": "inspector-s-sacrificial-knife",
-    "name": "Inspector's Sacrificial Knife",
-    "image": "/images/materials/common-ascension/inspector-s-sacrificial-knife",
-    "rarity": 4,
-    "category": "Elite Drop",
-    "description": "Inspector's Sacrificial Knife ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "iron-talisman-of-the-forest-dew",
-    "name": "Iron Talisman of the Forest Dew",
-    "image": "/images/materials/weapon-ascension/iron-talisman-of-the-forest-dew",
-    "rarity": 3,
-    "category": "Weapon Ascension",
-    "description": "Iron Talisman of the Forest Dew weapon ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "silver-talisman-of-the-forest-dew"
-  },
-  {
-    "id": "jade-branch-of-a-distant-sea",
-    "name": "Jade Branch of a Distant Sea",
-    "image": "/images/materials/weapon-ascension/jade-branch-of-a-distant-sea",
-    "rarity": 4,
-    "category": "Weapon Ascension",
-    "description": "Jade Branch of a Distant Sea weapon ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "golden-branch-of-a-distant-sea"
-  },
-  {
-    "id": "jeweled-branch-of-a-distant-sea",
-    "name": "Jeweled Branch of a Distant Sea",
-    "image": "/images/materials/weapon-ascension/jeweled-branch-of-a-distant-sea",
-    "rarity": 3,
-    "category": "Weapon Ascension",
-    "description": "Jeweled Branch of a Distant Sea weapon ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "jade-branch-of-a-distant-sea"
-  },
-  {
-    "id": "jeweled-flaming-hilt",
-    "name": "Jeweled Flaming Hilt",
-    "image": "/images/materials/common-ascension/jeweled-flaming-hilt",
-    "rarity": 4,
-    "category": "Elite Drop",
-    "description": "Jeweled Flaming Hilt ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "jueyun-chili",
-    "name": "Jueyun Chili",
-    "image": "/images/materials/local-specialties/jueyun-chili",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Jueyun Chili local specialty.",
-    "details": {
-      "usedByCharacters": [
+        "amber",
+        "bennett",
+        "diluc",
+        "klee",
         "xiangling",
-        "yaoyao"
+        "xinyan"
       ]
     },
     "combinable": false,
     "combineRatio": null,
-    "parentMaterialId": null
+    "parentMaterialId": null,
+    "sortOrder": 136
   },
   {
-    "id": "juvenile-fang",
-    "name": "Juvenile Fang",
-    "image": "/images/materials/common-ascension/juvenile-fang",
-    "rarity": 2,
-    "category": "Elite Drop",
-    "description": "Juvenile Fang ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "seasoned-fang"
+    "id": "cleansing-heart",
+    "name": "Cleansing Heart",
+    "image": "/images/materials/boss-material/cleansing-heart",
+    "rarity": 4,
+    "category": "Boss Material",
+    "description": "Cleansing Heart character ascension boss material.",
+    "details": {
+      "source": "Oceanid",
+      "usedByCharacters": [
+        "barbara",
+        "mona",
+        "tartaglia",
+        "xingqiu"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 137
   },
   {
     "id": "juvenile-jade",
@@ -2279,311 +1742,27 @@ export const seedMaterials: SeedMaterial[] = [
     },
     "combinable": false,
     "combineRatio": null,
-    "parentMaterialId": null
+    "parentMaterialId": null,
+    "sortOrder": 138
   },
   {
-    "id": "kageuchi-handguard",
-    "name": "Kageuchi Handguard",
-    "image": "/images/materials/common-ascension/kageuchi-handguard",
-    "rarity": 2,
-    "category": "Enemy Drop",
-    "description": "Kageuchi Handguard ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "famed-handguard"
-  },
-  {
-    "id": "kalpalata-lotus",
-    "name": "Kalpalata Lotus",
-    "image": "/images/materials/local-specialties/kalpalata-lotus",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Kalpalata Lotus local specialty.",
-    "details": {
-      "usedByCharacters": [
-        "dori",
-        "nahida"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "lakelight-lily",
-    "name": "Lakelight Lily",
-    "image": "/images/materials/local-specialties/lakelight-lily",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Lakelight Lily local specialty.",
-    "details": {
-      "usedByCharacters": [
-        "furina"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "ley-line-sprout",
-    "name": "Ley Line Sprout",
-    "image": "/images/materials/common-ascension/ley-line-sprout",
-    "rarity": 4,
-    "category": "Elite Drop",
-    "description": "Ley Line Sprout ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "lieutenant-s-insignia",
-    "name": "Lieutenant's Insignia",
-    "image": "/images/materials/common-ascension/lieutenant-s-insignia",
-    "rarity": 3,
-    "category": "Enemy Drop",
-    "description": "Lieutenant's Insignia ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "light-guiding-tetrahedron",
-    "name": "Light Guiding Tetrahedron",
-    "image": "/images/materials/boss-material/light-guiding-tetrahedron",
+    "id": "crystalline-bloom",
+    "name": "Crystalline Bloom",
+    "image": "/images/materials/boss-material/crystalline-bloom",
     "rarity": 4,
     "category": "Boss Material",
-    "description": "Light Guiding Tetrahedron character ascension boss material.",
+    "description": "Crystalline Bloom character ascension boss material.",
     "details": {
-      "source": "Algorithm of Semi-Intransient Matrix of Overseer Network",
+      "source": "Cryo Hypostasis",
       "usedByCharacters": [
-        "candace",
-        "faruzan",
-        "dehya"
+        "aloy",
+        "eula"
       ]
     },
     "combinable": false,
     "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "lightbearing-scale-feather",
-    "name": "Lightbearing Scale-Feather",
-    "image": "/images/materials/boss-material/lightbearing-scale-feather",
-    "rarity": 4,
-    "category": "Boss Material",
-    "description": "Lightbearing Scale-Feather character ascension boss material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "lightless-bone",
-    "name": "Lightless Bone",
-    "image": "/images/materials/common-ascension/lightless-bone",
-    "rarity": 2,
-    "category": "Elite Drop",
-    "description": "Lightless Bone ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "glowing-remains"
-  },
-  {
-    "id": "lightless-eye-of-the-maelstrom",
-    "name": "Lightless Eye of the Maelstrom",
-    "image": "/images/materials/talent-boss/lightless-eye-of-the-maelstrom",
-    "rarity": 5,
-    "category": "Boss Material",
-    "description": "Lightless Eye of the Maelstrom weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "chevreuse",
-        "xianyun",
-        "sigewinne"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "lightless-mass",
-    "name": "Lightless Mass",
-    "image": "/images/materials/talent-boss/lightless-mass",
-    "rarity": 5,
-    "category": "Boss Material",
-    "description": "Lightless Mass weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "furina",
-        "gaming",
-        "mualani"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "lightless-silk-string",
-    "name": "Lightless Silk String",
-    "image": "/images/materials/talent-boss/lightless-silk-string",
-    "rarity": 5,
-    "category": "Boss Material",
-    "description": "Lightless Silk String weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "charlotte",
-        "navia",
-        "chiori",
-        "ororon"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "lightning-prism",
-    "name": "Lightning Prism",
-    "image": "/images/materials/boss-material/lightning-prism",
-    "rarity": 4,
-    "category": "Boss Material",
-    "description": "Lightning Prism character ascension boss material.",
-    "details": {
-      "source": "Electro Hypostasis",
-      "usedByCharacters": [
-        "beidou",
-        "fischl",
-        "keqing",
-        "lisa",
-        "razor"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "locus-of-a-clear-will",
-    "name": "Locus of a Clear Will",
-    "image": "/images/materials/common-ascension/locus-of-a-clear-will",
-    "rarity": 3,
-    "category": "Elite Drop",
-    "description": "Locus of a Clear Will ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "sigil-of-a-striding-will"
-  },
-  {
-    "id": "lumidouce-bell",
-    "name": "Lumidouce Bell",
-    "image": "/images/materials/local-specialties/lumidouce-bell",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Lumidouce Bell local specialty.",
-    "details": {
-      "usedByCharacters": [
-        "lynette",
-        "chevreuse"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "luminescent-pollen",
-    "name": "Luminescent Pollen",
-    "image": "/images/materials/common-ascension/luminescent-pollen",
-    "rarity": 2,
-    "category": "Enemy Drop",
-    "description": "Luminescent Pollen ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "crystalline-cyst-dust"
-  },
-  {
-    "id": "luminous-sands-from-guyun",
-    "name": "Luminous Sands from Guyun",
-    "image": "/images/materials/weapon-ascension/luminous-sands-from-guyun",
-    "rarity": 2,
-    "category": "Weapon Ascension",
-    "description": "Luminous Sands from Guyun weapon ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "lustrous-stone-from-guyun"
-  },
-  {
-    "id": "lumitoile",
-    "name": "Lumitoile",
-    "image": "/images/materials/local-specialties/lumitoile",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Lumitoile local specialty.",
-    "details": {
-      "usedByCharacters": [
-        "neuvillette",
-        "clorinde"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "lunar-fin",
-    "name": "Lunar Fin",
-    "image": "/images/materials/common-ascension/lunar-fin",
-    "rarity": 3,
-    "category": "Elite Drop",
-    "description": "Lunar Fin ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "chasmlight-fin"
-  },
-  {
-    "id": "lustrous-stone-from-guyun",
-    "name": "Lustrous Stone from Guyun",
-    "image": "/images/materials/weapon-ascension/lustrous-stone-from-guyun",
-    "rarity": 3,
-    "category": "Weapon Ascension",
-    "description": "Lustrous Stone from Guyun weapon ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "relic-from-guyun"
-  },
-  {
-    "id": "madman-s-restraint",
-    "name": "Madman's Restraint",
-    "image": "/images/materials/talent-boss/madman-s-restraint",
-    "rarity": 5,
-    "category": "Boss Material",
-    "description": "Madman's Restraint weekly boss talent material.",
-    "details": {
-      "usedByCharacters": []
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "majestic-hooked-beak",
-    "name": "Majestic Hooked Beak",
-    "image": "/images/materials/boss-material/majestic-hooked-beak",
-    "rarity": 4,
-    "category": "Boss Material",
-    "description": "Majestic Hooked Beak character ascension boss material.",
-    "details": {
-      "source": "Jadeplume Terrorshroom",
-      "usedByCharacters": [
-        "collei",
-        "tighnari"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
+    "parentMaterialId": null,
+    "sortOrder": 139
   },
   {
     "id": "marionette-core",
@@ -2601,649 +1780,8 @@ export const seedMaterials: SeedMaterial[] = [
     },
     "combinable": false,
     "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "mark-of-the-binding-blessing",
-    "name": "Mark of the Binding Blessing",
-    "image": "/images/materials/boss-material/mark-of-the-binding-blessing",
-    "rarity": 4,
-    "category": "Boss Material",
-    "description": "Mark of the Binding Blessing character ascension boss material.",
-    "details": {
-      "source": "Holawaqa Ngoubou",
-      "usedByCharacters": [
-        "mualani"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "marked-shell",
-    "name": "Marked Shell",
-    "image": "/images/materials/common-ascension/marked-shell",
-    "rarity": 4,
-    "category": "Elite Drop",
-    "description": "Marked Shell ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "mask-of-the-kijin",
-    "name": "Mask of the Kijin",
-    "image": "/images/materials/weapon-ascension/mask-of-the-kijin",
-    "rarity": 5,
-    "category": "Weapon Ascension",
-    "description": "Mask of the Kijin weapon ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "mask-of-the-one-horned",
-    "name": "Mask of the One-Horned",
-    "image": "/images/materials/weapon-ascension/mask-of-the-one-horned",
-    "rarity": 4,
-    "category": "Weapon Ascension",
-    "description": "Mask of the One-Horned weapon ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "mask-of-the-kijin"
-  },
-  {
-    "id": "mask-of-the-tiger-s-bite",
-    "name": "Mask of the Tiger's Bite",
-    "image": "/images/materials/weapon-ascension/mask-of-the-tiger-s-bite",
-    "rarity": 3,
-    "category": "Weapon Ascension",
-    "description": "Mask of the Tiger's Bite weapon ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "mask-of-the-one-horned"
-  },
-  {
-    "id": "mask-of-the-virtuous-doctor",
-    "name": "Mask of the Virtuous Doctor",
-    "image": "/images/materials/talent-boss/mask-of-the-virtuous-doctor",
-    "rarity": 5,
-    "category": "Boss Material",
-    "description": "Mask of the Virtuous Doctor weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "columbina"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "mask-of-the-wicked-lieutenant",
-    "name": "Mask of the Wicked Lieutenant",
-    "image": "/images/materials/weapon-ascension/mask-of-the-wicked-lieutenant",
-    "rarity": 2,
-    "category": "Weapon Ascension",
-    "description": "Mask of the Wicked Lieutenant weapon ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "mask-of-the-tiger-s-bite"
-  },
-  {
-    "id": "mechanical-spur-gear",
-    "name": "Mechanical Spur Gear",
-    "image": "/images/materials/common-ascension/mechanical-spur-gear",
-    "rarity": 2,
-    "category": "Enemy Drop",
-    "description": "Mechanical Spur Gear ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "artificed-dynamic-gear"
-  },
-  {
-    "id": "meshing-gear",
-    "name": "Meshing Gear",
-    "image": "/images/materials/common-ascension/meshing-gear",
-    "rarity": 1,
-    "category": "Enemy Drop",
-    "description": "Meshing Gear ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "mechanical-spur-gear"
-  },
-  {
-    "id": "mirror-of-mushin",
-    "name": "Mirror of Mushin",
-    "image": "/images/materials/talent-boss/mirror-of-mushin",
-    "rarity": 5,
-    "category": "Boss Material",
-    "description": "Mirror of Mushin weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "alhaitham",
-        "layla",
-        "mika"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "mist-grass",
-    "name": "Mist Grass",
-    "image": "/images/materials/common-ascension/mist-grass",
-    "rarity": 3,
-    "category": "Elite Drop",
-    "description": "Mist Grass ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "mist-grass-wick"
-  },
-  {
-    "id": "mist-grass-pollen",
-    "name": "Mist Grass Pollen",
-    "image": "/images/materials/common-ascension/mist-grass-pollen",
-    "rarity": 2,
-    "category": "Elite Drop",
-    "description": "Mist Grass Pollen ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "mist-grass"
-  },
-  {
-    "id": "mist-grass-wick",
-    "name": "Mist Grass Wick",
-    "image": "/images/materials/common-ascension/mist-grass-wick",
-    "rarity": 4,
-    "category": "Elite Drop",
-    "description": "Mist Grass Wick ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "mist-veiled-gold-elixir",
-    "name": "Mist Veiled Gold Elixir",
-    "image": "/images/materials/weapon-ascension/mist-veiled-gold-elixir",
-    "rarity": 4,
-    "category": "Weapon Ascension",
-    "description": "Mist Veiled Gold Elixir weapon ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "mist-veiled-primo-elixir"
-  },
-  {
-    "id": "mist-veiled-lead-elixir",
-    "name": "Mist Veiled Lead Elixir",
-    "image": "/images/materials/weapon-ascension/mist-veiled-lead-elixir",
-    "rarity": 2,
-    "category": "Weapon Ascension",
-    "description": "Mist Veiled Lead Elixir weapon ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "mist-veiled-mercury-elixir"
-  },
-  {
-    "id": "mist-veiled-mercury-elixir",
-    "name": "Mist Veiled Mercury Elixir",
-    "image": "/images/materials/weapon-ascension/mist-veiled-mercury-elixir",
-    "rarity": 3,
-    "category": "Weapon Ascension",
-    "description": "Mist Veiled Mercury Elixir weapon ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "mist-veiled-gold-elixir"
-  },
-  {
-    "id": "mist-veiled-primo-elixir",
-    "name": "Mist Veiled Primo Elixir",
-    "image": "/images/materials/weapon-ascension/mist-veiled-primo-elixir",
-    "rarity": 5,
-    "category": "Weapon Ascension",
-    "description": "Mist Veiled Primo Elixir weapon ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "mistshroud-helmet",
-    "name": "Mistshroud Helmet",
-    "image": "/images/materials/common-ascension/mistshroud-helmet",
-    "rarity": 4,
-    "category": "Elite Drop",
-    "description": "Mistshroud Helmet ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "mistshroud-manifestation",
-    "name": "Mistshroud Manifestation",
-    "image": "/images/materials/common-ascension/mistshroud-manifestation",
-    "rarity": 2,
-    "category": "Elite Drop",
-    "description": "Mistshroud Manifestation ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "mistshroud-plate"
-  },
-  {
-    "id": "mistshroud-plate",
-    "name": "Mistshroud Plate",
-    "image": "/images/materials/common-ascension/mistshroud-plate",
-    "rarity": 3,
-    "category": "Elite Drop",
-    "description": "Mistshroud Plate ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "mistshroud-helmet"
-  },
-  {
-    "id": "molten-moment",
-    "name": "Molten Moment",
-    "image": "/images/materials/talent-boss/molten-moment",
-    "rarity": 5,
-    "category": "Boss Material",
-    "description": "Molten Moment weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "raiden",
-        "aloy",
-        "gorou"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "moonfall-silver",
-    "name": "Moonfall Silver",
-    "image": "/images/materials/local-specialties/moonfall-silver",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Moonfall Silver local specialty.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "mourning-flower",
-    "name": "Mourning Flower",
-    "image": "/images/materials/local-specialties/mourning-flower",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Mourning Flower local specialty.",
-    "details": {
-      "usedByCharacters": [
-        "kaveh"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "movement-of-an-ancient-chord",
-    "name": "Movement of an Ancient Chord",
-    "image": "/images/materials/weapon-ascension/movement-of-an-ancient-chord",
-    "rarity": 4,
-    "category": "Weapon Ascension",
-    "description": "Movement of an Ancient Chord weapon ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "echo-of-an-ancient-chord"
-  },
-  {
-    "id": "mudra-of-the-malefic-general",
-    "name": "Mudra of the Malefic General",
-    "image": "/images/materials/talent-boss/mudra-of-the-malefic-general",
-    "rarity": 5,
-    "category": "Boss Material",
-    "description": "Mudra of the Malefic General weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "cyno",
-        "ayato",
-        "traveler-dendro"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "nagadus-emerald-chunk",
-    "name": "Nagadus Emerald Chunk",
-    "image": "/images/materials/character-ascension/nagadus-emerald-chunk",
-    "rarity": 4,
-    "category": "Gem",
-    "description": "Nagadus Emerald Chunk character ascension gem.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "nagadus-emerald-gemstone"
-  },
-  {
-    "id": "nagadus-emerald-fragment",
-    "name": "Nagadus Emerald Fragment",
-    "image": "/images/materials/character-ascension/nagadus-emerald-fragment",
-    "rarity": 3,
-    "category": "Gem",
-    "description": "Nagadus Emerald Fragment character ascension gem.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "nagadus-emerald-chunk"
-  },
-  {
-    "id": "nagadus-emerald-gemstone",
-    "name": "Nagadus Emerald Gemstone",
-    "image": "/images/materials/character-ascension/nagadus-emerald-gemstone",
-    "rarity": 5,
-    "category": "Gem",
-    "description": "Nagadus Emerald Gemstone character ascension gem.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "nagadus-emerald-sliver",
-    "name": "Nagadus Emerald Sliver",
-    "image": "/images/materials/character-ascension/nagadus-emerald-sliver",
-    "rarity": 2,
-    "category": "Gem",
-    "description": "Nagadus Emerald Sliver character ascension gem.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "nagadus-emerald-fragment"
-  },
-  {
-    "id": "naku-weed",
-    "name": "Naku Weed",
-    "image": "/images/materials/local-specialties/naku-weed",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Naku Weed local specialty.",
-    "details": {
-      "usedByCharacters": [
-        "yoimiya",
-        "kuki-shinobu"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "narukami-s-affection",
-    "name": "Narukami's Affection",
-    "image": "/images/materials/weapon-ascension/narukami-s-affection",
-    "rarity": 4,
-    "category": "Weapon Ascension",
-    "description": "Narukami's Affection weapon ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "narukami-s-valor"
-  },
-  {
-    "id": "narukami-s-joy",
-    "name": "Narukami's Joy",
-    "image": "/images/materials/weapon-ascension/narukami-s-joy",
-    "rarity": 3,
-    "category": "Weapon Ascension",
-    "description": "Narukami's Joy weapon ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "narukami-s-affection"
-  },
-  {
-    "id": "narukami-s-valor",
-    "name": "Narukami's Valor",
-    "image": "/images/materials/weapon-ascension/narukami-s-valor",
-    "rarity": 5,
-    "category": "Weapon Ascension",
-    "description": "Narukami's Valor weapon ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "narukami-s-wisdom",
-    "name": "Narukami's Wisdom",
-    "image": "/images/materials/weapon-ascension/narukami-s-wisdom",
-    "rarity": 2,
-    "category": "Weapon Ascension",
-    "description": "Narukami's Wisdom weapon ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "narukami-s-joy"
-  },
-  {
-    "id": "newborn-tainted-hydro-phantasm",
-    "name": "Newborn Tainted Hydro Phantasm",
-    "image": "/images/materials/common-ascension/newborn-tainted-hydro-phantasm",
-    "rarity": 4,
-    "category": "Elite Drop",
-    "description": "Newborn Tainted Hydro Phantasm ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "nilotpala-lotus",
-    "name": "Nilotpala Lotus",
-    "image": "/images/materials/local-specialties/nilotpala-lotus",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Nilotpala Lotus local specialty.",
-    "details": {
-      "usedByCharacters": [
-        "tighnari",
-        "layla"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "noctilucous-jade",
-    "name": "Noctilucous Jade",
-    "image": "/images/materials/local-specialties/noctilucous-jade",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Noctilucous Jade local specialty.",
-    "details": {
-      "usedByCharacters": [
-        "beidou",
-        "yanfei"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "oasis-garden-s-kindness",
-    "name": "Oasis Garden's Kindness",
-    "image": "/images/materials/weapon-ascension/oasis-garden-s-kindness",
-    "rarity": 3,
-    "category": "Weapon Ascension",
-    "description": "Oasis Garden's Kindness weapon ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "oasis-garden-s-mourning"
-  },
-  {
-    "id": "oasis-garden-s-mourning",
-    "name": "Oasis Garden's Mourning",
-    "image": "/images/materials/weapon-ascension/oasis-garden-s-mourning",
-    "rarity": 4,
-    "category": "Weapon Ascension",
-    "description": "Oasis Garden's Mourning weapon ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "oasis-garden-s-truth"
-  },
-  {
-    "id": "oasis-garden-s-reminiscence",
-    "name": "Oasis Garden's Reminiscence",
-    "image": "/images/materials/weapon-ascension/oasis-garden-s-reminiscence",
-    "rarity": 2,
-    "category": "Weapon Ascension",
-    "description": "Oasis Garden's Reminiscence weapon ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "oasis-garden-s-kindness"
-  },
-  {
-    "id": "oasis-garden-s-truth",
-    "name": "Oasis Garden's Truth",
-    "image": "/images/materials/weapon-ascension/oasis-garden-s-truth",
-    "rarity": 5,
-    "category": "Weapon Ascension",
-    "description": "Oasis Garden's Truth weapon ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "old-handguard",
-    "name": "Old Handguard",
-    "image": "/images/materials/common-ascension/old-handguard",
-    "rarity": 1,
-    "category": "Enemy Drop",
-    "description": "Old Handguard ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "kageuchi-handguard"
-  },
-  {
-    "id": "old-operative-s-pocket-watch",
-    "name": "Old Operative's Pocket Watch",
-    "image": "/images/materials/common-ascension/old-operative-s-pocket-watch",
-    "rarity": 2,
-    "category": "Elite Drop",
-    "description": "Old Operative's Pocket Watch ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "operative-s-standard-pocket-watch"
-  },
-  {
-    "id": "olden-days-of-scorching-might",
-    "name": "Olden Days of Scorching Might",
-    "image": "/images/materials/weapon-ascension/olden-days-of-scorching-might",
-    "rarity": 5,
-    "category": "Weapon Ascension",
-    "description": "Olden Days of Scorching Might weapon ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "ominous-mask",
-    "name": "Ominous Mask",
-    "image": "/images/materials/common-ascension/ominous-mask",
-    "rarity": 3,
-    "category": "Enemy Drop",
-    "description": "Ominous Mask ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "onikabuto",
-    "name": "Onikabuto",
-    "image": "/images/materials/local-specialties/onikabuto",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Onikabuto local specialty.",
-    "details": {
-      "usedByCharacters": [
-        "arataki-itto",
-        "shikanoin-heizou"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "operative-s-constancy",
-    "name": "Operative's Constancy",
-    "image": "/images/materials/common-ascension/operative-s-constancy",
-    "rarity": 4,
-    "category": "Elite Drop",
-    "description": "Operative's Constancy ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "operative-s-standard-pocket-watch",
-    "name": "Operative's Standard Pocket Watch",
-    "image": "/images/materials/common-ascension/operative-s-standard-pocket-watch",
-    "rarity": 3,
-    "category": "Elite Drop",
-    "description": "Operative's Standard Pocket Watch ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "operative-s-constancy"
-  },
-  {
-    "id": "overripe-flamegranate",
-    "name": "Overripe Flamegranate",
-    "image": "/images/materials/boss-material/overripe-flamegranate",
-    "rarity": 4,
-    "category": "Boss Material",
-    "description": "Overripe Flamegranate character ascension boss material.",
-    "details": {
-      "source": "Kongamato",
-      "usedByCharacters": [
-        "kachina",
-        "kinich"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "padisarah",
-    "name": "Padisarah",
-    "image": "/images/materials/local-specialties/padisarah",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Padisarah local specialty.",
-    "details": {
-      "usedByCharacters": [
-        "nilou"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "perpetual-caliber",
-    "name": "Perpetual Caliber",
-    "image": "/images/materials/boss-material/perpetual-caliber",
-    "rarity": 4,
-    "category": "Boss Material",
-    "description": "Perpetual Caliber character ascension boss material.",
-    "details": {
-      "source": "Aeonblight Drake",
-      "usedByCharacters": [
-        "layla",
-        "nilou",
-        "wanderer"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
+    "parentMaterialId": null,
+    "sortOrder": 140
   },
   {
     "id": "perpetual-heart",
@@ -3261,633 +1799,65 @@ export const seedMaterials: SeedMaterial[] = [
     },
     "combinable": false,
     "combineRatio": null,
-    "parentMaterialId": null
+    "parentMaterialId": null,
+    "sortOrder": 141
   },
   {
-    "id": "philanemo-mushroom",
-    "name": "Philanemo Mushroom",
-    "image": "/images/materials/local-specialties/philanemo-mushroom",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Philanemo Mushroom local specialty.",
-    "details": {
-      "usedByCharacters": [
-        "barbara",
-        "klee",
-        "mona"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "philosophies-of-admonition",
-    "name": "Philosophies of Admonition",
-    "image": "/images/materials/talent-book/philosophies-of-admonition",
-    "rarity": 4,
-    "category": "Talent Book",
-    "description": "Philosophies of Admonition talent material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "philosophies-of-ballad",
-    "name": "Philosophies of Ballad",
-    "image": "/images/materials/talent-book/philosophies-of-ballad",
-    "rarity": 4,
-    "category": "Talent Book",
-    "description": "Philosophies of Ballad talent material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "philosophies-of-conflict",
-    "name": "Philosophies of Conflict",
-    "image": "/images/materials/talent-book/philosophies-of-conflict",
-    "rarity": 4,
-    "category": "Talent Book",
-    "description": "Philosophies of Conflict talent material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "philosophies-of-contention",
-    "name": "Philosophies of Contention",
-    "image": "/images/materials/talent-book/philosophies-of-contention",
-    "rarity": 4,
-    "category": "Talent Book",
-    "description": "Philosophies of Contention talent material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "philosophies-of-diligence",
-    "name": "Philosophies of Diligence",
-    "image": "/images/materials/talent-book/philosophies-of-diligence",
-    "rarity": 4,
-    "category": "Talent Book",
-    "description": "Philosophies of Diligence talent material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "philosophies-of-elegance",
-    "name": "Philosophies of Elegance",
-    "image": "/images/materials/talent-book/philosophies-of-elegance",
-    "rarity": 4,
-    "category": "Talent Book",
-    "description": "Philosophies of Elegance talent material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "philosophies-of-elysium",
-    "name": "Philosophies of Elysium",
-    "image": "/images/materials/talent-book/philosophies-of-elysium",
-    "rarity": 4,
-    "category": "Talent Book",
-    "description": "Philosophies of Elysium talent material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "philosophies-of-equity",
-    "name": "Philosophies of Equity",
-    "image": "/images/materials/talent-book/philosophies-of-equity",
-    "rarity": 4,
-    "category": "Talent Book",
-    "description": "Philosophies of Equity talent material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "philosophies-of-freedom",
-    "name": "Philosophies of Freedom",
-    "image": "/images/materials/talent-book/philosophies-of-freedom",
-    "rarity": 4,
-    "category": "Talent Book",
-    "description": "Philosophies of Freedom talent material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "philosophies-of-gold",
-    "name": "Philosophies of Gold",
-    "image": "/images/materials/talent-book/philosophies-of-gold",
-    "rarity": 4,
-    "category": "Talent Book",
-    "description": "Philosophies of Gold talent material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "philosophies-of-ingenuity",
-    "name": "Philosophies of Ingenuity",
-    "image": "/images/materials/talent-book/philosophies-of-ingenuity",
-    "rarity": 4,
-    "category": "Talent Book",
-    "description": "Philosophies of Ingenuity talent material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "philosophies-of-justice",
-    "name": "Philosophies of Justice",
-    "image": "/images/materials/talent-book/philosophies-of-justice",
-    "rarity": 4,
-    "category": "Talent Book",
-    "description": "Philosophies of Justice talent material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "philosophies-of-kindling",
-    "name": "Philosophies of Kindling",
-    "image": "/images/materials/talent-book/philosophies-of-kindling",
-    "rarity": 4,
-    "category": "Talent Book",
-    "description": "Philosophies of Kindling talent material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "philosophies-of-light",
-    "name": "Philosophies of Light",
-    "image": "/images/materials/talent-book/philosophies-of-light",
-    "rarity": 4,
-    "category": "Talent Book",
-    "description": "Philosophies of Light talent material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "philosophies-of-moonlight",
-    "name": "Philosophies of Moonlight",
-    "image": "/images/materials/talent-book/philosophies-of-moonlight",
-    "rarity": 4,
-    "category": "Talent Book",
-    "description": "Philosophies of Moonlight talent material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "philosophies-of-order",
-    "name": "Philosophies of Order",
-    "image": "/images/materials/talent-book/philosophies-of-order",
-    "rarity": 4,
-    "category": "Talent Book",
-    "description": "Philosophies of Order talent material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "philosophies-of-praxis",
-    "name": "Philosophies of Praxis",
-    "image": "/images/materials/talent-book/philosophies-of-praxis",
-    "rarity": 4,
-    "category": "Talent Book",
-    "description": "Philosophies of Praxis talent material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "philosophies-of-prosperity",
-    "name": "Philosophies of Prosperity",
-    "image": "/images/materials/talent-book/philosophies-of-prosperity",
-    "rarity": 4,
-    "category": "Talent Book",
-    "description": "Philosophies of Prosperity talent material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "philosophies-of-resistance",
-    "name": "Philosophies of Resistance",
-    "image": "/images/materials/talent-book/philosophies-of-resistance",
-    "rarity": 4,
-    "category": "Talent Book",
-    "description": "Philosophies of Resistance talent material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "philosophies-of-transience",
-    "name": "Philosophies of Transience",
-    "image": "/images/materials/talent-book/philosophies-of-transience",
-    "rarity": 4,
-    "category": "Talent Book",
-    "description": "Philosophies of Transience talent material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "philosophies-of-vagrancy",
-    "name": "Philosophies of Vagrancy",
-    "image": "/images/materials/talent-book/philosophies-of-vagrancy",
-    "rarity": 4,
-    "category": "Talent Book",
-    "description": "Philosophies of Vagrancy talent material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "piece-of-aerosiderite",
-    "name": "Piece of Aerosiderite",
-    "image": "/images/materials/weapon-ascension/piece-of-aerosiderite",
-    "rarity": 3,
-    "category": "Weapon Ascension",
-    "description": "Piece of Aerosiderite weapon ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "bit-of-aerosiderite"
-  },
-  {
-    "id": "pine-amber",
-    "name": "Pine Amber",
-    "image": "/images/materials/local-specialties/pine-amber",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Pine Amber local specialty.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "plume-of-the-fallen-watcher",
-    "name": "Plume of the Fallen Watcher",
-    "image": "/images/materials/boss-material/plume-of-the-fallen-watcher",
+    "id": "smoldering-pearl",
+    "name": "Smoldering Pearl",
+    "image": "/images/materials/boss-material/smoldering-pearl",
     "rarity": 4,
     "category": "Boss Material",
-    "description": "Plume of the Fallen Watcher character ascension boss material.",
+    "description": "Smoldering Pearl character ascension boss material.",
     "details": {
-      "source": "Watcher: Fallen Vigil",
+      "source": "Pyro Hypostasis",
       "usedByCharacters": [
-        "linnea"
+        "thoma",
+        "yoimiya"
       ]
     },
     "combinable": false,
     "combineRatio": null,
-    "parentMaterialId": null
+    "parentMaterialId": null,
+    "sortOrder": 142
   },
   {
-    "id": "polarizing-prism",
-    "name": "Polarizing Prism",
-    "image": "/images/materials/common-ascension/polarizing-prism",
-    "rarity": 4,
-    "category": "Elite Drop",
-    "description": "Polarizing Prism ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "portable-bearing",
-    "name": "Portable Bearing",
-    "image": "/images/materials/local-specialties/portable-bearing",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Portable Bearing local specialty.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "precision-drive-shaft",
-    "name": "Precision Drive Shaft",
-    "image": "/images/materials/common-ascension/precision-drive-shaft",
-    "rarity": 3,
-    "category": "Enemy Drop",
-    "description": "Precision Drive Shaft ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "precision-kuuvahki-stamping-die",
-    "name": "Precision Kuuvahki Stamping Die",
-    "image": "/images/materials/boss-material/precision-kuuvahki-stamping-die",
+    "id": "dew-of-repudiation",
+    "name": "Dew of Repudiation",
+    "image": "/images/materials/boss-material/dew-of-repudiation",
     "rarity": 4,
     "category": "Boss Material",
-    "description": "Precision Kuuvahki Stamping Die character ascension boss material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "primordial-greenbloom",
-    "name": "Primordial Greenbloom",
-    "image": "/images/materials/talent-boss/primordial-greenbloom",
-    "rarity": 5,
-    "category": "Boss Material",
-    "description": "Primordial Greenbloom weekly boss talent material.",
+    "description": "Dew of Repudiation character ascension boss material.",
     "details": {
+      "source": "Hydro Hypostasis",
       "usedByCharacters": [
-        "lyney",
-        "wriothesley",
-        "kaveh"
+        "kokomi",
+        "ayato"
       ]
     },
     "combinable": false,
     "combineRatio": null,
-    "parentMaterialId": null
+    "parentMaterialId": null,
+    "sortOrder": 143
   },
   {
-    "id": "prismatic-severed-tail",
-    "name": "Prismatic Severed Tail",
-    "image": "/images/materials/boss-material/prismatic-severed-tail",
+    "id": "storm-beads",
+    "name": "Storm Beads",
+    "image": "/images/materials/boss-material/storm-beads",
     "rarity": 4,
     "category": "Boss Material",
-    "description": "Prismatic Severed Tail character ascension boss material.",
+    "description": "Storm Beads character ascension boss material.",
     "details": {
-      "source": "Radiant Moongecko",
+      "source": "Thunder Manifestation",
       "usedByCharacters": [
-        "varka"
+        "sara",
+        "raiden"
       ]
     },
     "combinable": false,
     "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "prithiva-topaz-chunk",
-    "name": "Prithiva Topaz Chunk",
-    "image": "/images/materials/character-ascension/prithiva-topaz-chunk",
-    "rarity": 4,
-    "category": "Gem",
-    "description": "Prithiva Topaz Chunk character ascension gem.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "prithiva-topaz-gemstone"
-  },
-  {
-    "id": "prithiva-topaz-fragment",
-    "name": "Prithiva Topaz Fragment",
-    "image": "/images/materials/character-ascension/prithiva-topaz-fragment",
-    "rarity": 3,
-    "category": "Gem",
-    "description": "Prithiva Topaz Fragment character ascension gem.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "prithiva-topaz-chunk"
-  },
-  {
-    "id": "prithiva-topaz-gemstone",
-    "name": "Prithiva Topaz Gemstone",
-    "image": "/images/materials/character-ascension/prithiva-topaz-gemstone",
-    "rarity": 5,
-    "category": "Gem",
-    "description": "Prithiva Topaz Gemstone character ascension gem.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "prithiva-topaz-sliver",
-    "name": "Prithiva Topaz Sliver",
-    "image": "/images/materials/character-ascension/prithiva-topaz-sliver",
-    "rarity": 2,
-    "category": "Gem",
-    "description": "Prithiva Topaz Sliver character ascension gem.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "prithiva-topaz-fragment"
-  },
-  {
-    "id": "pseudo-stamens",
-    "name": "Pseudo-Stamens",
-    "image": "/images/materials/boss-material/pseudo-stamens",
-    "rarity": 4,
-    "category": "Boss Material",
-    "description": "Pseudo-Stamens character ascension boss material.",
-    "details": {
-      "source": "Setekh Wenut",
-      "usedByCharacters": [
-        "mika",
-        "alhaitham"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "puppet-strings",
-    "name": "Puppet Strings",
-    "image": "/images/materials/talent-boss/puppet-strings",
-    "rarity": 5,
-    "category": "Boss Material",
-    "description": "Puppet Strings weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "dehya",
-        "faruzan",
-        "nahida"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "qingxin",
-    "name": "Qingxin",
-    "image": "/images/materials/local-specialties/qingxin",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Qingxin local specialty.",
-    "details": {
-      "usedByCharacters": [
-        "ganyu",
-        "xiao",
-        "shenhe"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "quelled-creeper",
-    "name": "Quelled Creeper",
-    "image": "/images/materials/boss-material/quelled-creeper",
-    "rarity": 4,
-    "category": "Boss Material",
-    "description": "Quelled Creeper character ascension boss material.",
-    "details": {
-      "source": "Dendro Hypostasis",
-      "usedByCharacters": [
-        "nahida",
-        "yaoyao",
-        "kaveh"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "quenepa-berry",
-    "name": "Quenepa Berry",
-    "image": "/images/materials/local-specialties/quenepa-berry",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Quenepa Berry local specialty.",
-    "details": {
-      "usedByCharacters": [
-        "kachina"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "radiant-antler",
-    "name": "Radiant Antler",
-    "image": "/images/materials/boss-material/radiant-antler",
-    "rarity": 4,
-    "category": "Boss Material",
-    "description": "Radiant Antler character ascension boss material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "radiant-exoskeleton",
-    "name": "Radiant Exoskeleton",
-    "image": "/images/materials/common-ascension/radiant-exoskeleton",
-    "rarity": 4,
-    "category": "Elite Drop",
-    "description": "Radiant Exoskeleton ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "radiant-prism",
-    "name": "Radiant Prism",
-    "image": "/images/materials/common-ascension/radiant-prism",
-    "rarity": 4,
-    "category": "Elite Drop",
-    "description": "Radiant Prism ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "rainbow-rose",
-    "name": "Rainbow Rose",
-    "image": "/images/materials/local-specialties/rainbow-rose",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Rainbow Rose local specialty.",
-    "details": {
-      "usedByCharacters": [
-        "lyney"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "recruit-s-insignia",
-    "name": "Recruit's Insignia",
-    "image": "/images/materials/common-ascension/recruit-s-insignia",
-    "rarity": 1,
-    "category": "Enemy Drop",
-    "description": "Recruit's Insignia ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "sergeant-s-insignia"
-  },
-  {
-    "id": "reinforced-drive-shaft",
-    "name": "Reinforced Drive Shaft",
-    "image": "/images/materials/common-ascension/reinforced-drive-shaft",
-    "rarity": 2,
-    "category": "Enemy Drop",
-    "description": "Reinforced Drive Shaft ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "precision-drive-shaft"
-  },
-  {
-    "id": "relic-from-guyun",
-    "name": "Relic from Guyun",
-    "image": "/images/materials/weapon-ascension/relic-from-guyun",
-    "rarity": 4,
-    "category": "Weapon Ascension",
-    "description": "Relic from Guyun weapon ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "divine-body-from-guyun"
-  },
-  {
-    "id": "remnant-glow-of-scorching-might",
-    "name": "Remnant Glow of Scorching Might",
-    "image": "/images/materials/weapon-ascension/remnant-glow-of-scorching-might",
-    "rarity": 3,
-    "category": "Weapon Ascension",
-    "description": "Remnant Glow of Scorching Might weapon ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "dream-of-scorching-might"
-  },
-  {
-    "id": "remnant-of-the-dreadwing",
-    "name": "Remnant of the Dreadwing",
-    "image": "/images/materials/boss-material/remnant-of-the-dreadwing",
-    "rarity": 4,
-    "category": "Boss Material",
-    "description": "Remnant of the Dreadwing character ascension boss material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "rich-red-brocade",
-    "name": "Rich Red Brocade",
-    "image": "/images/materials/common-ascension/rich-red-brocade",
-    "rarity": 3,
-    "category": "Enemy Drop",
-    "description": "Rich Red Brocade ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "rift-core",
-    "name": "Rift Core",
-    "image": "/images/materials/common-ascension/rift-core",
-    "rarity": 2,
-    "category": "Elite Drop",
-    "description": "Rift Core ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "foreign-synapse"
+    "parentMaterialId": null,
+    "sortOrder": 144
   },
   {
     "id": "riftborn-regalia",
@@ -3905,83 +1875,27 @@ export const seedMaterials: SeedMaterial[] = [
     },
     "combinable": false,
     "combineRatio": null,
-    "parentMaterialId": null
+    "parentMaterialId": null,
+    "sortOrder": 145
   },
   {
-    "id": "ring-of-boreas",
-    "name": "Ring of Boreas",
-    "image": "/images/materials/talent-boss/ring-of-boreas",
-    "rarity": 5,
-    "category": "Boss Material",
-    "description": "Ring of Boreas weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "barbara",
-        "keqing",
-        "klee",
-        "mona",
-        "linnea"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "robust-fungal-nucleus",
-    "name": "Robust Fungal Nucleus",
-    "image": "/images/materials/common-ascension/robust-fungal-nucleus",
+    "id": "dragonheir-s-false-fin",
+    "name": "Dragonheir's False Fin",
+    "image": "/images/materials/boss-material/dragonheir-s-false-fin",
     "rarity": 4,
-    "category": "Elite Drop",
-    "description": "Robust Fungal Nucleus ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "romaritime-flower",
-    "name": "Romaritime Flower",
-    "image": "/images/materials/local-specialties/romaritime-flower",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Romaritime Flower local specialty.",
+    "category": "Boss Material",
+    "description": "Dragonheir's False Fin character ascension boss material.",
     "details": {
+      "source": "Coral Defenders",
       "usedByCharacters": [
-        "freminet",
-        "sigewinne"
+        "shenhe",
+        "yae-miko"
       ]
     },
     "combinable": false,
     "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "ruined-hilt",
-    "name": "Ruined Hilt",
-    "image": "/images/materials/common-ascension/ruined-hilt",
-    "rarity": 2,
-    "category": "Elite Drop",
-    "description": "Ruined Hilt ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "splintered-hilt"
-  },
-  {
-    "id": "rukkhashava-mushrooms",
-    "name": "Rukkhashava Mushrooms",
-    "image": "/images/materials/local-specialties/rukkhashava-mushrooms",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Rukkhashava Mushrooms local specialty.",
-    "details": {
-      "usedByCharacters": [
-        "wanderer",
-        "collei"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
+    "parentMaterialId": null,
+    "sortOrder": 146
   },
   {
     "id": "runic-fang",
@@ -4000,1029 +1914,27 @@ export const seedMaterials: SeedMaterial[] = [
     },
     "combinable": false,
     "combineRatio": null,
-    "parentMaterialId": null
+    "parentMaterialId": null,
+    "sortOrder": 147
   },
   {
-    "id": "sakura-bloom",
-    "name": "Sakura Bloom",
-    "image": "/images/materials/local-specialties/sakura-bloom",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Sakura Bloom local specialty.",
-    "details": {
-      "usedByCharacters": [
-        "ayaka",
-        "ayato"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "sand-grease-pupa",
-    "name": "Sand Grease Pupa",
-    "image": "/images/materials/local-specialties/sand-grease-pupa",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Sand Grease Pupa local specialty.",
-    "details": {
-      "usedByCharacters": [
-        "alhaitham",
-        "dehya"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "sango-pearl",
-    "name": "Sango Pearl",
-    "image": "/images/materials/local-specialties/sango-pearl",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Sango Pearl local specialty.",
-    "details": {
-      "usedByCharacters": [
-        "gorou",
-        "kokomi"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "saurian-claw-succulent",
-    "name": "Saurian Claw Succulent",
-    "image": "/images/materials/local-specialties/saurian-claw-succulent",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Saurian Claw Succulent local specialty.",
-    "details": {
-      "usedByCharacters": [
-        "kinich"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "saurian-crowned-warrior-s-golden-whistle",
-    "name": "Saurian-Crowned Warrior's Golden Whistle",
-    "image": "/images/materials/common-ascension/saurian-crowned-warrior-s-golden-whistle",
-    "rarity": 4,
-    "category": "Elite Drop",
-    "description": "Saurian-Crowned Warrior's Golden Whistle ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "scarab",
-    "name": "Scarab",
-    "image": "/images/materials/local-specialties/scarab",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Scarab local specialty.",
-    "details": {
-      "usedByCharacters": [
-        "cyno"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "scattered-piece-of-decarabian-s-dream",
-    "name": "Scattered Piece of Decarabian's Dream",
-    "image": "/images/materials/weapon-ascension/scattered-piece-of-decarabian-s-dream",
-    "rarity": 5,
-    "category": "Weapon Ascension",
-    "description": "Scattered Piece of Decarabian's Dream weapon ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "scoop-of-tainted-water",
-    "name": "Scoop of Tainted Water",
-    "image": "/images/materials/common-ascension/scoop-of-tainted-water",
-    "rarity": 3,
-    "category": "Elite Drop",
-    "description": "Scoop of Tainted Water ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "newborn-tainted-hydro-phantasm"
-  },
-  {
-    "id": "sea-ganoderma",
-    "name": "Sea Ganoderma",
-    "image": "/images/materials/local-specialties/sea-ganoderma",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Sea Ganoderma local specialty.",
-    "details": {
-      "usedByCharacters": [
-        "kazuha",
-        "yae-miko"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "sealed-scroll",
-    "name": "Sealed Scroll",
-    "image": "/images/materials/common-ascension/sealed-scroll",
-    "rarity": 2,
-    "category": "Enemy Drop",
-    "description": "Sealed Scroll ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "forbidden-curse-scroll"
-  },
-  {
-    "id": "seasoned-fang",
-    "name": "Seasoned Fang",
-    "image": "/images/materials/common-ascension/seasoned-fang",
-    "rarity": 3,
-    "category": "Elite Drop",
-    "description": "Seasoned Fang ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "tyrant-s-fang"
-  },
-  {
-    "id": "secret-source-airflow-accumulator",
-    "name": "Secret Source Airflow Accumulator",
-    "image": "/images/materials/boss-material/secret-source-airflow-accumulator",
+    "id": "majestic-hooked-beak",
+    "name": "Majestic Hooked Beak",
+    "image": "/images/materials/boss-material/majestic-hooked-beak",
     "rarity": 4,
     "category": "Boss Material",
-    "description": "Secret Source Airflow Accumulator character ascension boss material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "sentry-s-wooden-whistle",
-    "name": "Sentry's Wooden Whistle",
-    "image": "/images/materials/common-ascension/sentry-s-wooden-whistle",
-    "rarity": 2,
-    "category": "Elite Drop",
-    "description": "Sentry's Wooden Whistle ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "warriors-s-metal-whistle"
-  },
-  {
-    "id": "sergeant-s-insignia",
-    "name": "Sergeant's Insignia",
-    "image": "/images/materials/common-ascension/sergeant-s-insignia",
-    "rarity": 2,
-    "category": "Enemy Drop",
-    "description": "Sergeant's Insignia ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "lieutenant-s-insignia"
-  },
-  {
-    "id": "shackles-of-the-dandelion-gladiator",
-    "name": "Shackles of the Dandelion Gladiator",
-    "image": "/images/materials/weapon-ascension/shackles-of-the-dandelion-gladiator",
-    "rarity": 4,
-    "category": "Weapon Ascension",
-    "description": "Shackles of the Dandelion Gladiator weapon ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "dream-of-the-dandelion-gladiator"
-  },
-  {
-    "id": "shadow-of-the-warrior",
-    "name": "Shadow of the Warrior",
-    "image": "/images/materials/talent-boss/shadow-of-the-warrior",
-    "rarity": 5,
-    "category": "Boss Material",
-    "description": "Shadow of the Warrior weekly boss talent material.",
+    "description": "Majestic Hooked Beak character ascension boss material.",
     "details": {
+      "source": "Jadeplume Terrorshroom",
       "usedByCharacters": [
-        "ganyu",
-        "rosaria",
-        "xiao"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "shard-of-a-foul-legacy",
-    "name": "Shard of a Foul Legacy",
-    "image": "/images/materials/talent-boss/shard-of-a-foul-legacy",
-    "rarity": 5,
-    "category": "Boss Material",
-    "description": "Shard of a Foul Legacy weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "diona",
-        "hu-tao",
-        "tartaglia"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "shard-of-a-shattered-will",
-    "name": "Shard of a Shattered Will",
-    "image": "/images/materials/common-ascension/shard-of-a-shattered-will",
-    "rarity": 2,
-    "category": "Elite Drop",
-    "description": "Shard of a Shattered Will ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "locus-of-a-clear-will"
-  },
-  {
-    "id": "sharp-arrowhead",
-    "name": "Sharp Arrowhead",
-    "image": "/images/materials/common-ascension/sharp-arrowhead",
-    "rarity": 2,
-    "category": "Enemy Drop",
-    "description": "Sharp Arrowhead ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "weathered-arrowhead"
-  },
-  {
-    "id": "shimmering-nectar",
-    "name": "Shimmering Nectar",
-    "image": "/images/materials/common-ascension/shimmering-nectar",
-    "rarity": 2,
-    "category": "Enemy Drop",
-    "description": "Shimmering Nectar ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "energy-nectar"
-  },
-  {
-    "id": "shivada-jade-chunk",
-    "name": "Shivada Jade Chunk",
-    "image": "/images/materials/character-ascension/shivada-jade-chunk",
-    "rarity": 4,
-    "category": "Gem",
-    "description": "Shivada Jade Chunk character ascension gem.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "shivada-jade-gemstone"
-  },
-  {
-    "id": "shivada-jade-fragment",
-    "name": "Shivada Jade Fragment",
-    "image": "/images/materials/character-ascension/shivada-jade-fragment",
-    "rarity": 3,
-    "category": "Gem",
-    "description": "Shivada Jade Fragment character ascension gem.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "shivada-jade-chunk"
-  },
-  {
-    "id": "shivada-jade-gemstone",
-    "name": "Shivada Jade Gemstone",
-    "image": "/images/materials/character-ascension/shivada-jade-gemstone",
-    "rarity": 5,
-    "category": "Gem",
-    "description": "Shivada Jade Gemstone character ascension gem.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "shivada-jade-sliver",
-    "name": "Shivada Jade Sliver",
-    "image": "/images/materials/character-ascension/shivada-jade-sliver",
-    "rarity": 2,
-    "category": "Gem",
-    "description": "Shivada Jade Sliver character ascension gem.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "shivada-jade-fragment"
-  },
-  {
-    "id": "sigil-of-a-striding-will",
-    "name": "Sigil of a Striding Will",
-    "image": "/images/materials/common-ascension/sigil-of-a-striding-will",
-    "rarity": 4,
-    "category": "Elite Drop",
-    "description": "Sigil of a Striding Will ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "silk-flower",
-    "name": "Silk Flower",
-    "image": "/images/materials/local-specialties/silk-flower",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Silk Flower local specialty.",
-    "details": {
-      "usedByCharacters": [
-        "xingqiu",
-        "hu-tao"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "silken-feather",
-    "name": "Silken Feather",
-    "image": "/images/materials/talent-boss/silken-feather",
-    "rarity": 5,
-    "category": "Boss Material",
-    "description": "Silken Feather weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "aino",
-        "chasca",
-        "emilie"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "silver-goblet-of-the-pristine-sea",
-    "name": "Silver Goblet of the Pristine Sea",
-    "image": "/images/materials/weapon-ascension/silver-goblet-of-the-pristine-sea",
-    "rarity": 4,
-    "category": "Weapon Ascension",
-    "description": "Silver Goblet of the Pristine Sea weapon ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "golden-goblet-of-the-pristine-sea"
-  },
-  {
-    "id": "silver-raven-insignia",
-    "name": "Silver Raven Insignia",
-    "image": "/images/materials/common-ascension/silver-raven-insignia",
-    "rarity": 2,
-    "category": "Enemy Drop",
-    "description": "Silver Raven Insignia ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "golden-raven-insignia"
-  },
-  {
-    "id": "silver-talisman-of-the-forest-dew",
-    "name": "Silver Talisman of the Forest Dew",
-    "image": "/images/materials/weapon-ascension/silver-talisman-of-the-forest-dew",
-    "rarity": 4,
-    "category": "Weapon Ascension",
-    "description": "Silver Talisman of the Forest Dew weapon ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "golden-talisman-of-the-forest-dew"
-  },
-  {
-    "id": "skysplit-gembloom",
-    "name": "Skysplit Gembloom",
-    "image": "/images/materials/local-specialties/skysplit-gembloom",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Skysplit Gembloom local specialty.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "slime-concentrate",
-    "name": "Slime Concentrate",
-    "image": "/images/materials/common-ascension/slime-concentrate",
-    "rarity": 3,
-    "category": "Enemy Drop",
-    "description": "Slime Concentrate ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "slime-condensate",
-    "name": "Slime Condensate",
-    "image": "/images/materials/common-ascension/slime-condensate",
-    "rarity": 1,
-    "category": "Enemy Drop",
-    "description": "Slime Condensate ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "slime-secretions"
-  },
-  {
-    "id": "slime-secretions",
-    "name": "Slime Secretions",
-    "image": "/images/materials/common-ascension/slime-secretions",
-    "rarity": 2,
-    "category": "Enemy Drop",
-    "description": "Slime Secretions ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "slime-concentrate"
-  },
-  {
-    "id": "small-lamp-grass",
-    "name": "Small Lamp Grass",
-    "image": "/images/materials/local-specialties/small-lamp-grass",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Small Lamp Grass local specialty.",
-    "details": {
-      "usedByCharacters": [
-        "amber",
-        "diluc",
-        "fischl"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "smoldering-pearl",
-    "name": "Smoldering Pearl",
-    "image": "/images/materials/boss-material/smoldering-pearl",
-    "rarity": 4,
-    "category": "Boss Material",
-    "description": "Smoldering Pearl character ascension boss material.",
-    "details": {
-      "source": "Pyro Hypostasis",
-      "usedByCharacters": [
-        "thoma",
-        "yoimiya"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "sparkless-statue-core",
-    "name": "Sparkless Statue Core",
-    "image": "/images/materials/boss-material/sparkless-statue-core",
-    "rarity": 4,
-    "category": "Boss Material",
-    "description": "Sparkless Statue Core character ascension boss material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "spectral-heart",
-    "name": "Spectral Heart",
-    "image": "/images/materials/common-ascension/spectral-heart",
-    "rarity": 2,
-    "category": "Enemy Drop",
-    "description": "Spectral Heart ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "spectral-nucleus"
-  },
-  {
-    "id": "spectral-husk",
-    "name": "Spectral Husk",
-    "image": "/images/materials/common-ascension/spectral-husk",
-    "rarity": 1,
-    "category": "Enemy Drop",
-    "description": "Spectral Husk ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "spectral-heart"
-  },
-  {
-    "id": "spectral-nucleus",
-    "name": "Spectral Nucleus",
-    "image": "/images/materials/common-ascension/spectral-nucleus",
-    "rarity": 3,
-    "category": "Enemy Drop",
-    "description": "Spectral Nucleus ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "spirit-locket-of-boreas",
-    "name": "Spirit Locket of Boreas",
-    "image": "/images/materials/talent-boss/spirit-locket-of-boreas",
-    "rarity": 5,
-    "category": "Boss Material",
-    "description": "Spirit Locket of Boreas weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "fischl",
-        "kaeya",
-        "ningguang",
-        "sucrose",
-        "varka"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "splintered-hilt",
-    "name": "Splintered Hilt",
-    "image": "/images/materials/common-ascension/splintered-hilt",
-    "rarity": 3,
-    "category": "Elite Drop",
-    "description": "Splintered Hilt ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "still-smoldering-hilt"
-  },
-  {
-    "id": "sprayfeather-gill",
-    "name": "Sprayfeather Gill",
-    "image": "/images/materials/local-specialties/sprayfeather-gill",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Sprayfeather Gill local specialty.",
-    "details": {
-      "usedByCharacters": [
-        "mualani"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "spring-of-pure-sacred-dewdrop",
-    "name": "Spring of Pure Sacred Dewdrop",
-    "image": "/images/materials/weapon-ascension/spring-of-pure-sacred-dewdrop",
-    "rarity": 4,
-    "category": "Weapon Ascension",
-    "description": "Spring of Pure Sacred Dewdrop weapon ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "essence-of-pure-sacred-dewdrop"
-  },
-  {
-    "id": "spring-of-the-first-dewdrop",
-    "name": "Spring of the First Dewdrop",
-    "image": "/images/materials/local-specialties/spring-of-the-first-dewdrop",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Spring of the First Dewdrop local specialty.",
-    "details": {
-      "usedByCharacters": [
-        "navia"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "stained-mask",
-    "name": "Stained Mask",
-    "image": "/images/materials/common-ascension/stained-mask",
-    "rarity": 2,
-    "category": "Enemy Drop",
-    "description": "Stained Mask ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "ominous-mask"
-  },
-  {
-    "id": "starconch",
-    "name": "Starconch",
-    "image": "/images/materials/local-specialties/starconch",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Starconch local specialty.",
-    "details": {
-      "usedByCharacters": [
-        "tartaglia",
-        "yelan",
-        "gaming"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "still-smoldering-hilt",
-    "name": "Still-Smoldering Hilt",
-    "image": "/images/materials/common-ascension/still-smoldering-hilt",
-    "rarity": 4,
-    "category": "Elite Drop",
-    "description": "Still-Smoldering Hilt ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "storm-beads",
-    "name": "Storm Beads",
-    "image": "/images/materials/boss-material/storm-beads",
-    "rarity": 4,
-    "category": "Boss Material",
-    "description": "Storm Beads character ascension boss material.",
-    "details": {
-      "source": "Thunder Manifestation",
-      "usedByCharacters": [
-        "sara",
-        "raiden"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "sturdy-bone-shard",
-    "name": "Sturdy Bone Shard",
-    "image": "/images/materials/common-ascension/sturdy-bone-shard",
-    "rarity": 3,
-    "category": "Elite Drop",
-    "description": "Sturdy Bone Shard ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "fossilized-bone-shard"
-  },
-  {
-    "id": "sturdy-shell",
-    "name": "Sturdy Shell",
-    "image": "/images/materials/common-ascension/sturdy-shell",
-    "rarity": 3,
-    "category": "Elite Drop",
-    "description": "Sturdy Shell ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "marked-shell"
-  },
-  {
-    "id": "subdetection-unit",
-    "name": "Subdetection Unit",
-    "image": "/images/materials/local-specialties/subdetection-unit",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Subdetection Unit local specialty.",
-    "details": {
-      "usedByCharacters": [
-        "wriothesley"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "sublimation-of-pure-sacred-dewdrop",
-    "name": "Sublimation of Pure Sacred Dewdrop",
-    "image": "/images/materials/weapon-ascension/sublimation-of-pure-sacred-dewdrop",
-    "rarity": 3,
-    "category": "Weapon Ascension",
-    "description": "Sublimation of Pure Sacred Dewdrop weapon ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "spring-of-pure-sacred-dewdrop"
-  },
-  {
-    "id": "tail-of-boreas",
-    "name": "Tail of Boreas",
-    "image": "/images/materials/talent-boss/tail-of-boreas",
-    "rarity": 5,
-    "category": "Boss Material",
-    "description": "Tail of Boreas weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "qiqi",
-        "venti",
-        "xingqiu",
-        "traveler-geo"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "talisman-of-the-enigmatic-land",
-    "name": "Talisman of the Enigmatic Land",
-    "image": "/images/materials/boss-material/talisman-of-the-enigmatic-land",
-    "rarity": 4,
-    "category": "Boss Material",
-    "description": "Talisman of the Enigmatic Land character ascension boss material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "tattered-warrant",
-    "name": "Tattered Warrant",
-    "image": "/images/materials/common-ascension/tattered-warrant",
-    "rarity": 1,
-    "category": "Enemy Drop",
-    "description": "Tattered Warrant ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "immaculate-warrant"
-  },
-  {
-    "id": "teachings-of-admonition",
-    "name": "Teachings of Admonition",
-    "image": "/images/materials/talent-book/teachings-of-admonition",
-    "rarity": 2,
-    "category": "Talent Book",
-    "description": "Teachings of Admonition talent material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "guide-to-admonition"
-  },
-  {
-    "id": "teachings-of-ballad",
-    "name": "Teachings of Ballad",
-    "image": "/images/materials/talent-book/teachings-of-ballad",
-    "rarity": 2,
-    "category": "Talent Book",
-    "description": "Teachings of Ballad talent material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "guide-to-ballad"
-  },
-  {
-    "id": "teachings-of-conflict",
-    "name": "Teachings of Conflict",
-    "image": "/images/materials/talent-book/teachings-of-conflict",
-    "rarity": 2,
-    "category": "Talent Book",
-    "description": "Teachings of Conflict talent material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "guide-to-conflict"
-  },
-  {
-    "id": "teachings-of-contention",
-    "name": "Teachings of Contention",
-    "image": "/images/materials/talent-book/teachings-of-contention",
-    "rarity": 2,
-    "category": "Talent Book",
-    "description": "Teachings of Contention talent material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "guide-to-contention"
-  },
-  {
-    "id": "teachings-of-diligence",
-    "name": "Teachings of Diligence",
-    "image": "/images/materials/talent-book/teachings-of-diligence",
-    "rarity": 2,
-    "category": "Talent Book",
-    "description": "Teachings of Diligence talent material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "guide-to-diligence"
-  },
-  {
-    "id": "teachings-of-elegance",
-    "name": "Teachings of Elegance",
-    "image": "/images/materials/talent-book/teachings-of-elegance",
-    "rarity": 2,
-    "category": "Talent Book",
-    "description": "Teachings of Elegance talent material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "guide-to-elegance"
-  },
-  {
-    "id": "teachings-of-elysium",
-    "name": "Teachings of Elysium",
-    "image": "/images/materials/talent-book/teachings-of-elysium",
-    "rarity": 2,
-    "category": "Talent Book",
-    "description": "Teachings of Elysium talent material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "guide-to-elysium"
-  },
-  {
-    "id": "teachings-of-equity",
-    "name": "Teachings of Equity",
-    "image": "/images/materials/talent-book/teachings-of-equity",
-    "rarity": 2,
-    "category": "Talent Book",
-    "description": "Teachings of Equity talent material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "guide-to-equity"
-  },
-  {
-    "id": "teachings-of-freedom",
-    "name": "Teachings of Freedom",
-    "image": "/images/materials/talent-book/teachings-of-freedom",
-    "rarity": 2,
-    "category": "Talent Book",
-    "description": "Teachings of Freedom talent material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "guide-to-freedom"
-  },
-  {
-    "id": "teachings-of-gold",
-    "name": "Teachings of Gold",
-    "image": "/images/materials/talent-book/teachings-of-gold",
-    "rarity": 2,
-    "category": "Talent Book",
-    "description": "Teachings of Gold talent material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "guide-to-gold"
-  },
-  {
-    "id": "teachings-of-ingenuity",
-    "name": "Teachings of Ingenuity",
-    "image": "/images/materials/talent-book/teachings-of-ingenuity",
-    "rarity": 2,
-    "category": "Talent Book",
-    "description": "Teachings of Ingenuity talent material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "guide-to-ingenuity"
-  },
-  {
-    "id": "teachings-of-justice",
-    "name": "Teachings of Justice",
-    "image": "/images/materials/talent-book/teachings-of-justice",
-    "rarity": 2,
-    "category": "Talent Book",
-    "description": "Teachings of Justice talent material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "guide-to-justice"
-  },
-  {
-    "id": "teachings-of-kindling",
-    "name": "Teachings of Kindling",
-    "image": "/images/materials/talent-book/teachings-of-kindling",
-    "rarity": 2,
-    "category": "Talent Book",
-    "description": "Teachings of Kindling talent material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "guide-to-kindling"
-  },
-  {
-    "id": "teachings-of-light",
-    "name": "Teachings of Light",
-    "image": "/images/materials/talent-book/teachings-of-light",
-    "rarity": 2,
-    "category": "Talent Book",
-    "description": "Teachings of Light talent material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "guide-to-light"
-  },
-  {
-    "id": "teachings-of-moonlight",
-    "name": "Teachings of Moonlight",
-    "image": "/images/materials/talent-book/teachings-of-moonlight",
-    "rarity": 2,
-    "category": "Talent Book",
-    "description": "Teachings of Moonlight talent material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "guide-to-moonlight"
-  },
-  {
-    "id": "teachings-of-order",
-    "name": "Teachings of Order",
-    "image": "/images/materials/talent-book/teachings-of-order",
-    "rarity": 2,
-    "category": "Talent Book",
-    "description": "Teachings of Order talent material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "guide-to-order"
-  },
-  {
-    "id": "teachings-of-praxis",
-    "name": "Teachings of Praxis",
-    "image": "/images/materials/talent-book/teachings-of-praxis",
-    "rarity": 2,
-    "category": "Talent Book",
-    "description": "Teachings of Praxis talent material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "guide-to-praxis"
-  },
-  {
-    "id": "teachings-of-prosperity",
-    "name": "Teachings of Prosperity",
-    "image": "/images/materials/talent-book/teachings-of-prosperity",
-    "rarity": 2,
-    "category": "Talent Book",
-    "description": "Teachings of Prosperity talent material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "guide-to-prosperity"
-  },
-  {
-    "id": "teachings-of-resistance",
-    "name": "Teachings of Resistance",
-    "image": "/images/materials/talent-book/teachings-of-resistance",
-    "rarity": 2,
-    "category": "Talent Book",
-    "description": "Teachings of Resistance talent material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "guide-to-resistance"
-  },
-  {
-    "id": "teachings-of-transience",
-    "name": "Teachings of Transience",
-    "image": "/images/materials/talent-book/teachings-of-transience",
-    "rarity": 2,
-    "category": "Talent Book",
-    "description": "Teachings of Transience talent material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "guide-to-transience"
-  },
-  {
-    "id": "teachings-of-vagrancy",
-    "name": "Teachings of Vagrancy",
-    "image": "/images/materials/talent-book/teachings-of-vagrancy",
-    "rarity": 2,
-    "category": "Talent Book",
-    "description": "Teachings of Vagrancy talent material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "guide-to-vagrancy"
-  },
-  {
-    "id": "tears-of-the-calamitous-god",
-    "name": "Tears of the Calamitous God",
-    "image": "/images/materials/talent-boss/tears-of-the-calamitous-god",
-    "rarity": 5,
-    "category": "Boss Material",
-    "description": "Tears of the Calamitous God weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "candace",
         "collei",
-        "kuki-shinobu",
-        "nilou"
+        "tighnari"
       ]
     },
     "combinable": false,
     "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "the-cornerstone-of-stars-and-flames",
-    "name": "The Cornerstone of Stars and Flames",
-    "image": "/images/materials/boss-material/the-cornerstone-of-stars-and-flames",
-    "rarity": 5,
-    "category": "Boss Material",
-    "description": "The Cornerstone of Stars and Flames character ascension boss material.",
-    "details": {
-      "source": "Natlan quests",
-      "usedByCharacters": [
-        "traveler-pyro"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "the-meaning-of-aeons",
-    "name": "The Meaning of Aeons",
-    "image": "/images/materials/talent-boss/the-meaning-of-aeons",
-    "rarity": 5,
-    "category": "Boss Material",
-    "description": "The Meaning of Aeons weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "shikanoin-heizou",
-        "tighnari",
-        "yae-miko"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
+    "parentMaterialId": null,
+    "sortOrder": 148
   },
   {
     "id": "thunderclap-fruitcore",
@@ -5040,18 +1952,162 @@ export const seedMaterials: SeedMaterial[] = [
     },
     "combinable": false,
     "combineRatio": null,
-    "parentMaterialId": null
+    "parentMaterialId": null,
+    "sortOrder": 149
   },
   {
-    "id": "tile-of-decarabian-s-tower",
-    "name": "Tile of Decarabian's Tower",
-    "image": "/images/materials/weapon-ascension/tile-of-decarabian-s-tower",
-    "rarity": 2,
-    "category": "Weapon Ascension",
-    "description": "Tile of Decarabian's Tower weapon ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "debris-of-decarabian-s-city"
+    "id": "perpetual-caliber",
+    "name": "Perpetual Caliber",
+    "image": "/images/materials/boss-material/perpetual-caliber",
+    "rarity": 4,
+    "category": "Boss Material",
+    "description": "Perpetual Caliber character ascension boss material.",
+    "details": {
+      "source": "Aeonblight Drake",
+      "usedByCharacters": [
+        "layla",
+        "nilou",
+        "wanderer"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 150
+  },
+  {
+    "id": "light-guiding-tetrahedron",
+    "name": "Light Guiding Tetrahedron",
+    "image": "/images/materials/boss-material/light-guiding-tetrahedron",
+    "rarity": 4,
+    "category": "Boss Material",
+    "description": "Light Guiding Tetrahedron character ascension boss material.",
+    "details": {
+      "source": "Algorithm of Semi-Intransient Matrix of Overseer Network",
+      "usedByCharacters": [
+        "candace",
+        "faruzan",
+        "dehya"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 151
+  },
+  {
+    "id": "quelled-creeper",
+    "name": "Quelled Creeper",
+    "image": "/images/materials/boss-material/quelled-creeper",
+    "rarity": 4,
+    "category": "Boss Material",
+    "description": "Quelled Creeper character ascension boss material.",
+    "details": {
+      "source": "Dendro Hypostasis",
+      "usedByCharacters": [
+        "nahida",
+        "yaoyao",
+        "kaveh"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 152
+  },
+  {
+    "id": "pseudo-stamens",
+    "name": "Pseudo-Stamens",
+    "image": "/images/materials/boss-material/pseudo-stamens",
+    "rarity": 4,
+    "category": "Boss Material",
+    "description": "Pseudo-Stamens character ascension boss material.",
+    "details": {
+      "source": "Setekh Wenut",
+      "usedByCharacters": [
+        "mika",
+        "alhaitham"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 153
+  },
+  {
+    "id": "evergloom-ring",
+    "name": "Evergloom Ring",
+    "image": "/images/materials/boss-material/evergloom-ring",
+    "rarity": 4,
+    "category": "Boss Material",
+    "description": "Evergloom Ring character ascension boss material.",
+    "details": {
+      "source": "Iniquitous Baptist",
+      "usedByCharacters": [
+        "kirara",
+        "baizhu"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 154
+  },
+  {
+    "id": "coppelia",
+    "name": "Artificed Spare Clockwork Component — Coppelia",
+    "image": "/images/materials/boss-material/coppelia",
+    "rarity": 4,
+    "category": "Boss Material",
+    "description": "Artificed Spare Clockwork Component — Coppelia character ascension boss material.",
+    "details": {
+      "source": "Icewind Suite",
+      "usedByCharacters": [
+        "lynette"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 155
+  },
+  {
+    "id": "coppelius",
+    "name": "Artificed Spare Clockwork Component — Coppelius",
+    "image": "/images/materials/boss-material/coppelius",
+    "rarity": 4,
+    "category": "Boss Material",
+    "description": "Artificed Spare Clockwork Component — Coppelius character ascension boss material.",
+    "details": {
+      "source": "Icewind Suite",
+      "usedByCharacters": [
+        "navia",
+        "freminet"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 156
+  },
+  {
+    "id": "emperor-s-resolution",
+    "name": "Emperor's Resolution",
+    "image": "/images/materials/boss-material/emperor-s-resolution",
+    "rarity": 4,
+    "category": "Boss Material",
+    "description": "Emperor's Resolution character ascension boss material.",
+    "details": {
+      "source": "Emperor of Fire and Iron",
+      "usedByCharacters": [
+        "lyney",
+        "gaming"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 157
   },
   {
     "id": "tourbillon-device",
@@ -5069,308 +2125,28 @@ export const seedMaterials: SeedMaterial[] = [
     },
     "combinable": false,
     "combineRatio": null,
-    "parentMaterialId": null
+    "parentMaterialId": null,
+    "sortOrder": 158
   },
   {
-    "id": "transoceanic-chunk",
-    "name": "Transoceanic Chunk",
-    "image": "/images/materials/common-ascension/transoceanic-chunk",
-    "rarity": 2,
-    "category": "Enemy Drop",
-    "description": "Transoceanic Chunk ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "xenochromatic-crystal"
-  },
-  {
-    "id": "transoceanic-pearl",
-    "name": "Transoceanic Pearl",
-    "image": "/images/materials/common-ascension/transoceanic-pearl",
-    "rarity": 1,
-    "category": "Enemy Drop",
-    "description": "Transoceanic Pearl ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "transoceanic-chunk"
-  },
-  {
-    "id": "treasure-hoarder-insignia",
-    "name": "Treasure Hoarder Insignia",
-    "image": "/images/materials/common-ascension/treasure-hoarder-insignia",
-    "rarity": 1,
-    "category": "Enemy Drop",
-    "description": "Treasure Hoarder Insignia ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "silver-raven-insignia"
-  },
-  {
-    "id": "treasured-flower",
-    "name": "Treasured Flower",
-    "image": "/images/materials/common-ascension/treasured-flower",
-    "rarity": 3,
-    "category": "Elite Drop",
-    "description": "Treasured Flower ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "wanderer-s-blooming-flower"
-  },
-  {
-    "id": "trimmed-red-silk",
-    "name": "Trimmed Red Silk",
-    "image": "/images/materials/common-ascension/trimmed-red-silk",
-    "rarity": 2,
-    "category": "Enemy Drop",
-    "description": "Trimmed Red Silk ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "rich-red-brocade"
-  },
-  {
-    "id": "trishiraite",
-    "name": "Trishiraite",
-    "image": "/images/materials/local-specialties/trishiraite",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Trishiraite local specialty.",
-    "details": {
-      "usedByCharacters": [
-        "sethos"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "turbid-prism",
-    "name": "Turbid Prism",
-    "image": "/images/materials/common-ascension/turbid-prism",
-    "rarity": 3,
-    "category": "Elite Drop",
-    "description": "Turbid Prism ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "radiant-prism"
-  },
-  {
-    "id": "tusk-of-monoceros-caeli",
-    "name": "Tusk of Monoceros Caeli",
-    "image": "/images/materials/talent-boss/tusk-of-monoceros-caeli",
-    "rarity": 5,
+    "id": "fontemer-unihorn",
+    "name": "Fontemer Unihorn",
+    "image": "/images/materials/boss-material/fontemer-unihorn",
+    "rarity": 4,
     "category": "Boss Material",
-    "description": "Tusk of Monoceros Caeli weekly boss talent material.",
+    "description": "Fontemer Unihorn character ascension boss material.",
     "details": {
+      "source": "Millennial Pearl Seahorse",
       "usedByCharacters": [
-        "albedo",
-        "xinyan",
-        "zhongli"
+        "chevreuse",
+        "neuvillette",
+        "clorinde"
       ]
     },
     "combinable": false,
     "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "tyrant-s-fang",
-    "name": "Tyrant's Fang",
-    "image": "/images/materials/common-ascension/tyrant-s-fang",
-    "rarity": 4,
-    "category": "Elite Drop",
-    "description": "Tyrant's Fang ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "vajrada-amethyst-chunk",
-    "name": "Vajrada Amethyst Chunk",
-    "image": "/images/materials/character-ascension/vajrada-amethyst-chunk",
-    "rarity": 4,
-    "category": "Gem",
-    "description": "Vajrada Amethyst Chunk character ascension gem.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "vajrada-amethyst-gemstone"
-  },
-  {
-    "id": "vajrada-amethyst-fragment",
-    "name": "Vajrada Amethyst Fragment",
-    "image": "/images/materials/character-ascension/vajrada-amethyst-fragment",
-    "rarity": 3,
-    "category": "Gem",
-    "description": "Vajrada Amethyst Fragment character ascension gem.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "vajrada-amethyst-chunk"
-  },
-  {
-    "id": "vajrada-amethyst-gemstone",
-    "name": "Vajrada Amethyst Gemstone",
-    "image": "/images/materials/character-ascension/vajrada-amethyst-gemstone",
-    "rarity": 5,
-    "category": "Gem",
-    "description": "Vajrada Amethyst Gemstone character ascension gem.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "vajrada-amethyst-sliver",
-    "name": "Vajrada Amethyst Sliver",
-    "image": "/images/materials/character-ascension/vajrada-amethyst-sliver",
-    "rarity": 2,
-    "category": "Gem",
-    "description": "Vajrada Amethyst Sliver character ascension gem.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "vajrada-amethyst-fragment"
-  },
-  {
-    "id": "valberry",
-    "name": "Valberry",
-    "image": "/images/materials/local-specialties/valberry",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Valberry local specialty.",
-    "details": {
-      "usedByCharacters": [
-        "lisa",
-        "noelle",
-        "rosaria"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "varunada-lazurite-chunk",
-    "name": "Varunada Lazurite Chunk",
-    "image": "/images/materials/character-ascension/varunada-lazurite-chunk",
-    "rarity": 4,
-    "category": "Gem",
-    "description": "Varunada Lazurite Chunk character ascension gem.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "varunada-lazurite-gemstone"
-  },
-  {
-    "id": "varunada-lazurite-fragment",
-    "name": "Varunada Lazurite Fragment",
-    "image": "/images/materials/character-ascension/varunada-lazurite-fragment",
-    "rarity": 3,
-    "category": "Gem",
-    "description": "Varunada Lazurite Fragment character ascension gem.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "varunada-lazurite-chunk"
-  },
-  {
-    "id": "varunada-lazurite-gemstone",
-    "name": "Varunada Lazurite Gemstone",
-    "image": "/images/materials/character-ascension/varunada-lazurite-gemstone",
-    "rarity": 5,
-    "category": "Gem",
-    "description": "Varunada Lazurite Gemstone character ascension gem.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "varunada-lazurite-sliver",
-    "name": "Varunada Lazurite Sliver",
-    "image": "/images/materials/character-ascension/varunada-lazurite-sliver",
-    "rarity": 2,
-    "category": "Gem",
-    "description": "Varunada Lazurite Sliver character ascension gem.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "varunada-lazurite-fragment"
-  },
-  {
-    "id": "vayuda-turquoise-chunk",
-    "name": "Vayuda Turquoise Chunk",
-    "image": "/images/materials/character-ascension/vayuda-turquoise-chunk",
-    "rarity": 4,
-    "category": "Gem",
-    "description": "Vayuda Turquoise Chunk character ascension gem.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "vayuda-turquoise-gemstone"
-  },
-  {
-    "id": "vayuda-turquoise-fragment",
-    "name": "Vayuda Turquoise Fragment",
-    "image": "/images/materials/character-ascension/vayuda-turquoise-fragment",
-    "rarity": 3,
-    "category": "Gem",
-    "description": "Vayuda Turquoise Fragment character ascension gem.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "vayuda-turquoise-chunk"
-  },
-  {
-    "id": "vayuda-turquoise-gemstone",
-    "name": "Vayuda Turquoise Gemstone",
-    "image": "/images/materials/character-ascension/vayuda-turquoise-gemstone",
-    "rarity": 5,
-    "category": "Gem",
-    "description": "Vayuda Turquoise Gemstone character ascension gem.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "vayuda-turquoise-sliver",
-    "name": "Vayuda Turquoise Sliver",
-    "image": "/images/materials/character-ascension/vayuda-turquoise-sliver",
-    "rarity": 2,
-    "category": "Gem",
-    "description": "Vayuda Turquoise Sliver character ascension gem.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "vayuda-turquoise-fragment"
-  },
-  {
-    "id": "violetgrass",
-    "name": "Violetgrass",
-    "image": "/images/materials/local-specialties/violetgrass",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Violetgrass local specialty.",
-    "details": {
-      "usedByCharacters": [
-        "qiqi",
-        "xinyan",
-        "baizhu"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "wanderer-s-blooming-flower",
-    "name": "Wanderer's Blooming Flower",
-    "image": "/images/materials/common-ascension/wanderer-s-blooming-flower",
-    "rarity": 4,
-    "category": "Elite Drop",
-    "description": "Wanderer's Blooming Flower ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "warriors-s-metal-whistle",
-    "name": "Warrior's Metal Whistle",
-    "image": "/images/materials/common-ascension/warriors-s-metal-whistle",
-    "rarity": 3,
-    "category": "Elite Drop",
-    "description": "Warrior's Metal Whistle ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "saurian-crowned-warrior-s-golden-whistle"
+    "parentMaterialId": null,
+    "sortOrder": 159
   },
   {
     "id": "water-that-failed-to-transcend",
@@ -5388,29 +2164,2911 @@ export const seedMaterials: SeedMaterial[] = [
     },
     "combinable": false,
     "combineRatio": null,
-    "parentMaterialId": null
+    "parentMaterialId": null,
+    "sortOrder": 160
   },
   {
-    "id": "weathered-arrowhead",
-    "name": "Weathered Arrowhead",
-    "image": "/images/materials/common-ascension/weathered-arrowhead",
-    "rarity": 3,
-    "category": "Enemy Drop",
-    "description": "Weathered Arrowhead ascension material.",
+    "id": "cloudseam-scale",
+    "name": "Cloudseam Scale",
+    "image": "/images/materials/boss-material/cloudseam-scale",
+    "rarity": 4,
+    "category": "Boss Material",
+    "description": "Cloudseam Scale character ascension boss material.",
+    "details": {
+      "source": "Solitary Suanni",
+      "usedByCharacters": [
+        "xianyun",
+        "sethos"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
-    "parentMaterialId": null
+    "parentMaterialId": null,
+    "sortOrder": 161
   },
   {
-    "id": "whopperflower-nectar",
-    "name": "Whopperflower Nectar",
-    "image": "/images/materials/common-ascension/whopperflower-nectar",
-    "rarity": 1,
-    "category": "Enemy Drop",
-    "description": "Whopperflower Nectar ascension material.",
+    "id": "fragment-of-a-golden-melody",
+    "name": "Fragment of a Golden Melody",
+    "image": "/images/materials/boss-material/fragment-of-a-golden-melody",
+    "rarity": 4,
+    "category": "Boss Material",
+    "description": "Fragment of a Golden Melody character ascension boss material.",
+    "details": {
+      "source": "Statue of Marble and Brass",
+      "usedByCharacters": [
+        "arlecchino"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 162
+  },
+  {
+    "id": "mark-of-the-binding-blessing",
+    "name": "Mark of the Binding Blessing",
+    "image": "/images/materials/boss-material/mark-of-the-binding-blessing",
+    "rarity": 4,
+    "category": "Boss Material",
+    "description": "Mark of the Binding Blessing character ascension boss material.",
+    "details": {
+      "source": "Holawaqa Ngoubou",
+      "usedByCharacters": [
+        "mualani"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 163
+  },
+  {
+    "id": "overripe-flamegranate",
+    "name": "Overripe Flamegranate",
+    "image": "/images/materials/boss-material/overripe-flamegranate",
+    "rarity": 4,
+    "category": "Boss Material",
+    "description": "Overripe Flamegranate character ascension boss material.",
+    "details": {
+      "source": "Kongamato",
+      "usedByCharacters": [
+        "kachina",
+        "kinich"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 164
+  },
+  {
+    "id": "prismatic-severed-tail",
+    "name": "Prismatic Severed Tail",
+    "image": "/images/materials/boss-material/prismatic-severed-tail",
+    "rarity": 4,
+    "category": "Boss Material",
+    "description": "Prismatic Severed Tail character ascension boss material.",
+    "details": {
+      "source": "Radiant Moongecko",
+      "usedByCharacters": [
+        "varka"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 165
+  },
+  {
+    "id": "plume-of-the-fallen-watcher",
+    "name": "Plume of the Fallen Watcher",
+    "image": "/images/materials/boss-material/plume-of-the-fallen-watcher",
+    "rarity": 4,
+    "category": "Boss Material",
+    "description": "Plume of the Fallen Watcher character ascension boss material.",
+    "details": {
+      "source": "Watcher: Fallen Vigil",
+      "usedByCharacters": [
+        "linnea"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 166
+  },
+  {
+    "id": "the-cornerstone-of-stars-and-flames",
+    "name": "The Cornerstone of Stars and Flames",
+    "image": "/images/materials/boss-material/the-cornerstone-of-stars-and-flames",
+    "rarity": 5,
+    "category": "Boss Material",
+    "description": "The Cornerstone of Stars and Flames character ascension boss material.",
+    "details": {
+      "source": "Natlan quests",
+      "usedByCharacters": [
+        "traveler-pyro"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 167
+  },
+  {
+    "id": "dvalin's-plume",
+    "name": "Dvalin's Plume",
+    "image": "/images/materials/talent-boss/dvalin's-plume",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Dvalin's Plume weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "bennett",
+        "diluc",
+        "jean"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 168
+  },
+  {
+    "id": "dvalin's-claw",
+    "name": "Dvalin's Claw",
+    "image": "/images/materials/talent-boss/dvalin's-claw",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Dvalin's Claw weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "lisa",
+        "noelle",
+        "razor",
+        "xiangling"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 169
+  },
+  {
+    "id": "dvalin's-sigh",
+    "name": "Dvalin's Sigh",
+    "image": "/images/materials/talent-boss/dvalin's-sigh",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Dvalin's Sigh weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "amber",
+        "beidou",
+        "chongyun",
+        "traveler-anemo",
+        "traveler-geo"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 170
+  },
+  {
+    "id": "tail-of-boreas",
+    "name": "Tail of Boreas",
+    "image": "/images/materials/talent-boss/tail-of-boreas",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Tail of Boreas weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "qiqi",
+        "venti",
+        "xingqiu",
+        "traveler-geo"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 171
+  },
+  {
+    "id": "ring-of-boreas",
+    "name": "Ring of Boreas",
+    "image": "/images/materials/talent-boss/ring-of-boreas",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Ring of Boreas weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "barbara",
+        "keqing",
+        "klee",
+        "mona",
+        "linnea"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 172
+  },
+  {
+    "id": "spirit-locket-of-boreas",
+    "name": "Spirit Locket of Boreas",
+    "image": "/images/materials/talent-boss/spirit-locket-of-boreas",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Spirit Locket of Boreas weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "fischl",
+        "kaeya",
+        "ningguang",
+        "sucrose",
+        "varka"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 173
+  },
+  {
+    "id": "tusk-of-monoceros-caeli",
+    "name": "Tusk of Monoceros Caeli",
+    "image": "/images/materials/talent-boss/tusk-of-monoceros-caeli",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Tusk of Monoceros Caeli weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "albedo",
+        "xinyan",
+        "zhongli"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 174
+  },
+  {
+    "id": "shard-of-a-foul-legacy",
+    "name": "Shard of a Foul Legacy",
+    "image": "/images/materials/talent-boss/shard-of-a-foul-legacy",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Shard of a Foul Legacy weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "diona",
+        "hu-tao",
+        "tartaglia"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 175
+  },
+  {
+    "id": "shadow-of-the-warrior",
+    "name": "Shadow of the Warrior",
+    "image": "/images/materials/talent-boss/shadow-of-the-warrior",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Shadow of the Warrior weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "ganyu",
+        "rosaria",
+        "xiao"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 176
+  },
+  {
+    "id": "dragon-lord's-crown",
+    "name": "Dragon Lord's Crown",
+    "image": "/images/materials/talent-boss/dragon-lord's-crown",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Dragon Lord's Crown weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "eula",
+        "yoimiya",
+        "traveler-electro"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 177
+  },
+  {
+    "id": "bloodjade-branch",
+    "name": "Bloodjade Branch",
+    "image": "/images/materials/talent-boss/bloodjade-branch",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Bloodjade Branch weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "ayaka",
+        "yanfei",
+        "dori"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 178
+  },
+  {
+    "id": "gilded-scale",
+    "name": "Gilded Scale",
+    "image": "/images/materials/talent-boss/gilded-scale",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Gilded Scale weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "kazuha",
+        "sayu",
+        "yelan"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 179
+  },
+  {
+    "id": "molten-moment",
+    "name": "Molten Moment",
+    "image": "/images/materials/talent-boss/molten-moment",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Molten Moment weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "raiden",
+        "aloy",
+        "gorou"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 180
+  },
+  {
+    "id": "hellfire-butterfly",
+    "name": "Hellfire Butterfly",
+    "image": "/images/materials/talent-boss/hellfire-butterfly",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Hellfire Butterfly weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "kokomi",
+        "thoma",
+        "shenhe"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 181
+  },
+  {
+    "id": "ashen-heart",
+    "name": "Ashen Heart",
+    "image": "/images/materials/talent-boss/ashen-heart",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Ashen Heart weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "sara",
+        "arataki-itto",
+        "yun-jin"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 182
+  },
+  {
+    "id": "mudra-of-the-malefic-general",
+    "name": "Mudra of the Malefic General",
+    "image": "/images/materials/talent-boss/mudra-of-the-malefic-general",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Mudra of the Malefic General weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "cyno",
+        "ayato",
+        "traveler-dendro"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 183
+  },
+  {
+    "id": "tears-of-the-calamitous-god",
+    "name": "Tears of the Calamitous God",
+    "image": "/images/materials/talent-boss/tears-of-the-calamitous-god",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Tears of the Calamitous God weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "candace",
+        "collei",
+        "kuki-shinobu",
+        "nilou"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 184
+  },
+  {
+    "id": "the-meaning-of-aeons",
+    "name": "The Meaning of Aeons",
+    "image": "/images/materials/talent-boss/the-meaning-of-aeons",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "The Meaning of Aeons weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "shikanoin-heizou",
+        "tighnari",
+        "yae-miko"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 185
+  },
+  {
+    "id": "puppet-strings",
+    "name": "Puppet Strings",
+    "image": "/images/materials/talent-boss/puppet-strings",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Puppet Strings weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "dehya",
+        "faruzan",
+        "nahida"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 186
+  },
+  {
+    "id": "mirror-of-mushin",
+    "name": "Mirror of Mushin",
+    "image": "/images/materials/talent-boss/mirror-of-mushin",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Mirror of Mushin weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "alhaitham",
+        "layla",
+        "mika"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 187
+  },
+  {
+    "id": "daka-s-bell",
+    "name": "Daka's Bell",
+    "image": "/images/materials/talent-boss/daka-s-bell",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Daka's Bell weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "wanderer",
+        "yaoyao",
+        "sethos",
+        "xilonen"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 188
+  },
+  {
+    "id": "worldspan-fern",
+    "name": "Worldspan Fern",
+    "image": "/images/materials/talent-boss/worldspan-fern",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Worldspan Fern weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "baizhu",
+        "freminet",
+        "traveler-hydro"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 189
+  },
+  {
+    "id": "primordial-greenbloom",
+    "name": "Primordial Greenbloom",
+    "image": "/images/materials/talent-boss/primordial-greenbloom",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Primordial Greenbloom weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "lyney",
+        "wriothesley",
+        "kaveh"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 190
+  },
+  {
+    "id": "everamber",
+    "name": "Everamber",
+    "image": "/images/materials/talent-boss/everamber",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Everamber weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "lynette",
+        "neuvillette",
+        "kirara",
+        "clorinde"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 191
+  },
+  {
+    "id": "lightless-silk-string",
+    "name": "Lightless Silk String",
+    "image": "/images/materials/talent-boss/lightless-silk-string",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Lightless Silk String weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "charlotte",
+        "navia",
+        "chiori",
+        "ororon"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 192
+  },
+  {
+    "id": "lightless-eye-of-the-maelstrom",
+    "name": "Lightless Eye of the Maelstrom",
+    "image": "/images/materials/talent-boss/lightless-eye-of-the-maelstrom",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Lightless Eye of the Maelstrom weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "chevreuse",
+        "xianyun",
+        "sigewinne"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 193
+  },
+  {
+    "id": "lightless-mass",
+    "name": "Lightless Mass",
+    "image": "/images/materials/talent-boss/lightless-mass",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Lightless Mass weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "furina",
+        "gaming",
+        "mualani"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 194
+  },
+  {
+    "id": "fading-candle",
+    "name": "Fading Candle",
+    "image": "/images/materials/talent-boss/fading-candle",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Fading Candle weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "arlecchino",
+        "kachina",
+        "yumemizuki-mizuki"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 195
+  },
+  {
+    "id": "silken-feather",
+    "name": "Silken Feather",
+    "image": "/images/materials/talent-boss/silken-feather",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Silken Feather weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "aino",
+        "chasca",
+        "emilie"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 196
+  },
+  {
+    "id": "denial-and-judgment",
+    "name": "Denial and Judgment",
+    "image": "/images/materials/talent-boss/denial-and-judgment",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Denial and Judgment weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "kinich",
+        "traveler-pyro",
+        "citlali",
+        "iansan"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 197
+  },
+  {
+    "id": "eroded-horn",
+    "name": "Eroded Horn",
+    "image": "/images/materials/talent-boss/eroded-horn",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Eroded Horn weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "escoffier",
+        "illuga",
+        "mavuika"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 198
+  },
+  {
+    "id": "eroded-sunfire",
+    "name": "Eroded Sunfire",
+    "image": "/images/materials/talent-boss/eroded-sunfire",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Eroded Sunfire weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "durin",
+        "ineffa",
+        "lan-yan"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 199
+  },
+  {
+    "id": "eroded-scale-feather",
+    "name": "Eroded Scale-Feather",
+    "image": "/images/materials/talent-boss/eroded-scale-feather",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Eroded Scale-Feather weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "dahlia",
+        "lauma",
+        "varesa"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 200
+  },
+  {
+    "id": "ascended-sample-knight",
+    "name": "Ascended Sample: Knight",
+    "image": "/images/materials/talent-boss/ascended-sample-knight",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Ascended Sample: Knight weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "jahoda",
+        "skirk"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 201
+  },
+  {
+    "id": "ascended-sample-rook",
+    "name": "Ascended Sample: Rook",
+    "image": "/images/materials/talent-boss/ascended-sample-rook",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Ascended Sample: Rook weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "ifa",
+        "nefer"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 202
+  },
+  {
+    "id": "ascended-sample-queen",
+    "name": "Ascended Sample: Queen",
+    "image": "/images/materials/talent-boss/ascended-sample-queen",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Ascended Sample: Queen weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "flins",
+        "zibai"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 203
+  },
+  {
+    "id": "mask-of-the-virtuous-doctor",
+    "name": "Mask of the Virtuous Doctor",
+    "image": "/images/materials/talent-boss/mask-of-the-virtuous-doctor",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Mask of the Virtuous Doctor weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "columbina",
+        "prune"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 204
+  },
+  {
+    "id": "madman-s-restraint",
+    "name": "Madman's Restraint",
+    "image": "/images/materials/talent-boss/madman-s-restraint",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Madman's Restraint weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "nicole"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 205
+  },
+  {
+    "id": "elixir-of-the-heretic",
+    "name": "Elixir of the Heretic",
+    "image": "/images/materials/talent-boss/elixir-of-the-heretic",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Elixir of the Heretic weekly boss talent material.",
+    "details": {
+      "usedByCharacters": []
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 206
+  },
+  {
+    "id": "agnidus-agate-sliver",
+    "name": "Agnidus Agate Sliver",
+    "image": "/images/materials/character-ascension/agnidus-agate-sliver",
+    "rarity": 2,
+    "category": "Gem",
+    "description": "Agnidus Agate Sliver character ascension gem.",
     "combinable": true,
     "combineRatio": 3,
-    "parentMaterialId": "shimmering-nectar"
+    "parentMaterialId": "agnidus-agate-fragment",
+    "sortOrder": 207
+  },
+  {
+    "id": "agnidus-agate-fragment",
+    "name": "Agnidus Agate Fragment",
+    "image": "/images/materials/character-ascension/agnidus-agate-fragment",
+    "rarity": 3,
+    "category": "Gem",
+    "description": "Agnidus Agate Fragment character ascension gem.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "agnidus-agate-chunk",
+    "sortOrder": 208
+  },
+  {
+    "id": "agnidus-agate-chunk",
+    "name": "Agnidus Agate Chunk",
+    "image": "/images/materials/character-ascension/agnidus-agate-chunk",
+    "rarity": 4,
+    "category": "Gem",
+    "description": "Agnidus Agate Chunk character ascension gem.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "agnidus-agate-gemstone",
+    "sortOrder": 209
+  },
+  {
+    "id": "agnidus-agate-gemstone",
+    "name": "Agnidus Agate Gemstone",
+    "image": "/images/materials/character-ascension/agnidus-agate-gemstone",
+    "rarity": 5,
+    "category": "Gem",
+    "description": "Agnidus Agate Gemstone character ascension gem.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 210
+  },
+  {
+    "id": "varunada-lazurite-sliver",
+    "name": "Varunada Lazurite Sliver",
+    "image": "/images/materials/character-ascension/varunada-lazurite-sliver",
+    "rarity": 2,
+    "category": "Gem",
+    "description": "Varunada Lazurite Sliver character ascension gem.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "varunada-lazurite-fragment",
+    "sortOrder": 211
+  },
+  {
+    "id": "varunada-lazurite-fragment",
+    "name": "Varunada Lazurite Fragment",
+    "image": "/images/materials/character-ascension/varunada-lazurite-fragment",
+    "rarity": 3,
+    "category": "Gem",
+    "description": "Varunada Lazurite Fragment character ascension gem.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "varunada-lazurite-chunk",
+    "sortOrder": 212
+  },
+  {
+    "id": "varunada-lazurite-chunk",
+    "name": "Varunada Lazurite Chunk",
+    "image": "/images/materials/character-ascension/varunada-lazurite-chunk",
+    "rarity": 4,
+    "category": "Gem",
+    "description": "Varunada Lazurite Chunk character ascension gem.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "varunada-lazurite-gemstone",
+    "sortOrder": 213
+  },
+  {
+    "id": "varunada-lazurite-gemstone",
+    "name": "Varunada Lazurite Gemstone",
+    "image": "/images/materials/character-ascension/varunada-lazurite-gemstone",
+    "rarity": 5,
+    "category": "Gem",
+    "description": "Varunada Lazurite Gemstone character ascension gem.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 214
+  },
+  {
+    "id": "nagadus-emerald-sliver",
+    "name": "Nagadus Emerald Sliver",
+    "image": "/images/materials/character-ascension/nagadus-emerald-sliver",
+    "rarity": 2,
+    "category": "Gem",
+    "description": "Nagadus Emerald Sliver character ascension gem.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "nagadus-emerald-fragment",
+    "sortOrder": 215
+  },
+  {
+    "id": "nagadus-emerald-fragment",
+    "name": "Nagadus Emerald Fragment",
+    "image": "/images/materials/character-ascension/nagadus-emerald-fragment",
+    "rarity": 3,
+    "category": "Gem",
+    "description": "Nagadus Emerald Fragment character ascension gem.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "nagadus-emerald-chunk",
+    "sortOrder": 216
+  },
+  {
+    "id": "nagadus-emerald-chunk",
+    "name": "Nagadus Emerald Chunk",
+    "image": "/images/materials/character-ascension/nagadus-emerald-chunk",
+    "rarity": 4,
+    "category": "Gem",
+    "description": "Nagadus Emerald Chunk character ascension gem.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "nagadus-emerald-gemstone",
+    "sortOrder": 217
+  },
+  {
+    "id": "nagadus-emerald-gemstone",
+    "name": "Nagadus Emerald Gemstone",
+    "image": "/images/materials/character-ascension/nagadus-emerald-gemstone",
+    "rarity": 5,
+    "category": "Gem",
+    "description": "Nagadus Emerald Gemstone character ascension gem.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 218
+  },
+  {
+    "id": "vajrada-amethyst-sliver",
+    "name": "Vajrada Amethyst Sliver",
+    "image": "/images/materials/character-ascension/vajrada-amethyst-sliver",
+    "rarity": 2,
+    "category": "Gem",
+    "description": "Vajrada Amethyst Sliver character ascension gem.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "vajrada-amethyst-fragment",
+    "sortOrder": 219
+  },
+  {
+    "id": "vajrada-amethyst-fragment",
+    "name": "Vajrada Amethyst Fragment",
+    "image": "/images/materials/character-ascension/vajrada-amethyst-fragment",
+    "rarity": 3,
+    "category": "Gem",
+    "description": "Vajrada Amethyst Fragment character ascension gem.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "vajrada-amethyst-chunk",
+    "sortOrder": 220
+  },
+  {
+    "id": "vajrada-amethyst-chunk",
+    "name": "Vajrada Amethyst Chunk",
+    "image": "/images/materials/character-ascension/vajrada-amethyst-chunk",
+    "rarity": 4,
+    "category": "Gem",
+    "description": "Vajrada Amethyst Chunk character ascension gem.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "vajrada-amethyst-gemstone",
+    "sortOrder": 221
+  },
+  {
+    "id": "vajrada-amethyst-gemstone",
+    "name": "Vajrada Amethyst Gemstone",
+    "image": "/images/materials/character-ascension/vajrada-amethyst-gemstone",
+    "rarity": 5,
+    "category": "Gem",
+    "description": "Vajrada Amethyst Gemstone character ascension gem.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 222
+  },
+  {
+    "id": "vayuda-turquoise-sliver",
+    "name": "Vayuda Turquoise Sliver",
+    "image": "/images/materials/character-ascension/vayuda-turquoise-sliver",
+    "rarity": 2,
+    "category": "Gem",
+    "description": "Vayuda Turquoise Sliver character ascension gem.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "vayuda-turquoise-fragment",
+    "sortOrder": 223
+  },
+  {
+    "id": "vayuda-turquoise-fragment",
+    "name": "Vayuda Turquoise Fragment",
+    "image": "/images/materials/character-ascension/vayuda-turquoise-fragment",
+    "rarity": 3,
+    "category": "Gem",
+    "description": "Vayuda Turquoise Fragment character ascension gem.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "vayuda-turquoise-chunk",
+    "sortOrder": 224
+  },
+  {
+    "id": "vayuda-turquoise-chunk",
+    "name": "Vayuda Turquoise Chunk",
+    "image": "/images/materials/character-ascension/vayuda-turquoise-chunk",
+    "rarity": 4,
+    "category": "Gem",
+    "description": "Vayuda Turquoise Chunk character ascension gem.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "vayuda-turquoise-gemstone",
+    "sortOrder": 225
+  },
+  {
+    "id": "vayuda-turquoise-gemstone",
+    "name": "Vayuda Turquoise Gemstone",
+    "image": "/images/materials/character-ascension/vayuda-turquoise-gemstone",
+    "rarity": 5,
+    "category": "Gem",
+    "description": "Vayuda Turquoise Gemstone character ascension gem.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 226
+  },
+  {
+    "id": "shivada-jade-sliver",
+    "name": "Shivada Jade Sliver",
+    "image": "/images/materials/character-ascension/shivada-jade-sliver",
+    "rarity": 2,
+    "category": "Gem",
+    "description": "Shivada Jade Sliver character ascension gem.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "shivada-jade-fragment",
+    "sortOrder": 227
+  },
+  {
+    "id": "shivada-jade-fragment",
+    "name": "Shivada Jade Fragment",
+    "image": "/images/materials/character-ascension/shivada-jade-fragment",
+    "rarity": 3,
+    "category": "Gem",
+    "description": "Shivada Jade Fragment character ascension gem.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "shivada-jade-chunk",
+    "sortOrder": 228
+  },
+  {
+    "id": "shivada-jade-chunk",
+    "name": "Shivada Jade Chunk",
+    "image": "/images/materials/character-ascension/shivada-jade-chunk",
+    "rarity": 4,
+    "category": "Gem",
+    "description": "Shivada Jade Chunk character ascension gem.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "shivada-jade-gemstone",
+    "sortOrder": 229
+  },
+  {
+    "id": "shivada-jade-gemstone",
+    "name": "Shivada Jade Gemstone",
+    "image": "/images/materials/character-ascension/shivada-jade-gemstone",
+    "rarity": 5,
+    "category": "Gem",
+    "description": "Shivada Jade Gemstone character ascension gem.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 230
+  },
+  {
+    "id": "prithiva-topaz-sliver",
+    "name": "Prithiva Topaz Sliver",
+    "image": "/images/materials/character-ascension/prithiva-topaz-sliver",
+    "rarity": 2,
+    "category": "Gem",
+    "description": "Prithiva Topaz Sliver character ascension gem.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "prithiva-topaz-fragment",
+    "sortOrder": 231
+  },
+  {
+    "id": "prithiva-topaz-fragment",
+    "name": "Prithiva Topaz Fragment",
+    "image": "/images/materials/character-ascension/prithiva-topaz-fragment",
+    "rarity": 3,
+    "category": "Gem",
+    "description": "Prithiva Topaz Fragment character ascension gem.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "prithiva-topaz-chunk",
+    "sortOrder": 232
+  },
+  {
+    "id": "prithiva-topaz-chunk",
+    "name": "Prithiva Topaz Chunk",
+    "image": "/images/materials/character-ascension/prithiva-topaz-chunk",
+    "rarity": 4,
+    "category": "Gem",
+    "description": "Prithiva Topaz Chunk character ascension gem.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "prithiva-topaz-gemstone",
+    "sortOrder": 233
+  },
+  {
+    "id": "prithiva-topaz-gemstone",
+    "name": "Prithiva Topaz Gemstone",
+    "image": "/images/materials/character-ascension/prithiva-topaz-gemstone",
+    "rarity": 5,
+    "category": "Gem",
+    "description": "Prithiva Topaz Gemstone character ascension gem.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 234
+  },
+  {
+    "id": "brilliant-diamond-sliver",
+    "name": "Brilliant Diamond Sliver",
+    "image": "/images/materials/character-ascension/brilliant-diamond-sliver",
+    "rarity": 2,
+    "category": "Gem",
+    "description": "Brilliant Diamond Sliver character ascension gem.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "brilliant-diamond-fragment",
+    "sortOrder": 235
+  },
+  {
+    "id": "brilliant-diamond-fragment",
+    "name": "Brilliant Diamond Fragment",
+    "image": "/images/materials/character-ascension/brilliant-diamond-fragment",
+    "rarity": 3,
+    "category": "Gem",
+    "description": "Brilliant Diamond Fragment character ascension gem.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "brilliant-diamond-chunk",
+    "sortOrder": 236
+  },
+  {
+    "id": "brilliant-diamond-chunk",
+    "name": "Brilliant Diamond Chunk",
+    "image": "/images/materials/character-ascension/brilliant-diamond-chunk",
+    "rarity": 4,
+    "category": "Gem",
+    "description": "Brilliant Diamond Chunk character ascension gem.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "brilliant-diamond-gemstone",
+    "sortOrder": 237
+  },
+  {
+    "id": "brilliant-diamond-gemstone",
+    "name": "Brilliant Diamond Gemstone",
+    "image": "/images/materials/character-ascension/brilliant-diamond-gemstone",
+    "rarity": 5,
+    "category": "Gem",
+    "description": "Brilliant Diamond Gemstone character ascension gem.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 238
+  },
+  {
+    "id": "teachings-of-freedom",
+    "name": "Teachings of Freedom",
+    "image": "/images/materials/talent-book/teachings-of-freedom",
+    "rarity": 2,
+    "category": "Talent Book",
+    "description": "Teachings of Freedom talent material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "guide-to-freedom",
+    "sortOrder": 239
+  },
+  {
+    "id": "guide-to-freedom",
+    "name": "Guide to Freedom",
+    "image": "/images/materials/talent-book/guide-to-freedom",
+    "rarity": 3,
+    "category": "Talent Book",
+    "description": "Guide to Freedom talent material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "philosophies-of-freedom",
+    "sortOrder": 240
+  },
+  {
+    "id": "philosophies-of-freedom",
+    "name": "Philosophies of Freedom",
+    "image": "/images/materials/talent-book/philosophies-of-freedom",
+    "rarity": 4,
+    "category": "Talent Book",
+    "description": "Philosophies of Freedom talent material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 241
+  },
+  {
+    "id": "teachings-of-resistance",
+    "name": "Teachings of Resistance",
+    "image": "/images/materials/talent-book/teachings-of-resistance",
+    "rarity": 2,
+    "category": "Talent Book",
+    "description": "Teachings of Resistance talent material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "guide-to-resistance",
+    "sortOrder": 242
+  },
+  {
+    "id": "guide-to-resistance",
+    "name": "Guide to Resistance",
+    "image": "/images/materials/talent-book/guide-to-resistance",
+    "rarity": 3,
+    "category": "Talent Book",
+    "description": "Guide to Resistance talent material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "philosophies-of-resistance",
+    "sortOrder": 243
+  },
+  {
+    "id": "philosophies-of-resistance",
+    "name": "Philosophies of Resistance",
+    "image": "/images/materials/talent-book/philosophies-of-resistance",
+    "rarity": 4,
+    "category": "Talent Book",
+    "description": "Philosophies of Resistance talent material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 244
+  },
+  {
+    "id": "teachings-of-ballad",
+    "name": "Teachings of Ballad",
+    "image": "/images/materials/talent-book/teachings-of-ballad",
+    "rarity": 2,
+    "category": "Talent Book",
+    "description": "Teachings of Ballad talent material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "guide-to-ballad",
+    "sortOrder": 245
+  },
+  {
+    "id": "guide-to-ballad",
+    "name": "Guide to Ballad",
+    "image": "/images/materials/talent-book/guide-to-ballad",
+    "rarity": 3,
+    "category": "Talent Book",
+    "description": "Guide to Ballad talent material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "philosophies-of-ballad",
+    "sortOrder": 246
+  },
+  {
+    "id": "philosophies-of-ballad",
+    "name": "Philosophies of Ballad",
+    "image": "/images/materials/talent-book/philosophies-of-ballad",
+    "rarity": 4,
+    "category": "Talent Book",
+    "description": "Philosophies of Ballad talent material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 247
+  },
+  {
+    "id": "teachings-of-prosperity",
+    "name": "Teachings of Prosperity",
+    "image": "/images/materials/talent-book/teachings-of-prosperity",
+    "rarity": 2,
+    "category": "Talent Book",
+    "description": "Teachings of Prosperity talent material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "guide-to-prosperity",
+    "sortOrder": 248
+  },
+  {
+    "id": "guide-to-prosperity",
+    "name": "Guide to Prosperity",
+    "image": "/images/materials/talent-book/guide-to-prosperity",
+    "rarity": 3,
+    "category": "Talent Book",
+    "description": "Guide to Prosperity talent material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "philosophies-of-prosperity",
+    "sortOrder": 249
+  },
+  {
+    "id": "philosophies-of-prosperity",
+    "name": "Philosophies of Prosperity",
+    "image": "/images/materials/talent-book/philosophies-of-prosperity",
+    "rarity": 4,
+    "category": "Talent Book",
+    "description": "Philosophies of Prosperity talent material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 250
+  },
+  {
+    "id": "teachings-of-diligence",
+    "name": "Teachings of Diligence",
+    "image": "/images/materials/talent-book/teachings-of-diligence",
+    "rarity": 2,
+    "category": "Talent Book",
+    "description": "Teachings of Diligence talent material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "guide-to-diligence",
+    "sortOrder": 251
+  },
+  {
+    "id": "guide-to-diligence",
+    "name": "Guide to Diligence",
+    "image": "/images/materials/talent-book/guide-to-diligence",
+    "rarity": 3,
+    "category": "Talent Book",
+    "description": "Guide to Diligence talent material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "philosophies-of-diligence",
+    "sortOrder": 252
+  },
+  {
+    "id": "philosophies-of-diligence",
+    "name": "Philosophies of Diligence",
+    "image": "/images/materials/talent-book/philosophies-of-diligence",
+    "rarity": 4,
+    "category": "Talent Book",
+    "description": "Philosophies of Diligence talent material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 253
+  },
+  {
+    "id": "teachings-of-gold",
+    "name": "Teachings of Gold",
+    "image": "/images/materials/talent-book/teachings-of-gold",
+    "rarity": 2,
+    "category": "Talent Book",
+    "description": "Teachings of Gold talent material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "guide-to-gold",
+    "sortOrder": 254
+  },
+  {
+    "id": "guide-to-gold",
+    "name": "Guide to Gold",
+    "image": "/images/materials/talent-book/guide-to-gold",
+    "rarity": 3,
+    "category": "Talent Book",
+    "description": "Guide to Gold talent material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "philosophies-of-gold",
+    "sortOrder": 255
+  },
+  {
+    "id": "philosophies-of-gold",
+    "name": "Philosophies of Gold",
+    "image": "/images/materials/talent-book/philosophies-of-gold",
+    "rarity": 4,
+    "category": "Talent Book",
+    "description": "Philosophies of Gold talent material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 256
+  },
+  {
+    "id": "teachings-of-transience",
+    "name": "Teachings of Transience",
+    "image": "/images/materials/talent-book/teachings-of-transience",
+    "rarity": 2,
+    "category": "Talent Book",
+    "description": "Teachings of Transience talent material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "guide-to-transience",
+    "sortOrder": 257
+  },
+  {
+    "id": "guide-to-transience",
+    "name": "Guide to Transience",
+    "image": "/images/materials/talent-book/guide-to-transience",
+    "rarity": 3,
+    "category": "Talent Book",
+    "description": "Guide to Transience talent material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "philosophies-of-transience",
+    "sortOrder": 258
+  },
+  {
+    "id": "philosophies-of-transience",
+    "name": "Philosophies of Transience",
+    "image": "/images/materials/talent-book/philosophies-of-transience",
+    "rarity": 4,
+    "category": "Talent Book",
+    "description": "Philosophies of Transience talent material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 259
+  },
+  {
+    "id": "teachings-of-elegance",
+    "name": "Teachings of Elegance",
+    "image": "/images/materials/talent-book/teachings-of-elegance",
+    "rarity": 2,
+    "category": "Talent Book",
+    "description": "Teachings of Elegance talent material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "guide-to-elegance",
+    "sortOrder": 260
+  },
+  {
+    "id": "guide-to-elegance",
+    "name": "Guide to Elegance",
+    "image": "/images/materials/talent-book/guide-to-elegance",
+    "rarity": 3,
+    "category": "Talent Book",
+    "description": "Guide to Elegance talent material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "philosophies-of-elegance",
+    "sortOrder": 261
+  },
+  {
+    "id": "philosophies-of-elegance",
+    "name": "Philosophies of Elegance",
+    "image": "/images/materials/talent-book/philosophies-of-elegance",
+    "rarity": 4,
+    "category": "Talent Book",
+    "description": "Philosophies of Elegance talent material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 262
+  },
+  {
+    "id": "teachings-of-light",
+    "name": "Teachings of Light",
+    "image": "/images/materials/talent-book/teachings-of-light",
+    "rarity": 2,
+    "category": "Talent Book",
+    "description": "Teachings of Light talent material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "guide-to-light",
+    "sortOrder": 263
+  },
+  {
+    "id": "guide-to-light",
+    "name": "Guide to Light",
+    "image": "/images/materials/talent-book/guide-to-light",
+    "rarity": 3,
+    "category": "Talent Book",
+    "description": "Guide to Light talent material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "philosophies-of-light",
+    "sortOrder": 264
+  },
+  {
+    "id": "philosophies-of-light",
+    "name": "Philosophies of Light",
+    "image": "/images/materials/talent-book/philosophies-of-light",
+    "rarity": 4,
+    "category": "Talent Book",
+    "description": "Philosophies of Light talent material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 265
+  },
+  {
+    "id": "teachings-of-admonition",
+    "name": "Teachings of Admonition",
+    "image": "/images/materials/talent-book/teachings-of-admonition",
+    "rarity": 2,
+    "category": "Talent Book",
+    "description": "Teachings of Admonition talent material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "guide-to-admonition",
+    "sortOrder": 266
+  },
+  {
+    "id": "guide-to-admonition",
+    "name": "Guide to Admonition",
+    "image": "/images/materials/talent-book/guide-to-admonition",
+    "rarity": 3,
+    "category": "Talent Book",
+    "description": "Guide to Admonition talent material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "philosophies-of-admonition",
+    "sortOrder": 267
+  },
+  {
+    "id": "philosophies-of-admonition",
+    "name": "Philosophies of Admonition",
+    "image": "/images/materials/talent-book/philosophies-of-admonition",
+    "rarity": 4,
+    "category": "Talent Book",
+    "description": "Philosophies of Admonition talent material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 268
+  },
+  {
+    "id": "teachings-of-ingenuity",
+    "name": "Teachings of Ingenuity",
+    "image": "/images/materials/talent-book/teachings-of-ingenuity",
+    "rarity": 2,
+    "category": "Talent Book",
+    "description": "Teachings of Ingenuity talent material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "guide-to-ingenuity",
+    "sortOrder": 269
+  },
+  {
+    "id": "guide-to-ingenuity",
+    "name": "Guide to Ingenuity",
+    "image": "/images/materials/talent-book/guide-to-ingenuity",
+    "rarity": 3,
+    "category": "Talent Book",
+    "description": "Guide to Ingenuity talent material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "philosophies-of-ingenuity",
+    "sortOrder": 270
+  },
+  {
+    "id": "philosophies-of-ingenuity",
+    "name": "Philosophies of Ingenuity",
+    "image": "/images/materials/talent-book/philosophies-of-ingenuity",
+    "rarity": 4,
+    "category": "Talent Book",
+    "description": "Philosophies of Ingenuity talent material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 271
+  },
+  {
+    "id": "teachings-of-praxis",
+    "name": "Teachings of Praxis",
+    "image": "/images/materials/talent-book/teachings-of-praxis",
+    "rarity": 2,
+    "category": "Talent Book",
+    "description": "Teachings of Praxis talent material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "guide-to-praxis",
+    "sortOrder": 272
+  },
+  {
+    "id": "guide-to-praxis",
+    "name": "Guide to Praxis",
+    "image": "/images/materials/talent-book/guide-to-praxis",
+    "rarity": 3,
+    "category": "Talent Book",
+    "description": "Guide to Praxis talent material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "philosophies-of-praxis",
+    "sortOrder": 273
+  },
+  {
+    "id": "philosophies-of-praxis",
+    "name": "Philosophies of Praxis",
+    "image": "/images/materials/talent-book/philosophies-of-praxis",
+    "rarity": 4,
+    "category": "Talent Book",
+    "description": "Philosophies of Praxis talent material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 274
+  },
+  {
+    "id": "teachings-of-equity",
+    "name": "Teachings of Equity",
+    "image": "/images/materials/talent-book/teachings-of-equity",
+    "rarity": 2,
+    "category": "Talent Book",
+    "description": "Teachings of Equity talent material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "guide-to-equity",
+    "sortOrder": 275
+  },
+  {
+    "id": "guide-to-equity",
+    "name": "Guide to Equity",
+    "image": "/images/materials/talent-book/guide-to-equity",
+    "rarity": 3,
+    "category": "Talent Book",
+    "description": "Guide to Equity talent material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "philosophies-of-equity",
+    "sortOrder": 276
+  },
+  {
+    "id": "philosophies-of-equity",
+    "name": "Philosophies of Equity",
+    "image": "/images/materials/talent-book/philosophies-of-equity",
+    "rarity": 4,
+    "category": "Talent Book",
+    "description": "Philosophies of Equity talent material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 277
+  },
+  {
+    "id": "teachings-of-justice",
+    "name": "Teachings of Justice",
+    "image": "/images/materials/talent-book/teachings-of-justice",
+    "rarity": 2,
+    "category": "Talent Book",
+    "description": "Teachings of Justice talent material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "guide-to-justice",
+    "sortOrder": 278
+  },
+  {
+    "id": "guide-to-justice",
+    "name": "Guide to Justice",
+    "image": "/images/materials/talent-book/guide-to-justice",
+    "rarity": 3,
+    "category": "Talent Book",
+    "description": "Guide to Justice talent material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "philosophies-of-justice",
+    "sortOrder": 279
+  },
+  {
+    "id": "philosophies-of-justice",
+    "name": "Philosophies of Justice",
+    "image": "/images/materials/talent-book/philosophies-of-justice",
+    "rarity": 4,
+    "category": "Talent Book",
+    "description": "Philosophies of Justice talent material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 280
+  },
+  {
+    "id": "teachings-of-order",
+    "name": "Teachings of Order",
+    "image": "/images/materials/talent-book/teachings-of-order",
+    "rarity": 2,
+    "category": "Talent Book",
+    "description": "Teachings of Order talent material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "guide-to-order",
+    "sortOrder": 281
+  },
+  {
+    "id": "guide-to-order",
+    "name": "Guide to Order",
+    "image": "/images/materials/talent-book/guide-to-order",
+    "rarity": 3,
+    "category": "Talent Book",
+    "description": "Guide to Order talent material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "philosophies-of-order",
+    "sortOrder": 282
+  },
+  {
+    "id": "philosophies-of-order",
+    "name": "Philosophies of Order",
+    "image": "/images/materials/talent-book/philosophies-of-order",
+    "rarity": 4,
+    "category": "Talent Book",
+    "description": "Philosophies of Order talent material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 283
+  },
+  {
+    "id": "teachings-of-contention",
+    "name": "Teachings of Contention",
+    "image": "/images/materials/talent-book/teachings-of-contention",
+    "rarity": 2,
+    "category": "Talent Book",
+    "description": "Teachings of Contention talent material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "guide-to-contention",
+    "sortOrder": 284
+  },
+  {
+    "id": "guide-to-contention",
+    "name": "Guide to Contention",
+    "image": "/images/materials/talent-book/guide-to-contention",
+    "rarity": 3,
+    "category": "Talent Book",
+    "description": "Guide to Contention talent material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "philosophies-of-contention",
+    "sortOrder": 285
+  },
+  {
+    "id": "philosophies-of-contention",
+    "name": "Philosophies of Contention",
+    "image": "/images/materials/talent-book/philosophies-of-contention",
+    "rarity": 4,
+    "category": "Talent Book",
+    "description": "Philosophies of Contention talent material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 286
+  },
+  {
+    "id": "teachings-of-kindling",
+    "name": "Teachings of Kindling",
+    "image": "/images/materials/talent-book/teachings-of-kindling",
+    "rarity": 2,
+    "category": "Talent Book",
+    "description": "Teachings of Kindling talent material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "guide-to-kindling",
+    "sortOrder": 287
+  },
+  {
+    "id": "guide-to-kindling",
+    "name": "Guide to Kindling",
+    "image": "/images/materials/talent-book/guide-to-kindling",
+    "rarity": 3,
+    "category": "Talent Book",
+    "description": "Guide to Kindling talent material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "philosophies-of-kindling",
+    "sortOrder": 288
+  },
+  {
+    "id": "philosophies-of-kindling",
+    "name": "Philosophies of Kindling",
+    "image": "/images/materials/talent-book/philosophies-of-kindling",
+    "rarity": 4,
+    "category": "Talent Book",
+    "description": "Philosophies of Kindling talent material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 289
+  },
+  {
+    "id": "teachings-of-conflict",
+    "name": "Teachings of Conflict",
+    "image": "/images/materials/talent-book/teachings-of-conflict",
+    "rarity": 2,
+    "category": "Talent Book",
+    "description": "Teachings of Conflict talent material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "guide-to-conflict",
+    "sortOrder": 290
+  },
+  {
+    "id": "guide-to-conflict",
+    "name": "Guide to Conflict",
+    "image": "/images/materials/talent-book/guide-to-conflict",
+    "rarity": 3,
+    "category": "Talent Book",
+    "description": "Guide to Conflict talent material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "philosophies-of-conflict",
+    "sortOrder": 291
+  },
+  {
+    "id": "philosophies-of-conflict",
+    "name": "Philosophies of Conflict",
+    "image": "/images/materials/talent-book/philosophies-of-conflict",
+    "rarity": 4,
+    "category": "Talent Book",
+    "description": "Philosophies of Conflict talent material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 292
+  },
+  {
+    "id": "teachings-of-moonlight",
+    "name": "Teachings of Moonlight",
+    "image": "/images/materials/talent-book/teachings-of-moonlight",
+    "rarity": 2,
+    "category": "Talent Book",
+    "description": "Teachings of Moonlight talent material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "guide-to-moonlight",
+    "sortOrder": 293
+  },
+  {
+    "id": "guide-to-moonlight",
+    "name": "Guide to Moonlight",
+    "image": "/images/materials/talent-book/guide-to-moonlight",
+    "rarity": 3,
+    "category": "Talent Book",
+    "description": "Guide to Moonlight talent material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "philosophies-of-moonlight",
+    "sortOrder": 294
+  },
+  {
+    "id": "philosophies-of-moonlight",
+    "name": "Philosophies of Moonlight",
+    "image": "/images/materials/talent-book/philosophies-of-moonlight",
+    "rarity": 4,
+    "category": "Talent Book",
+    "description": "Philosophies of Moonlight talent material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 295
+  },
+  {
+    "id": "teachings-of-elysium",
+    "name": "Teachings of Elysium",
+    "image": "/images/materials/talent-book/teachings-of-elysium",
+    "rarity": 2,
+    "category": "Talent Book",
+    "description": "Teachings of Elysium talent material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "guide-to-elysium",
+    "sortOrder": 296
+  },
+  {
+    "id": "guide-to-elysium",
+    "name": "Guide to Elysium",
+    "image": "/images/materials/talent-book/guide-to-elysium",
+    "rarity": 3,
+    "category": "Talent Book",
+    "description": "Guide to Elysium talent material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "philosophies-of-elysium",
+    "sortOrder": 297
+  },
+  {
+    "id": "philosophies-of-elysium",
+    "name": "Philosophies of Elysium",
+    "image": "/images/materials/talent-book/philosophies-of-elysium",
+    "rarity": 4,
+    "category": "Talent Book",
+    "description": "Philosophies of Elysium talent material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 298
+  },
+  {
+    "id": "teachings-of-vagrancy",
+    "name": "Teachings of Vagrancy",
+    "image": "/images/materials/talent-book/teachings-of-vagrancy",
+    "rarity": 2,
+    "category": "Talent Book",
+    "description": "Teachings of Vagrancy talent material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "guide-to-vagrancy",
+    "sortOrder": 299
+  },
+  {
+    "id": "guide-to-vagrancy",
+    "name": "Guide to Vagrancy",
+    "image": "/images/materials/talent-book/guide-to-vagrancy",
+    "rarity": 3,
+    "category": "Talent Book",
+    "description": "Guide to Vagrancy talent material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "philosophies-of-vagrancy",
+    "sortOrder": 300
+  },
+  {
+    "id": "philosophies-of-vagrancy",
+    "name": "Philosophies of Vagrancy",
+    "image": "/images/materials/talent-book/philosophies-of-vagrancy",
+    "rarity": 4,
+    "category": "Talent Book",
+    "description": "Philosophies of Vagrancy talent material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 301
+  },
+  {
+    "id": "crown-of-insight",
+    "name": "Crown of Insight",
+    "image": "/images/materials/talent-book/crown-of-insight",
+    "rarity": 5,
+    "category": "Talent Book",
+    "description": "Rare crown required to fully level a talent.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 302
+  },
+  {
+    "id": "tile-of-decarabian-s-tower",
+    "name": "Tile of Decarabian's Tower",
+    "image": "/images/materials/weapon-ascension/tile-of-decarabian-s-tower",
+    "rarity": 2,
+    "category": "Weapon Ascension",
+    "description": "Tile of Decarabian's Tower weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "debris-of-decarabian-s-city",
+    "sortOrder": 303
+  },
+  {
+    "id": "debris-of-decarabian-s-city",
+    "name": "Debris of Decarabian's City",
+    "image": "/images/materials/weapon-ascension/debris-of-decarabian-s-city",
+    "rarity": 3,
+    "category": "Weapon Ascension",
+    "description": "Debris of Decarabian's City weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "fragment-of-decarabian-s-epic",
+    "sortOrder": 304
+  },
+  {
+    "id": "fragment-of-decarabian-s-epic",
+    "name": "Fragment of Decarabian's Epic",
+    "image": "/images/materials/weapon-ascension/fragment-of-decarabian-s-epic",
+    "rarity": 4,
+    "category": "Weapon Ascension",
+    "description": "Fragment of Decarabian's Epic weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "scattered-piece-of-decarabian-s-dream",
+    "sortOrder": 305
+  },
+  {
+    "id": "scattered-piece-of-decarabian-s-dream",
+    "name": "Scattered Piece of Decarabian's Dream",
+    "image": "/images/materials/weapon-ascension/scattered-piece-of-decarabian-s-dream",
+    "rarity": 5,
+    "category": "Weapon Ascension",
+    "description": "Scattered Piece of Decarabian's Dream weapon ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 306
+  },
+  {
+    "id": "boreal-wolf-s-milk-tooth",
+    "name": "Boreal Wolf's Milk Tooth",
+    "image": "/images/materials/weapon-ascension/boreal-wolf-s-milk-tooth",
+    "rarity": 2,
+    "category": "Weapon Ascension",
+    "description": "Boreal Wolf's Milk Tooth weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "boreal-wolf-s-cracked-tooth",
+    "sortOrder": 307
+  },
+  {
+    "id": "boreal-wolf-s-cracked-tooth",
+    "name": "Boreal Wolf's Cracked Tooth",
+    "image": "/images/materials/weapon-ascension/boreal-wolf-s-cracked-tooth",
+    "rarity": 3,
+    "category": "Weapon Ascension",
+    "description": "Boreal Wolf's Cracked Tooth weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "boreal-wolf-s-broken-fang",
+    "sortOrder": 308
+  },
+  {
+    "id": "boreal-wolf-s-broken-fang",
+    "name": "Boreal Wolf's Broken Fang",
+    "image": "/images/materials/weapon-ascension/boreal-wolf-s-broken-fang",
+    "rarity": 4,
+    "category": "Weapon Ascension",
+    "description": "Boreal Wolf's Broken Fang weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "boreal-wolf-s-nostalgia",
+    "sortOrder": 309
+  },
+  {
+    "id": "boreal-wolf-s-nostalgia",
+    "name": "Boreal Wolf's Nostalgia",
+    "image": "/images/materials/weapon-ascension/boreal-wolf-s-nostalgia",
+    "rarity": 5,
+    "category": "Weapon Ascension",
+    "description": "Boreal Wolf's Nostalgia weapon ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 310
+  },
+  {
+    "id": "fetters-of-the-dandelion-gladiator",
+    "name": "Fetters of the Dandelion Gladiator",
+    "image": "/images/materials/weapon-ascension/fetters-of-the-dandelion-gladiator",
+    "rarity": 2,
+    "category": "Weapon Ascension",
+    "description": "Fetters of the Dandelion Gladiator weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "chains-of-the-dandelion-gladiator",
+    "sortOrder": 311
+  },
+  {
+    "id": "chains-of-the-dandelion-gladiator",
+    "name": "Chains of the Dandelion Gladiator",
+    "image": "/images/materials/weapon-ascension/chains-of-the-dandelion-gladiator",
+    "rarity": 3,
+    "category": "Weapon Ascension",
+    "description": "Chains of the Dandelion Gladiator weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "shackles-of-the-dandelion-gladiator",
+    "sortOrder": 312
+  },
+  {
+    "id": "shackles-of-the-dandelion-gladiator",
+    "name": "Shackles of the Dandelion Gladiator",
+    "image": "/images/materials/weapon-ascension/shackles-of-the-dandelion-gladiator",
+    "rarity": 4,
+    "category": "Weapon Ascension",
+    "description": "Shackles of the Dandelion Gladiator weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "dream-of-the-dandelion-gladiator",
+    "sortOrder": 313
+  },
+  {
+    "id": "dream-of-the-dandelion-gladiator",
+    "name": "Dream of the Dandelion Gladiator",
+    "image": "/images/materials/weapon-ascension/dream-of-the-dandelion-gladiator",
+    "rarity": 5,
+    "category": "Weapon Ascension",
+    "description": "Dream of the Dandelion Gladiator weapon ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 314
+  },
+  {
+    "id": "luminous-sands-from-guyun",
+    "name": "Luminous Sands from Guyun",
+    "image": "/images/materials/weapon-ascension/luminous-sands-from-guyun",
+    "rarity": 2,
+    "category": "Weapon Ascension",
+    "description": "Luminous Sands from Guyun weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "lustrous-stone-from-guyun",
+    "sortOrder": 315
+  },
+  {
+    "id": "lustrous-stone-from-guyun",
+    "name": "Lustrous Stone from Guyun",
+    "image": "/images/materials/weapon-ascension/lustrous-stone-from-guyun",
+    "rarity": 3,
+    "category": "Weapon Ascension",
+    "description": "Lustrous Stone from Guyun weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "relic-from-guyun",
+    "sortOrder": 316
+  },
+  {
+    "id": "relic-from-guyun",
+    "name": "Relic from Guyun",
+    "image": "/images/materials/weapon-ascension/relic-from-guyun",
+    "rarity": 4,
+    "category": "Weapon Ascension",
+    "description": "Relic from Guyun weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "divine-body-from-guyun",
+    "sortOrder": 317
+  },
+  {
+    "id": "divine-body-from-guyun",
+    "name": "Divine Body from Guyun",
+    "image": "/images/materials/weapon-ascension/divine-body-from-guyun",
+    "rarity": 5,
+    "category": "Weapon Ascension",
+    "description": "Divine Body from Guyun weapon ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 318
+  },
+  {
+    "id": "mist-veiled-lead-elixir",
+    "name": "Mist Veiled Lead Elixir",
+    "image": "/images/materials/weapon-ascension/mist-veiled-lead-elixir",
+    "rarity": 2,
+    "category": "Weapon Ascension",
+    "description": "Mist Veiled Lead Elixir weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "mist-veiled-mercury-elixir",
+    "sortOrder": 319
+  },
+  {
+    "id": "mist-veiled-mercury-elixir",
+    "name": "Mist Veiled Mercury Elixir",
+    "image": "/images/materials/weapon-ascension/mist-veiled-mercury-elixir",
+    "rarity": 3,
+    "category": "Weapon Ascension",
+    "description": "Mist Veiled Mercury Elixir weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "mist-veiled-gold-elixir",
+    "sortOrder": 320
+  },
+  {
+    "id": "mist-veiled-gold-elixir",
+    "name": "Mist Veiled Gold Elixir",
+    "image": "/images/materials/weapon-ascension/mist-veiled-gold-elixir",
+    "rarity": 4,
+    "category": "Weapon Ascension",
+    "description": "Mist Veiled Gold Elixir weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "mist-veiled-primo-elixir",
+    "sortOrder": 321
+  },
+  {
+    "id": "mist-veiled-primo-elixir",
+    "name": "Mist Veiled Primo Elixir",
+    "image": "/images/materials/weapon-ascension/mist-veiled-primo-elixir",
+    "rarity": 5,
+    "category": "Weapon Ascension",
+    "description": "Mist Veiled Primo Elixir weapon ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 322
+  },
+  {
+    "id": "grain-of-aerosiderite",
+    "name": "Grain of Aerosiderite",
+    "image": "/images/materials/weapon-ascension/grain-of-aerosiderite",
+    "rarity": 2,
+    "category": "Weapon Ascension",
+    "description": "Grain of Aerosiderite weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "piece-of-aerosiderite",
+    "sortOrder": 323
+  },
+  {
+    "id": "piece-of-aerosiderite",
+    "name": "Piece of Aerosiderite",
+    "image": "/images/materials/weapon-ascension/piece-of-aerosiderite",
+    "rarity": 3,
+    "category": "Weapon Ascension",
+    "description": "Piece of Aerosiderite weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "bit-of-aerosiderite",
+    "sortOrder": 324
+  },
+  {
+    "id": "bit-of-aerosiderite",
+    "name": "Bit of Aerosiderite",
+    "image": "/images/materials/weapon-ascension/bit-of-aerosiderite",
+    "rarity": 4,
+    "category": "Weapon Ascension",
+    "description": "Bit of Aerosiderite weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "chunk-of-aerosiderite",
+    "sortOrder": 325
+  },
+  {
+    "id": "chunk-of-aerosiderite",
+    "name": "Chunk of Aerosiderite",
+    "image": "/images/materials/weapon-ascension/chunk-of-aerosiderite",
+    "rarity": 5,
+    "category": "Weapon Ascension",
+    "description": "Chunk of Aerosiderite weapon ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 326
+  },
+  {
+    "id": "coral-branch-of-a-distant-sea",
+    "name": "Coral Branch of a Distant Sea",
+    "image": "/images/materials/weapon-ascension/coral-branch-of-a-distant-sea",
+    "rarity": 2,
+    "category": "Weapon Ascension",
+    "description": "Coral Branch of a Distant Sea weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "jeweled-branch-of-a-distant-sea",
+    "sortOrder": 327
+  },
+  {
+    "id": "jeweled-branch-of-a-distant-sea",
+    "name": "Jeweled Branch of a Distant Sea",
+    "image": "/images/materials/weapon-ascension/jeweled-branch-of-a-distant-sea",
+    "rarity": 3,
+    "category": "Weapon Ascension",
+    "description": "Jeweled Branch of a Distant Sea weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "jade-branch-of-a-distant-sea",
+    "sortOrder": 328
+  },
+  {
+    "id": "jade-branch-of-a-distant-sea",
+    "name": "Jade Branch of a Distant Sea",
+    "image": "/images/materials/weapon-ascension/jade-branch-of-a-distant-sea",
+    "rarity": 4,
+    "category": "Weapon Ascension",
+    "description": "Jade Branch of a Distant Sea weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "golden-branch-of-a-distant-sea",
+    "sortOrder": 329
+  },
+  {
+    "id": "golden-branch-of-a-distant-sea",
+    "name": "Golden Branch of a Distant Sea",
+    "image": "/images/materials/weapon-ascension/golden-branch-of-a-distant-sea",
+    "rarity": 5,
+    "category": "Weapon Ascension",
+    "description": "Golden Branch of a Distant Sea weapon ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 330
+  },
+  {
+    "id": "narukami-s-wisdom",
+    "name": "Narukami's Wisdom",
+    "image": "/images/materials/weapon-ascension/narukami-s-wisdom",
+    "rarity": 2,
+    "category": "Weapon Ascension",
+    "description": "Narukami's Wisdom weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "narukami-s-joy",
+    "sortOrder": 331
+  },
+  {
+    "id": "narukami-s-joy",
+    "name": "Narukami's Joy",
+    "image": "/images/materials/weapon-ascension/narukami-s-joy",
+    "rarity": 3,
+    "category": "Weapon Ascension",
+    "description": "Narukami's Joy weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "narukami-s-affection",
+    "sortOrder": 332
+  },
+  {
+    "id": "narukami-s-affection",
+    "name": "Narukami's Affection",
+    "image": "/images/materials/weapon-ascension/narukami-s-affection",
+    "rarity": 4,
+    "category": "Weapon Ascension",
+    "description": "Narukami's Affection weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "narukami-s-valor",
+    "sortOrder": 333
+  },
+  {
+    "id": "narukami-s-valor",
+    "name": "Narukami's Valor",
+    "image": "/images/materials/weapon-ascension/narukami-s-valor",
+    "rarity": 5,
+    "category": "Weapon Ascension",
+    "description": "Narukami's Valor weapon ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 334
+  },
+  {
+    "id": "mask-of-the-wicked-lieutenant",
+    "name": "Mask of the Wicked Lieutenant",
+    "image": "/images/materials/weapon-ascension/mask-of-the-wicked-lieutenant",
+    "rarity": 2,
+    "category": "Weapon Ascension",
+    "description": "Mask of the Wicked Lieutenant weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "mask-of-the-tiger-s-bite",
+    "sortOrder": 335
+  },
+  {
+    "id": "mask-of-the-tiger-s-bite",
+    "name": "Mask of the Tiger's Bite",
+    "image": "/images/materials/weapon-ascension/mask-of-the-tiger-s-bite",
+    "rarity": 3,
+    "category": "Weapon Ascension",
+    "description": "Mask of the Tiger's Bite weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "mask-of-the-one-horned",
+    "sortOrder": 336
+  },
+  {
+    "id": "mask-of-the-one-horned",
+    "name": "Mask of the One-Horned",
+    "image": "/images/materials/weapon-ascension/mask-of-the-one-horned",
+    "rarity": 4,
+    "category": "Weapon Ascension",
+    "description": "Mask of the One-Horned weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "mask-of-the-kijin",
+    "sortOrder": 337
+  },
+  {
+    "id": "mask-of-the-kijin",
+    "name": "Mask of the Kijin",
+    "image": "/images/materials/weapon-ascension/mask-of-the-kijin",
+    "rarity": 5,
+    "category": "Weapon Ascension",
+    "description": "Mask of the Kijin weapon ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 338
+  },
+  {
+    "id": "copper-talisman-of-the-forest-dew",
+    "name": "Copper Talisman of the Forest Dew",
+    "image": "/images/materials/weapon-ascension/copper-talisman-of-the-forest-dew",
+    "rarity": 2,
+    "category": "Weapon Ascension",
+    "description": "Copper Talisman of the Forest Dew weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "iron-talisman-of-the-forest-dew",
+    "sortOrder": 339
+  },
+  {
+    "id": "iron-talisman-of-the-forest-dew",
+    "name": "Iron Talisman of the Forest Dew",
+    "image": "/images/materials/weapon-ascension/iron-talisman-of-the-forest-dew",
+    "rarity": 3,
+    "category": "Weapon Ascension",
+    "description": "Iron Talisman of the Forest Dew weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "silver-talisman-of-the-forest-dew",
+    "sortOrder": 340
+  },
+  {
+    "id": "silver-talisman-of-the-forest-dew",
+    "name": "Silver Talisman of the Forest Dew",
+    "image": "/images/materials/weapon-ascension/silver-talisman-of-the-forest-dew",
+    "rarity": 4,
+    "category": "Weapon Ascension",
+    "description": "Silver Talisman of the Forest Dew weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "golden-talisman-of-the-forest-dew",
+    "sortOrder": 341
+  },
+  {
+    "id": "golden-talisman-of-the-forest-dew",
+    "name": "Golden Talisman of the Forest Dew",
+    "image": "/images/materials/weapon-ascension/golden-talisman-of-the-forest-dew",
+    "rarity": 5,
+    "category": "Weapon Ascension",
+    "description": "Golden Talisman of the Forest Dew weapon ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 342
+  },
+  {
+    "id": "oasis-garden-s-reminiscence",
+    "name": "Oasis Garden's Reminiscence",
+    "image": "/images/materials/weapon-ascension/oasis-garden-s-reminiscence",
+    "rarity": 2,
+    "category": "Weapon Ascension",
+    "description": "Oasis Garden's Reminiscence weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "oasis-garden-s-kindness",
+    "sortOrder": 343
+  },
+  {
+    "id": "oasis-garden-s-kindness",
+    "name": "Oasis Garden's Kindness",
+    "image": "/images/materials/weapon-ascension/oasis-garden-s-kindness",
+    "rarity": 3,
+    "category": "Weapon Ascension",
+    "description": "Oasis Garden's Kindness weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "oasis-garden-s-mourning",
+    "sortOrder": 344
+  },
+  {
+    "id": "oasis-garden-s-mourning",
+    "name": "Oasis Garden's Mourning",
+    "image": "/images/materials/weapon-ascension/oasis-garden-s-mourning",
+    "rarity": 4,
+    "category": "Weapon Ascension",
+    "description": "Oasis Garden's Mourning weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "oasis-garden-s-truth",
+    "sortOrder": 345
+  },
+  {
+    "id": "oasis-garden-s-truth",
+    "name": "Oasis Garden's Truth",
+    "image": "/images/materials/weapon-ascension/oasis-garden-s-truth",
+    "rarity": 5,
+    "category": "Weapon Ascension",
+    "description": "Oasis Garden's Truth weapon ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 346
+  },
+  {
+    "id": "echo-of-scorching-might",
+    "name": "Echo of Scorching Might",
+    "image": "/images/materials/weapon-ascension/echo-of-scorching-might",
+    "rarity": 2,
+    "category": "Weapon Ascension",
+    "description": "Echo of Scorching Might weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "remnant-glow-of-scorching-might",
+    "sortOrder": 347
+  },
+  {
+    "id": "remnant-glow-of-scorching-might",
+    "name": "Remnant Glow of Scorching Might",
+    "image": "/images/materials/weapon-ascension/remnant-glow-of-scorching-might",
+    "rarity": 3,
+    "category": "Weapon Ascension",
+    "description": "Remnant Glow of Scorching Might weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "dream-of-scorching-might",
+    "sortOrder": 348
+  },
+  {
+    "id": "dream-of-scorching-might",
+    "name": "Dream of Scorching Might",
+    "image": "/images/materials/weapon-ascension/dream-of-scorching-might",
+    "rarity": 4,
+    "category": "Weapon Ascension",
+    "description": "Dream of Scorching Might weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "olden-days-of-scorching-might",
+    "sortOrder": 349
+  },
+  {
+    "id": "olden-days-of-scorching-might",
+    "name": "Olden Days of Scorching Might",
+    "image": "/images/materials/weapon-ascension/olden-days-of-scorching-might",
+    "rarity": 5,
+    "category": "Weapon Ascension",
+    "description": "Olden Days of Scorching Might weapon ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 350
+  },
+  {
+    "id": "fragment-of-an-ancient-chord",
+    "name": "Fragment of an Ancient Chord",
+    "image": "/images/materials/weapon-ascension/fragment-of-an-ancient-chord",
+    "rarity": 2,
+    "category": "Weapon Ascension",
+    "description": "Fragment of an Ancient Chord weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "chapter-of-an-ancient-chord",
+    "sortOrder": 351
+  },
+  {
+    "id": "chapter-of-an-ancient-chord",
+    "name": "Chapter of an Ancient Chord",
+    "image": "/images/materials/weapon-ascension/chapter-of-an-ancient-chord",
+    "rarity": 3,
+    "category": "Weapon Ascension",
+    "description": "Chapter of an Ancient Chord weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "movement-of-an-ancient-chord",
+    "sortOrder": 352
+  },
+  {
+    "id": "movement-of-an-ancient-chord",
+    "name": "Movement of an Ancient Chord",
+    "image": "/images/materials/weapon-ascension/movement-of-an-ancient-chord",
+    "rarity": 4,
+    "category": "Weapon Ascension",
+    "description": "Movement of an Ancient Chord weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "echo-of-an-ancient-chord",
+    "sortOrder": 353
+  },
+  {
+    "id": "echo-of-an-ancient-chord",
+    "name": "Echo of an Ancient Chord",
+    "image": "/images/materials/weapon-ascension/echo-of-an-ancient-chord",
+    "rarity": 5,
+    "category": "Weapon Ascension",
+    "description": "Echo of an Ancient Chord weapon ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 354
+  },
+  {
+    "id": "dross-of-pure-sacred-dewdrop",
+    "name": "Dross of Pure Sacred Dewdrop",
+    "image": "/images/materials/weapon-ascension/dross-of-pure-sacred-dewdrop",
+    "rarity": 2,
+    "category": "Weapon Ascension",
+    "description": "Dross of Pure Sacred Dewdrop weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "sublimation-of-pure-sacred-dewdrop",
+    "sortOrder": 355
+  },
+  {
+    "id": "sublimation-of-pure-sacred-dewdrop",
+    "name": "Sublimation of Pure Sacred Dewdrop",
+    "image": "/images/materials/weapon-ascension/sublimation-of-pure-sacred-dewdrop",
+    "rarity": 3,
+    "category": "Weapon Ascension",
+    "description": "Sublimation of Pure Sacred Dewdrop weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "spring-of-pure-sacred-dewdrop",
+    "sortOrder": 356
+  },
+  {
+    "id": "spring-of-pure-sacred-dewdrop",
+    "name": "Spring of Pure Sacred Dewdrop",
+    "image": "/images/materials/weapon-ascension/spring-of-pure-sacred-dewdrop",
+    "rarity": 4,
+    "category": "Weapon Ascension",
+    "description": "Spring of Pure Sacred Dewdrop weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "essence-of-pure-sacred-dewdrop",
+    "sortOrder": 357
+  },
+  {
+    "id": "essence-of-pure-sacred-dewdrop",
+    "name": "Essence of Pure Sacred Dewdrop",
+    "image": "/images/materials/weapon-ascension/essence-of-pure-sacred-dewdrop",
+    "rarity": 5,
+    "category": "Weapon Ascension",
+    "description": "Essence of Pure Sacred Dewdrop weapon ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 358
+  },
+  {
+    "id": "broken-goblet-of-the-pristine-sea",
+    "name": "Broken Goblet of the Pristine Sea",
+    "image": "/images/materials/weapon-ascension/broken-goblet-of-the-pristine-sea",
+    "rarity": 2,
+    "category": "Weapon Ascension",
+    "description": "Broken Goblet of the Pristine Sea weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "wine-goblet-of-the-pristine-sea",
+    "sortOrder": 359
+  },
+  {
+    "id": "wine-goblet-of-the-pristine-sea",
+    "name": "Wine Goblet of the Pristine Sea",
+    "image": "/images/materials/weapon-ascension/wine-goblet-of-the-pristine-sea",
+    "rarity": 3,
+    "category": "Weapon Ascension",
+    "description": "Wine Goblet of the Pristine Sea weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "silver-goblet-of-the-pristine-sea",
+    "sortOrder": 360
+  },
+  {
+    "id": "silver-goblet-of-the-pristine-sea",
+    "name": "Silver Goblet of the Pristine Sea",
+    "image": "/images/materials/weapon-ascension/silver-goblet-of-the-pristine-sea",
+    "rarity": 4,
+    "category": "Weapon Ascension",
+    "description": "Silver Goblet of the Pristine Sea weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "golden-goblet-of-the-pristine-sea",
+    "sortOrder": 361
+  },
+  {
+    "id": "golden-goblet-of-the-pristine-sea",
+    "name": "Golden Goblet of the Pristine Sea",
+    "image": "/images/materials/weapon-ascension/golden-goblet-of-the-pristine-sea",
+    "rarity": 5,
+    "category": "Weapon Ascension",
+    "description": "Golden Goblet of the Pristine Sea weapon ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 362
+  },
+  {
+    "id": "artful-device-fragment",
+    "name": "Artful Device Fragment",
+    "image": "/images/materials/weapon-ascension/artful-device-fragment",
+    "rarity": 2,
+    "category": "Weapon Ascension",
+    "description": "Artful Device Fragment weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "artful-device-replica",
+    "sortOrder": 363
+  },
+  {
+    "id": "artful-device-replica",
+    "name": "Artful Device Replica",
+    "image": "/images/materials/weapon-ascension/artful-device-replica",
+    "rarity": 3,
+    "category": "Weapon Ascension",
+    "description": "Artful Device Replica weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "artful-device-inheritance",
+    "sortOrder": 364
+  },
+  {
+    "id": "artful-device-inheritance",
+    "name": "Artful Device Inheritance",
+    "image": "/images/materials/weapon-ascension/artful-device-inheritance",
+    "rarity": 4,
+    "category": "Weapon Ascension",
+    "description": "Artful Device Inheritance weapon ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "artful-device-wish",
+    "sortOrder": 365
+  },
+  {
+    "id": "artful-device-wish",
+    "name": "Artful Device Wish",
+    "image": "/images/materials/weapon-ascension/artful-device-wish",
+    "rarity": 5,
+    "category": "Weapon Ascension",
+    "description": "Artful Device Wish weapon ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 366
+  },
+  {
+    "id": "calla-lily",
+    "name": "Calla Lily",
+    "image": "/images/materials/local-specialties/calla-lily",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Calla Lily local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "diona",
+        "kaeya"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 367
+  },
+  {
+    "id": "cecilia",
+    "name": "Cecilia",
+    "image": "/images/materials/local-specialties/cecilia",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Cecilia local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "albedo",
+        "venti"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 368
+  },
+  {
+    "id": "dandelion-seed",
+    "name": "Dandelion Seed",
+    "image": "/images/materials/local-specialties/dandelion-seed",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Dandelion Seed local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "jean",
+        "eula"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 369
+  },
+  {
+    "id": "philanemo-mushroom",
+    "name": "Philanemo Mushroom",
+    "image": "/images/materials/local-specialties/philanemo-mushroom",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Philanemo Mushroom local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "barbara",
+        "klee",
+        "mona"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 370
+  },
+  {
+    "id": "small-lamp-grass",
+    "name": "Small Lamp Grass",
+    "image": "/images/materials/local-specialties/small-lamp-grass",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Small Lamp Grass local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "amber",
+        "diluc",
+        "fischl"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 371
+  },
+  {
+    "id": "valberry",
+    "name": "Valberry",
+    "image": "/images/materials/local-specialties/valberry",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Valberry local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "lisa",
+        "noelle",
+        "rosaria"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 372
   },
   {
     "id": "windwheel-aster",
@@ -5433,40 +5091,8 @@ export const seedMaterials: SeedMaterial[] = [
     },
     "combinable": false,
     "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "wine-goblet-of-the-pristine-sea",
-    "name": "Wine Goblet of the Pristine Sea",
-    "image": "/images/materials/weapon-ascension/wine-goblet-of-the-pristine-sea",
-    "rarity": 3,
-    "category": "Weapon Ascension",
-    "description": "Wine Goblet of the Pristine Sea weapon ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "silver-goblet-of-the-pristine-sea"
-  },
-  {
-    "id": "winter-icelea",
-    "name": "Winter Icelea",
-    "image": "/images/materials/local-specialties/winter-icelea",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Winter Icelea local specialty.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
-  },
-  {
-    "id": "withering-purpurbloom",
-    "name": "Withering Purpurbloom",
-    "image": "/images/materials/local-specialties/withering-purpurbloom",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Withering Purpurbloom local specialty.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null
+    "parentMaterialId": null,
+    "sortOrder": 373
   },
   {
     "id": "wolfhook",
@@ -5483,35 +5109,920 @@ export const seedMaterials: SeedMaterial[] = [
     },
     "combinable": false,
     "combineRatio": null,
-    "parentMaterialId": null
+    "parentMaterialId": null,
+    "sortOrder": 374
   },
   {
-    "id": "worldspan-fern",
-    "name": "Worldspan Fern",
-    "image": "/images/materials/talent-boss/worldspan-fern",
-    "rarity": 5,
-    "category": "Boss Material",
-    "description": "Worldspan Fern weekly boss talent material.",
+    "id": "cor-lapis",
+    "name": "Cor Lapis",
+    "image": "/images/materials/local-specialties/cor-lapis",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Cor Lapis local specialty.",
     "details": {
       "usedByCharacters": [
-        "baizhu",
-        "freminet",
-        "traveler-hydro"
+        "chongyun",
+        "keqing",
+        "zhongli"
       ]
     },
     "combinable": false,
     "combineRatio": null,
-    "parentMaterialId": null
+    "parentMaterialId": null,
+    "sortOrder": 375
   },
   {
-    "id": "xenochromatic-crystal",
-    "name": "Xenochromatic Crystal",
-    "image": "/images/materials/common-ascension/xenochromatic-crystal",
-    "rarity": 3,
-    "category": "Enemy Drop",
-    "description": "Xenochromatic Crystal ascension material.",
+    "id": "glaze-lily",
+    "name": "Glaze Lily",
+    "image": "/images/materials/local-specialties/glaze-lily",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Glaze Lily local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "ningguang",
+        "yun-jin"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
-    "parentMaterialId": null
+    "parentMaterialId": null,
+    "sortOrder": 376
+  },
+  {
+    "id": "jueyun-chili",
+    "name": "Jueyun Chili",
+    "image": "/images/materials/local-specialties/jueyun-chili",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Jueyun Chili local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "xiangling",
+        "yaoyao"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 377
+  },
+  {
+    "id": "noctilucous-jade",
+    "name": "Noctilucous Jade",
+    "image": "/images/materials/local-specialties/noctilucous-jade",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Noctilucous Jade local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "beidou",
+        "yanfei"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 378
+  },
+  {
+    "id": "qingxin",
+    "name": "Qingxin",
+    "image": "/images/materials/local-specialties/qingxin",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Qingxin local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "ganyu",
+        "xiao",
+        "shenhe"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 379
+  },
+  {
+    "id": "silk-flower",
+    "name": "Silk Flower",
+    "image": "/images/materials/local-specialties/silk-flower",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Silk Flower local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "xingqiu",
+        "hu-tao"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 380
+  },
+  {
+    "id": "starconch",
+    "name": "Starconch",
+    "image": "/images/materials/local-specialties/starconch",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Starconch local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "tartaglia",
+        "yelan",
+        "gaming"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 381
+  },
+  {
+    "id": "violetgrass",
+    "name": "Violetgrass",
+    "image": "/images/materials/local-specialties/violetgrass",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Violetgrass local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "qiqi",
+        "xinyan",
+        "baizhu"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 382
+  },
+  {
+    "id": "clearwater-jade",
+    "name": "Clearwater Jade",
+    "image": "/images/materials/local-specialties/clearwater-jade",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Clearwater Jade local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "xianyun"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 383
+  },
+  {
+    "id": "sango-pearl",
+    "name": "Sango Pearl",
+    "image": "/images/materials/local-specialties/sango-pearl",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Sango Pearl local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "gorou",
+        "kokomi"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 384
+  },
+  {
+    "id": "crystal-marrow",
+    "name": "Crystal Marrow",
+    "image": "/images/materials/local-specialties/crystal-marrow",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Crystal Marrow local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "aloy",
+        "sayu"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 385
+  },
+  {
+    "id": "dendrobium",
+    "name": "Dendrobium",
+    "image": "/images/materials/local-specialties/dendrobium",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Dendrobium local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "sara"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 386
+  },
+  {
+    "id": "fluorescent-fungus",
+    "name": "Fluorescent Fungus",
+    "image": "/images/materials/local-specialties/fluorescent-fungus",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Fluorescent Fungus local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "thoma"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 387
+  },
+  {
+    "id": "sakura-bloom",
+    "name": "Sakura Bloom",
+    "image": "/images/materials/local-specialties/sakura-bloom",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Sakura Bloom local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "ayaka",
+        "ayato"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 388
+  },
+  {
+    "id": "amakumo-fruit",
+    "name": "Amakumo Fruit",
+    "image": "/images/materials/local-specialties/amakumo-fruit",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Amakumo Fruit local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "kirara",
+        "raiden"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 389
+  },
+  {
+    "id": "sea-ganoderma",
+    "name": "Sea Ganoderma",
+    "image": "/images/materials/local-specialties/sea-ganoderma",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Sea Ganoderma local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "kazuha",
+        "yae-miko"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 390
+  },
+  {
+    "id": "onikabuto",
+    "name": "Onikabuto",
+    "image": "/images/materials/local-specialties/onikabuto",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Onikabuto local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "arataki-itto",
+        "shikanoin-heizou"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 391
+  },
+  {
+    "id": "naku-weed",
+    "name": "Naku Weed",
+    "image": "/images/materials/local-specialties/naku-weed",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Naku Weed local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "yoimiya",
+        "kuki-shinobu"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 392
+  },
+  {
+    "id": "henna-berry",
+    "name": "Henna Berry",
+    "image": "/images/materials/local-specialties/henna-berry",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Henna Berry local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "faruzan",
+        "candace"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 393
+  },
+  {
+    "id": "sand-grease-pupa",
+    "name": "Sand Grease Pupa",
+    "image": "/images/materials/local-specialties/sand-grease-pupa",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Sand Grease Pupa local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "alhaitham",
+        "dehya"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 394
+  },
+  {
+    "id": "kalpalata-lotus",
+    "name": "Kalpalata Lotus",
+    "image": "/images/materials/local-specialties/kalpalata-lotus",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Kalpalata Lotus local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "dori",
+        "nahida"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 395
+  },
+  {
+    "id": "nilotpala-lotus",
+    "name": "Nilotpala Lotus",
+    "image": "/images/materials/local-specialties/nilotpala-lotus",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Nilotpala Lotus local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "tighnari",
+        "layla"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 396
+  },
+  {
+    "id": "rukkhashava-mushrooms",
+    "name": "Rukkhashava Mushrooms",
+    "image": "/images/materials/local-specialties/rukkhashava-mushrooms",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Rukkhashava Mushrooms local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "wanderer",
+        "collei"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 397
+  },
+  {
+    "id": "scarab",
+    "name": "Scarab",
+    "image": "/images/materials/local-specialties/scarab",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Scarab local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "cyno"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 398
+  },
+  {
+    "id": "mourning-flower",
+    "name": "Mourning Flower",
+    "image": "/images/materials/local-specialties/mourning-flower",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Mourning Flower local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "kaveh"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 399
+  },
+  {
+    "id": "padisarah",
+    "name": "Padisarah",
+    "image": "/images/materials/local-specialties/padisarah",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Padisarah local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "nilou"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 400
+  },
+  {
+    "id": "trishiraite",
+    "name": "Trishiraite",
+    "image": "/images/materials/local-specialties/trishiraite",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Trishiraite local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "sethos"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 401
+  },
+  {
+    "id": "subdetection-unit",
+    "name": "Subdetection Unit",
+    "image": "/images/materials/local-specialties/subdetection-unit",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Subdetection Unit local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "wriothesley"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 402
+  },
+  {
+    "id": "lumitoile",
+    "name": "Lumitoile",
+    "image": "/images/materials/local-specialties/lumitoile",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Lumitoile local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "neuvillette",
+        "clorinde"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 403
+  },
+  {
+    "id": "romaritime-flower",
+    "name": "Romaritime Flower",
+    "image": "/images/materials/local-specialties/romaritime-flower",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Romaritime Flower local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "freminet",
+        "sigewinne"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 404
+  },
+  {
+    "id": "spring-of-the-first-dewdrop",
+    "name": "Spring of the First Dewdrop",
+    "image": "/images/materials/local-specialties/spring-of-the-first-dewdrop",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Spring of the First Dewdrop local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "navia"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 405
+  },
+  {
+    "id": "lumidouce-bell",
+    "name": "Lumidouce Bell",
+    "image": "/images/materials/local-specialties/lumidouce-bell",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Lumidouce Bell local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "lynette",
+        "chevreuse"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 406
+  },
+  {
+    "id": "beryl-conch",
+    "name": "Beryl Conch",
+    "image": "/images/materials/local-specialties/beryl-conch",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Beryl Conch local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "charlotte"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 407
+  },
+  {
+    "id": "lakelight-lily",
+    "name": "Lakelight Lily",
+    "image": "/images/materials/local-specialties/lakelight-lily",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Lakelight Lily local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "furina"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 408
+  },
+  {
+    "id": "rainbow-rose",
+    "name": "Rainbow Rose",
+    "image": "/images/materials/local-specialties/rainbow-rose",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Rainbow Rose local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "lyney"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 409
+  },
+  {
+    "id": "quenepa-berry",
+    "name": "Quenepa Berry",
+    "image": "/images/materials/local-specialties/quenepa-berry",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Quenepa Berry local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "kachina"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 410
+  },
+  {
+    "id": "sprayfeather-gill",
+    "name": "Sprayfeather Gill",
+    "image": "/images/materials/local-specialties/sprayfeather-gill",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Sprayfeather Gill local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "mualani"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 411
+  },
+  {
+    "id": "saurian-claw-succulent",
+    "name": "Saurian Claw Succulent",
+    "image": "/images/materials/local-specialties/saurian-claw-succulent",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Saurian Claw Succulent local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "kinich"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 412
+  },
+  {
+    "id": "portable-bearing",
+    "name": "Portable Bearing",
+    "image": "/images/materials/local-specialties/portable-bearing",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Portable Bearing local specialty.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 413
+  },
+  {
+    "id": "precision-kuuvahki-stamping-die",
+    "name": "Precision Kuuvahki Stamping Die",
+    "image": "/images/materials/boss-material/precision-kuuvahki-stamping-die",
+    "rarity": 4,
+    "category": "Boss Material",
+    "description": "Precision Kuuvahki Stamping Die character ascension boss material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 414
+  },
+  {
+    "id": "withering-purpurbloom",
+    "name": "Withering Purpurbloom",
+    "image": "/images/materials/local-specialties/withering-purpurbloom",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Withering Purpurbloom local specialty.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 415
+  },
+  {
+    "id": "ensnaring-gaze",
+    "name": "Ensnaring Gaze",
+    "image": "/images/materials/boss-material/ensnaring-gaze",
+    "rarity": 4,
+    "category": "Boss Material",
+    "description": "Ensnaring Gaze character ascension boss material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 416
+  },
+  {
+    "id": "talisman-of-the-enigmatic-land",
+    "name": "Talisman of the Enigmatic Land",
+    "image": "/images/materials/boss-material/talisman-of-the-enigmatic-land",
+    "rarity": 4,
+    "category": "Boss Material",
+    "description": "Talisman of the Enigmatic Land character ascension boss material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 417
+  },
+  {
+    "id": "winter-icelea",
+    "name": "Winter Icelea",
+    "image": "/images/materials/local-specialties/winter-icelea",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Winter Icelea local specialty.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 418
+  },
+  {
+    "id": "radiant-antler",
+    "name": "Radiant Antler",
+    "image": "/images/materials/boss-material/radiant-antler",
+    "rarity": 4,
+    "category": "Boss Material",
+    "description": "Radiant Antler character ascension boss material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 419
+  },
+  {
+    "id": "secret-source-airflow-accumulator",
+    "name": "Secret Source Airflow Accumulator",
+    "image": "/images/materials/boss-material/secret-source-airflow-accumulator",
+    "rarity": 4,
+    "category": "Boss Material",
+    "description": "Secret Source Airflow Accumulator character ascension boss material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 420
+  },
+  {
+    "id": "frostlamp-flower",
+    "name": "Frostlamp Flower",
+    "image": "/images/materials/local-specialties/frostlamp-flower",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Frostlamp Flower local specialty.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 421
+  },
+  {
+    "id": "cyclic-military-kuuvahki-core",
+    "name": "Cyclic Military Kuuvahki Core",
+    "image": "/images/materials/boss-material/cyclic-military-kuuvahki-core",
+    "rarity": 4,
+    "category": "Boss Material",
+    "description": "Cyclic Military Kuuvahki Core character ascension boss material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 422
+  },
+  {
+    "id": "dracolite",
+    "name": "Dracolite",
+    "image": "/images/materials/local-specialties/dracolite",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Dracolite local specialty.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 423
+  },
+  {
+    "id": "sparkless-statue-core",
+    "name": "Sparkless Statue Core",
+    "image": "/images/materials/boss-material/sparkless-statue-core",
+    "rarity": 4,
+    "category": "Boss Material",
+    "description": "Sparkless Statue Core character ascension boss material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 424
+  },
+  {
+    "id": "pine-amber",
+    "name": "Pine Amber",
+    "image": "/images/materials/local-specialties/pine-amber",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Pine Amber local specialty.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 425
+  },
+  {
+    "id": "glowing-hornshroom",
+    "name": "Glowing Hornshroom",
+    "image": "/images/materials/local-specialties/glowing-hornshroom",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Glowing Hornshroom local specialty.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 426
+  },
+  {
+    "id": "lightbearing-scale-feather",
+    "name": "Lightbearing Scale-Feather",
+    "image": "/images/materials/boss-material/lightbearing-scale-feather",
+    "rarity": 4,
+    "category": "Boss Material",
+    "description": "Lightbearing Scale-Feather character ascension boss material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 427
+  },
+  {
+    "id": "gold-inscribed-secret-source-core",
+    "name": "Gold-Inscribed Secret Source Core",
+    "image": "/images/materials/boss-material/gold-inscribed-secret-source-core",
+    "rarity": 4,
+    "category": "Boss Material",
+    "description": "Gold-Inscribed Secret Source Core character ascension boss material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 428
+  },
+  {
+    "id": "moonfall-silver",
+    "name": "Moonfall Silver",
+    "image": "/images/materials/local-specialties/moonfall-silver",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Moonfall Silver local specialty.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 429
+  },
+  {
+    "id": "remnant-of-the-dreadwing",
+    "name": "Remnant of the Dreadwing",
+    "image": "/images/materials/boss-material/remnant-of-the-dreadwing",
+    "rarity": 4,
+    "category": "Boss Material",
+    "description": "Remnant of the Dreadwing character ascension boss material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 430
+  },
+  {
+    "id": "skysplit-gembloom",
+    "name": "Skysplit Gembloom",
+    "image": "/images/materials/local-specialties/skysplit-gembloom",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Skysplit Gembloom local specialty.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 431
+  },
+  {
+    "id": "brilliant-chrysanthemum",
+    "name": "Brilliant Chrysanthemum",
+    "image": "/images/materials/local-specialties/brilliant-chrysanthemum",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Brilliant Chrysanthemum local specialty.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 432
   }
 ];

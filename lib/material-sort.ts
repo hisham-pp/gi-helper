@@ -3,23 +3,23 @@ import type { SeedMaterial } from "@/prisma/seed-data";
 
 type SortableMaterial = Pick<
   SeedMaterial | MaterialNode,
-  "category" | "name" | "rarity"
+  "category" | "name" | "rarity" | "sortOrder"
 >;
 
 const categoryOrder = [
-  "Refinement Material",
-  "Refinement Materials",
   "Character EXP Material",
   "Character EXP Materials",
   "Enemy Drop",
   "Elite Drop",
-  "Local Specialty",
-  "Cooking Ingredient",
   "Boss Material",
+  "Talent Boss",
   "Gem",
   "Talent Book",
-  "Talent Boss",
   "Weapon Ascension",
+  "Refinement Material",
+  "Refinement Materials",
+  "Local Specialty",
+  "Cooking Ingredient",
 ];
 
 const categoryRank = new Map(
@@ -52,6 +52,14 @@ export function compareMaterials(
 
   if (categoryDifference !== 0) {
     return categoryDifference;
+  }
+
+  if (
+    typeof left.sortOrder === "number" &&
+    typeof right.sortOrder === "number" &&
+    left.sortOrder !== right.sortOrder
+  ) {
+    return left.sortOrder - right.sortOrder;
   }
 
   if (left.rarity !== right.rarity) {

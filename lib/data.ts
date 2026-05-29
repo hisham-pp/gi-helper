@@ -44,6 +44,7 @@ export async function getDashboardData(
     image: material.image,
     rarity: material.rarity,
     category: material.category,
+    sortOrder: material.sortOrder,
     description: material.description,
     combinable: material.combinable,
     combineRatio: material.combineRatio,
