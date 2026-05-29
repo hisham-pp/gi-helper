@@ -252,27 +252,28 @@ export async function completeGoalAction(
       };
     }
 
-    // Transaction to update inventory and mark goal as completed
+    // Consume materials without allowing inventory to become negative.
     await prisma.$transaction(async (tx) => {
       for (const item of goal.goalMaterials) {
-        await tx.inventory.upsert({
+        const existingInventory = await tx.inventory.findUnique({
           where: {
             userId_materialId: {
               userId: user.id,
               materialId: item.materialId,
             },
           },
-          update: {
-            quantity: {
-              decrement: item.required,
-            },
-          },
-          create: {
-            userId: user.id,
-            materialId: item.materialId,
-            quantity: -item.required,
-          },
         });
+
+        if (existingInventory) {
+          await tx.inventory.update({
+            where: {
+              id: existingInventory.id,
+            },
+            data: {
+              quantity: Math.max(existingInventory.quantity - item.required, 0),
+            },
+          });
+        }
       }
 
       await tx.goal.update({

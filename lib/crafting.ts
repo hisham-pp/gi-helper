@@ -209,7 +209,7 @@ export function evaluateGoal(
   externalStock?: InventoryMap,
 ): GoalView {
   const graph = buildGraph(materials);
-  const stock = externalStock ?? copyStock(materials);
+  const stock = externalStock ? { ...externalStock } : copyStock(materials);
   const byId = graph.byId;
 
   const orderedRequirements = [...goal.materials].sort((left, right) => {
