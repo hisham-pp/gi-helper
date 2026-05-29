@@ -3,663 +3,6 @@ import type { SeedMaterial } from "../types";
 
 export const seedMaterials: SeedMaterial[] = [
   {
-    "id": "hero-s-wit",
-    "name": "Hero's Wit",
-    "image": "/images/materials/character-experience/hero-s-wit",
-    "rarity": 4,
-    "category": "Character EXP Material",
-    "description": "Hero's Wit character EXP material.",
-    "details": {
-      "experience": 20000
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 0
-  },
-  {
-    "id": "adventurer-s-experience",
-    "name": "Adventurer's Experience",
-    "image": "/images/materials/character-experience/adventurer-s-experience",
-    "rarity": 3,
-    "category": "Character EXP Material",
-    "description": "Adventurer's Experience character EXP material.",
-    "details": {
-      "experience": 5000
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 1
-  },
-  {
-    "id": "wanderer-s-advice",
-    "name": "Wanderer's Advice",
-    "image": "/images/materials/character-experience/wanderer-s-advice",
-    "rarity": 2,
-    "category": "Character EXP Material",
-    "description": "Wanderer's Advice character EXP material.",
-    "details": {
-      "experience": 1000
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 2
-  },
-  {
-    "id": "slime-condensate",
-    "name": "Slime Condensate",
-    "image": "/images/materials/common-ascension/slime-condensate",
-    "rarity": 1,
-    "category": "Enemy Drop",
-    "description": "Slime Condensate ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "slime-secretions",
-    "sortOrder": 3
-  },
-  {
-    "id": "slime-secretions",
-    "name": "Slime Secretions",
-    "image": "/images/materials/common-ascension/slime-secretions",
-    "rarity": 2,
-    "category": "Enemy Drop",
-    "description": "Slime Secretions ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "slime-concentrate",
-    "sortOrder": 4
-  },
-  {
-    "id": "slime-concentrate",
-    "name": "Slime Concentrate",
-    "image": "/images/materials/common-ascension/slime-concentrate",
-    "rarity": 3,
-    "category": "Enemy Drop",
-    "description": "Slime Concentrate ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 5
-  },
-  {
-    "id": "damaged-mask",
-    "name": "Damaged Mask",
-    "image": "/images/materials/common-ascension/damaged-mask",
-    "rarity": 1,
-    "category": "Enemy Drop",
-    "description": "Damaged Mask ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "stained-mask",
-    "sortOrder": 6
-  },
-  {
-    "id": "stained-mask",
-    "name": "Stained Mask",
-    "image": "/images/materials/common-ascension/stained-mask",
-    "rarity": 2,
-    "category": "Enemy Drop",
-    "description": "Stained Mask ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "ominous-mask",
-    "sortOrder": 7
-  },
-  {
-    "id": "ominous-mask",
-    "name": "Ominous Mask",
-    "image": "/images/materials/common-ascension/ominous-mask",
-    "rarity": 3,
-    "category": "Enemy Drop",
-    "description": "Ominous Mask ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 8
-  },
-  {
-    "id": "divining-scroll",
-    "name": "Divining Scroll",
-    "image": "/images/materials/common-ascension/divining-scroll",
-    "rarity": 1,
-    "category": "Enemy Drop",
-    "description": "Divining Scroll ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "sealed-scroll",
-    "sortOrder": 9
-  },
-  {
-    "id": "sealed-scroll",
-    "name": "Sealed Scroll",
-    "image": "/images/materials/common-ascension/sealed-scroll",
-    "rarity": 2,
-    "category": "Enemy Drop",
-    "description": "Sealed Scroll ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "forbidden-curse-scroll",
-    "sortOrder": 10
-  },
-  {
-    "id": "forbidden-curse-scroll",
-    "name": "Forbidden Curse Scroll",
-    "image": "/images/materials/common-ascension/forbidden-curse-scroll",
-    "rarity": 3,
-    "category": "Enemy Drop",
-    "description": "Forbidden Curse Scroll ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 11
-  },
-  {
-    "id": "firm-arrowhead",
-    "name": "Firm Arrowhead",
-    "image": "/images/materials/common-ascension/firm-arrowhead",
-    "rarity": 1,
-    "category": "Enemy Drop",
-    "description": "Firm Arrowhead ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "sharp-arrowhead",
-    "sortOrder": 12
-  },
-  {
-    "id": "sharp-arrowhead",
-    "name": "Sharp Arrowhead",
-    "image": "/images/materials/common-ascension/sharp-arrowhead",
-    "rarity": 2,
-    "category": "Enemy Drop",
-    "description": "Sharp Arrowhead ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "weathered-arrowhead",
-    "sortOrder": 13
-  },
-  {
-    "id": "weathered-arrowhead",
-    "name": "Weathered Arrowhead",
-    "image": "/images/materials/common-ascension/weathered-arrowhead",
-    "rarity": 3,
-    "category": "Enemy Drop",
-    "description": "Weathered Arrowhead ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 14
-  },
-  {
-    "id": "recruit-s-insignia",
-    "name": "Recruit's Insignia",
-    "image": "/images/materials/common-ascension/recruit-s-insignia",
-    "rarity": 1,
-    "category": "Enemy Drop",
-    "description": "Recruit's Insignia ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "sergeant-s-insignia",
-    "sortOrder": 15
-  },
-  {
-    "id": "sergeant-s-insignia",
-    "name": "Sergeant's Insignia",
-    "image": "/images/materials/common-ascension/sergeant-s-insignia",
-    "rarity": 2,
-    "category": "Enemy Drop",
-    "description": "Sergeant's Insignia ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "lieutenant-s-insignia",
-    "sortOrder": 16
-  },
-  {
-    "id": "lieutenant-s-insignia",
-    "name": "Lieutenant's Insignia",
-    "image": "/images/materials/common-ascension/lieutenant-s-insignia",
-    "rarity": 3,
-    "category": "Enemy Drop",
-    "description": "Lieutenant's Insignia ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 17
-  },
-  {
-    "id": "treasure-hoarder-insignia",
-    "name": "Treasure Hoarder Insignia",
-    "image": "/images/materials/common-ascension/treasure-hoarder-insignia",
-    "rarity": 1,
-    "category": "Enemy Drop",
-    "description": "Treasure Hoarder Insignia ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "silver-raven-insignia",
-    "sortOrder": 18
-  },
-  {
-    "id": "silver-raven-insignia",
-    "name": "Silver Raven Insignia",
-    "image": "/images/materials/common-ascension/silver-raven-insignia",
-    "rarity": 2,
-    "category": "Enemy Drop",
-    "description": "Silver Raven Insignia ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "golden-raven-insignia",
-    "sortOrder": 19
-  },
-  {
-    "id": "golden-raven-insignia",
-    "name": "Golden Raven Insignia",
-    "image": "/images/materials/common-ascension/golden-raven-insignia",
-    "rarity": 3,
-    "category": "Enemy Drop",
-    "description": "Golden Raven Insignia ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 20
-  },
-  {
-    "id": "whopperflower-nectar",
-    "name": "Whopperflower Nectar",
-    "image": "/images/materials/common-ascension/whopperflower-nectar",
-    "rarity": 1,
-    "category": "Enemy Drop",
-    "description": "Whopperflower Nectar ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "shimmering-nectar",
-    "sortOrder": 21
-  },
-  {
-    "id": "shimmering-nectar",
-    "name": "Shimmering Nectar",
-    "image": "/images/materials/common-ascension/shimmering-nectar",
-    "rarity": 2,
-    "category": "Enemy Drop",
-    "description": "Shimmering Nectar ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "energy-nectar",
-    "sortOrder": 22
-  },
-  {
-    "id": "energy-nectar",
-    "name": "Energy Nectar",
-    "image": "/images/materials/common-ascension/energy-nectar",
-    "rarity": 3,
-    "category": "Enemy Drop",
-    "description": "Energy Nectar ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 23
-  },
-  {
-    "id": "old-handguard",
-    "name": "Old Handguard",
-    "image": "/images/materials/common-ascension/old-handguard",
-    "rarity": 1,
-    "category": "Enemy Drop",
-    "description": "Old Handguard ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "kageuchi-handguard",
-    "sortOrder": 24
-  },
-  {
-    "id": "kageuchi-handguard",
-    "name": "Kageuchi Handguard",
-    "image": "/images/materials/common-ascension/kageuchi-handguard",
-    "rarity": 2,
-    "category": "Enemy Drop",
-    "description": "Kageuchi Handguard ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "famed-handguard",
-    "sortOrder": 25
-  },
-  {
-    "id": "famed-handguard",
-    "name": "Famed Handguard",
-    "image": "/images/materials/common-ascension/famed-handguard",
-    "rarity": 3,
-    "category": "Enemy Drop",
-    "description": "Famed Handguard ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 26
-  },
-  {
-    "id": "spectral-husk",
-    "name": "Spectral Husk",
-    "image": "/images/materials/common-ascension/spectral-husk",
-    "rarity": 1,
-    "category": "Enemy Drop",
-    "description": "Spectral Husk ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "spectral-heart",
-    "sortOrder": 27
-  },
-  {
-    "id": "spectral-heart",
-    "name": "Spectral Heart",
-    "image": "/images/materials/common-ascension/spectral-heart",
-    "rarity": 2,
-    "category": "Enemy Drop",
-    "description": "Spectral Heart ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "spectral-nucleus",
-    "sortOrder": 28
-  },
-  {
-    "id": "spectral-nucleus",
-    "name": "Spectral Nucleus",
-    "image": "/images/materials/common-ascension/spectral-nucleus",
-    "rarity": 3,
-    "category": "Enemy Drop",
-    "description": "Spectral Nucleus ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 29
-  },
-  {
-    "id": "fungal-spores",
-    "name": "Fungal Spores",
-    "image": "/images/materials/common-ascension/fungal-spores",
-    "rarity": 1,
-    "category": "Enemy Drop",
-    "description": "Fungal Spores ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "luminescent-pollen",
-    "sortOrder": 30
-  },
-  {
-    "id": "luminescent-pollen",
-    "name": "Luminescent Pollen",
-    "image": "/images/materials/common-ascension/luminescent-pollen",
-    "rarity": 2,
-    "category": "Enemy Drop",
-    "description": "Luminescent Pollen ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "crystalline-cyst-dust",
-    "sortOrder": 31
-  },
-  {
-    "id": "crystalline-cyst-dust",
-    "name": "Crystalline Cyst Dust",
-    "image": "/images/materials/common-ascension/crystalline-cyst-dust",
-    "rarity": 3,
-    "category": "Enemy Drop",
-    "description": "Crystalline Cyst Dust ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 32
-  },
-  {
-    "id": "faded-red-satin",
-    "name": "Faded Red Satin",
-    "image": "/images/materials/common-ascension/faded-red-satin",
-    "rarity": 1,
-    "category": "Enemy Drop",
-    "description": "Faded Red Satin ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "trimmed-red-silk",
-    "sortOrder": 33
-  },
-  {
-    "id": "trimmed-red-silk",
-    "name": "Trimmed Red Silk",
-    "image": "/images/materials/common-ascension/trimmed-red-silk",
-    "rarity": 2,
-    "category": "Enemy Drop",
-    "description": "Trimmed Red Silk ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "rich-red-brocade",
-    "sortOrder": 34
-  },
-  {
-    "id": "rich-red-brocade",
-    "name": "Rich Red Brocade",
-    "image": "/images/materials/common-ascension/rich-red-brocade",
-    "rarity": 3,
-    "category": "Enemy Drop",
-    "description": "Rich Red Brocade ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 35
-  },
-  {
-    "id": "transoceanic-pearl",
-    "name": "Transoceanic Pearl",
-    "image": "/images/materials/common-ascension/transoceanic-pearl",
-    "rarity": 1,
-    "category": "Enemy Drop",
-    "description": "Transoceanic Pearl ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "transoceanic-chunk",
-    "sortOrder": 36
-  },
-  {
-    "id": "transoceanic-chunk",
-    "name": "Transoceanic Chunk",
-    "image": "/images/materials/common-ascension/transoceanic-chunk",
-    "rarity": 2,
-    "category": "Enemy Drop",
-    "description": "Transoceanic Chunk ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "xenochromatic-crystal",
-    "sortOrder": 37
-  },
-  {
-    "id": "xenochromatic-crystal",
-    "name": "Xenochromatic Crystal",
-    "image": "/images/materials/common-ascension/xenochromatic-crystal",
-    "rarity": 3,
-    "category": "Enemy Drop",
-    "description": "Xenochromatic Crystal ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 38
-  },
-  {
-    "id": "meshing-gear",
-    "name": "Meshing Gear",
-    "image": "/images/materials/common-ascension/meshing-gear",
-    "rarity": 1,
-    "category": "Enemy Drop",
-    "description": "Meshing Gear ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "mechanical-spur-gear",
-    "sortOrder": 39
-  },
-  {
-    "id": "mechanical-spur-gear",
-    "name": "Mechanical Spur Gear",
-    "image": "/images/materials/common-ascension/mechanical-spur-gear",
-    "rarity": 2,
-    "category": "Enemy Drop",
-    "description": "Mechanical Spur Gear ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "artificed-dynamic-gear",
-    "sortOrder": 40
-  },
-  {
-    "id": "artificed-dynamic-gear",
-    "name": "Artificed Dynamic Gear",
-    "image": "/images/materials/common-ascension/artificed-dynamic-gear",
-    "rarity": 3,
-    "category": "Enemy Drop",
-    "description": "Artificed Dynamic Gear ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 41
-  },
-  {
-    "id": "juvenile-fang",
-    "name": "Juvenile Fang",
-    "image": "/images/materials/common-ascension/juvenile-fang",
-    "rarity": 2,
-    "category": "Elite Drop",
-    "description": "Juvenile Fang ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "seasoned-fang",
-    "sortOrder": 42
-  },
-  {
-    "id": "seasoned-fang",
-    "name": "Seasoned Fang",
-    "image": "/images/materials/common-ascension/seasoned-fang",
-    "rarity": 3,
-    "category": "Elite Drop",
-    "description": "Seasoned Fang ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "tyrant-s-fang",
-    "sortOrder": 43
-  },
-  {
-    "id": "tyrant-s-fang",
-    "name": "Tyrant's Fang",
-    "image": "/images/materials/common-ascension/tyrant-s-fang",
-    "rarity": 4,
-    "category": "Elite Drop",
-    "description": "Tyrant's Fang ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 44
-  },
-  {
-    "id": "sentry-s-wooden-whistle",
-    "name": "Sentry's Wooden Whistle",
-    "image": "/images/materials/common-ascension/sentry-s-wooden-whistle",
-    "rarity": 2,
-    "category": "Elite Drop",
-    "description": "Sentry's Wooden Whistle ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "warriors-s-metal-whistle",
-    "sortOrder": 45
-  },
-  {
-    "id": "warriors-s-metal-whistle",
-    "name": "Warrior's Metal Whistle",
-    "image": "/images/materials/common-ascension/warriors-s-metal-whistle",
-    "rarity": 3,
-    "category": "Elite Drop",
-    "description": "Warrior's Metal Whistle ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "saurian-crowned-warrior-s-golden-whistle",
-    "sortOrder": 46
-  },
-  {
-    "id": "saurian-crowned-warrior-s-golden-whistle",
-    "name": "Saurian-Crowned Warrior's Golden Whistle",
-    "image": "/images/materials/common-ascension/saurian-crowned-warrior-s-golden-whistle",
-    "rarity": 4,
-    "category": "Elite Drop",
-    "description": "Saurian-Crowned Warrior's Golden Whistle ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 47
-  },
-  {
-    "id": "broken-drive-shaft",
-    "name": "Broken Drive Shaft",
-    "image": "/images/materials/common-ascension/broken-drive-shaft",
-    "rarity": 1,
-    "category": "Enemy Drop",
-    "description": "Broken Drive Shaft ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "reinforced-drive-shaft",
-    "sortOrder": 48
-  },
-  {
-    "id": "reinforced-drive-shaft",
-    "name": "Reinforced Drive Shaft",
-    "image": "/images/materials/common-ascension/reinforced-drive-shaft",
-    "rarity": 2,
-    "category": "Enemy Drop",
-    "description": "Reinforced Drive Shaft ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "precision-drive-shaft",
-    "sortOrder": 49
-  },
-  {
-    "id": "precision-drive-shaft",
-    "name": "Precision Drive Shaft",
-    "image": "/images/materials/common-ascension/precision-drive-shaft",
-    "rarity": 3,
-    "category": "Enemy Drop",
-    "description": "Precision Drive Shaft ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 50
-  },
-  {
-    "id": "tattered-warrant",
-    "name": "Tattered Warrant",
-    "image": "/images/materials/common-ascension/tattered-warrant",
-    "rarity": 1,
-    "category": "Enemy Drop",
-    "description": "Tattered Warrant ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "immaculate-warrant",
-    "sortOrder": 51
-  },
-  {
-    "id": "immaculate-warrant",
-    "name": "Immaculate Warrant",
-    "image": "/images/materials/common-ascension/immaculate-warrant",
-    "rarity": 2,
-    "category": "Enemy Drop",
-    "description": "Immaculate Warrant ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "frost-etched-warrant",
-    "sortOrder": 52
-  },
-  {
-    "id": "frost-etched-warrant",
-    "name": "Frost-Etched Warrant",
-    "image": "/images/materials/common-ascension/frost-etched-warrant",
-    "rarity": 3,
-    "category": "Enemy Drop",
-    "description": "Frost-Etched Warrant ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 53
-  },
-  {
     "id": "heavy-horn",
     "name": "Heavy Horn",
     "image": "/images/materials/common-ascension/heavy-horn",
@@ -669,7 +12,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "black-bronze-horn",
-    "sortOrder": 54
+    "sortOrder": 0
   },
   {
     "id": "black-bronze-horn",
@@ -681,7 +24,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "black-crystal-horn",
-    "sortOrder": 55
+    "sortOrder": 1
   },
   {
     "id": "black-crystal-horn",
@@ -693,43 +36,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 56
-  },
-  {
-    "id": "gloomy-statuette",
-    "name": "Gloomy Statuette",
-    "image": "/images/materials/common-ascension/gloomy-statuette",
-    "rarity": 2,
-    "category": "Elite Drop",
-    "description": "Gloomy Statuette ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "dark-statuette",
-    "sortOrder": 57
-  },
-  {
-    "id": "dark-statuette",
-    "name": "Dark Statuette",
-    "image": "/images/materials/common-ascension/dark-statuette",
-    "rarity": 3,
-    "category": "Elite Drop",
-    "description": "Dark Statuette ascension material.",
-    "combinable": true,
-    "combineRatio": 3,
-    "parentMaterialId": "deathly-statuette",
-    "sortOrder": 58
-  },
-  {
-    "id": "deathly-statuette",
-    "name": "Deathly Statuette",
-    "image": "/images/materials/common-ascension/deathly-statuette",
-    "rarity": 4,
-    "category": "Elite Drop",
-    "description": "Deathly Statuette ascension material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 59
+    "sortOrder": 2
   },
   {
     "id": "dead-ley-line-branch",
@@ -741,7 +48,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "dead-ley-line-leaves",
-    "sortOrder": 60
+    "sortOrder": 3
   },
   {
     "id": "dead-ley-line-leaves",
@@ -753,7 +60,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "ley-line-sprout",
-    "sortOrder": 61
+    "sortOrder": 4
   },
   {
     "id": "ley-line-sprout",
@@ -765,7 +72,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 62
+    "sortOrder": 5
   },
   {
     "id": "chaos-device",
@@ -777,7 +84,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "chaos-circuit",
-    "sortOrder": 63
+    "sortOrder": 6
   },
   {
     "id": "chaos-circuit",
@@ -789,7 +96,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "chaos-core",
-    "sortOrder": 64
+    "sortOrder": 7
   },
   {
     "id": "chaos-core",
@@ -801,7 +108,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 65
+    "sortOrder": 8
   },
   {
     "id": "mist-grass-pollen",
@@ -813,7 +120,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "mist-grass",
-    "sortOrder": 66
+    "sortOrder": 9
   },
   {
     "id": "mist-grass",
@@ -825,7 +132,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "mist-grass-wick",
-    "sortOrder": 67
+    "sortOrder": 10
   },
   {
     "id": "mist-grass-wick",
@@ -837,7 +144,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 68
+    "sortOrder": 11
   },
   {
     "id": "hunter-s-sacrificial-knife",
@@ -849,7 +156,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "agent-s-sacrificial-knife",
-    "sortOrder": 69
+    "sortOrder": 12
   },
   {
     "id": "agent-s-sacrificial-knife",
@@ -861,7 +168,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "inspector-s-sacrificial-knife",
-    "sortOrder": 70
+    "sortOrder": 13
   },
   {
     "id": "inspector-s-sacrificial-knife",
@@ -873,7 +180,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 71
+    "sortOrder": 14
   },
   {
     "id": "fragile-bone-shard",
@@ -885,7 +192,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "sturdy-bone-shard",
-    "sortOrder": 72
+    "sortOrder": 15
   },
   {
     "id": "sturdy-bone-shard",
@@ -897,7 +204,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "fossilized-bone-shard",
-    "sortOrder": 73
+    "sortOrder": 16
   },
   {
     "id": "fossilized-bone-shard",
@@ -909,7 +216,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 74
+    "sortOrder": 17
   },
   {
     "id": "chaos-gear",
@@ -921,7 +228,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "chaos-axis",
-    "sortOrder": 75
+    "sortOrder": 18
   },
   {
     "id": "chaos-axis",
@@ -933,7 +240,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "chaos-oculus",
-    "sortOrder": 76
+    "sortOrder": 19
   },
   {
     "id": "chaos-oculus",
@@ -945,7 +252,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 77
+    "sortOrder": 20
   },
   {
     "id": "dismal-prism",
@@ -957,7 +264,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "crystal-prism",
-    "sortOrder": 78
+    "sortOrder": 21
   },
   {
     "id": "crystal-prism",
@@ -969,7 +276,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "polarizing-prism",
-    "sortOrder": 79
+    "sortOrder": 22
   },
   {
     "id": "polarizing-prism",
@@ -981,7 +288,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 80
+    "sortOrder": 23
   },
   {
     "id": "concealed-claw",
@@ -993,7 +300,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "concealed-unguis",
-    "sortOrder": 81
+    "sortOrder": 24
   },
   {
     "id": "concealed-unguis",
@@ -1005,7 +312,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "concealed-talon",
-    "sortOrder": 82
+    "sortOrder": 25
   },
   {
     "id": "concealed-talon",
@@ -1017,7 +324,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 83
+    "sortOrder": 26
   },
   {
     "id": "inactivated-fungal-nucleus",
@@ -1029,7 +336,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "dormant-fungal-nucleus",
-    "sortOrder": 84
+    "sortOrder": 27
   },
   {
     "id": "dormant-fungal-nucleus",
@@ -1041,7 +348,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "robust-fungal-nucleus",
-    "sortOrder": 85
+    "sortOrder": 28
   },
   {
     "id": "robust-fungal-nucleus",
@@ -1053,7 +360,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 86
+    "sortOrder": 29
   },
   {
     "id": "chaos-storage",
@@ -1065,7 +372,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "chaos-module",
-    "sortOrder": 87
+    "sortOrder": 30
   },
   {
     "id": "chaos-module",
@@ -1077,7 +384,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "chaos-bolt",
-    "sortOrder": 88
+    "sortOrder": 31
   },
   {
     "id": "chaos-bolt",
@@ -1089,7 +396,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 89
+    "sortOrder": 32
   },
   {
     "id": "damaged-prism",
@@ -1101,7 +408,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "turbid-prism",
-    "sortOrder": 90
+    "sortOrder": 33
   },
   {
     "id": "turbid-prism",
@@ -1113,7 +420,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "radiant-prism",
-    "sortOrder": 91
+    "sortOrder": 34
   },
   {
     "id": "radiant-prism",
@@ -1125,7 +432,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 92
+    "sortOrder": 35
   },
   {
     "id": "desiccated-shell",
@@ -1137,7 +444,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "sturdy-shell",
-    "sortOrder": 93
+    "sortOrder": 36
   },
   {
     "id": "sturdy-shell",
@@ -1149,7 +456,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "marked-shell",
-    "sortOrder": 94
+    "sortOrder": 37
   },
   {
     "id": "marked-shell",
@@ -1161,7 +468,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 95
+    "sortOrder": 38
   },
   {
     "id": "a-flower-yet-to-bloom",
@@ -1173,7 +480,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "treasured-flower",
-    "sortOrder": 96
+    "sortOrder": 39
   },
   {
     "id": "treasured-flower",
@@ -1185,7 +492,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "wanderer-s-blooming-flower",
-    "sortOrder": 97
+    "sortOrder": 40
   },
   {
     "id": "wanderer-s-blooming-flower",
@@ -1197,7 +504,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 98
+    "sortOrder": 41
   },
   {
     "id": "drop-of-tainted-water",
@@ -1209,7 +516,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "scoop-of-tainted-water",
-    "sortOrder": 99
+    "sortOrder": 42
   },
   {
     "id": "scoop-of-tainted-water",
@@ -1221,7 +528,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "newborn-tainted-hydro-phantasm",
-    "sortOrder": 100
+    "sortOrder": 43
   },
   {
     "id": "newborn-tainted-hydro-phantasm",
@@ -1233,7 +540,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 101
+    "sortOrder": 44
   },
   {
     "id": "rift-core",
@@ -1245,7 +552,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "foreign-synapse",
-    "sortOrder": 102
+    "sortOrder": 45
   },
   {
     "id": "foreign-synapse",
@@ -1257,7 +564,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "alien-life-core",
-    "sortOrder": 103
+    "sortOrder": 46
   },
   {
     "id": "alien-life-core",
@@ -1269,7 +576,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 104
+    "sortOrder": 47
   },
   {
     "id": "old-operative-s-pocket-watch",
@@ -1281,7 +588,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "operative-s-standard-pocket-watch",
-    "sortOrder": 105
+    "sortOrder": 48
   },
   {
     "id": "operative-s-standard-pocket-watch",
@@ -1293,7 +600,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "operative-s-constancy",
-    "sortOrder": 106
+    "sortOrder": 49
   },
   {
     "id": "operative-s-constancy",
@@ -1305,7 +612,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 107
+    "sortOrder": 50
   },
   {
     "id": "feathery-fin",
@@ -1317,7 +624,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "lunar-fin",
-    "sortOrder": 108
+    "sortOrder": 51
   },
   {
     "id": "lunar-fin",
@@ -1329,7 +636,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "chasmlight-fin",
-    "sortOrder": 109
+    "sortOrder": 52
   },
   {
     "id": "chasmlight-fin",
@@ -1341,7 +648,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 110
+    "sortOrder": 53
   },
   {
     "id": "ruined-hilt",
@@ -1353,7 +660,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "splintered-hilt",
-    "sortOrder": 111
+    "sortOrder": 54
   },
   {
     "id": "splintered-hilt",
@@ -1365,7 +672,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "still-smoldering-hilt",
-    "sortOrder": 112
+    "sortOrder": 55
   },
   {
     "id": "still-smoldering-hilt",
@@ -1377,7 +684,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 113
+    "sortOrder": 56
   },
   {
     "id": "shard-of-a-shattered-will",
@@ -1389,7 +696,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "locus-of-a-clear-will",
-    "sortOrder": 114
+    "sortOrder": 57
   },
   {
     "id": "locus-of-a-clear-will",
@@ -1401,7 +708,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "sigil-of-a-striding-will",
-    "sortOrder": 115
+    "sortOrder": 58
   },
   {
     "id": "sigil-of-a-striding-will",
@@ -1413,7 +720,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 116
+    "sortOrder": 59
   },
   {
     "id": "ignited-stone",
@@ -1425,7 +732,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "ignited-seed-of-life",
-    "sortOrder": 117
+    "sortOrder": 60
   },
   {
     "id": "ignited-seed-of-life",
@@ -1437,7 +744,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "ignited-seeing-eye",
-    "sortOrder": 118
+    "sortOrder": 61
   },
   {
     "id": "ignited-seeing-eye",
@@ -1449,7 +756,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 119
+    "sortOrder": 62
   },
   {
     "id": "frostnight-s-glimmer",
@@ -1461,7 +768,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "frostnight-s-glow",
-    "sortOrder": 120
+    "sortOrder": 63
   },
   {
     "id": "frostnight-s-glow",
@@ -1473,7 +780,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "frostnight-s-glory",
-    "sortOrder": 121
+    "sortOrder": 64
   },
   {
     "id": "frostnight-s-glory",
@@ -1485,7 +792,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 122
+    "sortOrder": 65
   },
   {
     "id": "lightless-bone",
@@ -1497,7 +804,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "glowing-remains",
-    "sortOrder": 123
+    "sortOrder": 66
   },
   {
     "id": "glowing-remains",
@@ -1509,7 +816,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "radiant-exoskeleton",
-    "sortOrder": 124
+    "sortOrder": 67
   },
   {
     "id": "radiant-exoskeleton",
@@ -1521,7 +828,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 125
+    "sortOrder": 68
   },
   {
     "id": "mistshroud-manifestation",
@@ -1533,7 +840,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "mistshroud-plate",
-    "sortOrder": 126
+    "sortOrder": 69
   },
   {
     "id": "mistshroud-plate",
@@ -1545,7 +852,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "mistshroud-helmet",
-    "sortOrder": 127
+    "sortOrder": 70
   },
   {
     "id": "mistshroud-helmet",
@@ -1557,7 +864,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 128
+    "sortOrder": 71
   },
   {
     "id": "faded-flaming-hilt",
@@ -1569,7 +876,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "fractured-flaming-hilt",
-    "sortOrder": 129
+    "sortOrder": 72
   },
   {
     "id": "fractured-flaming-hilt",
@@ -1581,7 +888,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "jeweled-flaming-hilt",
-    "sortOrder": 130
+    "sortOrder": 73
   },
   {
     "id": "jeweled-flaming-hilt",
@@ -1593,7 +900,1399 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
+    "sortOrder": 74
+  },
+  {
+    "id": "slime-condensate",
+    "name": "Slime Condensate",
+    "image": "/images/materials/common-ascension/slime-condensate",
+    "rarity": 1,
+    "category": "Enemy Drop",
+    "description": "Slime Condensate ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "slime-secretions",
+    "sortOrder": 75
+  },
+  {
+    "id": "slime-secretions",
+    "name": "Slime Secretions",
+    "image": "/images/materials/common-ascension/slime-secretions",
+    "rarity": 2,
+    "category": "Enemy Drop",
+    "description": "Slime Secretions ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "slime-concentrate",
+    "sortOrder": 76
+  },
+  {
+    "id": "slime-concentrate",
+    "name": "Slime Concentrate",
+    "image": "/images/materials/common-ascension/slime-concentrate",
+    "rarity": 3,
+    "category": "Enemy Drop",
+    "description": "Slime Concentrate ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 77
+  },
+  {
+    "id": "damaged-mask",
+    "name": "Damaged Mask",
+    "image": "/images/materials/common-ascension/damaged-mask",
+    "rarity": 1,
+    "category": "Enemy Drop",
+    "description": "Damaged Mask ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "stained-mask",
+    "sortOrder": 78
+  },
+  {
+    "id": "stained-mask",
+    "name": "Stained Mask",
+    "image": "/images/materials/common-ascension/stained-mask",
+    "rarity": 2,
+    "category": "Enemy Drop",
+    "description": "Stained Mask ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "ominous-mask",
+    "sortOrder": 79
+  },
+  {
+    "id": "ominous-mask",
+    "name": "Ominous Mask",
+    "image": "/images/materials/common-ascension/ominous-mask",
+    "rarity": 3,
+    "category": "Enemy Drop",
+    "description": "Ominous Mask ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 80
+  },
+  {
+    "id": "divining-scroll",
+    "name": "Divining Scroll",
+    "image": "/images/materials/common-ascension/divining-scroll",
+    "rarity": 1,
+    "category": "Enemy Drop",
+    "description": "Divining Scroll ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "sealed-scroll",
+    "sortOrder": 81
+  },
+  {
+    "id": "sealed-scroll",
+    "name": "Sealed Scroll",
+    "image": "/images/materials/common-ascension/sealed-scroll",
+    "rarity": 2,
+    "category": "Enemy Drop",
+    "description": "Sealed Scroll ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "forbidden-curse-scroll",
+    "sortOrder": 82
+  },
+  {
+    "id": "forbidden-curse-scroll",
+    "name": "Forbidden Curse Scroll",
+    "image": "/images/materials/common-ascension/forbidden-curse-scroll",
+    "rarity": 3,
+    "category": "Enemy Drop",
+    "description": "Forbidden Curse Scroll ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 83
+  },
+  {
+    "id": "firm-arrowhead",
+    "name": "Firm Arrowhead",
+    "image": "/images/materials/common-ascension/firm-arrowhead",
+    "rarity": 1,
+    "category": "Enemy Drop",
+    "description": "Firm Arrowhead ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "sharp-arrowhead",
+    "sortOrder": 84
+  },
+  {
+    "id": "sharp-arrowhead",
+    "name": "Sharp Arrowhead",
+    "image": "/images/materials/common-ascension/sharp-arrowhead",
+    "rarity": 2,
+    "category": "Enemy Drop",
+    "description": "Sharp Arrowhead ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "weathered-arrowhead",
+    "sortOrder": 85
+  },
+  {
+    "id": "weathered-arrowhead",
+    "name": "Weathered Arrowhead",
+    "image": "/images/materials/common-ascension/weathered-arrowhead",
+    "rarity": 3,
+    "category": "Enemy Drop",
+    "description": "Weathered Arrowhead ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 86
+  },
+  {
+    "id": "recruit-s-insignia",
+    "name": "Recruit's Insignia",
+    "image": "/images/materials/common-ascension/recruit-s-insignia",
+    "rarity": 1,
+    "category": "Enemy Drop",
+    "description": "Recruit's Insignia ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "sergeant-s-insignia",
+    "sortOrder": 87
+  },
+  {
+    "id": "sergeant-s-insignia",
+    "name": "Sergeant's Insignia",
+    "image": "/images/materials/common-ascension/sergeant-s-insignia",
+    "rarity": 2,
+    "category": "Enemy Drop",
+    "description": "Sergeant's Insignia ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "lieutenant-s-insignia",
+    "sortOrder": 88
+  },
+  {
+    "id": "lieutenant-s-insignia",
+    "name": "Lieutenant's Insignia",
+    "image": "/images/materials/common-ascension/lieutenant-s-insignia",
+    "rarity": 3,
+    "category": "Enemy Drop",
+    "description": "Lieutenant's Insignia ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 89
+  },
+  {
+    "id": "treasure-hoarder-insignia",
+    "name": "Treasure Hoarder Insignia",
+    "image": "/images/materials/common-ascension/treasure-hoarder-insignia",
+    "rarity": 1,
+    "category": "Enemy Drop",
+    "description": "Treasure Hoarder Insignia ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "silver-raven-insignia",
+    "sortOrder": 90
+  },
+  {
+    "id": "silver-raven-insignia",
+    "name": "Silver Raven Insignia",
+    "image": "/images/materials/common-ascension/silver-raven-insignia",
+    "rarity": 2,
+    "category": "Enemy Drop",
+    "description": "Silver Raven Insignia ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "golden-raven-insignia",
+    "sortOrder": 91
+  },
+  {
+    "id": "golden-raven-insignia",
+    "name": "Golden Raven Insignia",
+    "image": "/images/materials/common-ascension/golden-raven-insignia",
+    "rarity": 3,
+    "category": "Enemy Drop",
+    "description": "Golden Raven Insignia ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 92
+  },
+  {
+    "id": "whopperflower-nectar",
+    "name": "Whopperflower Nectar",
+    "image": "/images/materials/common-ascension/whopperflower-nectar",
+    "rarity": 1,
+    "category": "Enemy Drop",
+    "description": "Whopperflower Nectar ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "shimmering-nectar",
+    "sortOrder": 93
+  },
+  {
+    "id": "shimmering-nectar",
+    "name": "Shimmering Nectar",
+    "image": "/images/materials/common-ascension/shimmering-nectar",
+    "rarity": 2,
+    "category": "Enemy Drop",
+    "description": "Shimmering Nectar ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "energy-nectar",
+    "sortOrder": 94
+  },
+  {
+    "id": "energy-nectar",
+    "name": "Energy Nectar",
+    "image": "/images/materials/common-ascension/energy-nectar",
+    "rarity": 3,
+    "category": "Enemy Drop",
+    "description": "Energy Nectar ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 95
+  },
+  {
+    "id": "old-handguard",
+    "name": "Old Handguard",
+    "image": "/images/materials/common-ascension/old-handguard",
+    "rarity": 1,
+    "category": "Enemy Drop",
+    "description": "Old Handguard ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "kageuchi-handguard",
+    "sortOrder": 96
+  },
+  {
+    "id": "kageuchi-handguard",
+    "name": "Kageuchi Handguard",
+    "image": "/images/materials/common-ascension/kageuchi-handguard",
+    "rarity": 2,
+    "category": "Enemy Drop",
+    "description": "Kageuchi Handguard ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "famed-handguard",
+    "sortOrder": 97
+  },
+  {
+    "id": "famed-handguard",
+    "name": "Famed Handguard",
+    "image": "/images/materials/common-ascension/famed-handguard",
+    "rarity": 3,
+    "category": "Enemy Drop",
+    "description": "Famed Handguard ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 98
+  },
+  {
+    "id": "spectral-husk",
+    "name": "Spectral Husk",
+    "image": "/images/materials/common-ascension/spectral-husk",
+    "rarity": 1,
+    "category": "Enemy Drop",
+    "description": "Spectral Husk ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "spectral-heart",
+    "sortOrder": 99
+  },
+  {
+    "id": "spectral-heart",
+    "name": "Spectral Heart",
+    "image": "/images/materials/common-ascension/spectral-heart",
+    "rarity": 2,
+    "category": "Enemy Drop",
+    "description": "Spectral Heart ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "spectral-nucleus",
+    "sortOrder": 100
+  },
+  {
+    "id": "spectral-nucleus",
+    "name": "Spectral Nucleus",
+    "image": "/images/materials/common-ascension/spectral-nucleus",
+    "rarity": 3,
+    "category": "Enemy Drop",
+    "description": "Spectral Nucleus ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 101
+  },
+  {
+    "id": "fungal-spores",
+    "name": "Fungal Spores",
+    "image": "/images/materials/common-ascension/fungal-spores",
+    "rarity": 1,
+    "category": "Enemy Drop",
+    "description": "Fungal Spores ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "luminescent-pollen",
+    "sortOrder": 102
+  },
+  {
+    "id": "luminescent-pollen",
+    "name": "Luminescent Pollen",
+    "image": "/images/materials/common-ascension/luminescent-pollen",
+    "rarity": 2,
+    "category": "Enemy Drop",
+    "description": "Luminescent Pollen ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "crystalline-cyst-dust",
+    "sortOrder": 103
+  },
+  {
+    "id": "crystalline-cyst-dust",
+    "name": "Crystalline Cyst Dust",
+    "image": "/images/materials/common-ascension/crystalline-cyst-dust",
+    "rarity": 3,
+    "category": "Enemy Drop",
+    "description": "Crystalline Cyst Dust ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 104
+  },
+  {
+    "id": "faded-red-satin",
+    "name": "Faded Red Satin",
+    "image": "/images/materials/common-ascension/faded-red-satin",
+    "rarity": 1,
+    "category": "Enemy Drop",
+    "description": "Faded Red Satin ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "trimmed-red-silk",
+    "sortOrder": 105
+  },
+  {
+    "id": "trimmed-red-silk",
+    "name": "Trimmed Red Silk",
+    "image": "/images/materials/common-ascension/trimmed-red-silk",
+    "rarity": 2,
+    "category": "Enemy Drop",
+    "description": "Trimmed Red Silk ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "rich-red-brocade",
+    "sortOrder": 106
+  },
+  {
+    "id": "rich-red-brocade",
+    "name": "Rich Red Brocade",
+    "image": "/images/materials/common-ascension/rich-red-brocade",
+    "rarity": 3,
+    "category": "Enemy Drop",
+    "description": "Rich Red Brocade ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 107
+  },
+  {
+    "id": "transoceanic-pearl",
+    "name": "Transoceanic Pearl",
+    "image": "/images/materials/common-ascension/transoceanic-pearl",
+    "rarity": 1,
+    "category": "Enemy Drop",
+    "description": "Transoceanic Pearl ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "transoceanic-chunk",
+    "sortOrder": 108
+  },
+  {
+    "id": "transoceanic-chunk",
+    "name": "Transoceanic Chunk",
+    "image": "/images/materials/common-ascension/transoceanic-chunk",
+    "rarity": 2,
+    "category": "Enemy Drop",
+    "description": "Transoceanic Chunk ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "xenochromatic-crystal",
+    "sortOrder": 109
+  },
+  {
+    "id": "xenochromatic-crystal",
+    "name": "Xenochromatic Crystal",
+    "image": "/images/materials/common-ascension/xenochromatic-crystal",
+    "rarity": 3,
+    "category": "Enemy Drop",
+    "description": "Xenochromatic Crystal ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 110
+  },
+  {
+    "id": "meshing-gear",
+    "name": "Meshing Gear",
+    "image": "/images/materials/common-ascension/meshing-gear",
+    "rarity": 1,
+    "category": "Enemy Drop",
+    "description": "Meshing Gear ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "mechanical-spur-gear",
+    "sortOrder": 111
+  },
+  {
+    "id": "mechanical-spur-gear",
+    "name": "Mechanical Spur Gear",
+    "image": "/images/materials/common-ascension/mechanical-spur-gear",
+    "rarity": 2,
+    "category": "Enemy Drop",
+    "description": "Mechanical Spur Gear ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "artificed-dynamic-gear",
+    "sortOrder": 112
+  },
+  {
+    "id": "artificed-dynamic-gear",
+    "name": "Artificed Dynamic Gear",
+    "image": "/images/materials/common-ascension/artificed-dynamic-gear",
+    "rarity": 3,
+    "category": "Enemy Drop",
+    "description": "Artificed Dynamic Gear ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 113
+  },
+  {
+    "id": "juvenile-fang",
+    "name": "Juvenile Fang",
+    "image": "/images/materials/common-ascension/juvenile-fang",
+    "rarity": 2,
+    "category": "Elite Drop",
+    "description": "Juvenile Fang ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "seasoned-fang",
+    "sortOrder": 114
+  },
+  {
+    "id": "seasoned-fang",
+    "name": "Seasoned Fang",
+    "image": "/images/materials/common-ascension/seasoned-fang",
+    "rarity": 3,
+    "category": "Elite Drop",
+    "description": "Seasoned Fang ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "tyrant-s-fang",
+    "sortOrder": 115
+  },
+  {
+    "id": "tyrant-s-fang",
+    "name": "Tyrant's Fang",
+    "image": "/images/materials/common-ascension/tyrant-s-fang",
+    "rarity": 4,
+    "category": "Elite Drop",
+    "description": "Tyrant's Fang ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 116
+  },
+  {
+    "id": "sentry-s-wooden-whistle",
+    "name": "Sentry's Wooden Whistle",
+    "image": "/images/materials/common-ascension/sentry-s-wooden-whistle",
+    "rarity": 2,
+    "category": "Elite Drop",
+    "description": "Sentry's Wooden Whistle ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "warriors-s-metal-whistle",
+    "sortOrder": 117
+  },
+  {
+    "id": "warriors-s-metal-whistle",
+    "name": "Warrior's Metal Whistle",
+    "image": "/images/materials/common-ascension/warriors-s-metal-whistle",
+    "rarity": 3,
+    "category": "Elite Drop",
+    "description": "Warrior's Metal Whistle ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "saurian-crowned-warrior-s-golden-whistle",
+    "sortOrder": 118
+  },
+  {
+    "id": "saurian-crowned-warrior-s-golden-whistle",
+    "name": "Saurian-Crowned Warrior's Golden Whistle",
+    "image": "/images/materials/common-ascension/saurian-crowned-warrior-s-golden-whistle",
+    "rarity": 4,
+    "category": "Elite Drop",
+    "description": "Saurian-Crowned Warrior's Golden Whistle ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 119
+  },
+  {
+    "id": "broken-drive-shaft",
+    "name": "Broken Drive Shaft",
+    "image": "/images/materials/common-ascension/broken-drive-shaft",
+    "rarity": 1,
+    "category": "Enemy Drop",
+    "description": "Broken Drive Shaft ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "reinforced-drive-shaft",
+    "sortOrder": 120
+  },
+  {
+    "id": "reinforced-drive-shaft",
+    "name": "Reinforced Drive Shaft",
+    "image": "/images/materials/common-ascension/reinforced-drive-shaft",
+    "rarity": 2,
+    "category": "Enemy Drop",
+    "description": "Reinforced Drive Shaft ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "precision-drive-shaft",
+    "sortOrder": 121
+  },
+  {
+    "id": "precision-drive-shaft",
+    "name": "Precision Drive Shaft",
+    "image": "/images/materials/common-ascension/precision-drive-shaft",
+    "rarity": 3,
+    "category": "Enemy Drop",
+    "description": "Precision Drive Shaft ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 122
+  },
+  {
+    "id": "tattered-warrant",
+    "name": "Tattered Warrant",
+    "image": "/images/materials/common-ascension/tattered-warrant",
+    "rarity": 1,
+    "category": "Enemy Drop",
+    "description": "Tattered Warrant ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "immaculate-warrant",
+    "sortOrder": 123
+  },
+  {
+    "id": "immaculate-warrant",
+    "name": "Immaculate Warrant",
+    "image": "/images/materials/common-ascension/immaculate-warrant",
+    "rarity": 2,
+    "category": "Enemy Drop",
+    "description": "Immaculate Warrant ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "frost-etched-warrant",
+    "sortOrder": 124
+  },
+  {
+    "id": "frost-etched-warrant",
+    "name": "Frost-Etched Warrant",
+    "image": "/images/materials/common-ascension/frost-etched-warrant",
+    "rarity": 3,
+    "category": "Enemy Drop",
+    "description": "Frost-Etched Warrant ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 125
+  },
+  {
+    "id": "gloomy-statuette",
+    "name": "Gloomy Statuette",
+    "image": "/images/materials/common-ascension/gloomy-statuette",
+    "rarity": 2,
+    "category": "Elite Drop",
+    "description": "Gloomy Statuette ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "dark-statuette",
+    "sortOrder": 126
+  },
+  {
+    "id": "dark-statuette",
+    "name": "Dark Statuette",
+    "image": "/images/materials/common-ascension/dark-statuette",
+    "rarity": 3,
+    "category": "Elite Drop",
+    "description": "Dark Statuette ascension material.",
+    "combinable": true,
+    "combineRatio": 3,
+    "parentMaterialId": "deathly-statuette",
+    "sortOrder": 127
+  },
+  {
+    "id": "deathly-statuette",
+    "name": "Deathly Statuette",
+    "image": "/images/materials/common-ascension/deathly-statuette",
+    "rarity": 4,
+    "category": "Elite Drop",
+    "description": "Deathly Statuette ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 128
+  },
+  {
+    "id": "dvalin's-plume",
+    "name": "Dvalin's Plume",
+    "image": "/images/materials/talent-boss/dvalin's-plume",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Dvalin's Plume weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "bennett",
+        "diluc",
+        "jean"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 129
+  },
+  {
+    "id": "dvalin's-claw",
+    "name": "Dvalin's Claw",
+    "image": "/images/materials/talent-boss/dvalin's-claw",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Dvalin's Claw weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "lisa",
+        "noelle",
+        "razor",
+        "xiangling"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 130
+  },
+  {
+    "id": "dvalin's-sigh",
+    "name": "Dvalin's Sigh",
+    "image": "/images/materials/talent-boss/dvalin's-sigh",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Dvalin's Sigh weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "amber",
+        "beidou",
+        "chongyun",
+        "traveler-anemo",
+        "traveler-geo"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
     "sortOrder": 131
+  },
+  {
+    "id": "tail-of-boreas",
+    "name": "Tail of Boreas",
+    "image": "/images/materials/talent-boss/tail-of-boreas",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Tail of Boreas weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "qiqi",
+        "venti",
+        "xingqiu",
+        "traveler-geo"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 132
+  },
+  {
+    "id": "ring-of-boreas",
+    "name": "Ring of Boreas",
+    "image": "/images/materials/talent-boss/ring-of-boreas",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Ring of Boreas weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "barbara",
+        "keqing",
+        "klee",
+        "mona",
+        "linnea"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 133
+  },
+  {
+    "id": "spirit-locket-of-boreas",
+    "name": "Spirit Locket of Boreas",
+    "image": "/images/materials/talent-boss/spirit-locket-of-boreas",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Spirit Locket of Boreas weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "fischl",
+        "kaeya",
+        "ningguang",
+        "sucrose",
+        "varka"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 134
+  },
+  {
+    "id": "tusk-of-monoceros-caeli",
+    "name": "Tusk of Monoceros Caeli",
+    "image": "/images/materials/talent-boss/tusk-of-monoceros-caeli",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Tusk of Monoceros Caeli weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "albedo",
+        "xinyan",
+        "zhongli"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 135
+  },
+  {
+    "id": "shard-of-a-foul-legacy",
+    "name": "Shard of a Foul Legacy",
+    "image": "/images/materials/talent-boss/shard-of-a-foul-legacy",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Shard of a Foul Legacy weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "diona",
+        "hu-tao",
+        "tartaglia"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 136
+  },
+  {
+    "id": "shadow-of-the-warrior",
+    "name": "Shadow of the Warrior",
+    "image": "/images/materials/talent-boss/shadow-of-the-warrior",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Shadow of the Warrior weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "ganyu",
+        "rosaria",
+        "xiao"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 137
+  },
+  {
+    "id": "dragon-lord's-crown",
+    "name": "Dragon Lord's Crown",
+    "image": "/images/materials/talent-boss/dragon-lord's-crown",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Dragon Lord's Crown weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "eula",
+        "yoimiya",
+        "traveler-electro"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 138
+  },
+  {
+    "id": "bloodjade-branch",
+    "name": "Bloodjade Branch",
+    "image": "/images/materials/talent-boss/bloodjade-branch",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Bloodjade Branch weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "ayaka",
+        "yanfei",
+        "dori"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 139
+  },
+  {
+    "id": "gilded-scale",
+    "name": "Gilded Scale",
+    "image": "/images/materials/talent-boss/gilded-scale",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Gilded Scale weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "kazuha",
+        "sayu",
+        "yelan"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 140
+  },
+  {
+    "id": "molten-moment",
+    "name": "Molten Moment",
+    "image": "/images/materials/talent-boss/molten-moment",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Molten Moment weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "raiden",
+        "aloy",
+        "gorou"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 141
+  },
+  {
+    "id": "hellfire-butterfly",
+    "name": "Hellfire Butterfly",
+    "image": "/images/materials/talent-boss/hellfire-butterfly",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Hellfire Butterfly weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "kokomi",
+        "thoma",
+        "shenhe"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 142
+  },
+  {
+    "id": "ashen-heart",
+    "name": "Ashen Heart",
+    "image": "/images/materials/talent-boss/ashen-heart",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Ashen Heart weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "sara",
+        "arataki-itto",
+        "yun-jin"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 143
+  },
+  {
+    "id": "mudra-of-the-malefic-general",
+    "name": "Mudra of the Malefic General",
+    "image": "/images/materials/talent-boss/mudra-of-the-malefic-general",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Mudra of the Malefic General weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "cyno",
+        "ayato",
+        "traveler-dendro"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 144
+  },
+  {
+    "id": "tears-of-the-calamitous-god",
+    "name": "Tears of the Calamitous God",
+    "image": "/images/materials/talent-boss/tears-of-the-calamitous-god",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Tears of the Calamitous God weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "candace",
+        "collei",
+        "kuki-shinobu",
+        "nilou"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 145
+  },
+  {
+    "id": "the-meaning-of-aeons",
+    "name": "The Meaning of Aeons",
+    "image": "/images/materials/talent-boss/the-meaning-of-aeons",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "The Meaning of Aeons weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "shikanoin-heizou",
+        "tighnari",
+        "yae-miko"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 146
+  },
+  {
+    "id": "puppet-strings",
+    "name": "Puppet Strings",
+    "image": "/images/materials/talent-boss/puppet-strings",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Puppet Strings weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "dehya",
+        "faruzan",
+        "nahida"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 147
+  },
+  {
+    "id": "mirror-of-mushin",
+    "name": "Mirror of Mushin",
+    "image": "/images/materials/talent-boss/mirror-of-mushin",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Mirror of Mushin weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "alhaitham",
+        "layla",
+        "mika"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 148
+  },
+  {
+    "id": "daka-s-bell",
+    "name": "Daka's Bell",
+    "image": "/images/materials/talent-boss/daka-s-bell",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Daka's Bell weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "wanderer",
+        "yaoyao",
+        "sethos",
+        "xilonen"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 149
+  },
+  {
+    "id": "worldspan-fern",
+    "name": "Worldspan Fern",
+    "image": "/images/materials/talent-boss/worldspan-fern",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Worldspan Fern weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "baizhu",
+        "freminet",
+        "traveler-hydro"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 150
+  },
+  {
+    "id": "primordial-greenbloom",
+    "name": "Primordial Greenbloom",
+    "image": "/images/materials/talent-boss/primordial-greenbloom",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Primordial Greenbloom weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "lyney",
+        "wriothesley",
+        "kaveh"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 151
+  },
+  {
+    "id": "everamber",
+    "name": "Everamber",
+    "image": "/images/materials/talent-boss/everamber",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Everamber weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "lynette",
+        "neuvillette",
+        "kirara",
+        "clorinde"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 152
+  },
+  {
+    "id": "lightless-silk-string",
+    "name": "Lightless Silk String",
+    "image": "/images/materials/talent-boss/lightless-silk-string",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Lightless Silk String weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "charlotte",
+        "navia",
+        "chiori",
+        "ororon"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 153
+  },
+  {
+    "id": "lightless-eye-of-the-maelstrom",
+    "name": "Lightless Eye of the Maelstrom",
+    "image": "/images/materials/talent-boss/lightless-eye-of-the-maelstrom",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Lightless Eye of the Maelstrom weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "chevreuse",
+        "xianyun",
+        "sigewinne"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 154
+  },
+  {
+    "id": "lightless-mass",
+    "name": "Lightless Mass",
+    "image": "/images/materials/talent-boss/lightless-mass",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Lightless Mass weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "furina",
+        "gaming",
+        "mualani"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 155
+  },
+  {
+    "id": "fading-candle",
+    "name": "Fading Candle",
+    "image": "/images/materials/talent-boss/fading-candle",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Fading Candle weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "arlecchino",
+        "kachina",
+        "yumemizuki-mizuki"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 156
+  },
+  {
+    "id": "silken-feather",
+    "name": "Silken Feather",
+    "image": "/images/materials/talent-boss/silken-feather",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Silken Feather weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "aino",
+        "chasca",
+        "emilie"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 157
+  },
+  {
+    "id": "denial-and-judgment",
+    "name": "Denial and Judgment",
+    "image": "/images/materials/talent-boss/denial-and-judgment",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Denial and Judgment weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "kinich",
+        "traveler-pyro",
+        "citlali",
+        "iansan"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 158
+  },
+  {
+    "id": "eroded-horn",
+    "name": "Eroded Horn",
+    "image": "/images/materials/talent-boss/eroded-horn",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Eroded Horn weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "escoffier",
+        "illuga",
+        "mavuika"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 159
+  },
+  {
+    "id": "eroded-sunfire",
+    "name": "Eroded Sunfire",
+    "image": "/images/materials/talent-boss/eroded-sunfire",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Eroded Sunfire weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "durin",
+        "ineffa",
+        "lan-yan"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 160
+  },
+  {
+    "id": "eroded-scale-feather",
+    "name": "Eroded Scale-Feather",
+    "image": "/images/materials/talent-boss/eroded-scale-feather",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Eroded Scale-Feather weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "dahlia",
+        "lauma",
+        "varesa"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 161
+  },
+  {
+    "id": "ascended-sample-knight",
+    "name": "Ascended Sample: Knight",
+    "image": "/images/materials/talent-boss/ascended-sample-knight",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Ascended Sample: Knight weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "jahoda",
+        "skirk"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 162
+  },
+  {
+    "id": "ascended-sample-rook",
+    "name": "Ascended Sample: Rook",
+    "image": "/images/materials/talent-boss/ascended-sample-rook",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Ascended Sample: Rook weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "ifa",
+        "nefer"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 163
+  },
+  {
+    "id": "ascended-sample-queen",
+    "name": "Ascended Sample: Queen",
+    "image": "/images/materials/talent-boss/ascended-sample-queen",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Ascended Sample: Queen weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "flins",
+        "zibai"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 164
+  },
+  {
+    "id": "mask-of-the-virtuous-doctor",
+    "name": "Mask of the Virtuous Doctor",
+    "image": "/images/materials/talent-boss/mask-of-the-virtuous-doctor",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Mask of the Virtuous Doctor weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "columbina",
+        "prune"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 165
+  },
+  {
+    "id": "madman-s-restraint",
+    "name": "Madman's Restraint",
+    "image": "/images/materials/talent-boss/madman-s-restraint",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Madman's Restraint weekly boss talent material.",
+    "details": {
+      "usedByCharacters": [
+        "nicole"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 166
+  },
+  {
+    "id": "elixir-of-the-heretic",
+    "name": "Elixir of the Heretic",
+    "image": "/images/materials/talent-boss/elixir-of-the-heretic",
+    "rarity": 5,
+    "category": "Talent Boss",
+    "description": "Elixir of the Heretic weekly boss talent material.",
+    "details": {
+      "usedByCharacters": []
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 167
   },
   {
     "id": "hurricane-seed",
@@ -1613,7 +2312,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 132
+    "sortOrder": 168
   },
   {
     "id": "lightning-prism",
@@ -1635,7 +2334,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 133
+    "sortOrder": 169
   },
   {
     "id": "basalt-pillar",
@@ -1656,7 +2355,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 134
+    "sortOrder": 170
   },
   {
     "id": "hoarfrost-core",
@@ -1679,7 +2378,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 135
+    "sortOrder": 171
   },
   {
     "id": "everflame-seed",
@@ -1702,7 +2401,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 136
+    "sortOrder": 172
   },
   {
     "id": "cleansing-heart",
@@ -1723,7 +2422,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 137
+    "sortOrder": 173
   },
   {
     "id": "juvenile-jade",
@@ -1743,7 +2442,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 138
+    "sortOrder": 174
   },
   {
     "id": "crystalline-bloom",
@@ -1762,7 +2461,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 139
+    "sortOrder": 175
   },
   {
     "id": "marionette-core",
@@ -1781,7 +2480,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 140
+    "sortOrder": 176
   },
   {
     "id": "perpetual-heart",
@@ -1800,7 +2499,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 141
+    "sortOrder": 177
   },
   {
     "id": "smoldering-pearl",
@@ -1819,7 +2518,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 142
+    "sortOrder": 178
   },
   {
     "id": "dew-of-repudiation",
@@ -1838,7 +2537,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 143
+    "sortOrder": 179
   },
   {
     "id": "storm-beads",
@@ -1857,7 +2556,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 144
+    "sortOrder": 180
   },
   {
     "id": "riftborn-regalia",
@@ -1876,7 +2575,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 145
+    "sortOrder": 181
   },
   {
     "id": "dragonheir-s-false-fin",
@@ -1895,7 +2594,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 146
+    "sortOrder": 182
   },
   {
     "id": "runic-fang",
@@ -1915,7 +2614,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 147
+    "sortOrder": 183
   },
   {
     "id": "majestic-hooked-beak",
@@ -1934,7 +2633,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 148
+    "sortOrder": 184
   },
   {
     "id": "thunderclap-fruitcore",
@@ -1953,7 +2652,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 149
+    "sortOrder": 185
   },
   {
     "id": "perpetual-caliber",
@@ -1973,7 +2672,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 150
+    "sortOrder": 186
   },
   {
     "id": "light-guiding-tetrahedron",
@@ -1993,7 +2692,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 151
+    "sortOrder": 187
   },
   {
     "id": "quelled-creeper",
@@ -2013,7 +2712,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 152
+    "sortOrder": 188
   },
   {
     "id": "pseudo-stamens",
@@ -2032,7 +2731,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 153
+    "sortOrder": 189
   },
   {
     "id": "evergloom-ring",
@@ -2051,7 +2750,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 154
+    "sortOrder": 190
   },
   {
     "id": "coppelia",
@@ -2069,7 +2768,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 155
+    "sortOrder": 191
   },
   {
     "id": "coppelius",
@@ -2088,7 +2787,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 156
+    "sortOrder": 192
   },
   {
     "id": "emperor-s-resolution",
@@ -2107,7 +2806,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 157
+    "sortOrder": 193
   },
   {
     "id": "tourbillon-device",
@@ -2126,7 +2825,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 158
+    "sortOrder": 194
   },
   {
     "id": "fontemer-unihorn",
@@ -2146,7 +2845,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 159
+    "sortOrder": 195
   },
   {
     "id": "water-that-failed-to-transcend",
@@ -2165,7 +2864,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 160
+    "sortOrder": 196
   },
   {
     "id": "cloudseam-scale",
@@ -2184,7 +2883,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 161
+    "sortOrder": 197
   },
   {
     "id": "fragment-of-a-golden-melody",
@@ -2202,7 +2901,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 162
+    "sortOrder": 198
   },
   {
     "id": "mark-of-the-binding-blessing",
@@ -2220,7 +2919,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 163
+    "sortOrder": 199
   },
   {
     "id": "overripe-flamegranate",
@@ -2239,7 +2938,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 164
+    "sortOrder": 200
   },
   {
     "id": "prismatic-severed-tail",
@@ -2257,7 +2956,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 165
+    "sortOrder": 201
   },
   {
     "id": "plume-of-the-fallen-watcher",
@@ -2275,7 +2974,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 166
+    "sortOrder": 202
   },
   {
     "id": "the-cornerstone-of-stars-and-flames",
@@ -2293,751 +2992,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 167
-  },
-  {
-    "id": "dvalin's-plume",
-    "name": "Dvalin's Plume",
-    "image": "/images/materials/talent-boss/dvalin's-plume",
-    "rarity": 5,
-    "category": "Talent Boss",
-    "description": "Dvalin's Plume weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "bennett",
-        "diluc",
-        "jean"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 168
-  },
-  {
-    "id": "dvalin's-claw",
-    "name": "Dvalin's Claw",
-    "image": "/images/materials/talent-boss/dvalin's-claw",
-    "rarity": 5,
-    "category": "Talent Boss",
-    "description": "Dvalin's Claw weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "lisa",
-        "noelle",
-        "razor",
-        "xiangling"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 169
-  },
-  {
-    "id": "dvalin's-sigh",
-    "name": "Dvalin's Sigh",
-    "image": "/images/materials/talent-boss/dvalin's-sigh",
-    "rarity": 5,
-    "category": "Talent Boss",
-    "description": "Dvalin's Sigh weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "amber",
-        "beidou",
-        "chongyun",
-        "traveler-anemo",
-        "traveler-geo"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 170
-  },
-  {
-    "id": "tail-of-boreas",
-    "name": "Tail of Boreas",
-    "image": "/images/materials/talent-boss/tail-of-boreas",
-    "rarity": 5,
-    "category": "Talent Boss",
-    "description": "Tail of Boreas weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "qiqi",
-        "venti",
-        "xingqiu",
-        "traveler-geo"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 171
-  },
-  {
-    "id": "ring-of-boreas",
-    "name": "Ring of Boreas",
-    "image": "/images/materials/talent-boss/ring-of-boreas",
-    "rarity": 5,
-    "category": "Talent Boss",
-    "description": "Ring of Boreas weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "barbara",
-        "keqing",
-        "klee",
-        "mona",
-        "linnea"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 172
-  },
-  {
-    "id": "spirit-locket-of-boreas",
-    "name": "Spirit Locket of Boreas",
-    "image": "/images/materials/talent-boss/spirit-locket-of-boreas",
-    "rarity": 5,
-    "category": "Talent Boss",
-    "description": "Spirit Locket of Boreas weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "fischl",
-        "kaeya",
-        "ningguang",
-        "sucrose",
-        "varka"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 173
-  },
-  {
-    "id": "tusk-of-monoceros-caeli",
-    "name": "Tusk of Monoceros Caeli",
-    "image": "/images/materials/talent-boss/tusk-of-monoceros-caeli",
-    "rarity": 5,
-    "category": "Talent Boss",
-    "description": "Tusk of Monoceros Caeli weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "albedo",
-        "xinyan",
-        "zhongli"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 174
-  },
-  {
-    "id": "shard-of-a-foul-legacy",
-    "name": "Shard of a Foul Legacy",
-    "image": "/images/materials/talent-boss/shard-of-a-foul-legacy",
-    "rarity": 5,
-    "category": "Talent Boss",
-    "description": "Shard of a Foul Legacy weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "diona",
-        "hu-tao",
-        "tartaglia"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 175
-  },
-  {
-    "id": "shadow-of-the-warrior",
-    "name": "Shadow of the Warrior",
-    "image": "/images/materials/talent-boss/shadow-of-the-warrior",
-    "rarity": 5,
-    "category": "Talent Boss",
-    "description": "Shadow of the Warrior weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "ganyu",
-        "rosaria",
-        "xiao"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 176
-  },
-  {
-    "id": "dragon-lord's-crown",
-    "name": "Dragon Lord's Crown",
-    "image": "/images/materials/talent-boss/dragon-lord's-crown",
-    "rarity": 5,
-    "category": "Talent Boss",
-    "description": "Dragon Lord's Crown weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "eula",
-        "yoimiya",
-        "traveler-electro"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 177
-  },
-  {
-    "id": "bloodjade-branch",
-    "name": "Bloodjade Branch",
-    "image": "/images/materials/talent-boss/bloodjade-branch",
-    "rarity": 5,
-    "category": "Talent Boss",
-    "description": "Bloodjade Branch weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "ayaka",
-        "yanfei",
-        "dori"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 178
-  },
-  {
-    "id": "gilded-scale",
-    "name": "Gilded Scale",
-    "image": "/images/materials/talent-boss/gilded-scale",
-    "rarity": 5,
-    "category": "Talent Boss",
-    "description": "Gilded Scale weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "kazuha",
-        "sayu",
-        "yelan"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 179
-  },
-  {
-    "id": "molten-moment",
-    "name": "Molten Moment",
-    "image": "/images/materials/talent-boss/molten-moment",
-    "rarity": 5,
-    "category": "Talent Boss",
-    "description": "Molten Moment weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "raiden",
-        "aloy",
-        "gorou"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 180
-  },
-  {
-    "id": "hellfire-butterfly",
-    "name": "Hellfire Butterfly",
-    "image": "/images/materials/talent-boss/hellfire-butterfly",
-    "rarity": 5,
-    "category": "Talent Boss",
-    "description": "Hellfire Butterfly weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "kokomi",
-        "thoma",
-        "shenhe"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 181
-  },
-  {
-    "id": "ashen-heart",
-    "name": "Ashen Heart",
-    "image": "/images/materials/talent-boss/ashen-heart",
-    "rarity": 5,
-    "category": "Talent Boss",
-    "description": "Ashen Heart weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "sara",
-        "arataki-itto",
-        "yun-jin"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 182
-  },
-  {
-    "id": "mudra-of-the-malefic-general",
-    "name": "Mudra of the Malefic General",
-    "image": "/images/materials/talent-boss/mudra-of-the-malefic-general",
-    "rarity": 5,
-    "category": "Talent Boss",
-    "description": "Mudra of the Malefic General weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "cyno",
-        "ayato",
-        "traveler-dendro"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 183
-  },
-  {
-    "id": "tears-of-the-calamitous-god",
-    "name": "Tears of the Calamitous God",
-    "image": "/images/materials/talent-boss/tears-of-the-calamitous-god",
-    "rarity": 5,
-    "category": "Talent Boss",
-    "description": "Tears of the Calamitous God weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "candace",
-        "collei",
-        "kuki-shinobu",
-        "nilou"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 184
-  },
-  {
-    "id": "the-meaning-of-aeons",
-    "name": "The Meaning of Aeons",
-    "image": "/images/materials/talent-boss/the-meaning-of-aeons",
-    "rarity": 5,
-    "category": "Talent Boss",
-    "description": "The Meaning of Aeons weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "shikanoin-heizou",
-        "tighnari",
-        "yae-miko"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 185
-  },
-  {
-    "id": "puppet-strings",
-    "name": "Puppet Strings",
-    "image": "/images/materials/talent-boss/puppet-strings",
-    "rarity": 5,
-    "category": "Talent Boss",
-    "description": "Puppet Strings weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "dehya",
-        "faruzan",
-        "nahida"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 186
-  },
-  {
-    "id": "mirror-of-mushin",
-    "name": "Mirror of Mushin",
-    "image": "/images/materials/talent-boss/mirror-of-mushin",
-    "rarity": 5,
-    "category": "Talent Boss",
-    "description": "Mirror of Mushin weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "alhaitham",
-        "layla",
-        "mika"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 187
-  },
-  {
-    "id": "daka-s-bell",
-    "name": "Daka's Bell",
-    "image": "/images/materials/talent-boss/daka-s-bell",
-    "rarity": 5,
-    "category": "Talent Boss",
-    "description": "Daka's Bell weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "wanderer",
-        "yaoyao",
-        "sethos",
-        "xilonen"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 188
-  },
-  {
-    "id": "worldspan-fern",
-    "name": "Worldspan Fern",
-    "image": "/images/materials/talent-boss/worldspan-fern",
-    "rarity": 5,
-    "category": "Talent Boss",
-    "description": "Worldspan Fern weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "baizhu",
-        "freminet",
-        "traveler-hydro"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 189
-  },
-  {
-    "id": "primordial-greenbloom",
-    "name": "Primordial Greenbloom",
-    "image": "/images/materials/talent-boss/primordial-greenbloom",
-    "rarity": 5,
-    "category": "Talent Boss",
-    "description": "Primordial Greenbloom weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "lyney",
-        "wriothesley",
-        "kaveh"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 190
-  },
-  {
-    "id": "everamber",
-    "name": "Everamber",
-    "image": "/images/materials/talent-boss/everamber",
-    "rarity": 5,
-    "category": "Talent Boss",
-    "description": "Everamber weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "lynette",
-        "neuvillette",
-        "kirara",
-        "clorinde"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 191
-  },
-  {
-    "id": "lightless-silk-string",
-    "name": "Lightless Silk String",
-    "image": "/images/materials/talent-boss/lightless-silk-string",
-    "rarity": 5,
-    "category": "Talent Boss",
-    "description": "Lightless Silk String weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "charlotte",
-        "navia",
-        "chiori",
-        "ororon"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 192
-  },
-  {
-    "id": "lightless-eye-of-the-maelstrom",
-    "name": "Lightless Eye of the Maelstrom",
-    "image": "/images/materials/talent-boss/lightless-eye-of-the-maelstrom",
-    "rarity": 5,
-    "category": "Talent Boss",
-    "description": "Lightless Eye of the Maelstrom weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "chevreuse",
-        "xianyun",
-        "sigewinne"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 193
-  },
-  {
-    "id": "lightless-mass",
-    "name": "Lightless Mass",
-    "image": "/images/materials/talent-boss/lightless-mass",
-    "rarity": 5,
-    "category": "Talent Boss",
-    "description": "Lightless Mass weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "furina",
-        "gaming",
-        "mualani"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 194
-  },
-  {
-    "id": "fading-candle",
-    "name": "Fading Candle",
-    "image": "/images/materials/talent-boss/fading-candle",
-    "rarity": 5,
-    "category": "Talent Boss",
-    "description": "Fading Candle weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "arlecchino",
-        "kachina",
-        "yumemizuki-mizuki"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 195
-  },
-  {
-    "id": "silken-feather",
-    "name": "Silken Feather",
-    "image": "/images/materials/talent-boss/silken-feather",
-    "rarity": 5,
-    "category": "Talent Boss",
-    "description": "Silken Feather weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "aino",
-        "chasca",
-        "emilie"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 196
-  },
-  {
-    "id": "denial-and-judgment",
-    "name": "Denial and Judgment",
-    "image": "/images/materials/talent-boss/denial-and-judgment",
-    "rarity": 5,
-    "category": "Talent Boss",
-    "description": "Denial and Judgment weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "kinich",
-        "traveler-pyro",
-        "citlali",
-        "iansan"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 197
-  },
-  {
-    "id": "eroded-horn",
-    "name": "Eroded Horn",
-    "image": "/images/materials/talent-boss/eroded-horn",
-    "rarity": 5,
-    "category": "Talent Boss",
-    "description": "Eroded Horn weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "escoffier",
-        "illuga",
-        "mavuika"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 198
-  },
-  {
-    "id": "eroded-sunfire",
-    "name": "Eroded Sunfire",
-    "image": "/images/materials/talent-boss/eroded-sunfire",
-    "rarity": 5,
-    "category": "Talent Boss",
-    "description": "Eroded Sunfire weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "durin",
-        "ineffa",
-        "lan-yan"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 199
-  },
-  {
-    "id": "eroded-scale-feather",
-    "name": "Eroded Scale-Feather",
-    "image": "/images/materials/talent-boss/eroded-scale-feather",
-    "rarity": 5,
-    "category": "Talent Boss",
-    "description": "Eroded Scale-Feather weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "dahlia",
-        "lauma",
-        "varesa"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 200
-  },
-  {
-    "id": "ascended-sample-knight",
-    "name": "Ascended Sample: Knight",
-    "image": "/images/materials/talent-boss/ascended-sample-knight",
-    "rarity": 5,
-    "category": "Talent Boss",
-    "description": "Ascended Sample: Knight weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "jahoda",
-        "skirk"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 201
-  },
-  {
-    "id": "ascended-sample-rook",
-    "name": "Ascended Sample: Rook",
-    "image": "/images/materials/talent-boss/ascended-sample-rook",
-    "rarity": 5,
-    "category": "Talent Boss",
-    "description": "Ascended Sample: Rook weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "ifa",
-        "nefer"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 202
-  },
-  {
-    "id": "ascended-sample-queen",
-    "name": "Ascended Sample: Queen",
-    "image": "/images/materials/talent-boss/ascended-sample-queen",
-    "rarity": 5,
-    "category": "Talent Boss",
-    "description": "Ascended Sample: Queen weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "flins",
-        "zibai"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
     "sortOrder": 203
-  },
-  {
-    "id": "mask-of-the-virtuous-doctor",
-    "name": "Mask of the Virtuous Doctor",
-    "image": "/images/materials/talent-boss/mask-of-the-virtuous-doctor",
-    "rarity": 5,
-    "category": "Talent Boss",
-    "description": "Mask of the Virtuous Doctor weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "columbina",
-        "prune"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 204
-  },
-  {
-    "id": "madman-s-restraint",
-    "name": "Madman's Restraint",
-    "image": "/images/materials/talent-boss/madman-s-restraint",
-    "rarity": 5,
-    "category": "Talent Boss",
-    "description": "Madman's Restraint weekly boss talent material.",
-    "details": {
-      "usedByCharacters": [
-        "nicole"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 205
-  },
-  {
-    "id": "elixir-of-the-heretic",
-    "name": "Elixir of the Heretic",
-    "image": "/images/materials/talent-boss/elixir-of-the-heretic",
-    "rarity": 5,
-    "category": "Talent Boss",
-    "description": "Elixir of the Heretic weekly boss talent material.",
-    "details": {
-      "usedByCharacters": []
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 206
   },
   {
     "id": "agnidus-agate-sliver",
@@ -3049,7 +3004,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "agnidus-agate-fragment",
-    "sortOrder": 207
+    "sortOrder": 204
   },
   {
     "id": "agnidus-agate-fragment",
@@ -3061,7 +3016,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "agnidus-agate-chunk",
-    "sortOrder": 208
+    "sortOrder": 205
   },
   {
     "id": "agnidus-agate-chunk",
@@ -3073,7 +3028,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "agnidus-agate-gemstone",
-    "sortOrder": 209
+    "sortOrder": 206
   },
   {
     "id": "agnidus-agate-gemstone",
@@ -3085,7 +3040,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 210
+    "sortOrder": 207
   },
   {
     "id": "varunada-lazurite-sliver",
@@ -3097,7 +3052,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "varunada-lazurite-fragment",
-    "sortOrder": 211
+    "sortOrder": 208
   },
   {
     "id": "varunada-lazurite-fragment",
@@ -3109,7 +3064,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "varunada-lazurite-chunk",
-    "sortOrder": 212
+    "sortOrder": 209
   },
   {
     "id": "varunada-lazurite-chunk",
@@ -3121,7 +3076,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "varunada-lazurite-gemstone",
-    "sortOrder": 213
+    "sortOrder": 210
   },
   {
     "id": "varunada-lazurite-gemstone",
@@ -3133,7 +3088,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 214
+    "sortOrder": 211
   },
   {
     "id": "nagadus-emerald-sliver",
@@ -3145,7 +3100,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "nagadus-emerald-fragment",
-    "sortOrder": 215
+    "sortOrder": 212
   },
   {
     "id": "nagadus-emerald-fragment",
@@ -3157,7 +3112,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "nagadus-emerald-chunk",
-    "sortOrder": 216
+    "sortOrder": 213
   },
   {
     "id": "nagadus-emerald-chunk",
@@ -3169,7 +3124,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "nagadus-emerald-gemstone",
-    "sortOrder": 217
+    "sortOrder": 214
   },
   {
     "id": "nagadus-emerald-gemstone",
@@ -3181,7 +3136,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 218
+    "sortOrder": 215
   },
   {
     "id": "vajrada-amethyst-sliver",
@@ -3193,7 +3148,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "vajrada-amethyst-fragment",
-    "sortOrder": 219
+    "sortOrder": 216
   },
   {
     "id": "vajrada-amethyst-fragment",
@@ -3205,7 +3160,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "vajrada-amethyst-chunk",
-    "sortOrder": 220
+    "sortOrder": 217
   },
   {
     "id": "vajrada-amethyst-chunk",
@@ -3217,7 +3172,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "vajrada-amethyst-gemstone",
-    "sortOrder": 221
+    "sortOrder": 218
   },
   {
     "id": "vajrada-amethyst-gemstone",
@@ -3229,7 +3184,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 222
+    "sortOrder": 219
   },
   {
     "id": "vayuda-turquoise-sliver",
@@ -3241,7 +3196,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "vayuda-turquoise-fragment",
-    "sortOrder": 223
+    "sortOrder": 220
   },
   {
     "id": "vayuda-turquoise-fragment",
@@ -3253,7 +3208,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "vayuda-turquoise-chunk",
-    "sortOrder": 224
+    "sortOrder": 221
   },
   {
     "id": "vayuda-turquoise-chunk",
@@ -3265,7 +3220,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "vayuda-turquoise-gemstone",
-    "sortOrder": 225
+    "sortOrder": 222
   },
   {
     "id": "vayuda-turquoise-gemstone",
@@ -3277,7 +3232,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 226
+    "sortOrder": 223
   },
   {
     "id": "shivada-jade-sliver",
@@ -3289,7 +3244,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "shivada-jade-fragment",
-    "sortOrder": 227
+    "sortOrder": 224
   },
   {
     "id": "shivada-jade-fragment",
@@ -3301,7 +3256,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "shivada-jade-chunk",
-    "sortOrder": 228
+    "sortOrder": 225
   },
   {
     "id": "shivada-jade-chunk",
@@ -3313,7 +3268,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "shivada-jade-gemstone",
-    "sortOrder": 229
+    "sortOrder": 226
   },
   {
     "id": "shivada-jade-gemstone",
@@ -3325,7 +3280,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 230
+    "sortOrder": 227
   },
   {
     "id": "prithiva-topaz-sliver",
@@ -3337,7 +3292,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "prithiva-topaz-fragment",
-    "sortOrder": 231
+    "sortOrder": 228
   },
   {
     "id": "prithiva-topaz-fragment",
@@ -3349,7 +3304,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "prithiva-topaz-chunk",
-    "sortOrder": 232
+    "sortOrder": 229
   },
   {
     "id": "prithiva-topaz-chunk",
@@ -3361,7 +3316,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "prithiva-topaz-gemstone",
-    "sortOrder": 233
+    "sortOrder": 230
   },
   {
     "id": "prithiva-topaz-gemstone",
@@ -3373,7 +3328,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 234
+    "sortOrder": 231
   },
   {
     "id": "brilliant-diamond-sliver",
@@ -3385,7 +3340,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "brilliant-diamond-fragment",
-    "sortOrder": 235
+    "sortOrder": 232
   },
   {
     "id": "brilliant-diamond-fragment",
@@ -3397,7 +3352,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "brilliant-diamond-chunk",
-    "sortOrder": 236
+    "sortOrder": 233
   },
   {
     "id": "brilliant-diamond-chunk",
@@ -3409,7 +3364,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "brilliant-diamond-gemstone",
-    "sortOrder": 237
+    "sortOrder": 234
   },
   {
     "id": "brilliant-diamond-gemstone",
@@ -3421,7 +3376,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 238
+    "sortOrder": 235
   },
   {
     "id": "teachings-of-freedom",
@@ -3433,7 +3388,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "guide-to-freedom",
-    "sortOrder": 239
+    "sortOrder": 236
   },
   {
     "id": "guide-to-freedom",
@@ -3445,7 +3400,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "philosophies-of-freedom",
-    "sortOrder": 240
+    "sortOrder": 237
   },
   {
     "id": "philosophies-of-freedom",
@@ -3457,7 +3412,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 241
+    "sortOrder": 238
   },
   {
     "id": "teachings-of-resistance",
@@ -3469,7 +3424,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "guide-to-resistance",
-    "sortOrder": 242
+    "sortOrder": 239
   },
   {
     "id": "guide-to-resistance",
@@ -3481,7 +3436,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "philosophies-of-resistance",
-    "sortOrder": 243
+    "sortOrder": 240
   },
   {
     "id": "philosophies-of-resistance",
@@ -3493,7 +3448,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 244
+    "sortOrder": 241
   },
   {
     "id": "teachings-of-ballad",
@@ -3505,7 +3460,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "guide-to-ballad",
-    "sortOrder": 245
+    "sortOrder": 242
   },
   {
     "id": "guide-to-ballad",
@@ -3517,7 +3472,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "philosophies-of-ballad",
-    "sortOrder": 246
+    "sortOrder": 243
   },
   {
     "id": "philosophies-of-ballad",
@@ -3529,7 +3484,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 247
+    "sortOrder": 244
   },
   {
     "id": "teachings-of-prosperity",
@@ -3541,7 +3496,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "guide-to-prosperity",
-    "sortOrder": 248
+    "sortOrder": 245
   },
   {
     "id": "guide-to-prosperity",
@@ -3553,7 +3508,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "philosophies-of-prosperity",
-    "sortOrder": 249
+    "sortOrder": 246
   },
   {
     "id": "philosophies-of-prosperity",
@@ -3565,7 +3520,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 250
+    "sortOrder": 247
   },
   {
     "id": "teachings-of-diligence",
@@ -3577,7 +3532,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "guide-to-diligence",
-    "sortOrder": 251
+    "sortOrder": 248
   },
   {
     "id": "guide-to-diligence",
@@ -3589,7 +3544,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "philosophies-of-diligence",
-    "sortOrder": 252
+    "sortOrder": 249
   },
   {
     "id": "philosophies-of-diligence",
@@ -3601,7 +3556,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 253
+    "sortOrder": 250
   },
   {
     "id": "teachings-of-gold",
@@ -3613,7 +3568,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "guide-to-gold",
-    "sortOrder": 254
+    "sortOrder": 251
   },
   {
     "id": "guide-to-gold",
@@ -3625,7 +3580,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "philosophies-of-gold",
-    "sortOrder": 255
+    "sortOrder": 252
   },
   {
     "id": "philosophies-of-gold",
@@ -3637,7 +3592,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 256
+    "sortOrder": 253
   },
   {
     "id": "teachings-of-transience",
@@ -3649,7 +3604,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "guide-to-transience",
-    "sortOrder": 257
+    "sortOrder": 254
   },
   {
     "id": "guide-to-transience",
@@ -3661,7 +3616,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "philosophies-of-transience",
-    "sortOrder": 258
+    "sortOrder": 255
   },
   {
     "id": "philosophies-of-transience",
@@ -3673,7 +3628,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 259
+    "sortOrder": 256
   },
   {
     "id": "teachings-of-elegance",
@@ -3685,7 +3640,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "guide-to-elegance",
-    "sortOrder": 260
+    "sortOrder": 257
   },
   {
     "id": "guide-to-elegance",
@@ -3697,7 +3652,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "philosophies-of-elegance",
-    "sortOrder": 261
+    "sortOrder": 258
   },
   {
     "id": "philosophies-of-elegance",
@@ -3709,7 +3664,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 262
+    "sortOrder": 259
   },
   {
     "id": "teachings-of-light",
@@ -3721,7 +3676,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "guide-to-light",
-    "sortOrder": 263
+    "sortOrder": 260
   },
   {
     "id": "guide-to-light",
@@ -3733,7 +3688,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "philosophies-of-light",
-    "sortOrder": 264
+    "sortOrder": 261
   },
   {
     "id": "philosophies-of-light",
@@ -3745,7 +3700,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 265
+    "sortOrder": 262
   },
   {
     "id": "teachings-of-admonition",
@@ -3757,7 +3712,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "guide-to-admonition",
-    "sortOrder": 266
+    "sortOrder": 263
   },
   {
     "id": "guide-to-admonition",
@@ -3769,7 +3724,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "philosophies-of-admonition",
-    "sortOrder": 267
+    "sortOrder": 264
   },
   {
     "id": "philosophies-of-admonition",
@@ -3781,7 +3736,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 268
+    "sortOrder": 265
   },
   {
     "id": "teachings-of-ingenuity",
@@ -3793,7 +3748,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "guide-to-ingenuity",
-    "sortOrder": 269
+    "sortOrder": 266
   },
   {
     "id": "guide-to-ingenuity",
@@ -3805,7 +3760,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "philosophies-of-ingenuity",
-    "sortOrder": 270
+    "sortOrder": 267
   },
   {
     "id": "philosophies-of-ingenuity",
@@ -3817,7 +3772,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 271
+    "sortOrder": 268
   },
   {
     "id": "teachings-of-praxis",
@@ -3829,7 +3784,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "guide-to-praxis",
-    "sortOrder": 272
+    "sortOrder": 269
   },
   {
     "id": "guide-to-praxis",
@@ -3841,7 +3796,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "philosophies-of-praxis",
-    "sortOrder": 273
+    "sortOrder": 270
   },
   {
     "id": "philosophies-of-praxis",
@@ -3853,7 +3808,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 274
+    "sortOrder": 271
   },
   {
     "id": "teachings-of-equity",
@@ -3865,7 +3820,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "guide-to-equity",
-    "sortOrder": 275
+    "sortOrder": 272
   },
   {
     "id": "guide-to-equity",
@@ -3877,7 +3832,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "philosophies-of-equity",
-    "sortOrder": 276
+    "sortOrder": 273
   },
   {
     "id": "philosophies-of-equity",
@@ -3889,7 +3844,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 277
+    "sortOrder": 274
   },
   {
     "id": "teachings-of-justice",
@@ -3901,7 +3856,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "guide-to-justice",
-    "sortOrder": 278
+    "sortOrder": 275
   },
   {
     "id": "guide-to-justice",
@@ -3913,7 +3868,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "philosophies-of-justice",
-    "sortOrder": 279
+    "sortOrder": 276
   },
   {
     "id": "philosophies-of-justice",
@@ -3925,7 +3880,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 280
+    "sortOrder": 277
   },
   {
     "id": "teachings-of-order",
@@ -3937,7 +3892,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "guide-to-order",
-    "sortOrder": 281
+    "sortOrder": 278
   },
   {
     "id": "guide-to-order",
@@ -3949,7 +3904,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "philosophies-of-order",
-    "sortOrder": 282
+    "sortOrder": 279
   },
   {
     "id": "philosophies-of-order",
@@ -3961,7 +3916,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 283
+    "sortOrder": 280
   },
   {
     "id": "teachings-of-contention",
@@ -3973,7 +3928,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "guide-to-contention",
-    "sortOrder": 284
+    "sortOrder": 281
   },
   {
     "id": "guide-to-contention",
@@ -3985,7 +3940,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "philosophies-of-contention",
-    "sortOrder": 285
+    "sortOrder": 282
   },
   {
     "id": "philosophies-of-contention",
@@ -3997,7 +3952,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 286
+    "sortOrder": 283
   },
   {
     "id": "teachings-of-kindling",
@@ -4009,7 +3964,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "guide-to-kindling",
-    "sortOrder": 287
+    "sortOrder": 284
   },
   {
     "id": "guide-to-kindling",
@@ -4021,7 +3976,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "philosophies-of-kindling",
-    "sortOrder": 288
+    "sortOrder": 285
   },
   {
     "id": "philosophies-of-kindling",
@@ -4033,7 +3988,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 289
+    "sortOrder": 286
   },
   {
     "id": "teachings-of-conflict",
@@ -4045,7 +4000,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "guide-to-conflict",
-    "sortOrder": 290
+    "sortOrder": 287
   },
   {
     "id": "guide-to-conflict",
@@ -4057,7 +4012,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "philosophies-of-conflict",
-    "sortOrder": 291
+    "sortOrder": 288
   },
   {
     "id": "philosophies-of-conflict",
@@ -4069,7 +4024,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 292
+    "sortOrder": 289
   },
   {
     "id": "teachings-of-moonlight",
@@ -4081,7 +4036,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "guide-to-moonlight",
-    "sortOrder": 293
+    "sortOrder": 290
   },
   {
     "id": "guide-to-moonlight",
@@ -4093,7 +4048,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "philosophies-of-moonlight",
-    "sortOrder": 294
+    "sortOrder": 291
   },
   {
     "id": "philosophies-of-moonlight",
@@ -4105,7 +4060,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 295
+    "sortOrder": 292
   },
   {
     "id": "teachings-of-elysium",
@@ -4117,7 +4072,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "guide-to-elysium",
-    "sortOrder": 296
+    "sortOrder": 293
   },
   {
     "id": "guide-to-elysium",
@@ -4129,7 +4084,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "philosophies-of-elysium",
-    "sortOrder": 297
+    "sortOrder": 294
   },
   {
     "id": "philosophies-of-elysium",
@@ -4141,7 +4096,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 298
+    "sortOrder": 295
   },
   {
     "id": "teachings-of-vagrancy",
@@ -4153,7 +4108,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "guide-to-vagrancy",
-    "sortOrder": 299
+    "sortOrder": 296
   },
   {
     "id": "guide-to-vagrancy",
@@ -4165,7 +4120,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "philosophies-of-vagrancy",
-    "sortOrder": 300
+    "sortOrder": 297
   },
   {
     "id": "philosophies-of-vagrancy",
@@ -4177,7 +4132,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 301
+    "sortOrder": 298
   },
   {
     "id": "crown-of-insight",
@@ -4189,7 +4144,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 302
+    "sortOrder": 299
   },
   {
     "id": "tile-of-decarabian-s-tower",
@@ -4201,7 +4156,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "debris-of-decarabian-s-city",
-    "sortOrder": 303
+    "sortOrder": 300
   },
   {
     "id": "debris-of-decarabian-s-city",
@@ -4213,7 +4168,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "fragment-of-decarabian-s-epic",
-    "sortOrder": 304
+    "sortOrder": 301
   },
   {
     "id": "fragment-of-decarabian-s-epic",
@@ -4225,7 +4180,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "scattered-piece-of-decarabian-s-dream",
-    "sortOrder": 305
+    "sortOrder": 302
   },
   {
     "id": "scattered-piece-of-decarabian-s-dream",
@@ -4237,7 +4192,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 306
+    "sortOrder": 303
   },
   {
     "id": "boreal-wolf-s-milk-tooth",
@@ -4249,7 +4204,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "boreal-wolf-s-cracked-tooth",
-    "sortOrder": 307
+    "sortOrder": 304
   },
   {
     "id": "boreal-wolf-s-cracked-tooth",
@@ -4261,7 +4216,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "boreal-wolf-s-broken-fang",
-    "sortOrder": 308
+    "sortOrder": 305
   },
   {
     "id": "boreal-wolf-s-broken-fang",
@@ -4273,7 +4228,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "boreal-wolf-s-nostalgia",
-    "sortOrder": 309
+    "sortOrder": 306
   },
   {
     "id": "boreal-wolf-s-nostalgia",
@@ -4285,7 +4240,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 310
+    "sortOrder": 307
   },
   {
     "id": "fetters-of-the-dandelion-gladiator",
@@ -4297,7 +4252,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "chains-of-the-dandelion-gladiator",
-    "sortOrder": 311
+    "sortOrder": 308
   },
   {
     "id": "chains-of-the-dandelion-gladiator",
@@ -4309,7 +4264,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "shackles-of-the-dandelion-gladiator",
-    "sortOrder": 312
+    "sortOrder": 309
   },
   {
     "id": "shackles-of-the-dandelion-gladiator",
@@ -4321,7 +4276,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "dream-of-the-dandelion-gladiator",
-    "sortOrder": 313
+    "sortOrder": 310
   },
   {
     "id": "dream-of-the-dandelion-gladiator",
@@ -4333,7 +4288,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 314
+    "sortOrder": 311
   },
   {
     "id": "luminous-sands-from-guyun",
@@ -4345,7 +4300,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "lustrous-stone-from-guyun",
-    "sortOrder": 315
+    "sortOrder": 312
   },
   {
     "id": "lustrous-stone-from-guyun",
@@ -4357,7 +4312,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "relic-from-guyun",
-    "sortOrder": 316
+    "sortOrder": 313
   },
   {
     "id": "relic-from-guyun",
@@ -4369,7 +4324,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "divine-body-from-guyun",
-    "sortOrder": 317
+    "sortOrder": 314
   },
   {
     "id": "divine-body-from-guyun",
@@ -4381,7 +4336,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 318
+    "sortOrder": 315
   },
   {
     "id": "mist-veiled-lead-elixir",
@@ -4393,7 +4348,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "mist-veiled-mercury-elixir",
-    "sortOrder": 319
+    "sortOrder": 316
   },
   {
     "id": "mist-veiled-mercury-elixir",
@@ -4405,7 +4360,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "mist-veiled-gold-elixir",
-    "sortOrder": 320
+    "sortOrder": 317
   },
   {
     "id": "mist-veiled-gold-elixir",
@@ -4417,7 +4372,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "mist-veiled-primo-elixir",
-    "sortOrder": 321
+    "sortOrder": 318
   },
   {
     "id": "mist-veiled-primo-elixir",
@@ -4429,7 +4384,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 322
+    "sortOrder": 319
   },
   {
     "id": "grain-of-aerosiderite",
@@ -4441,7 +4396,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "piece-of-aerosiderite",
-    "sortOrder": 323
+    "sortOrder": 320
   },
   {
     "id": "piece-of-aerosiderite",
@@ -4453,7 +4408,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "bit-of-aerosiderite",
-    "sortOrder": 324
+    "sortOrder": 321
   },
   {
     "id": "bit-of-aerosiderite",
@@ -4465,7 +4420,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "chunk-of-aerosiderite",
-    "sortOrder": 325
+    "sortOrder": 322
   },
   {
     "id": "chunk-of-aerosiderite",
@@ -4477,7 +4432,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 326
+    "sortOrder": 323
   },
   {
     "id": "coral-branch-of-a-distant-sea",
@@ -4489,7 +4444,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "jeweled-branch-of-a-distant-sea",
-    "sortOrder": 327
+    "sortOrder": 324
   },
   {
     "id": "jeweled-branch-of-a-distant-sea",
@@ -4501,7 +4456,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "jade-branch-of-a-distant-sea",
-    "sortOrder": 328
+    "sortOrder": 325
   },
   {
     "id": "jade-branch-of-a-distant-sea",
@@ -4513,7 +4468,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "golden-branch-of-a-distant-sea",
-    "sortOrder": 329
+    "sortOrder": 326
   },
   {
     "id": "golden-branch-of-a-distant-sea",
@@ -4525,7 +4480,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 330
+    "sortOrder": 327
   },
   {
     "id": "narukami-s-wisdom",
@@ -4537,7 +4492,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "narukami-s-joy",
-    "sortOrder": 331
+    "sortOrder": 328
   },
   {
     "id": "narukami-s-joy",
@@ -4549,7 +4504,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "narukami-s-affection",
-    "sortOrder": 332
+    "sortOrder": 329
   },
   {
     "id": "narukami-s-affection",
@@ -4561,7 +4516,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "narukami-s-valor",
-    "sortOrder": 333
+    "sortOrder": 330
   },
   {
     "id": "narukami-s-valor",
@@ -4573,7 +4528,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 334
+    "sortOrder": 331
   },
   {
     "id": "mask-of-the-wicked-lieutenant",
@@ -4585,7 +4540,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "mask-of-the-tiger-s-bite",
-    "sortOrder": 335
+    "sortOrder": 332
   },
   {
     "id": "mask-of-the-tiger-s-bite",
@@ -4597,7 +4552,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "mask-of-the-one-horned",
-    "sortOrder": 336
+    "sortOrder": 333
   },
   {
     "id": "mask-of-the-one-horned",
@@ -4609,7 +4564,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "mask-of-the-kijin",
-    "sortOrder": 337
+    "sortOrder": 334
   },
   {
     "id": "mask-of-the-kijin",
@@ -4621,7 +4576,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 338
+    "sortOrder": 335
   },
   {
     "id": "copper-talisman-of-the-forest-dew",
@@ -4633,7 +4588,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "iron-talisman-of-the-forest-dew",
-    "sortOrder": 339
+    "sortOrder": 336
   },
   {
     "id": "iron-talisman-of-the-forest-dew",
@@ -4645,7 +4600,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "silver-talisman-of-the-forest-dew",
-    "sortOrder": 340
+    "sortOrder": 337
   },
   {
     "id": "silver-talisman-of-the-forest-dew",
@@ -4657,7 +4612,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "golden-talisman-of-the-forest-dew",
-    "sortOrder": 341
+    "sortOrder": 338
   },
   {
     "id": "golden-talisman-of-the-forest-dew",
@@ -4669,7 +4624,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 342
+    "sortOrder": 339
   },
   {
     "id": "oasis-garden-s-reminiscence",
@@ -4681,7 +4636,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "oasis-garden-s-kindness",
-    "sortOrder": 343
+    "sortOrder": 340
   },
   {
     "id": "oasis-garden-s-kindness",
@@ -4693,7 +4648,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "oasis-garden-s-mourning",
-    "sortOrder": 344
+    "sortOrder": 341
   },
   {
     "id": "oasis-garden-s-mourning",
@@ -4705,7 +4660,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "oasis-garden-s-truth",
-    "sortOrder": 345
+    "sortOrder": 342
   },
   {
     "id": "oasis-garden-s-truth",
@@ -4717,7 +4672,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 346
+    "sortOrder": 343
   },
   {
     "id": "echo-of-scorching-might",
@@ -4729,7 +4684,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "remnant-glow-of-scorching-might",
-    "sortOrder": 347
+    "sortOrder": 344
   },
   {
     "id": "remnant-glow-of-scorching-might",
@@ -4741,7 +4696,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "dream-of-scorching-might",
-    "sortOrder": 348
+    "sortOrder": 345
   },
   {
     "id": "dream-of-scorching-might",
@@ -4753,7 +4708,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "olden-days-of-scorching-might",
-    "sortOrder": 349
+    "sortOrder": 346
   },
   {
     "id": "olden-days-of-scorching-might",
@@ -4765,7 +4720,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 350
+    "sortOrder": 347
   },
   {
     "id": "fragment-of-an-ancient-chord",
@@ -4777,7 +4732,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "chapter-of-an-ancient-chord",
-    "sortOrder": 351
+    "sortOrder": 348
   },
   {
     "id": "chapter-of-an-ancient-chord",
@@ -4789,7 +4744,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "movement-of-an-ancient-chord",
-    "sortOrder": 352
+    "sortOrder": 349
   },
   {
     "id": "movement-of-an-ancient-chord",
@@ -4801,7 +4756,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "echo-of-an-ancient-chord",
-    "sortOrder": 353
+    "sortOrder": 350
   },
   {
     "id": "echo-of-an-ancient-chord",
@@ -4813,7 +4768,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 354
+    "sortOrder": 351
   },
   {
     "id": "dross-of-pure-sacred-dewdrop",
@@ -4825,7 +4780,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "sublimation-of-pure-sacred-dewdrop",
-    "sortOrder": 355
+    "sortOrder": 352
   },
   {
     "id": "sublimation-of-pure-sacred-dewdrop",
@@ -4837,7 +4792,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "spring-of-pure-sacred-dewdrop",
-    "sortOrder": 356
+    "sortOrder": 353
   },
   {
     "id": "spring-of-pure-sacred-dewdrop",
@@ -4849,7 +4804,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "essence-of-pure-sacred-dewdrop",
-    "sortOrder": 357
+    "sortOrder": 354
   },
   {
     "id": "essence-of-pure-sacred-dewdrop",
@@ -4861,7 +4816,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 358
+    "sortOrder": 355
   },
   {
     "id": "broken-goblet-of-the-pristine-sea",
@@ -4873,7 +4828,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "wine-goblet-of-the-pristine-sea",
-    "sortOrder": 359
+    "sortOrder": 356
   },
   {
     "id": "wine-goblet-of-the-pristine-sea",
@@ -4885,7 +4840,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "silver-goblet-of-the-pristine-sea",
-    "sortOrder": 360
+    "sortOrder": 357
   },
   {
     "id": "silver-goblet-of-the-pristine-sea",
@@ -4897,7 +4852,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "golden-goblet-of-the-pristine-sea",
-    "sortOrder": 361
+    "sortOrder": 358
   },
   {
     "id": "golden-goblet-of-the-pristine-sea",
@@ -4909,7 +4864,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 362
+    "sortOrder": 359
   },
   {
     "id": "artful-device-fragment",
@@ -4921,7 +4876,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "artful-device-replica",
-    "sortOrder": 363
+    "sortOrder": 360
   },
   {
     "id": "artful-device-replica",
@@ -4933,7 +4888,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "artful-device-inheritance",
-    "sortOrder": 364
+    "sortOrder": 361
   },
   {
     "id": "artful-device-inheritance",
@@ -4945,7 +4900,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "artful-device-wish",
-    "sortOrder": 365
+    "sortOrder": 362
   },
   {
     "id": "artful-device-wish",
@@ -4954,6 +4909,51 @@ export const seedMaterials: SeedMaterial[] = [
     "rarity": 5,
     "category": "Weapon Ascension",
     "description": "Artful Device Wish weapon ascension material.",
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 363
+  },
+  {
+    "id": "hero-s-wit",
+    "name": "Hero's Wit",
+    "image": "/images/materials/character-experience/hero-s-wit",
+    "rarity": 4,
+    "category": "Character EXP Material",
+    "description": "Hero's Wit character EXP material.",
+    "details": {
+      "experience": 20000
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 364
+  },
+  {
+    "id": "adventurer-s-experience",
+    "name": "Adventurer's Experience",
+    "image": "/images/materials/character-experience/adventurer-s-experience",
+    "rarity": 3,
+    "category": "Character EXP Material",
+    "description": "Adventurer's Experience character EXP material.",
+    "details": {
+      "experience": 5000
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 365
+  },
+  {
+    "id": "wanderer-s-advice",
+    "name": "Wanderer's Advice",
+    "image": "/images/materials/character-experience/wanderer-s-advice",
+    "rarity": 2,
+    "category": "Character EXP Material",
+    "description": "Wanderer's Advice character EXP material.",
+    "details": {
+      "experience": 1000
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,

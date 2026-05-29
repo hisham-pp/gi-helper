@@ -7,15 +7,15 @@ type SortableMaterial = Pick<
 >;
 
 const categoryOrder = [
-  "Character EXP Material",
-  "Character EXP Materials",
   "Enemy Drop",
   "Elite Drop",
-  "Boss Material",
   "Talent Boss",
+  "Boss Material",
   "Gem",
   "Talent Book",
   "Weapon Ascension",
+  "Character EXP Material",
+  "Character EXP Materials",
   "Refinement Material",
   "Refinement Materials",
   "Local Specialty",
@@ -45,6 +45,14 @@ export function compareMaterials(
   left: SortableMaterial,
   right: SortableMaterial,
 ) {
+  if (
+    typeof left.sortOrder === "number" &&
+    typeof right.sortOrder === "number" &&
+    left.sortOrder !== right.sortOrder
+  ) {
+    return left.sortOrder - right.sortOrder;
+  }
+
   const categoryDifference = compareMaterialCategories(
     left.category,
     right.category,
@@ -52,14 +60,6 @@ export function compareMaterials(
 
   if (categoryDifference !== 0) {
     return categoryDifference;
-  }
-
-  if (
-    typeof left.sortOrder === "number" &&
-    typeof right.sortOrder === "number" &&
-    left.sortOrder !== right.sortOrder
-  ) {
-    return left.sortOrder - right.sortOrder;
   }
 
   if (left.rarity !== right.rarity) {

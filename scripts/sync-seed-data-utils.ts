@@ -411,45 +411,6 @@ export function buildMaterialCatalog(): MaterialCatalog {
     });
   };
 
-  const characterExperience = readJsonWithSchema(
-    "data/materials/character-experience/en.json",
-    z.object({
-      items: z.array(
-        z
-          .object({
-            id: seedIdSchema,
-            name: z.string().trim().min(1),
-            experience: z.number().int().positive(),
-            rarity: z.number().int().min(1).max(5),
-          })
-          .strict(),
-      ),
-    }),
-  );
-
-  for (const item of [...characterExperience.items].sort(
-    (left, right) => right.rarity - left.rarity,
-  )) {
-    push({
-      id: slugifyId(item.id),
-      name: item.name.trim(),
-      image: toImagePath(
-        "materials",
-        "character-experience",
-        slugifyId(item.id),
-      ),
-      rarity: item.rarity,
-      category: "Character EXP Material",
-      description: `${item.name.trim()} character EXP material.`,
-      details: {
-        experience: item.experience,
-      },
-      combinable: false,
-      combineRatio: null,
-      parentMaterialId: null,
-    });
-  }
-
   const commonAscension = readJsonWithSchema(
     "data/materials/common-ascension/en.json",
     z.record(
@@ -474,6 +435,38 @@ export function buildMaterialCatalog(): MaterialCatalog {
       "common-ascension",
       (name) => `${name} ascension material.`,
     );
+  }
+
+  const talentBossMaterials = readJsonWithSchema(
+    "data/materials/talent-boss/en.json",
+    z.record(z.string(), talentBossEntrySchema),
+  );
+
+  const weeklyBossMaterialRank = new Map(
+    weeklyBossMaterialOrder.map((id, index) => [id, index]),
+  );
+  const orderedTalentBossMaterials = Object.entries(talentBossMaterials).sort(
+    ([leftId], [rightId]) =>
+      (weeklyBossMaterialRank.get(leftId) ?? weeklyBossMaterialOrder.length) -
+        (weeklyBossMaterialRank.get(rightId) ??
+          weeklyBossMaterialOrder.length) || leftId.localeCompare(rightId),
+  );
+
+  for (const [id, item] of orderedTalentBossMaterials) {
+    push({
+      id,
+      name: canonicalizeSourceMaterialName(item.name.trim()),
+      image: toImagePath("materials", "talent-boss", id),
+      rarity: 5,
+      category: "Talent Boss",
+      description: `${canonicalizeSourceMaterialName(item.name.trim())} weekly boss talent material.`,
+      details: {
+        usedByCharacters: item.characters,
+      },
+      combinable: false,
+      combineRatio: null,
+      parentMaterialId: null,
+    });
   }
 
   const bossMaterials = readJsonWithSchema(
@@ -503,38 +496,6 @@ export function buildMaterialCatalog(): MaterialCatalog {
       details: {
         source: item.source ?? null,
         usedByCharacters: item.characters ?? [],
-      },
-      combinable: false,
-      combineRatio: null,
-      parentMaterialId: null,
-    });
-  }
-
-  const talentBossMaterials = readJsonWithSchema(
-    "data/materials/talent-boss/en.json",
-    z.record(z.string(), talentBossEntrySchema),
-  );
-
-  const weeklyBossMaterialRank = new Map(
-    weeklyBossMaterialOrder.map((id, index) => [id, index]),
-  );
-  const orderedTalentBossMaterials = Object.entries(talentBossMaterials).sort(
-    ([leftId], [rightId]) =>
-      (weeklyBossMaterialRank.get(leftId) ?? weeklyBossMaterialOrder.length) -
-        (weeklyBossMaterialRank.get(rightId) ??
-          weeklyBossMaterialOrder.length) || leftId.localeCompare(rightId),
-  );
-
-  for (const [id, item] of orderedTalentBossMaterials) {
-    push({
-      id,
-      name: canonicalizeSourceMaterialName(item.name.trim()),
-      image: toImagePath("materials", "talent-boss", id),
-      rarity: 5,
-      category: "Talent Boss",
-      description: `${canonicalizeSourceMaterialName(item.name.trim())} weekly boss talent material.`,
-      details: {
-        usedByCharacters: item.characters,
       },
       combinable: false,
       combineRatio: null,
@@ -635,6 +596,45 @@ export function buildMaterialCatalog(): MaterialCatalog {
       "weapon-ascension",
       (name) => `${name} weapon ascension material.`,
     );
+  }
+
+  const characterExperience = readJsonWithSchema(
+    "data/materials/character-experience/en.json",
+    z.object({
+      items: z.array(
+        z
+          .object({
+            id: seedIdSchema,
+            name: z.string().trim().min(1),
+            experience: z.number().int().positive(),
+            rarity: z.number().int().min(1).max(5),
+          })
+          .strict(),
+      ),
+    }),
+  );
+
+  for (const item of [...characterExperience.items].sort(
+    (left, right) => right.rarity - left.rarity,
+  )) {
+    push({
+      id: slugifyId(item.id),
+      name: item.name.trim(),
+      image: toImagePath(
+        "materials",
+        "character-experience",
+        slugifyId(item.id),
+      ),
+      rarity: item.rarity,
+      category: "Character EXP Material",
+      description: `${item.name.trim()} character EXP material.`,
+      details: {
+        experience: item.experience,
+      },
+      combinable: false,
+      combineRatio: null,
+      parentMaterialId: null,
+    });
   }
 
   const localSpecialties = readJsonWithSchema(
