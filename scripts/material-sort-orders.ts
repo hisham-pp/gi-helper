@@ -8,6 +8,7 @@ export const commonAscensionFirstItemOrder = [
   "chaos-gear",
   "dismal-prism",
   "concealed-claw",
+  "gloomy-statuette",
   "inactivated-fungal-nucleus",
   "chaos-storage",
   "damaged-prism",
@@ -45,7 +46,6 @@ export const commonAscensionFirstItemOrder = [
   "sentry-s-wooden-whistle",
   "broken-drive-shaft",
   "tattered-warrant",
-  "gloomy-statuette",
 ];
 
 export const normalBossMaterialOrder = [
