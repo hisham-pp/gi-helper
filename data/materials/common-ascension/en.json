@@ -1419,6 +1419,35 @@
       "Wayob Manifestation"
     ]
   },
+  "avatar-of-lava": {
+    "weapons": [
+      "fang-of-the-mountain-king",
+      "sunny-morning-sleep-in",
+      "earth-shaker",
+      "flower-wreathed-feathers",
+      "mountain-bracing-bolt"
+    ],
+    "items": [
+      {
+        "id": "ignited-stone",
+        "name": "Ignited Stone",
+        "rarity": 2
+      },
+      {
+        "id": "ignited-seed-of-life",
+        "name": "Ignited Seed of Life",
+        "rarity": 3
+      },
+      {
+        "id": "ignited-seeing-eye",
+        "name": "Ignited Seeing Eye",
+        "rarity": 4
+      }
+    ],
+    "sources": [
+      "Avatar of Lava"
+    ]
+  },
   "frostnight-scion": {
     "weapons": [
       "athame-artis",

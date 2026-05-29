@@ -60,11 +60,13 @@ export const createGoalsFromTemplatesSchema = z.object({
 });
 
 export const materialCategories = [
+  "Character EXP Material",
   "Cooking Ingredient",
   "Elite Drop",
   "Enemy Drop",
   "Local Specialty",
   "Talent Book",
+  "Talent Boss",
   "Weapon Ascension",
   "Boss Material",
   "Gem",

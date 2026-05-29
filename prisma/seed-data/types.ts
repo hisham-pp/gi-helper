@@ -52,6 +52,7 @@ export type SeedMaterial = {
   image: string;
   rarity: number;
   category: string;
+  sortOrder?: number;
   description: string;
   details?: Record<string, unknown>;
   combinable: boolean;

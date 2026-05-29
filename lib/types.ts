@@ -4,6 +4,7 @@ export type MaterialNode = {
   image: string;
   rarity: number;
   category: string;
+  sortOrder?: number;
   description: string;
   combinable: boolean;
   combineRatio: number | null;
