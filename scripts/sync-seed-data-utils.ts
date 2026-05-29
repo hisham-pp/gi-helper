@@ -394,8 +394,26 @@ export function buildMaterialCatalog(): MaterialCatalog {
     imageFolder: string,
     descriptionBuilder: (name: string) => string,
   ) => {
-    items.forEach((item, index) => {
-      const next = items[index + 1];
+    const upgradeOrder = [...items].sort((left, right) => {
+      if (left.rarity !== right.rarity) {
+        return left.rarity - right.rarity;
+      }
+
+      return left.name.localeCompare(right.name);
+    });
+    const parentMaterialById = new Map(
+      upgradeOrder.map((item, index) => [item.id, upgradeOrder[index + 1]]),
+    );
+    const displayOrder = [...items].sort((left, right) => {
+      if (left.rarity !== right.rarity) {
+        return right.rarity - left.rarity;
+      }
+
+      return left.name.localeCompare(right.name);
+    });
+
+    displayOrder.forEach((item) => {
+      const parentMaterial = parentMaterialById.get(item.id);
       const canonicalName = canonicalizeSourceMaterialName(item.name);
       push({
         id: item.id,
@@ -404,9 +422,9 @@ export function buildMaterialCatalog(): MaterialCatalog {
         rarity: item.rarity,
         category,
         description: descriptionBuilder(canonicalName),
-        combinable: Boolean(next),
-        combineRatio: next ? 3 : null,
-        parentMaterialId: next?.id ?? null,
+        combinable: Boolean(parentMaterial),
+        combineRatio: parentMaterial ? 3 : null,
+        parentMaterialId: parentMaterial?.id ?? null,
       });
     });
   };
