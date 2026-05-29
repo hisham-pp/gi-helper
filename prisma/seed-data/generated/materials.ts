@@ -2295,6 +2295,24 @@ export const seedMaterials: SeedMaterial[] = [
     "sortOrder": 167
   },
   {
+    "id": "the-cornerstone-of-stars-and-flames",
+    "name": "The Cornerstone of Stars and Flames",
+    "image": "/images/materials/boss-material/the-cornerstone-of-stars-and-flames",
+    "rarity": 5,
+    "category": "Boss Material",
+    "description": "The Cornerstone of Stars and Flames character ascension boss material.",
+    "details": {
+      "source": "Natlan quests",
+      "usedByCharacters": [
+        "traveler-pyro"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 168
+  },
+  {
     "id": "hurricane-seed",
     "name": "Hurricane Seed",
     "image": "/images/materials/boss-material/hurricane-seed",
@@ -2312,7 +2330,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 168
+    "sortOrder": 169
   },
   {
     "id": "lightning-prism",
@@ -2334,7 +2352,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 169
+    "sortOrder": 170
   },
   {
     "id": "basalt-pillar",
@@ -2355,7 +2373,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 170
+    "sortOrder": 171
   },
   {
     "id": "hoarfrost-core",
@@ -2378,7 +2396,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 171
+    "sortOrder": 172
   },
   {
     "id": "everflame-seed",
@@ -2401,7 +2419,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 172
+    "sortOrder": 173
   },
   {
     "id": "cleansing-heart",
@@ -2422,7 +2440,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 173
+    "sortOrder": 174
   },
   {
     "id": "juvenile-jade",
@@ -2442,7 +2460,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 174
+    "sortOrder": 175
   },
   {
     "id": "crystalline-bloom",
@@ -2461,7 +2479,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 175
+    "sortOrder": 176
   },
   {
     "id": "marionette-core",
@@ -2480,7 +2498,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 176
+    "sortOrder": 177
   },
   {
     "id": "perpetual-heart",
@@ -2499,7 +2517,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 177
+    "sortOrder": 178
   },
   {
     "id": "smoldering-pearl",
@@ -2518,7 +2536,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 178
+    "sortOrder": 179
   },
   {
     "id": "dew-of-repudiation",
@@ -2537,7 +2555,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 179
+    "sortOrder": 180
   },
   {
     "id": "storm-beads",
@@ -2556,7 +2574,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 180
+    "sortOrder": 181
   },
   {
     "id": "riftborn-regalia",
@@ -2575,7 +2593,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 181
+    "sortOrder": 182
   },
   {
     "id": "dragonheir-s-false-fin",
@@ -2594,7 +2612,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 182
+    "sortOrder": 183
   },
   {
     "id": "runic-fang",
@@ -2614,7 +2632,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 183
+    "sortOrder": 184
   },
   {
     "id": "majestic-hooked-beak",
@@ -2633,7 +2651,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 184
+    "sortOrder": 185
   },
   {
     "id": "thunderclap-fruitcore",
@@ -2652,7 +2670,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 185
+    "sortOrder": 186
   },
   {
     "id": "perpetual-caliber",
@@ -2672,7 +2690,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 186
+    "sortOrder": 187
   },
   {
     "id": "light-guiding-tetrahedron",
@@ -2692,7 +2710,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 187
+    "sortOrder": 188
   },
   {
     "id": "quelled-creeper",
@@ -2712,7 +2730,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 188
+    "sortOrder": 189
   },
   {
     "id": "pseudo-stamens",
@@ -2731,7 +2749,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 189
+    "sortOrder": 190
   },
   {
     "id": "evergloom-ring",
@@ -2750,7 +2768,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 190
+    "sortOrder": 191
   },
   {
     "id": "coppelia",
@@ -2768,7 +2786,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 191
+    "sortOrder": 192
   },
   {
     "id": "coppelius",
@@ -2787,7 +2805,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 192
+    "sortOrder": 193
   },
   {
     "id": "emperor-s-resolution",
@@ -2806,7 +2824,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 193
+    "sortOrder": 194
   },
   {
     "id": "tourbillon-device",
@@ -2825,7 +2843,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 194
+    "sortOrder": 195
   },
   {
     "id": "fontemer-unihorn",
@@ -2845,7 +2863,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 195
+    "sortOrder": 196
   },
   {
     "id": "water-that-failed-to-transcend",
@@ -2864,7 +2882,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 196
+    "sortOrder": 197
   },
   {
     "id": "cloudseam-scale",
@@ -2883,7 +2901,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 197
+    "sortOrder": 198
   },
   {
     "id": "fragment-of-a-golden-melody",
@@ -2901,7 +2919,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 198
+    "sortOrder": 199
   },
   {
     "id": "mark-of-the-binding-blessing",
@@ -2919,7 +2937,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 199
+    "sortOrder": 200
   },
   {
     "id": "overripe-flamegranate",
@@ -2938,7 +2956,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 200
+    "sortOrder": 201
   },
   {
     "id": "prismatic-severed-tail",
@@ -2956,7 +2974,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 201
+    "sortOrder": 202
   },
   {
     "id": "plume-of-the-fallen-watcher",
@@ -2969,24 +2987,6 @@ export const seedMaterials: SeedMaterial[] = [
       "source": "Watcher: Fallen Vigil",
       "usedByCharacters": [
         "linnea"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 202
-  },
-  {
-    "id": "the-cornerstone-of-stars-and-flames",
-    "name": "The Cornerstone of Stars and Flames",
-    "image": "/images/materials/boss-material/the-cornerstone-of-stars-and-flames",
-    "rarity": 5,
-    "category": "Boss Material",
-    "description": "The Cornerstone of Stars and Flames character ascension boss material.",
-    "details": {
-      "source": "Natlan quests",
-      "usedByCharacters": [
-        "traveler-pyro"
       ]
     },
     "combinable": false,
