@@ -82,7 +82,7 @@ export function GoalEdit({ goal, materials }: GoalEditProps) {
         return;
       }
 
-      toast.success("Goal completed! Materials added to inventory.");
+      toast.success("Goal completed! Materials consumed from inventory.");
       router.refresh();
     });
   }
