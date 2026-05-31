@@ -86,14 +86,6 @@
       "Dropped by Unusual Hilichurl"
     ]
   },
-  "cacahuatl": {
-    "name": "Cacahuatl",
-    "description": "A crop rich in flavor. The fleshy part itself features a unique bitterness and its seeds, after being fermented and baked, can be made into other delicacies.",
-    "sources": [
-      "Found in the wild in Natlan",
-      "Sold by Cintli"
-    ]
-  },
   "calla-lily": {
     "name": "Calla Lily",
     "description": "A flower that grows near water sources. When cooked the petals have a chunky texture, yet are sweet and a little bitter.",
@@ -183,14 +175,6 @@
       "Sold by Yamashiro Kenta"
     ]
   },
-  "embercore-flower": {
-    "name": "Embercore Flower",
-    "description": "A strange flower that can be found all over the plains and highlands. Mature buds will bloom after being hit.",
-    "sources": [
-      "Found in the wild in Natlan",
-      "Sold by Cintli"
-    ]
-  },
   "fermented-juice": {
     "name": "Fermented Juice",
     "description": "A fermented juice with a unique fruity scent. It is often used as a marinade.",
@@ -263,24 +247,6 @@
       "Sold by Jut",
       "Gardening",
       "Expeditions"
-    ]
-  },
-  "horsetail": {
-    "name": "Horsetail",
-    "description": "A purple plant that sometimes grows amidst Silvergrass but grows taller, straighter, and plumper - like an aristocrat among the paupers.",
-    "sources": [
-      "Found in Liyue",
-      "Sold by Bubu Pharmacy",
-      "Expeditions",
-      "Gardening"
-    ]
-  },
-  "icy-pebble": {
-    "name": "Icy Pebble",
-    "description": "A pebble commonly found on Nod-Krai's coasts, characterized by a naturally occurring hollow. Touching it sends a faint chill through your finger.",
-    "sources": [
-      "Found in the wild",
-      "Sold by Mita"
     ]
   },
   "jam": {
@@ -382,14 +348,6 @@
     "description": "A fresh chunk of meat that seems to be radiating an enigmatic aura. Wonder what it'll taste like?",
     "sources": [
       "Found in the wild"
-    ]
-  },
-  "nocturnal-blossom": {
-    "name": "Nocturnal Blossom",
-    "description": "A flower that blooms at night. Its petals give off a faint fragrance in the moonlight.",
-    "sources": [
-      "Found in the wild",
-      "Sold by Mita"
     ]
   },
   "onion": {

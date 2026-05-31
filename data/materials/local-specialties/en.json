@@ -16,6 +16,11 @@
       "characters": ["jean", "eula"]
     },
     {
+      "id": "etherwing-moth",
+      "name": "Etherwing Moth",
+      "characters": []
+    },
+    {
       "id": "philanemo-mushroom",
       "name": "Philanemo Mushroom",
       "characters": ["barbara", "klee", "mona"]
@@ -240,6 +245,58 @@
       "id": "saurian-claw-succulent",
       "name": "Saurian Claw Succulent",
       "characters": ["kinich"]
+    },
+    {
+      "id": "brilliant-chrysanthemum",
+      "name": "Brilliant Chrysanthemum",
+      "characters": ["xilonen"]
+    },
+    {
+      "id": "withering-purpurbloom",
+      "name": "Withering Purpurbloom",
+      "characters": ["chasca", "mavuika"]
+    },
+    {
+      "id": "glowing-hornshroom",
+      "name": "Glowing Hornshroom",
+      "characters": ["ororon", "ineffa"]
+    },
+    {
+      "id": "dracolite",
+      "name": "Dracolite",
+      "characters": ["iansan"]
+    },
+    {
+      "id": "skysplit-gembloom",
+      "name": "Skysplit Gembloom",
+      "characters": ["varesa", "skirk"]
+    }
+  ],
+  "nod-krai": [
+    {
+      "id": "portable-bearing",
+      "name": "Portable Bearing",
+      "characters": ["aino", "jahoda"]
+    },
+    {
+      "id": "winter-icelea",
+      "name": "Winter Icelea",
+      "characters": ["columbina", "prune"]
+    },
+    {
+      "id": "frostlamp-flower",
+      "name": "Frostlamp Flower",
+      "characters": ["durin", "flins"]
+    },
+    {
+      "id": "pine-amber",
+      "name": "Pine Amber",
+      "characters": ["illuga", "nicole"]
+    },
+    {
+      "id": "moonfall-silver",
+      "name": "Moonfall Silver",
+      "characters": ["lauma", "nefer"]
     }
   ]
 }

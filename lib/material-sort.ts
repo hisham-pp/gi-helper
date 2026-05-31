@@ -19,6 +19,7 @@ const categoryOrder = [
   "Refinement Material",
   "Refinement Materials",
   "Local Specialty",
+  "Material",
   "Cooking Ingredient",
 ];
 

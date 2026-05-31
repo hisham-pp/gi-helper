@@ -8,6 +8,7 @@ import {
   cookingIngredientOrder,
   gemFamilyOrder,
   localSpecialtyOrder,
+  materialOrder,
   normalBossMaterialOrder,
   talentBookFamilyOrder,
   weaponAscensionFirstItemOrder,
@@ -39,6 +40,14 @@ type CookingIngredientEntry = {
   name: string;
   description?: string;
   rarity?: number;
+  sources?: string[];
+};
+
+type PlainMaterialEntry = {
+  name: string;
+  description?: string;
+  rarity?: number;
+  image?: string;
   sources?: string[];
 };
 
@@ -115,6 +124,7 @@ const materialCategorySchema = z.enum([
   "Elite Drop",
   "Enemy Drop",
   "Cooking Ingredient",
+  "Material",
   "Local Specialty",
   "Talent Book",
   "Talent Boss",
@@ -144,6 +154,16 @@ const cookingIngredientEntrySchema = z
     name: z.string().trim().min(1),
     description: z.string().trim().min(1).optional(),
     rarity: z.number().int().min(1).max(5).optional(),
+    sources: z.array(z.string().trim().min(1)).optional(),
+  })
+  .strict();
+
+const plainMaterialEntrySchema = z
+  .object({
+    name: z.string().trim().min(1),
+    description: z.string().trim().min(1).optional(),
+    rarity: z.number().int().min(1).max(5).optional(),
+    image: imagePathSchema.optional(),
     sources: z.array(z.string().trim().min(1)).optional(),
   })
   .strict();
@@ -716,6 +736,43 @@ export function buildMaterialCatalog(): MaterialCatalog {
       description: `${entry.name.trim()} local specialty.`,
       details: {
         usedByCharacters: entry.characters ?? [],
+      },
+      combinable: false,
+      combineRatio: null,
+      parentMaterialId: null,
+    });
+  }
+
+  const plainMaterials = readJsonWithSchema(
+    "data/materials/materials/en.json",
+    z.record(z.string(), plainMaterialEntrySchema),
+  );
+  const materialRank = getExplicitOrderRank(materialOrder);
+  const orderedPlainMaterials = Object.entries(plainMaterials).sort(
+    ([leftId], [rightId]) =>
+      compareExplicitIds(
+        leftId,
+        rightId,
+        materialRank,
+        materialOrder.length,
+      ),
+  );
+
+  for (const [id, material] of orderedPlainMaterials) {
+    if (byId.has(id)) {
+      continue;
+    }
+
+    push({
+      id,
+      name: material.name.trim(),
+      image: material.image ?? toImagePath("materials", "materials", id),
+      rarity: material.rarity ?? 1,
+      category: "Material",
+      description:
+        material.description?.trim() ?? `${material.name.trim()} material.`,
+      details: {
+        sources: material.sources ?? [],
       },
       combinable: false,
       combineRatio: null,

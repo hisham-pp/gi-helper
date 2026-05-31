@@ -65,6 +65,7 @@ export const materialCategories = [
   "Elite Drop",
   "Enemy Drop",
   "Local Specialty",
+  "Material",
   "Talent Book",
   "Talent Boss",
   "Weapon Ascension",

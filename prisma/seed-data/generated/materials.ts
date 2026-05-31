@@ -5113,6 +5113,21 @@ export const seedMaterials: SeedMaterial[] = [
     "sortOrder": 374
   },
   {
+    "id": "etherwing-moth",
+    "name": "Etherwing Moth",
+    "image": "/images/materials/local-specialties/etherwing-moth",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Etherwing Moth local specialty.",
+    "details": {
+      "usedByCharacters": []
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 375
+  },
+  {
     "id": "jueyun-chili",
     "name": "Jueyun Chili",
     "image": "/images/materials/local-specialties/jueyun-chili",
@@ -5128,7 +5143,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 375
+    "sortOrder": 376
   },
   {
     "id": "noctilucous-jade",
@@ -5146,7 +5161,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 376
+    "sortOrder": 377
   },
   {
     "id": "silk-flower",
@@ -5164,7 +5179,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 377
+    "sortOrder": 378
   },
   {
     "id": "glaze-lily",
@@ -5182,7 +5197,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 378
+    "sortOrder": 379
   },
   {
     "id": "qingxin",
@@ -5201,7 +5216,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 379
+    "sortOrder": 380
   },
   {
     "id": "starconch",
@@ -5220,7 +5235,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 380
+    "sortOrder": 381
   },
   {
     "id": "violetgrass",
@@ -5239,7 +5254,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 381
+    "sortOrder": 382
   },
   {
     "id": "cor-lapis",
@@ -5258,7 +5273,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 382
+    "sortOrder": 383
   },
   {
     "id": "clearwater-jade",
@@ -5275,77 +5290,25 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 383
-  },
-  {
-    "id": "sango-pearl",
-    "name": "Sango Pearl",
-    "image": "/images/materials/local-specialties/sango-pearl",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Sango Pearl local specialty.",
-    "details": {
-      "usedByCharacters": [
-        "gorou",
-        "kokomi"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
     "sortOrder": 384
   },
   {
-    "id": "crystal-marrow",
-    "name": "Crystal Marrow",
-    "image": "/images/materials/local-specialties/crystal-marrow",
+    "id": "onikabuto",
+    "name": "Onikabuto",
+    "image": "/images/materials/local-specialties/onikabuto",
     "rarity": 1,
     "category": "Local Specialty",
-    "description": "Crystal Marrow local specialty.",
+    "description": "Onikabuto local specialty.",
     "details": {
       "usedByCharacters": [
-        "aloy",
-        "sayu"
+        "arataki-itto",
+        "shikanoin-heizou"
       ]
     },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
     "sortOrder": 385
-  },
-  {
-    "id": "dendrobium",
-    "name": "Dendrobium",
-    "image": "/images/materials/local-specialties/dendrobium",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Dendrobium local specialty.",
-    "details": {
-      "usedByCharacters": [
-        "sara"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 386
-  },
-  {
-    "id": "fluorescent-fungus",
-    "name": "Fluorescent Fungus",
-    "image": "/images/materials/local-specialties/fluorescent-fungus",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Fluorescent Fungus local specialty.",
-    "details": {
-      "usedByCharacters": [
-        "thoma"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 387
   },
   {
     "id": "sakura-bloom",
@@ -5363,19 +5326,54 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
+    "sortOrder": 386
+  },
+  {
+    "id": "crystal-marrow",
+    "name": "Crystal Marrow",
+    "image": "/images/materials/local-specialties/crystal-marrow",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Crystal Marrow local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "aloy",
+        "sayu"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 387
+  },
+  {
+    "id": "dendrobium",
+    "name": "Dendrobium",
+    "image": "/images/materials/local-specialties/dendrobium",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Dendrobium local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "sara"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
     "sortOrder": 388
   },
   {
-    "id": "amakumo-fruit",
-    "name": "Amakumo Fruit",
-    "image": "/images/materials/local-specialties/amakumo-fruit",
+    "id": "naku-weed",
+    "name": "Naku Weed",
+    "image": "/images/materials/local-specialties/naku-weed",
     "rarity": 1,
     "category": "Local Specialty",
-    "description": "Amakumo Fruit local specialty.",
+    "description": "Naku Weed local specialty.",
     "details": {
       "usedByCharacters": [
-        "kirara",
-        "raiden"
+        "yoimiya",
+        "kuki-shinobu"
       ]
     },
     "combinable": false,
@@ -5402,16 +5400,16 @@ export const seedMaterials: SeedMaterial[] = [
     "sortOrder": 390
   },
   {
-    "id": "onikabuto",
-    "name": "Onikabuto",
-    "image": "/images/materials/local-specialties/onikabuto",
+    "id": "sango-pearl",
+    "name": "Sango Pearl",
+    "image": "/images/materials/local-specialties/sango-pearl",
     "rarity": 1,
     "category": "Local Specialty",
-    "description": "Onikabuto local specialty.",
+    "description": "Sango Pearl local specialty.",
     "details": {
       "usedByCharacters": [
-        "arataki-itto",
-        "shikanoin-heizou"
+        "gorou",
+        "kokomi"
       ]
     },
     "combinable": false,
@@ -5420,16 +5418,16 @@ export const seedMaterials: SeedMaterial[] = [
     "sortOrder": 391
   },
   {
-    "id": "naku-weed",
-    "name": "Naku Weed",
-    "image": "/images/materials/local-specialties/naku-weed",
+    "id": "amakumo-fruit",
+    "name": "Amakumo Fruit",
+    "image": "/images/materials/local-specialties/amakumo-fruit",
     "rarity": 1,
     "category": "Local Specialty",
-    "description": "Naku Weed local specialty.",
+    "description": "Amakumo Fruit local specialty.",
     "details": {
       "usedByCharacters": [
-        "yoimiya",
-        "kuki-shinobu"
+        "kirara",
+        "raiden"
       ]
     },
     "combinable": false,
@@ -5438,16 +5436,15 @@ export const seedMaterials: SeedMaterial[] = [
     "sortOrder": 392
   },
   {
-    "id": "henna-berry",
-    "name": "Henna Berry",
-    "image": "/images/materials/local-specialties/henna-berry",
+    "id": "fluorescent-fungus",
+    "name": "Fluorescent Fungus",
+    "image": "/images/materials/local-specialties/fluorescent-fungus",
     "rarity": 1,
     "category": "Local Specialty",
-    "description": "Henna Berry local specialty.",
+    "description": "Fluorescent Fungus local specialty.",
     "details": {
       "usedByCharacters": [
-        "faruzan",
-        "candace"
+        "thoma"
       ]
     },
     "combinable": false,
@@ -5456,16 +5453,16 @@ export const seedMaterials: SeedMaterial[] = [
     "sortOrder": 393
   },
   {
-    "id": "sand-grease-pupa",
-    "name": "Sand Grease Pupa",
-    "image": "/images/materials/local-specialties/sand-grease-pupa",
+    "id": "rukkhashava-mushrooms",
+    "name": "Rukkhashava Mushrooms",
+    "image": "/images/materials/local-specialties/rukkhashava-mushrooms",
     "rarity": 1,
     "category": "Local Specialty",
-    "description": "Sand Grease Pupa local specialty.",
+    "description": "Rukkhashava Mushrooms local specialty.",
     "details": {
       "usedByCharacters": [
-        "alhaitham",
-        "dehya"
+        "wanderer",
+        "collei"
       ]
     },
     "combinable": false,
@@ -5474,16 +5471,15 @@ export const seedMaterials: SeedMaterial[] = [
     "sortOrder": 394
   },
   {
-    "id": "kalpalata-lotus",
-    "name": "Kalpalata Lotus",
-    "image": "/images/materials/local-specialties/kalpalata-lotus",
+    "id": "padisarah",
+    "name": "Padisarah",
+    "image": "/images/materials/local-specialties/padisarah",
     "rarity": 1,
     "category": "Local Specialty",
-    "description": "Kalpalata Lotus local specialty.",
+    "description": "Padisarah local specialty.",
     "details": {
       "usedByCharacters": [
-        "dori",
-        "nahida"
+        "nilou"
       ]
     },
     "combinable": false,
@@ -5510,16 +5506,16 @@ export const seedMaterials: SeedMaterial[] = [
     "sortOrder": 396
   },
   {
-    "id": "rukkhashava-mushrooms",
-    "name": "Rukkhashava Mushrooms",
-    "image": "/images/materials/local-specialties/rukkhashava-mushrooms",
+    "id": "kalpalata-lotus",
+    "name": "Kalpalata Lotus",
+    "image": "/images/materials/local-specialties/kalpalata-lotus",
     "rarity": 1,
     "category": "Local Specialty",
-    "description": "Rukkhashava Mushrooms local specialty.",
+    "description": "Kalpalata Lotus local specialty.",
     "details": {
       "usedByCharacters": [
-        "wanderer",
-        "collei"
+        "dori",
+        "nahida"
       ]
     },
     "combinable": false,
@@ -5528,21 +5524,40 @@ export const seedMaterials: SeedMaterial[] = [
     "sortOrder": 397
   },
   {
-    "id": "scarab",
-    "name": "Scarab",
-    "image": "/images/materials/local-specialties/scarab",
+    "id": "henna-berry",
+    "name": "Henna Berry",
+    "image": "/images/materials/local-specialties/henna-berry",
     "rarity": 1,
     "category": "Local Specialty",
-    "description": "Scarab local specialty.",
+    "description": "Henna Berry local specialty.",
     "details": {
       "usedByCharacters": [
-        "cyno"
+        "faruzan",
+        "candace"
       ]
     },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
     "sortOrder": 398
+  },
+  {
+    "id": "sand-grease-pupa",
+    "name": "Sand Grease Pupa",
+    "image": "/images/materials/local-specialties/sand-grease-pupa",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Sand Grease Pupa local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "alhaitham",
+        "dehya"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 399
   },
   {
     "id": "mourning-flower",
@@ -5554,23 +5569,6 @@ export const seedMaterials: SeedMaterial[] = [
     "details": {
       "usedByCharacters": [
         "kaveh"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 399
-  },
-  {
-    "id": "padisarah",
-    "name": "Padisarah",
-    "image": "/images/materials/local-specialties/padisarah",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Padisarah local specialty.",
-    "details": {
-      "usedByCharacters": [
-        "nilou"
       ]
     },
     "combinable": false,
@@ -5596,15 +5594,15 @@ export const seedMaterials: SeedMaterial[] = [
     "sortOrder": 401
   },
   {
-    "id": "subdetection-unit",
-    "name": "Subdetection Unit",
-    "image": "/images/materials/local-specialties/subdetection-unit",
+    "id": "scarab",
+    "name": "Scarab",
+    "image": "/images/materials/local-specialties/scarab",
     "rarity": 1,
     "category": "Local Specialty",
-    "description": "Subdetection Unit local specialty.",
+    "description": "Scarab local specialty.",
     "details": {
       "usedByCharacters": [
-        "wriothesley"
+        "cyno"
       ]
     },
     "combinable": false,
@@ -5613,16 +5611,15 @@ export const seedMaterials: SeedMaterial[] = [
     "sortOrder": 402
   },
   {
-    "id": "lumitoile",
-    "name": "Lumitoile",
-    "image": "/images/materials/local-specialties/lumitoile",
+    "id": "beryl-conch",
+    "name": "Beryl Conch",
+    "image": "/images/materials/local-specialties/beryl-conch",
     "rarity": 1,
     "category": "Local Specialty",
-    "description": "Lumitoile local specialty.",
+    "description": "Beryl Conch local specialty.",
     "details": {
       "usedByCharacters": [
-        "neuvillette",
-        "clorinde"
+        "charlotte"
       ]
     },
     "combinable": false,
@@ -5649,23 +5646,6 @@ export const seedMaterials: SeedMaterial[] = [
     "sortOrder": 404
   },
   {
-    "id": "spring-of-the-first-dewdrop",
-    "name": "Spring of the First Dewdrop",
-    "image": "/images/materials/local-specialties/spring-of-the-first-dewdrop",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Spring of the First Dewdrop local specialty.",
-    "details": {
-      "usedByCharacters": [
-        "navia"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 405
-  },
-  {
     "id": "lumidouce-bell",
     "name": "Lumidouce Bell",
     "image": "/images/materials/local-specialties/lumidouce-bell",
@@ -5681,18 +5661,36 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
+    "sortOrder": 405
+  },
+  {
+    "id": "rainbow-rose",
+    "name": "Rainbow Rose",
+    "image": "/images/materials/local-specialties/rainbow-rose",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Rainbow Rose local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "lyney"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
     "sortOrder": 406
   },
   {
-    "id": "beryl-conch",
-    "name": "Beryl Conch",
-    "image": "/images/materials/local-specialties/beryl-conch",
+    "id": "lumitoile",
+    "name": "Lumitoile",
+    "image": "/images/materials/local-specialties/lumitoile",
     "rarity": 1,
     "category": "Local Specialty",
-    "description": "Beryl Conch local specialty.",
+    "description": "Lumitoile local specialty.",
     "details": {
       "usedByCharacters": [
-        "charlotte"
+        "neuvillette",
+        "clorinde"
       ]
     },
     "combinable": false,
@@ -5718,15 +5716,15 @@ export const seedMaterials: SeedMaterial[] = [
     "sortOrder": 408
   },
   {
-    "id": "rainbow-rose",
-    "name": "Rainbow Rose",
-    "image": "/images/materials/local-specialties/rainbow-rose",
+    "id": "subdetection-unit",
+    "name": "Subdetection Unit",
+    "image": "/images/materials/local-specialties/subdetection-unit",
     "rarity": 1,
     "category": "Local Specialty",
-    "description": "Rainbow Rose local specialty.",
+    "description": "Subdetection Unit local specialty.",
     "details": {
       "usedByCharacters": [
-        "lyney"
+        "wriothesley"
       ]
     },
     "combinable": false,
@@ -5735,15 +5733,15 @@ export const seedMaterials: SeedMaterial[] = [
     "sortOrder": 409
   },
   {
-    "id": "quenepa-berry",
-    "name": "Quenepa Berry",
-    "image": "/images/materials/local-specialties/quenepa-berry",
+    "id": "spring-of-the-first-dewdrop",
+    "name": "Spring of the First Dewdrop",
+    "image": "/images/materials/local-specialties/spring-of-the-first-dewdrop",
     "rarity": 1,
     "category": "Local Specialty",
-    "description": "Quenepa Berry local specialty.",
+    "description": "Spring of the First Dewdrop local specialty.",
     "details": {
       "usedByCharacters": [
-        "kachina"
+        "navia"
       ]
     },
     "combinable": false,
@@ -5769,6 +5767,40 @@ export const seedMaterials: SeedMaterial[] = [
     "sortOrder": 411
   },
   {
+    "id": "brilliant-chrysanthemum",
+    "name": "Brilliant Chrysanthemum",
+    "image": "/images/materials/local-specialties/brilliant-chrysanthemum",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Brilliant Chrysanthemum local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "xilonen"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 412
+  },
+  {
+    "id": "quenepa-berry",
+    "name": "Quenepa Berry",
+    "image": "/images/materials/local-specialties/quenepa-berry",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Quenepa Berry local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "kachina"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 413
+  },
+  {
     "id": "saurian-claw-succulent",
     "name": "Saurian Claw Succulent",
     "image": "/images/materials/local-specialties/saurian-claw-succulent",
@@ -5783,57 +5815,19 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 412
-  },
-  {
-    "id": "ajilenakh-nut",
-    "name": "Ajilenakh Nut",
-    "image": "/images/materials/cooking-ingredients/ajilenakh-nut",
-    "rarity": 1,
-    "category": "Cooking Ingredient",
-    "description": "A fruit that grows on evergreen trees within desert oases. The flesh under the tough skin is thick, sweet, and delicious, making it an important food source amongst the desert peoples.",
-    "details": {
-      "sources": [
-        "Found in the wild",
-        "Sold by Azalai",
-        "Sold by Eugenie"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 413
-  },
-  {
-    "id": "almond",
-    "name": "Almond",
-    "image": "/images/materials/cooking-ingredients/almond",
-    "rarity": 1,
-    "category": "Cooking Ingredient",
-    "description": "A seed with a peculiar fragrance that gives food a refreshing taste.",
-    "details": {
-      "sources": [
-        "Sold by Second Life",
-        "Sold by Ms. Bai"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
     "sortOrder": 414
   },
   {
-    "id": "apple",
-    "name": "Apple",
-    "image": "/images/materials/cooking-ingredients/apple",
+    "id": "glowing-hornshroom",
+    "name": "Glowing Hornshroom",
+    "image": "/images/materials/local-specialties/glowing-hornshroom",
     "rarity": 1,
-    "category": "Cooking Ingredient",
-    "description": "Crisp and fragrant. Delicious raw or fermented into wine. Can be also made into a refreshing alcohol-free beverage.",
+    "category": "Local Specialty",
+    "description": "Glowing Hornshroom local specialty.",
     "details": {
-      "sources": [
-        "Found in the wild",
-        "Investigation",
-        "Expeditions"
+      "usedByCharacters": [
+        "ororon",
+        "ineffa"
       ]
     },
     "combinable": false,
@@ -5842,16 +5836,16 @@ export const seedMaterials: SeedMaterial[] = [
     "sortOrder": 415
   },
   {
-    "id": "bacon",
-    "name": "Bacon",
-    "image": "/images/materials/cooking-ingredients/bacon",
-    "rarity": 3,
-    "category": "Cooking Ingredient",
-    "description": "Smoked strips of pork. With just enough fat, but not too greasy.Mmmmm... Bacon.Meat must be processed first to be made into Bacon.",
+    "id": "withering-purpurbloom",
+    "name": "Withering Purpurbloom",
+    "image": "/images/materials/local-specialties/withering-purpurbloom",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Withering Purpurbloom local specialty.",
     "details": {
-      "sources": [
-        "Sold by Good Hunter",
-        "Processing"
+      "usedByCharacters": [
+        "chasca",
+        "mavuika"
       ]
     },
     "combinable": false,
@@ -5860,16 +5854,16 @@ export const seedMaterials: SeedMaterial[] = [
     "sortOrder": 416
   },
   {
-    "id": "bamboo-shoot",
-    "name": "Bamboo Shoot",
-    "image": "/images/materials/cooking-ingredients/bamboo-shoot",
+    "id": "skysplit-gembloom",
+    "name": "Skysplit Gembloom",
+    "image": "/images/materials/local-specialties/skysplit-gembloom",
     "rarity": 1,
-    "category": "Cooking Ingredient",
-    "description": "A fresh young bamboo shoot, straight out of the ground. It is a delicious cooking ingredient with an exotic aroma, found exclusively in bamboo-growing regions.",
+    "category": "Local Specialty",
+    "description": "Skysplit Gembloom local specialty.",
     "details": {
-      "sources": [
-        "Found in the wild",
-        "Sold by Wanmin Restaurant"
+      "usedByCharacters": [
+        "varesa",
+        "skirk"
       ]
     },
     "combinable": false,
@@ -5878,15 +5872,15 @@ export const seedMaterials: SeedMaterial[] = [
     "sortOrder": 417
   },
   {
-    "id": "berry",
-    "name": "Berry",
-    "image": "/images/materials/cooking-ingredients/berry",
+    "id": "dracolite",
+    "name": "Dracolite",
+    "image": "/images/materials/local-specialties/dracolite",
     "rarity": 1,
-    "category": "Cooking Ingredient",
-    "description": "Small brightly-colored fruit. They can be found everywhere, and the taste of them wipes the fatigue of a long journey away.",
+    "category": "Local Specialty",
+    "description": "Dracolite local specialty.",
     "details": {
-      "sources": [
-        "Found in the wild"
+      "usedByCharacters": [
+        "iansan"
       ]
     },
     "combinable": false,
@@ -5895,16 +5889,16 @@ export const seedMaterials: SeedMaterial[] = [
     "sortOrder": 418
   },
   {
-    "id": "bird-egg",
-    "name": "Bird Egg",
-    "image": "/images/materials/cooking-ingredients/bird-egg",
+    "id": "portable-bearing",
+    "name": "Portable Bearing",
+    "image": "/images/materials/local-specialties/portable-bearing",
     "rarity": 1,
-    "category": "Cooking Ingredient",
-    "description": "An incredibly versatile ingredient that can supply all of your daily protein needs.",
+    "category": "Local Specialty",
+    "description": "Portable Bearing local specialty.",
     "details": {
-      "sources": [
-        "Found in the wild",
-        "Vendor: Draff, Head of Hunters at Springvale"
+      "usedByCharacters": [
+        "aino",
+        "jahoda"
       ]
     },
     "combinable": false,
@@ -5913,17 +5907,16 @@ export const seedMaterials: SeedMaterial[] = [
     "sortOrder": 419
   },
   {
-    "id": "bulle-fruit",
-    "name": "Bulle Fruit",
-    "image": "/images/materials/cooking-ingredients/bulle-fruit",
+    "id": "frostlamp-flower",
+    "name": "Frostlamp Flower",
+    "image": "/images/materials/local-specialties/frostlamp-flower",
     "rarity": 1,
-    "category": "Cooking Ingredient",
-    "description": "A fruit that grows in warm and damp environments with ample sunlight. Inside this round and rotund fruit hides a sweet and refreshing surprise.",
+    "category": "Local Specialty",
+    "description": "Frostlamp Flower local specialty.",
     "details": {
-      "sources": [
-        "Found in the wild in Fontaine",
-        "Sold by Eugenie",
-        "Expeditions"
+      "usedByCharacters": [
+        "durin",
+        "flins"
       ]
     },
     "combinable": false,
@@ -5932,23 +5925,466 @@ export const seedMaterials: SeedMaterial[] = [
     "sortOrder": 420
   },
   {
-    "id": "butter",
-    "name": "Butter",
-    "image": "/images/materials/cooking-ingredients/butter",
-    "rarity": 2,
-    "category": "Cooking Ingredient",
-    "description": "An extract from milk. With the appropriate application, it can bring rich aromas to even the most basic ingredients.",
+    "id": "moonfall-silver",
+    "name": "Moonfall Silver",
+    "image": "/images/materials/local-specialties/moonfall-silver",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Moonfall Silver local specialty.",
     "details": {
-      "sources": [
-        "Sold by Good Hunter",
-        "Sold by Verr Goldet",
-        "Processing"
+      "usedByCharacters": [
+        "lauma",
+        "nefer"
       ]
     },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
     "sortOrder": 421
+  },
+  {
+    "id": "winter-icelea",
+    "name": "Winter Icelea",
+    "image": "/images/materials/local-specialties/winter-icelea",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Winter Icelea local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "columbina",
+        "prune"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 422
+  },
+  {
+    "id": "pine-amber",
+    "name": "Pine Amber",
+    "image": "/images/materials/local-specialties/pine-amber",
+    "rarity": 1,
+    "category": "Local Specialty",
+    "description": "Pine Amber local specialty.",
+    "details": {
+      "usedByCharacters": [
+        "illuga",
+        "nicole"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 423
+  },
+  {
+    "id": "horsetail",
+    "name": "Horsetail",
+    "image": "/images/materials/cooking-ingredients/horsetail",
+    "rarity": 1,
+    "category": "Material",
+    "description": "A purple plant that sometimes grows amidst Silvergrass but grows taller, straighter, and plumper - like an aristocrat among the paupers.",
+    "details": {
+      "sources": [
+        "Found in Liyue",
+        "Sold by Bubu Pharmacy",
+        "Expeditions",
+        "Gardening"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 424
+  },
+  {
+    "id": "mist-flower-corolla",
+    "name": "Mist Flower Corolla",
+    "image": "/images/materials/materials/mist-flower-corolla",
+    "rarity": 1,
+    "category": "Material",
+    "description": "A common material gathered from Mist Flowers.",
+    "details": {
+      "sources": [
+        "Found in the wild"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 425
+  },
+  {
+    "id": "flaming-flower-stamen",
+    "name": "Flaming Flower Stamen",
+    "image": "/images/materials/materials/flaming-flower-stamen",
+    "rarity": 1,
+    "category": "Material",
+    "description": "A common material gathered from Flaming Flowers.",
+    "details": {
+      "sources": [
+        "Found in the wild"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 426
+  },
+  {
+    "id": "electro-crystal",
+    "name": "Electro Crystal",
+    "image": "/images/materials/materials/electro-crystal",
+    "rarity": 1,
+    "category": "Material",
+    "description": "A crystal rich with Electro energy.",
+    "details": {
+      "sources": [
+        "Found at the base of mountain cliffs"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 427
+  },
+  {
+    "id": "butterfly-wings",
+    "name": "Butterfly Wings",
+    "image": "/images/materials/materials/butterfly-wings",
+    "rarity": 1,
+    "category": "Material",
+    "description": "Brightly colored wings gathered from butterflies.",
+    "details": {
+      "sources": [
+        "Found in the wild"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 428
+  },
+  {
+    "id": "frog",
+    "name": "Frog",
+    "image": "/images/materials/materials/frog",
+    "rarity": 1,
+    "category": "Material",
+    "description": "A small frog often found in damp places.",
+    "details": {
+      "sources": [
+        "Found near freshwater"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 429
+  },
+  {
+    "id": "luminescent-spine",
+    "name": "Luminescent Spine",
+    "image": "/images/materials/materials/luminescent-spine",
+    "rarity": 1,
+    "category": "Material",
+    "description": "A light-emitting spine gathered from fireflies.",
+    "details": {
+      "sources": [
+        "Found in the wild at night"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 430
+  },
+  {
+    "id": "lizard-tail",
+    "name": "Lizard Tail",
+    "image": "/images/materials/materials/lizard-tail",
+    "rarity": 1,
+    "category": "Material",
+    "description": "A curled tail dropped by lizards.",
+    "details": {
+      "sources": [
+        "Found in the wild"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 431
+  },
+  {
+    "id": "crystal-core",
+    "name": "Crystal Core",
+    "image": "/images/materials/materials/crystal-core",
+    "rarity": 1,
+    "category": "Material",
+    "description": "A core gathered from crystalflies.",
+    "details": {
+      "sources": [
+        "Found from crystalflies"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 432
+  },
+  {
+    "id": "loach-pearl",
+    "name": "Loach Pearl",
+    "image": "/images/materials/materials/loach-pearl",
+    "rarity": 1,
+    "category": "Material",
+    "description": "A shining pearl spat out by a loach.",
+    "details": {
+      "sources": [
+        "Found from loaches"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 433
+  },
+  {
+    "id": "viparyas",
+    "name": "Viparyas",
+    "image": "/images/materials/materials/viparyas",
+    "rarity": 1,
+    "category": "Material",
+    "description": "A flower without seeds.",
+    "details": {
+      "sources": [
+        "Found in Vanarana"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 434
+  },
+  {
+    "id": "pluie-lotus",
+    "name": "Pluie Lotus",
+    "image": "/images/materials/materials/pluie-lotus",
+    "rarity": 1,
+    "category": "Material",
+    "description": "A lotus that grows in rainy and humid environments.",
+    "details": {
+      "sources": [
+        "Found in Fontaine"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 435
+  },
+  {
+    "id": "cacahuatl",
+    "name": "Cacahuatl",
+    "image": "/images/materials/cooking-ingredients/cacahuatl",
+    "rarity": 1,
+    "category": "Material",
+    "description": "A crop rich in flavor. The fleshy part itself features a unique bitterness and its seeds, after being fermented and baked, can be made into other delicacies.",
+    "details": {
+      "sources": [
+        "Found in the wild in Natlan",
+        "Sold by Cintli"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 436
+  },
+  {
+    "id": "embercore-flower",
+    "name": "Embercore Flower",
+    "image": "/images/materials/cooking-ingredients/embercore-flower",
+    "rarity": 1,
+    "category": "Material",
+    "description": "A strange flower that can be found all over the plains and highlands. Mature buds will bloom after being hit.",
+    "details": {
+      "sources": [
+        "Found in the wild in Natlan",
+        "Sold by Cintli"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 437
+  },
+  {
+    "id": "icy-pebble",
+    "name": "Icy Pebble",
+    "image": "/images/materials/cooking-ingredients/icy-pebble",
+    "rarity": 1,
+    "category": "Material",
+    "description": "A pebble commonly found on Nod-Krai's coasts, characterized by a naturally occurring hollow. Touching it sends a faint chill through your finger.",
+    "details": {
+      "sources": [
+        "Found in the wild",
+        "Sold by Mita"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 438
+  },
+  {
+    "id": "nocturnal-blossom",
+    "name": "Nocturnal Blossom",
+    "image": "/images/materials/cooking-ingredients/nocturnal-blossom",
+    "rarity": 1,
+    "category": "Material",
+    "description": "A flower that blooms at night. Its petals give off a faint fragrance in the moonlight.",
+    "details": {
+      "sources": [
+        "Found in the wild",
+        "Sold by Mita"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 439
+  },
+  {
+    "id": "mushroom",
+    "name": "Mushroom",
+    "image": "/images/materials/cooking-ingredients/mushroom",
+    "rarity": 1,
+    "category": "Cooking Ingredient",
+    "description": "Hardy common fungi. Can grow anywhere with the right amount of shade and moisture.",
+    "details": {
+      "sources": [
+        "Found in the wild",
+        "Purchased at Wanmin Restaurant"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 440
+  },
+  {
+    "id": "sweet-flower",
+    "name": "Sweet Flower",
+    "image": "/images/materials/cooking-ingredients/sweet-flower",
+    "rarity": 1,
+    "category": "Cooking Ingredient",
+    "description": "Particularly fragrant flowers. They can be found easily, even in the dark. Just follow the scent.",
+    "details": {
+      "sources": [
+        "Found in the wild",
+        "Purchase from Flora in Mondstadt"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 441
+  },
+  {
+    "id": "carrot",
+    "name": "Carrot",
+    "image": "/images/materials/cooking-ingredients/carrot",
+    "rarity": 1,
+    "category": "Cooking Ingredient",
+    "description": "A healthy and nutritious vegetable that is crunchy and sweet to the taste. Easy to grow and harvest.",
+    "details": {
+      "sources": [
+        "Found in the wild",
+        "Found in crates and barrels",
+        "Sold at Wanmin Restaurant"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 442
+  },
+  {
+    "id": "radish",
+    "name": "Radish",
+    "image": "/images/materials/cooking-ingredients/radish",
+    "rarity": 1,
+    "category": "Cooking Ingredient",
+    "description": "Rich in fiber and nutrients. Easy to grow and harvest.",
+    "details": {
+      "sources": [
+        "Found in the wild",
+        "Found in crates and barrels",
+        "Sold at Wanmin Restaurant"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 443
+  },
+  {
+    "id": "snapdragon",
+    "name": "Snapdragon",
+    "image": "/images/materials/cooking-ingredients/snapdragon",
+    "rarity": 1,
+    "category": "Cooking Ingredient",
+    "description": "Can be eaten once cooked. As a spice it can bring wonderful flavor to dishes.",
+    "details": {
+      "sources": [
+        "Found in the wild",
+        "Sold by Chloris"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 444
+  },
+  {
+    "id": "mint",
+    "name": "Mint",
+    "image": "/images/materials/cooking-ingredients/mint",
+    "rarity": 1,
+    "category": "Cooking Ingredient",
+    "description": "A refreshingly cool ingredient. The cool, fresh flavor can cut through the heat of many dishes.",
+    "details": {
+      "sources": [
+        "Found in the wild",
+        "Sold by Chloris"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 445
+  },
+  {
+    "id": "wheat",
+    "name": "Wheat",
+    "image": "/images/materials/cooking-ingredients/wheat",
+    "rarity": 1,
+    "category": "Cooking Ingredient",
+    "description": "Golden sun-kissed tassels. Needs to be ground down to flour for further use.",
+    "details": {
+      "sources": [
+        "Found in barrels and crates",
+        "Sold by Mondstadt General Goods",
+        "Sold by Second Life"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 446
   },
   {
     "id": "cabbage",
@@ -5968,118 +6404,134 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 422
+    "sortOrder": 447
   },
   {
-    "id": "cacahuatl",
-    "name": "Cacahuatl",
-    "image": "/images/materials/cooking-ingredients/cacahuatl",
+    "id": "pinecone",
+    "name": "Pinecone",
+    "image": "/images/materials/cooking-ingredients/pinecone",
     "rarity": 1,
     "category": "Cooking Ingredient",
-    "description": "A crop rich in flavor. The fleshy part itself features a unique bitterness and its seeds, after being fermented and baked, can be made into other delicacies.",
+    "description": "Filled with oil-rich seeds. Certainly won't be growing into a tree from inside a squirrel's stomach.",
     "details": {
       "sources": [
-        "Found in the wild in Natlan",
-        "Sold by Cintli"
+        "Found in the wild"
       ]
     },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 423
+    "sortOrder": 448
   },
   {
-    "id": "carrot",
-    "name": "Carrot",
-    "image": "/images/materials/cooking-ingredients/carrot",
+    "id": "lotus-head",
+    "name": "Lotus Head",
+    "image": "/images/materials/cooking-ingredients/lotus-head",
     "rarity": 1,
     "category": "Cooking Ingredient",
-    "description": "A healthy and nutritious vegetable that is crunchy and sweet to the taste. Easy to grow and harvest.",
+    "description": "An aquatic plant native to Liyue that grows and blooms in pairs. One is fragrant, and the other bitter. It's said to make a good herbal medicine.",
     "details": {
       "sources": [
-        "Found in the wild",
-        "Found in crates and barrels",
+        "Found near lakes and river banks",
+        "Sold by Bubu Pharmacy",
         "Sold at Wanmin Restaurant"
       ]
     },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 424
+    "sortOrder": 449
   },
   {
-    "id": "cheese",
-    "name": "Cheese",
-    "image": "/images/materials/cooking-ingredients/cheese",
-    "rarity": 3,
-    "category": "Cooking Ingredient",
-    "description": "Made from fermented milk. With high energy and limitless possibilities, it's used in a wide range of dishes.Milk must be processed first to be made into Cheese.",
-    "details": {
-      "sources": [
-        "Sold by Good Hunter",
-        "Processing",
-        "Sold by Changshun"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 425
-  },
-  {
-    "id": "chenyu-adeptea",
-    "name": "Chenyu Adeptea",
-    "image": "/images/materials/cooking-ingredients/chenyu-adeptea",
+    "id": "berry",
+    "name": "Berry",
+    "image": "/images/materials/cooking-ingredients/berry",
     "rarity": 1,
     "category": "Cooking Ingredient",
-    "description": "Tea grown in warm, moist areas in Chenyu Vale. After millennia of careful cultivation, the tea today emits a rich fragrance that can be savored from several streets away.",
+    "description": "Small brightly-colored fruit. They can be found everywhere, and the taste of them wipes the fatigue of a long journey away.",
     "details": {
       "sources": [
-        "Found in the wild in Chenyu Vale",
-        "Sold by Fengtai",
-        "Sold by Lianfang"
+        "Found in the wild"
       ]
     },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 426
+    "sortOrder": 450
   },
   {
-    "id": "chilled-meat",
-    "name": "Chilled Meat",
-    "image": "/images/materials/cooking-ingredients/chilled-meat",
+    "id": "raw-meat",
+    "name": "Raw Meat",
+    "image": "/images/materials/cooking-ingredients/raw-meat",
     "rarity": 1,
     "category": "Cooking Ingredient",
-    "description": "Rare, fresh meat.This species of boar is recorded to have gone extinct several hundred years ago and has been preserved by the extreme temperatures on Dragonspine. For the gourmets of Teyvat, this is an ingredient of unspeakable sacrosanctness.",
+    "description": "A fresh chunk of meat. Handled properly it can be used to make delicious food.",
     "details": {
       "sources": [
-        "Snowboars"
+        "Found in the wild",
+        "Sold by Draff",
+        "Processing"
       ]
     },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 427
+    "sortOrder": 451
   },
   {
-    "id": "coffee-beans",
-    "name": "Coffee Beans",
-    "image": "/images/materials/cooking-ingredients/coffee-beans",
+    "id": "bird-egg",
+    "name": "Bird Egg",
+    "image": "/images/materials/cooking-ingredients/bird-egg",
     "rarity": 1,
     "category": "Cooking Ingredient",
-    "description": "A common fruit in Teyvat with a special aroma. It can be used to make beverages after being ground.",
+    "description": "An incredibly versatile ingredient that can supply all of your daily protein needs.",
     "details": {
       "sources": [
-        "Sold by Arouet",
-        "Sold by Enteka",
-        "Sold by Kofitse"
+        "Found in the wild",
+        "Vendor: Draff, Head of Hunters at Springvale"
       ]
     },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 428
+    "sortOrder": 452
+  },
+  {
+    "id": "matsutake",
+    "name": "Matsutake",
+    "image": "/images/materials/cooking-ingredients/matsutake",
+    "rarity": 1,
+    "category": "Cooking Ingredient",
+    "description": "A rare fungus that generally grows on or near pine trees. Its delicate aroma gives away its location.",
+    "details": {
+      "sources": [
+        "Found in the wild",
+        "Sold at Wanmin Restaurant",
+        "Sold by Verr Goldet"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 453
+  },
+  {
+    "id": "fowl",
+    "name": "Fowl",
+    "image": "/images/materials/cooking-ingredients/fowl",
+    "rarity": 1,
+    "category": "Cooking Ingredient",
+    "description": "A fresh bird. Handled correctly it can make a hearty meal.",
+    "details": {
+      "sources": [
+        "Found in the wild",
+        "Vendor: Draff, Head of Hunters at Springvale"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 454
   },
   {
     "id": "crab",
@@ -6098,97 +6550,118 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 429
+    "sortOrder": 455
   },
   {
-    "id": "crab-roe",
-    "name": "Crab Roe",
-    "image": "/images/materials/cooking-ingredients/crab-roe",
-    "rarity": 3,
-    "category": "Cooking Ingredient",
-    "description": "A delicacy specific to female crabs. A rare and prized ingredient that isn't quite to everyone's taste.",
-    "details": {
-      "sources": [
-        "Sold by Good Hunter",
-        "Processing"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 430
-  },
-  {
-    "id": "cream",
-    "name": "Cream",
-    "image": "/images/materials/cooking-ingredients/cream",
-    "rarity": 2,
-    "category": "Cooking Ingredient",
-    "description": "A dairy product made from milk. An essential ingredient in making pastries.",
-    "details": {
-      "sources": [
-        "Sold by Good Hunter",
-        "Processing"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 431
-  },
-  {
-    "id": "eel-meat",
-    "name": "Eel Meat",
-    "image": "/images/materials/cooking-ingredients/eel-meat",
+    "id": "salt",
+    "name": "Salt",
+    "image": "/images/materials/cooking-ingredients/salt",
     "rarity": 1,
     "category": "Cooking Ingredient",
-    "description": "The fresh meat of an Unagi/Eel. If handled properly, it can be used to make fresh, lovely food.",
+    "description": "A savory seasoning. A precise but adequate amount will elevate the quality of the cuisine.",
     "details": {
       "sources": [
-        "Found in Inazuma",
-        "Found in the Great Red Sand",
-        "Sold by Yamashiro Kenta"
+        "Sold by Mondstadt General Goods",
+        "Sold by Second Life"
       ]
     },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 432
+    "sortOrder": 456
   },
   {
-    "id": "embercore-flower",
-    "name": "Embercore Flower",
-    "image": "/images/materials/cooking-ingredients/embercore-flower",
+    "id": "onion",
+    "name": "Onion",
+    "image": "/images/materials/cooking-ingredients/onion",
     "rarity": 1,
     "category": "Cooking Ingredient",
-    "description": "A strange flower that can be found all over the plains and highlands. Mature buds will bloom after being hit.",
+    "description": "A spherical vegetable. As vengeance for cutting it, it will make you cry, no matter how brave you are.",
     "details": {
       "sources": [
-        "Found in the wild in Natlan",
-        "Sold by Cintli"
+        "Sold by Mondstadt General Goods",
+        "Sold by Second Life"
       ]
     },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 433
+    "sortOrder": 457
   },
   {
-    "id": "fermented-juice",
-    "name": "Fermented Juice",
-    "image": "/images/materials/cooking-ingredients/fermented-juice",
+    "id": "pepper",
+    "name": "Pepper",
+    "image": "/images/materials/cooking-ingredients/pepper",
     "rarity": 1,
     "category": "Cooking Ingredient",
-    "description": "A fermented juice with a unique fruity scent. It is often used as a marinade.",
+    "description": "Peppery. Cuts through oily flavors and excites the taste buds. Goes best on meat.",
     "details": {
       "sources": [
-        "Sold by Boucicaut"
+        "Sold by Second Life",
+        "Sold by Mondstadt General Goods"
       ]
     },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 434
+    "sortOrder": 458
+  },
+  {
+    "id": "milk",
+    "name": "Milk",
+    "image": "/images/materials/cooking-ingredients/milk",
+    "rarity": 1,
+    "category": "Cooking Ingredient",
+    "description": "Sweet and fragrant cow's milk. Don't waste a single drop, not even that one rolling down your chin.",
+    "details": {
+      "sources": [
+        "Sold by Mondstadt General Goods",
+        "Sold by Second Life"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 459
+  },
+  {
+    "id": "tomato",
+    "name": "Tomato",
+    "image": "/images/materials/cooking-ingredients/tomato",
+    "rarity": 1,
+    "category": "Cooking Ingredient",
+    "description": "A bright red ingredient that gives a tangy kick. Yes, the 'fruit or vegetable' debate is still going…",
+    "details": {
+      "sources": [
+        "Found in the wild",
+        "Sold by Second Life",
+        "Sold by Mondstadt General Goods"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 460
+  },
+  {
+    "id": "potato",
+    "name": "Potato",
+    "image": "/images/materials/cooking-ingredients/potato",
+    "rarity": 1,
+    "category": "Cooking Ingredient",
+    "description": "A chunky vegetable. A gift from the earth that you never tire of with its multitude of cooking methods.",
+    "details": {
+      "sources": [
+        "Found in the wild",
+        "Sold by Mondstadt General Goods",
+        "Sold by Second Life",
+        "Sold by Changshun"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 461
   },
   {
     "id": "fish",
@@ -6208,44 +6681,132 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 435
+    "sortOrder": 462
   },
   {
-    "id": "flour",
-    "name": "Flour",
-    "image": "/images/materials/cooking-ingredients/flour",
+    "id": "tofu",
+    "name": "Tofu",
+    "image": "/images/materials/cooking-ingredients/tofu",
     "rarity": 1,
     "category": "Cooking Ingredient",
-    "description": "A powder ground from wheat. No matter what it goes into it brings a sense of satisfaction to the diner. Wheat must be processed first to be made into Flour.",
+    "description": "Freshly made bean product that has a silky-smooth tender texture.",
     "details": {
       "sources": [
-        "Sold by Good Hunter",
-        "Sold by Wanmin Restaurant",
-        "Processing"
+        "Sold by Second Life",
+        "Sold by Ms. Bai"
       ]
     },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 436
+    "sortOrder": 463
   },
   {
-    "id": "fowl",
-    "name": "Fowl",
-    "image": "/images/materials/cooking-ingredients/fowl",
+    "id": "almond",
+    "name": "Almond",
+    "image": "/images/materials/cooking-ingredients/almond",
     "rarity": 1,
     "category": "Cooking Ingredient",
-    "description": "A fresh bird. Handled correctly it can make a hearty meal.",
+    "description": "A seed with a peculiar fragrance that gives food a refreshing taste.",
+    "details": {
+      "sources": [
+        "Sold by Second Life",
+        "Sold by Ms. Bai"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 464
+  },
+  {
+    "id": "bamboo-shoot",
+    "name": "Bamboo Shoot",
+    "image": "/images/materials/cooking-ingredients/bamboo-shoot",
+    "rarity": 1,
+    "category": "Cooking Ingredient",
+    "description": "A fresh young bamboo shoot, straight out of the ground. It is a delicious cooking ingredient with an exotic aroma, found exclusively in bamboo-growing regions.",
     "details": {
       "sources": [
         "Found in the wild",
-        "Vendor: Draff, Head of Hunters at Springvale"
+        "Sold by Wanmin Restaurant"
       ]
     },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 437
+    "sortOrder": 465
+  },
+  {
+    "id": "rice",
+    "name": "Rice",
+    "image": "/images/materials/cooking-ingredients/rice",
+    "rarity": 1,
+    "category": "Cooking Ingredient",
+    "description": "A grain crop commonly found in Teyvat. People of all walks of life enjoy its distinct grainy texture. As the saying goes, \"The same kind of rice can feed one hundred kinds of people.\"",
+    "details": {
+      "sources": [
+        "Sold by Second Life"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 466
+  },
+  {
+    "id": "shrimp-meat",
+    "name": "Shrimp Meat",
+    "image": "/images/materials/cooking-ingredients/shrimp-meat",
+    "rarity": 1,
+    "category": "Cooking Ingredient",
+    "description": "A whole piece of deep sea shrimp meat, full of nutrients and bursting with delicious flavor.",
+    "details": {
+      "sources": [
+        "Sold by Second Life",
+        "Sold by Uncle Sun"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 467
+  },
+  {
+    "id": "chilled-meat",
+    "name": "Chilled Meat",
+    "image": "/images/materials/cooking-ingredients/chilled-meat",
+    "rarity": 1,
+    "category": "Cooking Ingredient",
+    "description": "Rare, fresh meat.This species of boar is recorded to have gone extinct several hundred years ago and has been preserved by the extreme temperatures on Dragonspine. For the gourmets of Teyvat, this is an ingredient of unspeakable sacrosanctness.",
+    "details": {
+      "sources": [
+        "Snowboars"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 468
+  },
+  {
+    "id": "eel-meat",
+    "name": "Eel Meat",
+    "image": "/images/materials/cooking-ingredients/eel-meat",
+    "rarity": 1,
+    "category": "Cooking Ingredient",
+    "description": "The fresh meat of an Unagi/Eel. If handled properly, it can be used to make fresh, lovely food.",
+    "details": {
+      "sources": [
+        "Found in Inazuma",
+        "Found in the Great Red Sand",
+        "Sold by Yamashiro Kenta"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 469
   },
   {
     "id": "glabrous-beans",
@@ -6265,44 +6826,118 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 438
+    "sortOrder": 470
   },
   {
-    "id": "grainfruit",
-    "name": "Grainfruit",
-    "image": "/images/materials/cooking-ingredients/grainfruit",
+    "id": "mysterious-meat",
+    "name": "Mysterious Meat",
+    "image": "/images/materials/cooking-ingredients/mysterious-meat",
     "rarity": 1,
     "category": "Cooking Ingredient",
-    "description": "This plant is named after the giant grains that grow along the cob.",
+    "description": "A fresh chunk of meat that seems to be radiating an enigmatic aura. Wonder what it'll taste like?",
     "details": {
       "sources": [
-        "Found in Natlan",
-        "Sold by Cintli"
+        "Found in the wild"
       ]
     },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 439
+    "sortOrder": 471
   },
   {
-    "id": "ham",
-    "name": "Ham",
-    "image": "/images/materials/cooking-ingredients/ham",
-    "rarity": 2,
+    "id": "coffee-beans",
+    "name": "Coffee Beans",
+    "image": "/images/materials/cooking-ingredients/coffee-beans",
+    "rarity": 1,
     "category": "Cooking Ingredient",
-    "description": "Smoked leg meat. Even the thinnest slice is packed full of flavor.Meat must be processed first to be made into Ham.",
+    "description": "A common fruit in Teyvat with a special aroma. It can be used to make beverages after being ground.",
     "details": {
       "sources": [
-        "Processing",
-        "Sold by Good Hunter",
-        "Sold by Wanmin Restaurant"
+        "Sold by Arouet",
+        "Sold by Enteka",
+        "Sold by Kofitse"
       ]
     },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 440
+    "sortOrder": 472
+  },
+  {
+    "id": "fermented-juice",
+    "name": "Fermented Juice",
+    "image": "/images/materials/cooking-ingredients/fermented-juice",
+    "rarity": 1,
+    "category": "Cooking Ingredient",
+    "description": "A fermented juice with a unique fruity scent. It is often used as a marinade.",
+    "details": {
+      "sources": [
+        "Sold by Boucicaut"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 473
+  },
+  {
+    "id": "rye",
+    "name": "Rye",
+    "image": "/images/materials/cooking-ingredients/rye",
+    "rarity": 1,
+    "category": "Cooking Ingredient",
+    "description": "The gray-brown ears are a gift from the earth. Their richness can only be brought out by grounding and roasting.",
+    "details": {
+      "sources": [
+        "Investigation",
+        "Sold by Cairuo"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 474
+  },
+  {
+    "id": "seagrass",
+    "name": "Seagrass",
+    "image": "/images/materials/cooking-ingredients/seagrass",
+    "rarity": 1,
+    "category": "Cooking Ingredient",
+    "description": "A plant that grows in shallow seas. It adds a unique flavor to dishes.",
+    "details": {
+      "sources": [
+        "Found in the wild in Inazuma",
+        "Sold by Pam",
+        "Sold by Shimura Kanbei",
+        "Expeditions",
+        "Gardening"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 475
+  },
+  {
+    "id": "lavender-melon",
+    "name": "Lavender Melon",
+    "image": "/images/materials/cooking-ingredients/lavender-melon",
+    "rarity": 1,
+    "category": "Cooking Ingredient",
+    "description": "A brightly-colored fruit. The flesh within transforms into food with a unique mouthfeel when cooked.",
+    "details": {
+      "sources": [
+        "Found in the wild in Inazuma",
+        "Sold by Shimura Kanbei",
+        "Expeditions"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 476
   },
   {
     "id": "harra-fruit",
@@ -6324,797 +6959,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 441
-  },
-  {
-    "id": "horsetail",
-    "name": "Horsetail",
-    "image": "/images/materials/cooking-ingredients/horsetail",
-    "rarity": 1,
-    "category": "Cooking Ingredient",
-    "description": "A purple plant that sometimes grows amidst Silvergrass but grows taller, straighter, and plumper - like an aristocrat among the paupers.",
-    "details": {
-      "sources": [
-        "Found in Liyue",
-        "Sold by Bubu Pharmacy",
-        "Expeditions",
-        "Gardening"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 442
-  },
-  {
-    "id": "icy-pebble",
-    "name": "Icy Pebble",
-    "image": "/images/materials/cooking-ingredients/icy-pebble",
-    "rarity": 1,
-    "category": "Cooking Ingredient",
-    "description": "A pebble commonly found on Nod-Krai's coasts, characterized by a naturally occurring hollow. Touching it sends a faint chill through your finger.",
-    "details": {
-      "sources": [
-        "Found in the wild",
-        "Sold by Mita"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 443
-  },
-  {
-    "id": "jam",
-    "name": "Jam",
-    "image": "/images/materials/cooking-ingredients/jam",
-    "rarity": 3,
-    "category": "Cooking Ingredient",
-    "description": "A puree made from fruit and sugar. Even a little bit can easily wake up drowsy taste buds. Apples and Berries must be processed first to be made into Jam.",
-    "details": {
-      "sources": [
-        "Sold by Good Hunter",
-        "Processing"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 444
-  },
-  {
-    "id": "lakkaberry",
-    "name": "Lakkaberry",
-    "image": "/images/materials/cooking-ingredients/lakkaberry",
-    "rarity": 1,
-    "category": "Cooking Ingredient",
-    "description": "A fruit as white as pearl that tastes refreshingly sweet.",
-    "details": {
-      "sources": [
-        "Found in the wild"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 445
-  },
-  {
-    "id": "lavender-melon",
-    "name": "Lavender Melon",
-    "image": "/images/materials/cooking-ingredients/lavender-melon",
-    "rarity": 1,
-    "category": "Cooking Ingredient",
-    "description": "A brightly-colored fruit. The flesh within transforms into food with a unique mouthfeel when cooked.",
-    "details": {
-      "sources": [
-        "Found in the wild in Inazuma",
-        "Sold by Shimura Kanbei",
-        "Expeditions"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 446
-  },
-  {
-    "id": "lotus-head",
-    "name": "Lotus Head",
-    "image": "/images/materials/cooking-ingredients/lotus-head",
-    "rarity": 1,
-    "category": "Cooking Ingredient",
-    "description": "An aquatic plant native to Liyue that grows and blooms in pairs. One is fragrant, and the other bitter. It's said to make a good herbal medicine.",
-    "details": {
-      "sources": [
-        "Found near lakes and river banks",
-        "Sold by Bubu Pharmacy",
-        "Sold at Wanmin Restaurant"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 447
-  },
-  {
-    "id": "marcotte",
-    "name": "Marcotte",
-    "image": "/images/materials/cooking-ingredients/marcotte",
-    "rarity": 1,
-    "category": "Cooking Ingredient",
-    "description": "A pink flower with a pearl-like luster and rich scent profile. It is one of the most important ingredients in a perfumer's arsenal.",
-    "details": {
-      "sources": [
-        "Found in the wild",
-        "Sold by Boucicaut",
-        "Sold by Eugenie",
-        "Expeditions",
-        "Gardening"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 448
-  },
-  {
-    "id": "matsutake",
-    "name": "Matsutake",
-    "image": "/images/materials/cooking-ingredients/matsutake",
-    "rarity": 1,
-    "category": "Cooking Ingredient",
-    "description": "A rare fungus that generally grows on or near pine trees. Its delicate aroma gives away its location.",
-    "details": {
-      "sources": [
-        "Found in the wild",
-        "Sold at Wanmin Restaurant",
-        "Sold by Verr Goldet"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 449
-  },
-  {
-    "id": "midsommar-berry",
-    "name": "Midsommar Berry",
-    "image": "/images/materials/cooking-ingredients/midsommar-berry",
-    "rarity": 1,
-    "category": "Cooking Ingredient",
-    "description": "A fruit that grows in the warmer parts of Nod-Krai. It is beloved by animals emerging from winter and hungry children alike.",
-    "details": {
-      "sources": [
-        "Found in the wild"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 450
-  },
-  {
-    "id": "milk",
-    "name": "Milk",
-    "image": "/images/materials/cooking-ingredients/milk",
-    "rarity": 1,
-    "category": "Cooking Ingredient",
-    "description": "Sweet and fragrant cow's milk. Don't waste a single drop, not even that one rolling down your chin.",
-    "details": {
-      "sources": [
-        "Sold by Mondstadt General Goods",
-        "Sold by Second Life"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 451
-  },
-  {
-    "id": "mint",
-    "name": "Mint",
-    "image": "/images/materials/cooking-ingredients/mint",
-    "rarity": 1,
-    "category": "Cooking Ingredient",
-    "description": "A refreshingly cool ingredient. The cool, fresh flavor can cut through the heat of many dishes.",
-    "details": {
-      "sources": [
-        "Found in the wild",
-        "Sold by Chloris"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 452
-  },
-  {
-    "id": "mushroom",
-    "name": "Mushroom",
-    "image": "/images/materials/cooking-ingredients/mushroom",
-    "rarity": 1,
-    "category": "Cooking Ingredient",
-    "description": "Hardy common fungi. Can grow anywhere with the right amount of shade and moisture.",
-    "details": {
-      "sources": [
-        "Found in the wild",
-        "Purchased at Wanmin Restaurant"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 453
-  },
-  {
-    "id": "mysterious-meat",
-    "name": "Mysterious Meat",
-    "image": "/images/materials/cooking-ingredients/mysterious-meat",
-    "rarity": 1,
-    "category": "Cooking Ingredient",
-    "description": "A fresh chunk of meat that seems to be radiating an enigmatic aura. Wonder what it'll taste like?",
-    "details": {
-      "sources": [
-        "Found in the wild"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 454
-  },
-  {
-    "id": "nocturnal-blossom",
-    "name": "Nocturnal Blossom",
-    "image": "/images/materials/cooking-ingredients/nocturnal-blossom",
-    "rarity": 1,
-    "category": "Cooking Ingredient",
-    "description": "A flower that blooms at night. Its petals give off a faint fragrance in the moonlight.",
-    "details": {
-      "sources": [
-        "Found in the wild",
-        "Sold by Mita"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 455
-  },
-  {
-    "id": "onion",
-    "name": "Onion",
-    "image": "/images/materials/cooking-ingredients/onion",
-    "rarity": 1,
-    "category": "Cooking Ingredient",
-    "description": "A spherical vegetable. As vengeance for cutting it, it will make you cry, no matter how brave you are.",
-    "details": {
-      "sources": [
-        "Sold by Mondstadt General Goods",
-        "Sold by Second Life"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 456
-  },
-  {
-    "id": "pepper",
-    "name": "Pepper",
-    "image": "/images/materials/cooking-ingredients/pepper",
-    "rarity": 1,
-    "category": "Cooking Ingredient",
-    "description": "Peppery. Cuts through oily flavors and excites the taste buds. Goes best on meat.",
-    "details": {
-      "sources": [
-        "Sold by Second Life",
-        "Sold by Mondstadt General Goods"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 457
-  },
-  {
-    "id": "pinecone",
-    "name": "Pinecone",
-    "image": "/images/materials/cooking-ingredients/pinecone",
-    "rarity": 1,
-    "category": "Cooking Ingredient",
-    "description": "Filled with oil-rich seeds. Certainly won't be growing into a tree from inside a squirrel's stomach.",
-    "details": {
-      "sources": [
-        "Found in the wild"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 458
-  },
-  {
-    "id": "potato",
-    "name": "Potato",
-    "image": "/images/materials/cooking-ingredients/potato",
-    "rarity": 1,
-    "category": "Cooking Ingredient",
-    "description": "A chunky vegetable. A gift from the earth that you never tire of with its multitude of cooking methods.",
-    "details": {
-      "sources": [
-        "Found in the wild",
-        "Sold by Mondstadt General Goods",
-        "Sold by Second Life",
-        "Sold by Changshun"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 459
-  },
-  {
-    "id": "radish",
-    "name": "Radish",
-    "image": "/images/materials/cooking-ingredients/radish",
-    "rarity": 1,
-    "category": "Cooking Ingredient",
-    "description": "Rich in fiber and nutrients. Easy to grow and harvest.",
-    "details": {
-      "sources": [
-        "Found in the wild",
-        "Found in crates and barrels",
-        "Sold at Wanmin Restaurant"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 460
-  },
-  {
-    "id": "raw-meat",
-    "name": "Raw Meat",
-    "image": "/images/materials/cooking-ingredients/raw-meat",
-    "rarity": 1,
-    "category": "Cooking Ingredient",
-    "description": "A fresh chunk of meat. Handled properly it can be used to make delicious food.",
-    "details": {
-      "sources": [
-        "Found in the wild",
-        "Sold by Draff",
-        "Processing"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 461
-  },
-  {
-    "id": "red-berryshroom",
-    "name": "Red Berryshroom",
-    "image": "/images/materials/cooking-ingredients/red-berryshroom",
-    "rarity": 1,
-    "category": "Cooking Ingredient",
-    "description": "An ordinary-looking mushroom with an extraordinary flavor. It has a fruity flavor when eaten raw, but exposing it to heat brings out a rich, mushroomy aroma.",
-    "details": {
-      "sources": [
-        "Found in Natlan",
-        "Sold by Cintli"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 462
-  },
-  {
-    "id": "rice",
-    "name": "Rice",
-    "image": "/images/materials/cooking-ingredients/rice",
-    "rarity": 1,
-    "category": "Cooking Ingredient",
-    "description": "A grain crop commonly found in Teyvat. People of all walks of life enjoy its distinct grainy texture. As the saying goes, \"The same kind of rice can feed one hundred kinds of people.\"",
-    "details": {
-      "sources": [
-        "Sold by Second Life"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 463
-  },
-  {
-    "id": "rye",
-    "name": "Rye",
-    "image": "/images/materials/cooking-ingredients/rye",
-    "rarity": 1,
-    "category": "Cooking Ingredient",
-    "description": "The gray-brown ears are a gift from the earth. Their richness can only be brought out by grounding and roasting.",
-    "details": {
-      "sources": [
-        "Investigation",
-        "Sold by Cairuo"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 464
-  },
-  {
-    "id": "rye-flour",
-    "name": "Rye Flour",
-    "image": "/images/materials/cooking-ingredients/rye-flour",
-    "rarity": 1,
-    "category": "Cooking Ingredient",
-    "description": "A coarse, dark powder produced from grinding rye. Food made with it has a unique texture and a somewhat sour flavor.",
-    "details": {
-      "sources": [
-        "Processing"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 465
-  },
-  {
-    "id": "salt",
-    "name": "Salt",
-    "image": "/images/materials/cooking-ingredients/salt",
-    "rarity": 1,
-    "category": "Cooking Ingredient",
-    "description": "A savory seasoning. A precise but adequate amount will elevate the quality of the cuisine.",
-    "details": {
-      "sources": [
-        "Sold by Mondstadt General Goods",
-        "Sold by Second Life"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 466
-  },
-  {
-    "id": "sausage",
-    "name": "Sausage",
-    "image": "/images/materials/cooking-ingredients/sausage",
-    "rarity": 3,
-    "category": "Cooking Ingredient",
-    "description": "Finely minced meat wrapped in a skin. A staple of every meat lover's daily diet.Meat must be processed first to be made into Sausages.",
-    "details": {
-      "sources": [
-        "Sold by Good Hunter",
-        "Sold by Wanmin Restaurant",
-        "Sold by Verr Goldet",
-        "Processing"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 467
-  },
-  {
-    "id": "seagrass",
-    "name": "Seagrass",
-    "image": "/images/materials/cooking-ingredients/seagrass",
-    "rarity": 1,
-    "category": "Cooking Ingredient",
-    "description": "A plant that grows in shallow seas. It adds a unique flavor to dishes.",
-    "details": {
-      "sources": [
-        "Found in the wild in Inazuma",
-        "Sold by Pam",
-        "Sold by Shimura Kanbei",
-        "Expeditions",
-        "Gardening"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 468
-  },
-  {
-    "id": "shrimp-meat",
-    "name": "Shrimp Meat",
-    "image": "/images/materials/cooking-ingredients/shrimp-meat",
-    "rarity": 1,
-    "category": "Cooking Ingredient",
-    "description": "A whole piece of deep sea shrimp meat, full of nutrients and bursting with delicious flavor.",
-    "details": {
-      "sources": [
-        "Sold by Second Life",
-        "Sold by Uncle Sun"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 469
-  },
-  {
-    "id": "smetana",
-    "name": "Smetana",
-    "image": "/images/materials/cooking-ingredients/smetana",
-    "rarity": 2,
-    "category": "Cooking Ingredient",
-    "description": "A dairy product produced through complex processes such as separation and fermentation. It has a smooth texture and a refreshing sourness, often serving as the finishing touch in many dishes.",
-    "details": {
-      "sources": [
-        "Processing"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 470
-  },
-  {
-    "id": "smoked-fowl",
-    "name": "Smoked Fowl",
-    "image": "/images/materials/cooking-ingredients/smoked-fowl",
-    "rarity": 2,
-    "category": "Cooking Ingredient",
-    "description": "Fowl that has been smoked. The firm texture gives new taste to dishes.Fowl must be processed first to be made into Smoked Fowl.",
-    "details": {
-      "sources": [
-        "Sold by Good Hunter",
-        "Processing"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 471
-  },
-  {
-    "id": "snapdragon",
-    "name": "Snapdragon",
-    "image": "/images/materials/cooking-ingredients/snapdragon",
-    "rarity": 1,
-    "category": "Cooking Ingredient",
-    "description": "Can be eaten once cooked. As a spice it can bring wonderful flavor to dishes.",
-    "details": {
-      "sources": [
-        "Found in the wild",
-        "Sold by Chloris"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 472
-  },
-  {
-    "id": "spice",
-    "name": "Spice",
-    "image": "/images/materials/cooking-ingredients/spice",
-    "rarity": 2,
-    "category": "Cooking Ingredient",
-    "description": "A seasoning with varied flavors. It is made from dried Harra Fruits and can enrich the taste of a dish. Therefore, Sumeru locals say, \"Spice goes well with anything.\"",
-    "details": {
-      "sources": [
-        "Processing",
-        "Sold by Lambad"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 473
-  },
-  {
-    "id": "spinel-fruit",
-    "name": "Spinel Fruit",
-    "image": "/images/materials/cooking-ingredients/spinel-fruit",
-    "rarity": 1,
-    "category": "Cooking Ingredient",
-    "description": "The crystalline trees that grow widely in areas with Liquid Phlogiston produce these gem-shaped fruits after absorbing phlogiston.",
-    "details": {
-      "sources": [
-        "Found in the wild in Natlan",
-        "Sold by Cintli"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 474
-  },
-  {
-    "id": "starshroom",
-    "name": "Starshroom",
-    "image": "/images/materials/cooking-ingredients/starshroom",
-    "rarity": 1,
-    "category": "Cooking Ingredient",
-    "description": "A fungus with a cap that resembles a five-pointed star. It is quite hardy indeed. Once it matures, the center of the cap will split open.",
-    "details": {
-      "sources": [
-        "Found in the wild",
-        "Sold by Lambad"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 475
-  },
-  {
-    "id": "sugar",
-    "name": "Sugar",
-    "image": "/images/materials/cooking-ingredients/sugar",
-    "rarity": 2,
-    "category": "Cooking Ingredient",
-    "description": "A seasoning derived from Sweet Flowers. Has the power to give both energy and happiness.Can be purchased from the merchants in the city, or made with Sweet Flowers.",
-    "details": {
-      "sources": [
-        "Sold by Good Hunter",
-        "Sold by Wanmin Restaurant",
-        "Sold by Changshun",
-        "Processing"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 476
-  },
-  {
-    "id": "sumeru-rose",
-    "name": "Sumeru Rose",
-    "image": "/images/materials/cooking-ingredients/sumeru-rose",
-    "rarity": 1,
-    "category": "Cooking Ingredient",
-    "description": "Bright and beautiful, these pure purple flowers give off a pleasant fragrance that will give any passerby pause. While some like to call this type of \"rambler rose,\" its relative lack of multiple flowers means that it falls under a different floral classification.",
-    "details": {
-      "sources": [
-        "Found in the wild",
-        "Gardening",
-        "Expeditions"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
     "sortOrder": 477
-  },
-  {
-    "id": "sunsettia",
-    "name": "Sunsettia",
-    "image": "/images/materials/cooking-ingredients/sunsettia",
-    "rarity": 1,
-    "category": "Cooking Ingredient",
-    "description": "A plump fruit, beautiful like the sunset, that is abundant across all of Teyvat. It has a curious, sweet aroma and is able to energize an individual.",
-    "details": {
-      "sources": [
-        "Found in the wild",
-        "Expeditions",
-        "Investigation"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 478
-  },
-  {
-    "id": "sweet-flower",
-    "name": "Sweet Flower",
-    "image": "/images/materials/cooking-ingredients/sweet-flower",
-    "rarity": 1,
-    "category": "Cooking Ingredient",
-    "description": "Particularly fragrant flowers. They can be found easily, even in the dark. Just follow the scent.",
-    "details": {
-      "sources": [
-        "Found in the wild",
-        "Purchase from Flora in Mondstadt"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 479
-  },
-  {
-    "id": "tidalga",
-    "name": "Tidalga",
-    "image": "/images/materials/cooking-ingredients/tidalga",
-    "rarity": 1,
-    "category": "Cooking Ingredient",
-    "description": "An algae floating with the tides that sustains itself by feeding on substances produced by other plants. Though often mistaken for zooplankton, based on its nature, Tidalga is actually a type of phytoplankton.",
-    "details": {
-      "sources": [
-        "Diving",
-        "Sold by Hinterman",
-        "Expeditions"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 480
-  },
-  {
-    "id": "tofu",
-    "name": "Tofu",
-    "image": "/images/materials/cooking-ingredients/tofu",
-    "rarity": 1,
-    "category": "Cooking Ingredient",
-    "description": "Freshly made bean product that has a silky-smooth tender texture.",
-    "details": {
-      "sources": [
-        "Sold by Second Life",
-        "Sold by Ms. Bai"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 481
-  },
-  {
-    "id": "tomato",
-    "name": "Tomato",
-    "image": "/images/materials/cooking-ingredients/tomato",
-    "rarity": 1,
-    "category": "Cooking Ingredient",
-    "description": "A bright red ingredient that gives a tangy kick. Yes, the 'fruit or vegetable' debate is still going…",
-    "details": {
-      "sources": [
-        "Found in the wild",
-        "Sold by Second Life",
-        "Sold by Mondstadt General Goods"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 482
-  },
-  {
-    "id": "wheat",
-    "name": "Wheat",
-    "image": "/images/materials/cooking-ingredients/wheat",
-    "rarity": 1,
-    "category": "Cooking Ingredient",
-    "description": "Golden sun-kissed tassels. Needs to be ground down to flour for further use.",
-    "details": {
-      "sources": [
-        "Found in barrels and crates",
-        "Sold by Mondstadt General Goods",
-        "Sold by Second Life"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 483
-  },
-  {
-    "id": "windrest-flower",
-    "name": "Windrest Flower",
-    "image": "/images/materials/cooking-ingredients/windrest-flower",
-    "rarity": 1,
-    "category": "Cooking Ingredient",
-    "description": "An exquisite flower that remains delicate and fresh, found primarily in the northern part of Mondstadt. Its fragrance is clear and enduring, making it one of the primary ingredients used in perfumery.",
-    "details": {
-      "sources": [
-        "Found in the wild"
-      ]
-    },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 484
   },
   {
     "id": "zaytun-peach",
@@ -7137,19 +6982,542 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
+    "sortOrder": 478
+  },
+  {
+    "id": "sumeru-rose",
+    "name": "Sumeru Rose",
+    "image": "/images/materials/cooking-ingredients/sumeru-rose",
+    "rarity": 1,
+    "category": "Cooking Ingredient",
+    "description": "Bright and beautiful, these pure purple flowers give off a pleasant fragrance that will give any passerby pause. While some like to call this type of \"rambler rose,\" its relative lack of multiple flowers means that it falls under a different floral classification.",
+    "details": {
+      "sources": [
+        "Found in the wild",
+        "Gardening",
+        "Expeditions"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 479
+  },
+  {
+    "id": "ajilenakh-nut",
+    "name": "Ajilenakh Nut",
+    "image": "/images/materials/cooking-ingredients/ajilenakh-nut",
+    "rarity": 1,
+    "category": "Cooking Ingredient",
+    "description": "A fruit that grows on evergreen trees within desert oases. The flesh under the tough skin is thick, sweet, and delicious, making it an important food source amongst the desert peoples.",
+    "details": {
+      "sources": [
+        "Found in the wild",
+        "Sold by Azalai",
+        "Sold by Eugenie"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 480
+  },
+  {
+    "id": "marcotte",
+    "name": "Marcotte",
+    "image": "/images/materials/cooking-ingredients/marcotte",
+    "rarity": 1,
+    "category": "Cooking Ingredient",
+    "description": "A pink flower with a pearl-like luster and rich scent profile. It is one of the most important ingredients in a perfumer's arsenal.",
+    "details": {
+      "sources": [
+        "Found in the wild",
+        "Sold by Boucicaut",
+        "Sold by Eugenie",
+        "Expeditions",
+        "Gardening"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 481
+  },
+  {
+    "id": "tidalga",
+    "name": "Tidalga",
+    "image": "/images/materials/cooking-ingredients/tidalga",
+    "rarity": 1,
+    "category": "Cooking Ingredient",
+    "description": "An algae floating with the tides that sustains itself by feeding on substances produced by other plants. Though often mistaken for zooplankton, based on its nature, Tidalga is actually a type of phytoplankton.",
+    "details": {
+      "sources": [
+        "Diving",
+        "Sold by Hinterman",
+        "Expeditions"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 482
+  },
+  {
+    "id": "chenyu-adeptea",
+    "name": "Chenyu Adeptea",
+    "image": "/images/materials/cooking-ingredients/chenyu-adeptea",
+    "rarity": 1,
+    "category": "Cooking Ingredient",
+    "description": "Tea grown in warm, moist areas in Chenyu Vale. After millennia of careful cultivation, the tea today emits a rich fragrance that can be savored from several streets away.",
+    "details": {
+      "sources": [
+        "Found in the wild in Chenyu Vale",
+        "Sold by Fengtai",
+        "Sold by Lianfang"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 483
+  },
+  {
+    "id": "grainfruit",
+    "name": "Grainfruit",
+    "image": "/images/materials/cooking-ingredients/grainfruit",
+    "rarity": 1,
+    "category": "Cooking Ingredient",
+    "description": "This plant is named after the giant grains that grow along the cob.",
+    "details": {
+      "sources": [
+        "Found in Natlan",
+        "Sold by Cintli"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 484
+  },
+  {
+    "id": "spinel-fruit",
+    "name": "Spinel Fruit",
+    "image": "/images/materials/cooking-ingredients/spinel-fruit",
+    "rarity": 1,
+    "category": "Cooking Ingredient",
+    "description": "The crystalline trees that grow widely in areas with Liquid Phlogiston produce these gem-shaped fruits after absorbing phlogiston.",
+    "details": {
+      "sources": [
+        "Found in the wild in Natlan",
+        "Sold by Cintli"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
     "sortOrder": 485
   },
   {
-    "id": "portable-bearing",
-    "name": "Portable Bearing",
-    "image": "/images/materials/local-specialties/portable-bearing",
+    "id": "red-berryshroom",
+    "name": "Red Berryshroom",
+    "image": "/images/materials/cooking-ingredients/red-berryshroom",
     "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Portable Bearing local specialty.",
+    "category": "Cooking Ingredient",
+    "description": "An ordinary-looking mushroom with an extraordinary flavor. It has a fruity flavor when eaten raw, but exposing it to heat brings out a rich, mushroomy aroma.",
+    "details": {
+      "sources": [
+        "Found in Natlan",
+        "Sold by Cintli"
+      ]
+    },
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
     "sortOrder": 486
+  },
+  {
+    "id": "lakkaberry",
+    "name": "Lakkaberry",
+    "image": "/images/materials/cooking-ingredients/lakkaberry",
+    "rarity": 1,
+    "category": "Cooking Ingredient",
+    "description": "A fruit as white as pearl that tastes refreshingly sweet.",
+    "details": {
+      "sources": [
+        "Found in the wild"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 487
+  },
+  {
+    "id": "midsommar-berry",
+    "name": "Midsommar Berry",
+    "image": "/images/materials/cooking-ingredients/midsommar-berry",
+    "rarity": 1,
+    "category": "Cooking Ingredient",
+    "description": "A fruit that grows in the warmer parts of Nod-Krai. It is beloved by animals emerging from winter and hungry children alike.",
+    "details": {
+      "sources": [
+        "Found in the wild"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 488
+  },
+  {
+    "id": "windrest-flower",
+    "name": "Windrest Flower",
+    "image": "/images/materials/cooking-ingredients/windrest-flower",
+    "rarity": 1,
+    "category": "Cooking Ingredient",
+    "description": "An exquisite flower that remains delicate and fresh, found primarily in the northern part of Mondstadt. Its fragrance is clear and enduring, making it one of the primary ingredients used in perfumery.",
+    "details": {
+      "sources": [
+        "Found in the wild"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 489
+  },
+  {
+    "id": "crab-roe",
+    "name": "Crab Roe",
+    "image": "/images/materials/cooking-ingredients/crab-roe",
+    "rarity": 3,
+    "category": "Cooking Ingredient",
+    "description": "A delicacy specific to female crabs. A rare and prized ingredient that isn't quite to everyone's taste.",
+    "details": {
+      "sources": [
+        "Sold by Good Hunter",
+        "Processing"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 490
+  },
+  {
+    "id": "flour",
+    "name": "Flour",
+    "image": "/images/materials/cooking-ingredients/flour",
+    "rarity": 1,
+    "category": "Cooking Ingredient",
+    "description": "A powder ground from wheat. No matter what it goes into it brings a sense of satisfaction to the diner. Wheat must be processed first to be made into Flour.",
+    "details": {
+      "sources": [
+        "Sold by Good Hunter",
+        "Sold by Wanmin Restaurant",
+        "Processing"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 491
+  },
+  {
+    "id": "cream",
+    "name": "Cream",
+    "image": "/images/materials/cooking-ingredients/cream",
+    "rarity": 2,
+    "category": "Cooking Ingredient",
+    "description": "A dairy product made from milk. An essential ingredient in making pastries.",
+    "details": {
+      "sources": [
+        "Sold by Good Hunter",
+        "Processing"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 492
+  },
+  {
+    "id": "smoked-fowl",
+    "name": "Smoked Fowl",
+    "image": "/images/materials/cooking-ingredients/smoked-fowl",
+    "rarity": 2,
+    "category": "Cooking Ingredient",
+    "description": "Fowl that has been smoked. The firm texture gives new taste to dishes.Fowl must be processed first to be made into Smoked Fowl.",
+    "details": {
+      "sources": [
+        "Sold by Good Hunter",
+        "Processing"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 493
+  },
+  {
+    "id": "butter",
+    "name": "Butter",
+    "image": "/images/materials/cooking-ingredients/butter",
+    "rarity": 2,
+    "category": "Cooking Ingredient",
+    "description": "An extract from milk. With the appropriate application, it can bring rich aromas to even the most basic ingredients.",
+    "details": {
+      "sources": [
+        "Sold by Good Hunter",
+        "Sold by Verr Goldet",
+        "Processing"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 494
+  },
+  {
+    "id": "ham",
+    "name": "Ham",
+    "image": "/images/materials/cooking-ingredients/ham",
+    "rarity": 2,
+    "category": "Cooking Ingredient",
+    "description": "Smoked leg meat. Even the thinnest slice is packed full of flavor.Meat must be processed first to be made into Ham.",
+    "details": {
+      "sources": [
+        "Processing",
+        "Sold by Good Hunter",
+        "Sold by Wanmin Restaurant"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 495
+  },
+  {
+    "id": "sugar",
+    "name": "Sugar",
+    "image": "/images/materials/cooking-ingredients/sugar",
+    "rarity": 2,
+    "category": "Cooking Ingredient",
+    "description": "A seasoning derived from Sweet Flowers. Has the power to give both energy and happiness.Can be purchased from the merchants in the city, or made with Sweet Flowers.",
+    "details": {
+      "sources": [
+        "Sold by Good Hunter",
+        "Sold by Wanmin Restaurant",
+        "Sold by Changshun",
+        "Processing"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 496
+  },
+  {
+    "id": "jam",
+    "name": "Jam",
+    "image": "/images/materials/cooking-ingredients/jam",
+    "rarity": 3,
+    "category": "Cooking Ingredient",
+    "description": "A puree made from fruit and sugar. Even a little bit can easily wake up drowsy taste buds. Apples and Berries must be processed first to be made into Jam.",
+    "details": {
+      "sources": [
+        "Sold by Good Hunter",
+        "Processing"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 497
+  },
+  {
+    "id": "cheese",
+    "name": "Cheese",
+    "image": "/images/materials/cooking-ingredients/cheese",
+    "rarity": 3,
+    "category": "Cooking Ingredient",
+    "description": "Made from fermented milk. With high energy and limitless possibilities, it's used in a wide range of dishes.Milk must be processed first to be made into Cheese.",
+    "details": {
+      "sources": [
+        "Sold by Good Hunter",
+        "Processing",
+        "Sold by Changshun"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 498
+  },
+  {
+    "id": "bacon",
+    "name": "Bacon",
+    "image": "/images/materials/cooking-ingredients/bacon",
+    "rarity": 3,
+    "category": "Cooking Ingredient",
+    "description": "Smoked strips of pork. With just enough fat, but not too greasy.Mmmmm... Bacon.Meat must be processed first to be made into Bacon.",
+    "details": {
+      "sources": [
+        "Sold by Good Hunter",
+        "Processing"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 499
+  },
+  {
+    "id": "sausage",
+    "name": "Sausage",
+    "image": "/images/materials/cooking-ingredients/sausage",
+    "rarity": 3,
+    "category": "Cooking Ingredient",
+    "description": "Finely minced meat wrapped in a skin. A staple of every meat lover's daily diet.Meat must be processed first to be made into Sausages.",
+    "details": {
+      "sources": [
+        "Sold by Good Hunter",
+        "Sold by Wanmin Restaurant",
+        "Sold by Verr Goldet",
+        "Processing"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 500
+  },
+  {
+    "id": "spice",
+    "name": "Spice",
+    "image": "/images/materials/cooking-ingredients/spice",
+    "rarity": 2,
+    "category": "Cooking Ingredient",
+    "description": "A seasoning with varied flavors. It is made from dried Harra Fruits and can enrich the taste of a dish. Therefore, Sumeru locals say, \"Spice goes well with anything.\"",
+    "details": {
+      "sources": [
+        "Processing",
+        "Sold by Lambad"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 501
+  },
+  {
+    "id": "smetana",
+    "name": "Smetana",
+    "image": "/images/materials/cooking-ingredients/smetana",
+    "rarity": 2,
+    "category": "Cooking Ingredient",
+    "description": "A dairy product produced through complex processes such as separation and fermentation. It has a smooth texture and a refreshing sourness, often serving as the finishing touch in many dishes.",
+    "details": {
+      "sources": [
+        "Processing"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 502
+  },
+  {
+    "id": "rye-flour",
+    "name": "Rye Flour",
+    "image": "/images/materials/cooking-ingredients/rye-flour",
+    "rarity": 1,
+    "category": "Cooking Ingredient",
+    "description": "A coarse, dark powder produced from grinding rye. Food made with it has a unique texture and a somewhat sour flavor.",
+    "details": {
+      "sources": [
+        "Processing"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 503
+  },
+  {
+    "id": "apple",
+    "name": "Apple",
+    "image": "/images/materials/cooking-ingredients/apple",
+    "rarity": 1,
+    "category": "Cooking Ingredient",
+    "description": "Crisp and fragrant. Delicious raw or fermented into wine. Can be also made into a refreshing alcohol-free beverage.",
+    "details": {
+      "sources": [
+        "Found in the wild",
+        "Investigation",
+        "Expeditions"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 504
+  },
+  {
+    "id": "sunsettia",
+    "name": "Sunsettia",
+    "image": "/images/materials/cooking-ingredients/sunsettia",
+    "rarity": 1,
+    "category": "Cooking Ingredient",
+    "description": "A plump fruit, beautiful like the sunset, that is abundant across all of Teyvat. It has a curious, sweet aroma and is able to energize an individual.",
+    "details": {
+      "sources": [
+        "Found in the wild",
+        "Expeditions",
+        "Investigation"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 505
+  },
+  {
+    "id": "starshroom",
+    "name": "Starshroom",
+    "image": "/images/materials/cooking-ingredients/starshroom",
+    "rarity": 1,
+    "category": "Cooking Ingredient",
+    "description": "A fungus with a cap that resembles a five-pointed star. It is quite hardy indeed. Once it matures, the center of the cap will split open.",
+    "details": {
+      "sources": [
+        "Found in the wild",
+        "Sold by Lambad"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 506
+  },
+  {
+    "id": "bulle-fruit",
+    "name": "Bulle Fruit",
+    "image": "/images/materials/cooking-ingredients/bulle-fruit",
+    "rarity": 1,
+    "category": "Cooking Ingredient",
+    "description": "A fruit that grows in warm and damp environments with ample sunlight. Inside this round and rotund fruit hides a sweet and refreshing surprise.",
+    "details": {
+      "sources": [
+        "Found in the wild in Fontaine",
+        "Sold by Eugenie",
+        "Expeditions"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 507
   },
   {
     "id": "precision-kuuvahki-stamping-die",
@@ -7161,19 +7529,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 487
-  },
-  {
-    "id": "withering-purpurbloom",
-    "name": "Withering Purpurbloom",
-    "image": "/images/materials/local-specialties/withering-purpurbloom",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Withering Purpurbloom local specialty.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 488
+    "sortOrder": 508
   },
   {
     "id": "ensnaring-gaze",
@@ -7185,7 +7541,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 489
+    "sortOrder": 509
   },
   {
     "id": "talisman-of-the-enigmatic-land",
@@ -7197,19 +7553,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 490
-  },
-  {
-    "id": "winter-icelea",
-    "name": "Winter Icelea",
-    "image": "/images/materials/local-specialties/winter-icelea",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Winter Icelea local specialty.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 491
+    "sortOrder": 510
   },
   {
     "id": "radiant-antler",
@@ -7221,7 +7565,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 492
+    "sortOrder": 511
   },
   {
     "id": "secret-source-airflow-accumulator",
@@ -7233,19 +7577,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 493
-  },
-  {
-    "id": "frostlamp-flower",
-    "name": "Frostlamp Flower",
-    "image": "/images/materials/local-specialties/frostlamp-flower",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Frostlamp Flower local specialty.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 494
+    "sortOrder": 512
   },
   {
     "id": "cyclic-military-kuuvahki-core",
@@ -7257,19 +7589,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 495
-  },
-  {
-    "id": "dracolite",
-    "name": "Dracolite",
-    "image": "/images/materials/local-specialties/dracolite",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Dracolite local specialty.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 496
+    "sortOrder": 513
   },
   {
     "id": "sparkless-statue-core",
@@ -7281,31 +7601,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 497
-  },
-  {
-    "id": "pine-amber",
-    "name": "Pine Amber",
-    "image": "/images/materials/local-specialties/pine-amber",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Pine Amber local specialty.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 498
-  },
-  {
-    "id": "glowing-hornshroom",
-    "name": "Glowing Hornshroom",
-    "image": "/images/materials/local-specialties/glowing-hornshroom",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Glowing Hornshroom local specialty.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 499
+    "sortOrder": 514
   },
   {
     "id": "lightbearing-scale-feather",
@@ -7317,7 +7613,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 500
+    "sortOrder": 515
   },
   {
     "id": "gold-inscribed-secret-source-core",
@@ -7329,19 +7625,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 501
-  },
-  {
-    "id": "moonfall-silver",
-    "name": "Moonfall Silver",
-    "image": "/images/materials/local-specialties/moonfall-silver",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Moonfall Silver local specialty.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 502
+    "sortOrder": 516
   },
   {
     "id": "remnant-of-the-dreadwing",
@@ -7353,30 +7637,6 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 503
-  },
-  {
-    "id": "skysplit-gembloom",
-    "name": "Skysplit Gembloom",
-    "image": "/images/materials/local-specialties/skysplit-gembloom",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Skysplit Gembloom local specialty.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 504
-  },
-  {
-    "id": "brilliant-chrysanthemum",
-    "name": "Brilliant Chrysanthemum",
-    "image": "/images/materials/local-specialties/brilliant-chrysanthemum",
-    "rarity": 1,
-    "category": "Local Specialty",
-    "description": "Brilliant Chrysanthemum local specialty.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 505
+    "sortOrder": 517
   }
 ];
