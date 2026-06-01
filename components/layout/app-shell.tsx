@@ -4,7 +4,6 @@ import type { Route } from "next";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
-  Compass,
   CookingPot,
   Download,
   Gem,
@@ -15,11 +14,8 @@ import {
   MoonStar,
   PackageSearch,
   Search,
-  Shield,
   ShieldAlert,
-  Sparkles,
   SunMedium,
-  Swords,
   Target,
   Upload,
   UserPlus,
@@ -93,10 +89,6 @@ const navItems = [
   { href: "/materials", label: "Materials", icon: Gem },
   { href: "/enemies" as Route, label: "Enemies", icon: ShieldAlert },
   { href: "/characters", label: "Characters", icon: Users },
-  // { href: "/map", label: "Map", icon: Compass },
-  { href: "/collectibles", label: "Items", icon: Sparkles },
-  { href: "/shrines", label: "Shrines", icon: Shield },
-  { href: "/challenges", label: "Combat", icon: Swords },
 ] satisfies Array<{ href: Route; label: string; icon: typeof Home }>;
 
 const ShellRoot = styled(Box)(({ theme }) => ({
