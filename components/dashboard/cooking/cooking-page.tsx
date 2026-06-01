@@ -26,7 +26,11 @@ import { Card } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Select } from "@/components/core/app-select";
 import { rarityBorderMap, rarityColorMap } from "@/lib/constants";
-import type { CookingData, CookingRecipeView } from "@/lib/cooking-data";
+import type {
+  CookingData,
+  CookingNeededIngredient,
+  CookingRecipeView,
+} from "@/lib/cooking-data";
 import { cn, formatNumber } from "@/lib/utils";
 
 type CookingTab = "needed" | "inventory" | "recipes";
@@ -115,6 +119,9 @@ export function CookingPage({
     }
 
     const nextQuantity = Math.max(0, Number(inventoryDraft[materialId] ?? 0));
+    const previous = data;
+
+    syncCooking(applyCookingInventoryQuantity(data, materialId, nextQuantity));
 
     startTransition(async () => {
       const result = await saveCookingInventoryAction({
@@ -122,12 +129,12 @@ export function CookingPage({
         quantity: nextQuantity,
       });
 
-      if (!result.success || !result.data) {
+      if (!result.success) {
+        syncCooking(previous);
         toast.error(result.error ?? "Unable to save inventory.");
         return;
       }
 
-      syncCooking(result.data);
       toast.success("Cooking inventory updated.");
     });
   }
@@ -769,6 +776,85 @@ function buildProgressDraft(data: CookingData): QuantityDraft {
   return Object.fromEntries(
     data.recipes.map((recipe) => [recipe.id, recipe.completedCount]),
   );
+}
+
+function applyCookingInventoryQuantity(
+  data: CookingData,
+  materialId: string,
+  quantity: number,
+): CookingData {
+  const ingredients = data.ingredients.map((ingredient) =>
+    ingredient.id === materialId
+      ? {
+          ...ingredient,
+          quantity,
+          totalCraftable: quantity,
+        }
+      : ingredient,
+  );
+  const recipes = data.recipes.map((recipe) => ({
+    ...recipe,
+    ingredients: recipe.ingredients.map((ingredient) =>
+      ingredient.materialId === materialId
+        ? {
+            ...ingredient,
+            owned: quantity,
+          }
+        : ingredient,
+    ),
+  }));
+  const rarityByMaterialId = new Map(
+    ingredients.map((ingredient) => [ingredient.id, ingredient.rarity]),
+  );
+  const neededByMaterial = new Map<string, CookingNeededIngredient>();
+
+  for (const recipe of recipes) {
+    if (recipe.achievedAuto) {
+      continue;
+    }
+
+    for (const ingredient of recipe.ingredients) {
+      const existing = neededByMaterial.get(ingredient.materialId);
+
+      if (existing) {
+        existing.required += ingredient.needed;
+        existing.owned = ingredient.owned;
+        existing.remaining = Math.max(existing.required - existing.owned, 0);
+      } else {
+        neededByMaterial.set(ingredient.materialId, {
+          materialId: ingredient.materialId,
+          name: ingredient.name,
+          image: ingredient.image,
+          rarity: rarityByMaterialId.get(ingredient.materialId) ?? 1,
+          required: ingredient.needed,
+          owned: ingredient.owned,
+          remaining: Math.max(ingredient.needed - ingredient.owned, 0),
+        });
+      }
+    }
+  }
+
+  const neededIngredients = Array.from(neededByMaterial.values()).sort(
+    (left, right) => {
+      if (left.remaining !== right.remaining) {
+        return right.remaining - left.remaining;
+      }
+
+      return left.name.localeCompare(right.name);
+    },
+  );
+
+  return {
+    ...data,
+    ingredients,
+    recipes,
+    neededIngredients,
+    stats: {
+      ...data.stats,
+      neededIngredients: neededIngredients.filter((item) => item.remaining > 0)
+        .length,
+    },
+  };
 }
 
 function getRecipeNeededIngredients(
