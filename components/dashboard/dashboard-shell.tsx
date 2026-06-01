@@ -7,7 +7,7 @@ import {
   useState,
   useTransition,
 } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 
 import {
@@ -23,7 +23,12 @@ import { CraftingSection } from "@/components/dashboard/sections/crafting-sectio
 import { GoalsSection } from "@/components/dashboard/sections/goals-section";
 import { InventorySection } from "@/components/dashboard/inventory/inventory-section";
 import { MaterialsSection } from "@/components/dashboard/sections/materials-section";
-import { aggregateNeededMaterials, simulateCraftingNeed } from "@/lib/crafting";
+import {
+  aggregateNeededMaterials,
+  buildDashboardData,
+  evaluateGoal,
+  simulateCraftingNeed,
+} from "@/lib/crafting";
 import { compareMaterialCategories } from "@/lib/material-sort";
 import type { DashboardTab } from "@/lib/constants";
 import type { DashboardData, GoalView, MaterialView } from "@/lib/types";
@@ -56,7 +61,6 @@ export function DashboardShell({
   role,
   view = "tracker",
 }: DashboardShellProps) {
-  const router = useRouter();
   const searchParams = useSearchParams();
   const tabFromUrl = searchParams.get("tab");
   const initialTab: DashboardTab =
@@ -288,14 +292,7 @@ export function DashboardShell({
     const nextQuantity = Math.max(0, Number(inventoryDraft[materialId] ?? 0));
     const previous = data;
 
-    syncDashboard({
-      ...data,
-      materials: data.materials.map((material) =>
-        material.id === materialId
-          ? { ...material, quantity: nextQuantity }
-          : material,
-      ),
-    });
+    syncDashboard(applyInventoryQuantity(data, materialId, nextQuantity));
 
     startTransition(async () => {
       const result = await saveInventoryAction({
@@ -303,14 +300,12 @@ export function DashboardShell({
         quantity: nextQuantity,
       });
 
-      if (!result.success || !result.data) {
+      if (!result.success) {
         syncDashboard(previous);
         toast.error(result.error ?? "Unable to save inventory.");
         return;
       }
 
-      syncDashboard(result.data);
-      router.refresh();
       toast.success("Inventory updated.");
     });
   }
@@ -483,6 +478,37 @@ function buildInventoryDraft(data: DashboardData): InventoryDraft {
   return Object.fromEntries(
     data.materials.map((material) => [material.id, material.quantity]),
   );
+}
+
+function applyInventoryQuantity(
+  data: DashboardData,
+  materialId: string,
+  quantity: number,
+) {
+  const materials = data.materials.map((material) =>
+    material.id === materialId ? { ...material, quantity } : material,
+  );
+  const goals = data.goals.map((goal) =>
+    evaluateGoal(
+      {
+        id: goal.id,
+        name: goal.name,
+        description: goal.description,
+        completed: goal.completed,
+        characterId: goal.characterId,
+        characterName: goal.characterName,
+        category: goal.category,
+        materials: goal.materials.map((item) => ({
+          id: item.id,
+          materialId: item.materialId,
+          required: item.required,
+        })),
+      },
+      materials,
+    ),
+  );
+
+  return buildDashboardData(materials, goals);
 }
 
 function getIconNameFromImage(image: string) {

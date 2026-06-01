@@ -55,12 +55,12 @@ async function refreshDashboard(): Promise<ActionResponse<DashboardData>> {
   };
 }
 
-function revalidateDashboardPages() {
-  revalidatePath("/");
-  revalidatePath("/materials");
-  revalidatePath("/inventory");
-  revalidatePath("/goals");
-  revalidatePath("/cooking");
+function revalidateDashboardPages(skipPaths: string[] = []) {
+  for (const path of ["/", "/materials", "/inventory", "/goals", "/cooking"]) {
+    if (!skipPaths.includes(path)) {
+      revalidatePath(path);
+    }
+  }
 }
 
 async function assertCookingIngredientsAvailable(
@@ -124,7 +124,7 @@ async function refreshCooking(
 
 export async function saveInventoryAction(
   input: unknown,
-): Promise<ActionResponse<DashboardData>> {
+): Promise<ActionResponse<null>> {
   const user = await requireUser();
   const parsed = inventorySchema.safeParse(input);
 
@@ -164,13 +164,15 @@ export async function saveInventoryAction(
     };
   }
 
-  revalidateDashboardPages();
-  return refreshDashboard();
+  revalidateDashboardPages(["/inventory"]);
+  return {
+    success: true,
+  };
 }
 
 export async function saveCookingInventoryAction(
   input: unknown,
-): Promise<ActionResponse<CookingData>> {
+): Promise<ActionResponse<null>> {
   const user = await requireUser();
   const parsed = inventorySchema.safeParse(input);
 
@@ -210,8 +212,10 @@ export async function saveCookingInventoryAction(
     };
   }
 
-  revalidateDashboardPages();
-  return refreshCooking(user.id);
+  revalidateDashboardPages(["/cooking"]);
+  return {
+    success: true,
+  };
 }
 
 export async function completeGoalAction(
