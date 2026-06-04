@@ -29,6 +29,8 @@ export function InventorySection({
   setShoppingSearch,
   setInventoryDraft,
   setSearch,
+  isRefreshing,
+  onRefresh,
   onSaveMaterial,
 }: {
   activeTab: "needed" | "edit";
@@ -50,6 +52,8 @@ export function InventorySection({
   setShoppingSearch: (search: string) => void;
   setInventoryDraft: InventoryDraftSetter;
   setSearch: (search: string) => void;
+  isRefreshing?: boolean;
+  onRefresh: () => void;
   onSaveMaterial: (materialId: string) => void;
 }) {
   return (
@@ -97,6 +101,8 @@ export function InventorySection({
           setCharacterFilter={setShoppingCharacterFilter}
           setGoalTypeFilter={setShoppingGoalTypeFilter}
           setSearch={setShoppingSearch}
+          isRefreshing={isRefreshing}
+          onRefresh={onRefresh}
         />
       ) : (
         <ManageInventoryPanel

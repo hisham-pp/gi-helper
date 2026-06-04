@@ -1,9 +1,10 @@
 "use client";
 
-import { Sparkles } from "lucide-react";
+import { RefreshCw, Sparkles } from "lucide-react";
 
 import { EmptyState } from "@/components/dashboard/common/empty-state";
 import { NeedCard } from "@/components/dashboard/inventory/need-card";
+import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Select } from "@/components/core/app-select";
 import AppTextField from "@/components/core/app-textfield";
@@ -20,6 +21,8 @@ export function ShoppingListPanel({
   setCharacterFilter,
   setGoalTypeFilter,
   setSearch,
+  isRefreshing = false,
+  onRefresh,
 }: {
   characters: string[];
   characterFilter: string;
@@ -30,6 +33,8 @@ export function ShoppingListPanel({
   setCharacterFilter: (character: string) => void;
   setGoalTypeFilter: (goalType: string) => void;
   setSearch: (search: string) => void;
+  isRefreshing?: boolean;
+  onRefresh: () => void;
 }) {
   const totalRemaining = materialsStillNeeded.reduce(
     (sum, material) => sum + material.remaining,
@@ -59,6 +64,19 @@ export function ShoppingListPanel({
                 {materialsStillNeeded.length === 1 ? "" : "s"}
               </p>
             </div>
+            <Button
+              type="button"
+              variant="outlined"
+              onClick={onRefresh}
+              disabled={isRefreshing}
+              aria-label="Refresh shopping list"
+              className="w-fit px-4"
+            >
+              <RefreshCw
+                className={`h-4 w-4 ${isRefreshing ? "animate-spin" : ""}`}
+              />
+              {isRefreshing ? "Refreshing" : "Refresh"}
+            </Button>
           </div>
           <div className="grid gap-3 md:grid-cols-[minmax(16rem,1.4fr)_minmax(12rem,1fr)_minmax(12rem,1fr)] xl:w-[46rem]">
             <AppTextField
