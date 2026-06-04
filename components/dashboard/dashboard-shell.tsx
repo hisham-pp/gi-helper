@@ -7,7 +7,7 @@ import {
   useState,
   useTransition,
 } from "react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 
 import {
@@ -61,6 +61,7 @@ export function DashboardShell({
   role,
   view = "tracker",
 }: DashboardShellProps) {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const tabFromUrl = searchParams.get("tab");
   const initialTab: DashboardTab =
@@ -94,7 +95,7 @@ export function DashboardShell({
   const [editorForm, setEditorForm] =
     useState<MaterialEditorForm>(emptyEditorForm);
   const [showLoginPrompt, setShowLoginPrompt] = useState(false);
-  const [, startTransition] = useTransition();
+  const [isPending, startTransition] = useTransition();
 
   useEffect(() => {
     if (view !== "tracker") {
@@ -310,6 +311,12 @@ export function DashboardShell({
     });
   }
 
+  function handleRefreshDashboard() {
+    startTransition(() => {
+      router.refresh();
+    });
+  }
+
   function resetEditorForm() {
     setEditing(null);
     setEditorForm(emptyEditorForm);
@@ -447,6 +454,8 @@ export function DashboardShell({
           setShoppingSearch={setShoppingSearch}
           setInventoryDraft={setInventoryDraft}
           setSearch={setSearch}
+          isRefreshing={isPending}
+          onRefresh={handleRefreshDashboard}
           onSaveMaterial={handleInventorySave}
         />
       ) : null}
