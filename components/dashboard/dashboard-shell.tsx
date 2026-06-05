@@ -77,6 +77,8 @@ export function DashboardShell({
   const [shoppingSearch, setShoppingSearch] = useState("");
   const [shoppingCharacterFilter, setShoppingCharacterFilter] = useState("All");
   const [shoppingGoalTypeFilter, setShoppingGoalTypeFilter] = useState("All");
+  const [shoppingMaterialTypeFilter, setShoppingMaterialTypeFilter] =
+    useState("All");
   const [inventoryDraft, setInventoryDraft] = useState<InventoryDraft>(
     buildInventoryDraft(initialData),
   );
@@ -215,6 +217,15 @@ export function DashboardShell({
     return ["All", ...Array.from(types).sort()];
   }, [data.goals]);
 
+  const shoppingMaterialTypes = useMemo(() => {
+    const types = new Set(
+      data.goals
+        .filter((goal) => !goal.completed)
+        .flatMap((goal) => goal.materials.map((material) => material.category)),
+    );
+    return ["All", ...Array.from(types).sort(compareMaterialCategories)];
+  }, [data.goals]);
+
   const filteredShoppingMaterials = useMemo(() => {
     const searchLower = shoppingSearch.trim().toLowerCase();
 
@@ -238,12 +249,25 @@ export function DashboardShell({
       return true;
     });
 
-    return aggregateNeededMaterials(goals, data.materials, searchLower);
+    const materialsStillNeeded = aggregateNeededMaterials(
+      goals,
+      data.materials,
+      searchLower,
+    );
+
+    if (shoppingMaterialTypeFilter === "All") {
+      return materialsStillNeeded;
+    }
+
+    return materialsStillNeeded.filter(
+      (material) => material.category === shoppingMaterialTypeFilter,
+    );
   }, [
     data.goals,
     data.materials,
     shoppingCharacterFilter,
     shoppingGoalTypeFilter,
+    shoppingMaterialTypeFilter,
     shoppingSearch,
   ]);
 
@@ -442,6 +466,8 @@ export function DashboardShell({
           shoppingCharacters={shoppingCharacters}
           shoppingGoalTypeFilter={shoppingGoalTypeFilter}
           shoppingGoalTypes={shoppingGoalTypes}
+          shoppingMaterialTypeFilter={shoppingMaterialTypeFilter}
+          shoppingMaterialTypes={shoppingMaterialTypes}
           shoppingSearch={shoppingSearch}
           filteredMaterials={filteredMaterials}
           inventoryDraft={inventoryDraft}
@@ -451,6 +477,7 @@ export function DashboardShell({
           setCategoryFilter={setCategoryFilter}
           setShoppingCharacterFilter={setShoppingCharacterFilter}
           setShoppingGoalTypeFilter={setShoppingGoalTypeFilter}
+          setShoppingMaterialTypeFilter={setShoppingMaterialTypeFilter}
           setShoppingSearch={setShoppingSearch}
           setInventoryDraft={setInventoryDraft}
           setSearch={setSearch}

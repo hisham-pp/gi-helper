@@ -17,6 +17,8 @@ export function InventorySection({
   shoppingCharacters,
   shoppingGoalTypeFilter,
   shoppingGoalTypes,
+  shoppingMaterialTypeFilter,
+  shoppingMaterialTypes,
   shoppingSearch,
   filteredMaterials,
   inventoryDraft,
@@ -26,6 +28,7 @@ export function InventorySection({
   setCategoryFilter,
   setShoppingCharacterFilter,
   setShoppingGoalTypeFilter,
+  setShoppingMaterialTypeFilter,
   setShoppingSearch,
   setInventoryDraft,
   setSearch,
@@ -40,6 +43,8 @@ export function InventorySection({
   shoppingCharacters: string[];
   shoppingGoalTypeFilter: string;
   shoppingGoalTypes: string[];
+  shoppingMaterialTypeFilter: string;
+  shoppingMaterialTypes: string[];
   shoppingSearch: string;
   filteredMaterials: MaterialView[];
   inventoryDraft: InventoryDraft;
@@ -49,6 +54,7 @@ export function InventorySection({
   setCategoryFilter: (category: string) => void;
   setShoppingCharacterFilter: (character: string) => void;
   setShoppingGoalTypeFilter: (goalType: string) => void;
+  setShoppingMaterialTypeFilter: (materialType: string) => void;
   setShoppingSearch: (search: string) => void;
   setInventoryDraft: InventoryDraftSetter;
   setSearch: (search: string) => void;
@@ -96,10 +102,13 @@ export function InventorySection({
           characterFilter={shoppingCharacterFilter}
           goalTypes={shoppingGoalTypes}
           goalTypeFilter={shoppingGoalTypeFilter}
+          materialTypeFilter={shoppingMaterialTypeFilter}
+          materialTypes={shoppingMaterialTypes}
           materialsStillNeeded={materialsStillNeeded}
           search={shoppingSearch}
           setCharacterFilter={setShoppingCharacterFilter}
           setGoalTypeFilter={setShoppingGoalTypeFilter}
+          setMaterialTypeFilter={setShoppingMaterialTypeFilter}
           setSearch={setShoppingSearch}
           isRefreshing={isRefreshing}
           onRefresh={onRefresh}

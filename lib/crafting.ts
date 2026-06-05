@@ -235,6 +235,7 @@ export function evaluateGoal(
       materialId: item.materialId,
       materialName: sourceMaterial.name,
       materialImage: sourceMaterial.image,
+      category: sourceMaterial.category,
       rarity: sourceMaterial.rarity,
       required: item.required,
       allocated,
