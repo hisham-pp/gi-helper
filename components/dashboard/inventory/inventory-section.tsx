@@ -22,6 +22,7 @@ export function InventorySection({
   shoppingSearch,
   filteredMaterials,
   inventoryDraft,
+  isLoadingMaterials,
   materialsStillNeeded,
   search,
   setActiveTab,
@@ -48,6 +49,7 @@ export function InventorySection({
   shoppingSearch: string;
   filteredMaterials: MaterialView[];
   inventoryDraft: InventoryDraft;
+  isLoadingMaterials?: boolean;
   materialsStillNeeded: GoalMaterialView[];
   search: string;
   setActiveTab: (tab: "needed" | "edit") => void;
@@ -119,6 +121,7 @@ export function InventorySection({
           categoryFilter={categoryFilter}
           filteredMaterials={filteredMaterials}
           inventoryDraft={inventoryDraft}
+          isLoading={isLoadingMaterials}
           search={search}
           setCategoryFilter={setCategoryFilter}
           setInventoryDraft={setInventoryDraft}

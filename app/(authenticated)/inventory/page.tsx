@@ -2,11 +2,11 @@ import { Suspense } from "react";
 
 import { DashboardShell } from "@/components/dashboard/dashboard-shell";
 import { getCurrentUser } from "@/lib/auth";
-import { getDashboardData } from "@/lib/data";
+import { getInventoryDashboardData } from "@/lib/data";
 
 export default async function InventoryPage() {
   const user = await getCurrentUser();
-  const data = await getDashboardData(user?.id);
+  const data = await getInventoryDashboardData(user?.id);
 
   return (
     <Suspense

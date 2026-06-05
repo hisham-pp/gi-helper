@@ -1,11 +1,86 @@
 import { prisma } from "@/lib/prisma";
-import { buildDashboardData, evaluateGoal } from "@/lib/crafting";
-import type { DashboardData, MaterialNode } from "@/lib/types";
+import {
+  aggregateNeededMaterials,
+  buildDashboardData,
+  buildMaterialViews,
+  evaluateGoal,
+} from "@/lib/crafting";
+import type {
+  DashboardData,
+  GoalMaterialView,
+  GoalView,
+  MaterialNode,
+  MaterialView,
+} from "@/lib/types";
 import { getAllCharacters, getAllMaterials } from "@/lib/static-data";
 
 export async function getDashboardData(
   userId?: string | null,
 ): Promise<DashboardData> {
+  const { goalViews, materialNodes } = await getDashboardSourceData(userId);
+
+  return buildDashboardData(materialNodes, goalViews);
+}
+
+export async function getInventoryDashboardData(
+  userId?: string | null,
+): Promise<DashboardData> {
+  const { goalViews, materialNodes } = await getDashboardSourceData(userId);
+  const activeGoals = goalViews.filter((goal) => !goal.completed);
+  const completedMaterialsRaw = goalViews.flatMap((goal) =>
+    goal.materials.filter((item) => item.complete),
+  );
+  const aggregatedCompleted: Record<string, GoalMaterialView> = {};
+
+  for (const item of completedMaterialsRaw) {
+    if (aggregatedCompleted[item.materialId]) {
+      aggregatedCompleted[item.materialId].required += item.required;
+    } else {
+      aggregatedCompleted[item.materialId] = { ...item };
+    }
+  }
+
+  return {
+    overview: {
+      totalTrackedMaterials: materialNodes.length,
+      totalInventory: materialNodes.reduce(
+        (sum, material) => sum + material.quantity,
+        0,
+      ),
+      activeGoals: activeGoals.length,
+      completedGoals: goalViews.filter((goal) => goal.completed).length,
+      craftableMaterials: 0,
+    },
+    materials: [],
+    goals: goalViews,
+    materialsStillNeeded: aggregateNeededMaterials(activeGoals, materialNodes),
+    completedMaterials: Object.values(aggregatedCompleted).sort(
+      (left, right) => right.required - left.required,
+    ),
+  };
+}
+
+export async function getInventoryMaterials(
+  userId?: string | null,
+): Promise<MaterialView[]> {
+  const inventories = userId
+    ? await prisma.inventory.findMany({
+        where: {
+          userId,
+        },
+      })
+    : [];
+  const materialNodes = buildMaterialNodes(
+    new Map(inventories.map((item) => [item.materialId, item.quantity])),
+  );
+
+  return buildMaterialViews(materialNodes);
+}
+
+async function getDashboardSourceData(userId?: string | null): Promise<{
+  goalViews: GoalView[];
+  materialNodes: MaterialNode[];
+}> {
   const [inventories, goals] = await Promise.all([
     userId
       ? prisma.inventory.findMany({
@@ -38,19 +113,7 @@ export async function getDashboardData(
     inventories.map((item) => [item.materialId, item.quantity]),
   );
 
-  const materialNodes: MaterialNode[] = getAllMaterials().map((material) => ({
-    id: material.id,
-    name: material.name,
-    image: material.image,
-    rarity: material.rarity,
-    category: material.category,
-    sortOrder: material.sortOrder,
-    description: material.description,
-    combinable: material.combinable,
-    combineRatio: material.combineRatio,
-    parentMaterialId: material.parentMaterialId,
-    quantity: quantityByMaterialId.get(material.id) ?? 0,
-  }));
+  const materialNodes = buildMaterialNodes(quantityByMaterialId);
 
   const stock = Object.fromEntries(
     materialNodes.map((material) => [material.id, material.quantity]),
@@ -79,5 +142,23 @@ export async function getDashboardData(
     );
   });
 
-  return buildDashboardData(materialNodes, goalViews);
+  return { goalViews, materialNodes };
+}
+
+function buildMaterialNodes(
+  quantityByMaterialId: Map<string, number>,
+): MaterialNode[] {
+  return getAllMaterials().map((material) => ({
+    id: material.id,
+    name: material.name,
+    image: material.image,
+    rarity: material.rarity,
+    category: material.category,
+    sortOrder: material.sortOrder,
+    description: material.description,
+    combinable: material.combinable,
+    combineRatio: material.combineRatio,
+    parentMaterialId: material.parentMaterialId,
+    quantity: quantityByMaterialId.get(material.id) ?? 0,
+  }));
 }

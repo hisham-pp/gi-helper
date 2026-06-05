@@ -18,6 +18,7 @@ export function ManageInventoryPanel({
   categoryFilter,
   filteredMaterials,
   inventoryDraft,
+  isLoading = false,
   search,
   setCategoryFilter,
   setInventoryDraft,
@@ -28,6 +29,7 @@ export function ManageInventoryPanel({
   categoryFilter: string;
   filteredMaterials: MaterialView[];
   inventoryDraft: InventoryDraft;
+  isLoading?: boolean;
   search: string;
   setCategoryFilter: (category: string) => void;
   setInventoryDraft: InventoryDraftSetter;
@@ -69,7 +71,14 @@ export function ManageInventoryPanel({
 
       <div className="p-4 sm:p-6">
         <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
-          {filteredMaterials.length === 0 ? (
+          {isLoading ? (
+            Array.from({ length: 8 }, (_, index) => (
+              <div
+                key={index}
+                className="h-28 animate-pulse rounded-lg border border-outline-variant bg-surface-variant/20"
+              />
+            ))
+          ) : filteredMaterials.length === 0 ? (
             <EmptyState
               icon={<PackageSearch className="h-8 w-8" />}
               title="No materials"
