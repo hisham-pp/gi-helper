@@ -9,7 +9,6 @@ import { Card } from "@/components/ui/card";
 import { Select } from "@/components/core/app-select";
 import AppTextField from "@/components/core/app-textfield";
 import type { GoalMaterialView } from "@/lib/types";
-import { formatNumber } from "@/lib/utils";
 
 export function ShoppingListPanel({
   characters,
@@ -42,11 +41,6 @@ export function ShoppingListPanel({
   isRefreshing?: boolean;
   onRefresh: () => void;
 }) {
-  const totalRemaining = materialsStillNeeded.reduce(
-    (sum, material) => sum + material.remaining,
-    0,
-  );
-
   return (
     <Card className="flex flex-col overflow-hidden" variant="outlined">
       <div className="border-b border-outline-variant bg-surface p-6">
@@ -58,16 +52,6 @@ export function ShoppingListPanel({
               </h3>
               <p className="text-on-surface-variant text-sm">
                 Aggregated material requirements for active goals.
-              </p>
-            </div>
-            <div className="text-on-primary-container w-fit rounded-lg border border-outline-variant bg-primary-container px-4 py-2">
-              <p className="text-xs font-semibold uppercase">Total Needed</p>
-              <p className="text-2xl font-black leading-tight">
-                {formatNumber(totalRemaining)}
-              </p>
-              <p className="text-xs font-medium">
-                {formatNumber(materialsStillNeeded.length)} material
-                {materialsStillNeeded.length === 1 ? "" : "s"}
               </p>
             </div>
             <Button

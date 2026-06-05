@@ -31,7 +31,13 @@ import {
 } from "@/lib/crafting";
 import { compareMaterialCategories } from "@/lib/material-sort";
 import type { DashboardTab } from "@/lib/constants";
-import type { DashboardData, GoalView, MaterialView } from "@/lib/types";
+import type {
+  DashboardData,
+  GoalMaterialView,
+  GoalView,
+  MaterialView,
+} from "@/lib/types";
+import { formatNumber } from "@/lib/utils";
 
 type DashboardShellProps = {
   initialData: DashboardData;
@@ -97,6 +103,9 @@ export function DashboardShell({
   const [editorForm, setEditorForm] =
     useState<MaterialEditorForm>(emptyEditorForm);
   const [showLoginPrompt, setShowLoginPrompt] = useState(false);
+  const [isLoadingMaterials, setIsLoadingMaterials] = useState(
+    view === "inventory" && initialData.materials.length === 0,
+  );
   const [isPending, startTransition] = useTransition();
 
   useEffect(() => {
@@ -121,6 +130,61 @@ export function DashboardShell({
   useEffect(() => {
     syncDashboard(initialData);
   }, [initialData, syncDashboard]);
+
+  useEffect(() => {
+    if (view !== "inventory" || data.materials.length > 0) {
+      setIsLoadingMaterials(false);
+      return;
+    }
+
+    let isActive = true;
+
+    async function loadMaterials() {
+      setIsLoadingMaterials(true);
+
+      try {
+        const response = await fetch("/api/materials", {
+          cache: "no-store",
+        });
+
+        if (!response.ok) {
+          throw new Error("Unable to load materials.");
+        }
+
+        const payload = (await response.json()) as { materials: MaterialView[] };
+
+        if (!isActive) {
+          return;
+        }
+
+        setData((current) => ({
+          ...current,
+          materials: payload.materials,
+        }));
+        setInventoryDraft(
+          Object.fromEntries(
+            payload.materials.map((material) => [
+              material.id,
+              material.quantity,
+            ]),
+          ),
+        );
+      } catch (error) {
+        console.error("Material list load failed", error);
+        toast.error("Unable to load material list.");
+      } finally {
+        if (isActive) {
+          setIsLoadingMaterials(false);
+        }
+      }
+    }
+
+    void loadMaterials();
+
+    return () => {
+      isActive = false;
+    };
+  }, [data.materials.length, view]);
 
   const categories = useMemo(
     () => [
@@ -249,11 +313,10 @@ export function DashboardShell({
       return true;
     });
 
-    const materialsStillNeeded = aggregateNeededMaterials(
-      goals,
-      data.materials,
-      searchLower,
-    );
+    const materialsStillNeeded =
+      data.materials.length > 0
+        ? aggregateNeededMaterials(goals, data.materials, searchLower)
+        : aggregateNeededGoalMaterials(goals, searchLower);
 
     if (shoppingMaterialTypeFilter === "All") {
       return materialsStillNeeded;
@@ -270,6 +333,15 @@ export function DashboardShell({
     shoppingMaterialTypeFilter,
     shoppingSearch,
   ]);
+
+  const totalShoppingRemaining = useMemo(
+    () =>
+      filteredShoppingMaterials.reduce(
+        (sum, material) => sum + material.remaining,
+        0,
+      ),
+    [filteredShoppingMaterials],
+  );
 
   const filteredGoals = useMemo(() => {
     return data.goals.filter((goal) => {
@@ -415,10 +487,26 @@ export function DashboardShell({
   return (
     <div className="space-y-8">
       <header className="mb-8">
-        <h1 className="text-on-surface text-3xl font-bold tracking-tight">
-          {pageTitle}
-        </h1>
-        <p className="text-on-surface-variant mt-2">{pageDescription}</p>
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+          <div>
+            <h1 className="text-on-surface text-3xl font-bold tracking-tight">
+              {pageTitle}
+            </h1>
+            <p className="text-on-surface-variant mt-2">{pageDescription}</p>
+          </div>
+          {view === "inventory" ? (
+            <div className="text-on-primary-container w-fit rounded-lg border border-outline-variant bg-primary-container px-4 py-2 sm:text-right">
+              <p className="text-xs font-semibold uppercase">Total Needed</p>
+              <p className="text-2xl font-black leading-tight">
+                {formatNumber(totalShoppingRemaining)}
+              </p>
+              <p className="text-xs font-medium">
+                {formatNumber(filteredShoppingMaterials.length)} material
+                {filteredShoppingMaterials.length === 1 ? "" : "s"}
+              </p>
+            </div>
+          ) : null}
+        </div>
       </header>
 
       {view === "tracker" ? (
@@ -471,6 +559,7 @@ export function DashboardShell({
           shoppingSearch={shoppingSearch}
           filteredMaterials={filteredMaterials}
           inventoryDraft={inventoryDraft}
+          isLoadingMaterials={isLoadingMaterials}
           materialsStillNeeded={filteredShoppingMaterials}
           search={search}
           setActiveTab={setInventoryTab}
@@ -513,6 +602,48 @@ export function DashboardShell({
 function buildInventoryDraft(data: DashboardData): InventoryDraft {
   return Object.fromEntries(
     data.materials.map((material) => [material.id, material.quantity]),
+  );
+}
+
+function aggregateNeededGoalMaterials(
+  goals: GoalView[],
+  searchLower = "",
+): GoalMaterialView[] {
+  const requirements: Record<string, GoalMaterialView> = {};
+
+  for (const goal of goals) {
+    const matchesGoal =
+      searchLower.length === 0 ||
+      goal.name.toLowerCase().includes(searchLower) ||
+      (goal.description ?? "").toLowerCase().includes(searchLower);
+
+    for (const item of goal.materials) {
+      const matchesMaterial = item.materialName
+        .toLowerCase()
+        .includes(searchLower);
+
+      if (
+        item.remaining <= 0 ||
+        (searchLower.length > 0 && !matchesGoal && !matchesMaterial)
+      ) {
+        continue;
+      }
+
+      if (requirements[item.materialId]) {
+        requirements[item.materialId].required += item.required;
+        requirements[item.materialId].allocated += item.allocated;
+        requirements[item.materialId].ownedNeeded =
+          (requirements[item.materialId].ownedNeeded ?? 0) +
+          (item.ownedNeeded ?? item.allocated);
+        requirements[item.materialId].remaining += item.remaining;
+      } else {
+        requirements[item.materialId] = { ...item };
+      }
+    }
+  }
+
+  return Object.values(requirements).sort(
+    (left, right) => right.remaining - left.remaining,
   );
 }
 
