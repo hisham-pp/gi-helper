@@ -17,6 +17,7 @@ export type GoalMaterialView = {
   materialId: string;
   materialName: string;
   materialImage: string;
+  category: string;
   rarity: number;
   required: number;
   allocated: number;

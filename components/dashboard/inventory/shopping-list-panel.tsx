@@ -16,10 +16,13 @@ export function ShoppingListPanel({
   characterFilter,
   goalTypes,
   goalTypeFilter,
+  materialTypeFilter,
+  materialTypes,
   materialsStillNeeded,
   search,
   setCharacterFilter,
   setGoalTypeFilter,
+  setMaterialTypeFilter,
   setSearch,
   isRefreshing = false,
   onRefresh,
@@ -28,10 +31,13 @@ export function ShoppingListPanel({
   characterFilter: string;
   goalTypes: string[];
   goalTypeFilter: string;
+  materialTypeFilter: string;
+  materialTypes: string[];
   materialsStillNeeded: GoalMaterialView[];
   search: string;
   setCharacterFilter: (character: string) => void;
   setGoalTypeFilter: (goalType: string) => void;
+  setMaterialTypeFilter: (materialType: string) => void;
   setSearch: (search: string) => void;
   isRefreshing?: boolean;
   onRefresh: () => void;
@@ -78,7 +84,7 @@ export function ShoppingListPanel({
               {isRefreshing ? "Refreshing" : "Refresh"}
             </Button>
           </div>
-          <div className="grid gap-3 md:grid-cols-[minmax(16rem,1.4fr)_minmax(12rem,1fr)_minmax(12rem,1fr)] xl:w-[46rem]">
+          <div className="grid gap-3 md:grid-cols-2 xl:w-[60rem] xl:grid-cols-[minmax(14rem,1.3fr)_repeat(3,minmax(10rem,1fr))]">
             <AppTextField
               label="Search"
               variant="outlined"
@@ -103,6 +109,16 @@ export function ShoppingListPanel({
               options={goalTypes.map((goalType) => ({
                 label: goalType,
                 value: goalType,
+              }))}
+            />
+            <Select
+              label="Material type"
+              variant="outlined"
+              value={materialTypeFilter}
+              onChange={setMaterialTypeFilter}
+              options={materialTypes.map((materialType) => ({
+                label: materialType,
+                value: materialType,
               }))}
             />
           </div>
