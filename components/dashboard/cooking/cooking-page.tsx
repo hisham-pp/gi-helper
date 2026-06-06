@@ -1,10 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { useMemo, useState, useTransition } from "react";
+import { useEffect, useMemo, useState, useTransition } from "react";
 import type { Dispatch, ReactNode, SetStateAction } from "react";
 import {
   Check,
+  ChefHat,
   Flame,
   PackageSearch,
   Save,
@@ -34,35 +35,119 @@ import type {
 import { cn, formatNumber } from "@/lib/utils";
 
 type CookingTab = "needed" | "inventory" | "recipes";
+type CookingStatusFilter =
+  | "All"
+  | "Needs cooking"
+  | "Ready to cook"
+  | "Missing ingredients"
+  | "Auto unlocked";
 type QuantityDraft = Record<string, number>;
+
+type CookingApiResponse = {
+  data?: CookingData;
+  user?: {
+    username: string;
+    role: string;
+  } | null;
+};
+
+const emptyCookingData: CookingData = {
+  ingredients: [],
+  recipes: [],
+  neededIngredients: [],
+  stats: {
+    totalRecipes: 0,
+    achievedAuto: 0,
+    totalCompleted: 0,
+    neededIngredients: 0,
+  },
+};
 
 export function CookingPage({
   initialData,
-  isAuthenticated = true,
+  isAuthenticated = false,
 }: {
-  initialData: CookingData;
+  initialData?: CookingData;
   isAuthenticated?: boolean;
 }) {
-  const [data, setData] = useState(initialData);
+  const [data, setData] = useState(initialData ?? emptyCookingData);
+  const [canPersist, setCanPersist] = useState(isAuthenticated);
+  const [isLoading, setIsLoading] = useState(!initialData);
+  const [loadError, setLoadError] = useState<string | null>(null);
+  const [loadRequest, setLoadRequest] = useState(0);
   const [activeTab, setActiveTab] = useState<CookingTab>("needed");
   const [search, setSearch] = useState("");
   const [neededSearch, setNeededSearch] = useState("");
   const [neededRecipeId, setNeededRecipeId] = useState("All");
   const [typeFilter, setTypeFilter] = useState("All");
-  const [statusFilter, setStatusFilter] = useState("All");
+  const [statusFilter, setStatusFilter] = useState<CookingStatusFilter>("All");
   const [inventoryDraft, setInventoryDraft] = useState<QuantityDraft>(
-    buildInventoryDraft(initialData),
+    buildInventoryDraft(initialData ?? emptyCookingData),
   );
   const [progressDraft, setProgressDraft] = useState<QuantityDraft>(
-    buildProgressDraft(initialData),
+    buildProgressDraft(initialData ?? emptyCookingData),
   );
+  const [cookDraft, setCookDraft] = useState<QuantityDraft>(
+    buildCookDraft(initialData ?? emptyCookingData),
+  );
+  const [pendingAction, setPendingAction] = useState<string | null>(null);
   const [showLoginPrompt, setShowLoginPrompt] = useState(false);
   const [, startTransition] = useTransition();
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    async function loadCookingData() {
+      setIsLoading(true);
+      setLoadError(null);
+
+      try {
+        const response = await fetch("/api/cooking", {
+          cache: "no-store",
+          signal: controller.signal,
+        });
+
+        if (!response.ok) {
+          throw new Error("Cooking data request failed.");
+        }
+
+        const payload = (await response.json()) as CookingApiResponse;
+
+        if (!payload.data) {
+          throw new Error("Cooking data response was empty.");
+        }
+
+        setData(payload.data);
+        setInventoryDraft(buildInventoryDraft(payload.data));
+        setProgressDraft(buildProgressDraft(payload.data));
+        setCookDraft(buildCookDraft(payload.data));
+        setCanPersist(Boolean(payload.user));
+      } catch (error) {
+        if (controller.signal.aborted) {
+          return;
+        }
+
+        console.error("Cooking data load failed", error);
+        setLoadError("Cooking data could not be loaded.");
+      } finally {
+        if (!controller.signal.aborted) {
+          setIsLoading(false);
+        }
+      }
+    }
+
+    loadCookingData();
+
+    return () => {
+      controller.abort();
+    };
+  }, [loadRequest]);
 
   const syncCooking = (nextData: CookingData) => {
     setData(nextData);
     setInventoryDraft(buildInventoryDraft(nextData));
     setProgressDraft(buildProgressDraft(nextData));
+    setCookDraft(buildCookDraft(nextData));
   };
 
   const recipeTypes = useMemo(() => {
@@ -70,6 +155,11 @@ export function CookingPage({
       "All",
       ...Array.from(new Set(data.recipes.map((recipe) => recipe.type))).sort(),
     ];
+  }, [data.recipes]);
+
+  const readyRecipeCount = useMemo(() => {
+    return data.recipes.filter((recipe) => getCookQuantityLimit(recipe) > 0)
+      .length;
   }, [data.recipes]);
 
   const filteredRecipes = useMemo(() => {
@@ -85,6 +175,20 @@ export function CookingPage({
       }
 
       if (statusFilter === "Needs cooking" && recipe.achievedAuto) {
+        return false;
+      }
+
+      if (
+        statusFilter === "Ready to cook" &&
+        getCookQuantityLimit(recipe) === 0
+      ) {
+        return false;
+      }
+
+      if (
+        statusFilter === "Missing ingredients" &&
+        (recipe.achievedAuto || getCookQuantityLimit(recipe) > 0)
+      ) {
         return false;
       }
 
@@ -113,75 +217,109 @@ export function CookingPage({
   }, [data.ingredients, search]);
 
   function handleInventorySave(materialId: string) {
-    if (!isAuthenticated) {
+    if (!canPersist) {
       setShowLoginPrompt(true);
       return;
     }
 
+    const pendingKey = `inventory:${materialId}`;
     const nextQuantity = Math.max(0, Number(inventoryDraft[materialId] ?? 0));
     const previous = data;
 
+    setPendingAction(pendingKey);
     syncCooking(applyCookingInventoryQuantity(data, materialId, nextQuantity));
 
     startTransition(async () => {
-      const result = await saveCookingInventoryAction({
-        materialId,
-        quantity: nextQuantity,
-      });
+      try {
+        const result = await saveCookingInventoryAction({
+          materialId,
+          quantity: nextQuantity,
+        });
 
-      if (!result.success) {
-        syncCooking(previous);
-        toast.error(result.error ?? "Unable to save inventory.");
-        return;
+        if (!result.success) {
+          syncCooking(previous);
+          toast.error(result.error ?? "Unable to save inventory.");
+          return;
+        }
+
+        toast.success("Cooking inventory updated.");
+      } finally {
+        setPendingAction(null);
       }
-
-      toast.success("Cooking inventory updated.");
     });
   }
 
   function handleProgressSave(recipeId: string) {
-    if (!isAuthenticated) {
+    if (!canPersist) {
       setShowLoginPrompt(true);
       return;
     }
 
     const nextCount = Math.max(0, Number(progressDraft[recipeId] ?? 0));
+    const pendingKey = `progress:${recipeId}`;
 
+    setPendingAction(pendingKey);
     startTransition(async () => {
-      const result = await saveCookingProgressAction({
-        recipeId,
-        completedCount: nextCount,
-      });
+      try {
+        const result = await saveCookingProgressAction({
+          recipeId,
+          completedCount: nextCount,
+        });
 
-      if (!result.success || !result.data) {
-        toast.error(result.error ?? "Unable to save cooking progress.");
-        return;
+        if (!result.success || !result.data) {
+          toast.error(result.error ?? "Unable to save cooking progress.");
+          return;
+        }
+
+        syncCooking(result.data);
+        toast.success("Cooking progress saved.");
+      } finally {
+        setPendingAction(null);
       }
-
-      syncCooking(result.data);
-      toast.success("Cooking progress saved.");
     });
   }
 
   function handleCook(recipeId: string) {
-    if (!isAuthenticated) {
+    if (!canPersist) {
       setShowLoginPrompt(true);
       return;
     }
 
+    const recipe = data.recipes.find((item) => item.id === recipeId);
+    const quantityLimit = recipe ? getCookQuantityLimit(recipe) : 1;
+    const quantity = Math.min(
+      quantityLimit,
+      Math.max(1, Math.floor(Number(cookDraft[recipeId] ?? 1))),
+    );
+    const pendingKey = `cook:${recipeId}`;
+
+    if (!recipe || quantityLimit <= 0) {
+      toast.error("This recipe needs more ingredients first.");
+      return;
+    }
+
+    setPendingAction(pendingKey);
     startTransition(async () => {
-      const result = await cookRecipeAction({
-        recipeId,
-        quantity: 1,
-      });
+      try {
+        const result = await cookRecipeAction({
+          recipeId,
+          quantity,
+        });
 
-      if (!result.success || !result.data) {
-        toast.error(result.error ?? "Unable to cook recipe.");
-        return;
+        if (!result.success || !result.data) {
+          toast.error(result.error ?? "Unable to cook recipe.");
+          return;
+        }
+
+        syncCooking(result.data);
+        toast.success(
+          quantity === 1
+            ? "Recipe cooked and ingredients deducted."
+            : `${formatNumber(quantity)} recipes cooked and ingredients deducted.`,
+        );
+      } finally {
+        setPendingAction(null);
       }
-
-      syncCooking(result.data);
-      toast.success("Recipe cooked and ingredients deducted.");
     });
   }
 
@@ -196,74 +334,103 @@ export function CookingPage({
         </p>
       </header>
 
-      <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        <StatCard label="Recipes" value={data.stats.totalRecipes} />
-        <StatCard label="Auto Unlocked" value={data.stats.achievedAuto} />
-        <StatCard label="Cooked Count" value={data.stats.totalCompleted} />
-        <StatCard label="Need Farming" value={data.stats.neededIngredients} />
-      </section>
-
-      <nav
-        className="flex items-center justify-center"
-        aria-label="Cooking views"
-      >
-        <div
-          role="tablist"
-          className="flex flex-wrap justify-center gap-2 rounded-full bg-surface-variant/50 p-1"
-        >
-          <TabButton
-            active={activeTab === "needed"}
-            icon={<Search className="h-4 w-4" />}
-            label="Needed Ingredients"
-            onClick={() => setActiveTab("needed")}
-          />
-          <TabButton
-            active={activeTab === "inventory"}
-            icon={<PackageSearch className="h-4 w-4" />}
-            label="Inventory"
-            onClick={() => setActiveTab("inventory")}
-          />
-          <TabButton
-            active={activeTab === "recipes"}
-            icon={<Flame className="h-4 w-4" />}
-            label="Recipes"
-            onClick={() => setActiveTab("recipes")}
-          />
-        </div>
-      </nav>
-
-      {activeTab === "needed" ? (
-        <NeededIngredients
-          data={data}
-          recipeId={neededRecipeId}
-          search={neededSearch}
-          setRecipeId={setNeededRecipeId}
-          setSearch={setNeededSearch}
-        />
-      ) : activeTab === "inventory" ? (
-        <InventoryTab
-          ingredients={filteredIngredients}
-          inventoryDraft={inventoryDraft}
-          search={search}
-          setInventoryDraft={setInventoryDraft}
-          setSearch={setSearch}
-          onSave={handleInventorySave}
-        />
+      {isLoading ? (
+        <CookingDataLoading />
+      ) : loadError ? (
+        <Card variant="outlined" className="p-6">
+          <p className="text-sm font-bold text-error">
+            Unable to load cooking data
+          </p>
+          <p className="text-on-surface-variant mt-1 text-sm">{loadError}</p>
+          <Button
+            className="mt-4"
+            type="button"
+            variant="tonal"
+            onClick={() => setLoadRequest((current) => current + 1)}
+          >
+            Retry
+          </Button>
+        </Card>
       ) : (
-        <RecipesTab
-          progressDraft={progressDraft}
-          recipeTypes={recipeTypes}
-          recipes={filteredRecipes}
-          search={search}
-          setProgressDraft={setProgressDraft}
-          setSearch={setSearch}
-          setStatusFilter={setStatusFilter}
-          setTypeFilter={setTypeFilter}
-          statusFilter={statusFilter}
-          typeFilter={typeFilter}
-          onCook={handleCook}
-          onSave={handleProgressSave}
-        />
+        <>
+          <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
+            <StatCard label="Recipes" value={data.stats.totalRecipes} />
+            <StatCard label="Auto Unlocked" value={data.stats.achievedAuto} />
+            <StatCard label="Ready Now" value={readyRecipeCount} />
+            <StatCard label="Cooked Count" value={data.stats.totalCompleted} />
+            <StatCard
+              label="Need Farming"
+              value={data.stats.neededIngredients}
+            />
+          </section>
+
+          <nav
+            className="flex items-center justify-center"
+            aria-label="Cooking views"
+          >
+            <div
+              role="tablist"
+              className="flex flex-wrap justify-center gap-2 rounded-full bg-surface-variant/50 p-1"
+            >
+              <TabButton
+                active={activeTab === "needed"}
+                icon={<Search className="h-4 w-4" />}
+                label="Needed Ingredients"
+                onClick={() => setActiveTab("needed")}
+              />
+              <TabButton
+                active={activeTab === "inventory"}
+                icon={<PackageSearch className="h-4 w-4" />}
+                label="Inventory"
+                onClick={() => setActiveTab("inventory")}
+              />
+              <TabButton
+                active={activeTab === "recipes"}
+                icon={<Flame className="h-4 w-4" />}
+                label="Recipes"
+                onClick={() => setActiveTab("recipes")}
+              />
+            </div>
+          </nav>
+
+          {activeTab === "needed" ? (
+            <NeededIngredients
+              data={data}
+              recipeId={neededRecipeId}
+              search={neededSearch}
+              setRecipeId={setNeededRecipeId}
+              setSearch={setNeededSearch}
+            />
+          ) : activeTab === "inventory" ? (
+            <InventoryTab
+              ingredients={filteredIngredients}
+              inventoryDraft={inventoryDraft}
+              pendingAction={pendingAction}
+              search={search}
+              setInventoryDraft={setInventoryDraft}
+              setSearch={setSearch}
+              onSave={handleInventorySave}
+            />
+          ) : (
+            <RecipesTab
+              cookDraft={cookDraft}
+              pendingAction={pendingAction}
+              progressDraft={progressDraft}
+              recipeTypes={recipeTypes}
+              recipes={filteredRecipes}
+              search={search}
+              setProgressDraft={setProgressDraft}
+              setCookDraft={setCookDraft}
+              setSearch={setSearch}
+              setStatusFilter={setStatusFilter}
+              setTypeFilter={setTypeFilter}
+              statusFilter={statusFilter}
+              typeFilter={typeFilter}
+              onCook={handleCook}
+              onSave={handleProgressSave}
+            />
+          )}
+        </>
       )}
       <LoginRequiredDialog
         open={showLoginPrompt}
@@ -281,6 +448,43 @@ function StatCard({ label, value }: { label: string; value: number }) {
         {formatNumber(value)}
       </p>
     </Card>
+  );
+}
+
+function CookingDataLoading() {
+  return (
+    <div className="space-y-8" aria-busy="true">
+      <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
+        {Array.from({ length: 5 }).map((_, index) => (
+          <Card key={index} variant="filled" className="p-6">
+            <div className="h-4 w-24 animate-pulse rounded bg-surface-variant/40" />
+            <div className="mt-3 h-8 w-16 animate-pulse rounded bg-surface-variant/40" />
+          </Card>
+        ))}
+      </section>
+      <div className="flex justify-center">
+        <div className="flex flex-wrap justify-center gap-2 rounded-full bg-surface-variant/50 p-1">
+          {Array.from({ length: 3 }).map((_, index) => (
+            <div
+              key={index}
+              className="h-10 w-36 animate-pulse rounded-full bg-surface-variant/40"
+            />
+          ))}
+        </div>
+      </div>
+      <Card variant="outlined" className="p-6">
+        <div className="h-6 w-48 animate-pulse rounded bg-surface-variant/40" />
+        <div className="mt-3 h-4 w-80 max-w-full animate-pulse rounded bg-surface-variant/40" />
+        <div className="mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+          {Array.from({ length: 6 }).map((_, index) => (
+            <div
+              key={index}
+              className="h-24 animate-pulse rounded-lg bg-surface-variant/25"
+            />
+          ))}
+        </div>
+      </Card>
+    </div>
   );
 }
 
@@ -356,7 +560,13 @@ function NeededIngredients({
         selectedRecipe?.name.toLowerCase().includes(query)
       );
     });
-  }, [data.ingredients, data.neededIngredients, data.recipes, recipeId, search]);
+  }, [
+    data.ingredients,
+    data.neededIngredients,
+    data.recipes,
+    recipeId,
+    search,
+  ]);
 
   return (
     <Card className="overflow-hidden" variant="outlined">
@@ -432,6 +642,7 @@ function NeededIngredients({
 function InventoryTab({
   ingredients,
   inventoryDraft,
+  pendingAction,
   search,
   setInventoryDraft,
   setSearch,
@@ -439,6 +650,7 @@ function InventoryTab({
 }: {
   ingredients: CookingData["ingredients"];
   inventoryDraft: QuantityDraft;
+  pendingAction: string | null;
   search: string;
   setInventoryDraft: Dispatch<SetStateAction<QuantityDraft>>;
   setSearch: (value: string) => void;
@@ -466,75 +678,93 @@ function InventoryTab({
         </div>
       </div>
       <div className="grid gap-3 p-4 sm:grid-cols-2 sm:p-6 xl:grid-cols-3">
-        {ingredients.map((ingredient) => (
-          <Card
-            key={ingredient.id}
-            variant="outlined"
-            className={cn(
-              "p-4",
-              rarityBorderMap[ingredient.rarity] ?? rarityBorderMap[1],
-            )}
-          >
-            <div className="flex items-center gap-4">
-              <MaterialImage
-                id={ingredient.id}
-                name={ingredient.name}
-                rarity={ingredient.rarity}
-              />
-              <div className="min-w-0 flex-1">
-                <h3 className="text-on-surface truncate font-bold">
-                  {ingredient.name}
-                </h3>
-                <p className="text-on-surface-variant text-xs">
-                  {ingredient.category}
-                </p>
-              </div>
-            </div>
-            <div className="mt-4 flex items-center gap-2">
-              <div className="flex-1">
-                <AppTextField
-                  label="Quantity"
-                  variant="outlined"
-                  type="number"
-                  min={0}
-                  className="h-11"
-                  value={inventoryDraft[ingredient.id] ?? 0}
-                  onChange={(event) =>
-                    setInventoryDraft((current) => ({
-                      ...current,
-                      [ingredient.id]: Number(event.target.value),
-                    }))
-                  }
-                  onKeyDown={(event) => {
-                    if (event.key === "Enter") {
-                      event.preventDefault();
-                      onSave(ingredient.id);
-                    }
-                  }}
-                />
-              </div>
-              <Button
-                aria-label={`Save ${ingredient.name} quantity`}
-                className="h-11 px-4"
-                onClick={() => onSave(ingredient.id)}
+        {ingredients.length === 0 ? (
+          <EmptyState
+            icon={<PackageSearch className="h-8 w-8" />}
+            title="No ingredients found"
+            description="Try a different ingredient search."
+          />
+        ) : (
+          ingredients.map((ingredient) => {
+            const isSaving = pendingAction === `inventory:${ingredient.id}`;
+
+            return (
+              <Card
+                key={ingredient.id}
+                variant="outlined"
+                className={cn(
+                  "p-4",
+                  rarityBorderMap[ingredient.rarity] ?? rarityBorderMap[1],
+                )}
               >
-                <Save className="h-4 w-4" aria-hidden="true" />
-              </Button>
-            </div>
-          </Card>
-        ))}
+                <div className="flex items-center gap-4">
+                  <MaterialImage
+                    id={ingredient.id}
+                    name={ingredient.name}
+                    rarity={ingredient.rarity}
+                  />
+                  <div className="min-w-0 flex-1">
+                    <h3 className="text-on-surface truncate font-bold">
+                      {ingredient.name}
+                    </h3>
+                    <p className="text-on-surface-variant text-xs">
+                      {ingredient.category}
+                    </p>
+                  </div>
+                </div>
+                <div className="mt-4 flex items-center gap-2">
+                  <div className="flex-1">
+                    <AppTextField
+                      label="Quantity"
+                      variant="outlined"
+                      type="number"
+                      min={0}
+                      className="h-11"
+                      value={inventoryDraft[ingredient.id] ?? 0}
+                      disabled={isSaving}
+                      onChange={(event) =>
+                        setInventoryDraft((current) => ({
+                          ...current,
+                          [ingredient.id]: Number(event.target.value),
+                        }))
+                      }
+                      onKeyDown={(event) => {
+                        if (event.key === "Enter") {
+                          event.preventDefault();
+                          onSave(ingredient.id);
+                        }
+                      }}
+                    />
+                  </div>
+                  <Button
+                    aria-label={`Save ${ingredient.name} quantity`}
+                    className="h-11 px-4"
+                    onClick={() => onSave(ingredient.id)}
+                    disabled={Boolean(pendingAction)}
+                  >
+                    <Save className="h-4 w-4" aria-hidden="true" />
+                    {isSaving ? "Saving" : null}
+                  </Button>
+                </div>
+              </Card>
+            );
+          })
+        )}
       </div>
     </Card>
   );
 }
 
 function RecipesTab({
+  cookDraft,
+  pendingAction,
   progressDraft,
   recipes,
   recipeTypes,
   search,
   statusFilter,
   typeFilter,
+  setCookDraft,
   setProgressDraft,
   setSearch,
   setStatusFilter,
@@ -542,15 +772,18 @@ function RecipesTab({
   onCook,
   onSave,
 }: {
+  cookDraft: QuantityDraft;
+  pendingAction: string | null;
   progressDraft: QuantityDraft;
   recipes: CookingRecipeView[];
   recipeTypes: string[];
   search: string;
-  statusFilter: string;
+  statusFilter: CookingStatusFilter;
   typeFilter: string;
+  setCookDraft: Dispatch<SetStateAction<QuantityDraft>>;
   setProgressDraft: Dispatch<SetStateAction<QuantityDraft>>;
   setSearch: (value: string) => void;
-  setStatusFilter: (value: string) => void;
+  setStatusFilter: (value: CookingStatusFilter) => void;
   setTypeFilter: (value: string) => void;
   onCook: (recipeId: string) => void;
   onSave: (recipeId: string) => void;
@@ -579,13 +812,19 @@ function RecipesTab({
             variant="outlined"
             className="h-11"
             value={statusFilter}
-            onChange={setStatusFilter}
-            options={["All", "Needs cooking", "Auto unlocked"].map(
-              (status) => ({
-                label: status,
-                value: status,
-              }),
-            )}
+            onChange={(value) => setStatusFilter(value as CookingStatusFilter)}
+            options={(
+              [
+                "All",
+                "Needs cooking",
+                "Ready to cook",
+                "Missing ingredients",
+                "Auto unlocked",
+              ] satisfies CookingStatusFilter[]
+            ).map((status) => ({
+              label: status,
+              value: status,
+            }))}
           />
         </div>
       </Card>
@@ -603,8 +842,13 @@ function RecipesTab({
           recipes.map((recipe) => (
             <RecipeCard
               key={recipe.id}
+              cookValue={cookDraft[recipe.id] ?? 1}
+              isCookPending={pendingAction === `cook:${recipe.id}`}
+              isProgressPending={pendingAction === `progress:${recipe.id}`}
+              pendingAction={pendingAction}
               progressValue={progressDraft[recipe.id] ?? 0}
               recipe={recipe}
+              setCookDraft={setCookDraft}
               setProgressDraft={setProgressDraft}
               onCook={() => onCook(recipe.id)}
               onSave={() => onSave(recipe.id)}
@@ -617,14 +861,24 @@ function RecipesTab({
 }
 
 function RecipeCard({
+  cookValue,
+  isCookPending,
+  isProgressPending,
+  pendingAction,
   progressValue,
   recipe,
+  setCookDraft,
   setProgressDraft,
   onCook,
   onSave,
 }: {
+  cookValue: number;
+  isCookPending: boolean;
+  isProgressPending: boolean;
+  pendingAction: string | null;
   progressValue: number;
   recipe: CookingRecipeView;
+  setCookDraft: Dispatch<SetStateAction<QuantityDraft>>;
   setProgressDraft: Dispatch<SetStateAction<QuantityDraft>>;
   onCook: () => void;
   onSave: () => void;
@@ -636,6 +890,14 @@ function RecipeCard({
           Math.round((recipe.completedCount / recipe.proficiency) * 100),
           100,
         );
+  const cookQuantityLimit = getCookQuantityLimit(recipe);
+  const canCook = cookQuantityLimit > 0;
+  const shortageSummary = getRecipeShortageSummary(recipe);
+  const normalizedCookValue = Math.max(
+    1,
+    Math.min(cookValue, cookQuantityLimit || 1),
+  );
+  const hasPendingAction = Boolean(pendingAction);
 
   return (
     <Card
@@ -675,7 +937,16 @@ function RecipeCard({
                 <Check className="h-3.5 w-3.5" />
                 Auto
               </span>
-            ) : null}
+            ) : canCook ? (
+              <span className="inline-flex items-center gap-1 rounded-full bg-primary-container px-2.5 py-1 text-xs font-bold text-primary">
+                <ChefHat className="h-3.5 w-3.5" />
+                Ready x{formatNumber(cookQuantityLimit)}
+              </span>
+            ) : (
+              <span className="text-on-surface-variant inline-flex items-center gap-1 rounded-full border border-outline-variant px-2.5 py-1 text-xs font-bold">
+                Missing
+              </span>
+            )}
           </div>
           <p className="text-on-surface-variant mt-2 line-clamp-2 text-sm">
             {recipe.effect || recipe.description}
@@ -698,42 +969,90 @@ function RecipeCard({
         {recipe.ingredients.map((ingredient) => (
           <span
             key={ingredient.materialId}
-            className="text-on-surface-variant rounded-full border border-outline-variant px-2.5 py-1 text-xs font-medium"
+            className={cn(
+              "rounded-full border px-2.5 py-1 text-xs font-medium",
+              ingredient.owned >= ingredient.quantity
+                ? "border-primary/30 bg-primary/5 text-primary"
+                : "text-on-surface-variant border-outline-variant",
+            )}
           >
-            {ingredient.name} x{ingredient.quantity}
+            {ingredient.name} {formatNumber(ingredient.owned)} /{" "}
+            {formatNumber(ingredient.quantity)}
           </span>
         ))}
       </div>
 
-      <div className="mt-4 grid gap-2 sm:grid-cols-[1fr_auto_auto]">
-        <AppTextField
-          label="Completed"
-          variant="outlined"
-          type="number"
-          min={0}
-          className="h-11"
-          value={progressValue}
-          onChange={(event) =>
-            setProgressDraft((current) => ({
-              ...current,
-              [recipe.id]: Number(event.target.value),
-            }))
-          }
-          onKeyDown={(event) => {
-            if (event.key === "Enter") {
-              event.preventDefault();
-              onSave();
+      {!recipe.achievedAuto && !canCook && shortageSummary ? (
+        <p className="text-on-surface-variant mt-3 text-xs">
+          Missing {shortageSummary}
+        </p>
+      ) : null}
+
+      <div className="mt-4 grid gap-3 lg:grid-cols-2">
+        <div className="grid gap-2 sm:grid-cols-[1fr_auto]">
+          <AppTextField
+            label="Completed"
+            variant="outlined"
+            type="number"
+            min={0}
+            className="h-11"
+            value={progressValue}
+            disabled={isProgressPending}
+            onChange={(event) =>
+              setProgressDraft((current) => ({
+                ...current,
+                [recipe.id]: Number(event.target.value),
+              }))
             }
-          }}
-        />
-        <Button variant="outlined" className="h-11 px-4" onClick={onSave}>
-          <Save className="h-4 w-4" aria-hidden="true" />
-          Save
-        </Button>
-        <Button className="h-11 px-4" onClick={onCook}>
-          <Flame className="h-4 w-4" aria-hidden="true" />
-          Cook +1
-        </Button>
+            onKeyDown={(event) => {
+              if (event.key === "Enter") {
+                event.preventDefault();
+                onSave();
+              }
+            }}
+          />
+          <Button
+            variant="outlined"
+            className="h-11 px-4"
+            onClick={onSave}
+            disabled={hasPendingAction}
+          >
+            <Save className="h-4 w-4" aria-hidden="true" />
+            {isProgressPending ? "Saving" : "Save"}
+          </Button>
+        </div>
+        <div className="grid gap-2 sm:grid-cols-[1fr_auto]">
+          <AppTextField
+            label="Cook"
+            variant="outlined"
+            type="number"
+            min={1}
+            max={Math.max(cookQuantityLimit, 1)}
+            className="h-11"
+            value={normalizedCookValue}
+            disabled={!canCook || isCookPending}
+            onChange={(event) =>
+              setCookDraft((current) => ({
+                ...current,
+                [recipe.id]: Number(event.target.value),
+              }))
+            }
+            onKeyDown={(event) => {
+              if (event.key === "Enter") {
+                event.preventDefault();
+                onCook();
+              }
+            }}
+          />
+          <Button
+            className="h-11 px-4"
+            onClick={onCook}
+            disabled={hasPendingAction || !canCook}
+          >
+            <Flame className="h-4 w-4" aria-hidden="true" />
+            {isCookPending ? "Cooking" : "Cook"}
+          </Button>
+        </div>
       </div>
     </Card>
   );
@@ -776,6 +1095,44 @@ function buildProgressDraft(data: CookingData): QuantityDraft {
   return Object.fromEntries(
     data.recipes.map((recipe) => [recipe.id, recipe.completedCount]),
   );
+}
+
+function buildCookDraft(data: CookingData): QuantityDraft {
+  return Object.fromEntries(data.recipes.map((recipe) => [recipe.id, 1]));
+}
+
+function getCookableServings(recipe: CookingRecipeView) {
+  if (recipe.ingredients.length === 0) {
+    return 0;
+  }
+
+  return Math.min(
+    ...recipe.ingredients.map((ingredient) =>
+      Math.floor(ingredient.owned / Math.max(ingredient.quantity, 1)),
+    ),
+  );
+}
+
+function getCookQuantityLimit(recipe: CookingRecipeView) {
+  if (recipe.achievedAuto || recipe.remainingCount <= 0) {
+    return 0;
+  }
+
+  return Math.min(recipe.remainingCount, getCookableServings(recipe));
+}
+
+function getRecipeShortageSummary(recipe: CookingRecipeView) {
+  return recipe.ingredients
+    .map((ingredient) => {
+      const missing = Math.max(ingredient.quantity - ingredient.owned, 0);
+
+      return missing > 0
+        ? `${ingredient.name} x${formatNumber(missing)}`
+        : null;
+    })
+    .filter((value): value is string => Boolean(value))
+    .slice(0, 3)
+    .join(", ");
 }
 
 function applyCookingInventoryQuantity(
