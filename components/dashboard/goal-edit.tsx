@@ -15,7 +15,7 @@ import {
   saveGoalMaterialAction,
 } from "@/app/actions";
 import { rarityColorMap } from "@/lib/constants";
-import type { GoalView, MaterialView } from "@/lib/types";
+import type { DashboardData, GoalView, MaterialView } from "@/lib/types";
 import { cn, formatNumber } from "@/lib/utils";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -27,6 +27,7 @@ import { Panel } from "@/components/ui/panel";
 type GoalEditProps = {
   goal: GoalView;
   materials: MaterialView[];
+  onDashboardUpdate?: (data: DashboardData) => void;
 };
 
 type GoalMaterialFormValues = {
@@ -34,7 +35,11 @@ type GoalMaterialFormValues = {
   required: number;
 };
 
-export function GoalEdit({ goal, materials }: GoalEditProps) {
+export function GoalEdit({
+  goal,
+  materials,
+  onDashboardUpdate,
+}: GoalEditProps) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const {
@@ -69,7 +74,11 @@ export function GoalEdit({ goal, materials }: GoalEditProps) {
 
       toast.success("Requirement added.");
       reset({ materialId: "", required: 1 });
-      router.refresh();
+      if (result.data && onDashboardUpdate) {
+        onDashboardUpdate(result.data);
+      } else {
+        router.refresh();
+      }
     });
   }
 
@@ -83,7 +92,11 @@ export function GoalEdit({ goal, materials }: GoalEditProps) {
       }
 
       toast.success("Goal completed! Materials consumed from inventory.");
-      router.refresh();
+      if (result.data && onDashboardUpdate) {
+        onDashboardUpdate(result.data);
+      } else {
+        router.refresh();
+      }
     });
   }
 
@@ -111,7 +124,11 @@ export function GoalEdit({ goal, materials }: GoalEditProps) {
       }
 
       toast.success("Requirement removed.");
-      router.refresh();
+      if (result.data && onDashboardUpdate) {
+        onDashboardUpdate(result.data);
+      } else {
+        router.refresh();
+      }
     });
   }
 
