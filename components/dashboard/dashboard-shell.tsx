@@ -7,6 +7,7 @@ import {
   useState,
   useTransition,
 } from "react";
+import { RefreshCw } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 
@@ -23,6 +24,7 @@ import { CraftingSection } from "@/components/dashboard/sections/crafting-sectio
 import { GoalsSection } from "@/components/dashboard/sections/goals-section";
 import { InventorySection } from "@/components/dashboard/inventory/inventory-section";
 import { MaterialsSection } from "@/components/dashboard/sections/materials-section";
+import { Button } from "@/components/ui/button";
 import {
   aggregateNeededMaterials,
   buildDashboardData,
@@ -45,6 +47,11 @@ type DashboardShellProps = {
   role?: string;
   isAuthenticated?: boolean;
   view?: "tracker" | "inventory" | "goals";
+  onRefresh?: () =>
+    | DashboardData
+    | null
+    | void
+    | Promise<DashboardData | null | void>;
 };
 
 type InventoryDraft = Record<string, number>;
@@ -64,6 +71,7 @@ const emptyEditorForm: MaterialEditorForm = {
 export function DashboardShell({
   initialData,
   isAuthenticated = true,
+  onRefresh,
   role,
   view = "tracker",
 }: DashboardShellProps) {
@@ -120,7 +128,9 @@ export function DashboardShell({
   const syncDashboard = useCallback((nextData: DashboardData) => {
     setData((currentData) => {
       const materials =
-        nextData.materials.length > 0 ? nextData.materials : currentData.materials;
+        nextData.materials.length > 0
+          ? nextData.materials
+          : currentData.materials;
       const mergedData = { ...nextData, materials };
 
       if (nextData.materials.length > 0 || currentData.materials.length === 0) {
@@ -151,7 +161,9 @@ export function DashboardShell({
           throw new Error("Unable to load materials.");
         }
 
-        const payload = (await response.json()) as { materials: MaterialView[] };
+        const payload = (await response.json()) as {
+          materials: MaterialView[];
+        };
 
         setData((current) => ({
           ...current,
@@ -165,9 +177,11 @@ export function DashboardShell({
             ]),
           ),
         );
+        return payload.materials;
       } catch (error) {
         console.error("Material list load failed", error);
         toast.error("Unable to load material list.");
+        return null;
       } finally {
         if (showLoading) {
           setIsLoadingMaterials(false);
@@ -427,8 +441,30 @@ export function DashboardShell({
   }
 
   function handleRefreshDashboard() {
-    startTransition(() => {
-      router.refresh();
+    startTransition(async () => {
+      try {
+        const nextData = onRefresh
+          ? await onRefresh()
+          : await loadDashboardData(view);
+
+        if (!nextData) {
+          return;
+        }
+
+        const nextMaterials =
+          view === "inventory" ? await refreshInventoryMaterials() : null;
+
+        syncDashboard(
+          nextMaterials ? { ...nextData, materials: nextMaterials } : nextData,
+        );
+
+        if (!onRefresh) {
+          router.refresh();
+        }
+      } catch (error) {
+        console.error("Dashboard refresh failed", error);
+        toast.error("Unable to refresh this page.");
+      }
     });
   }
 
@@ -514,15 +550,36 @@ export function DashboardShell({
             <p className="text-on-surface-variant mt-2">{pageDescription}</p>
           </div>
           {view === "inventory" ? (
-            <div className="text-on-primary-container w-fit rounded-lg border border-outline-variant bg-primary-container px-4 py-2 sm:text-right">
-              <p className="text-xs font-semibold uppercase">Total Needed</p>
-              <p className="text-2xl font-black leading-tight">
-                {formatNumber(totalShoppingRemaining)}
-              </p>
-              <p className="text-xs font-medium">
-                {formatNumber(filteredShoppingMaterials.length)} material
-                {filteredShoppingMaterials.length === 1 ? "" : "s"}
-              </p>
+            <div className="text-on-primary-container w-fit rounded-lg border border-outline-variant bg-primary-container px-4 py-2">
+              <div className="flex items-center gap-4">
+                <div className="sm:text-right">
+                  <p className="text-xs font-semibold uppercase">
+                    Total Needed
+                  </p>
+                  <p className="text-2xl font-black leading-tight">
+                    {formatNumber(totalShoppingRemaining)}
+                  </p>
+                  <p className="text-xs font-medium">
+                    {formatNumber(filteredShoppingMaterials.length)} material
+                    {filteredShoppingMaterials.length === 1 ? "" : "s"}
+                  </p>
+                </div>
+                <Button
+                  type="button"
+                  variant="outlined"
+                  onClick={handleRefreshDashboard}
+                  disabled={isPending}
+                  aria-label="Refresh inventory totals"
+                  className="h-9 shrink-0 px-3"
+                >
+                  <RefreshCw
+                    className={`h-4 w-4 ${isPending ? "animate-spin" : ""}`}
+                  />
+                  <span className="hidden sm:inline">
+                    {isPending ? "Refreshing" : "Refresh"}
+                  </span>
+                </Button>
+              </div>
             </div>
           ) : null}
         </div>
@@ -589,8 +646,6 @@ export function DashboardShell({
           setShoppingSearch={setShoppingSearch}
           setInventoryDraft={setInventoryDraft}
           setSearch={setSearch}
-          isRefreshing={isPending}
-          onRefresh={handleRefreshDashboard}
           onSaveMaterial={handleInventorySave}
         />
       ) : null}
@@ -602,6 +657,7 @@ export function DashboardShell({
           characterFilter={goalCharacterFilter}
           characters={goalCharacters}
           goals={filteredGoals}
+          onGoalComplete={syncDashboard}
           search={goalSearch}
           statusFilter={goalFilter}
           setCategoryFilter={setGoalCategoryFilter}
@@ -616,6 +672,20 @@ export function DashboardShell({
       />
     </div>
   );
+}
+
+async function loadDashboardData(view: "tracker" | "inventory" | "goals") {
+  const response = await fetch(`/api/dashboard?view=${view}`, {
+    cache: "no-store",
+  });
+
+  if (!response.ok) {
+    throw new Error("Unable to load dashboard data.");
+  }
+
+  const payload = (await response.json()) as { data: DashboardData };
+
+  return payload.data;
 }
 
 function buildInventoryDraft(data: DashboardData): InventoryDraft {

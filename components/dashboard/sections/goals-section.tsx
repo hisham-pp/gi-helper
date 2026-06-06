@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Select } from "@/components/core/app-select";
 import AppTextField from "@/components/core/app-textfield";
-import type { GoalView } from "@/lib/types";
+import type { DashboardData, GoalView } from "@/lib/types";
 
 export function GoalsSection({
   categoryFilter,
@@ -17,6 +17,7 @@ export function GoalsSection({
   categories,
   characters,
   goals,
+  onGoalComplete,
   search,
   statusFilter,
   setCategoryFilter,
@@ -29,6 +30,7 @@ export function GoalsSection({
   categories: string[];
   characters: string[];
   goals: GoalView[];
+  onGoalComplete?: (data: DashboardData) => void;
   search: string;
   statusFilter: "incomplete" | "completed" | "all";
   setCategoryFilter: (category: string) => void;
@@ -122,7 +124,11 @@ export function GoalsSection({
       ) : (
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {goals.map((goal) => (
-            <GoalCard key={goal.id} goal={goal} />
+            <GoalCard
+              key={goal.id}
+              goal={goal}
+              onComplete={onGoalComplete}
+            />
           ))}
         </div>
       )}

@@ -1,10 +1,9 @@
 "use client";
 
-import { RefreshCw, Sparkles } from "lucide-react";
+import { Sparkles } from "lucide-react";
 
 import { EmptyState } from "@/components/dashboard/common/empty-state";
 import { NeedCard } from "@/components/dashboard/inventory/need-card";
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Select } from "@/components/core/app-select";
 import AppTextField from "@/components/core/app-textfield";
@@ -23,8 +22,6 @@ export function ShoppingListPanel({
   setGoalTypeFilter,
   setMaterialTypeFilter,
   setSearch,
-  isRefreshing = false,
-  onRefresh,
 }: {
   characters: string[];
   characterFilter: string;
@@ -38,35 +35,16 @@ export function ShoppingListPanel({
   setGoalTypeFilter: (goalType: string) => void;
   setMaterialTypeFilter: (materialType: string) => void;
   setSearch: (search: string) => void;
-  isRefreshing?: boolean;
-  onRefresh: () => void;
 }) {
   return (
     <Card className="flex flex-col overflow-hidden" variant="outlined">
       <div className="border-b border-outline-variant bg-surface p-6">
         <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-            <div>
-              <h3 className="text-on-surface text-xl font-bold">
-                Shopping List
-              </h3>
-              <p className="text-on-surface-variant text-sm">
-                Aggregated material requirements for active goals.
-              </p>
-            </div>
-            <Button
-              type="button"
-              variant="outlined"
-              onClick={onRefresh}
-              disabled={isRefreshing}
-              aria-label="Refresh shopping list"
-              className="w-fit px-4"
-            >
-              <RefreshCw
-                className={`h-4 w-4 ${isRefreshing ? "animate-spin" : ""}`}
-              />
-              {isRefreshing ? "Refreshing" : "Refresh"}
-            </Button>
+          <div>
+            <h3 className="text-on-surface text-xl font-bold">Shopping List</h3>
+            <p className="text-on-surface-variant text-sm">
+              Aggregated material requirements for active goals.
+            </p>
           </div>
           <div className="grid gap-3 md:grid-cols-2 xl:w-[60rem] xl:grid-cols-[minmax(14rem,1.3fr)_repeat(3,minmax(10rem,1fr))]">
             <AppTextField

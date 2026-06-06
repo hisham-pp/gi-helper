@@ -9,10 +9,16 @@ import { toast } from "sonner";
 import { completeGoalAction } from "@/app/actions";
 import { Card } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import type { GoalView } from "@/lib/types";
+import type { DashboardData, GoalView } from "@/lib/types";
 import { cn, formatNumber } from "@/lib/utils";
 
-export function GoalCard({ goal }: { goal: GoalView }) {
+export function GoalCard({
+  goal,
+  onComplete,
+}: {
+  goal: GoalView;
+  onComplete?: (data: DashboardData) => void;
+}) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const isCompleted = goal.completed;
@@ -30,7 +36,11 @@ export function GoalCard({ goal }: { goal: GoalView }) {
       }
 
       toast.success("Goal completed! Materials consumed from inventory.");
-      router.refresh();
+      if (result.data && onComplete) {
+        onComplete(result.data);
+      } else {
+        router.refresh();
+      }
     });
   }
 
