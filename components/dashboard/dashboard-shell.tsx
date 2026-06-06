@@ -118,29 +118,29 @@ export function DashboardShell({
   }, [tabFromUrl, view]);
 
   const syncDashboard = useCallback((nextData: DashboardData) => {
-    setData(nextData);
-    setInventoryDraft(buildInventoryDraft(nextData));
-    setSimulationMaterialId((current) =>
-      nextData.materials.some((material) => material.id === current)
-        ? current
-        : (nextData.materials[0]?.id ?? ""),
-    );
+    setData((currentData) => {
+      const materials =
+        nextData.materials.length > 0 ? nextData.materials : currentData.materials;
+      const mergedData = { ...nextData, materials };
+
+      if (nextData.materials.length > 0 || currentData.materials.length === 0) {
+        setInventoryDraft(buildInventoryDraft(mergedData));
+      }
+      setSimulationMaterialId((current) =>
+        materials.some((material) => material.id === current)
+          ? current
+          : (materials[0]?.id ?? ""),
+      );
+
+      return mergedData;
+    });
   }, []);
 
-  useEffect(() => {
-    syncDashboard(initialData);
-  }, [initialData, syncDashboard]);
-
-  useEffect(() => {
-    if (view !== "inventory" || data.materials.length > 0) {
-      setIsLoadingMaterials(false);
-      return;
-    }
-
-    let isActive = true;
-
-    async function loadMaterials() {
-      setIsLoadingMaterials(true);
+  const refreshInventoryMaterials = useCallback(
+    async ({ showLoading = false }: { showLoading?: boolean } = {}) => {
+      if (showLoading) {
+        setIsLoadingMaterials(true);
+      }
 
       try {
         const response = await fetch("/api/materials", {
@@ -152,10 +152,6 @@ export function DashboardShell({
         }
 
         const payload = (await response.json()) as { materials: MaterialView[] };
-
-        if (!isActive) {
-          return;
-        }
 
         setData((current) => ({
           ...current,
@@ -173,9 +169,31 @@ export function DashboardShell({
         console.error("Material list load failed", error);
         toast.error("Unable to load material list.");
       } finally {
-        if (isActive) {
+        if (showLoading) {
           setIsLoadingMaterials(false);
         }
+      }
+    },
+    [],
+  );
+
+  useEffect(() => {
+    syncDashboard(initialData);
+  }, [initialData, syncDashboard]);
+
+  useEffect(() => {
+    if (view !== "inventory" || data.materials.length > 0) {
+      setIsLoadingMaterials(false);
+      return;
+    }
+
+    let isActive = true;
+
+    async function loadMaterials() {
+      await refreshInventoryMaterials({ showLoading: true });
+
+      if (!isActive) {
+        return;
       }
     }
 
@@ -184,7 +202,7 @@ export function DashboardShell({
     return () => {
       isActive = false;
     };
-  }, [data.materials.length, view]);
+  }, [data.materials.length, refreshInventoryMaterials, view]);
 
   const categories = useMemo(
     () => [
@@ -403,6 +421,7 @@ export function DashboardShell({
         return;
       }
 
+      void refreshInventoryMaterials();
       toast.success("Inventory updated.");
     });
   }
