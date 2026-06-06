@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   Search,
   Users,
@@ -15,49 +15,88 @@ import Link from "next/link";
 import AppTextField from "@/components/core/app-textfield";
 import { Card } from "@/components/ui/card";
 import { rarityColorMap, rarityBorderMap } from "@/lib/constants";
-import type { GoalView } from "@/lib/types";
+import type { CookingRecipeView } from "@/lib/cooking-data";
+import type { GoalView, MaterialView } from "@/lib/types";
 import { cn, formatNumber } from "@/lib/utils";
 
-type Material = {
+type SearchCharacter = {
   id: string;
   name: string;
   image: string;
   rarity: number;
-  category: string;
-  quantity: number;
+  element: string;
+  weaponType: string;
 };
 
-type Recipe = {
-  id: string;
-  name: string;
-  rarity: number;
-  type: string;
-  effect: string;
-  description: string;
-  proficiency: number;
-  completedCount: number;
-  remainingCount: number;
-  achievedAuto: boolean;
-  ingredients: Array<{
-    name: string;
-  }>;
-};
-
-type SearchManagerProps = {
-  characters: any[];
+type SearchLists = {
+  characters: SearchCharacter[];
   goals: GoalView[];
-  materials: Material[];
-  recipes: Recipe[];
+  materials: MaterialView[];
+  recipes: CookingRecipeView[];
 };
 
-export function SearchManager({
-  characters,
-  goals,
-  materials,
-  recipes,
-}: SearchManagerProps) {
+type SearchListsResponse = {
+  lists?: Partial<SearchLists>;
+};
+
+const emptyLists: SearchLists = {
+  characters: [],
+  goals: [],
+  materials: [],
+  recipes: [],
+};
+
+export function SearchManager() {
   const [search, setSearch] = useState("");
+  const [lists, setLists] = useState<SearchLists>(emptyLists);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const query = search.trim().toLowerCase();
+  const { characters, goals, materials, recipes } = lists;
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    async function loadSearchLists() {
+      try {
+        const response = await fetch("/api/search", {
+          cache: "no-store",
+          signal: controller.signal,
+        });
+
+        if (!response.ok) {
+          throw new Error("Search lists request failed.");
+        }
+
+        const payload = (await response.json()) as SearchListsResponse;
+
+        setLists({
+          characters: payload.lists?.characters ?? [],
+          goals: payload.lists?.goals ?? [],
+          materials: payload.lists?.materials ?? [],
+          recipes: payload.lists?.recipes ?? [],
+        });
+        setError(null);
+      } catch (requestError) {
+        if (controller.signal.aborted) {
+          return;
+        }
+
+        console.error("Search lists load failed", requestError);
+        setError("Search data could not be loaded.");
+      } finally {
+        if (!controller.signal.aborted) {
+          setIsLoading(false);
+        }
+      }
+    }
+
+    loadSearchLists();
+
+    return () => {
+      controller.abort();
+    };
+  }, []);
 
   const filteredCharacters = useMemo(() => {
     if (!query) return [];
@@ -121,7 +160,25 @@ export function SearchManager({
         />
       </div>
 
-      {!search && (
+      {isLoading && (
+        <Card variant="outlined" className="p-6">
+          <p className="text-on-surface text-sm font-bold">
+            Loading search lists...
+          </p>
+          <p className="text-on-surface-variant mt-1 text-sm">
+            Characters, materials, goals, and recipes are being fetched.
+          </p>
+        </Card>
+      )}
+
+      {!isLoading && error && (
+        <Card variant="outlined" className="p-6">
+          <p className="text-sm font-bold text-error">Unable to load search</p>
+          <p className="text-on-surface-variant mt-1 text-sm">{error}</p>
+        </Card>
+      )}
+
+      {!isLoading && !error && !search && (
         <div className="grid gap-6 md:grid-cols-2">
           <Card variant="outlined" className="p-6">
             <h2 className="text-on-surface flex items-center gap-2 font-bold">
@@ -198,7 +255,7 @@ export function SearchManager({
         </div>
       )}
 
-      {search && !hasResults && (
+      {!isLoading && !error && search && !hasResults && (
         <div className="flex flex-col items-center justify-center py-12 text-center">
           <div className="text-on-primary-container mb-4 rounded-full bg-primary-container p-4 shadow-sm">
             <Search className="h-8 w-8" />
@@ -210,7 +267,7 @@ export function SearchManager({
         </div>
       )}
 
-      {search && hasResults && (
+      {!isLoading && !error && search && hasResults && (
         <div className="space-y-12">
           {filteredCharacters.length > 0 && (
             <section>

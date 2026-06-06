@@ -3,9 +3,16 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useTransition } from "react";
+import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { ArrowLeft, Trash2, Target, CheckCircle2 } from "lucide-react";
+import {
+  ArrowLeft,
+  CheckCircle2,
+  PlusCircle,
+  Target,
+  Trash2,
+  X,
+} from "lucide-react";
 import { toast } from "sonner";
 
 import {
@@ -22,7 +29,6 @@ import { Button } from "@/components/ui/button";
 import AppTextField from "@/components/core/app-textfield";
 import { Select } from "@/components/core/app-select";
 import { Progress } from "@/components/ui/progress";
-import { Panel } from "@/components/ui/panel";
 
 type GoalEditProps = {
   goal: GoalView;
@@ -41,7 +47,10 @@ export function GoalEdit({
   onDashboardUpdate,
 }: GoalEditProps) {
   const router = useRouter();
-  const [isPending, startTransition] = useTransition();
+  const [isRequirementDialogOpen, setIsRequirementDialogOpen] = useState(false);
+  const [isAddingRequirement, setIsAddingRequirement] = useState(false);
+  const [isUpdatingRequirement, setIsUpdatingRequirement] = useState(false);
+  const [isUpdatingGoal, setIsUpdatingGoal] = useState(false);
   const {
     control,
     formState: { errors },
@@ -49,15 +58,57 @@ export function GoalEdit({
     register,
     reset,
     setError,
+    setValue,
+    watch,
   } = useForm<GoalMaterialFormValues>({
     defaultValues: {
       materialId: materials[0]?.id ?? "",
       required: 1,
     },
   });
+  const selectedMaterialId = watch("materialId");
+  const selectedRequirement = goal.materials.find(
+    (item) => item.materialId === selectedMaterialId,
+  );
+  const isExistingRequirement = Boolean(selectedRequirement);
+  const isSavingRequirement = isAddingRequirement || isUpdatingRequirement;
+  const isBusy = isSavingRequirement || isUpdatingGoal;
 
-  function handleSaveGoalMaterial(values: GoalMaterialFormValues) {
-    startTransition(async () => {
+  useEffect(() => {
+    if (!isRequirementDialogOpen) {
+      return;
+    }
+
+    setValue("required", selectedRequirement?.required ?? 1);
+  }, [
+    isRequirementDialogOpen,
+    selectedMaterialId,
+    selectedRequirement?.required,
+    setValue,
+  ]);
+
+  function handleOpenRequirementDialog() {
+    reset({ materialId: materials[0]?.id ?? "", required: 1 });
+    setIsRequirementDialogOpen(true);
+  }
+
+  function handleCloseRequirementDialog() {
+    reset({ materialId: materials[0]?.id ?? "", required: 1 });
+    setIsRequirementDialogOpen(false);
+  }
+
+  async function handleSaveGoalMaterial(values: GoalMaterialFormValues) {
+    const isUpdatingExistingRequirement = goal.materials.some(
+      (item) => item.materialId === values.materialId,
+    );
+
+    if (isUpdatingExistingRequirement) {
+      setIsUpdatingRequirement(true);
+    } else {
+      setIsAddingRequirement(true);
+    }
+
+    try {
       const result = await saveGoalMaterialAction({
         goalId: goal.id,
         materialId: values.materialId,
@@ -72,18 +123,31 @@ export function GoalEdit({
         return;
       }
 
-      toast.success("Requirement added.");
-      reset({ materialId: "", required: 1 });
+      toast.success(
+        isUpdatingExistingRequirement
+          ? "Requirement updated."
+          : "Requirement added.",
+      );
+      reset({ materialId: materials[0]?.id ?? "", required: 1 });
+      setIsRequirementDialogOpen(false);
       if (result.data && onDashboardUpdate) {
         onDashboardUpdate(result.data);
       } else {
         router.refresh();
       }
-    });
+    } finally {
+      if (isUpdatingExistingRequirement) {
+        setIsUpdatingRequirement(false);
+      } else {
+        setIsAddingRequirement(false);
+      }
+    }
   }
 
-  function handleCompleteGoal() {
-    startTransition(async () => {
+  async function handleCompleteGoal() {
+    setIsUpdatingGoal(true);
+
+    try {
       const result = await completeGoalAction({ goalId: goal.id });
 
       if (!result.success || !result.data) {
@@ -97,11 +161,15 @@ export function GoalEdit({
       } else {
         router.refresh();
       }
-    });
+    } finally {
+      setIsUpdatingGoal(false);
+    }
   }
 
-  function handleDeleteGoal() {
-    startTransition(async () => {
+  async function handleDeleteGoal() {
+    setIsUpdatingGoal(true);
+
+    try {
       const result = await deleteGoalAction({ goalId: goal.id });
 
       if (!result.success || !result.data) {
@@ -111,11 +179,15 @@ export function GoalEdit({
 
       toast.success("Goal deleted.");
       router.push("/goals");
-    });
+    } finally {
+      setIsUpdatingGoal(false);
+    }
   }
 
-  function handleDeleteGoalMaterial(goalMaterialId: string) {
-    startTransition(async () => {
+  async function handleDeleteGoalMaterial(goalMaterialId: string) {
+    setIsUpdatingGoal(true);
+
+    try {
       const result = await deleteGoalMaterialAction({ goalMaterialId });
 
       if (!result.success || !result.data) {
@@ -129,7 +201,9 @@ export function GoalEdit({
       } else {
         router.refresh();
       }
-    });
+    } finally {
+      setIsUpdatingGoal(false);
+    }
   }
 
   return (
@@ -162,17 +236,17 @@ export function GoalEdit({
               variant="tonal"
               className="bg-primary/10 text-primary hover:bg-primary/20"
               onClick={handleCompleteGoal}
-              disabled={isPending || goal.materials.length === 0}
+              disabled={isBusy || goal.materials.length === 0}
             >
               <CheckCircle2 className="mr-2 h-4 w-4" />
-              Complete Goal
+              {isUpdatingGoal ? "Updating..." : "Complete Goal"}
             </Button>
           )}
           <Button
             variant="text"
             className="text-error hover:bg-error/5"
             onClick={handleDeleteGoal}
-            disabled={isPending}
+            disabled={isBusy}
           >
             <Trash2 className="mr-2 h-4 w-4" />
             Delete
@@ -180,174 +254,229 @@ export function GoalEdit({
         </div>
       </div>
 
-      <section className="grid gap-8 lg:grid-cols-[0.95fr_1.4fr]">
-        <Panel
-          title="Add Requirement"
-          description="Attach materials to this goal."
-        >
-          <form
-            className="mt-6 space-y-6"
-            onSubmit={handleSubmit(handleSaveGoalMaterial)}
-          >
-            <Controller
-              control={control}
-              name="materialId"
-              rules={{ required: "Select a material." }}
-              render={({ field }) => (
-                <Select
-                  label="Select Material"
-                  variant="outlined"
-                  value={field.value}
-                  onChange={field.onChange}
-                  options={materials.map((material) => ({
-                    label: material.name,
-                    value: material.id,
-                  }))}
-                  isDisabled={goal.completed}
-                />
-              )}
-            />
-            {errors.materialId?.message && (
-              <p className="-mt-4 text-sm font-medium text-error">
-                {errors.materialId.message}
-              </p>
-            )}
-            <AppTextField
-              label="Required Quantity"
-              variant="outlined"
-              type="number"
-              min={0}
-              error={Boolean(errors.required)}
-              helperText={
-                errors.required?.message ??
-                "How many of this material do you need?"
-              }
-              disabled={goal.completed}
-              {...register("required", {
-                min: {
-                  value: 0,
-                  message: "Required quantity cannot be negative.",
-                },
-                required: "Required quantity is required.",
-                valueAsNumber: true,
-              })}
-            />
-            {errors.root?.message && (
-              <p className="text-sm font-medium text-error">
-                {errors.root.message}
-              </p>
-            )}
-            <Button
-              className="w-full"
-              variant="tonal"
-              type="submit"
-              disabled={isPending || goal.completed}
-            >
-              {isPending
-                ? "Adding..."
-                : goal.completed
-                  ? "Goal Completed"
-                  : "Add Requirement"}
-            </Button>
-          </form>
-        </Panel>
-
-        <div className="space-y-6">
-          <div>
-            <div className="mb-3 flex items-center justify-between text-sm">
-              <span className="text-on-surface-variant font-medium">
-                Overall Progress
-              </span>
-              <span className="font-bold text-primary">
-                {goal.completed ? 100 : goal.progressPercent}%
-              </span>
-            </div>
-            <Progress
-              value={goal.completed ? 100 : goal.progressPercent}
-              className="h-2"
-            />
+      <section className="space-y-6">
+        <div>
+          <div className="mb-3 flex items-center justify-between text-sm">
+            <span className="text-on-surface-variant font-medium">
+              Overall Progress
+            </span>
+            <span className="font-bold text-primary">
+              {goal.completed ? 100 : goal.progressPercent}%
+            </span>
           </div>
+          <Progress
+            value={goal.completed ? 100 : goal.progressPercent}
+            className="h-2"
+          />
+        </div>
 
-          <Card variant="outlined" className="p-6">
-            <h3 className="text-on-surface mb-4 font-bold">
-              Material Requirements
-            </h3>
-            {goal.materials.length === 0 ? (
-              <div className="py-12 text-center">
-                <Target className="text-on-surface-variant mx-auto mb-2 h-8 w-8" />
-                <p className="text-on-surface-variant text-sm">
-                  No materials added yet.
-                </p>
-                <p className="text-on-surface-variant text-xs">
-                  Add materials on the left to start tracking.
-                </p>
-              </div>
-            ) : (
-              <div className="space-y-3">
-                {goal.materials.map((item) => (
-                  <Card
-                    key={item.id}
-                    variant="filled"
-                    className="bg-surface-variant/30 p-4"
-                  >
-                    <div className="flex items-start justify-between gap-4">
-                      <div className="flex min-w-0 items-center gap-4">
-                        <div
-                          className={cn(
-                            "relative h-12 w-12 flex-shrink-0 overflow-hidden rounded-xl bg-gradient-to-br",
-                            rarityColorMap[item.rarity] ?? rarityColorMap[1],
-                          )}
-                        >
-                          <Image
-                            src={`/api/material-image/${item.materialId}`}
-                            alt={item.materialName}
-                            fill
-                            className="object-contain p-2"
-                            sizes="48px"
-                          />
-                        </div>
-                        <div className="min-w-0">
-                          <p className="text-on-surface font-bold">
-                            {item.materialName}
-                          </p>
-                          <p className="text-on-surface-variant text-xs">
-                            {goal.completed
-                              ? `${formatNumber(item.required)} / ${formatNumber(item.required)} collected`
-                              : `${formatNumber(item.allocated)} / ${formatNumber(item.required)} allocated`}
-                          </p>
-                        </div>
-                      </div>
-                      {!goal.completed && (
-                        <Button
-                          variant="text"
-                          className="h-8 px-3 text-error hover:bg-error/5"
-                          onClick={() => handleDeleteGoalMaterial(item.id)}
-                          disabled={isPending}
-                          aria-label={`Remove ${item.materialName} from goal`}
-                        >
-                          <Trash2 className="h-4 w-4" />
-                          Remove
-                        </Button>
-                      )}
-                    </div>
-                    <div className="mt-4">
-                      <Progress
-                        value={
-                          goal.completed
-                            ? 100
-                            : (item.allocated / Math.max(item.required, 1)) *
-                              100
-                        }
-                        className="h-1.5"
-                      />
-                    </div>
-                  </Card>
-                ))}
-              </div>
+        <Card variant="outlined" className="p-6">
+          <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <h3 className="text-on-surface font-bold">Material Requirements</h3>
+            {!goal.completed && (
+              <Button
+                variant="tonal"
+                type="button"
+                onClick={handleOpenRequirementDialog}
+                disabled={isBusy}
+              >
+                <PlusCircle className="h-4 w-4" />
+                Add Requirement
+              </Button>
             )}
+          </div>
+          {goal.materials.length === 0 ? (
+            <div className="py-12 text-center">
+              <Target className="text-on-surface-variant mx-auto mb-2 h-8 w-8" />
+              <p className="text-on-surface-variant text-sm">
+                No materials added yet.
+              </p>
+              <p className="text-on-surface-variant text-xs">
+                Add materials to start tracking this goal.
+              </p>
+            </div>
+          ) : (
+            <div className="space-y-3">
+              {goal.materials.map((item) => (
+                <Card
+                  key={item.id}
+                  variant="filled"
+                  className="bg-surface-variant/30 p-4"
+                >
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="flex min-w-0 items-center gap-4">
+                      <div
+                        className={cn(
+                          "relative h-12 w-12 flex-shrink-0 overflow-hidden rounded-xl bg-gradient-to-br",
+                          rarityColorMap[item.rarity] ?? rarityColorMap[1],
+                        )}
+                      >
+                        <Image
+                          src={`/api/material-image/${item.materialId}`}
+                          alt={item.materialName}
+                          fill
+                          className="object-contain p-2"
+                          sizes="48px"
+                        />
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-on-surface font-bold">
+                          {item.materialName}
+                        </p>
+                        <p className="text-on-surface-variant text-xs">
+                          {goal.completed
+                            ? `${formatNumber(item.required)} / ${formatNumber(item.required)} collected`
+                            : `${formatNumber(item.allocated)} / ${formatNumber(item.required)} allocated`}
+                        </p>
+                      </div>
+                    </div>
+                    {!goal.completed && (
+                      <Button
+                        variant="text"
+                        className="h-8 px-3 text-error hover:bg-error/5"
+                        onClick={() => handleDeleteGoalMaterial(item.id)}
+                        disabled={isBusy}
+                        aria-label={`Remove ${item.materialName} from goal`}
+                      >
+                        <Trash2 className="h-4 w-4" />
+                        Remove
+                      </Button>
+                    )}
+                  </div>
+                  <div className="mt-4">
+                    <Progress
+                      value={
+                        goal.completed
+                          ? 100
+                          : (item.allocated / Math.max(item.required, 1)) * 100
+                      }
+                      className="h-1.5"
+                    />
+                  </div>
+                </Card>
+              ))}
+            </div>
+          )}
+        </Card>
+      </section>
+
+      {isRequirementDialogOpen && (
+        <div
+          className="bg-scrim/55 fixed inset-0 z-50 grid place-items-center p-4"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="goal-requirement-title"
+          aria-describedby="goal-requirement-description"
+        >
+          <Card
+            variant="outlined"
+            className="w-full max-w-lg rounded-lg bg-surface p-6 shadow-xl"
+          >
+            <form
+              className="space-y-6"
+              onSubmit={handleSubmit(handleSaveGoalMaterial)}
+            >
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <h2
+                    id="goal-requirement-title"
+                    className="text-on-surface text-xl font-bold"
+                  >
+                    Add Requirement
+                  </h2>
+                  <p
+                    id="goal-requirement-description"
+                    className="text-on-surface-variant mt-1 text-sm"
+                  >
+                    Attach materials to this goal.
+                  </p>
+                </div>
+                <button
+                  aria-label="Close requirement form"
+                  className="text-on-surface grid h-9 w-9 place-items-center rounded-lg border border-outline-variant transition hover:bg-primary/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary disabled:pointer-events-none disabled:opacity-50"
+                  type="button"
+                  onClick={handleCloseRequirementDialog}
+                  disabled={isSavingRequirement}
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              </div>
+
+              <Controller
+                control={control}
+                name="materialId"
+                rules={{ required: "Select a material." }}
+                render={({ field }) => (
+                  <Select
+                    label="Select Material"
+                    variant="outlined"
+                    value={field.value}
+                    onChange={field.onChange}
+                    options={materials.map((material) => ({
+                      label: material.name,
+                      value: material.id,
+                    }))}
+                    isDisabled={goal.completed || isSavingRequirement}
+                  />
+                )}
+              />
+              {errors.materialId?.message && (
+                <p className="-mt-4 text-sm font-medium text-error">
+                  {errors.materialId.message}
+                </p>
+              )}
+              <AppTextField
+                label="Required Quantity"
+                variant="outlined"
+                type="number"
+                min={0}
+                error={Boolean(errors.required)}
+                helperText={
+                  errors.required?.message ??
+                  "How many of this material do you need?"
+                }
+                disabled={goal.completed || isSavingRequirement}
+                {...register("required", {
+                  min: {
+                    value: 0,
+                    message: "Required quantity cannot be negative.",
+                  },
+                  required: "Required quantity is required.",
+                  valueAsNumber: true,
+                })}
+              />
+              {errors.root?.message && (
+                <p className="text-sm font-medium text-error">
+                  {errors.root.message}
+                </p>
+              )}
+              <div className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
+                <Button
+                  variant="text"
+                  type="button"
+                  onClick={handleCloseRequirementDialog}
+                  disabled={isSavingRequirement}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  variant="tonal"
+                  type="submit"
+                  disabled={isSavingRequirement || goal.completed}
+                >
+                  {isUpdatingRequirement
+                    ? "Updating..."
+                    : isAddingRequirement
+                      ? "Adding..."
+                      : isExistingRequirement
+                        ? "Update Requirement"
+                        : "Add Requirement"}
+                </Button>
+              </div>
+            </form>
           </Card>
         </div>
-      </section>
+      )}
     </div>
   );
 }

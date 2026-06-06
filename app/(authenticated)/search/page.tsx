@@ -1,19 +1,7 @@
-import { getCurrentUser } from "@/lib/auth";
 import { Search } from "lucide-react";
-import { getCookingData } from "@/lib/cooking-data";
-import { getDashboardData } from "@/lib/data";
 import { SearchManager } from "@/components/dashboard/search-manager";
-import { getAllCharacters } from "@/lib/static-data";
 
-export default async function GlobalSearchPage() {
-  const user = await getCurrentUser();
-  const [dashboardData, cookingData] = await Promise.all([
-    getDashboardData(user?.id),
-    getCookingData(user?.id),
-  ]);
-
-  const characters = getAllCharacters();
-
+export default function GlobalSearchPage() {
   return (
     <div className="space-y-8">
       <div className="flex items-center gap-3">
@@ -30,12 +18,7 @@ export default async function GlobalSearchPage() {
         </div>
       </div>
 
-      <SearchManager
-        characters={characters}
-        goals={dashboardData.goals}
-        materials={dashboardData.materials}
-        recipes={cookingData.recipes}
-      />
+      <SearchManager />
     </div>
   );
 }
