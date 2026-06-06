@@ -1448,6 +1448,28 @@
       "Avatar of Lava"
     ]
   },
+  "tenebrous-mimesis": {
+    "items": [
+      {
+        "id": "refractive-bud",
+        "name": "Refractive Bud",
+        "rarity": 2
+      },
+      {
+        "id": "bewildering-broadleaf",
+        "name": "Bewildering Broadleaf",
+        "rarity": 3
+      },
+      {
+        "id": "illusory-leafcoil",
+        "name": "Illusory Leafcoil",
+        "rarity": 4
+      }
+    ],
+    "sources": [
+      "Tenebrous Mimesis"
+    ]
+  },
   "frostnight-scion": {
     "weapons": [
       "athame-artis",
