@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useTransition, useState } from "react";
 import { toast } from "sonner";
@@ -12,6 +11,7 @@ import { rarityColorMap } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { CachedImage } from "@/components/ui/cached-image";
 import { Panel } from "@/components/ui/panel";
 
 type Character = {
@@ -128,7 +128,7 @@ export function GoalTemplates({
                     rarityColorMap[character.rarity] ?? rarityColorMap[1],
                   )}
                 >
-                  <Image
+                  <CachedImage
                     src={character.image}
                     alt={character.name}
                     fill
@@ -194,7 +194,7 @@ export function GoalTemplates({
                     rarityColorMap[weapon.rarity] ?? rarityColorMap[1],
                   )}
                 >
-                  <Image
+                  <CachedImage
                     src={weapon.image}
                     alt={weapon.name}
                     fill

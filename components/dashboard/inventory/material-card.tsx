@@ -1,10 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import { Save } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { CachedImage } from "@/components/ui/cached-image";
 import AppTextField from "@/components/core/app-textfield";
 import { rarityBorderMap, rarityColorMap } from "@/lib/constants";
 import type { MaterialView } from "@/lib/types";
@@ -36,7 +36,7 @@ export function MaterialCard({
             rarityColorMap[material.rarity] ?? rarityColorMap[1],
           )}
         >
-          <Image
+          <CachedImage
             src={`/api/material-image/${material.id}`}
             alt=""
             fill
@@ -62,7 +62,7 @@ export function MaterialCard({
       <div className="mt-4 flex items-center gap-2">
         <div className="flex-1">
           <AppTextField
-            label={'Quantity'}
+            label={"Quantity"}
             variant="outlined"
             type="number"
             min={0}

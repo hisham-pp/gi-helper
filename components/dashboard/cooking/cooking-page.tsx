@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useMemo, useState, useTransition } from "react";
 import type { Dispatch, ReactNode, SetStateAction } from "react";
 import {
@@ -24,6 +23,7 @@ import AppTextField from "@/components/core/app-textfield";
 import { EmptyState } from "@/components/dashboard/common/empty-state";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { CachedImage } from "@/components/ui/cached-image";
 import { Progress } from "@/components/ui/progress";
 import { Select } from "@/components/core/app-select";
 import { rarityBorderMap, rarityColorMap } from "@/lib/constants";
@@ -914,7 +914,7 @@ function RecipeCard({
             rarityColorMap[recipe.rarity] ?? rarityColorMap[1],
           )}
         >
-          <Image
+          <CachedImage
             src={`/api/recipe-image/${recipe.id}`}
             alt=""
             fill
@@ -1074,7 +1074,7 @@ function MaterialImage({
         rarityColorMap[rarity] ?? rarityColorMap[1],
       )}
     >
-      <Image
+      <CachedImage
         src={`/api/material-image/${id}`}
         alt={name}
         fill

@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useEffect, useState, useTransition } from "react";
 import { Search, ChevronRight, CircleCheck } from "lucide-react";
@@ -9,6 +8,7 @@ import { toast } from "sonner";
 
 import { setOwnedCharacterAction } from "@/app/actions";
 import { Card } from "@/components/ui/card";
+import { CachedImage } from "@/components/ui/cached-image";
 import AppTextField from "@/components/core/app-textfield";
 import { Select } from "@/components/core/app-select";
 import { rarityColorMap } from "@/lib/constants";
@@ -211,7 +211,7 @@ export function CharacterList({
                     rarityColorMap[character.rarity] ?? rarityColorMap[1],
                   )}
                 >
-                  <Image
+                  <CachedImage
                     src={character.image}
                     alt={character.name}
                     fill

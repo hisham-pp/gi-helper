@@ -1,10 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { CachedImage } from "@/components/ui/cached-image";
 import { rarityBorderMap, rarityColorMap } from "@/lib/constants";
 import type { MaterialView } from "@/lib/types";
 import { cn, formatNumber } from "@/lib/utils";
@@ -33,7 +33,7 @@ export function MaterialLibraryCard({
             rarityColorMap[material.rarity] ?? rarityColorMap[1],
           )}
         >
-          <Image
+          <CachedImage
             src={`/api/material-image/${material.id}`}
             alt=""
             fill

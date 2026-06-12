@@ -8,6 +8,7 @@ import { useMemo, useState } from "react";
 import AppTextField from "@/components/core/app-textfield";
 import { Select } from "@/components/core/app-select";
 import { Card } from "@/components/ui/card";
+import { CachedImage } from "@/components/ui/cached-image";
 import type { EnemyCatalogItem } from "@/lib/enemy-data";
 
 type EnemyListProps = {
@@ -51,7 +52,9 @@ export function EnemyList({ enemies }: EnemyListProps) {
   }, [enemies]);
 
   const typeOptions = useMemo(() => {
-    const types = Array.from(new Set(enemies.map((enemy) => enemy.type))).sort();
+    const types = Array.from(
+      new Set(enemies.map((enemy) => enemy.type)),
+    ).sort();
 
     return [
       { label: "All", value: "All" },
@@ -131,26 +134,28 @@ export function EnemyList({ enemies }: EnemyListProps) {
             >
               <div className="relative grid h-16 w-16 flex-shrink-0 place-items-center overflow-hidden rounded-lg bg-surface-variant">
                 {enemy.image ? (
-                  <img
+                  <CachedImage
                     src={enemy.image}
                     alt={enemy.name}
-                    className="h-full w-full object-contain p-1.5"
+                    fill
+                    className="object-contain p-1.5"
+                    sizes="64px"
                   />
                 ) : (
-                  <ShieldAlert className="h-8 w-8 text-on-surface-variant" />
+                  <ShieldAlert className="text-on-surface-variant h-8 w-8" />
                 )}
               </div>
               <div className="min-w-0 flex-1">
                 <div className="flex min-w-0 items-start gap-2">
                   <div className="min-w-0 flex-1">
-                    <h3 className="truncate text-sm font-bold text-on-surface">
+                    <h3 className="text-on-surface truncate text-sm font-bold">
                       {enemy.name}
                     </h3>
-                    <p className="mt-0.5 truncate text-[11px] text-on-surface-variant">
+                    <p className="text-on-surface-variant mt-0.5 truncate text-[11px]">
                       {enemy.type} · {enemy.family}
                     </p>
                   </div>
-                  <ChevronRight className="mt-0.5 h-4 w-4 flex-shrink-0 text-on-surface-variant opacity-60 group-hover:opacity-100" />
+                  <ChevronRight className="text-on-surface-variant mt-0.5 h-4 w-4 flex-shrink-0 opacity-60 group-hover:opacity-100" />
                 </div>
 
                 <div className="mt-3 flex flex-wrap gap-1.5">
@@ -160,14 +165,14 @@ export function EnemyList({ enemies }: EnemyListProps) {
                   ).map((element) => (
                     <span
                       key={element}
-                      className="rounded-full border border-outline-variant px-2 py-0.5 text-[10px] font-semibold text-on-surface-variant"
+                      className="text-on-surface-variant rounded-full border border-outline-variant px-2 py-0.5 text-[10px] font-semibold"
                     >
                       {element}
                     </span>
                   ))}
                 </div>
 
-                <p className="mt-3 line-clamp-2 text-xs leading-5 text-on-surface-variant">
+                <p className="text-on-surface-variant mt-3 line-clamp-2 text-xs leading-5">
                   {enemy.materials.length > 0
                     ? enemy.materials
                         .slice(0, 3)
@@ -183,11 +188,11 @@ export function EnemyList({ enemies }: EnemyListProps) {
 
       {filteredEnemies.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-12 text-center">
-          <div className="mb-4 rounded-full bg-primary-container p-4 text-on-primary-container shadow-sm">
+          <div className="text-on-primary-container mb-4 rounded-full bg-primary-container p-4 shadow-sm">
             <Search className="h-8 w-8" />
           </div>
-          <h3 className="font-bold text-on-surface">No enemies found</h3>
-          <p className="mt-2 max-w-sm text-sm text-on-surface-variant">
+          <h3 className="text-on-surface font-bold">No enemies found</h3>
+          <p className="text-on-surface-variant mt-2 max-w-sm text-sm">
             Try another material, counter element, or search term.
           </p>
         </div>

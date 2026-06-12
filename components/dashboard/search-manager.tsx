@@ -9,11 +9,11 @@ import {
   Target,
   CookingPot,
 } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 
 import AppTextField from "@/components/core/app-textfield";
 import { Card } from "@/components/ui/card";
+import { CachedImage } from "@/components/ui/cached-image";
 import { rarityColorMap, rarityBorderMap } from "@/lib/constants";
 import type { CookingRecipeView } from "@/lib/cooking-data";
 import type { GoalView, MaterialView } from "@/lib/types";
@@ -285,7 +285,7 @@ export function SearchManager() {
                           rarityColorMap[character.rarity] ?? rarityColorMap[1],
                         )}
                       >
-                        <Image
+                        <CachedImage
                           src={character.image}
                           alt={character.name}
                           fill
@@ -338,7 +338,7 @@ export function SearchManager() {
                           rarityColorMap[material.rarity] ?? rarityColorMap[1],
                         )}
                       >
-                        <Image
+                        <CachedImage
                           src={`/api/material-image/${material.id}`}
                           alt={material.name}
                           fill
@@ -445,7 +445,7 @@ export function SearchManager() {
                           rarityColorMap[recipe.rarity] ?? rarityColorMap[1],
                         )}
                       >
-                        <Image
+                        <CachedImage
                           src={`/api/recipe-image/${recipe.id}`}
                           alt={recipe.name}
                           fill
