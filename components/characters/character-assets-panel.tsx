@@ -1,15 +1,10 @@
 "use client";
 
-import Image from "next/image";
-
 import { Card } from "@/components/ui/card";
+import { CachedImage } from "@/components/ui/cached-image";
 import type { CharacterAsset } from "@/components/characters/character-goal-builder";
 
-export function CharacterAssetsPanel({
-  assets,
-}: {
-  assets: CharacterAsset[];
-}) {
+export function CharacterAssetsPanel({ assets }: { assets: CharacterAsset[] }) {
   if (assets.length === 0) {
     return (
       <Card variant="outlined" className="p-6">
@@ -25,7 +20,7 @@ export function CharacterAssetsPanel({
       {assets.map((asset) => (
         <Card key={asset.key} variant="outlined" className="overflow-hidden">
           <div className="relative aspect-[4/3] bg-surface-variant/30">
-            <Image
+            <CachedImage
               src={asset.path}
               alt={asset.label}
               fill

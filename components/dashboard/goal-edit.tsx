@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -26,6 +25,7 @@ import type { DashboardData, GoalView, MaterialView } from "@/lib/types";
 import { cn, formatNumber } from "@/lib/utils";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { CachedImage } from "@/components/ui/cached-image";
 import AppTextField from "@/components/core/app-textfield";
 import { Select } from "@/components/core/app-select";
 import { Progress } from "@/components/ui/progress";
@@ -311,7 +311,7 @@ export function GoalEdit({
                           rarityColorMap[item.rarity] ?? rarityColorMap[1],
                         )}
                       >
-                        <Image
+                        <CachedImage
                           src={`/api/material-image/${item.materialId}`}
                           alt={item.materialName}
                           fill

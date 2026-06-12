@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
@@ -26,6 +25,7 @@ import { rarityColorMap } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { CachedImage } from "@/components/ui/cached-image";
 import { CharacterAssetsPanel } from "@/components/characters/character-assets-panel";
 import { CharacterDetailsPanel } from "@/components/characters/character-details-panel";
 import { CharacterDetailTabButton } from "@/components/characters/character-detail-tab-button";
@@ -336,7 +336,7 @@ export function CharacterGoalBuilder({
             rarityColorMap[character.rarity] ?? rarityColorMap[1],
           )}
         >
-          <Image
+          <CachedImage
             src={character.image}
             alt={character.name}
             fill
@@ -518,9 +518,7 @@ export function CharacterGoalBuilder({
         </Card>
       ) : null}
 
-      {activeTab === "assets" ? (
-        <CharacterAssetsPanel assets={assets} />
-      ) : null}
+      {activeTab === "assets" ? <CharacterAssetsPanel assets={assets} /> : null}
       <LoginRequiredDialog
         open={showLoginPrompt}
         onClose={() => setShowLoginPrompt(false)}

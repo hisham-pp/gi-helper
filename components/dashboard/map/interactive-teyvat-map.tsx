@@ -17,6 +17,7 @@ import { toast } from "sonner";
 import { LoginRequiredDialog } from "@/components/auth/login-required-dialog";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { CachedImage } from "@/components/ui/cached-image";
 import {
   collectibleMeta,
   mapDataSource,
@@ -342,11 +343,14 @@ export function InteractiveTeyvatMap({
               style={{ transform: `scale(${zoom})` }}
             >
               {activeLayer === "teyvat" ? (
-                <img
+                <CachedImage
                   alt=""
                   aria-hidden="true"
                   className="absolute inset-0 h-full w-full select-none object-fill"
                   draggable={false}
+                  fill
+                  priority
+                  sizes="1279px"
                   src={TEYVAT_SURFACE_MAP_SRC}
                 />
               ) : (

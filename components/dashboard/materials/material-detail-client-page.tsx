@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import type { Route } from "next";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
@@ -9,6 +8,7 @@ import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { CachedImage } from "@/components/ui/cached-image";
 import { MaterialDetailPageLoading } from "@/components/ui/page-loading";
 import { rarityColorMap } from "@/lib/constants";
 import { cn } from "@/lib/utils";
@@ -166,7 +166,7 @@ export function MaterialDetailClientPage({
             rarityColorMap[material.rarity] ?? rarityColorMap[1],
           )}
         >
-          <Image
+          <CachedImage
             src={`/api/material-image/${material.id}`}
             alt={material.name}
             fill
@@ -270,13 +270,15 @@ export function MaterialDetailClientPage({
                 >
                   <div className="relative grid h-10 w-10 flex-shrink-0 place-items-center overflow-hidden rounded-lg bg-surface-variant">
                     {enemy.image ? (
-                      <img
+                      <CachedImage
                         src={enemy.image}
                         alt={enemy.name}
-                        className="h-full w-full object-contain p-1"
+                        fill
+                        className="object-contain p-1"
+                        sizes="40px"
                       />
                     ) : (
-                      <ShieldAlert className="h-5 w-5 text-on-surface-variant" />
+                      <ShieldAlert className="text-on-surface-variant h-5 w-5" />
                     )}
                   </div>
                   <div className="min-w-0 flex-1">

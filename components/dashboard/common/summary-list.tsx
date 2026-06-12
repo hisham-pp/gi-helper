@@ -1,11 +1,11 @@
 "use client";
 
-import Image from "next/image";
 import { Sparkles } from "lucide-react";
 
 import { EmptyState } from "@/components/dashboard/common/empty-state";
 import { Panel } from "@/components/dashboard/common/panel";
 import { Card } from "@/components/ui/card";
+import { CachedImage } from "@/components/ui/cached-image";
 
 export function SummaryList({
   title,
@@ -36,7 +36,7 @@ export function SummaryList({
                   className="flex items-center gap-4 p-3 transition-colors hover:bg-surface-variant/20"
                 >
                   <div className="relative h-12 w-12 flex-shrink-0 overflow-hidden rounded-xl bg-surface-variant">
-                    <Image
+                    <CachedImage
                       src={`/api/material-image/${item.image}`}
                       alt=""
                       fill

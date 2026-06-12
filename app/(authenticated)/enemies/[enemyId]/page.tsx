@@ -6,6 +6,7 @@ import { ArrowLeft, ShieldAlert } from "lucide-react";
 import { EnemyDetailTabs } from "@/components/dashboard/enemy-detail-tabs";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { CachedImage } from "@/components/ui/cached-image";
 import { getAllEnemies, getEnemyById } from "@/lib/enemy-data";
 
 export function generateStaticParams() {
@@ -38,33 +39,36 @@ export default async function EnemyDetailPage({
         </Link>
         <div className="relative grid h-20 w-20 flex-shrink-0 place-items-center overflow-hidden rounded-xl bg-surface-variant">
           {heroImage ? (
-            <img
+            <CachedImage
               src={heroImage}
               alt={enemy.name}
-              className="h-full w-full object-contain p-1.5"
+              fill
+              className="object-contain p-1.5"
+              sizes="80px"
             />
           ) : (
-            <ShieldAlert className="h-10 w-10 text-on-surface-variant" />
+            <ShieldAlert className="text-on-surface-variant h-10 w-10" />
           )}
         </div>
         <div className="min-w-0 flex-1">
-          <h1 className="text-3xl font-bold tracking-tight text-on-surface">
+          <h1 className="text-on-surface text-3xl font-bold tracking-tight">
             {enemy.name}
           </h1>
-          <p className="mt-1 text-sm text-on-surface-variant">
+          <p className="text-on-surface-variant mt-1 text-sm">
             {enemy.type} · {enemy.family} · {enemy.region}
           </p>
           <div className="mt-3 flex flex-wrap gap-2">
-            {(enemy.elements.length > 0 ? enemy.elements : ["No fixed element"]).map(
-              (element) => (
-                <span
-                  key={element}
-                  className="rounded-full border border-outline-variant px-3 py-1 text-xs font-semibold text-on-surface-variant"
-                >
-                  {element}
-                </span>
-              ),
-            )}
+            {(enemy.elements.length > 0
+              ? enemy.elements
+              : ["No fixed element"]
+            ).map((element) => (
+              <span
+                key={element}
+                className="text-on-surface-variant rounded-full border border-outline-variant px-3 py-1 text-xs font-semibold"
+              >
+                {element}
+              </span>
+            ))}
           </div>
         </div>
       </div>
@@ -72,8 +76,8 @@ export default async function EnemyDetailPage({
       <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_22rem]">
         <div className="space-y-6">
           <Card variant="outlined" className="p-5 sm:p-6">
-            <h2 className="text-xl font-bold text-on-surface">Details</h2>
-            <p className="mt-3 text-sm leading-6 text-on-surface-variant">
+            <h2 className="text-on-surface text-xl font-bold">Details</h2>
+            <p className="text-on-surface-variant mt-3 text-sm leading-6">
               {enemy.description}
             </p>
           </Card>
@@ -82,10 +86,10 @@ export default async function EnemyDetailPage({
         </div>
 
         <Card variant="outlined" className="h-fit p-5 sm:p-6">
-          <h2 className="text-lg font-bold text-on-surface">Quick Counters</h2>
+          <h2 className="text-on-surface text-lg font-bold">Quick Counters</h2>
           <div className="mt-4 space-y-3">
             <div className="rounded-lg border border-outline-variant p-3">
-              <p className="text-xs font-semibold uppercase text-on-surface-variant">
+              <p className="text-on-surface-variant text-xs font-semibold uppercase">
                 Best Elements
               </p>
               <div className="mt-2 flex flex-wrap gap-2">
@@ -95,7 +99,7 @@ export default async function EnemyDetailPage({
                 ).map((element) => (
                   <span
                     key={element}
-                    className="rounded-full bg-primary-container px-3 py-1 text-xs font-bold text-on-primary-container"
+                    className="text-on-primary-container rounded-full bg-primary-container px-3 py-1 text-xs font-bold"
                   >
                     {element}
                   </span>
@@ -103,19 +107,19 @@ export default async function EnemyDetailPage({
               </div>
             </div>
             <div className="rounded-lg border border-outline-variant p-3">
-              <p className="text-xs font-semibold uppercase text-on-surface-variant">
+              <p className="text-on-surface-variant text-xs font-semibold uppercase">
                 Material Drops
               </p>
-              <p className="mt-1 text-sm font-semibold text-on-surface">
+              <p className="text-on-surface mt-1 text-sm font-semibold">
                 {enemy.materials.length}
               </p>
             </div>
             {enemy.faction ? (
               <div className="rounded-lg border border-outline-variant p-3">
-                <p className="text-xs font-semibold uppercase text-on-surface-variant">
+                <p className="text-on-surface-variant text-xs font-semibold uppercase">
                   Faction
                 </p>
-                <p className="mt-1 text-sm font-semibold text-on-surface">
+                <p className="text-on-surface mt-1 text-sm font-semibold">
                   {enemy.faction}
                 </p>
               </div>

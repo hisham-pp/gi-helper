@@ -1,7 +1,6 @@
 "use client";
 
-import Image from "next/image";
-
+import { CachedImage } from "@/components/ui/cached-image";
 import { Card } from "@/components/ui/card";
 import { rarityBorderMap, rarityColorMap } from "@/lib/constants";
 import type { GoalMaterialView } from "@/lib/types";
@@ -22,7 +21,7 @@ export function NeedCard({ item }: { item: GoalMaterialView }) {
           rarityColorMap[item.rarity] ?? rarityColorMap[1],
         )}
       >
-        <Image
+        <CachedImage
           src={`/api/material-image/${item.materialId}`}
           alt=""
           fill

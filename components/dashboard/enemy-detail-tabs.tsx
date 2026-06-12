@@ -1,11 +1,11 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { Gem, Sparkles } from "lucide-react";
 import { useState } from "react";
 
 import { Card } from "@/components/ui/card";
+import { CachedImage } from "@/components/ui/cached-image";
 import { rarityColorMap } from "@/lib/constants";
 import type { EnemyCatalogItem } from "@/lib/enemy-data";
 import { cn } from "@/lib/utils";
@@ -27,7 +27,7 @@ export function EnemyDetailTabs({ enemy }: EnemyDetailTabsProps) {
           className={cn(
             "inline-flex min-h-12 flex-1 items-center justify-center gap-2 px-4 text-sm font-bold transition-colors sm:flex-none",
             activeTab === "materials"
-              ? "bg-primary-container text-on-primary-container"
+              ? "text-on-primary-container bg-primary-container"
               : "text-on-surface-variant hover:bg-surface-variant/50",
           )}
           onClick={() => setActiveTab("materials")}
@@ -40,7 +40,7 @@ export function EnemyDetailTabs({ enemy }: EnemyDetailTabsProps) {
           className={cn(
             "inline-flex min-h-12 flex-1 items-center justify-center gap-2 px-4 text-sm font-bold transition-colors sm:flex-none",
             activeTab === "elements"
-              ? "bg-primary-container text-on-primary-container"
+              ? "text-on-primary-container bg-primary-container"
               : "text-on-surface-variant hover:bg-surface-variant/50",
           )}
           onClick={() => setActiveTab("elements")}
@@ -64,7 +64,7 @@ export function EnemyDetailTabs({ enemy }: EnemyDetailTabsProps) {
                       )}
                     >
                       {drop.id ? (
-                        <Image
+                        <CachedImage
                           src={`/api/material-image/${drop.id}`}
                           alt={drop.name}
                           fill
@@ -76,17 +76,17 @@ export function EnemyDetailTabs({ enemy }: EnemyDetailTabsProps) {
                       )}
                     </div>
                     <div className="min-w-0 flex-1">
-                      <h3 className="truncate text-sm font-bold text-on-surface">
+                      <h3 className="text-on-surface truncate text-sm font-bold">
                         {drop.name}
                       </h3>
-                      <p className="mt-1 text-xs text-on-surface-variant">
+                      <p className="text-on-surface-variant mt-1 text-xs">
                         {drop.minimumLevel
                           ? `Lv. ${drop.minimumLevel}+`
                           : "Any listed level"}
                         {drop.rarity ? ` · Rarity ${drop.rarity}` : ""}
                       </p>
                       {drop.source ? (
-                        <p className="mt-1 line-clamp-1 text-xs text-on-surface-variant">
+                        <p className="text-on-surface-variant mt-1 line-clamp-1 text-xs">
                           {drop.source}
                         </p>
                       ) : null}
@@ -95,7 +95,10 @@ export function EnemyDetailTabs({ enemy }: EnemyDetailTabsProps) {
                 );
 
                 return drop.id ? (
-                  <Link key={`${drop.id}-${drop.name}`} href={`/materials/${drop.id}`}>
+                  <Link
+                    key={`${drop.id}-${drop.name}`}
+                    href={`/materials/${drop.id}`}
+                  >
                     {content}
                   </Link>
                 ) : (
@@ -104,7 +107,7 @@ export function EnemyDetailTabs({ enemy }: EnemyDetailTabsProps) {
               })}
             </div>
           ) : (
-            <p className="text-sm text-on-surface-variant">
+            <p className="text-on-surface-variant text-sm">
               No material drops are listed for this enemy yet.
             </p>
           )
@@ -115,7 +118,7 @@ export function EnemyDetailTabs({ enemy }: EnemyDetailTabsProps) {
                 key={`${item.element}-${item.note}`}
                 className="rounded-lg border border-outline-variant p-4"
               >
-                <p className="text-xs font-semibold uppercase text-on-surface-variant">
+                <p className="text-on-surface-variant text-xs font-semibold uppercase">
                   {item.element === "General"
                     ? "General Advice"
                     : `${item.element} Variant`}
@@ -127,13 +130,13 @@ export function EnemyDetailTabs({ enemy }: EnemyDetailTabsProps) {
                   ).map((element) => (
                     <span
                       key={element}
-                      className="rounded-full bg-secondary-container px-3 py-1 text-xs font-bold text-on-secondary-container"
+                      className="text-on-secondary-container rounded-full bg-secondary-container px-3 py-1 text-xs font-bold"
                     >
                       {element}
                     </span>
                   ))}
                 </div>
-                <p className="mt-3 text-sm leading-6 text-on-surface-variant">
+                <p className="text-on-surface-variant mt-3 text-sm leading-6">
                   {item.note}
                 </p>
               </div>
