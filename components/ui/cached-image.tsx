@@ -19,6 +19,9 @@ type NavigatorWithConnection = Navigator & {
 };
 
 const DEFAULT_FALLBACK_SRC = "/images/fallback-image.svg";
+const CLIENT_IMAGE_CACHE_NAME = "gi-helper.images.v1";
+const TRANSPARENT_PLACEHOLDER_SRC =
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E";
 const QUALITY_BY_PROFILE: Record<NetworkProfile, number> = {
   low: 40,
   medium: 65,
@@ -26,6 +29,8 @@ const QUALITY_BY_PROFILE: Record<NetworkProfile, number> = {
 };
 
 export type CachedImageProps = Omit<ImageProps, "onError" | "quality"> & {
+  cacheKey?: string;
+  cacheOnClient?: boolean;
   fallbackSrc?: ImageProps["src"];
   maxRetryDelayMs?: number;
   onError?: ImageProps["onError"];
@@ -77,12 +82,63 @@ function isSvgSource(src: ImageProps["src"]) {
   );
 }
 
+function isBrowserGeneratedSource(src: ImageProps["src"]) {
+  return (
+    typeof src === "string" &&
+    (src.startsWith("blob:") || src.startsWith("data:"))
+  );
+}
+
 function isLocalImageApiSource(src: ImageProps["src"]) {
   return (
     typeof src === "string" &&
     (src.startsWith("/api/material-image/") ||
       src.startsWith("/api/recipe-image/"))
   );
+}
+
+function getClientCacheSourceUrl(src: ImageProps["src"]) {
+  if (
+    typeof window === "undefined" ||
+    typeof src !== "string" ||
+    isBrowserGeneratedSource(src)
+  ) {
+    return undefined;
+  }
+
+  try {
+    const url = new URL(src, window.location.origin);
+
+    if (url.origin !== window.location.origin) {
+      return undefined;
+    }
+
+    return url.toString();
+  } catch {
+    return undefined;
+  }
+}
+
+function hashCacheKey(value: string) {
+  let hash = 0;
+
+  for (let index = 0; index < value.length; index += 1) {
+    hash = (hash << 5) - hash + value.charCodeAt(index);
+    hash |= 0;
+  }
+
+  return `${Math.abs(hash)}-${value.length}`;
+}
+
+function getClientCacheRequest(cacheKey: string) {
+  const url = new URL(
+    `/__client-image-cache/${hashCacheKey(cacheKey)}`,
+    window.location.origin,
+  );
+
+  return new Request(url.toString(), {
+    method: "GET",
+  });
 }
 
 function sourceKey(src: ImageProps["src"]) {
@@ -98,6 +154,8 @@ function sourceKey(src: ImageProps["src"]) {
 }
 
 export function CachedImage({
+  cacheKey,
+  cacheOnClient = true,
   fallbackSrc = DEFAULT_FALLBACK_SRC,
   maxRetryDelayMs = 30_000,
   onError,
@@ -116,11 +174,67 @@ export function CachedImage({
   const [retryNonce, setRetryNonce] = useState(0);
 
   useEffect(() => {
-    setCurrentSrc(src);
     setIsUsingFallback(false);
     setRetryAttempt(0);
     setRetryNonce(0);
   }, [src]);
+
+  useEffect(() => {
+    let isActive = true;
+    let objectUrl: string | undefined;
+
+    async function resolveCachedImage() {
+      const cacheSourceUrl = getClientCacheSourceUrl(src);
+
+      if (!cacheOnClient || !cacheSourceUrl || !("caches" in window)) {
+        setCurrentSrc(src);
+        return;
+      }
+
+      setCurrentSrc(TRANSPARENT_PLACEHOLDER_SRC);
+
+      try {
+        const cache = await caches.open(CLIENT_IMAGE_CACHE_NAME);
+        const request = getClientCacheRequest(cacheKey ?? sourceKey(src));
+        let response = await cache.match(request);
+
+        if (!response) {
+          response = await fetch(cacheSourceUrl, {
+            cache: "force-cache",
+            credentials: "same-origin",
+          });
+
+          if (!response.ok) {
+            throw new Error(`Image request failed with ${response.status}.`);
+          }
+
+          await cache.put(request, response.clone());
+        }
+
+        const blob = await response.blob();
+        objectUrl = URL.createObjectURL(blob);
+
+        if (isActive) {
+          setCurrentSrc(objectUrl);
+          setIsUsingFallback(false);
+        }
+      } catch {
+        if (isActive) {
+          setCurrentSrc(src);
+        }
+      }
+    }
+
+    void resolveCachedImage();
+
+    return () => {
+      isActive = false;
+
+      if (objectUrl) {
+        URL.revokeObjectURL(objectUrl);
+      }
+    };
+  }, [cacheKey, cacheOnClient, retryNonce, src]);
 
   useEffect(() => {
     const connection = getConnection();
@@ -147,7 +261,6 @@ export function CachedImage({
 
       hasRetried = true;
       setRetryNonce((current) => current + 1);
-      setCurrentSrc(src);
       setIsUsingFallback(false);
     };
     const retryDelay = Math.min(
@@ -192,7 +305,10 @@ export function CachedImage({
     (event) => {
       onLoad?.(event);
 
-      if (sourceKey(currentSrc) === sourceKey(src)) {
+      if (
+        sourceKey(currentSrc) === sourceKey(src) ||
+        isBrowserGeneratedSource(currentSrc)
+      ) {
         setIsUsingFallback(false);
         setRetryAttempt(0);
       }
@@ -211,6 +327,7 @@ export function CachedImage({
       unoptimized={
         unoptimized ||
         isSvgSource(currentSrc) ||
+        isBrowserGeneratedSource(currentSrc) ||
         isLocalImageApiSource(currentSrc)
       }
     />
