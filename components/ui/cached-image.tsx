@@ -77,6 +77,14 @@ function isSvgSource(src: ImageProps["src"]) {
   );
 }
 
+function isLocalImageApiSource(src: ImageProps["src"]) {
+  return (
+    typeof src === "string" &&
+    (src.startsWith("/api/material-image/") ||
+      src.startsWith("/api/recipe-image/"))
+  );
+}
+
 function sourceKey(src: ImageProps["src"]) {
   if (typeof src === "string") {
     return src;
@@ -200,7 +208,11 @@ export function CachedImage({
       onError={handleError}
       onLoad={handleLoad}
       quality={resolvedQuality}
-      unoptimized={unoptimized || isSvgSource(currentSrc)}
+      unoptimized={
+        unoptimized ||
+        isSvgSource(currentSrc) ||
+        isLocalImageApiSource(currentSrc)
+      }
     />
   );
 }
