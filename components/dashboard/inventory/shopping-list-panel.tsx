@@ -43,7 +43,7 @@ export function ShoppingListPanel({
           <div>
             <h3 className="text-on-surface text-xl font-bold">Shopping List</h3>
             <p className="text-on-surface-variant text-sm">
-              Aggregated material requirements for active goals.
+              Aggregated material requirements for active goals and recipes.
             </p>
           </div>
           <div className="grid gap-3 md:grid-cols-2 xl:w-[60rem] xl:grid-cols-[minmax(14rem,1.3fr)_repeat(3,minmax(10rem,1fr))]">
@@ -64,7 +64,7 @@ export function ShoppingListPanel({
               }))}
             />
             <Select
-              label="Goal type"
+              label="Source"
               variant="outlined"
               value={goalTypeFilter}
               onChange={setGoalTypeFilter}

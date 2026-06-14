@@ -534,7 +534,7 @@ export function DashboardShell({
 
   const pageDescription =
     view === "inventory"
-      ? "Update owned material quantities for all farming goals."
+      ? "Update owned material quantities for goals and recipes."
       : view === "goals"
         ? "Track progress and open a goal for details."
         : "Material library, crafting chains, and recursive 3:1 simulation.";

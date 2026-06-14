@@ -353,5 +353,5 @@ export const cookingIngredientOrder = [
   "sunsettia",
   "starshroom",
   "bulle-fruit",
-
+  "candlecap-mushroom",
 ];

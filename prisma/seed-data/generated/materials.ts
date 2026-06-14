@@ -7556,6 +7556,21 @@ export const seedMaterials: SeedMaterial[] = [
     "sortOrder": 510
   },
   {
+    "id": "candlecap-mushroom",
+    "name": "Candlecap Mushroom",
+    "image": "/images/materials/cooking-ingredients/candlecap-mushroom",
+    "rarity": 1,
+    "category": "Cooking Ingredient",
+    "description": "Candlecap Mushroom cooking ingredient.",
+    "details": {
+      "sources": []
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 511
+  },
+  {
     "id": "precision-kuuvahki-stamping-die",
     "name": "Precision Kuuvahki Stamping Die",
     "image": "/images/materials/boss-material/precision-kuuvahki-stamping-die",
@@ -7565,7 +7580,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 511
+    "sortOrder": 512
   },
   {
     "id": "ensnaring-gaze",
@@ -7577,7 +7592,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 512
+    "sortOrder": 513
   },
   {
     "id": "talisman-of-the-enigmatic-land",
@@ -7589,7 +7604,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 513
+    "sortOrder": 514
   },
   {
     "id": "radiant-antler",
@@ -7601,7 +7616,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 514
+    "sortOrder": 515
   },
   {
     "id": "secret-source-airflow-accumulator",
@@ -7613,7 +7628,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 515
+    "sortOrder": 516
   },
   {
     "id": "cyclic-military-kuuvahki-core",
@@ -7625,7 +7640,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 516
+    "sortOrder": 517
   },
   {
     "id": "sparkless-statue-core",
@@ -7637,7 +7652,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 517
+    "sortOrder": 518
   },
   {
     "id": "lightbearing-scale-feather",
@@ -7649,7 +7664,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 518
+    "sortOrder": 519
   },
   {
     "id": "gold-inscribed-secret-source-core",
@@ -7661,7 +7676,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 519
+    "sortOrder": 520
   },
   {
     "id": "remnant-of-the-dreadwing",
@@ -7673,6 +7688,6 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 520
+    "sortOrder": 521
   }
 ];
