@@ -5,6 +5,10 @@ import {
   buildMaterialViews,
   evaluateGoal,
 } from "@/lib/crafting";
+import {
+  getCookingData,
+  type CookingNeededIngredient,
+} from "@/lib/cooking-data";
 import type {
   DashboardData,
   GoalMaterialView,
@@ -26,7 +30,12 @@ export async function getInventoryDashboardData(
   userId?: string | null,
 ): Promise<DashboardData> {
   const { goalViews, materialNodes } = await getDashboardSourceData(userId);
+  const cookingData = await getCookingData(userId);
   const activeGoals = goalViews.filter((goal) => !goal.completed);
+  const cookingGoal = buildCookingShoppingGoal(cookingData.neededIngredients);
+  const shoppingGoals = cookingGoal
+    ? [...activeGoals, cookingGoal]
+    : activeGoals;
   const completedMaterialsRaw = goalViews.flatMap((goal) =>
     goal.materials.filter((item) => item.complete),
   );
@@ -52,8 +61,11 @@ export async function getInventoryDashboardData(
       craftableMaterials: 0,
     },
     materials: [],
-    goals: goalViews,
-    materialsStillNeeded: aggregateNeededMaterials(activeGoals, materialNodes),
+    goals: cookingGoal ? [...goalViews, cookingGoal] : goalViews,
+    materialsStillNeeded: aggregateNeededMaterials(
+      shoppingGoals,
+      materialNodes,
+    ),
     completedMaterials: Object.values(aggregatedCompleted).sort(
       (left, right) => right.required - left.required,
     ),
@@ -161,4 +173,52 @@ function buildMaterialNodes(
     parentMaterialId: material.parentMaterialId,
     quantity: quantityByMaterialId.get(material.id) ?? 0,
   }));
+}
+
+function buildCookingShoppingGoal(
+  ingredients: CookingNeededIngredient[],
+): GoalView | null {
+  const neededIngredients = ingredients.filter((ingredient) => {
+    return ingredient.remaining > 0;
+  });
+
+  if (neededIngredients.length === 0) {
+    return null;
+  }
+
+  const materials: GoalMaterialView[] = neededIngredients.map((ingredient) => ({
+    id: `recipes:${ingredient.materialId}`,
+    materialId: ingredient.materialId,
+    materialName: ingredient.name,
+    materialImage: ingredient.image,
+    category: "Cooking Ingredient",
+    rarity: ingredient.rarity,
+    required: ingredient.required,
+    allocated: ingredient.owned,
+    totalCraftable: ingredient.owned,
+    remaining: ingredient.remaining,
+    ownedNeeded: ingredient.owned,
+    complete: false,
+  }));
+
+  const totalRequired = materials.reduce((sum, item) => sum + item.required, 0);
+  const totalAllocated = materials.reduce(
+    (sum, item) => sum + item.allocated,
+    0,
+  );
+
+  return {
+    id: "recipes",
+    name: "Recipe Ingredients",
+    description: "Ingredients still needed for recipe auto cooking.",
+    progressPercent:
+      totalRequired === 0
+        ? 0
+        : Math.round((totalAllocated / totalRequired) * 100),
+    totalRequired,
+    totalAllocated,
+    completed: false,
+    category: "Recipes",
+    materials,
+  };
 }
