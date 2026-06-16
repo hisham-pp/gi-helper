@@ -11810,6 +11810,195 @@ export const characters: SeedCharacter[] = [
     ]
   },
   {
+    "id": "lohen",
+    "name": "Lohen",
+    "image": "/images/characters/lohen/icon-big",
+    "rarity": 5,
+    "element": "Cryo",
+    "weaponType": "Polearm",
+    "region": "Mondstadt",
+    "details": {
+      "title": "Sharpened Arrowhead",
+      "gender": "Male",
+      "affiliation": "Knights of Favonius",
+      "specialDish": "Boredom-Busting Bubblegum",
+      "release": "2026-06-09",
+      "constellation": "Lepus Miles",
+      "birthday": "0000-04-03",
+      "description": "Vice Captain of the Knights of Favonius' Fifth Company. Lohen loves and lives for battling, always raring to go against tough opponents that put his fighting skills to the test.",
+      "skillTalents": [
+        {
+          "name": "Spear of Favonius - Broken Oath",
+          "unlock": "Normal Attack",
+          "description": "Performs up to 5 consecutive spear strikes. Charged Attack consumes stamina to lunge forward, dealing damage to opponents along the way. Plunging Attack strikes the ground from mid-air, dealing AoE DMG upon impact.",
+          "level": null,
+          "type": "NORMAL_ATTACK"
+        },
+        {
+          "name": "Unforeseen Strike",
+          "unlock": "Elemental Skill",
+          "description": "Lohen enters the Masterstroke mode. In this state, his Normal, Charged, and Plunging Attacks deal Cryo DMG that cannot be overridden by other elemental infusions. Hitting enemies with Normal or Charged Attacks grants Joy, which can be consumed to unleash Etched Into Bone and Soul.",
+          "level": null,
+          "type": "ELEMENTAL_SKILL"
+        },
+        {
+          "name": "Manifest Judgment",
+          "unlock": "Elemental Burst",
+          "description": "Lohen consumes all Will to Win stacks to deal multiple instances of Cryo DMG. The DMG of this Elemental Burst increases based on the amount of Will to Win consumed.",
+          "level": null,
+          "type": "ELEMENTAL_BURST"
+        }
+      ],
+      "passiveTalents": [
+        {
+          "name": "Moratorium on Questioning",
+          "unlock": "1st Ascension Passive",
+          "description": "Enhances Lohen's Masterstroke combat flow after using Unforeseen Strike.",
+          "level": 1,
+          "type": null
+        },
+        {
+          "name": "Flippant Masterpiece",
+          "unlock": "4th Ascension Passive",
+          "description": "Improves the damage potential of Lohen's special Elemental Skill effects.",
+          "level": 4,
+          "type": null
+        },
+        {
+          "name": "Unhealing Thorn",
+          "unlock": "Utility Passive",
+          "description": "Provides an exploration utility effect outside combat.",
+          "level": null,
+          "type": null
+        },
+        {
+          "name": "When the Mood Strikes",
+          "unlock": "Utility Passive",
+          "description": "Provides an additional utility effect tied to Lohen's adventuring style.",
+          "level": null,
+          "type": null
+        }
+      ],
+      "constellations": [
+        {
+          "name": "O Breezes, That So Oft Bear Sorrowful Lament",
+          "unlock": "Constellation Lv. 1",
+          "description": "Enhances Lohen's Masterstroke mode.",
+          "level": 1,
+          "type": null
+        },
+        {
+          "name": "In Flight, I Strike Whatever Flies",
+          "unlock": "Constellation Lv. 2",
+          "description": "Improves Lohen's combat damage during his enhanced state.",
+          "level": 2,
+          "type": null
+        },
+        {
+          "name": "Only the Spear That Wounds Can Heal",
+          "unlock": "Constellation Lv. 3",
+          "description": "Increases the Level of Unforeseen Strike by 3. Maximum upgrade level is 15.",
+          "level": 3,
+          "type": null
+        },
+        {
+          "name": "Radiant Love, Laughing Death",
+          "unlock": "Constellation Lv. 4",
+          "description": "Adds a further enhancement to Lohen's Masterstroke interactions.",
+          "level": 4,
+          "type": null
+        },
+        {
+          "name": "To Drown, to Sink, Unconscious - Supreme Joy",
+          "unlock": "Constellation Lv. 5",
+          "description": "Increases the Level of Manifest Judgment by 3. Maximum upgrade level is 15.",
+          "level": 5,
+          "type": null
+        },
+        {
+          "name": "Never Ask, Nor Trouble You to Know",
+          "unlock": "Constellation Lv. 6",
+          "description": "Further improves Lohen's Will to Win and finishing damage.",
+          "level": 6,
+          "type": null
+        }
+      ],
+      "outfits": []
+    },
+    "assets": [
+      {
+        "key": "card",
+        "label": "Card",
+        "path": "/images/characters/lohen/card"
+      },
+      {
+        "key": "portrait",
+        "label": "Portrait",
+        "path": "/images/characters/lohen/portrait"
+      },
+      {
+        "key": "icon-big",
+        "label": "Icon",
+        "path": "/images/characters/lohen/icon-big"
+      },
+      {
+        "key": "icon-side",
+        "label": "Side Icon",
+        "path": "/images/characters/lohen/icon-side"
+      },
+      {
+        "key": "gacha-card",
+        "label": "Gacha Card",
+        "path": "/images/characters/lohen/gacha-card"
+      },
+      {
+        "key": "gacha-splash",
+        "label": "Gacha Splash",
+        "path": "/images/characters/lohen/gacha-splash"
+      },
+      {
+        "key": "namecard-background",
+        "label": "Namecard",
+        "path": "/images/characters/lohen/namecard-background"
+      },
+      {
+        "key": "constellation-shape",
+        "label": "Constellation Shape",
+        "path": "/images/characters/lohen/constellation-shape"
+      },
+      {
+        "key": "talent-na",
+        "label": "Normal Attack",
+        "path": "/images/characters/lohen/talent-na"
+      },
+      {
+        "key": "talent-skill",
+        "label": "Skill",
+        "path": "/images/characters/lohen/talent-skill"
+      },
+      {
+        "key": "talent-burst",
+        "label": "Burst",
+        "path": "/images/characters/lohen/talent-burst"
+      },
+      {
+        "key": "talent-passive-0",
+        "label": "Passive 1",
+        "path": "/images/characters/lohen/talent-passive-0"
+      },
+      {
+        "key": "talent-passive-1",
+        "label": "Passive 2",
+        "path": "/images/characters/lohen/talent-passive-1"
+      },
+      {
+        "key": "talent-passive-2",
+        "label": "Passive 3",
+        "path": "/images/characters/lohen/talent-passive-2"
+      }
+    ]
+  },
+  {
     "id": "lynette",
     "name": "Lynette",
     "image": "/images/characters/lynette/icon-big",
@@ -45325,6 +45514,375 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
       },
       {
         "materialId": "dvalin's-claw",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "lohen",
+    "name": "Ascension 1 (Lv. 20 -> 40)",
+    "description": "First ascension materials for Lohen",
+    "category": "ascension",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "shivada-jade-sliver",
+        "required": 1
+      },
+      {
+        "materialId": "etherwing-moth",
+        "required": 3
+      },
+      {
+        "materialId": "firm-arrowhead",
+        "required": 3
+      }
+    ]
+  },
+  {
+    "characterId": "lohen",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
+    "description": "Second ascension materials for Lohen",
+    "category": "ascension",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "prismatic-severed-tail",
+        "required": 2
+      },
+      {
+        "materialId": "shivada-jade-fragment",
+        "required": 3
+      },
+      {
+        "materialId": "etherwing-moth",
+        "required": 10
+      },
+      {
+        "materialId": "firm-arrowhead",
+        "required": 15
+      }
+    ]
+  },
+  {
+    "characterId": "lohen",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
+    "description": "Third ascension materials for Lohen",
+    "category": "ascension",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "prismatic-severed-tail",
+        "required": 4
+      },
+      {
+        "materialId": "shivada-jade-fragment",
+        "required": 6
+      },
+      {
+        "materialId": "etherwing-moth",
+        "required": 20
+      },
+      {
+        "materialId": "sharp-arrowhead",
+        "required": 12
+      }
+    ]
+  },
+  {
+    "characterId": "lohen",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
+    "description": "Fourth ascension materials for Lohen",
+    "category": "ascension",
+    "sortOrder": 4,
+    "materials": [
+      {
+        "materialId": "prismatic-severed-tail",
+        "required": 8
+      },
+      {
+        "materialId": "shivada-jade-chunk",
+        "required": 3
+      },
+      {
+        "materialId": "etherwing-moth",
+        "required": 30
+      },
+      {
+        "materialId": "sharp-arrowhead",
+        "required": 18
+      }
+    ]
+  },
+  {
+    "characterId": "lohen",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
+    "description": "Fifth ascension materials for Lohen",
+    "category": "ascension",
+    "sortOrder": 5,
+    "materials": [
+      {
+        "materialId": "prismatic-severed-tail",
+        "required": 12
+      },
+      {
+        "materialId": "shivada-jade-chunk",
+        "required": 6
+      },
+      {
+        "materialId": "etherwing-moth",
+        "required": 45
+      },
+      {
+        "materialId": "weathered-arrowhead",
+        "required": 12
+      }
+    ]
+  },
+  {
+    "characterId": "lohen",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
+    "description": "Sixth ascension materials for Lohen",
+    "category": "ascension",
+    "sortOrder": 6,
+    "materials": [
+      {
+        "materialId": "prismatic-severed-tail",
+        "required": 20
+      },
+      {
+        "materialId": "shivada-jade-gemstone",
+        "required": 6
+      },
+      {
+        "materialId": "etherwing-moth",
+        "required": 60
+      },
+      {
+        "materialId": "weathered-arrowhead",
+        "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "lohen",
+    "name": "Talent Level 1 -> 2",
+    "description": "Materials to level a single talent from 1 to 2 for Lohen",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-resistance",
+        "required": 3
+      },
+      {
+        "materialId": "firm-arrowhead",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "lohen",
+    "name": "Talent Level 2 -> 3",
+    "description": "Materials to level a single talent from 2 to 3 for Lohen",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-resistance",
+        "required": 2
+      },
+      {
+        "materialId": "sharp-arrowhead",
+        "required": 3
+      }
+    ]
+  },
+  {
+    "characterId": "lohen",
+    "name": "Talent Level 3 -> 4",
+    "description": "Materials to level a single talent from 3 to 4 for Lohen",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-resistance",
+        "required": 4
+      },
+      {
+        "materialId": "sharp-arrowhead",
+        "required": 4
+      }
+    ]
+  },
+  {
+    "characterId": "lohen",
+    "name": "Talent Level 4 -> 5",
+    "description": "Materials to level a single talent from 4 to 5 for Lohen",
+    "category": "talent",
+    "sortOrder": 4,
+    "materials": [
+      {
+        "materialId": "guide-to-resistance",
+        "required": 6
+      },
+      {
+        "materialId": "sharp-arrowhead",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "lohen",
+    "name": "Talent Level 5 -> 6",
+    "description": "Materials to level a single talent from 5 to 6 for Lohen",
+    "category": "talent",
+    "sortOrder": 5,
+    "materials": [
+      {
+        "materialId": "guide-to-resistance",
+        "required": 9
+      },
+      {
+        "materialId": "sharp-arrowhead",
+        "required": 9
+      }
+    ]
+  },
+  {
+    "characterId": "lohen",
+    "name": "Talent Level 6 -> 7",
+    "description": "Materials to level a single talent from 6 to 7 for Lohen",
+    "category": "talent",
+    "sortOrder": 6,
+    "materials": [
+      {
+        "materialId": "philosophies-of-resistance",
+        "required": 4
+      },
+      {
+        "materialId": "weathered-arrowhead",
+        "required": 4
+      },
+      {
+        "materialId": "ascended-sample-knight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "lohen",
+    "name": "Talent Level 7 -> 8",
+    "description": "Materials to level a single talent from 7 to 8 for Lohen",
+    "category": "talent",
+    "sortOrder": 7,
+    "materials": [
+      {
+        "materialId": "philosophies-of-resistance",
+        "required": 6
+      },
+      {
+        "materialId": "weathered-arrowhead",
+        "required": 6
+      },
+      {
+        "materialId": "ascended-sample-knight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "lohen",
+    "name": "Talent Level 8 -> 9",
+    "description": "Materials to level a single talent from 8 to 9 for Lohen",
+    "category": "talent",
+    "sortOrder": 8,
+    "materials": [
+      {
+        "materialId": "philosophies-of-resistance",
+        "required": 12
+      },
+      {
+        "materialId": "weathered-arrowhead",
+        "required": 9
+      },
+      {
+        "materialId": "ascended-sample-knight",
+        "required": 2
+      }
+    ]
+  },
+  {
+    "characterId": "lohen",
+    "name": "Talent Level 9 -> 10",
+    "description": "Materials to level a single talent from 9 to 10 for Lohen",
+    "category": "talent",
+    "sortOrder": 9,
+    "materials": [
+      {
+        "materialId": "philosophies-of-resistance",
+        "required": 16
+      },
+      {
+        "materialId": "weathered-arrowhead",
+        "required": 12
+      },
+      {
+        "materialId": "ascended-sample-knight",
+        "required": 2
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "lohen",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Lohen",
+    "category": "talent",
+    "sortOrder": 10,
+    "materials": [
+      {
+        "materialId": "teachings-of-resistance",
+        "required": 3
+      },
+      {
+        "materialId": "guide-to-resistance",
+        "required": 21
+      },
+      {
+        "materialId": "firm-arrowhead",
+        "required": 6
+      },
+      {
+        "materialId": "sharp-arrowhead",
+        "required": 22
+      }
+    ]
+  },
+  {
+    "characterId": "lohen",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Lohen",
+    "category": "talent",
+    "sortOrder": 11,
+    "materials": [
+      {
+        "materialId": "philosophies-of-resistance",
+        "required": 38
+      },
+      {
+        "materialId": "weathered-arrowhead",
+        "required": 31
+      },
+      {
+        "materialId": "ascended-sample-knight",
         "required": 6
       },
       {
