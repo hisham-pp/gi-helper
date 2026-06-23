@@ -19,6 +19,8 @@
     "seed:sync:materials": "tsx scripts/sync-material-seed.ts",
     "seed:sync:characters": "tsx scripts/sync-character-seed.ts",
     "seed:sync:character-goals": "tsx scripts/sync-character-goal-templates.ts",
+    "seed:sync:weapons": "tsx scripts/sync-weapon-seed.ts",
+    "seed:sync:weapon-goals": "tsx scripts/sync-weapon-goal-templates.ts",
     "prisma:generate": "prisma generate",
     "postinstall": "prisma generate"
   },

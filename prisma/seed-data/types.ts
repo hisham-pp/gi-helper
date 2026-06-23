@@ -31,7 +31,7 @@ export type SeedWeapon = {
   name: string;
   image: string;
   rarity: number;
-  type: string;
+  weaponType: string;
 };
 
 export type SeedWeaponGoalTemplate = {
