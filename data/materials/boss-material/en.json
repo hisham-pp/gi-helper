@@ -178,7 +178,7 @@
   "plume-of-the-fallen-watcher": {
     "name": "Plume of the Fallen Watcher",
     "source": "Watcher: Fallen Vigil",
-    "characters": ["linnea"]
+    "characters": ["linnea", "sandrone"]
   }
 
 }

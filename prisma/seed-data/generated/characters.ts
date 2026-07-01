@@ -15725,6 +15725,30 @@ export const characters: SeedCharacter[] = [
     ]
   },
   {
+    "id": "sandrone",
+    "name": "Sandrone",
+    "image": "/images/characters/sandrone/icon-big",
+    "rarity": 5,
+    "element": "Unknown",
+    "weaponType": "Unknown",
+    "region": "Snezhnaya",
+    "details": {
+      "title": "Marionette",
+      "gender": "Female",
+      "affiliation": "Fatui Harbingers",
+      "specialDish": null,
+      "release": null,
+      "constellation": null,
+      "birthday": "0000-00-00",
+      "description": "Sandrone, also known by her codename Marionette, is one of the Eleven Fatui Harbingers.",
+      "skillTalents": [],
+      "passiveTalents": [],
+      "constellations": [],
+      "outfits": []
+    },
+    "assets": []
+  },
+  {
     "id": "sara",
     "name": "Kujou Sara",
     "image": "/images/characters/sara/icon-big",

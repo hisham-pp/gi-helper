@@ -8666,5 +8666,81 @@
         "quantity": 1
       }
     ]
+  },
+  "hearthfires-trail": {
+    "name": "Hearthfire's Trail",
+    "rarity": 2,
+    "type": "Recovery Dish",
+    "effect": "Restores 26% of Max HP to the selected character and regenerates 570 HP every 5s for 30s.",
+    "hasRecipe": false,
+    "description": "Arlecchino's specialty. The vivid red sauce traces a warm path across the dish, carrying a flavor as direct and unforgettable as its maker.",
+    "character": "Arlecchino",
+    "baseDish": "Flaming Red Bolognese",
+    "recipe": [
+      {
+        "item": "Flour",
+        "quantity": 2
+      },
+      {
+        "item": "Raw Meat",
+        "quantity": 2
+      },
+      {
+        "item": "Tomato",
+        "quantity": 1
+      }
+    ]
+  },
+  "fashion-show": {
+    "name": "Fashion Show",
+    "rarity": 3,
+    "type": "Recovery Dish",
+    "effect": "Restores 34% of Max HP to the selected character. Regenerates 980 HP every 5s for the next 30s.",
+    "hasRecipe": false,
+    "description": "Chiori's specialty. A familiar fish-shaped snack has been dressed with careful detail, turning a simple sweet into something crisp, elegant, and unmistakably stylish.",
+    "character": "Chiori",
+    "baseDish": "Taiyaki",
+    "recipe": [
+      {
+        "item": "Sunsettia",
+        "quantity": 3
+      },
+      {
+        "item": "Milk",
+        "quantity": 3
+      },
+      {
+        "item": "Flour",
+        "quantity": 2
+      },
+      {
+        "item": "Sugar",
+        "quantity": 2
+      }
+    ]
+  },
+  "boredom-busting-bubblegum": {
+    "name": "Boredom-Busting Bubblegum",
+    "rarity": 3,
+    "type": "Recovery Dish",
+    "effect": "Revives the selected character. Restores 15% of Max HP, then restores an additional 550 HP.",
+    "hasRecipe": false,
+    "description": "Lohen's specialty. A playful twist on mint bubblegum, made to snap attention back into the room with a bright, chewy burst of sweetness.",
+    "character": "Lohen",
+    "baseDish": "Mint Bubblegum",
+    "recipe": [
+      {
+        "item": "Mint",
+        "quantity": 2
+      },
+      {
+        "item": "Valberry",
+        "quantity": 2
+      },
+      {
+        "item": "Sugar",
+        "quantity": 1
+      }
+    ]
   }
 }
