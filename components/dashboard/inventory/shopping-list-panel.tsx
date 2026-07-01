@@ -5,6 +5,7 @@ import { Sparkles } from "lucide-react";
 import { EmptyState } from "@/components/dashboard/common/empty-state";
 import { NeedCard } from "@/components/dashboard/inventory/need-card";
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { Select } from "@/components/core/app-select";
 import AppTextField from "@/components/core/app-textfield";
 import type { GoalMaterialView } from "@/lib/types";
@@ -22,6 +23,8 @@ export function ShoppingListPanel({
   setGoalTypeFilter,
   setMaterialTypeFilter,
   setSearch,
+  showCompletedMaterials,
+  setShowCompletedMaterials,
 }: {
   characters: string[];
   characterFilter: string;
@@ -35,6 +38,8 @@ export function ShoppingListPanel({
   setGoalTypeFilter: (goalType: string) => void;
   setMaterialTypeFilter: (materialType: string) => void;
   setSearch: (search: string) => void;
+  showCompletedMaterials: boolean;
+  setShowCompletedMaterials: (show: boolean) => void;
 }) {
   return (
     <Card className="flex flex-col overflow-hidden" variant="outlined">
@@ -46,6 +51,13 @@ export function ShoppingListPanel({
               Aggregated material requirements for active goals and recipes.
             </p>
           </div>
+          <Button
+            variant={showCompletedMaterials ? "filled" : "outlined"}
+            onClick={() => setShowCompletedMaterials(!showCompletedMaterials)}
+            className="h-10 px-4"
+          >
+            {showCompletedMaterials ? "Hide Completed" : "Show Completed"}
+          </Button>
           <div className="grid gap-3 md:grid-cols-2 xl:w-[60rem] xl:grid-cols-[minmax(14rem,1.3fr)_repeat(3,minmax(10rem,1fr))]">
             <AppTextField
               label="Search"
