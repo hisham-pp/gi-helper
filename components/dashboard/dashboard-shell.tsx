@@ -93,6 +93,7 @@ export function DashboardShell({
   const [shoppingGoalTypeFilter, setShoppingGoalTypeFilter] = useState("All");
   const [shoppingMaterialTypeFilter, setShoppingMaterialTypeFilter] =
     useState("All");
+  const [showCompletedMaterials, setShowCompletedMaterials] = useState(false);
   const [inventoryDraft, setInventoryDraft] = useState<InventoryDraft>(
     buildInventoryDraft(initialData),
   );
@@ -326,7 +327,7 @@ export function DashboardShell({
     const searchLower = shoppingSearch.trim().toLowerCase();
 
     const goals = data.goals.filter((goal) => {
-      if (goal.completed) {
+      if (!showCompletedMaterials && goal.completed) {
         return false;
       }
       if (
@@ -364,6 +365,7 @@ export function DashboardShell({
     shoppingGoalTypeFilter,
     shoppingMaterialTypeFilter,
     shoppingSearch,
+    showCompletedMaterials,
   ]);
 
   const totalShoppingRemaining = useMemo(
@@ -647,6 +649,8 @@ export function DashboardShell({
           setInventoryDraft={setInventoryDraft}
           setSearch={setSearch}
           onSaveMaterial={handleInventorySave}
+          showCompletedMaterials={showCompletedMaterials}
+          setShowCompletedMaterials={setShowCompletedMaterials}
         />
       ) : null}
 

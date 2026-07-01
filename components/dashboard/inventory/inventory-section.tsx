@@ -34,6 +34,8 @@ export function InventorySection({
   setInventoryDraft,
   setSearch,
   onSaveMaterial,
+  showCompletedMaterials,
+  setShowCompletedMaterials,
 }: {
   activeTab: "needed" | "edit";
   categories: string[];
@@ -59,6 +61,8 @@ export function InventorySection({
   setInventoryDraft: InventoryDraftSetter;
   setSearch: (search: string) => void;
   onSaveMaterial: (materialId: string) => void;
+  showCompletedMaterials: boolean;
+  setShowCompletedMaterials: (show: boolean) => void;
 }) {
   return (
     <section className="space-y-6" aria-labelledby="inventory-section-title">
@@ -108,6 +112,8 @@ export function InventorySection({
           setGoalTypeFilter={setShoppingGoalTypeFilter}
           setMaterialTypeFilter={setShoppingMaterialTypeFilter}
           setSearch={setShoppingSearch}
+          showCompletedMaterials={showCompletedMaterials}
+          setShowCompletedMaterials={setShowCompletedMaterials}
         />
       ) : (
         <ManageInventoryPanel

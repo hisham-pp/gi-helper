@@ -1,5 +1,8 @@
 "use client";
 
+import Link from "next/link";
+import { ExternalLink } from "lucide-react";
+
 import { CachedImage } from "@/components/ui/cached-image";
 import { Card } from "@/components/ui/card";
 import { rarityBorderMap, rarityColorMap } from "@/lib/constants";
@@ -30,9 +33,18 @@ export function NeedCard({ item }: { item: GoalMaterialView }) {
         />
       </div>
       <div className="min-w-0 flex-1">
-        <h3 className="text-on-surface truncate text-sm font-bold">
-          {item.materialName}
-        </h3>
+        <div className="flex items-center justify-between gap-2">
+          <h3 className="text-on-surface truncate text-sm font-bold">
+            {item.materialName}
+          </h3>
+          <Link
+            href={`/materials/${item.materialId}`}
+            className="inline-flex h-7 w-7 items-center justify-center rounded-full text-on-surface-variant transition-all hover:bg-primary/10 hover:text-primary"
+            aria-label={`View details for ${item.materialName}`}
+          >
+            <ExternalLink className="h-4 w-4" />
+          </Link>
+        </div>
         <p className="mt-0.5 text-lg font-black text-primary">
           <span className="sr-only">Remaining: </span>
           {formatNumber(item.remaining)}
