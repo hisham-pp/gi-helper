@@ -80,6 +80,10 @@ export function slugifyCookingId(value: string) {
     .replace(/^-+|-+$/g, "");
 }
 
+export function getFoodById(foodId: string): RawFood | null {
+  return rawFood[foodId] ?? null;
+}
+
 export async function getCookingData(
   userId?: string | null,
 ): Promise<CookingData> {

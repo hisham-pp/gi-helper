@@ -2,6 +2,9 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   typedRoutes: true,
+  env: {
+    NEXT_PUBLIC_BUILD_ID: process.env.NEXT_BUILD_ID ?? `dev-${Date.now()}`,
+  },
   eslint: {
     ignoreDuringBuilds: true,
   },

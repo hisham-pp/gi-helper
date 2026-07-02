@@ -25,6 +25,7 @@ import { GoalsSection } from "@/components/dashboard/sections/goals-section";
 import { InventorySection } from "@/components/dashboard/inventory/inventory-section";
 import { MaterialsSection } from "@/components/dashboard/sections/materials-section";
 import { Button } from "@/components/ui/button";
+import { useStaticMaterials } from "@/lib/cached-data";
 import {
   aggregateNeededMaterials,
   buildDashboardData,
@@ -83,6 +84,7 @@ export function DashboardShell({
       ? tabFromUrl
       : "materials";
 
+  const { data: staticMaterialsData, updateItem: updateMaterialItem } = useStaticMaterials();
   const [data, setData] = useState(initialData);
   const [activeTab, setActiveTab] = useState<DashboardTab>(initialTab);
   const [inventoryTab, setInventoryTab] = useState<"needed" | "edit">("needed");
@@ -438,6 +440,14 @@ export function DashboardShell({
         return;
       }
 
+      // Update cached materials incrementally with new quantity
+      if (staticMaterialsData?.materials && updateMaterialItem) {
+        const material = staticMaterialsData.materials.find(m => m.id === materialId);
+        if (material) {
+          updateMaterialItem(materialId, { ...material });
+        }
+      }
+
       void refreshInventoryMaterials();
       toast.success("Inventory updated.");
     });
@@ -514,6 +524,23 @@ export function DashboardShell({
         if (!result.success || !result.data) {
           toast.error(result.error ?? "Unable to save material.");
           return;
+        }
+
+        // Update cached materials incrementally
+        if (staticMaterialsData?.materials && updateMaterialItem) {
+          const updatedMaterial = {
+            id: values.id,
+            name: values.name,
+            image: `/images/materials/${values.iconName}`,
+            rarity: values.rarity,
+            category: values.category,
+            description: values.description,
+            combinable: values.combinable,
+            combineRatio: values.combineRatio,
+            parentMaterialId: values.parentMaterialId,
+            details: {},
+          };
+          updateMaterialItem(values.id, updatedMaterial);
         }
 
         syncDashboard(result.data);

@@ -1,5 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
-import { fetchWithCache, clearCacheEntry } from "./cache-utils";
+import {
+  fetchWithCache,
+  clearCacheEntry,
+  updateSingleCachedItem,
+} from "./cache-utils";
 
 type UseCachedDataOptions<T> = {
   url: string;
@@ -15,6 +19,18 @@ type UseCachedDataResult<T> = {
   error: Error | null;
   refresh: () => Promise<void>;
   clearCache: () => void;
+  /**
+   * Incrementally update a single item inside the cached dataset.
+   * @param listKey - The property on the cached object that holds the array
+   *   (e.g. "characters", "weapons", "enemies", "materials")
+   * @param itemId - The ID of the item to update
+   * @param updatedItem - The replacement item
+   */
+  updateItem: <U extends { id: string }>(
+    listKey: string,
+    itemId: string,
+    updatedItem: U,
+  ) => void;
 };
 
 /**
@@ -51,7 +67,8 @@ export function useCachedData<T>({
         setIsLoading(false);
       }
     },
-    [url, cacheKey, enabled, onSuccess, onError],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [url, cacheKey, enabled],
   );
 
   const refresh = useCallback(async () => {
@@ -63,6 +80,24 @@ export function useCachedData<T>({
     setData(null);
   }, [cacheKey]);
 
+  const updateItem = useCallback(
+    <U extends { id: string }>(listKey: string, itemId: string, updatedItem: U) => {
+      if (!data) return;
+
+      // Patch localStorage
+      updateSingleCachedItem(cacheKey, listKey, itemId, updatedItem);
+
+      // Patch in-memory React state
+      const dataAsRecord = data as Record<string, unknown>;
+      const items = (dataAsRecord[listKey] ?? []) as U[];
+      const updatedItems = items.map((item) =>
+        item.id === itemId ? updatedItem : item,
+      );
+      setData({ ...dataAsRecord, [listKey]: updatedItems } as T);
+    },
+    [cacheKey, data],
+  );
+
   useEffect(() => {
     fetchData();
   }, [fetchData]);
@@ -73,5 +108,6 @@ export function useCachedData<T>({
     error,
     refresh,
     clearCache,
+    updateItem,
   };
 }
