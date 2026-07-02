@@ -22,12 +22,12 @@ import {
   collectibleMeta,
   mapDataSource,
   mapLayers,
-  teyvatCollectibles,
   totalImportedMarkers,
   type CollectibleKind,
   type MapCollectible,
   type MapLayerId,
 } from "@/lib/teyvat-map-data";
+import { useCollectiblesData } from "@/lib/cached-data";
 import { cn } from "@/lib/utils";
 
 const STORAGE_KEY = "gi-helper.teyvat-map.completed.v1";
@@ -78,6 +78,9 @@ export function InteractiveTeyvatMap({
 }: {
   isAuthenticated: boolean;
 }) {
+  const { data: collectiblesData } = useCollectiblesData();
+  const teyvatCollectibles = collectiblesData ?? [];
+
   const [activeLayer, setActiveLayer] = useState<MapLayerId>("teyvat");
   const [activeKinds, setActiveKinds] = useState<Set<CollectibleKind>>(
     () => new Set(collectibleMeta.map((item) => item.id)),
@@ -100,7 +103,7 @@ export function InteractiveTeyvatMap({
     () =>
       teyvatCollectibles.find((pin) => pin.id === selectedPinId) ??
       teyvatCollectibles[0],
-    [selectedPinId],
+    [selectedPinId, teyvatCollectibles],
   );
 
   const visiblePins = useMemo(() => {
@@ -118,7 +121,7 @@ export function InteractiveTeyvatMap({
 
       return matchesLayer && matchesKind && matchesQuery;
     });
-  }, [activeKinds, activeLayer, query]);
+  }, [activeKinds, activeLayer, query, teyvatCollectibles]);
 
   const completedVisible = visiblePins.filter((pin) =>
     completedPins.has(pin.id),

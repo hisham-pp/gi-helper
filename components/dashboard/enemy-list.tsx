@@ -9,13 +9,11 @@ import AppTextField from "@/components/core/app-textfield";
 import { Select } from "@/components/core/app-select";
 import { Card } from "@/components/ui/card";
 import { CachedImage } from "@/components/ui/cached-image";
-import type { EnemyCatalogItem } from "@/lib/enemy-data";
+import { useEnemiesData } from "@/lib/cached-data";
 
-type EnemyListProps = {
-  enemies: EnemyCatalogItem[];
-};
-
-export function EnemyList({ enemies }: EnemyListProps) {
+export function EnemyList() {
+  const { data, isLoading } = useEnemiesData();
+  const enemies = data?.enemies ?? [];
   const [search, setSearch] = useState("");
   const [materialFilter, setMaterialFilter] = useState("All");
   const [elementFilter, setElementFilter] = useState("All");
@@ -94,6 +92,14 @@ export function EnemyList({ enemies }: EnemyListProps) {
 
   return (
     <div className="space-y-6">
+      {isLoading ? (
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+          {Array.from({ length: 12 }).map((_, i) => (
+            <div key={i} className="h-36 animate-pulse rounded-2xl bg-surface-variant/20" />
+          ))}
+        </div>
+      ) : (
+        <>
       <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-[minmax(16rem,1fr)_13rem_13rem_13rem]">
         <AppTextField
           label="Search Enemies"
@@ -197,6 +203,8 @@ export function EnemyList({ enemies }: EnemyListProps) {
           </p>
         </div>
       ) : null}
+        </>
+      )}
     </div>
   );
 }

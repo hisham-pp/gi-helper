@@ -13,6 +13,7 @@ import {
   Menu,
   MoonStar,
   PackageSearch,
+  RefreshCw,
   Search,
   ShieldAlert,
   SunMedium,
@@ -50,6 +51,7 @@ import AppButton from "@/components/core/button";
 import AppIconButton from "@/components/core/icon-button";
 import NavigationButton from "@/components/core/navigation-button";
 import { ChatAssistantLoader } from "@/components/layout/chat-assistant-loader";
+import { clearAllCache } from "@/lib/cache-utils";
 
 const drawerWidth = 288;
 
@@ -285,6 +287,12 @@ export function AppShell({
     }
   }
 
+  function handleClearCache() {
+    clearAllCache();
+    toast.success("Cache cleared. Data will be refreshed on next load.");
+    window.location.reload();
+  }
+
   const drawer = (
     <DrawerContent>
       <Box
@@ -392,6 +400,11 @@ export function AppShell({
             }
             disabled={isImporting}
             onClick={() => importInputRef.current?.click()}
+          />
+          <NavigationButton
+            icon={<RefreshCw size={20} />}
+            label="Refresh Cache"
+            onClick={handleClearCache}
           />
         </List>
         {importProgress && (

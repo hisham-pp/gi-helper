@@ -8,6 +8,7 @@ import { toast } from "sonner";
 import { CharacterList } from "@/components/dashboard/character-list";
 import { Button } from "@/components/ui/button";
 import { CharactersPageLoading } from "@/components/ui/page-loading";
+import { useStaticCharacters } from "@/lib/cached-data";
 
 type CharacterWithTemplates = {
   id: string;
@@ -33,29 +34,30 @@ type ApiUser = {
 } | null;
 
 type CharactersPayload = {
-  characters: CharacterWithTemplates[];
+  ownedCharacterIds: string[];
   user: ApiUser;
 };
 
 export function CharactersClientPage() {
-  const [characters, setCharacters] = useState<CharacterWithTemplates[]>([]);
+  const { data: staticCharactersData, isLoading: isStaticLoading } = useStaticCharacters();
+  const [ownedCharacterIds, setOwnedCharacterIds] = useState<Set<string>>(new Set());
   const [user, setUser] = useState<ApiUser>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isApiLoading, setIsApiLoading] = useState(true);
   const [loadError, setLoadError] = useState<string | null>(null);
 
-  const loadCharacters = useCallback(async () => {
-    setIsLoading(true);
+  const loadApiData = useCallback(async () => {
+    setIsApiLoading(true);
 
     try {
       const response = await fetch("/api/characters", { cache: "no-store" });
 
       if (!response.ok) {
-        throw new Error("Unable to load characters.");
+        throw new Error("Unable to load user character data.");
       }
 
       const payload = (await response.json()) as CharactersPayload;
 
-      setCharacters(payload.characters);
+      setOwnedCharacterIds(new Set(payload.ownedCharacterIds));
       setUser(payload.user);
       setLoadError(null);
     } catch (error) {
@@ -63,13 +65,22 @@ export function CharactersClientPage() {
       setLoadError("Unable to load characters right now.");
       toast.error("Unable to load characters.");
     } finally {
-      setIsLoading(false);
+      setIsApiLoading(false);
     }
   }, []);
 
   useEffect(() => {
-    void loadCharacters();
-  }, [loadCharacters]);
+    void loadApiData();
+  }, [loadApiData]);
+
+  const characters = staticCharactersData?.characters
+    ? staticCharactersData.characters.map(character => ({
+        ...character,
+        isOwned: ownedCharacterIds.has(character.id)
+      }))
+    : [];
+
+  const isLoading = isStaticLoading || isApiLoading;
 
   return (
     <div className="space-y-8">

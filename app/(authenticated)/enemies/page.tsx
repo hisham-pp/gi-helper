@@ -2,10 +2,8 @@ import { ShieldAlert } from "lucide-react";
 import { Suspense } from "react";
 
 import { EnemyList } from "@/components/dashboard/enemy-list";
-import { getAllEnemies } from "@/lib/enemy-data";
 
 export default function EnemiesPage() {
-  const enemies = getAllEnemies();
 
   return (
     <div className="space-y-8">
@@ -33,7 +31,7 @@ export default function EnemiesPage() {
           <div className="h-96 animate-pulse rounded-2xl bg-surface-variant/20" />
         }
       >
-        <EnemyList enemies={enemies} />
+        <EnemyList />
       </Suspense>
     </div>
   );
