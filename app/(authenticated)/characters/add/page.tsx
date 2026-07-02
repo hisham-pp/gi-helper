@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import AppTextField from "@/components/core/app-textfield";
 import { Select } from "@/components/core/app-select";
 import { createCharacterAction } from "@/app/actions";
+import { useStaticCharacters } from "@/lib/cached-data";
 
 type CharacterFormValues = {
   id: string;
@@ -26,6 +27,7 @@ type CharacterFormValues = {
 export default function AddCharacterPage() {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
+  const { data: staticCharactersData, updateItem: updateCharacterItem } = useStaticCharacters();
   const {
     control,
     formState: { errors },
@@ -75,6 +77,25 @@ export default function AddCharacterPage() {
         });
         toast.error(result.error ?? "Unable to create character.");
         return;
+      }
+
+      // Update cached characters incrementally
+      if (staticCharactersData?.characters && updateCharacterItem) {
+        const newCharacter = {
+          id: values.id,
+          name: values.name,
+          rarity: values.rarity,
+          element: values.element,
+          weaponType: values.weaponType,
+          region: values.region,
+          image: `/images/characters/${values.iconName}`,
+          portrait: `/images/characters/${values.iconName}`,
+          description: "",
+          details: {},
+          assets: [],
+          templates: [],
+        };
+        updateCharacterItem(values.id, newCharacter);
       }
 
       toast.success("Character created.");

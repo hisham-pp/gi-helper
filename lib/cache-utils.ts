@@ -1,10 +1,33 @@
 const CACHE_PREFIX = "gi-helper-cache-";
 const CACHE_EXPIRY_MS = 24 * 60 * 60 * 1000; // 1 day in milliseconds
+const CACHE_VERSION_KEY = "gi-helper-cache-version";
 
 type CacheEntry<T> = {
   data: T;
   timestamp: number;
 };
+
+/**
+ * Initialize cache version check. Clears all cached data if the build version
+ * has changed since the last time the user visited. Call once at app startup.
+ */
+export function initCacheVersion(): void {
+  if (typeof window === "undefined") return;
+
+  try {
+    const buildId =
+      process.env.NEXT_PUBLIC_BUILD_ID ?? "dev";
+    const storedVersion = localStorage.getItem(CACHE_VERSION_KEY);
+
+    if (storedVersion !== buildId) {
+      // Build version changed — wipe all static data caches
+      clearAllCache();
+      localStorage.setItem(CACHE_VERSION_KEY, buildId);
+    }
+  } catch (error) {
+    console.error("Error initializing cache version:", error);
+  }
+}
 
 /**
  * Get cached data from localStorage if it exists and hasn't expired
@@ -66,7 +89,7 @@ export function clearCacheEntry(key: string): void {
 }
 
 /**
- * Clear all cached data for this app
+ * Clear all cached data for this app (excludes the version key)
  */
 export function clearAllCache(): void {
   if (typeof window === "undefined") return;
@@ -146,4 +169,45 @@ export async function fetchWithCache<T>(
   setCachedData(cacheKey, data);
 
   return data;
+}
+
+/**
+ * Update a single item inside a cached object's array property.
+ * @param cacheKey - The key of the cached object
+ * @param listKey - The property name inside the cached object that holds the array (e.g. "materials", "characters", "enemies")
+ * @param itemId - The ID of the item to update
+ * @param updatedItem - The updated item data
+ */
+export function updateSingleCachedItem<T extends { id: string }>(
+  cacheKey: string,
+  listKey: string,
+  itemId: string,
+  updatedItem: T,
+): void {
+  const cached = getCachedData<Record<string, T[]>>(cacheKey);
+  if (!cached) return;
+
+  const items: T[] = cached[listKey] ?? [];
+  const updatedItems = items.map((item) =>
+    item.id === itemId ? updatedItem : item,
+  );
+  setCachedData(cacheKey, { ...cached, [listKey]: updatedItems });
+}
+
+/**
+ * Add a new item to a cached object's array property.
+ * @param cacheKey - The key of the cached object
+ * @param listKey - The property name inside the cached object that holds the array
+ * @param newItem - The new item to prepend/append
+ */
+export function addSingleCachedItem<T extends { id: string }>(
+  cacheKey: string,
+  listKey: string,
+  newItem: T,
+): void {
+  const cached = getCachedData<Record<string, T[]>>(cacheKey);
+  if (!cached) return;
+
+  const items: T[] = cached[listKey] ?? [];
+  setCachedData(cacheKey, { ...cached, [listKey]: [...items, newItem] });
 }
