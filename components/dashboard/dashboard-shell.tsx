@@ -327,9 +327,6 @@ export function DashboardShell({
     const searchLower = shoppingSearch.trim().toLowerCase();
 
     const goals = data.goals.filter((goal) => {
-      if (!showCompletedMaterials && goal.completed) {
-        return false;
-      }
       if (
         shoppingCharacterFilter !== "All" &&
         goal.characterName !== shoppingCharacterFilter
@@ -351,11 +348,15 @@ export function DashboardShell({
         ? aggregateNeededMaterials(goals, data.materials, searchLower)
         : aggregateNeededGoalMaterials(goals, searchLower);
 
+    const filteredByCompletion = showCompletedMaterials
+      ? materialsStillNeeded
+      : materialsStillNeeded.filter((material) => !material.complete);
+
     if (shoppingMaterialTypeFilter === "All") {
-      return materialsStillNeeded;
+      return filteredByCompletion;
     }
 
-    return materialsStillNeeded.filter(
+    return filteredByCompletion.filter(
       (material) => material.category === shoppingMaterialTypeFilter,
     );
   }, [
