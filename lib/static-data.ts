@@ -1,4 +1,3 @@
-import cookingIngredientData from "@/data/materials/cooking-ingredients/en.json";
 import {
   characters as seedCharacters,
   characterGoalTemplates as seedCharacterGoalTemplates,
@@ -13,6 +12,10 @@ import type {
   SeedMaterial,
   SeedWeaponGoalTemplate,
 } from "@/prisma/seed-data";
+
+// For server-side rendering, we still use static imports
+// For client-side, use the cached hooks from lib/cached-data.ts
+import cookingIngredientData from "@/data/materials/cooking-ingredients/en.json";
 
 type RawIngredient = {
   name: string;

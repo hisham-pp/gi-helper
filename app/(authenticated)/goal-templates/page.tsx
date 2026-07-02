@@ -2,15 +2,11 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
 import { getCurrentUser } from "@/lib/auth";
-import { getAllCharacters, getAllWeapons } from "@/lib/static-data";
 import { Button } from "@/components/ui/button";
 import { GoalTemplates } from "@/components/dashboard/goal-templates";
 
 export default async function GoalTemplatesPage() {
   const user = await getCurrentUser();
-
-  const characters = getAllCharacters();
-  const weapons = getAllWeapons();
 
   return (
     <div className="space-y-8">
@@ -31,9 +27,7 @@ export default async function GoalTemplatesPage() {
       </div>
 
       <GoalTemplates
-        characters={characters}
         isAuthenticated={Boolean(user)}
-        weapons={weapons}
       />
     </div>
   );

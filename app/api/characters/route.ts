@@ -2,11 +2,9 @@ import { NextResponse } from "next/server";
 
 import { getCurrentUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { getAllCharacters } from "@/lib/static-data";
 
 export async function GET() {
   const user = await getCurrentUser();
-  const characters = getAllCharacters();
   const ownedCharacterIds = user
     ? await prisma.ownedCharacter.findMany({
         where: {
@@ -17,15 +15,9 @@ export async function GET() {
         },
       })
     : [];
-  const ownedCharacterIdSet = new Set(
-    ownedCharacterIds.map((item) => item.characterId),
-  );
 
   return NextResponse.json({
-    characters: characters.map((character) => ({
-      ...character,
-      isOwned: ownedCharacterIdSet.has(character.id),
-    })),
+    ownedCharacterIds: ownedCharacterIds.map((item) => item.characterId),
     user: user
       ? {
           username: user.username,

@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { CachedImage } from "@/components/ui/cached-image";
-import { Panel } from "@/components/ui/panel";
+import { useStaticCharacters, useStaticWeapons } from "@/lib/cached-data";
 
 type Character = {
   id: string;
@@ -46,15 +46,11 @@ type Weapon = {
 };
 
 type GoalTemplatesProps = {
-  characters: Character[];
   isAuthenticated?: boolean;
-  weapons: Weapon[];
 };
 
 export function GoalTemplates({
-  characters,
   isAuthenticated = true,
-  weapons,
 }: GoalTemplatesProps) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
@@ -62,6 +58,13 @@ export function GoalTemplates({
     "characters",
   );
   const [showLoginPrompt, setShowLoginPrompt] = useState(false);
+
+  const { data: charactersData, isLoading: charactersLoading } =
+    useStaticCharacters();
+  const { data: weaponsData, isLoading: weaponsLoading } = useStaticWeapons();
+
+  const characters = charactersData?.characters ?? [];
+  const weapons = weaponsData?.weapons ?? [];
 
   function handleCreateFromTemplate(
     type: "character" | "weapon",
@@ -119,8 +122,13 @@ export function GoalTemplates({
 
       {selectedTab === "characters" && (
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {characters.map((character) => (
-            <Card key={character.id} variant="outlined" className="p-6">
+          {charactersLoading ? (
+            <div className="col-span-full py-12 text-center text-on-surface-variant">
+              Loading characters...
+            </div>
+          ) : (
+            characters.map((character) => (
+              <Card key={character.id} variant="outlined" className="p-6">
               <div className="mb-4 flex items-center gap-4">
                 <div
                   className={cn(
@@ -179,14 +187,20 @@ export function GoalTemplates({
                   ))}
               </div>
             </Card>
-          ))}
+            ))
+          )}
         </div>
       )}
 
       {selectedTab === "weapons" && (
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {weapons.map((weapon) => (
-            <Card key={weapon.id} variant="outlined" className="p-6">
+          {weaponsLoading ? (
+            <div className="col-span-full py-12 text-center text-on-surface-variant">
+              Loading weapons...
+            </div>
+          ) : (
+            weapons.map((weapon) => (
+              <Card key={weapon.id} variant="outlined" className="p-6">
               <div className="mb-4 flex items-center gap-4">
                 <div
                   className={cn(
@@ -242,7 +256,8 @@ export function GoalTemplates({
                   ))}
               </div>
             </Card>
-          ))}
+            ))
+          )}
         </div>
       )}
       <LoginRequiredDialog
