@@ -2236,7 +2236,8 @@ export const seedMaterials: SeedMaterial[] = [
     "details": {
       "usedByCharacters": [
         "jahoda",
-        "skirk"
+        "skirk",
+        "lohen"
       ]
     },
     "combinable": false,
@@ -2307,7 +2308,8 @@ export const seedMaterials: SeedMaterial[] = [
     "description": "Madman's Restraint weekly boss talent material.",
     "details": {
       "usedByCharacters": [
-        "nicole"
+        "nicole",
+        "sandrone"
       ]
     },
     "combinable": false,
@@ -3022,7 +3024,8 @@ export const seedMaterials: SeedMaterial[] = [
     "details": {
       "source": "Watcher: Fallen Vigil",
       "usedByCharacters": [
-        "linnea"
+        "linnea",
+        "sandrone"
       ]
     },
     "combinable": false,

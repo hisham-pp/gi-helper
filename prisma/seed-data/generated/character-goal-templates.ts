@@ -31003,6 +31003,375 @@ export const characterGoalTemplates: SeedCharacterGoalTemplate[] = [
     ]
   },
   {
+    "characterId": "sandrone",
+    "name": "Ascension 1 (Lv. 20 -> 40)",
+    "description": "First ascension materials for Sandrone",
+    "category": "ascension",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "shivada-jade-sliver",
+        "required": 1
+      },
+      {
+        "materialId": "subdetection-unit",
+        "required": 3
+      },
+      {
+        "materialId": "broken-drive-shaft",
+        "required": 3
+      }
+    ]
+  },
+  {
+    "characterId": "sandrone",
+    "name": "Ascension 2 (Lv. 40 -> 50)",
+    "description": "Second ascension materials for Sandrone",
+    "category": "ascension",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "plume-of-the-fallen-watcher",
+        "required": 2
+      },
+      {
+        "materialId": "shivada-jade-fragment",
+        "required": 3
+      },
+      {
+        "materialId": "subdetection-unit",
+        "required": 10
+      },
+      {
+        "materialId": "broken-drive-shaft",
+        "required": 15
+      }
+    ]
+  },
+  {
+    "characterId": "sandrone",
+    "name": "Ascension 3 (Lv. 50 -> 60)",
+    "description": "Third ascension materials for Sandrone",
+    "category": "ascension",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "plume-of-the-fallen-watcher",
+        "required": 4
+      },
+      {
+        "materialId": "shivada-jade-fragment",
+        "required": 6
+      },
+      {
+        "materialId": "subdetection-unit",
+        "required": 20
+      },
+      {
+        "materialId": "reinforced-drive-shaft",
+        "required": 12
+      }
+    ]
+  },
+  {
+    "characterId": "sandrone",
+    "name": "Ascension 4 (Lv. 60 -> 70)",
+    "description": "Fourth ascension materials for Sandrone",
+    "category": "ascension",
+    "sortOrder": 4,
+    "materials": [
+      {
+        "materialId": "plume-of-the-fallen-watcher",
+        "required": 8
+      },
+      {
+        "materialId": "shivada-jade-chunk",
+        "required": 3
+      },
+      {
+        "materialId": "subdetection-unit",
+        "required": 30
+      },
+      {
+        "materialId": "reinforced-drive-shaft",
+        "required": 18
+      }
+    ]
+  },
+  {
+    "characterId": "sandrone",
+    "name": "Ascension 5 (Lv. 70 -> 80)",
+    "description": "Fifth ascension materials for Sandrone",
+    "category": "ascension",
+    "sortOrder": 5,
+    "materials": [
+      {
+        "materialId": "plume-of-the-fallen-watcher",
+        "required": 12
+      },
+      {
+        "materialId": "shivada-jade-chunk",
+        "required": 6
+      },
+      {
+        "materialId": "subdetection-unit",
+        "required": 45
+      },
+      {
+        "materialId": "precision-drive-shaft",
+        "required": 12
+      }
+    ]
+  },
+  {
+    "characterId": "sandrone",
+    "name": "Ascension 6 (Lv. 80 -> 90)",
+    "description": "Sixth ascension materials for Sandrone",
+    "category": "ascension",
+    "sortOrder": 6,
+    "materials": [
+      {
+        "materialId": "plume-of-the-fallen-watcher",
+        "required": 20
+      },
+      {
+        "materialId": "shivada-jade-gemstone",
+        "required": 6
+      },
+      {
+        "materialId": "subdetection-unit",
+        "required": 60
+      },
+      {
+        "materialId": "precision-drive-shaft",
+        "required": 24
+      }
+    ]
+  },
+  {
+    "characterId": "sandrone",
+    "name": "Talent Level 1 -> 2",
+    "description": "Materials to level a single talent from 1 to 2 for Sandrone",
+    "category": "talent",
+    "sortOrder": 1,
+    "materials": [
+      {
+        "materialId": "teachings-of-vagrancy",
+        "required": 3
+      },
+      {
+        "materialId": "broken-drive-shaft",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "sandrone",
+    "name": "Talent Level 2 -> 3",
+    "description": "Materials to level a single talent from 2 to 3 for Sandrone",
+    "category": "talent",
+    "sortOrder": 2,
+    "materials": [
+      {
+        "materialId": "guide-to-vagrancy",
+        "required": 2
+      },
+      {
+        "materialId": "reinforced-drive-shaft",
+        "required": 3
+      }
+    ]
+  },
+  {
+    "characterId": "sandrone",
+    "name": "Talent Level 3 -> 4",
+    "description": "Materials to level a single talent from 3 to 4 for Sandrone",
+    "category": "talent",
+    "sortOrder": 3,
+    "materials": [
+      {
+        "materialId": "guide-to-vagrancy",
+        "required": 4
+      },
+      {
+        "materialId": "reinforced-drive-shaft",
+        "required": 4
+      }
+    ]
+  },
+  {
+    "characterId": "sandrone",
+    "name": "Talent Level 4 -> 5",
+    "description": "Materials to level a single talent from 4 to 5 for Sandrone",
+    "category": "talent",
+    "sortOrder": 4,
+    "materials": [
+      {
+        "materialId": "guide-to-vagrancy",
+        "required": 6
+      },
+      {
+        "materialId": "reinforced-drive-shaft",
+        "required": 6
+      }
+    ]
+  },
+  {
+    "characterId": "sandrone",
+    "name": "Talent Level 5 -> 6",
+    "description": "Materials to level a single talent from 5 to 6 for Sandrone",
+    "category": "talent",
+    "sortOrder": 5,
+    "materials": [
+      {
+        "materialId": "guide-to-vagrancy",
+        "required": 9
+      },
+      {
+        "materialId": "reinforced-drive-shaft",
+        "required": 9
+      }
+    ]
+  },
+  {
+    "characterId": "sandrone",
+    "name": "Talent Level 6 -> 7",
+    "description": "Materials to level a single talent from 6 to 7 for Sandrone",
+    "category": "talent",
+    "sortOrder": 6,
+    "materials": [
+      {
+        "materialId": "philosophies-of-vagrancy",
+        "required": 4
+      },
+      {
+        "materialId": "precision-drive-shaft",
+        "required": 4
+      },
+      {
+        "materialId": "madman-s-restraint",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "sandrone",
+    "name": "Talent Level 7 -> 8",
+    "description": "Materials to level a single talent from 7 to 8 for Sandrone",
+    "category": "talent",
+    "sortOrder": 7,
+    "materials": [
+      {
+        "materialId": "philosophies-of-vagrancy",
+        "required": 6
+      },
+      {
+        "materialId": "precision-drive-shaft",
+        "required": 6
+      },
+      {
+        "materialId": "madman-s-restraint",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "sandrone",
+    "name": "Talent Level 8 -> 9",
+    "description": "Materials to level a single talent from 8 to 9 for Sandrone",
+    "category": "talent",
+    "sortOrder": 8,
+    "materials": [
+      {
+        "materialId": "philosophies-of-vagrancy",
+        "required": 12
+      },
+      {
+        "materialId": "precision-drive-shaft",
+        "required": 9
+      },
+      {
+        "materialId": "madman-s-restraint",
+        "required": 2
+      }
+    ]
+  },
+  {
+    "characterId": "sandrone",
+    "name": "Talent Level 9 -> 10",
+    "description": "Materials to level a single talent from 9 to 10 for Sandrone",
+    "category": "talent",
+    "sortOrder": 9,
+    "materials": [
+      {
+        "materialId": "philosophies-of-vagrancy",
+        "required": 16
+      },
+      {
+        "materialId": "precision-drive-shaft",
+        "required": 12
+      },
+      {
+        "materialId": "madman-s-restraint",
+        "required": 2
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
+    "characterId": "sandrone",
+    "name": "Talent Level 1 -> 6",
+    "description": "Materials to level a single talent from 1 to 6 for Sandrone",
+    "category": "talent",
+    "sortOrder": 10,
+    "materials": [
+      {
+        "materialId": "teachings-of-vagrancy",
+        "required": 3
+      },
+      {
+        "materialId": "guide-to-vagrancy",
+        "required": 21
+      },
+      {
+        "materialId": "broken-drive-shaft",
+        "required": 6
+      },
+      {
+        "materialId": "reinforced-drive-shaft",
+        "required": 22
+      }
+    ]
+  },
+  {
+    "characterId": "sandrone",
+    "name": "Talent Level 6 -> 10",
+    "description": "Materials to max a single talent from level 6 to 10 for Sandrone",
+    "category": "talent",
+    "sortOrder": 11,
+    "materials": [
+      {
+        "materialId": "philosophies-of-vagrancy",
+        "required": 38
+      },
+      {
+        "materialId": "precision-drive-shaft",
+        "required": 31
+      },
+      {
+        "materialId": "madman-s-restraint",
+        "required": 6
+      },
+      {
+        "materialId": "crown-of-insight",
+        "required": 1
+      }
+    ]
+  },
+  {
     "characterId": "sara",
     "name": "Ascension 1 (Lv. 20 -> 40)",
     "description": "First ascension materials for Kujou Sara",
