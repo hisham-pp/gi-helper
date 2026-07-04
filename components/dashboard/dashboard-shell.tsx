@@ -329,6 +329,9 @@ export function DashboardShell({
     const searchLower = shoppingSearch.trim().toLowerCase();
 
     const goals = data.goals.filter((goal) => {
+      if (goal.completed) {
+        return false;
+      }
       if (
         shoppingCharacterFilter !== "All" &&
         goal.characterName !== shoppingCharacterFilter
@@ -444,7 +447,7 @@ export function DashboardShell({
       if (staticMaterialsData?.materials && updateMaterialItem) {
         const material = staticMaterialsData.materials.find(m => m.id === materialId);
         if (material) {
-          updateMaterialItem(materialId, { ...material });
+          updateMaterialItem("materials", materialId, { ...material });
         }
       }
 
@@ -540,7 +543,7 @@ export function DashboardShell({
             parentMaterialId: values.parentMaterialId,
             details: {},
           };
-          updateMaterialItem(values.id, updatedMaterial);
+          updateMaterialItem("materials", values.id, updatedMaterial);
         }
 
         syncDashboard(result.data);
