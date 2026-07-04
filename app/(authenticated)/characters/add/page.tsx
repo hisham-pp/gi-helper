@@ -95,7 +95,7 @@ export default function AddCharacterPage() {
           assets: [],
           templates: [],
         };
-        updateCharacterItem(values.id, newCharacter);
+        updateCharacterItem("characters", values.id, newCharacter);
       }
 
       toast.success("Character created.");
