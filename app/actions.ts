@@ -653,6 +653,7 @@ export async function createGoalsFromTemplatesAction(
             templateType: "weapon",
             templateId: template.id,
             category: template.category,
+            weaponId: weapon.id,
           },
         });
 
