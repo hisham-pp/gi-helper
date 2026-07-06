@@ -108,6 +108,7 @@ export function DashboardShell({
   >("incomplete");
   const [goalSearch, setGoalSearch] = useState("");
   const [goalCharacterFilter, setGoalCharacterFilter] = useState("All");
+  const [goalWeaponFilter, setGoalWeaponFilter] = useState("All");
   const [goalCategoryFilter, setGoalCategoryFilter] = useState("All");
   const [isEditorOpen, setIsEditorOpen] = useState(false);
   const [editing, setEditing] = useState<MaterialView | null>(null);
@@ -287,6 +288,15 @@ export function DashboardShell({
     return ["All", ...Array.from(chars).sort()];
   }, [data.goals]);
 
+  const goalWeapons = useMemo(() => {
+    const weapons = new Set(
+      data.goals
+        .map((goal) => goal.weaponName)
+        .filter((name): name is string => Boolean(name)),
+    );
+    return ["All", ...Array.from(weapons).sort()];
+  }, [data.goals]);
+
   const goalCategories = useMemo(() => {
     const cats = new Set(
       data.goals
@@ -396,6 +406,12 @@ export function DashboardShell({
         return false;
       }
       if (
+        goalWeaponFilter !== "All" &&
+        goal.weaponName !== goalWeaponFilter
+      ) {
+        return false;
+      }
+      if (
         goalCategoryFilter !== "All" &&
         goal.category !== goalCategoryFilter
       ) {
@@ -416,6 +432,7 @@ export function DashboardShell({
     data.goals,
     goalCategoryFilter,
     goalCharacterFilter,
+    goalWeaponFilter,
     goalFilter,
     goalSearch,
   ]);
@@ -691,12 +708,15 @@ export function DashboardShell({
           categoryFilter={goalCategoryFilter}
           characterFilter={goalCharacterFilter}
           characters={goalCharacters}
+          weaponFilter={goalWeaponFilter}
+          weapons={goalWeapons}
           goals={filteredGoals}
           onGoalComplete={syncDashboard}
           search={goalSearch}
           statusFilter={goalFilter}
           setCategoryFilter={setGoalCategoryFilter}
           setCharacterFilter={setGoalCharacterFilter}
+          setWeaponFilter={setGoalWeaponFilter}
           setSearch={setGoalSearch}
           setStatusFilter={setGoalFilter}
         />

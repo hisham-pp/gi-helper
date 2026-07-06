@@ -23,6 +23,24 @@ export function GoalCard({
   const [isPending, startTransition] = useTransition();
   const isCompleted = goal.completed;
 
+  const goalType = goal.characterName
+    ? "character"
+    : goal.weaponName
+      ? "weapon"
+      : "custom";
+  const goalTypeLabel =
+    goalType === "character"
+      ? "Character"
+      : goalType === "weapon"
+        ? "Weapon"
+        : "Custom";
+  const goalTypeChipClass =
+    goalType === "character"
+      ? "bg-primary-container text-on-primary-container"
+      : goalType === "weapon"
+        ? "bg-tertiary-container text-on-tertiary-container"
+        : "text-on-surface-variant border border-outline-variant bg-surface-variant";
+
   function handleCompleteGoal(event: MouseEvent<HTMLButtonElement>) {
     event.preventDefault();
     event.stopPropagation();
@@ -69,9 +87,22 @@ export function GoalCard({
               )}
             </div>
             <div className="mt-1 flex flex-wrap gap-2">
+              <span
+                className={cn(
+                  "rounded-full px-2 py-0.5 text-[10px] font-bold",
+                  goalTypeChipClass,
+                )}
+              >
+                {goalTypeLabel}
+              </span>
               {goal.characterName && (
                 <span className="rounded-full bg-secondary-container px-2 py-0.5 text-[10px] font-bold text-secondary-on-container">
                   {goal.characterName}
+                </span>
+              )}
+              {goal.weaponName && (
+                <span className="rounded-full bg-secondary-container px-2 py-0.5 text-[10px] font-bold text-secondary-on-container">
+                  {goal.weaponName}
                 </span>
               )}
               {goal.category && (

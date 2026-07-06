@@ -202,6 +202,8 @@ export function evaluateGoal(
     completed: boolean;
     characterId?: string;
     characterName?: string;
+    weaponId?: string;
+    weaponName?: string;
     category?: string;
     materials: Array<{ id: string; materialId: string; required: number }>;
   },
@@ -258,6 +260,8 @@ export function evaluateGoal(
     completed: goal.completed,
     characterId: goal.characterId,
     characterName: goal.characterName,
+    weaponId: goal.weaponId,
+    weaponName: goal.weaponName,
     category: goal.category,
     progressPercent:
       totalRequired === 0

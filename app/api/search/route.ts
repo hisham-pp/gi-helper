@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth";
 import { getCookingData } from "@/lib/cooking-data";
 import { getDashboardData } from "@/lib/data";
-import { getAllCharacters } from "@/lib/static-data";
+import { getAllCharacters, getAllWeapons } from "@/lib/static-data";
 
 export const dynamic = "force-dynamic";
 
@@ -17,6 +17,7 @@ export async function GET() {
   return NextResponse.json({
     lists: {
       characters: getAllCharacters(),
+      weapons: getAllWeapons(),
       goals: dashboardData.goals,
       materials: dashboardData.materials,
       recipes: cookingData.recipes,

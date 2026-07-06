@@ -37,6 +37,8 @@ export type GoalView = {
   completed: boolean;
   characterId?: string;
   characterName?: string;
+  weaponId?: string;
+  weaponName?: string;
   category?: string;
   materials: GoalMaterialView[];
 };

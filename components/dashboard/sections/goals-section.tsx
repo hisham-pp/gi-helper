@@ -16,12 +16,15 @@ export function GoalsSection({
   characterFilter,
   categories,
   characters,
+  weaponFilter,
+  weapons,
   goals,
   onGoalComplete,
   search,
   statusFilter,
   setCategoryFilter,
   setCharacterFilter,
+  setWeaponFilter,
   setSearch,
   setStatusFilter,
 }: {
@@ -29,12 +32,15 @@ export function GoalsSection({
   characterFilter: string;
   categories: string[];
   characters: string[];
+  weaponFilter: string;
+  weapons: string[];
   goals: GoalView[];
   onGoalComplete?: (data: DashboardData) => void;
   search: string;
   statusFilter: "incomplete" | "completed" | "all";
   setCategoryFilter: (category: string) => void;
   setCharacterFilter: (character: string) => void;
+  setWeaponFilter: (weapon: string) => void;
   setSearch: (search: string) => void;
   setStatusFilter: (status: "incomplete" | "completed" | "all") => void;
 }) {
@@ -69,7 +75,7 @@ export function GoalsSection({
       </div>
 
       <Card variant="outlined" className="p-4">
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           <AppTextField
             label="Search Goals"
             variant="outlined"
@@ -98,6 +104,16 @@ export function GoalsSection({
             options={characters.map((character) => ({
               label: character,
               value: character,
+            }))}
+          />
+          <Select
+            label="Weapon"
+            variant="outlined"
+            value={weaponFilter}
+            onChange={setWeaponFilter}
+            options={weapons.map((weapon) => ({
+              label: weapon,
+              value: weapon,
             }))}
           />
           <Select
