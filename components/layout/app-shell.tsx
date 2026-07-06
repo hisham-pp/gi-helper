@@ -17,6 +17,7 @@ import {
   Search,
   ShieldAlert,
   SunMedium,
+  Swords,
   Target,
   Upload,
   UserPlus,
@@ -91,6 +92,7 @@ const navItems = [
   { href: "/materials", label: "Materials", icon: Gem },
   { href: "/enemies" as Route, label: "Enemies", icon: ShieldAlert },
   { href: "/characters", label: "Characters", icon: Users },
+  { href: "/weapons" as Route, label: "Weapons", icon: Swords },
 ] satisfies Array<{ href: Route; label: string; icon: typeof Home }>;
 
 const ShellRoot = styled(Box)(({ theme }) => ({
