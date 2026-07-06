@@ -1,5 +1,6 @@
 "use client";
 
+import type { Route } from "next";
 import { useEffect, useMemo, useState } from "react";
 import {
   Search,
@@ -8,6 +9,7 @@ import {
   ArrowRight,
   Target,
   CookingPot,
+  Swords,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -28,8 +30,17 @@ type SearchCharacter = {
   weaponType: string;
 };
 
+type SearchWeapon = {
+  id: string;
+  name: string;
+  image: string;
+  rarity: number;
+  weaponType: string;
+};
+
 type SearchLists = {
   characters: SearchCharacter[];
+  weapons: SearchWeapon[];
   goals: GoalView[];
   materials: MaterialView[];
   recipes: CookingRecipeView[];
@@ -41,6 +52,7 @@ type SearchListsResponse = {
 
 const emptyLists: SearchLists = {
   characters: [],
+  weapons: [],
   goals: [],
   materials: [],
   recipes: [],
@@ -52,7 +64,7 @@ export function SearchManager() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const query = search.trim().toLowerCase();
-  const { characters, goals, materials, recipes } = lists;
+  const { characters, weapons, goals, materials, recipes } = lists;
 
   useEffect(() => {
     const controller = new AbortController();
@@ -72,6 +84,7 @@ export function SearchManager() {
 
         setLists({
           characters: payload.lists?.characters ?? [],
+          weapons: payload.lists?.weapons ?? [],
           goals: payload.lists?.goals ?? [],
           materials: payload.lists?.materials ?? [],
           recipes: payload.lists?.recipes ?? [],
@@ -102,6 +115,15 @@ export function SearchManager() {
     if (!query) return [];
     return characters.filter((c) => c.name.toLowerCase().includes(query));
   }, [characters, query]);
+
+  const filteredWeapons = useMemo(() => {
+    if (!query) return [];
+    return weapons.filter(
+      (w) =>
+        w.name.toLowerCase().includes(query) ||
+        w.weaponType.toLowerCase().includes(query),
+    );
+  }, [weapons, query]);
 
   const filteredMaterials = useMemo(() => {
     if (!query) return [];
@@ -144,6 +166,7 @@ export function SearchManager() {
 
   const hasResults =
     filteredCharacters.length > 0 ||
+    filteredWeapons.length > 0 ||
     filteredMaterials.length > 0 ||
     filteredGoals.length > 0 ||
     filteredRecipes.length > 0;
@@ -193,6 +216,24 @@ export function SearchManager() {
                   className="flex items-center justify-between rounded-lg p-2 transition-colors hover:bg-surface-variant/50"
                 >
                   <span className="text-sm">{c.name}</span>
+                  <ArrowRight className="h-4 w-4 opacity-50" />
+                </Link>
+              ))}
+            </div>
+          </Card>
+          <Card variant="outlined" className="p-6">
+            <h2 className="text-on-surface flex items-center gap-2 font-bold">
+              <Swords className="h-5 w-5 text-primary" />
+              Recent Weapons
+            </h2>
+            <div className="mt-4 space-y-2">
+              {weapons.slice(0, 5).map((w) => (
+                <Link
+                  key={w.id}
+                  href={`/weapons/${w.id}` as Route}
+                  className="flex items-center justify-between rounded-lg p-2 transition-colors hover:bg-surface-variant/50"
+                >
+                  <span className="text-sm">{w.name}</span>
                   <ArrowRight className="h-4 w-4 opacity-50" />
                 </Link>
               ))}
@@ -303,6 +344,52 @@ export function SearchManager() {
                         </p>
                         <Link
                           href={`/characters/${character.id}`}
+                          className="mt-1 inline-block text-xs font-bold text-primary hover:underline"
+                        >
+                          View Details
+                        </Link>
+                      </div>
+                    </div>
+                  </Card>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {filteredWeapons.length > 0 && (
+            <section>
+              <h2 className="text-on-surface mb-6 flex items-center gap-2 text-xl font-bold">
+                <Swords className="h-6 w-6 text-primary" />
+                Weapons ({filteredWeapons.length})
+              </h2>
+              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                {filteredWeapons.map((weapon) => (
+                  <Card key={weapon.id} variant="outlined" className="p-6">
+                    <div className="flex items-center gap-4">
+                      <div
+                        className={cn(
+                          "relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-xl bg-gradient-to-br",
+                          rarityColorMap[weapon.rarity] ?? rarityColorMap[1],
+                        )}
+                      >
+                        <CachedImage
+                          src={weapon.image}
+                          alt={weapon.name}
+                          fill
+                          unoptimized
+                          className="object-cover"
+                          sizes="64px"
+                        />
+                      </div>
+                      <div>
+                        <h3 className="text-on-surface font-bold">
+                          {weapon.name}
+                        </h3>
+                        <p className="text-on-surface-variant text-xs">
+                          {weapon.rarity}★ • {weapon.weaponType}
+                        </p>
+                        <Link
+                          href={`/weapons/${weapon.id}` as Route}
                           className="mt-1 inline-block text-xs font-bold text-primary hover:underline"
                         >
                           View Details
