@@ -121,6 +121,19 @@ export function WeaponGoalBuilder({
     );
   }
 
+  function adjustAllSelected(delta: number) {
+    setSelected((prev) => {
+      if (prev.size === 0) {
+        return prev;
+      }
+      const next = new Map(prev);
+      for (const [templateId, count] of next) {
+        next.set(templateId, Math.max(1, count + delta));
+      }
+      return next;
+    });
+  }
+
   function clearSelection() {
     setSelected(new Map());
   }
@@ -208,6 +221,29 @@ export function WeaponGoalBuilder({
           <Button variant="text" onClick={clearSelection} disabled={isPending}>
             Clear
           </Button>
+          <div className="inline-flex items-center gap-1 rounded-full border border-outline-variant px-2 py-1">
+            <span className="text-on-surface-variant px-1 text-xs font-medium">
+              Copies for all
+            </span>
+            <button
+              type="button"
+              disabled={isPending || selected.size === 0}
+              onClick={() => adjustAllSelected(-1)}
+              aria-label="Remove a copy from all selected templates"
+              className="text-on-surface-variant hover:text-on-surface inline-flex h-6 w-6 items-center justify-center rounded-full border border-outline-variant transition-colors hover:bg-surface-variant disabled:opacity-50"
+            >
+              <Minus className="h-3.5 w-3.5" />
+            </button>
+            <button
+              type="button"
+              disabled={isPending || selected.size === 0}
+              onClick={() => adjustAllSelected(1)}
+              aria-label="Add a copy to all selected templates"
+              className="text-on-surface-variant hover:text-on-surface inline-flex h-6 w-6 items-center justify-center rounded-full border border-outline-variant transition-colors hover:bg-surface-variant disabled:opacity-50"
+            >
+              <Plus className="h-3.5 w-3.5" />
+            </button>
+          </div>
           <Button
             className="gap-2"
             disabled={isPending || totalGoalCount === 0}
