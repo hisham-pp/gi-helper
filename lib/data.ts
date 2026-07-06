@@ -16,7 +16,12 @@ import type {
   MaterialNode,
   MaterialView,
 } from "@/lib/types";
-import { getAllCharacters, getAllMaterials } from "@/lib/static-data";
+import {
+  getAllCharacters,
+  getAllMaterials,
+  getWeaponById,
+  getWeaponTemplateById,
+} from "@/lib/static-data";
 
 export async function getDashboardData(
   userId?: string | null,
@@ -132,6 +137,17 @@ async function getDashboardSourceData(userId?: string | null): Promise<{
   );
 
   const goalViews = goals.map((goal) => {
+    const weapon = goal.weaponId
+      ? getWeaponById(goal.weaponId)
+      : goal.templateType === "weapon" && goal.templateId
+        ? (() => {
+            const template = getWeaponTemplateById(goal.templateId);
+            return template?.weaponId
+              ? getWeaponById(template.weaponId)
+              : null;
+          })()
+        : null;
+
     return evaluateGoal(
       {
         id: goal.id,
@@ -142,6 +158,8 @@ async function getDashboardSourceData(userId?: string | null): Promise<{
         characterName: goal.characterId
           ? characterMap.get(goal.characterId)
           : undefined,
+        weaponId: weapon?.id,
+        weaponName: weapon?.name,
         category: goal.category || "Custom",
         materials: goal.goalMaterials.map((item) => ({
           id: item.id,

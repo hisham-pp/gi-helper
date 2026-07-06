@@ -620,6 +620,8 @@ export async function createGoalsFromTemplatesAction(
         }
       }
     } else {
+      const copyIndexByTemplate = new Map<string, number>();
+
       for (const templateId of parsed.data.templateIds) {
         const template = getWeaponTemplateById(templateId);
         const weapon = template?.weaponId
@@ -633,14 +635,25 @@ export async function createGoalsFromTemplatesAction(
           };
         }
 
+        const totalForTemplate = parsed.data.templateIds.filter(
+          (id) => id === templateId,
+        ).length;
+        const copyIndex = (copyIndexByTemplate.get(templateId) ?? 0) + 1;
+        copyIndexByTemplate.set(templateId, copyIndex);
+        const goalName =
+          totalForTemplate > 1
+            ? `${weapon.name} - ${template.name} (Copy ${copyIndex})`
+            : `${weapon.name} - ${template.name}`;
+
         const goal = await prisma.goal.create({
           data: {
             userId: user.id,
-            name: `${weapon.name} - ${template.name}`,
+            name: goalName,
             description: template.description,
             templateType: "weapon",
             templateId: template.id,
             category: template.category,
+            weaponId: weapon.id,
           },
         });
 
