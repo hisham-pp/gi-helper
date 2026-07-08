@@ -500,7 +500,6 @@ function sourceMatchesEnemy(source: string, enemyName: string) {
     ["saurian", "tepetlisaur"],
     ["saurian", "yumkasaur"],
     ["saurian", "iktomisaur"],
-    ["frostnightscion", "frostnight"],
   ];
 
   return aliasPairs.some(
