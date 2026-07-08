@@ -489,7 +489,9 @@ export const enemyArchiveEntries = [
     "family": "Elemental Lifeforms",
     "type": "Mixed Enemies",
     "region": "Teyvat",
-    "elements": [],
+    "elements": [
+      "Hydro"
+    ],
     "description": "Surging Currents: Frostnight Scion enemy archive entry from the Genshin Impact Wiki enemy list.",
     "wikiUrl": "https://genshin-impact.fandom.com/wiki/Surging_Currents:_Frostnight_Scion",
     "image": "https://static.wikia.nocookie.net/gensin-impact/images/d/d2/Surging_Currents_Frostnight_Scion_Icon.png"
@@ -500,7 +502,9 @@ export const enemyArchiveEntries = [
     "family": "Elemental Lifeforms",
     "type": "Mixed Enemies",
     "region": "Teyvat",
-    "elements": [],
+    "elements": [
+      "Anemo"
+    ],
     "description": "Veiled Cloudchaser: Frostnight Scion enemy archive entry from the Genshin Impact Wiki enemy list.",
     "wikiUrl": "https://genshin-impact.fandom.com/wiki/Veiled_Cloudchaser:_Frostnight_Scion",
     "image": "https://static.wikia.nocookie.net/gensin-impact/images/f/f1/Veiled_Cloudchaser_Frostnight_Scion_Icon.png"
@@ -550,7 +554,9 @@ export const enemyArchiveEntries = [
     "family": "Elemental Lifeforms",
     "type": "Mixed Enemies",
     "region": "Teyvat",
-    "elements": [],
+    "elements": [
+      "Geo"
+    ],
     "description": "Gilded Sunshard: Frostnight Scion enemy archive entry from the Genshin Impact Wiki enemy list.",
     "wikiUrl": "https://genshin-impact.fandom.com/wiki/Gilded_Sunshard:_Frostnight_Scion",
     "image": "https://static.wikia.nocookie.net/gensin-impact/images/f/f5/Gilded_Sunshard_Frostnight_Scion_Icon.png"
@@ -3013,7 +3019,9 @@ export const enemyArchiveEntries = [
     "family": "Mystical Beasts",
     "type": "Mixed Enemies",
     "region": "Teyvat",
-    "elements": [],
+    "elements": [
+      "Cryo"
+    ],
     "description": "Rimebiter Bathysmal Vishap enemy archive entry from the Genshin Impact Wiki enemy list.",
     "wikiUrl": "https://genshin-impact.fandom.com/wiki/Rimebiter_Bathysmal_Vishap",
     "image": "https://static.wikia.nocookie.net/gensin-impact/images/f/f4/Rimebiter_Bathysmal_Vishap_Icon.png"
@@ -3024,7 +3032,9 @@ export const enemyArchiveEntries = [
     "family": "Mystical Beasts",
     "type": "Mixed Enemies",
     "region": "Teyvat",
-    "elements": [],
+    "elements": [
+      "Electro"
+    ],
     "description": "Bolteater Bathysmal Vishap enemy archive entry from the Genshin Impact Wiki enemy list.",
     "wikiUrl": "https://genshin-impact.fandom.com/wiki/Bolteater_Bathysmal_Vishap",
     "image": "https://static.wikia.nocookie.net/gensin-impact/images/1/1f/Bolteater_Bathysmal_Vishap_Icon.png"
@@ -3617,7 +3627,9 @@ export const enemyArchiveEntries = [
     "family": "Mystical Beasts",
     "type": "Mixed Enemies",
     "region": "Teyvat",
-    "elements": [],
+    "elements": [
+      "Pyro"
+    ],
     "description": "Legatus Golem enemy archive entry from the Genshin Impact Wiki enemy list.",
     "wikiUrl": "https://genshin-impact.fandom.com/wiki/Legatus_Golem",
     "image": "https://static.wikia.nocookie.net/gensin-impact/images/b/bc/Statue_of_Marble_and_Brass_Icon.png"
@@ -3706,7 +3718,9 @@ export const enemyArchiveEntries = [
     "family": "Mystical Beasts",
     "type": "Mixed Enemies",
     "region": "Teyvat",
-    "elements": [],
+    "elements": [
+      "Dendro"
+    ],
     "description": "Gluttonous Yumkasaur Mountain King enemy archive entry from the Genshin Impact Wiki enemy list.",
     "wikiUrl": "https://genshin-impact.fandom.com/wiki/Gluttonous_Yumkasaur_Mountain_King",
     "image": "https://static.wikia.nocookie.net/gensin-impact/images/c/c2/Kongamato_Icon.png"
@@ -3743,7 +3757,9 @@ export const enemyArchiveEntries = [
     "family": "Mystical Beasts",
     "type": "Mixed Enemies",
     "region": "Teyvat",
-    "elements": [],
+    "elements": [
+      "Pyro"
+    ],
     "description": "Goldflame Qucusaur Tyrant enemy archive entry from the Genshin Impact Wiki enemy list.",
     "wikiUrl": "https://genshin-impact.fandom.com/wiki/Goldflame_Qucusaur_Tyrant",
     "image": "https://static.wikia.nocookie.net/gensin-impact/images/1/10/Holawaqa_Ngoubou_Icon.png"
@@ -3975,7 +3991,9 @@ export const enemyArchiveEntries = [
     "family": "Mystical Beasts",
     "type": "Mixed Enemies",
     "region": "Teyvat",
-    "elements": [],
+    "elements": [
+      "Cryo"
+    ],
     "description": "Radiant Glacial Wolf enemy archive entry from the Genshin Impact Wiki enemy list.",
     "wikiUrl": "https://genshin-impact.fandom.com/wiki/Radiant_Glacial_Wolf",
     "image": "https://static.wikia.nocookie.net/gensin-impact/images/4/45/Radiant_Glacial_Wolf_Icon.png"
@@ -3999,7 +4017,9 @@ export const enemyArchiveEntries = [
     "family": "Mystical Beasts",
     "type": "Mixed Enemies",
     "region": "Teyvat",
-    "elements": [],
+    "elements": [
+      "Geo"
+    ],
     "description": "Radiant Moongecko enemy archive entry from the Genshin Impact Wiki enemy list.",
     "wikiUrl": "https://genshin-impact.fandom.com/wiki/Radiant_Moongecko",
     "image": "https://static.wikia.nocookie.net/gensin-impact/images/2/20/Radiant_Moongecko_Icon.png"
