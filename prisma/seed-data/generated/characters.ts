@@ -15727,7 +15727,7 @@ export const characters: SeedCharacter[] = [
   {
     "id": "sandrone",
     "name": "Sandrone",
-    "image": "/images/characters/sandrone/icon-big.png",
+    "image": "/images/characters/sandrone/icon-big",
     "rarity": 5,
     "element": "Cryo",
     "weaponType": "Claymore",
