@@ -482,6 +482,18 @@ function sourceMatchesEnemy(source: string, enemyName: string) {
     return true;
   }
 
+  // Tolerate simple plural/singular differences between a drop source and an
+  // enemy id, e.g. the "Eremites" source vs the "eremite-*" enemy ids.
+  const singularSource = source.replace(/s$/, "");
+  const singularEnemy = enemyName.replace(/s$/, "");
+  if (
+    singularSource.length >= 4 &&
+    (singularEnemy.includes(singularSource) ||
+      singularSource.includes(singularEnemy))
+  ) {
+    return true;
+  }
+
   const aliasPairs = [
     ["hilichurlarcher", "hilichurlshooter"],
     ["fatuioperative", "fatuifrostoperative"],
@@ -501,6 +513,15 @@ function sourceMatchesEnemy(source: string, enemyName: string) {
     ["saurian", "yumkasaur"],
     ["saurian", "iktomisaur"],
     ["frostnightscion", "frostnight"],
+    ["sternshieldcrab", "armoredcrab"],
+    ["prototypecalbreguet", "icewindsuite"],
+    // Boss materials whose "source" uses the overworld/trounce boss name while
+    // the enemy catalog uses the archive name.
+    ["coraldefenders", "bolteaterbathysmalvishap"],
+    ["coraldefenders", "rimebiterbathysmalvishap"],
+    ["statueofmarbleandbrass", "legatusgolem"],
+    ["kongamato", "gluttonousyumkasaurmountainking"],
+    ["holawaqangoubou", "goldflamequcusaurtyrant"],
   ];
 
   return aliasPairs.some(
