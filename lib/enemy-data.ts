@@ -512,7 +512,6 @@ function sourceMatchesEnemy(source: string, enemyName: string) {
     ["saurian", "tepetlisaur"],
     ["saurian", "yumkasaur"],
     ["saurian", "iktomisaur"],
-    ["frostnightscion", "frostnight"],
     ["sternshieldcrab", "armoredcrab"],
     ["prototypecalbreguet", "icewindsuite"],
     // Boss materials whose "source" uses the overworld/trounce boss name while
