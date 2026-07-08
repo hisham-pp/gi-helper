@@ -158,6 +158,11 @@ export const characters: SeedCharacter[] = [
         "path": "/images/characters/aino/namecard-background"
       },
       {
+        "key": "constellation",
+        "label": "Constellation",
+        "path": "/images/characters/aino/constellation"
+      },
+      {
         "key": "constellation-shape",
         "label": "Constellation Shape",
         "path": "/images/characters/aino/constellation-shape"
@@ -4334,6 +4339,11 @@ export const characters: SeedCharacter[] = [
         "path": "/images/characters/columbina/namecard-background"
       },
       {
+        "key": "constellation",
+        "label": "Constellation",
+        "path": "/images/characters/columbina/constellation"
+      },
+      {
         "key": "constellation-shape",
         "label": "Constellation Shape",
         "path": "/images/characters/columbina/constellation-shape"
@@ -4701,6 +4711,11 @@ export const characters: SeedCharacter[] = [
         "key": "namecard-background",
         "label": "Namecard",
         "path": "/images/characters/dahlia/namecard-background"
+      },
+      {
+        "key": "constellation",
+        "label": "Constellation",
+        "path": "/images/characters/dahlia/constellation"
       },
       {
         "key": "constellation-shape",
@@ -5653,6 +5668,11 @@ export const characters: SeedCharacter[] = [
         "path": "/images/characters/durin/namecard-background"
       },
       {
+        "key": "constellation",
+        "label": "Constellation",
+        "path": "/images/characters/durin/constellation"
+      },
+      {
         "key": "constellation-shape",
         "label": "Constellation Shape",
         "path": "/images/characters/durin/constellation-shape"
@@ -6020,6 +6040,11 @@ export const characters: SeedCharacter[] = [
         "key": "namecard-background",
         "label": "Namecard",
         "path": "/images/characters/escoffier/namecard-background"
+      },
+      {
+        "key": "constellation",
+        "label": "Constellation",
+        "path": "/images/characters/escoffier/constellation"
       },
       {
         "key": "constellation-shape",
@@ -6783,6 +6808,11 @@ export const characters: SeedCharacter[] = [
         "key": "namecard-background",
         "label": "Namecard",
         "path": "/images/characters/flins/namecard-background"
+      },
+      {
+        "key": "constellation",
+        "label": "Constellation",
+        "path": "/images/characters/flins/constellation"
       },
       {
         "key": "constellation-shape",
@@ -8109,6 +8139,11 @@ export const characters: SeedCharacter[] = [
         "path": "/images/characters/iansan/namecard-background"
       },
       {
+        "key": "constellation",
+        "label": "Constellation",
+        "path": "/images/characters/iansan/constellation"
+      },
+      {
         "key": "constellation-shape",
         "label": "Constellation Shape",
         "path": "/images/characters/iansan/constellation-shape"
@@ -8296,6 +8331,11 @@ export const characters: SeedCharacter[] = [
         "key": "namecard-background",
         "label": "Namecard",
         "path": "/images/characters/ifa/namecard-background"
+      },
+      {
+        "key": "constellation",
+        "label": "Constellation",
+        "path": "/images/characters/ifa/constellation"
       },
       {
         "key": "constellation-shape",
@@ -8487,6 +8527,11 @@ export const characters: SeedCharacter[] = [
         "path": "/images/characters/illuga/namecard-background"
       },
       {
+        "key": "constellation",
+        "label": "Constellation",
+        "path": "/images/characters/illuga/constellation"
+      },
+      {
         "key": "constellation-shape",
         "label": "Constellation Shape",
         "path": "/images/characters/illuga/constellation-shape"
@@ -8676,6 +8721,11 @@ export const characters: SeedCharacter[] = [
         "path": "/images/characters/ineffa/namecard-background"
       },
       {
+        "key": "constellation",
+        "label": "Constellation",
+        "path": "/images/characters/ineffa/constellation"
+      },
+      {
         "key": "constellation-shape",
         "label": "Constellation Shape",
         "path": "/images/characters/ineffa/constellation-shape"
@@ -8863,6 +8913,11 @@ export const characters: SeedCharacter[] = [
         "key": "namecard-background",
         "label": "Namecard",
         "path": "/images/characters/jahoda/namecard-background"
+      },
+      {
+        "key": "constellation",
+        "label": "Constellation",
+        "path": "/images/characters/jahoda/constellation"
       },
       {
         "key": "constellation-shape",
@@ -9266,9 +9321,44 @@ export const characters: SeedCharacter[] = [
         "path": "/images/characters/kachina/namecard-background"
       },
       {
+        "key": "constellation",
+        "label": "Constellation",
+        "path": "/images/characters/kachina/constellation"
+      },
+      {
         "key": "constellation-shape",
         "label": "Constellation Shape",
         "path": "/images/characters/kachina/constellation-shape"
+      },
+      {
+        "key": "talent-na",
+        "label": "Normal Attack",
+        "path": "/images/characters/kachina/talent-na"
+      },
+      {
+        "key": "talent-skill",
+        "label": "Skill",
+        "path": "/images/characters/kachina/talent-skill"
+      },
+      {
+        "key": "talent-burst",
+        "label": "Burst",
+        "path": "/images/characters/kachina/talent-burst"
+      },
+      {
+        "key": "talent-passive-0",
+        "label": "Passive 1",
+        "path": "/images/characters/kachina/talent-passive-0"
+      },
+      {
+        "key": "talent-passive-1",
+        "label": "Passive 2",
+        "path": "/images/characters/kachina/talent-passive-1"
+      },
+      {
+        "key": "talent-passive-2",
+        "label": "Passive 3",
+        "path": "/images/characters/kachina/talent-passive-2"
       }
     ]
   },
@@ -10199,9 +10289,44 @@ export const characters: SeedCharacter[] = [
         "path": "/images/characters/kinich/namecard-background"
       },
       {
+        "key": "constellation",
+        "label": "Constellation",
+        "path": "/images/characters/kinich/constellation"
+      },
+      {
         "key": "constellation-shape",
         "label": "Constellation Shape",
         "path": "/images/characters/kinich/constellation-shape"
+      },
+      {
+        "key": "talent-na",
+        "label": "Normal Attack",
+        "path": "/images/characters/kinich/talent-na"
+      },
+      {
+        "key": "talent-skill",
+        "label": "Skill",
+        "path": "/images/characters/kinich/talent-skill"
+      },
+      {
+        "key": "talent-burst",
+        "label": "Burst",
+        "path": "/images/characters/kinich/talent-burst"
+      },
+      {
+        "key": "talent-passive-0",
+        "label": "Passive 1",
+        "path": "/images/characters/kinich/talent-passive-0"
+      },
+      {
+        "key": "talent-passive-1",
+        "label": "Passive 2",
+        "path": "/images/characters/kinich/talent-passive-1"
+      },
+      {
+        "key": "talent-passive-2",
+        "label": "Passive 3",
+        "path": "/images/characters/kinich/talent-passive-2"
       }
     ]
   },
@@ -11132,6 +11257,11 @@ export const characters: SeedCharacter[] = [
         "path": "/images/characters/lan-yan/namecard-background"
       },
       {
+        "key": "constellation",
+        "label": "Constellation",
+        "path": "/images/characters/lan-yan/constellation"
+      },
+      {
         "key": "constellation-shape",
         "label": "Constellation Shape",
         "path": "/images/characters/lan-yan/constellation-shape"
@@ -11319,6 +11449,11 @@ export const characters: SeedCharacter[] = [
         "key": "namecard-background",
         "label": "Namecard",
         "path": "/images/characters/lauma/namecard-background"
+      },
+      {
+        "key": "constellation",
+        "label": "Constellation",
+        "path": "/images/characters/lauma/constellation"
       },
       {
         "key": "constellation-shape",
@@ -11603,9 +11738,44 @@ export const characters: SeedCharacter[] = [
         "path": "/images/characters/linnea/namecard-background"
       },
       {
+        "key": "constellation",
+        "label": "Constellation",
+        "path": "/images/characters/linnea/constellation"
+      },
+      {
         "key": "constellation-shape",
         "label": "Constellation Shape",
         "path": "/images/characters/linnea/constellation-shape"
+      },
+      {
+        "key": "talent-na",
+        "label": "Normal Attack",
+        "path": "/images/characters/linnea/talent-na"
+      },
+      {
+        "key": "talent-skill",
+        "label": "Skill",
+        "path": "/images/characters/linnea/talent-skill"
+      },
+      {
+        "key": "talent-burst",
+        "label": "Burst",
+        "path": "/images/characters/linnea/talent-burst"
+      },
+      {
+        "key": "talent-passive-0",
+        "label": "Passive 1",
+        "path": "/images/characters/linnea/talent-passive-0"
+      },
+      {
+        "key": "talent-passive-1",
+        "label": "Passive 2",
+        "path": "/images/characters/linnea/talent-passive-1"
+      },
+      {
+        "key": "talent-passive-2",
+        "label": "Passive 3",
+        "path": "/images/characters/linnea/talent-passive-2"
       }
     ]
   },
@@ -11960,6 +12130,11 @@ export const characters: SeedCharacter[] = [
         "key": "namecard-background",
         "label": "Namecard",
         "path": "/images/characters/lohen/namecard-background"
+      },
+      {
+        "key": "constellation",
+        "label": "Constellation",
+        "path": "/images/characters/lohen/constellation"
       },
       {
         "key": "constellation-shape",
@@ -13108,9 +13283,44 @@ export const characters: SeedCharacter[] = [
         "path": "/images/characters/mualani/namecard-background"
       },
       {
+        "key": "constellation",
+        "label": "Constellation",
+        "path": "/images/characters/mualani/constellation"
+      },
+      {
         "key": "constellation-shape",
         "label": "Constellation Shape",
         "path": "/images/characters/mualani/constellation-shape"
+      },
+      {
+        "key": "talent-na",
+        "label": "Normal Attack",
+        "path": "/images/characters/mualani/talent-na"
+      },
+      {
+        "key": "talent-skill",
+        "label": "Skill",
+        "path": "/images/characters/mualani/talent-skill"
+      },
+      {
+        "key": "talent-burst",
+        "label": "Burst",
+        "path": "/images/characters/mualani/talent-burst"
+      },
+      {
+        "key": "talent-passive-0",
+        "label": "Passive 1",
+        "path": "/images/characters/mualani/talent-passive-0"
+      },
+      {
+        "key": "talent-passive-1",
+        "label": "Passive 2",
+        "path": "/images/characters/mualani/talent-passive-1"
+      },
+      {
+        "key": "talent-passive-2",
+        "label": "Passive 3",
+        "path": "/images/characters/mualani/talent-passive-2"
       }
     ]
   },
@@ -13641,6 +13851,11 @@ export const characters: SeedCharacter[] = [
         "path": "/images/characters/nefer/namecard-background"
       },
       {
+        "key": "constellation",
+        "label": "Constellation",
+        "path": "/images/characters/nefer/constellation"
+      },
+      {
         "key": "constellation-shape",
         "label": "Constellation Shape",
         "path": "/images/characters/nefer/constellation-shape"
@@ -14017,9 +14232,44 @@ export const characters: SeedCharacter[] = [
         "path": "/images/characters/nicole/namecard-background"
       },
       {
+        "key": "constellation",
+        "label": "Constellation",
+        "path": "/images/characters/nicole/constellation"
+      },
+      {
         "key": "constellation-shape",
         "label": "Constellation Shape",
         "path": "/images/characters/nicole/constellation-shape"
+      },
+      {
+        "key": "talent-na",
+        "label": "Normal Attack",
+        "path": "/images/characters/nicole/talent-na"
+      },
+      {
+        "key": "talent-skill",
+        "label": "Skill",
+        "path": "/images/characters/nicole/talent-skill"
+      },
+      {
+        "key": "talent-burst",
+        "label": "Burst",
+        "path": "/images/characters/nicole/talent-burst"
+      },
+      {
+        "key": "talent-passive-0",
+        "label": "Passive 1",
+        "path": "/images/characters/nicole/talent-passive-0"
+      },
+      {
+        "key": "talent-passive-1",
+        "label": "Passive 2",
+        "path": "/images/characters/nicole/talent-passive-1"
+      },
+      {
+        "key": "talent-passive-2",
+        "label": "Passive 3",
+        "path": "/images/characters/nicole/talent-passive-2"
       }
     ]
   },
@@ -14957,9 +15207,44 @@ export const characters: SeedCharacter[] = [
         "path": "/images/characters/prune/namecard-background"
       },
       {
+        "key": "constellation",
+        "label": "Constellation",
+        "path": "/images/characters/prune/constellation"
+      },
+      {
         "key": "constellation-shape",
         "label": "Constellation Shape",
         "path": "/images/characters/prune/constellation-shape"
+      },
+      {
+        "key": "talent-na",
+        "label": "Normal Attack",
+        "path": "/images/characters/prune/talent-na"
+      },
+      {
+        "key": "talent-skill",
+        "label": "Skill",
+        "path": "/images/characters/prune/talent-skill"
+      },
+      {
+        "key": "talent-burst",
+        "label": "Burst",
+        "path": "/images/characters/prune/talent-burst"
+      },
+      {
+        "key": "talent-passive-0",
+        "label": "Passive 1",
+        "path": "/images/characters/prune/talent-passive-0"
+      },
+      {
+        "key": "talent-passive-1",
+        "label": "Passive 2",
+        "path": "/images/characters/prune/talent-passive-1"
+      },
+      {
+        "key": "talent-passive-2",
+        "label": "Passive 3",
+        "path": "/images/characters/prune/talent-passive-2"
       }
     ]
   },
@@ -15746,7 +16031,83 @@ export const characters: SeedCharacter[] = [
       "constellations": [],
       "outfits": []
     },
-    "assets": []
+    "assets": [
+      {
+        "key": "card",
+        "label": "Card",
+        "path": "/images/characters/sandrone/card"
+      },
+      {
+        "key": "portrait",
+        "label": "Portrait",
+        "path": "/images/characters/sandrone/portrait"
+      },
+      {
+        "key": "icon-big",
+        "label": "Icon",
+        "path": "/images/characters/sandrone/icon-big"
+      },
+      {
+        "key": "icon-side",
+        "label": "Side Icon",
+        "path": "/images/characters/sandrone/icon-side"
+      },
+      {
+        "key": "gacha-card",
+        "label": "Gacha Card",
+        "path": "/images/characters/sandrone/gacha-card"
+      },
+      {
+        "key": "gacha-splash",
+        "label": "Gacha Splash",
+        "path": "/images/characters/sandrone/gacha-splash"
+      },
+      {
+        "key": "namecard-background",
+        "label": "Namecard",
+        "path": "/images/characters/sandrone/namecard-background"
+      },
+      {
+        "key": "constellation",
+        "label": "Constellation",
+        "path": "/images/characters/sandrone/constellation"
+      },
+      {
+        "key": "constellation-shape",
+        "label": "Constellation Shape",
+        "path": "/images/characters/sandrone/constellation-shape"
+      },
+      {
+        "key": "talent-na",
+        "label": "Normal Attack",
+        "path": "/images/characters/sandrone/talent-na"
+      },
+      {
+        "key": "talent-skill",
+        "label": "Skill",
+        "path": "/images/characters/sandrone/talent-skill"
+      },
+      {
+        "key": "talent-burst",
+        "label": "Burst",
+        "path": "/images/characters/sandrone/talent-burst"
+      },
+      {
+        "key": "talent-passive-0",
+        "label": "Passive 1",
+        "path": "/images/characters/sandrone/talent-passive-0"
+      },
+      {
+        "key": "talent-passive-1",
+        "label": "Passive 2",
+        "path": "/images/characters/sandrone/talent-passive-1"
+      },
+      {
+        "key": "talent-passive-2",
+        "label": "Passive 3",
+        "path": "/images/characters/sandrone/talent-passive-2"
+      }
+    ]
   },
   {
     "id": "sara",
@@ -17027,6 +17388,11 @@ export const characters: SeedCharacter[] = [
         "key": "namecard-background",
         "label": "Namecard",
         "path": "/images/characters/skirk/namecard-background"
+      },
+      {
+        "key": "constellation",
+        "label": "Constellation",
+        "path": "/images/characters/skirk/constellation"
       },
       {
         "key": "constellation-shape",
@@ -18808,6 +19174,11 @@ export const characters: SeedCharacter[] = [
         "path": "/images/characters/varesa/namecard-background"
       },
       {
+        "key": "constellation",
+        "label": "Constellation",
+        "path": "/images/characters/varesa/constellation"
+      },
+      {
         "key": "constellation-shape",
         "label": "Constellation Shape",
         "path": "/images/characters/varesa/constellation-shape"
@@ -18903,9 +19274,44 @@ export const characters: SeedCharacter[] = [
         "path": "/images/characters/varka/namecard-background"
       },
       {
+        "key": "constellation",
+        "label": "Constellation",
+        "path": "/images/characters/varka/constellation"
+      },
+      {
         "key": "constellation-shape",
         "label": "Constellation Shape",
         "path": "/images/characters/varka/constellation-shape"
+      },
+      {
+        "key": "talent-na",
+        "label": "Normal Attack",
+        "path": "/images/characters/varka/talent-na"
+      },
+      {
+        "key": "talent-skill",
+        "label": "Skill",
+        "path": "/images/characters/varka/talent-skill"
+      },
+      {
+        "key": "talent-burst",
+        "label": "Burst",
+        "path": "/images/characters/varka/talent-burst"
+      },
+      {
+        "key": "talent-passive-0",
+        "label": "Passive 1",
+        "path": "/images/characters/varka/talent-passive-0"
+      },
+      {
+        "key": "talent-passive-1",
+        "label": "Passive 2",
+        "path": "/images/characters/varka/talent-passive-1"
+      },
+      {
+        "key": "talent-passive-2",
+        "label": "Passive 3",
+        "path": "/images/characters/varka/talent-passive-2"
       }
     ]
   },
@@ -21693,6 +22099,11 @@ export const characters: SeedCharacter[] = [
         "path": "/images/characters/yumemizuki-mizuki/namecard-background"
       },
       {
+        "key": "constellation",
+        "label": "Constellation",
+        "path": "/images/characters/yumemizuki-mizuki/constellation"
+      },
+      {
         "key": "constellation-shape",
         "label": "Constellation Shape",
         "path": "/images/characters/yumemizuki-mizuki/constellation-shape"
@@ -22254,6 +22665,11 @@ export const characters: SeedCharacter[] = [
         "key": "namecard-background",
         "label": "Namecard",
         "path": "/images/characters/zibai/namecard-background"
+      },
+      {
+        "key": "constellation",
+        "label": "Constellation",
+        "path": "/images/characters/zibai/constellation"
       },
       {
         "key": "constellation-shape",
