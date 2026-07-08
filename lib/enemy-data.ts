@@ -515,6 +515,13 @@ function sourceMatchesEnemy(source: string, enemyName: string) {
     ["frostnightscion", "frostnight"],
     ["sternshieldcrab", "armoredcrab"],
     ["prototypecalbreguet", "icewindsuite"],
+    // Boss materials whose "source" uses the overworld/trounce boss name while
+    // the enemy catalog uses the archive name.
+    ["coraldefenders", "bolteaterbathysmalvishap"],
+    ["coraldefenders", "rimebiterbathysmalvishap"],
+    ["statueofmarbleandbrass", "legatusgolem"],
+    ["kongamato", "gluttonousyumkasaurmountainking"],
+    ["holawaqangoubou", "goldflamequcusaurtyrant"],
   ];
 
   return aliasPairs.some(
