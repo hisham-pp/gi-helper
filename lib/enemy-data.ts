@@ -259,6 +259,247 @@ const adviceOverrides: Record<string, EnemyElementAdvice[]> = {
       note: "Ruin Sentinels are best handled with elemental DPS and quick repositioning.",
     },
   ],
+  azhdaha: [
+    {
+      element: "General",
+      bestElements: ["Pyro", "Hydro", "Cryo", "Electro"],
+      note: "Azhdaha cycles Geo plus elemental infusions; avoid Geo and whichever element he is currently infused with, and bring a shielder for his slams.",
+    },
+  ],
+  childe: [
+    {
+      element: "General",
+      bestElements: ["Cryo", "Pyro"],
+      note: "Phase one is Hydro (Cryo and Electro work well) and later phases turn Electro (switch to Cryo or Pyro); never mirror his current element.",
+    },
+  ],
+  stormterror: [
+    {
+      element: "General",
+      bestElements: ["Pyro", "Hydro", "Cryo", "Electro"],
+      note: "No shields to break; use ranged attacks or the platform openings with any strong elemental DPS — Anemo damage is resisted.",
+    },
+  ],
+  "lupus-boreas": [
+    {
+      element: "General",
+      bestElements: ["Pyro"],
+      note: "Immune to Cryo and Anemo; Pyro (or strong Physical damage) is the reliable answer to his frost attacks.",
+    },
+  ],
+  "lupus-boreas-dominator-of-wolves": [
+    {
+      element: "General",
+      bestElements: ["Pyro"],
+      note: "Immune to Cryo and Anemo; Pyro (or strong Physical damage) is the reliable answer to his frost attacks.",
+    },
+  ],
+  "la-signora": [
+    {
+      element: "General",
+      bestElements: ["Pyro", "Hydro", "Cryo"],
+      note: "Use Pyro against her Cryo first phase, then Hydro or Cryo once she turns Pyro in the second half.",
+    },
+  ],
+  "magatsu-mitake-narukami-no-mikoto": [
+    {
+      element: "General",
+      bestElements: ["Pyro", "Cryo", "Hydro", "Dendro"],
+      note: "Immune to Electro; any other strong element works — save burst damage for after her Musou no Hitotachi phase.",
+    },
+  ],
+  "shouki-no-kami-the-prodigal": [
+    {
+      element: "General",
+      bestElements: ["Pyro", "Hydro", "Cryo", "Dendro"],
+      note: "Immune to Electro and Anemo; use the other elements and break the matrix cubes to interrupt his empowered phases.",
+    },
+  ],
+  "everlasting-lord-of-arcane-wisdom": [
+    {
+      element: "General",
+      bestElements: ["Pyro", "Hydro", "Cryo", "Dendro"],
+      note: "Immune to Electro and Anemo; use the other elements and break the matrix cubes to interrupt his empowered phases.",
+    },
+  ],
+  "guardian-of-apeps-oasis": [
+    {
+      element: "General",
+      bestElements: ["Electro", "Pyro", "Cryo", "Hydro"],
+      note: "Immune to Dendro; clear the consumption phase quickly and burst the exposed core.",
+    },
+  ],
+  "guardian-of-apep-s-oasis": [
+    {
+      element: "General",
+      bestElements: ["Electro", "Pyro", "Cryo", "Hydro"],
+      note: "Immune to Dendro; clear the consumption phase quickly and burst the exposed core.",
+    },
+  ],
+  "all-devouring-narwhal": [
+    {
+      element: "General",
+      bestElements: ["Electro", "Cryo", "Dendro", "Pyro"],
+      note: "Resists Hydro; keep damage high to shorten the devoured phase and hit the fin weak points.",
+    },
+  ],
+  "the-knave": [
+    {
+      element: "General",
+      bestElements: ["Hydro", "Cryo"],
+      note: "Immune to Pyro; Hydro and Cryo counter her Balemoon flames — bring healing to clear the Bond of Life she applies.",
+    },
+  ],
+  "lord-of-eroded-primal-fire": [
+    {
+      element: "General",
+      bestElements: ["Hydro", "Cryo"],
+      note: "A Pyro-aligned trounce boss; Hydro and Cryo are the safest counters to its flame phases.",
+    },
+  ],
+  "il-dottore": [
+    {
+      element: "General",
+      bestElements: ["Pyro", "Hydro", "Cryo", "Electro", "Dendro"],
+      note: "Rotates mechanical segments and elemental experiments; bring a flexible multi-element team and adapt to the active phase.",
+    },
+  ],
+  "the-doctor": [
+    {
+      element: "General",
+      bestElements: ["Pyro", "Hydro", "Cryo", "Electro", "Dendro"],
+      note: "Rotates mechanical segments and elemental experiments; bring a flexible multi-element team and adapt to the active phase.",
+    },
+  ],
+  "the-game-before-the-gate": [
+    {
+      element: "General",
+      bestElements: ["Pyro", "Hydro", "Cryo", "Electro", "Dendro"],
+      note: "No fixed elemental weakness; play around its game-board mechanics and keep sustained damage on the boss.",
+    },
+  ],
+  "iniquitous-baptist": [
+    {
+      element: "General",
+      bestElements: ["Pyro", "Cryo", "Electro", "Hydro"],
+      note: "Summons rotating elemental shields; bring at least two counter elements so a single ward never stalls the fight.",
+    },
+  ],
+  "tenebrous-papilla": [
+    {
+      element: "General",
+      bestElements: ["Pyro", "Hydro", "Cryo", "Electro", "Dendro"],
+      note: "Raises a Void Ward below half HP that heavily reduces damage; Natlan Nightsoul attacks bypass it.",
+    },
+  ],
+  "tenebrous-mimiflora": [
+    {
+      element: "General",
+      bestElements: ["Pyro", "Hydro", "Cryo", "Electro", "Dendro"],
+      note: "Raises a Void Ward that heavily reduces damage; Natlan Nightsoul attacks bypass it.",
+    },
+  ],
+  "watcher-fallen-vigil": [
+    {
+      element: "General",
+      bestElements: ["Anemo", "Geo", "Dendro"],
+      note: "It records Pyro, Hydro, Cryo, and Electro hits to power Phenomena's Delirium; Anemo, Geo, and Dendro teams avoid feeding it.",
+    },
+  ],
+  "super-heavy-landrover-mechanized-fortress": [
+    {
+      element: "General",
+      bestElements: ["Pyro"],
+      note: "Pyro attacks fill its overload gauge and shatter the Cryo shield it raises, stunning it for big damage windows.",
+    },
+  ],
+  "frostnight-herra": [
+    {
+      element: "General",
+      bestElements: ["Hydro", "Electro", "Dendro"],
+      note: "Weak to Lunar reactions — Lunar-Charged or Lunar-Bloom teams knock it out of its resistant state fastest.",
+    },
+  ],
+  "the-great-snowboar-king": [
+    {
+      element: "General",
+      bestElements: ["Pyro"],
+      note: "Melt his ice armor with Pyro when he hides behind it and becomes invulnerable.",
+    },
+  ],
+  "unusual-hilichurl": [
+    {
+      element: "General",
+      bestElements: ["Pyro", "Hydro", "Cryo", "Electro"],
+      note: "No defenses at all — burst him down fast before he flees.",
+    },
+  ],
+};
+
+const familyAdviceFallbacks: Record<string, EnemyElementAdvice[]> = {
+  Automatons: [
+    {
+      element: "General",
+      bestElements: ["Pyro", "Hydro", "Cryo", "Electro", "Dendro"],
+      note: "Machines resist Physical damage; use elemental DPS and hit exposed cores or weak points.",
+    },
+  ],
+  Fatui: [
+    {
+      element: "General",
+      bestElements: ["Pyro", "Hydro", "Cryo", "Electro", "Dendro"],
+      note: "Counter the active armor or barrier if one appears; otherwise any strong elemental DPS works.",
+    },
+  ],
+  "Other Human Factions": [
+    {
+      element: "General",
+      bestElements: ["Cryo", "Hydro", "Electro", "Pyro"],
+      note: "Human fighters carry no elemental armor; any strong damage works, and Freeze or other crowd control keeps them locked down.",
+    },
+  ],
+  "The Abyss": [
+    {
+      element: "General",
+      bestElements: ["Pyro", "Hydro", "Cryo", "Electro", "Dendro"],
+      note: "Counter whichever ward or shield appears, and burst them down between casts.",
+    },
+  ],
+  "Mystical Beasts": [
+    {
+      element: "General",
+      bestElements: ["Pyro", "Hydro", "Cryo", "Electro", "Dendro"],
+      note: "No fixed elemental armor; use your strongest elemental DPS and dodge their charge attacks.",
+    },
+  ],
+  "Enemies of Note": [
+    {
+      element: "General",
+      bestElements: ["Pyro", "Hydro", "Cryo", "Electro", "Dendro"],
+      note: "A major boss without a single fixed weakness; bring a flexible team and adapt to its phases.",
+    },
+  ],
+  "Elemental Lifeforms": [
+    {
+      element: "General",
+      bestElements: ["Pyro", "Hydro", "Cryo", "Electro", "Dendro"],
+      note: "Match the counter to its element when it reveals one; otherwise any strong elemental DPS works.",
+    },
+  ],
+  Hilichurls: [
+    {
+      element: "General",
+      bestElements: ["Pyro", "Hydro", "Cryo", "Electro"],
+      note: "Basic tribal enemies; any strong damage works — counter shields by element if they raise one.",
+    },
+  ],
+  "Unique Enemies": [
+    {
+      element: "General",
+      bestElements: ["Pyro", "Hydro", "Cryo", "Electro"],
+      note: "No fixed elemental weakness; use your strongest team and adapt to what it does.",
+    },
+  ],
 };
 
 let cachedEnemies: EnemyCatalogItem[] | null = null;
@@ -323,7 +564,7 @@ function buildEnemyCatalog() {
 
 function buildLocalEnemy(localEnemy: (typeof localEnemyEntries)[number]) {
   const elements = normalizeElements(localEnemy.elements);
-  const advice = buildAdvice(localEnemy.id, elements);
+  const advice = buildAdvice(localEnemy.id, elements, localEnemy.family);
   const bestElements = uniqueElements(
     advice.flatMap((item) => item.bestElements),
   );
@@ -348,7 +589,7 @@ function buildLocalEnemy(localEnemy: (typeof localEnemyEntries)[number]) {
 
 function buildArchiveEnemy(archiveEnemy: (typeof enemyArchiveEntries)[number]) {
   const elements = normalizeElements(archiveEnemy.elements);
-  const advice = buildAdvice(archiveEnemy.id, elements);
+  const advice = buildAdvice(archiveEnemy.id, elements, archiveEnemy.family);
   const bestElements = uniqueElements(
     advice.flatMap((item) => item.bestElements),
   );
@@ -530,12 +771,20 @@ function sourceMatchesEnemy(source: string, enemyName: string) {
   );
 }
 
-function buildAdvice(id: string, elements: EnemyElement[]): EnemyElementAdvice[] {
+function buildAdvice(
+  id: string,
+  elements: EnemyElement[],
+  family?: string,
+): EnemyElementAdvice[] {
   if (adviceOverrides[id]) {
     return adviceOverrides[id];
   }
 
   if (elements.length === 0) {
+    if (family && familyAdviceFallbacks[family]) {
+      return familyAdviceFallbacks[family];
+    }
+
     return [
       {
         element: "General",
