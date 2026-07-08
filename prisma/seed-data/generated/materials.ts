@@ -2997,6 +2997,200 @@ export const seedMaterials: SeedMaterial[] = [
     "sortOrder": 204
   },
   {
+    "id": "gold-inscribed-secret-source-core",
+    "name": "Gold-Inscribed Secret Source Core",
+    "image": "/images/materials/boss-material/gold-inscribed-secret-source-core",
+    "rarity": 4,
+    "category": "Boss Material",
+    "description": "Gold-Inscribed Secret Source Core character ascension boss material.",
+    "details": {
+      "source": "Secret Source Automaton: Configuration Device",
+      "usedByCharacters": [
+        "lan-yan",
+        "mavuika",
+        "xilonen"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 205
+  },
+  {
+    "id": "ensnaring-gaze",
+    "name": "Ensnaring Gaze",
+    "image": "/images/materials/boss-material/ensnaring-gaze",
+    "rarity": 4,
+    "category": "Boss Material",
+    "description": "Ensnaring Gaze character ascension boss material.",
+    "details": {
+      "source": "Tenebrous Papilla",
+      "usedByCharacters": [
+        "chasca",
+        "iansan",
+        "skirk"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 206
+  },
+  {
+    "id": "talisman-of-the-enigmatic-land",
+    "name": "Talisman of the Enigmatic Land",
+    "image": "/images/materials/boss-material/talisman-of-the-enigmatic-land",
+    "rarity": 4,
+    "category": "Boss Material",
+    "description": "Talisman of the Enigmatic Land character ascension boss material.",
+    "details": {
+      "source": "Wayward Hermetic Spiritspeaker",
+      "usedByCharacters": [
+        "citlali",
+        "yumemizuki-mizuki"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 207
+  },
+  {
+    "id": "sparkless-statue-core",
+    "name": "Sparkless Statue Core",
+    "image": "/images/materials/boss-material/sparkless-statue-core",
+    "rarity": 4,
+    "category": "Boss Material",
+    "description": "Sparkless Statue Core character ascension boss material.",
+    "details": {
+      "source": "Lava Dragon Statue",
+      "usedByCharacters": [
+        "ifa",
+        "varesa"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 208
+  },
+  {
+    "id": "secret-source-airflow-accumulator",
+    "name": "Secret Source Airflow Accumulator",
+    "image": "/images/materials/boss-material/secret-source-airflow-accumulator",
+    "rarity": 4,
+    "category": "Boss Material",
+    "description": "Secret Source Airflow Accumulator character ascension boss material.",
+    "details": {
+      "source": "Secret Source Automaton: Overseer Device",
+      "usedByCharacters": [
+        "dahlia",
+        "escoffier",
+        "ineffa"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 209
+  },
+  {
+    "id": "precision-kuuvahki-stamping-die",
+    "name": "Precision Kuuvahki Stamping Die",
+    "image": "/images/materials/boss-material/precision-kuuvahki-stamping-die",
+    "rarity": 4,
+    "category": "Boss Material",
+    "description": "Precision Kuuvahki Stamping Die character ascension boss material.",
+    "details": {
+      "source": "Knuckle Duckle",
+      "usedByCharacters": [
+        "aino",
+        "flins"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 210
+  },
+  {
+    "id": "lightbearing-scale-feather",
+    "name": "Lightbearing Scale-Feather",
+    "image": "/images/materials/boss-material/lightbearing-scale-feather",
+    "rarity": 4,
+    "category": "Boss Material",
+    "description": "Lightbearing Scale-Feather character ascension boss material.",
+    "details": {
+      "source": "Radiant Moonfly",
+      "usedByCharacters": [
+        "jahoda",
+        "lauma"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 211
+  },
+  {
+    "id": "radiant-antler",
+    "name": "Radiant Antler",
+    "image": "/images/materials/boss-material/radiant-antler",
+    "rarity": 4,
+    "category": "Boss Material",
+    "description": "Radiant Antler character ascension boss material.",
+    "details": {
+      "source": "Frostnight Herra",
+      "usedByCharacters": [
+        "columbina",
+        "nefer",
+        "prune"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 212
+  },
+  {
+    "id": "cyclic-military-kuuvahki-core",
+    "name": "Cyclic Military Kuuvahki Core",
+    "image": "/images/materials/boss-material/cyclic-military-kuuvahki-core",
+    "rarity": 4,
+    "category": "Boss Material",
+    "description": "Cyclic Military Kuuvahki Core character ascension boss material.",
+    "details": {
+      "source": "Super-Heavy Landrover: Mechanized Fortress",
+      "usedByCharacters": [
+        "durin",
+        "illuga"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 213
+  },
+  {
+    "id": "remnant-of-the-dreadwing",
+    "name": "Remnant of the Dreadwing",
+    "image": "/images/materials/boss-material/remnant-of-the-dreadwing",
+    "rarity": 4,
+    "category": "Boss Material",
+    "description": "Remnant of the Dreadwing character ascension boss material.",
+    "details": {
+      "source": "Lord of the Hidden Depths: Whisperer of Nightmares",
+      "usedByCharacters": [
+        "nicole",
+        "zibai"
+      ]
+    },
+    "combinable": false,
+    "combineRatio": null,
+    "parentMaterialId": null,
+    "sortOrder": 214
+  },
+  {
     "id": "prismatic-severed-tail",
     "name": "Prismatic Severed Tail",
     "image": "/images/materials/boss-material/prismatic-severed-tail",
@@ -3012,7 +3206,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 205
+    "sortOrder": 215
   },
   {
     "id": "plume-of-the-fallen-watcher",
@@ -3031,7 +3225,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 206
+    "sortOrder": 216
   },
   {
     "id": "agnidus-agate-gemstone",
@@ -3043,7 +3237,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 207
+    "sortOrder": 217
   },
   {
     "id": "agnidus-agate-chunk",
@@ -3055,7 +3249,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "agnidus-agate-gemstone",
-    "sortOrder": 208
+    "sortOrder": 218
   },
   {
     "id": "agnidus-agate-fragment",
@@ -3067,7 +3261,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "agnidus-agate-chunk",
-    "sortOrder": 209
+    "sortOrder": 219
   },
   {
     "id": "agnidus-agate-sliver",
@@ -3079,7 +3273,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "agnidus-agate-fragment",
-    "sortOrder": 210
+    "sortOrder": 220
   },
   {
     "id": "varunada-lazurite-gemstone",
@@ -3091,7 +3285,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 211
+    "sortOrder": 221
   },
   {
     "id": "varunada-lazurite-chunk",
@@ -3103,7 +3297,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "varunada-lazurite-gemstone",
-    "sortOrder": 212
+    "sortOrder": 222
   },
   {
     "id": "varunada-lazurite-fragment",
@@ -3115,7 +3309,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "varunada-lazurite-chunk",
-    "sortOrder": 213
+    "sortOrder": 223
   },
   {
     "id": "varunada-lazurite-sliver",
@@ -3127,7 +3321,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "varunada-lazurite-fragment",
-    "sortOrder": 214
+    "sortOrder": 224
   },
   {
     "id": "nagadus-emerald-gemstone",
@@ -3139,7 +3333,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 215
+    "sortOrder": 225
   },
   {
     "id": "nagadus-emerald-chunk",
@@ -3151,7 +3345,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "nagadus-emerald-gemstone",
-    "sortOrder": 216
+    "sortOrder": 226
   },
   {
     "id": "nagadus-emerald-fragment",
@@ -3163,7 +3357,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "nagadus-emerald-chunk",
-    "sortOrder": 217
+    "sortOrder": 227
   },
   {
     "id": "nagadus-emerald-sliver",
@@ -3175,7 +3369,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "nagadus-emerald-fragment",
-    "sortOrder": 218
+    "sortOrder": 228
   },
   {
     "id": "vajrada-amethyst-gemstone",
@@ -3187,7 +3381,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 219
+    "sortOrder": 229
   },
   {
     "id": "vajrada-amethyst-chunk",
@@ -3199,7 +3393,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "vajrada-amethyst-gemstone",
-    "sortOrder": 220
+    "sortOrder": 230
   },
   {
     "id": "vajrada-amethyst-fragment",
@@ -3211,7 +3405,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "vajrada-amethyst-chunk",
-    "sortOrder": 221
+    "sortOrder": 231
   },
   {
     "id": "vajrada-amethyst-sliver",
@@ -3223,7 +3417,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "vajrada-amethyst-fragment",
-    "sortOrder": 222
+    "sortOrder": 232
   },
   {
     "id": "vayuda-turquoise-gemstone",
@@ -3235,7 +3429,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 223
+    "sortOrder": 233
   },
   {
     "id": "vayuda-turquoise-chunk",
@@ -3247,7 +3441,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "vayuda-turquoise-gemstone",
-    "sortOrder": 224
+    "sortOrder": 234
   },
   {
     "id": "vayuda-turquoise-fragment",
@@ -3259,7 +3453,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "vayuda-turquoise-chunk",
-    "sortOrder": 225
+    "sortOrder": 235
   },
   {
     "id": "vayuda-turquoise-sliver",
@@ -3271,7 +3465,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "vayuda-turquoise-fragment",
-    "sortOrder": 226
+    "sortOrder": 236
   },
   {
     "id": "shivada-jade-gemstone",
@@ -3283,7 +3477,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 227
+    "sortOrder": 237
   },
   {
     "id": "shivada-jade-chunk",
@@ -3295,7 +3489,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "shivada-jade-gemstone",
-    "sortOrder": 228
+    "sortOrder": 238
   },
   {
     "id": "shivada-jade-fragment",
@@ -3307,7 +3501,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "shivada-jade-chunk",
-    "sortOrder": 229
+    "sortOrder": 239
   },
   {
     "id": "shivada-jade-sliver",
@@ -3319,7 +3513,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "shivada-jade-fragment",
-    "sortOrder": 230
+    "sortOrder": 240
   },
   {
     "id": "prithiva-topaz-gemstone",
@@ -3331,7 +3525,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 231
+    "sortOrder": 241
   },
   {
     "id": "prithiva-topaz-chunk",
@@ -3343,7 +3537,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "prithiva-topaz-gemstone",
-    "sortOrder": 232
+    "sortOrder": 242
   },
   {
     "id": "prithiva-topaz-fragment",
@@ -3355,7 +3549,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "prithiva-topaz-chunk",
-    "sortOrder": 233
+    "sortOrder": 243
   },
   {
     "id": "prithiva-topaz-sliver",
@@ -3367,7 +3561,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "prithiva-topaz-fragment",
-    "sortOrder": 234
+    "sortOrder": 244
   },
   {
     "id": "brilliant-diamond-gemstone",
@@ -3379,7 +3573,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 235
+    "sortOrder": 245
   },
   {
     "id": "brilliant-diamond-chunk",
@@ -3391,7 +3585,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "brilliant-diamond-gemstone",
-    "sortOrder": 236
+    "sortOrder": 246
   },
   {
     "id": "brilliant-diamond-fragment",
@@ -3403,7 +3597,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "brilliant-diamond-chunk",
-    "sortOrder": 237
+    "sortOrder": 247
   },
   {
     "id": "brilliant-diamond-sliver",
@@ -3415,7 +3609,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "brilliant-diamond-fragment",
-    "sortOrder": 238
+    "sortOrder": 248
   },
   {
     "id": "philosophies-of-freedom",
@@ -3427,7 +3621,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 239
+    "sortOrder": 249
   },
   {
     "id": "guide-to-freedom",
@@ -3439,7 +3633,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "philosophies-of-freedom",
-    "sortOrder": 240
+    "sortOrder": 250
   },
   {
     "id": "teachings-of-freedom",
@@ -3451,7 +3645,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "guide-to-freedom",
-    "sortOrder": 241
+    "sortOrder": 251
   },
   {
     "id": "philosophies-of-resistance",
@@ -3463,7 +3657,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 242
+    "sortOrder": 252
   },
   {
     "id": "guide-to-resistance",
@@ -3475,7 +3669,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "philosophies-of-resistance",
-    "sortOrder": 243
+    "sortOrder": 253
   },
   {
     "id": "teachings-of-resistance",
@@ -3487,7 +3681,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "guide-to-resistance",
-    "sortOrder": 244
+    "sortOrder": 254
   },
   {
     "id": "philosophies-of-ballad",
@@ -3499,7 +3693,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 245
+    "sortOrder": 255
   },
   {
     "id": "guide-to-ballad",
@@ -3511,7 +3705,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "philosophies-of-ballad",
-    "sortOrder": 246
+    "sortOrder": 256
   },
   {
     "id": "teachings-of-ballad",
@@ -3523,7 +3717,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "guide-to-ballad",
-    "sortOrder": 247
+    "sortOrder": 257
   },
   {
     "id": "philosophies-of-prosperity",
@@ -3535,7 +3729,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 248
+    "sortOrder": 258
   },
   {
     "id": "guide-to-prosperity",
@@ -3547,7 +3741,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "philosophies-of-prosperity",
-    "sortOrder": 249
+    "sortOrder": 259
   },
   {
     "id": "teachings-of-prosperity",
@@ -3559,7 +3753,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "guide-to-prosperity",
-    "sortOrder": 250
+    "sortOrder": 260
   },
   {
     "id": "philosophies-of-diligence",
@@ -3571,7 +3765,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 251
+    "sortOrder": 261
   },
   {
     "id": "guide-to-diligence",
@@ -3583,7 +3777,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "philosophies-of-diligence",
-    "sortOrder": 252
+    "sortOrder": 262
   },
   {
     "id": "teachings-of-diligence",
@@ -3595,7 +3789,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "guide-to-diligence",
-    "sortOrder": 253
+    "sortOrder": 263
   },
   {
     "id": "philosophies-of-gold",
@@ -3607,7 +3801,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 254
+    "sortOrder": 264
   },
   {
     "id": "guide-to-gold",
@@ -3619,7 +3813,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "philosophies-of-gold",
-    "sortOrder": 255
+    "sortOrder": 265
   },
   {
     "id": "teachings-of-gold",
@@ -3631,7 +3825,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "guide-to-gold",
-    "sortOrder": 256
+    "sortOrder": 266
   },
   {
     "id": "philosophies-of-transience",
@@ -3643,7 +3837,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 257
+    "sortOrder": 267
   },
   {
     "id": "guide-to-transience",
@@ -3655,7 +3849,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "philosophies-of-transience",
-    "sortOrder": 258
+    "sortOrder": 268
   },
   {
     "id": "teachings-of-transience",
@@ -3667,7 +3861,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "guide-to-transience",
-    "sortOrder": 259
+    "sortOrder": 269
   },
   {
     "id": "philosophies-of-elegance",
@@ -3679,7 +3873,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 260
+    "sortOrder": 270
   },
   {
     "id": "guide-to-elegance",
@@ -3691,7 +3885,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "philosophies-of-elegance",
-    "sortOrder": 261
+    "sortOrder": 271
   },
   {
     "id": "teachings-of-elegance",
@@ -3703,7 +3897,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "guide-to-elegance",
-    "sortOrder": 262
+    "sortOrder": 272
   },
   {
     "id": "philosophies-of-light",
@@ -3715,7 +3909,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 263
+    "sortOrder": 273
   },
   {
     "id": "guide-to-light",
@@ -3727,7 +3921,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "philosophies-of-light",
-    "sortOrder": 264
+    "sortOrder": 274
   },
   {
     "id": "teachings-of-light",
@@ -3739,7 +3933,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "guide-to-light",
-    "sortOrder": 265
+    "sortOrder": 275
   },
   {
     "id": "philosophies-of-admonition",
@@ -3751,7 +3945,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 266
+    "sortOrder": 276
   },
   {
     "id": "guide-to-admonition",
@@ -3763,7 +3957,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "philosophies-of-admonition",
-    "sortOrder": 267
+    "sortOrder": 277
   },
   {
     "id": "teachings-of-admonition",
@@ -3775,7 +3969,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "guide-to-admonition",
-    "sortOrder": 268
+    "sortOrder": 278
   },
   {
     "id": "philosophies-of-ingenuity",
@@ -3787,7 +3981,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 269
+    "sortOrder": 279
   },
   {
     "id": "guide-to-ingenuity",
@@ -3799,7 +3993,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "philosophies-of-ingenuity",
-    "sortOrder": 270
+    "sortOrder": 280
   },
   {
     "id": "teachings-of-ingenuity",
@@ -3811,7 +4005,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "guide-to-ingenuity",
-    "sortOrder": 271
+    "sortOrder": 281
   },
   {
     "id": "philosophies-of-praxis",
@@ -3823,7 +4017,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 272
+    "sortOrder": 282
   },
   {
     "id": "guide-to-praxis",
@@ -3835,7 +4029,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "philosophies-of-praxis",
-    "sortOrder": 273
+    "sortOrder": 283
   },
   {
     "id": "teachings-of-praxis",
@@ -3847,7 +4041,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "guide-to-praxis",
-    "sortOrder": 274
+    "sortOrder": 284
   },
   {
     "id": "philosophies-of-equity",
@@ -3859,7 +4053,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 275
+    "sortOrder": 285
   },
   {
     "id": "guide-to-equity",
@@ -3871,7 +4065,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "philosophies-of-equity",
-    "sortOrder": 276
+    "sortOrder": 286
   },
   {
     "id": "teachings-of-equity",
@@ -3883,7 +4077,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "guide-to-equity",
-    "sortOrder": 277
+    "sortOrder": 287
   },
   {
     "id": "philosophies-of-justice",
@@ -3895,7 +4089,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 278
+    "sortOrder": 288
   },
   {
     "id": "guide-to-justice",
@@ -3907,7 +4101,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "philosophies-of-justice",
-    "sortOrder": 279
+    "sortOrder": 289
   },
   {
     "id": "teachings-of-justice",
@@ -3919,7 +4113,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "guide-to-justice",
-    "sortOrder": 280
+    "sortOrder": 290
   },
   {
     "id": "philosophies-of-order",
@@ -3931,7 +4125,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 281
+    "sortOrder": 291
   },
   {
     "id": "guide-to-order",
@@ -3943,7 +4137,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "philosophies-of-order",
-    "sortOrder": 282
+    "sortOrder": 292
   },
   {
     "id": "teachings-of-order",
@@ -3955,7 +4149,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "guide-to-order",
-    "sortOrder": 283
+    "sortOrder": 293
   },
   {
     "id": "philosophies-of-contention",
@@ -3967,7 +4161,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 284
+    "sortOrder": 294
   },
   {
     "id": "guide-to-contention",
@@ -3979,7 +4173,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "philosophies-of-contention",
-    "sortOrder": 285
+    "sortOrder": 295
   },
   {
     "id": "teachings-of-contention",
@@ -3991,7 +4185,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "guide-to-contention",
-    "sortOrder": 286
+    "sortOrder": 296
   },
   {
     "id": "philosophies-of-kindling",
@@ -4003,7 +4197,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 287
+    "sortOrder": 297
   },
   {
     "id": "guide-to-kindling",
@@ -4015,7 +4209,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "philosophies-of-kindling",
-    "sortOrder": 288
+    "sortOrder": 298
   },
   {
     "id": "teachings-of-kindling",
@@ -4027,7 +4221,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "guide-to-kindling",
-    "sortOrder": 289
+    "sortOrder": 299
   },
   {
     "id": "philosophies-of-conflict",
@@ -4039,7 +4233,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 290
+    "sortOrder": 300
   },
   {
     "id": "guide-to-conflict",
@@ -4051,7 +4245,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "philosophies-of-conflict",
-    "sortOrder": 291
+    "sortOrder": 301
   },
   {
     "id": "teachings-of-conflict",
@@ -4063,7 +4257,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "guide-to-conflict",
-    "sortOrder": 292
+    "sortOrder": 302
   },
   {
     "id": "philosophies-of-moonlight",
@@ -4075,7 +4269,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 293
+    "sortOrder": 303
   },
   {
     "id": "guide-to-moonlight",
@@ -4087,7 +4281,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "philosophies-of-moonlight",
-    "sortOrder": 294
+    "sortOrder": 304
   },
   {
     "id": "teachings-of-moonlight",
@@ -4099,7 +4293,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "guide-to-moonlight",
-    "sortOrder": 295
+    "sortOrder": 305
   },
   {
     "id": "philosophies-of-elysium",
@@ -4111,7 +4305,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 296
+    "sortOrder": 306
   },
   {
     "id": "guide-to-elysium",
@@ -4123,7 +4317,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "philosophies-of-elysium",
-    "sortOrder": 297
+    "sortOrder": 307
   },
   {
     "id": "teachings-of-elysium",
@@ -4135,7 +4329,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "guide-to-elysium",
-    "sortOrder": 298
+    "sortOrder": 308
   },
   {
     "id": "philosophies-of-vagrancy",
@@ -4147,7 +4341,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 299
+    "sortOrder": 309
   },
   {
     "id": "guide-to-vagrancy",
@@ -4159,7 +4353,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "philosophies-of-vagrancy",
-    "sortOrder": 300
+    "sortOrder": 310
   },
   {
     "id": "teachings-of-vagrancy",
@@ -4171,7 +4365,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "guide-to-vagrancy",
-    "sortOrder": 301
+    "sortOrder": 311
   },
   {
     "id": "crown-of-insight",
@@ -4183,7 +4377,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 302
+    "sortOrder": 312
   },
   {
     "id": "scattered-piece-of-decarabian-s-dream",
@@ -4195,7 +4389,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 303
+    "sortOrder": 313
   },
   {
     "id": "fragment-of-decarabian-s-epic",
@@ -4207,7 +4401,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "scattered-piece-of-decarabian-s-dream",
-    "sortOrder": 304
+    "sortOrder": 314
   },
   {
     "id": "debris-of-decarabian-s-city",
@@ -4219,7 +4413,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "fragment-of-decarabian-s-epic",
-    "sortOrder": 305
+    "sortOrder": 315
   },
   {
     "id": "tile-of-decarabian-s-tower",
@@ -4231,7 +4425,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "debris-of-decarabian-s-city",
-    "sortOrder": 306
+    "sortOrder": 316
   },
   {
     "id": "boreal-wolf-s-nostalgia",
@@ -4243,7 +4437,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 307
+    "sortOrder": 317
   },
   {
     "id": "boreal-wolf-s-broken-fang",
@@ -4255,7 +4449,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "boreal-wolf-s-nostalgia",
-    "sortOrder": 308
+    "sortOrder": 318
   },
   {
     "id": "boreal-wolf-s-cracked-tooth",
@@ -4267,7 +4461,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "boreal-wolf-s-broken-fang",
-    "sortOrder": 309
+    "sortOrder": 319
   },
   {
     "id": "boreal-wolf-s-milk-tooth",
@@ -4279,7 +4473,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "boreal-wolf-s-cracked-tooth",
-    "sortOrder": 310
+    "sortOrder": 320
   },
   {
     "id": "dream-of-the-dandelion-gladiator",
@@ -4291,7 +4485,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 311
+    "sortOrder": 321
   },
   {
     "id": "shackles-of-the-dandelion-gladiator",
@@ -4303,7 +4497,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "dream-of-the-dandelion-gladiator",
-    "sortOrder": 312
+    "sortOrder": 322
   },
   {
     "id": "chains-of-the-dandelion-gladiator",
@@ -4315,7 +4509,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "shackles-of-the-dandelion-gladiator",
-    "sortOrder": 313
+    "sortOrder": 323
   },
   {
     "id": "fetters-of-the-dandelion-gladiator",
@@ -4327,7 +4521,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "chains-of-the-dandelion-gladiator",
-    "sortOrder": 314
+    "sortOrder": 324
   },
   {
     "id": "divine-body-from-guyun",
@@ -4339,7 +4533,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 315
+    "sortOrder": 325
   },
   {
     "id": "relic-from-guyun",
@@ -4351,7 +4545,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "divine-body-from-guyun",
-    "sortOrder": 316
+    "sortOrder": 326
   },
   {
     "id": "lustrous-stone-from-guyun",
@@ -4363,7 +4557,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "relic-from-guyun",
-    "sortOrder": 317
+    "sortOrder": 327
   },
   {
     "id": "luminous-sands-from-guyun",
@@ -4375,7 +4569,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "lustrous-stone-from-guyun",
-    "sortOrder": 318
+    "sortOrder": 328
   },
   {
     "id": "mist-veiled-primo-elixir",
@@ -4387,7 +4581,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 319
+    "sortOrder": 329
   },
   {
     "id": "mist-veiled-gold-elixir",
@@ -4399,7 +4593,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "mist-veiled-primo-elixir",
-    "sortOrder": 320
+    "sortOrder": 330
   },
   {
     "id": "mist-veiled-mercury-elixir",
@@ -4411,7 +4605,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "mist-veiled-gold-elixir",
-    "sortOrder": 321
+    "sortOrder": 331
   },
   {
     "id": "mist-veiled-lead-elixir",
@@ -4423,7 +4617,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "mist-veiled-mercury-elixir",
-    "sortOrder": 322
+    "sortOrder": 332
   },
   {
     "id": "chunk-of-aerosiderite",
@@ -4435,7 +4629,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 323
+    "sortOrder": 333
   },
   {
     "id": "bit-of-aerosiderite",
@@ -4447,7 +4641,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "chunk-of-aerosiderite",
-    "sortOrder": 324
+    "sortOrder": 334
   },
   {
     "id": "piece-of-aerosiderite",
@@ -4459,7 +4653,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "bit-of-aerosiderite",
-    "sortOrder": 325
+    "sortOrder": 335
   },
   {
     "id": "grain-of-aerosiderite",
@@ -4471,7 +4665,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "piece-of-aerosiderite",
-    "sortOrder": 326
+    "sortOrder": 336
   },
   {
     "id": "golden-branch-of-a-distant-sea",
@@ -4483,7 +4677,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 327
+    "sortOrder": 337
   },
   {
     "id": "jade-branch-of-a-distant-sea",
@@ -4495,7 +4689,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "golden-branch-of-a-distant-sea",
-    "sortOrder": 328
+    "sortOrder": 338
   },
   {
     "id": "jeweled-branch-of-a-distant-sea",
@@ -4507,7 +4701,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "jade-branch-of-a-distant-sea",
-    "sortOrder": 329
+    "sortOrder": 339
   },
   {
     "id": "coral-branch-of-a-distant-sea",
@@ -4519,7 +4713,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "jeweled-branch-of-a-distant-sea",
-    "sortOrder": 330
+    "sortOrder": 340
   },
   {
     "id": "narukami-s-valor",
@@ -4531,7 +4725,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 331
+    "sortOrder": 341
   },
   {
     "id": "narukami-s-affection",
@@ -4543,7 +4737,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "narukami-s-valor",
-    "sortOrder": 332
+    "sortOrder": 342
   },
   {
     "id": "narukami-s-joy",
@@ -4555,7 +4749,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "narukami-s-affection",
-    "sortOrder": 333
+    "sortOrder": 343
   },
   {
     "id": "narukami-s-wisdom",
@@ -4567,7 +4761,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "narukami-s-joy",
-    "sortOrder": 334
+    "sortOrder": 344
   },
   {
     "id": "mask-of-the-kijin",
@@ -4579,7 +4773,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 335
+    "sortOrder": 345
   },
   {
     "id": "mask-of-the-one-horned",
@@ -4591,7 +4785,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "mask-of-the-kijin",
-    "sortOrder": 336
+    "sortOrder": 346
   },
   {
     "id": "mask-of-the-tiger-s-bite",
@@ -4603,7 +4797,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "mask-of-the-one-horned",
-    "sortOrder": 337
+    "sortOrder": 347
   },
   {
     "id": "mask-of-the-wicked-lieutenant",
@@ -4615,7 +4809,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "mask-of-the-tiger-s-bite",
-    "sortOrder": 338
+    "sortOrder": 348
   },
   {
     "id": "golden-talisman-of-the-forest-dew",
@@ -4627,7 +4821,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 339
+    "sortOrder": 349
   },
   {
     "id": "silver-talisman-of-the-forest-dew",
@@ -4639,7 +4833,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "golden-talisman-of-the-forest-dew",
-    "sortOrder": 340
+    "sortOrder": 350
   },
   {
     "id": "iron-talisman-of-the-forest-dew",
@@ -4651,7 +4845,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "silver-talisman-of-the-forest-dew",
-    "sortOrder": 341
+    "sortOrder": 351
   },
   {
     "id": "copper-talisman-of-the-forest-dew",
@@ -4663,7 +4857,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "iron-talisman-of-the-forest-dew",
-    "sortOrder": 342
+    "sortOrder": 352
   },
   {
     "id": "oasis-garden-s-truth",
@@ -4675,7 +4869,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 343
+    "sortOrder": 353
   },
   {
     "id": "oasis-garden-s-mourning",
@@ -4687,7 +4881,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "oasis-garden-s-truth",
-    "sortOrder": 344
+    "sortOrder": 354
   },
   {
     "id": "oasis-garden-s-kindness",
@@ -4699,7 +4893,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "oasis-garden-s-mourning",
-    "sortOrder": 345
+    "sortOrder": 355
   },
   {
     "id": "oasis-garden-s-reminiscence",
@@ -4711,7 +4905,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "oasis-garden-s-kindness",
-    "sortOrder": 346
+    "sortOrder": 356
   },
   {
     "id": "olden-days-of-scorching-might",
@@ -4723,7 +4917,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 347
+    "sortOrder": 357
   },
   {
     "id": "dream-of-scorching-might",
@@ -4735,7 +4929,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "olden-days-of-scorching-might",
-    "sortOrder": 348
+    "sortOrder": 358
   },
   {
     "id": "remnant-glow-of-scorching-might",
@@ -4747,7 +4941,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "dream-of-scorching-might",
-    "sortOrder": 349
+    "sortOrder": 359
   },
   {
     "id": "echo-of-scorching-might",
@@ -4759,7 +4953,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "remnant-glow-of-scorching-might",
-    "sortOrder": 350
+    "sortOrder": 360
   },
   {
     "id": "echo-of-an-ancient-chord",
@@ -4771,7 +4965,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 351
+    "sortOrder": 361
   },
   {
     "id": "movement-of-an-ancient-chord",
@@ -4783,7 +4977,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "echo-of-an-ancient-chord",
-    "sortOrder": 352
+    "sortOrder": 362
   },
   {
     "id": "chapter-of-an-ancient-chord",
@@ -4795,7 +4989,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "movement-of-an-ancient-chord",
-    "sortOrder": 353
+    "sortOrder": 363
   },
   {
     "id": "fragment-of-an-ancient-chord",
@@ -4807,7 +5001,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "chapter-of-an-ancient-chord",
-    "sortOrder": 354
+    "sortOrder": 364
   },
   {
     "id": "essence-of-pure-sacred-dewdrop",
@@ -4819,7 +5013,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 355
+    "sortOrder": 365
   },
   {
     "id": "spring-of-pure-sacred-dewdrop",
@@ -4831,7 +5025,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "essence-of-pure-sacred-dewdrop",
-    "sortOrder": 356
+    "sortOrder": 366
   },
   {
     "id": "sublimation-of-pure-sacred-dewdrop",
@@ -4843,7 +5037,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "spring-of-pure-sacred-dewdrop",
-    "sortOrder": 357
+    "sortOrder": 367
   },
   {
     "id": "dross-of-pure-sacred-dewdrop",
@@ -4855,7 +5049,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "sublimation-of-pure-sacred-dewdrop",
-    "sortOrder": 358
+    "sortOrder": 368
   },
   {
     "id": "golden-goblet-of-the-pristine-sea",
@@ -4867,7 +5061,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 359
+    "sortOrder": 369
   },
   {
     "id": "silver-goblet-of-the-pristine-sea",
@@ -4879,7 +5073,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "golden-goblet-of-the-pristine-sea",
-    "sortOrder": 360
+    "sortOrder": 370
   },
   {
     "id": "wine-goblet-of-the-pristine-sea",
@@ -4891,7 +5085,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "silver-goblet-of-the-pristine-sea",
-    "sortOrder": 361
+    "sortOrder": 371
   },
   {
     "id": "broken-goblet-of-the-pristine-sea",
@@ -4903,7 +5097,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "wine-goblet-of-the-pristine-sea",
-    "sortOrder": 362
+    "sortOrder": 372
   },
   {
     "id": "artful-device-wish",
@@ -4915,7 +5109,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 363
+    "sortOrder": 373
   },
   {
     "id": "artful-device-inheritance",
@@ -4927,7 +5121,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "artful-device-wish",
-    "sortOrder": 364
+    "sortOrder": 374
   },
   {
     "id": "artful-device-replica",
@@ -4939,7 +5133,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "artful-device-inheritance",
-    "sortOrder": 365
+    "sortOrder": 375
   },
   {
     "id": "artful-device-fragment",
@@ -4951,7 +5145,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": true,
     "combineRatio": 3,
     "parentMaterialId": "artful-device-replica",
-    "sortOrder": 366
+    "sortOrder": 376
   },
   {
     "id": "hero-s-wit",
@@ -4966,7 +5160,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 367
+    "sortOrder": 377
   },
   {
     "id": "adventurer-s-experience",
@@ -4981,7 +5175,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 368
+    "sortOrder": 378
   },
   {
     "id": "wanderer-s-advice",
@@ -4996,7 +5190,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 369
+    "sortOrder": 379
   },
   {
     "id": "wolfhook",
@@ -5014,7 +5208,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 370
+    "sortOrder": 380
   },
   {
     "id": "valberry",
@@ -5033,7 +5227,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 371
+    "sortOrder": 381
   },
   {
     "id": "cecilia",
@@ -5051,7 +5245,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 372
+    "sortOrder": 382
   },
   {
     "id": "windwheel-aster",
@@ -5075,7 +5269,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 373
+    "sortOrder": 383
   },
   {
     "id": "philanemo-mushroom",
@@ -5094,7 +5288,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 374
+    "sortOrder": 384
   },
   {
     "id": "small-lamp-grass",
@@ -5113,7 +5307,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 375
+    "sortOrder": 385
   },
   {
     "id": "calla-lily",
@@ -5131,7 +5325,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 376
+    "sortOrder": 386
   },
   {
     "id": "dandelion-seed",
@@ -5149,7 +5343,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 377
+    "sortOrder": 387
   },
   {
     "id": "etherwing-moth",
@@ -5164,7 +5358,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 378
+    "sortOrder": 388
   },
   {
     "id": "jueyun-chili",
@@ -5182,7 +5376,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 379
+    "sortOrder": 389
   },
   {
     "id": "noctilucous-jade",
@@ -5200,7 +5394,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 380
+    "sortOrder": 390
   },
   {
     "id": "silk-flower",
@@ -5218,7 +5412,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 381
+    "sortOrder": 391
   },
   {
     "id": "glaze-lily",
@@ -5236,7 +5430,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 382
+    "sortOrder": 392
   },
   {
     "id": "qingxin",
@@ -5255,7 +5449,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 383
+    "sortOrder": 393
   },
   {
     "id": "starconch",
@@ -5274,7 +5468,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 384
+    "sortOrder": 394
   },
   {
     "id": "violetgrass",
@@ -5293,7 +5487,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 385
+    "sortOrder": 395
   },
   {
     "id": "cor-lapis",
@@ -5312,7 +5506,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 386
+    "sortOrder": 396
   },
   {
     "id": "clearwater-jade",
@@ -5329,7 +5523,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 387
+    "sortOrder": 397
   },
   {
     "id": "onikabuto",
@@ -5347,7 +5541,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 388
+    "sortOrder": 398
   },
   {
     "id": "sakura-bloom",
@@ -5365,7 +5559,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 389
+    "sortOrder": 399
   },
   {
     "id": "crystal-marrow",
@@ -5383,7 +5577,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 390
+    "sortOrder": 400
   },
   {
     "id": "dendrobium",
@@ -5400,7 +5594,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 391
+    "sortOrder": 401
   },
   {
     "id": "naku-weed",
@@ -5418,7 +5612,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 392
+    "sortOrder": 402
   },
   {
     "id": "sea-ganoderma",
@@ -5436,7 +5630,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 393
+    "sortOrder": 403
   },
   {
     "id": "sango-pearl",
@@ -5454,7 +5648,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 394
+    "sortOrder": 404
   },
   {
     "id": "amakumo-fruit",
@@ -5472,7 +5666,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 395
+    "sortOrder": 405
   },
   {
     "id": "fluorescent-fungus",
@@ -5489,7 +5683,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 396
+    "sortOrder": 406
   },
   {
     "id": "rukkhashava-mushrooms",
@@ -5507,7 +5701,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 397
+    "sortOrder": 407
   },
   {
     "id": "padisarah",
@@ -5524,7 +5718,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 398
+    "sortOrder": 408
   },
   {
     "id": "nilotpala-lotus",
@@ -5542,7 +5736,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 399
+    "sortOrder": 409
   },
   {
     "id": "kalpalata-lotus",
@@ -5560,7 +5754,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 400
+    "sortOrder": 410
   },
   {
     "id": "henna-berry",
@@ -5578,7 +5772,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 401
+    "sortOrder": 411
   },
   {
     "id": "sand-grease-pupa",
@@ -5596,7 +5790,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 402
+    "sortOrder": 412
   },
   {
     "id": "mourning-flower",
@@ -5613,7 +5807,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 403
+    "sortOrder": 413
   },
   {
     "id": "trishiraite",
@@ -5630,7 +5824,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 404
+    "sortOrder": 414
   },
   {
     "id": "scarab",
@@ -5647,7 +5841,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 405
+    "sortOrder": 415
   },
   {
     "id": "beryl-conch",
@@ -5664,7 +5858,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 406
+    "sortOrder": 416
   },
   {
     "id": "romaritime-flower",
@@ -5682,7 +5876,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 407
+    "sortOrder": 417
   },
   {
     "id": "lumidouce-bell",
@@ -5700,7 +5894,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 408
+    "sortOrder": 418
   },
   {
     "id": "rainbow-rose",
@@ -5717,7 +5911,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 409
+    "sortOrder": 419
   },
   {
     "id": "lumitoile",
@@ -5735,7 +5929,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 410
+    "sortOrder": 420
   },
   {
     "id": "lakelight-lily",
@@ -5752,7 +5946,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 411
+    "sortOrder": 421
   },
   {
     "id": "subdetection-unit",
@@ -5769,7 +5963,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 412
+    "sortOrder": 422
   },
   {
     "id": "spring-of-the-first-dewdrop",
@@ -5786,7 +5980,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 413
+    "sortOrder": 423
   },
   {
     "id": "sprayfeather-gill",
@@ -5803,7 +5997,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 414
+    "sortOrder": 424
   },
   {
     "id": "brilliant-chrysanthemum",
@@ -5820,7 +6014,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 415
+    "sortOrder": 425
   },
   {
     "id": "quenepa-berry",
@@ -5837,7 +6031,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 416
+    "sortOrder": 426
   },
   {
     "id": "saurian-claw-succulent",
@@ -5854,7 +6048,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 417
+    "sortOrder": 427
   },
   {
     "id": "glowing-hornshroom",
@@ -5872,7 +6066,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 418
+    "sortOrder": 428
   },
   {
     "id": "withering-purpurbloom",
@@ -5890,7 +6084,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 419
+    "sortOrder": 429
   },
   {
     "id": "skysplit-gembloom",
@@ -5908,7 +6102,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 420
+    "sortOrder": 430
   },
   {
     "id": "dracolite",
@@ -5925,7 +6119,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 421
+    "sortOrder": 431
   },
   {
     "id": "portable-bearing",
@@ -5943,7 +6137,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 422
+    "sortOrder": 432
   },
   {
     "id": "frostlamp-flower",
@@ -5961,7 +6155,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 423
+    "sortOrder": 433
   },
   {
     "id": "moonfall-silver",
@@ -5979,7 +6173,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 424
+    "sortOrder": 434
   },
   {
     "id": "winter-icelea",
@@ -5997,7 +6191,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 425
+    "sortOrder": 435
   },
   {
     "id": "pine-amber",
@@ -6015,7 +6209,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 426
+    "sortOrder": 436
   },
   {
     "id": "horsetail",
@@ -6035,7 +6229,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 427
+    "sortOrder": 437
   },
   {
     "id": "mist-flower-corolla",
@@ -6052,7 +6246,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 428
+    "sortOrder": 438
   },
   {
     "id": "flaming-flower-stamen",
@@ -6069,7 +6263,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 429
+    "sortOrder": 439
   },
   {
     "id": "electro-crystal",
@@ -6086,7 +6280,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 430
+    "sortOrder": 440
   },
   {
     "id": "butterfly-wings",
@@ -6103,7 +6297,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 431
+    "sortOrder": 441
   },
   {
     "id": "frog",
@@ -6120,7 +6314,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 432
+    "sortOrder": 442
   },
   {
     "id": "luminescent-spine",
@@ -6137,7 +6331,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 433
+    "sortOrder": 443
   },
   {
     "id": "lizard-tail",
@@ -6154,7 +6348,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 434
+    "sortOrder": 444
   },
   {
     "id": "crystal-core",
@@ -6171,7 +6365,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 435
+    "sortOrder": 445
   },
   {
     "id": "loach-pearl",
@@ -6188,7 +6382,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 436
+    "sortOrder": 446
   },
   {
     "id": "viparyas",
@@ -6205,7 +6399,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 437
+    "sortOrder": 447
   },
   {
     "id": "pluie-lotus",
@@ -6222,7 +6416,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 438
+    "sortOrder": 448
   },
   {
     "id": "cacahuatl",
@@ -6240,7 +6434,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 439
+    "sortOrder": 449
   },
   {
     "id": "embercore-flower",
@@ -6258,7 +6452,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 440
+    "sortOrder": 450
   },
   {
     "id": "icy-pebble",
@@ -6276,7 +6470,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 441
+    "sortOrder": 451
   },
   {
     "id": "nocturnal-blossom",
@@ -6294,7 +6488,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 442
+    "sortOrder": 452
   },
   {
     "id": "mushroom",
@@ -6312,7 +6506,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 443
+    "sortOrder": 453
   },
   {
     "id": "sweet-flower",
@@ -6330,7 +6524,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 444
+    "sortOrder": 454
   },
   {
     "id": "carrot",
@@ -6349,7 +6543,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 445
+    "sortOrder": 455
   },
   {
     "id": "radish",
@@ -6368,7 +6562,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 446
+    "sortOrder": 456
   },
   {
     "id": "snapdragon",
@@ -6386,7 +6580,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 447
+    "sortOrder": 457
   },
   {
     "id": "mint",
@@ -6404,7 +6598,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 448
+    "sortOrder": 458
   },
   {
     "id": "wheat",
@@ -6423,7 +6617,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 449
+    "sortOrder": 459
   },
   {
     "id": "cabbage",
@@ -6443,7 +6637,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 450
+    "sortOrder": 460
   },
   {
     "id": "pinecone",
@@ -6460,7 +6654,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 451
+    "sortOrder": 461
   },
   {
     "id": "lotus-head",
@@ -6479,7 +6673,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 452
+    "sortOrder": 462
   },
   {
     "id": "berry",
@@ -6496,7 +6690,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 453
+    "sortOrder": 463
   },
   {
     "id": "raw-meat",
@@ -6515,7 +6709,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 454
+    "sortOrder": 464
   },
   {
     "id": "bird-egg",
@@ -6533,7 +6727,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 455
+    "sortOrder": 465
   },
   {
     "id": "matsutake",
@@ -6552,7 +6746,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 456
+    "sortOrder": 466
   },
   {
     "id": "fowl",
@@ -6570,7 +6764,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 457
+    "sortOrder": 467
   },
   {
     "id": "crab",
@@ -6589,7 +6783,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 458
+    "sortOrder": 468
   },
   {
     "id": "salt",
@@ -6607,7 +6801,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 459
+    "sortOrder": 469
   },
   {
     "id": "onion",
@@ -6625,7 +6819,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 460
+    "sortOrder": 470
   },
   {
     "id": "pepper",
@@ -6643,7 +6837,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 461
+    "sortOrder": 471
   },
   {
     "id": "milk",
@@ -6661,7 +6855,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 462
+    "sortOrder": 472
   },
   {
     "id": "tomato",
@@ -6680,7 +6874,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 463
+    "sortOrder": 473
   },
   {
     "id": "potato",
@@ -6700,7 +6894,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 464
+    "sortOrder": 474
   },
   {
     "id": "fish",
@@ -6720,7 +6914,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 465
+    "sortOrder": 475
   },
   {
     "id": "tofu",
@@ -6738,7 +6932,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 466
+    "sortOrder": 476
   },
   {
     "id": "almond",
@@ -6756,7 +6950,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 467
+    "sortOrder": 477
   },
   {
     "id": "bamboo-shoot",
@@ -6774,7 +6968,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 468
+    "sortOrder": 478
   },
   {
     "id": "rice",
@@ -6791,7 +6985,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 469
+    "sortOrder": 479
   },
   {
     "id": "shrimp-meat",
@@ -6809,7 +7003,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 470
+    "sortOrder": 480
   },
   {
     "id": "chilled-meat",
@@ -6826,7 +7020,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 471
+    "sortOrder": 481
   },
   {
     "id": "eel-meat",
@@ -6845,7 +7039,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 472
+    "sortOrder": 482
   },
   {
     "id": "glabrous-beans",
@@ -6865,7 +7059,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 473
+    "sortOrder": 483
   },
   {
     "id": "mysterious-meat",
@@ -6882,7 +7076,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 474
+    "sortOrder": 484
   },
   {
     "id": "coffee-beans",
@@ -6901,7 +7095,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 475
+    "sortOrder": 485
   },
   {
     "id": "fermented-juice",
@@ -6918,7 +7112,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 476
+    "sortOrder": 486
   },
   {
     "id": "rye",
@@ -6936,7 +7130,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 477
+    "sortOrder": 487
   },
   {
     "id": "seagrass",
@@ -6957,7 +7151,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 478
+    "sortOrder": 488
   },
   {
     "id": "lavender-melon",
@@ -6976,7 +7170,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 479
+    "sortOrder": 489
   },
   {
     "id": "harra-fruit",
@@ -6998,7 +7192,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 480
+    "sortOrder": 490
   },
   {
     "id": "zaytun-peach",
@@ -7021,7 +7215,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 481
+    "sortOrder": 491
   },
   {
     "id": "sumeru-rose",
@@ -7040,7 +7234,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 482
+    "sortOrder": 492
   },
   {
     "id": "ajilenakh-nut",
@@ -7059,7 +7253,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 483
+    "sortOrder": 493
   },
   {
     "id": "marcotte",
@@ -7080,7 +7274,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 484
+    "sortOrder": 494
   },
   {
     "id": "tidalga",
@@ -7099,7 +7293,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 485
+    "sortOrder": 495
   },
   {
     "id": "chenyu-adeptea",
@@ -7118,7 +7312,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 486
+    "sortOrder": 496
   },
   {
     "id": "grainfruit",
@@ -7136,7 +7330,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 487
+    "sortOrder": 497
   },
   {
     "id": "spinel-fruit",
@@ -7154,7 +7348,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 488
+    "sortOrder": 498
   },
   {
     "id": "red-berryshroom",
@@ -7172,7 +7366,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 489
+    "sortOrder": 499
   },
   {
     "id": "lakkaberry",
@@ -7189,7 +7383,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 490
+    "sortOrder": 500
   },
   {
     "id": "midsommar-berry",
@@ -7206,7 +7400,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 491
+    "sortOrder": 501
   },
   {
     "id": "windrest-flower",
@@ -7223,7 +7417,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 492
+    "sortOrder": 502
   },
   {
     "id": "crab-roe",
@@ -7241,7 +7435,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 493
+    "sortOrder": 503
   },
   {
     "id": "flour",
@@ -7260,7 +7454,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 494
+    "sortOrder": 504
   },
   {
     "id": "cream",
@@ -7278,7 +7472,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 495
+    "sortOrder": 505
   },
   {
     "id": "smoked-fowl",
@@ -7296,7 +7490,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 496
+    "sortOrder": 506
   },
   {
     "id": "butter",
@@ -7315,7 +7509,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 497
+    "sortOrder": 507
   },
   {
     "id": "ham",
@@ -7334,7 +7528,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 498
+    "sortOrder": 508
   },
   {
     "id": "sugar",
@@ -7354,7 +7548,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 499
+    "sortOrder": 509
   },
   {
     "id": "jam",
@@ -7372,7 +7566,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 500
+    "sortOrder": 510
   },
   {
     "id": "cheese",
@@ -7391,7 +7585,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 501
+    "sortOrder": 511
   },
   {
     "id": "bacon",
@@ -7409,7 +7603,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 502
+    "sortOrder": 512
   },
   {
     "id": "sausage",
@@ -7429,7 +7623,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 503
+    "sortOrder": 513
   },
   {
     "id": "spice",
@@ -7447,7 +7641,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 504
+    "sortOrder": 514
   },
   {
     "id": "smetana",
@@ -7464,7 +7658,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 505
+    "sortOrder": 515
   },
   {
     "id": "rye-flour",
@@ -7481,7 +7675,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 506
+    "sortOrder": 516
   },
   {
     "id": "apple",
@@ -7500,7 +7694,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 507
+    "sortOrder": 517
   },
   {
     "id": "sunsettia",
@@ -7519,7 +7713,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 508
+    "sortOrder": 518
   },
   {
     "id": "starshroom",
@@ -7537,7 +7731,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 509
+    "sortOrder": 519
   },
   {
     "id": "bulle-fruit",
@@ -7556,7 +7750,7 @@ export const seedMaterials: SeedMaterial[] = [
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,
-    "sortOrder": 510
+    "sortOrder": 520
   },
   {
     "id": "candlecap-mushroom",
@@ -7568,126 +7762,6 @@ export const seedMaterials: SeedMaterial[] = [
     "details": {
       "sources": []
     },
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 511
-  },
-  {
-    "id": "precision-kuuvahki-stamping-die",
-    "name": "Precision Kuuvahki Stamping Die",
-    "image": "/images/materials/boss-material/precision-kuuvahki-stamping-die",
-    "rarity": 4,
-    "category": "Boss Material",
-    "description": "Precision Kuuvahki Stamping Die character ascension boss material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 512
-  },
-  {
-    "id": "ensnaring-gaze",
-    "name": "Ensnaring Gaze",
-    "image": "/images/materials/boss-material/ensnaring-gaze",
-    "rarity": 4,
-    "category": "Boss Material",
-    "description": "Ensnaring Gaze character ascension boss material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 513
-  },
-  {
-    "id": "talisman-of-the-enigmatic-land",
-    "name": "Talisman of the Enigmatic Land",
-    "image": "/images/materials/boss-material/talisman-of-the-enigmatic-land",
-    "rarity": 4,
-    "category": "Boss Material",
-    "description": "Talisman of the Enigmatic Land character ascension boss material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 514
-  },
-  {
-    "id": "radiant-antler",
-    "name": "Radiant Antler",
-    "image": "/images/materials/boss-material/radiant-antler",
-    "rarity": 4,
-    "category": "Boss Material",
-    "description": "Radiant Antler character ascension boss material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 515
-  },
-  {
-    "id": "secret-source-airflow-accumulator",
-    "name": "Secret Source Airflow Accumulator",
-    "image": "/images/materials/boss-material/secret-source-airflow-accumulator",
-    "rarity": 4,
-    "category": "Boss Material",
-    "description": "Secret Source Airflow Accumulator character ascension boss material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 516
-  },
-  {
-    "id": "cyclic-military-kuuvahki-core",
-    "name": "Cyclic Military Kuuvahki Core",
-    "image": "/images/materials/boss-material/cyclic-military-kuuvahki-core",
-    "rarity": 4,
-    "category": "Boss Material",
-    "description": "Cyclic Military Kuuvahki Core character ascension boss material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 517
-  },
-  {
-    "id": "sparkless-statue-core",
-    "name": "Sparkless Statue Core",
-    "image": "/images/materials/boss-material/sparkless-statue-core",
-    "rarity": 4,
-    "category": "Boss Material",
-    "description": "Sparkless Statue Core character ascension boss material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 518
-  },
-  {
-    "id": "lightbearing-scale-feather",
-    "name": "Lightbearing Scale-Feather",
-    "image": "/images/materials/boss-material/lightbearing-scale-feather",
-    "rarity": 4,
-    "category": "Boss Material",
-    "description": "Lightbearing Scale-Feather character ascension boss material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 519
-  },
-  {
-    "id": "gold-inscribed-secret-source-core",
-    "name": "Gold-Inscribed Secret Source Core",
-    "image": "/images/materials/boss-material/gold-inscribed-secret-source-core",
-    "rarity": 4,
-    "category": "Boss Material",
-    "description": "Gold-Inscribed Secret Source Core character ascension boss material.",
-    "combinable": false,
-    "combineRatio": null,
-    "parentMaterialId": null,
-    "sortOrder": 520
-  },
-  {
-    "id": "remnant-of-the-dreadwing",
-    "name": "Remnant of the Dreadwing",
-    "image": "/images/materials/boss-material/remnant-of-the-dreadwing",
-    "rarity": 4,
-    "category": "Boss Material",
-    "description": "Remnant of the Dreadwing character ascension boss material.",
     "combinable": false,
     "combineRatio": null,
     "parentMaterialId": null,

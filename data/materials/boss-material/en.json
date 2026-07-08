@@ -179,6 +179,56 @@
     "name": "Plume of the Fallen Watcher",
     "source": "Watcher: Fallen Vigil",
     "characters": ["linnea", "sandrone"]
+  },
+  "gold-inscribed-secret-source-core": {
+    "name": "Gold-Inscribed Secret Source Core",
+    "source": "Secret Source Automaton: Configuration Device",
+    "characters": ["lan-yan", "mavuika", "xilonen"]
+  },
+  "ensnaring-gaze": {
+    "name": "Ensnaring Gaze",
+    "source": "Tenebrous Papilla",
+    "characters": ["chasca", "iansan", "skirk"]
+  },
+  "talisman-of-the-enigmatic-land": {
+    "name": "Talisman of the Enigmatic Land",
+    "source": "Wayward Hermetic Spiritspeaker",
+    "characters": ["citlali", "yumemizuki-mizuki"]
+  },
+  "sparkless-statue-core": {
+    "name": "Sparkless Statue Core",
+    "source": "Lava Dragon Statue",
+    "characters": ["ifa", "varesa"]
+  },
+  "secret-source-airflow-accumulator": {
+    "name": "Secret Source Airflow Accumulator",
+    "source": "Secret Source Automaton: Overseer Device",
+    "characters": ["dahlia", "escoffier", "ineffa"]
+  },
+  "precision-kuuvahki-stamping-die": {
+    "name": "Precision Kuuvahki Stamping Die",
+    "source": "Knuckle Duckle",
+    "characters": ["aino", "flins"]
+  },
+  "lightbearing-scale-feather": {
+    "name": "Lightbearing Scale-Feather",
+    "source": "Radiant Moonfly",
+    "characters": ["jahoda", "lauma"]
+  },
+  "radiant-antler": {
+    "name": "Radiant Antler",
+    "source": "Frostnight Herra",
+    "characters": ["columbina", "nefer", "prune"]
+  },
+  "cyclic-military-kuuvahki-core": {
+    "name": "Cyclic Military Kuuvahki Core",
+    "source": "Super-Heavy Landrover: Mechanized Fortress",
+    "characters": ["durin", "illuga"]
+  },
+  "remnant-of-the-dreadwing": {
+    "name": "Remnant of the Dreadwing",
+    "source": "Lord of the Hidden Depths: Whisperer of Nightmares",
+    "characters": ["nicole", "zibai"]
   }
 
 }
