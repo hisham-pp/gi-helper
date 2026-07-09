@@ -4,6 +4,7 @@ import type { Route } from "next";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
+  Bot,
   CookingPot,
   Download,
   Gem,
@@ -94,6 +95,7 @@ const navItems = [
   { href: "/enemies" as Route, label: "Enemies", icon: ShieldAlert },
   { href: "/characters", label: "Characters", icon: Users },
   { href: "/weapons" as Route, label: "Weapons", icon: Swords },
+  { href: "/assistant" as Route, label: "AI Assistant", icon: Bot },
   { href: "/settings" as Route, label: "Settings", icon: Settings },
 ] satisfies Array<{ href: Route; label: string; icon: typeof Home }>;
 
@@ -624,7 +626,7 @@ export function AppShell({
           {children}
         </Box>
       </Main>
-      {userLabel ? <ChatAssistantLoader /> : null}
+      {userLabel && pathname !== "/assistant" ? <ChatAssistantLoader /> : null}
     </ShellRoot>
   );
 }

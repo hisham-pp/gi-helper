@@ -1,44 +1,24 @@
 "use client";
 
-import { Bot, Loader2, Send, X } from "lucide-react";
+import type { Route } from "next";
+import Link from "next/link";
+import { Bot, Loader2, Maximize2, Send, X } from "lucide-react";
+import { useEffect, useRef, type FormEvent, type KeyboardEvent } from "react";
+
 import {
-  useEffect,
-  useRef,
-  useState,
-  type FormEvent,
-  type KeyboardEvent,
-} from "react";
-
+  formatUsage,
+  useAssistantChat,
+} from "@/components/assistant/use-assistant-chat";
+import { Markdown } from "@/components/ui/markdown";
 import { cn } from "@/lib/utils";
-
-type ChatMessage = {
-  role: "user" | "assistant";
-  content: string;
-};
-
-type TokenUsage = {
-  inputTokens: number | null;
-  outputTokens: number | null;
-  totalTokens: number | null;
-};
-
-const initialMessages: ChatMessage[] = [
-  {
-    role: "assistant",
-    content: "What are we farming today?",
-  },
-];
 
 export function ChatAssistantPanel({
   onClose,
 }: Readonly<{
   onClose: () => void;
 }>) {
-  const [messages, setMessages] = useState<ChatMessage[]>(initialMessages);
-  const [draft, setDraft] = useState("");
-  const [isSending, setIsSending] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [usage, setUsage] = useState<TokenUsage | null>(null);
+  const { messages, draft, setDraft, isSending, error, usage, sendMessage } =
+    useAssistantChat();
   const messageEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
@@ -49,63 +29,6 @@ export function ChatAssistantPanel({
   useEffect(() => {
     window.setTimeout(() => inputRef.current?.focus(), 120);
   }, []);
-
-  async function sendMessage() {
-    const content = draft.trim();
-
-    if (!content || isSending) {
-      return;
-    }
-
-    const nextMessages: ChatMessage[] = [
-      ...messages,
-      { role: "user", content },
-    ];
-
-    setDraft("");
-    setError(null);
-    setMessages(nextMessages);
-    setIsSending(true);
-
-    try {
-      const response = await fetch("/api/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: nextMessages }),
-      });
-      const payload = (await response.json().catch(() => null)) as {
-        reply?: string;
-        usage?: TokenUsage;
-        error?: string;
-      } | null;
-
-      if (!response.ok || !payload?.reply) {
-        throw new Error(payload?.error ?? "Assistant failed to respond.");
-      }
-
-      setUsage(payload.usage ?? null);
-      setMessages((current) => [
-        ...current,
-        { role: "assistant", content: payload.reply ?? "" },
-      ]);
-    } catch (caughtError) {
-      const message =
-        caughtError instanceof Error
-          ? caughtError.message
-          : "Assistant failed to respond.";
-
-      setError(message);
-      setMessages((current) => [
-        ...current,
-        {
-          role: "assistant",
-          content: message,
-        },
-      ]);
-    } finally {
-      setIsSending(false);
-    }
-  }
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -118,6 +41,8 @@ export function ChatAssistantPanel({
       void sendMessage();
     }
   }
+
+  const usageLabel = formatUsage(usage);
 
   return (
     <section
@@ -134,24 +59,29 @@ export function ChatAssistantPanel({
               Farming Assistant
             </h2>
             <p className="text-on-surface-variant truncate text-xs font-medium">
-              {usage?.totalTokens
-                ? `Last reply · ${usage.totalTokens} tokens${
-                    usage.inputTokens != null && usage.outputTokens != null
-                      ? ` (${usage.inputTokens} in / ${usage.outputTokens} out)`
-                      : ""
-                  }`
-                : "Ready"}
+              {usageLabel ?? "Ready"}
             </p>
           </div>
         </div>
-        <button
-          type="button"
-          aria-label="Close assistant"
-          className="text-on-surface-variant hover:text-on-surface grid h-9 w-9 flex-shrink-0 place-items-center rounded-full transition hover:bg-surface-variant"
-          onClick={onClose}
-        >
-          <X className="h-5 w-5" />
-        </button>
+        <div className="flex flex-shrink-0 items-center gap-1">
+          <Link
+            href={"/assistant" as Route}
+            aria-label="Open full assistant page"
+            title="Open full page"
+            className="text-on-surface-variant hover:text-on-surface grid h-9 w-9 place-items-center rounded-full transition hover:bg-surface-variant"
+            onClick={onClose}
+          >
+            <Maximize2 className="h-4 w-4" />
+          </Link>
+          <button
+            type="button"
+            aria-label="Close assistant"
+            className="text-on-surface-variant hover:text-on-surface grid h-9 w-9 place-items-center rounded-full transition hover:bg-surface-variant"
+            onClick={onClose}
+          >
+            <X className="h-5 w-5" />
+          </button>
+        </div>
       </header>
 
       <div className="flex min-h-0 flex-1 flex-col">
@@ -166,13 +96,17 @@ export function ChatAssistantPanel({
             >
               <div
                 className={cn(
-                  "max-w-[85%] whitespace-pre-wrap rounded-lg px-3 py-2 text-sm leading-relaxed",
+                  "max-w-[85%] rounded-lg px-3 py-2 text-sm leading-relaxed",
                   message.role === "user"
-                    ? "bg-primary text-primary-foreground"
+                    ? "whitespace-pre-wrap bg-primary text-primary-foreground"
                     : "text-on-surface bg-surface-variant",
                 )}
               >
-                {message.content}
+                {message.role === "assistant" ? (
+                  <Markdown>{message.content}</Markdown>
+                ) : (
+                  message.content
+                )}
               </div>
             </div>
           ))}
