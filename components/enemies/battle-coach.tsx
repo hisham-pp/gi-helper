@@ -7,6 +7,7 @@ import { Loader2, Settings, Swords, Users } from "lucide-react";
 import { toast } from "sonner";
 
 import { Card } from "@/components/ui/card";
+import { Markdown } from "@/components/ui/markdown";
 import { cn } from "@/lib/utils";
 
 type CharacterSummary = {
@@ -241,8 +242,8 @@ export function BattleCoach({
               <p className="text-on-surface text-sm font-bold">
                 Coach&apos;s plan
               </p>
-              <div className="text-on-surface mt-2 whitespace-pre-wrap rounded-lg border border-outline-variant bg-surface-variant/30 p-4 text-sm leading-relaxed">
-                {result.plan}
+              <div className="text-on-surface mt-2 rounded-lg border border-outline-variant bg-surface-variant/30 p-4">
+                <Markdown>{result.plan}</Markdown>
               </div>
               {result.usage?.totalTokens ? (
                 <p className="text-on-surface-variant mt-2 text-xs">
