@@ -20,8 +20,28 @@ model User {
   inventory       Inventory[]
   ownedCharacters OwnedCharacter[]
   sessions        Session[]
+  aiSetting       AiSetting?
 
   @@map("users")
+}
+
+model AiSetting {
+  id                    String   @id @default(cuid())
+  userId                String   @unique
+  provider              String   @default("openai-responses")
+  baseUrl               String?
+  apiKey                String?
+  model                 String   @default("gpt-5-mini")
+  maxTokens             Int      @default(700)
+  temperature           Float?
+  systemPrompt          String?
+  contextTopics         String?
+  includeTrackerContext Boolean  @default(true)
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+  user                  User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("ai_settings")
 }
 
 model Session {

@@ -16,6 +16,12 @@ type ChatMessage = {
   content: string;
 };
 
+type TokenUsage = {
+  inputTokens: number | null;
+  outputTokens: number | null;
+  totalTokens: number | null;
+};
+
 const initialMessages: ChatMessage[] = [
   {
     role: "assistant",
@@ -32,6 +38,7 @@ export function ChatAssistantPanel({
   const [draft, setDraft] = useState("");
   const [isSending, setIsSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [usage, setUsage] = useState<TokenUsage | null>(null);
   const messageEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
@@ -68,6 +75,7 @@ export function ChatAssistantPanel({
       });
       const payload = (await response.json().catch(() => null)) as {
         reply?: string;
+        usage?: TokenUsage;
         error?: string;
       } | null;
 
@@ -75,6 +83,7 @@ export function ChatAssistantPanel({
         throw new Error(payload?.error ?? "Assistant failed to respond.");
       }
 
+      setUsage(payload.usage ?? null);
       setMessages((current) => [
         ...current,
         { role: "assistant", content: payload.reply ?? "" },
@@ -125,7 +134,13 @@ export function ChatAssistantPanel({
               Farming Assistant
             </h2>
             <p className="text-on-surface-variant truncate text-xs font-medium">
-              Ready
+              {usage?.totalTokens
+                ? `Last reply · ${usage.totalTokens} tokens${
+                    usage.inputTokens != null && usage.outputTokens != null
+                      ? ` (${usage.inputTokens} in / ${usage.outputTokens} out)`
+                      : ""
+                  }`
+                : "Ready"}
             </p>
           </div>
         </div>

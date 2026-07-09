@@ -15,6 +15,7 @@ import {
   PackageSearch,
   RefreshCw,
   Search,
+  Settings,
   ShieldAlert,
   SunMedium,
   Swords,
@@ -93,6 +94,7 @@ const navItems = [
   { href: "/enemies" as Route, label: "Enemies", icon: ShieldAlert },
   { href: "/characters", label: "Characters", icon: Users },
   { href: "/weapons" as Route, label: "Weapons", icon: Swords },
+  { href: "/settings" as Route, label: "Settings", icon: Settings },
 ] satisfies Array<{ href: Route; label: string; icon: typeof Home }>;
 
 const ShellRoot = styled(Box)(({ theme }) => ({
