@@ -31,15 +31,51 @@ type CharacterSummary = {
 const COACH_SYSTEM_PROMPT = [
   "You are an expert Genshin Impact combat coach helping a player beat a specific enemy.",
   "You are given the enemy's data and the exact roster of characters the player owns.",
-  "Produce a short, practical battle plan with these sections:",
-  "1. Recommended team — pick up to 4 characters ONLY from the owned roster, and say each one's job (main DPS, sub-DPS, support, shield/heal).",
-  "2. Why it works — the element counters and reactions that beat this enemy.",
-  "3. Rotation & timing — a simple step-by-step opener the player can practice.",
-  "4. Dodge & mechanics — concrete tips for this enemy's dangerous attacks.",
-  "5. If the roster is weak against this enemy, say so plainly and recommend the closest owned option plus what to build or level next.",
-  "Each owned character includes their current level and talent levels when the player has set them; factor these in and call out anything under-levelled that is worth upgrading before this fight.",
-  "Never invent characters the player does not own. Keep it concise and actionable, using short bullet points.",
+  "Respond in exactly two parts.",
+  'PART 1 — a single fenced ```json code block containing {"team":[{"name":"<exact name from the owned roster>","role":"Main DPS|Sub-DPS|Support|Shield/Heal","reason":"one short sentence"}]} with up to 4 characters chosen ONLY from the owned roster. Use the exact character names as written in the roster.',
+  "PART 2 — after the closing ```, write the rest of the plan in Markdown using these sections as bold headings: 'Why it works' (element counters and reactions), 'Rotation & timing' (a simple step-by-step opener to practice), and 'Dodge & mechanics' (this enemy's dangerous attacks). Do NOT repeat the team roster in the Markdown.",
+  "If the roster is weak against this enemy, still pick the closest owned options for the team and explain the weakness under 'Why it works', noting what to build or level next.",
+  "Each owned character includes their current level and talent levels when the player has set them; factor these in and flag anything under-levelled worth upgrading first.",
+  "Never invent characters the player does not own. Keep it concise and actionable.",
 ].join("\n");
+
+type RawTeamMember = {
+  name?: unknown;
+  role?: unknown;
+  reason?: unknown;
+};
+
+function normalizeName(value: string) {
+  return value.toLowerCase().replace(/[^a-z0-9]+/g, "");
+}
+
+/**
+ * Splits the model output into the leading ```json team block and the
+ * remaining Markdown. Falls back to an empty team + the full text when the
+ * block is missing or unparseable, so the plan always still renders.
+ */
+function extractTeamAndPlan(text: string): {
+  team: RawTeamMember[];
+  plan: string;
+} {
+  const match = text.match(/```json\s*([\s\S]*?)```/i);
+
+  if (!match) {
+    return { team: [], plan: text.trim() };
+  }
+
+  try {
+    const parsed = JSON.parse(match[1]) as { team?: unknown };
+    const team = Array.isArray(parsed?.team)
+      ? (parsed.team as RawTeamMember[])
+      : [];
+    const plan = text.replace(match[0], "").trim();
+
+    return { team, plan };
+  } catch {
+    return { team: [], plan: text.replace(match[0], "").trim() };
+  }
+}
 
 export async function POST(
   request: Request,
@@ -81,24 +117,30 @@ export async function POST(
   const ownedIds = new Set(owned.map((item) => item.characterId));
   const progressById = new Map(owned.map((item) => [item.characterId, item]));
 
-  const ownedCharacters: CharacterSummary[] = getAllCharacters()
-    .filter((character) => ownedIds.has(character.id))
-    .map((character) => {
-      const progress = progressById.get(character.id);
+  const ownedFull = getAllCharacters().filter((character) =>
+    ownedIds.has(character.id),
+  );
+  // Lets us map an AI-picked character name back to its portrait + metadata.
+  const metaByName = new Map(
+    ownedFull.map((character) => [normalizeName(character.name), character]),
+  );
 
-      return {
-        name: character.name,
-        element: character.element,
-        weaponType: character.weaponType,
-        rarity: character.rarity,
-        level: progress?.level ?? null,
-        talents: {
-          normalAttack: progress?.normalAttackLevel ?? null,
-          elementalSkill: progress?.elementalSkillLevel ?? null,
-          elementalBurst: progress?.elementalBurstLevel ?? null,
-        },
-      };
-    });
+  const ownedCharacters: CharacterSummary[] = ownedFull.map((character) => {
+    const progress = progressById.get(character.id);
+
+    return {
+      name: character.name,
+      element: character.element,
+      weaponType: character.weaponType,
+      rarity: character.rarity,
+      level: progress?.level ?? null,
+      talents: {
+        normalAttack: progress?.normalAttackLevel ?? null,
+        elementalSkill: progress?.elementalSkillLevel ?? null,
+        elementalBurst: progress?.elementalBurstLevel ?? null,
+      },
+    };
+  });
 
   const bestElements = enemy.bestElements;
   const recommended = ownedCharacters.filter((character) =>
@@ -176,6 +218,7 @@ export async function POST(
     // Still return the roster so the player gets something useful.
     return NextResponse.json({
       roster,
+      team: [],
       plan: null,
       aiConfigured: true,
       aiError: result.error,
@@ -183,9 +226,31 @@ export async function POST(
     });
   }
 
+  const { team: rawTeam, plan } = extractTeamAndPlan(result.text);
+
+  const team = rawTeam
+    .filter((member): member is RawTeamMember & { name: string } =>
+      Boolean(member && typeof member.name === "string" && member.name.trim()),
+    )
+    .slice(0, 4)
+    .map((member) => {
+      const meta = metaByName.get(normalizeName(member.name));
+
+      return {
+        name: meta?.name ?? member.name,
+        role: typeof member.role === "string" ? member.role : null,
+        reason: typeof member.reason === "string" ? member.reason : null,
+        characterId: meta?.id ?? null,
+        image: meta?.image ?? null,
+        element: meta?.element ?? null,
+        rarity: meta?.rarity ?? null,
+      };
+    });
+
   return NextResponse.json({
     roster,
-    plan: result.text,
+    team,
+    plan,
     aiConfigured: true,
     usage: result.usage,
   });

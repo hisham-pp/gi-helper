@@ -8,7 +8,9 @@ import { toast } from "sonner";
 
 import AppTextField from "@/components/core/app-textfield";
 import { Card } from "@/components/ui/card";
+import { CachedImage } from "@/components/ui/cached-image";
 import { Markdown } from "@/components/ui/markdown";
+import { rarityColorMap } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 type CharacterSummary = {
@@ -18,12 +20,23 @@ type CharacterSummary = {
   rarity: number;
 };
 
+type TeamMember = {
+  name: string;
+  role: string | null;
+  reason: string | null;
+  characterId: string | null;
+  image: string | null;
+  element: string | null;
+  rarity: number | null;
+};
+
 type BattlePlanResponse = {
   roster: {
     recommended: CharacterSummary[];
     bench: CharacterSummary[];
     ownedCount: number;
   };
+  team: TeamMember[];
   plan: string | null;
   aiConfigured: boolean;
   aiError?: string;
@@ -64,6 +77,72 @@ function CharacterChip({
       />
       {character.name}
     </span>
+  );
+}
+
+const roleBadgeClass: Record<string, string> = {
+  "Main DPS": "bg-red-500/15 text-red-500",
+  "Sub-DPS": "bg-amber-500/15 text-amber-500",
+  Support: "bg-sky-500/15 text-sky-500",
+  "Shield/Heal": "bg-emerald-500/15 text-emerald-500",
+};
+
+function TeamCard({ member }: { member: TeamMember }) {
+  return (
+    <div className="flex gap-3 rounded-xl border border-outline-variant bg-surface p-3">
+      <div
+        className={cn(
+          "relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-lg bg-gradient-to-br",
+          rarityColorMap[member.rarity ?? 4] ?? rarityColorMap[4],
+        )}
+      >
+        {member.image ? (
+          <CachedImage
+            src={member.image}
+            alt={member.name}
+            fill
+            unoptimized
+            className="object-cover"
+            sizes="64px"
+          />
+        ) : (
+          <div className="grid h-full place-items-center text-sm font-black text-white">
+            {member.name.slice(0, 2)}
+          </div>
+        )}
+      </div>
+      <div className="min-w-0 flex-1">
+        <div className="flex items-center gap-1.5">
+          {member.element ? (
+            <span
+              className={cn(
+                "h-2.5 w-2.5 flex-shrink-0 rounded-full",
+                elementDotClass[member.element] ?? "bg-outline",
+              )}
+            />
+          ) : null}
+          <h4 className="text-on-surface truncate text-sm font-bold">
+            {member.name}
+          </h4>
+        </div>
+        {member.role ? (
+          <span
+            className={cn(
+              "mt-1 inline-block rounded-full px-2 py-0.5 text-[10px] font-black uppercase tracking-wide",
+              roleBadgeClass[member.role] ??
+                "text-on-surface-variant bg-surface-variant",
+            )}
+          >
+            {member.role}
+          </span>
+        ) : null}
+        {member.reason ? (
+          <p className="text-on-surface-variant mt-1.5 text-xs leading-snug">
+            {member.reason}
+          </p>
+        ) : null}
+      </div>
+    </div>
   );
 }
 
@@ -228,16 +307,34 @@ export function BattleCoach({
           </div>
 
           {/* AI plan */}
-          {result.plan ? (
-            <div>
-              <p className="text-on-surface text-sm font-bold">
-                Coach&apos;s plan
-              </p>
-              <div className="text-on-surface mt-2 rounded-lg border border-outline-variant bg-surface-variant/30 p-4">
-                <Markdown>{result.plan}</Markdown>
-              </div>
+          {result.plan || result.team.length > 0 ? (
+            <div className="space-y-4">
+              {result.team.length > 0 ? (
+                <div>
+                  <div className="text-on-surface flex items-center gap-2 text-sm font-bold">
+                    <Swords className="h-4 w-4" /> Recommended team
+                  </div>
+                  <div className="mt-3 grid gap-3 sm:grid-cols-2">
+                    {result.team.map((member) => (
+                      <TeamCard key={member.name} member={member} />
+                    ))}
+                  </div>
+                </div>
+              ) : null}
+
+              {result.plan ? (
+                <div>
+                  <p className="text-on-surface text-sm font-bold">
+                    Coach&apos;s plan
+                  </p>
+                  <div className="text-on-surface mt-2 rounded-lg border border-outline-variant bg-surface-variant/30 p-4">
+                    <Markdown>{result.plan}</Markdown>
+                  </div>
+                </div>
+              ) : null}
+
               {result.usage?.totalTokens ? (
-                <p className="text-on-surface-variant mt-2 text-xs">
+                <p className="text-on-surface-variant text-xs">
                   {result.usage.totalTokens} tokens used
                 </p>
               ) : null}
