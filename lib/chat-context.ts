@@ -13,6 +13,12 @@ export type AssistantTrackerContext = {
     element: string;
     weaponType: string;
     rarity: number;
+    level: number | null;
+    talents: {
+      normalAttack: number | null;
+      elementalSkill: number | null;
+      elementalBurst: number | null;
+    };
   }>;
   inventory: Array<{
     id: string;
@@ -49,7 +55,13 @@ export async function getAssistantTrackerContext(
   const [ownedCharacters, dashboardData] = await Promise.all([
     prisma.ownedCharacter.findMany({
       where: { userId },
-      select: { characterId: true },
+      select: {
+        characterId: true,
+        level: true,
+        normalAttackLevel: true,
+        elementalSkillLevel: true,
+        elementalBurstLevel: true,
+      },
       orderBy: { createdAt: "asc" },
     }),
     getDashboardData(userId),
@@ -58,16 +70,29 @@ export async function getAssistantTrackerContext(
   const ownedCharacterIdSet = new Set(
     ownedCharacters.map((item) => item.characterId),
   );
+  const progressByCharacterId = new Map(
+    ownedCharacters.map((item) => [item.characterId, item]),
+  );
 
   const ownedCharacterSummaries = getAllCharacters()
     .filter((character) => ownedCharacterIdSet.has(character.id))
-    .map((character) => ({
-      id: character.id,
-      name: character.name,
-      element: character.element,
-      weaponType: character.weaponType,
-      rarity: character.rarity,
-    }));
+    .map((character) => {
+      const progress = progressByCharacterId.get(character.id);
+
+      return {
+        id: character.id,
+        name: character.name,
+        element: character.element,
+        weaponType: character.weaponType,
+        rarity: character.rarity,
+        level: progress?.level ?? null,
+        talents: {
+          normalAttack: progress?.normalAttackLevel ?? null,
+          elementalSkill: progress?.elementalSkillLevel ?? null,
+          elementalBurst: progress?.elementalBurstLevel ?? null,
+        },
+      };
+    });
 
   const materialById = new Map(
     getAllMaterials().map((material) => [material.id, material]),

@@ -20,6 +20,12 @@ type CharacterSummary = {
   element: string;
   weaponType: string;
   rarity: number;
+  level: number | null;
+  talents: {
+    normalAttack: number | null;
+    elementalSkill: number | null;
+    elementalBurst: number | null;
+  };
 };
 
 const COACH_SYSTEM_PROMPT = [
@@ -31,6 +37,7 @@ const COACH_SYSTEM_PROMPT = [
   "3. Rotation & timing — a simple step-by-step opener the player can practice.",
   "4. Dodge & mechanics — concrete tips for this enemy's dangerous attacks.",
   "5. If the roster is weak against this enemy, say so plainly and recommend the closest owned option plus what to build or level next.",
+  "Each owned character includes their current level and talent levels when the player has set them; factor these in and call out anything under-levelled that is worth upgrading before this fight.",
   "Never invent characters the player does not own. Keep it concise and actionable, using short bullet points.",
 ].join("\n");
 
@@ -63,18 +70,35 @@ export async function POST(
 
   const owned = await prisma.ownedCharacter.findMany({
     where: { userId: user.id },
-    select: { characterId: true },
+    select: {
+      characterId: true,
+      level: true,
+      normalAttackLevel: true,
+      elementalSkillLevel: true,
+      elementalBurstLevel: true,
+    },
   });
   const ownedIds = new Set(owned.map((item) => item.characterId));
+  const progressById = new Map(owned.map((item) => [item.characterId, item]));
 
   const ownedCharacters: CharacterSummary[] = getAllCharacters()
     .filter((character) => ownedIds.has(character.id))
-    .map((character) => ({
-      name: character.name,
-      element: character.element,
-      weaponType: character.weaponType,
-      rarity: character.rarity,
-    }));
+    .map((character) => {
+      const progress = progressById.get(character.id);
+
+      return {
+        name: character.name,
+        element: character.element,
+        weaponType: character.weaponType,
+        rarity: character.rarity,
+        level: progress?.level ?? null,
+        talents: {
+          normalAttack: progress?.normalAttackLevel ?? null,
+          elementalSkill: progress?.elementalSkillLevel ?? null,
+          elementalBurst: progress?.elementalBurstLevel ?? null,
+        },
+      };
+    });
 
   const bestElements = enemy.bestElements;
   const recommended = ownedCharacters.filter((character) =>
