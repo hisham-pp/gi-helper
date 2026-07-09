@@ -5,6 +5,7 @@ import { Gauge, Save } from "lucide-react";
 import { toast } from "sonner";
 
 import { updateOwnedCharacterProgressAction } from "@/app/actions";
+import AppTextField from "@/components/core/app-textfield";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
@@ -116,37 +117,28 @@ export function CharacterProgressEditor({
       </div>
 
       <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <label className="flex flex-col gap-1">
-          <span className="text-on-surface-variant text-xs font-semibold">
-            Character level (1–90)
-          </span>
-          <input
-            type="number"
-            min={1}
-            max={90}
-            inputMode="numeric"
-            value={level}
-            placeholder="—"
-            onChange={(event) => setLevel(event.target.value)}
-            className="text-on-surface min-h-11 rounded-lg border border-outline-variant bg-background px-3 text-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
-          />
-        </label>
+        <AppTextField
+          label="Character level"
+          type="number"
+          variant="outlined"
+          min={1}
+          max={90}
+          value={level}
+          helperText="1–90"
+          onChange={(event) => setLevel(event.target.value)}
+        />
         {TALENT_FIELDS.map(({ key, label }) => (
-          <label key={key} className="flex flex-col gap-1">
-            <span className="text-on-surface-variant text-xs font-semibold">
-              {label} (1–10)
-            </span>
-            <input
-              type="number"
-              min={1}
-              max={10}
-              inputMode="numeric"
-              value={talentValues[key]}
-              placeholder="—"
-              onChange={(event) => talentSetters[key](event.target.value)}
-              className="text-on-surface min-h-11 rounded-lg border border-outline-variant bg-background px-3 text-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
-            />
-          </label>
+          <AppTextField
+            key={key}
+            label={label}
+            type="number"
+            variant="outlined"
+            min={1}
+            max={10}
+            value={talentValues[key]}
+            helperText="1–10"
+            onChange={(event) => talentSetters[key](event.target.value)}
+          />
         ))}
       </div>
 
