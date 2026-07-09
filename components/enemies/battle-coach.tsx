@@ -6,6 +6,7 @@ import { useState } from "react";
 import { Loader2, Settings, Swords, Users } from "lucide-react";
 import { toast } from "sonner";
 
+import AppTextField from "@/components/core/app-textfield";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
@@ -129,35 +130,25 @@ export function BattleCoach({
         </div>
       </div>
 
-      <div className="mt-4 grid gap-3 sm:grid-cols-[10rem_1fr]">
-        <label className="flex flex-col gap-1">
-          <span className="text-on-surface-variant text-xs font-semibold">
-            Your team level (optional)
-          </span>
-          <input
-            type="number"
-            min={1}
-            max={100}
-            inputMode="numeric"
-            value={level}
-            placeholder="e.g. 80"
-            onChange={(event) => setLevel(event.target.value)}
-            className="text-on-surface min-h-11 rounded-lg border border-outline-variant bg-background px-3 text-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
-          />
-        </label>
-        <label className="flex flex-col gap-1">
-          <span className="text-on-surface-variant text-xs font-semibold">
-            What are you struggling with? (optional)
-          </span>
-          <input
-            type="text"
-            maxLength={500}
-            value={notes}
-            placeholder="e.g. I keep dying to its charge attack"
-            onChange={(event) => setNotes(event.target.value)}
-            className="text-on-surface min-h-11 rounded-lg border border-outline-variant bg-background px-3 text-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
-          />
-        </label>
+      <div className="mt-4 grid gap-3 sm:grid-cols-[12rem_1fr]">
+        <AppTextField
+          label="Your team level"
+          type="number"
+          variant="outlined"
+          min={1}
+          max={100}
+          value={level}
+          helperText="Optional"
+          onChange={(event) => setLevel(event.target.value)}
+        />
+        <AppTextField
+          label="What are you struggling with?"
+          variant="outlined"
+          value={notes}
+          helperText="Optional — e.g. I keep dying to its charge attack"
+          slotProps={{ htmlInput: { maxLength: 500 } }}
+          onChange={(event) => setNotes(event.target.value)}
+        />
       </div>
 
       <button
