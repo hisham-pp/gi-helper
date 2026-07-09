@@ -18,6 +18,11 @@ type ResponsesPayload = {
   }>;
   error?: {
     message?: string;
+    metadata?: {
+      message?: string;
+      code?: string;
+      [key: string]: unknown;
+    };
   };
 };
 
@@ -116,11 +121,19 @@ export async function POST(request: Request) {
     | null;
 
   if (!response.ok) {
+    console.error("Chat API error response:", {
+      status: response.status,
+      payload,
+    });
+
+    const errorMessage =
+      payload?.error?.metadata?.message ??
+      payload?.error?.message ??
+      "The assistant could not respond right now.";
+
     return NextResponse.json(
       {
-        error:
-          payload?.error?.message ??
-          "The assistant could not respond right now.",
+        error: errorMessage,
       },
       { status: response.status },
     );
