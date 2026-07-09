@@ -37,6 +37,7 @@ const COACH_SYSTEM_PROMPT = [
   "If the roster is weak against this enemy, still pick the closest owned options for the team and explain the weakness under 'Why it works', noting what to build or level next.",
   "Each owned character includes their current level and talent levels when the player has set them; factor these in and flag anything under-levelled worth upgrading first.",
   "Never invent characters the player does not own. Keep it concise and actionable.",
+  "IMPORTANT: Only include ONE Traveler in the team (e.g., either Traveler (Hydro) OR Traveler (Anemo), never both). The player can only use one Traveler at a time.",
 ].join("\n");
 
 type RawTeamMember = {
@@ -228,24 +229,46 @@ export async function POST(
 
   const { team: rawTeam, plan } = extractTeamAndPlan(result.text);
 
-  const team = rawTeam
+  const filteredRawTeam = rawTeam
     .filter((member): member is RawTeamMember & { name: string } =>
       Boolean(member && typeof member.name === "string" && member.name.trim()),
     )
-    .slice(0, 4)
-    .map((member) => {
-      const meta = metaByName.get(normalizeName(member.name));
+    .slice(0, 4);
 
-      return {
-        name: meta?.name ?? member.name,
-        role: typeof member.role === "string" ? member.role : null,
-        reason: typeof member.reason === "string" ? member.reason : null,
-        characterId: meta?.id ?? null,
-        image: meta?.image ?? null,
-        element: meta?.element ?? null,
-        rarity: meta?.rarity ?? null,
-      };
+  // Ensure only one Traveler is included (player can only use one at a time)
+  const travelerCount = filteredRawTeam.filter((member) =>
+    member.name.toLowerCase().includes("traveler"),
+  ).length;
+
+  let finalRawTeam = filteredRawTeam;
+  if (travelerCount > 1) {
+    // Keep only the first Traveler and remove the rest
+    let travelerSeen = false;
+    finalRawTeam = filteredRawTeam.filter((member) => {
+      if (member.name.toLowerCase().includes("traveler")) {
+        if (!travelerSeen) {
+          travelerSeen = true;
+          return true;
+        }
+        return false;
+      }
+      return true;
     });
+  }
+
+  const team = finalRawTeam.map((member) => {
+    const meta = metaByName.get(normalizeName(member.name));
+
+    return {
+      name: meta?.name ?? member.name,
+      role: typeof member.role === "string" ? member.role : null,
+      reason: typeof member.reason === "string" ? member.reason : null,
+      characterId: meta?.id ?? null,
+      image: meta?.image ?? null,
+      element: meta?.element ?? null,
+      rarity: meta?.rarity ?? null,
+    };
+  });
 
   return NextResponse.json({
     roster,
