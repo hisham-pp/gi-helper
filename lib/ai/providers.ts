@@ -228,14 +228,31 @@ async function callOpenAiResponses(
       output_tokens?: number;
       total_tokens?: number;
     };
-    error?: { message?: string };
+    error?: {
+      message?: string;
+      metadata?: {
+        message?: string;
+        code?: string;
+        [key: string]: unknown;
+      };
+    };
   } | null;
 
   if (!response.ok) {
+    console.error("OpenAI responses API error response:", {
+      status: response.status,
+      payload,
+    });
+
+    const errorMessage =
+      payload?.error?.metadata?.message ??
+      payload?.error?.message ??
+      "The assistant could not respond.";
+
     return {
       ok: false,
       status: response.status,
-      error: payload?.error?.message ?? "The assistant could not respond.",
+      error: errorMessage,
     };
   }
 
@@ -294,14 +311,31 @@ async function callOpenAiChat(
       completion_tokens?: number;
       total_tokens?: number;
     };
-    error?: { message?: string };
+    error?: {
+      message?: string;
+      metadata?: {
+        message?: string;
+        code?: string;
+        [key: string]: unknown;
+      };
+    };
   } | null;
 
   if (!response.ok) {
+    console.error("OpenAI chat API error response:", {
+      status: response.status,
+      payload,
+    });
+
+    const errorMessage =
+      payload?.error?.metadata?.message ??
+      payload?.error?.message ??
+      "The assistant could not respond.";
+
     return {
       ok: false,
       status: response.status,
-      error: payload?.error?.message ?? "The assistant could not respond.",
+      error: errorMessage,
     };
   }
 
