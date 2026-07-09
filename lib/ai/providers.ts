@@ -241,7 +241,7 @@ async function callOpenAiResponses(
   if (!response.ok) {
     console.error("OpenAI responses API error response:", {
       status: response.status,
-      payload,
+      payload: JSON.stringify(payload, null, 2),
     });
 
     const errorMessage =
@@ -324,7 +324,7 @@ async function callOpenAiChat(
   if (!response.ok) {
     console.error("OpenAI chat API error response:", {
       status: response.status,
-      payload,
+      payload: JSON.stringify(payload, null, 2),
     });
 
     const errorMessage =
