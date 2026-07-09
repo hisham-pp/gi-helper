@@ -13,7 +13,10 @@ export async function GET(
   const character = getCharacterById(characterId);
 
   if (!character) {
-    return NextResponse.json({ error: "Character not found." }, { status: 404 });
+    return NextResponse.json(
+      { error: "Character not found." },
+      { status: 404 },
+    );
   }
 
   const ownedCharacter = user
@@ -26,6 +29,10 @@ export async function GET(
         },
         select: {
           id: true,
+          level: true,
+          normalAttackLevel: true,
+          elementalSkillLevel: true,
+          elementalBurstLevel: true,
         },
       })
     : null;
@@ -33,6 +40,14 @@ export async function GET(
   return NextResponse.json({
     character,
     isOwned: Boolean(ownedCharacter),
+    progress: ownedCharacter
+      ? {
+          level: ownedCharacter.level,
+          normalAttackLevel: ownedCharacter.normalAttackLevel,
+          elementalSkillLevel: ownedCharacter.elementalSkillLevel,
+          elementalBurstLevel: ownedCharacter.elementalBurstLevel,
+        }
+      : null,
     user: user
       ? {
           username: user.username,
