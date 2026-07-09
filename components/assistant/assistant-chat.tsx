@@ -10,6 +10,7 @@ import {
   initialAssistantMessages,
   useAssistantChat,
 } from "@/components/assistant/use-assistant-chat";
+import { Markdown } from "@/components/ui/markdown";
 import { cn } from "@/lib/utils";
 
 const SUGGESTIONS = [
@@ -112,13 +113,17 @@ export function AssistantChat() {
             >
               <div
                 className={cn(
-                  "max-w-[85%] whitespace-pre-wrap rounded-2xl px-4 py-2.5 text-sm leading-relaxed sm:text-[0.95rem]",
+                  "max-w-[85%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed sm:text-[0.95rem]",
                   message.role === "user"
-                    ? "bg-primary text-primary-foreground"
+                    ? "whitespace-pre-wrap bg-primary text-primary-foreground"
                     : "text-on-surface bg-surface-variant",
                 )}
               >
-                {message.content}
+                {message.role === "assistant" ? (
+                  <Markdown>{message.content}</Markdown>
+                ) : (
+                  message.content
+                )}
               </div>
             </div>
           ))}

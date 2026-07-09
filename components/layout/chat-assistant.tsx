@@ -9,6 +9,7 @@ import {
   formatUsage,
   useAssistantChat,
 } from "@/components/assistant/use-assistant-chat";
+import { Markdown } from "@/components/ui/markdown";
 import { cn } from "@/lib/utils";
 
 export function ChatAssistantPanel({
@@ -95,13 +96,17 @@ export function ChatAssistantPanel({
             >
               <div
                 className={cn(
-                  "max-w-[85%] whitespace-pre-wrap rounded-lg px-3 py-2 text-sm leading-relaxed",
+                  "max-w-[85%] rounded-lg px-3 py-2 text-sm leading-relaxed",
                   message.role === "user"
-                    ? "bg-primary text-primary-foreground"
+                    ? "whitespace-pre-wrap bg-primary text-primary-foreground"
                     : "text-on-surface bg-surface-variant",
                 )}
               >
-                {message.content}
+                {message.role === "assistant" ? (
+                  <Markdown>{message.content}</Markdown>
+                ) : (
+                  message.content
+                )}
               </div>
             </div>
           ))}
