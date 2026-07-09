@@ -3,7 +3,7 @@
 import type { Route } from "next";
 import Link from "next/link";
 import { Bot, Loader2, RotateCcw, Send, Settings } from "lucide-react";
-import { useEffect, useRef, type FormEvent, type KeyboardEvent } from "react";
+import { useEffect, useRef, useMemo, type FormEvent, type KeyboardEvent } from "react";
 
 import {
   formatUsage,
@@ -11,6 +11,7 @@ import {
   useAssistantChat,
 } from "@/components/assistant/use-assistant-chat";
 import { Markdown } from "@/components/ui/markdown";
+import { useStaticCharacters, useStaticMaterials, useStaticWeapons } from "@/lib/cached-data";
 import { cn } from "@/lib/utils";
 
 const SUGGESTIONS = [
@@ -33,6 +34,61 @@ export function AssistantChat() {
   } = useAssistantChat();
   const messageEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
+
+  // Fetch item data for rendering
+  const { data: charactersData } = useStaticCharacters();
+  const { data: weaponsData } = useStaticWeapons();
+  const { data: materialsData } = useStaticMaterials();
+
+  // Prepare item data maps for Markdown component
+  const itemData = useMemo(() => {
+    const charactersMap = new Map();
+    const weaponsMap = new Map();
+    const materialsMap = new Map();
+
+    if (charactersData?.characters) {
+      charactersData.characters.forEach((char) => {
+        charactersMap.set(char.id, {
+          id: char.id,
+          name: char.name,
+          image: char.image,
+          rarity: char.rarity,
+          element: char.element,
+          weaponType: char.weaponType,
+        });
+      });
+    }
+
+    if (weaponsData?.weapons) {
+      weaponsData.weapons.forEach((weapon) => {
+        weaponsMap.set(weapon.id, {
+          id: weapon.id,
+          name: weapon.name,
+          image: weapon.image,
+          rarity: weapon.rarity,
+          weaponType: weapon.weaponType,
+        });
+      });
+    }
+
+    if (materialsData?.materials) {
+      materialsData.materials.forEach((material) => {
+        materialsMap.set(material.id, {
+          id: material.id,
+          name: material.name,
+          image: material.image,
+          rarity: material.rarity,
+          category: material.category,
+        });
+      });
+    }
+
+    return {
+      characters: charactersMap,
+      weapons: weaponsMap,
+      materials: materialsMap,
+    };
+  }, [charactersData, weaponsData, materialsData]);
 
   useEffect(() => {
     messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -120,7 +176,7 @@ export function AssistantChat() {
                 )}
               >
                 {message.role === "assistant" ? (
-                  <Markdown>{message.content}</Markdown>
+                  <Markdown itemData={itemData}>{message.content}</Markdown>
                 ) : (
                   message.content
                 )}

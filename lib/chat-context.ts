@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { getDashboardData } from "@/lib/data";
-import { getAllCharacters, getAllMaterials } from "@/lib/static-data";
+import { getAllCharacters, getAllMaterials, getAllWeapons } from "@/lib/static-data";
 
 const MAX_INVENTORY_ITEMS = 160;
 const MAX_NEEDED_ITEMS = 120;
@@ -13,6 +13,7 @@ export type AssistantTrackerContext = {
     element: string;
     weaponType: string;
     rarity: number;
+    image: string;
     level: number | null;
     talents: {
       normalAttack: number | null;
@@ -25,11 +26,13 @@ export type AssistantTrackerContext = {
     name: string;
     category: string;
     rarity: number;
+    image: string;
     quantity: number;
   }>;
   materialsStillNeeded: Array<{
     materialId: string;
     materialName: string;
+    image: string;
     remaining: number;
     required: number;
     allocated: number;
@@ -39,13 +42,31 @@ export type AssistantTrackerContext = {
     name: string;
     category: string;
     characterName?: string;
+    weaponName?: string;
     progressPercent: number;
     materials: Array<{
+      materialId: string;
       materialName: string;
+      image: string;
       required: number;
       remaining: number;
       allocated: number;
     }>;
+  }>;
+  allCharacters: Array<{
+    id: string;
+    name: string;
+    element: string;
+    weaponType: string;
+    rarity: number;
+    image: string;
+  }>;
+  allWeapons: Array<{
+    id: string;
+    name: string;
+    weaponType: string;
+    rarity: number;
+    image: string;
   }>;
 };
 
@@ -85,6 +106,7 @@ export async function getAssistantTrackerContext(
         element: character.element,
         weaponType: character.weaponType,
         rarity: character.rarity,
+        image: character.image,
         level: progress?.level ?? null,
         talents: {
           normalAttack: progress?.normalAttackLevel ?? null,
@@ -113,6 +135,7 @@ export async function getAssistantTrackerContext(
       name: material.name,
       category: material.category,
       rarity: material.rarity,
+      image: material.image,
       quantity: material.quantity,
     }));
 
@@ -120,13 +143,17 @@ export async function getAssistantTrackerContext(
     .filter((material) => material.remaining > 0)
     .sort((left, right) => right.remaining - left.remaining)
     .slice(0, MAX_NEEDED_ITEMS)
-    .map((material) => ({
-      materialId: material.materialId,
-      materialName: material.materialName,
-      remaining: material.remaining,
-      required: material.required,
-      allocated: material.allocated,
-    }));
+    .map((material) => {
+      const mat = materialById.get(material.materialId);
+      return {
+        materialId: material.materialId,
+        materialName: material.materialName,
+        image: mat?.image ?? "",
+        remaining: material.remaining,
+        required: material.required,
+        allocated: material.allocated,
+      };
+    });
 
   const activeGoals = dashboardData.goals
     .filter((goal) => !goal.completed)
@@ -136,20 +163,44 @@ export async function getAssistantTrackerContext(
       name: goal.name,
       category: goal.category ?? "Custom",
       characterName: goal.characterName,
+      weaponName: goal.weaponName,
       progressPercent: goal.progressPercent,
-      materials: goal.materials.map((material) => ({
-        materialName:
-          materialById.get(material.materialId)?.name ?? material.materialName,
-        required: material.required,
-        remaining: material.remaining,
-        allocated: material.allocated,
-      })),
+      materials: goal.materials.map((material) => {
+        const mat = materialById.get(material.materialId);
+        return {
+          materialId: material.materialId,
+          materialName: mat?.name ?? material.materialName,
+          image: mat?.image ?? "",
+          required: material.required,
+          remaining: material.remaining,
+          allocated: material.allocated,
+        };
+      }),
     }));
+
+  const allCharacters = getAllCharacters().map((character) => ({
+    id: character.id,
+    name: character.name,
+    element: character.element,
+    weaponType: character.weaponType,
+    rarity: character.rarity,
+    image: character.image,
+  }));
+
+  const allWeapons = getAllWeapons().map((weapon) => ({
+    id: weapon.id,
+    name: weapon.name,
+    weaponType: weapon.weaponType,
+    rarity: weapon.rarity,
+    image: weapon.image,
+  }));
 
   return {
     ownedCharacters: ownedCharacterSummaries,
     inventory,
     materialsStillNeeded,
     activeGoals,
+    allCharacters,
+    allWeapons,
   };
 }
