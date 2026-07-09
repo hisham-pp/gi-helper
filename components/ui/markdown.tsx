@@ -144,8 +144,8 @@ function ItemReference({
   );
 }
 
-const components: Components = {
-  p: ({ children, itemData }) => (
+const getMarkdownComponents = (itemData?: MarkdownProps["itemData"]): Components => ({
+  p: ({ children }) => (
     <p className="my-2 first:mt-0 last:mb-0">{renderTextWithItems(String(children), itemData)}</p>
   ),
   strong: ({ children }) => (
@@ -217,14 +217,14 @@ const components: Components = {
   td: ({ children }) => (
     <td className="border border-outline-variant px-2 py-1">{renderTextWithItems(String(children), itemData)}</td>
   ),
-};
+});
 
 export function Markdown({ children, className, itemData }: MarkdownProps) {
   const processedContent = parseItemReferences(children);
   
   return (
     <div className={cn("text-sm leading-relaxed", className)}>
-      <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>
+      <ReactMarkdown remarkPlugins={[remarkGfm]} components={getMarkdownComponents(itemData)}>
         {processedContent}
       </ReactMarkdown>
     </div>
