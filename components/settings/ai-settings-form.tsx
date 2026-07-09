@@ -237,6 +237,7 @@ export function AiSettingsForm({
 
         <Select
           label="Provider"
+          variant="outlined"
           value={form.provider}
           options={providerOptions}
           onChange={handleProviderChange}
@@ -244,6 +245,7 @@ export function AiSettingsForm({
 
         <AppTextField
           label={`Base URL${provider.requiresBaseUrl ? "" : " (optional)"}`}
+          variant="outlined"
           value={form.baseUrl}
           placeholder={provider.defaultBaseUrl || "https://…/v1"}
           onChange={(event) => update("baseUrl", event.target.value)}
@@ -256,6 +258,7 @@ export function AiSettingsForm({
 
         <AppTextField
           label="Model"
+          variant="outlined"
           value={form.model}
           placeholder={provider.defaultModel || "model-name"}
           onChange={(event) => update("model", event.target.value)}
@@ -264,6 +267,7 @@ export function AiSettingsForm({
         <div className="flex flex-col gap-2">
           <AppTextField
             label={provider.keyLabel}
+            variant="outlined"
             type="password"
             value={apiKey}
             placeholder={keyPlaceholder}
@@ -481,6 +485,7 @@ export function AiSettingsForm({
             </button>
           </div>
           <AppTextField
+            variant="outlined"
             value={form.systemPrompt}
             multiline
             minRows={5}
