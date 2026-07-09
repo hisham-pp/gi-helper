@@ -26,6 +26,7 @@ import {
   inventorySchema,
   completeGoalSchema,
   ownedCharacterSchema,
+  ownedCharacterProgressSchema,
 } from "@/lib/validation";
 import { getDashboardData } from "@/lib/data";
 import { getCookingData, type CookingData } from "@/lib/cooking-data";
@@ -89,7 +90,8 @@ async function applyCookingIngredientInventoryChanges(
 
   for (const ingredient of ingredients) {
     const quantityChange = Math.abs(ingredient.quantity * cookDelta);
-    const currentQuantity = quantityByMaterialId.get(ingredient.materialId) ?? 0;
+    const currentQuantity =
+      quantityByMaterialId.get(ingredient.materialId) ?? 0;
     const nextQuantity =
       cookDelta > 0
         ? Math.max(currentQuantity - quantityChange, 0)
@@ -449,6 +451,102 @@ export async function setOwnedCharacterAction(
       owned,
     },
   };
+}
+
+type OwnedCharacterProgress = {
+  level: number | null;
+  normalAttackLevel: number | null;
+  elementalSkillLevel: number | null;
+  elementalBurstLevel: number | null;
+};
+
+export async function updateOwnedCharacterProgressAction(
+  input: unknown,
+): Promise<ActionResponse<{ characterId: string } & OwnedCharacterProgress>> {
+  const user = await requireUser();
+  const parsed = ownedCharacterProgressSchema.safeParse(input);
+
+  if (!parsed.success) {
+    return {
+      success: false,
+      error: "Invalid character progress payload.",
+    };
+  }
+
+  const { characterId, ...progress } = parsed.data;
+
+  if (!getCharacterById(characterId)) {
+    return {
+      success: false,
+      error: "Character not found.",
+    };
+  }
+
+  // Only include fields that were actually provided so a partial save never
+  // wipes an untouched value; `null` is an explicit clear and is kept.
+  const data: {
+    level?: number | null;
+    normalAttackLevel?: number | null;
+    elementalSkillLevel?: number | null;
+    elementalBurstLevel?: number | null;
+  } = {};
+  if (progress.level !== undefined) {
+    data.level = progress.level;
+  }
+  if (progress.normalAttackLevel !== undefined) {
+    data.normalAttackLevel = progress.normalAttackLevel;
+  }
+  if (progress.elementalSkillLevel !== undefined) {
+    data.elementalSkillLevel = progress.elementalSkillLevel;
+  }
+  if (progress.elementalBurstLevel !== undefined) {
+    data.elementalBurstLevel = progress.elementalBurstLevel;
+  }
+
+  try {
+    // Setting progress implies the character is owned.
+    const saved = await prisma.ownedCharacter.upsert({
+      where: {
+        userId_characterId: {
+          userId: user.id,
+          characterId,
+        },
+      },
+      update: data,
+      create: {
+        userId: user.id,
+        characterId,
+        ...data,
+      },
+      select: {
+        level: true,
+        normalAttackLevel: true,
+        elementalSkillLevel: true,
+        elementalBurstLevel: true,
+      },
+    });
+
+    revalidatePath("/characters");
+    revalidatePath(`/characters/${characterId}`);
+
+    return {
+      success: true,
+      data: {
+        characterId,
+        level: saved.level,
+        normalAttackLevel: saved.normalAttackLevel,
+        elementalSkillLevel: saved.elementalSkillLevel,
+        elementalBurstLevel: saved.elementalBurstLevel,
+      },
+    };
+  } catch (error) {
+    console.error("Character progress save failed", error);
+
+    return {
+      success: false,
+      error: "Unable to save character progress right now.",
+    };
+  }
 }
 
 export async function cookRecipeAction(

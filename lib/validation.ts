@@ -40,6 +40,29 @@ export const ownedCharacterSchema = z.object({
   owned: z.boolean(),
 });
 
+const characterLevelField = z.coerce
+  .number()
+  .int()
+  .min(1)
+  .max(90)
+  .nullable()
+  .optional();
+const talentLevelField = z.coerce
+  .number()
+  .int()
+  .min(1)
+  .max(10)
+  .nullable()
+  .optional();
+
+export const ownedCharacterProgressSchema = z.object({
+  characterId: z.string().min(1),
+  level: characterLevelField,
+  normalAttackLevel: talentLevelField,
+  elementalSkillLevel: talentLevelField,
+  elementalBurstLevel: talentLevelField,
+});
+
 export const cookingProgressSchema = z.object({
   recipeId: z.string().min(1),
   completedCount: z.coerce.number().int().min(0).max(999999),
