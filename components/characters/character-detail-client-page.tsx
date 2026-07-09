@@ -8,12 +8,14 @@ import {
   CharacterGoalBuilder,
   type CharacterDetail,
 } from "@/components/characters/character-goal-builder";
+import type { CharacterProgress } from "@/components/characters/character-progress-editor";
 import { Button } from "@/components/ui/button";
 import { CharacterDetailPageLoading } from "@/components/ui/page-loading";
 
 type CharacterDetailPayload = {
   character: CharacterDetail;
   isOwned: boolean;
+  progress: CharacterProgress | null;
   user: {
     username: string;
     role?: string;
@@ -104,6 +106,7 @@ export function CharacterDetailClientPage({
       character={payload.character}
       isAuthenticated={Boolean(payload.user)}
       isOwned={payload.isOwned}
+      progress={payload.progress}
     />
   );
 }

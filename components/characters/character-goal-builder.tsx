@@ -29,6 +29,10 @@ import { CachedImage } from "@/components/ui/cached-image";
 import { CharacterAssetsPanel } from "@/components/characters/character-assets-panel";
 import { CharacterDetailsPanel } from "@/components/characters/character-details-panel";
 import { CharacterDetailTabButton } from "@/components/characters/character-detail-tab-button";
+import {
+  CharacterProgressEditor,
+  type CharacterProgress,
+} from "@/components/characters/character-progress-editor";
 
 export type CharacterTemplate = {
   id: string;
@@ -120,10 +124,12 @@ export function CharacterGoalBuilder({
   character,
   isAuthenticated = true,
   isOwned = false,
+  progress = null,
 }: {
   character: CharacterDetail;
   isAuthenticated?: boolean;
   isOwned?: boolean;
+  progress?: CharacterProgress | null;
 }) {
   const router = useRouter();
   const isTraveler = character.id.startsWith("traveler-");
@@ -400,6 +406,14 @@ export function CharacterGoalBuilder({
           </Button>
         </div>
       </div>
+
+      {owned && isAuthenticated ? (
+        <CharacterProgressEditor
+          characterId={character.id}
+          characterName={character.name}
+          initialProgress={progress}
+        />
+      ) : null}
 
       <div className="flex flex-wrap gap-2 border-b border-outline-variant">
         <CharacterDetailTabButton
