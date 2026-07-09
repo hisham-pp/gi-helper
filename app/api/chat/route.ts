@@ -2,28 +2,15 @@ import { NextResponse } from "next/server";
 
 import { getCurrentUser } from "@/lib/auth";
 import { getAssistantTrackerContext } from "@/lib/chat-context";
-
-type ChatMessage = {
-  role: "user" | "assistant";
-  content: string;
-};
-
-type ResponsesPayload = {
-  output_text?: string;
-  output?: Array<{
-    content?: Array<{
-      type?: string;
-      text?: string;
-    }>;
-  }>;
-  error?: {
-    message?: string;
-  };
-};
+import { callAiProvider, type ChatMessage } from "@/lib/ai/providers";
+import {
+  CONTEXT_TOPICS,
+  resolveAiConfig,
+  type ContextTopicId,
+} from "@/lib/ai/settings";
 
 const MAX_MESSAGES = 10;
 const MAX_MESSAGE_LENGTH = 1800;
-const DEFAULT_MODEL = "gpt-5-mini";
 
 function isChatMessage(value: unknown): value is ChatMessage {
   if (!value || typeof value !== "object") {
@@ -40,19 +27,24 @@ function isChatMessage(value: unknown): value is ChatMessage {
   );
 }
 
-function extractResponseText(payload: ResponsesPayload) {
-  if (typeof payload.output_text === "string" && payload.output_text.trim()) {
-    return payload.output_text.trim();
+function buildTrackerContextJson(
+  fullContext: Record<string, unknown>,
+  topics: ContextTopicId[],
+) {
+  const selectedKeys = new Set<string>(
+    CONTEXT_TOPICS.filter((topic) => topics.includes(topic.id)).map(
+      (topic) => topic.contextKey,
+    ),
+  );
+
+  const filtered: Record<string, unknown> = {};
+  for (const [key, value] of Object.entries(fullContext)) {
+    if (selectedKeys.has(key)) {
+      filtered[key] = value;
+    }
   }
 
-  return (
-    payload.output
-      ?.flatMap((item) => item.content ?? [])
-      .filter((content) => content.type === "output_text" && content.text)
-      .map((content) => content.text)
-      .join("\n")
-      .trim() ?? ""
-  );
+  return filtered;
 }
 
 export async function POST(request: Request) {
@@ -62,11 +54,14 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Login required." }, { status: 401 });
   }
 
-  const apiKey = process.env.OPENAI_API_KEY;
+  const config = await resolveAiConfig(user.id);
 
-  if (!apiKey) {
+  if (!config.configured) {
     return NextResponse.json(
-      { error: "OPENAI_API_KEY is not configured." },
+      {
+        error:
+          "The AI assistant is not configured yet. Add a provider and API key in Settings.",
+      },
       { status: 503 },
     );
   }
@@ -85,55 +80,44 @@ export async function POST(request: Request) {
     );
   }
 
-  const trackerContext = await getAssistantTrackerContext(user.id);
-  const model = process.env.OPENAI_MODEL ?? DEFAULT_MODEL;
+  let systemPrompt = config.systemPrompt;
 
-  const response = await fetch("https://api.openai.com/v1/responses", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      model,
-      instructions: [
-        "You are a concise Genshin Impact farming assistant inside a material tracker app.",
-        "Use the tracker context as the source of truth for the user's owned characters, inventory, open goals, and missing materials.",
-        "Prefer practical farming and prioritization advice. If the user asks for data that is not in the context, say what is missing and suggest the closest useful next step.",
-        "Do not invent inventory quantities, owned characters, or goal progress.",
-        `Tracker context JSON:\n${JSON.stringify(trackerContext)}`,
-      ].join("\n\n"),
-      input: messages.map((message) => ({
-        role: message.role,
-        content: message.content,
-      })),
-      max_output_tokens: 700,
-    }),
+  if (config.includeTrackerContext && config.contextTopics.length > 0) {
+    const trackerContext = await getAssistantTrackerContext(user.id);
+    const filtered = buildTrackerContextJson(
+      trackerContext as unknown as Record<string, unknown>,
+      config.contextTopics,
+    );
+
+    systemPrompt = `${systemPrompt}\n\nTracker context JSON:\n${JSON.stringify(
+      filtered,
+    )}`;
+  }
+
+  const result = await callAiProvider({
+    providerId: config.provider,
+    baseUrl: config.baseUrl,
+    apiKey: config.apiKey,
+    model: config.model,
+    maxTokens: config.maxTokens,
+    temperature: config.temperature,
+    systemPrompt,
+    messages,
   });
 
-  const payload = (await response.json().catch(() => null)) as
-    | ResponsesPayload
-    | null;
-
-  if (!response.ok) {
+  if (!result.ok) {
     return NextResponse.json(
-      {
-        error:
-          payload?.error?.message ??
-          "The assistant could not respond right now.",
-      },
-      { status: response.status },
+      { error: result.error },
+      { status: result.status },
     );
   }
 
-  const reply = payload ? extractResponseText(payload) : "";
-
-  if (!reply) {
+  if (!result.text) {
     return NextResponse.json(
       { error: "The assistant returned an empty response." },
       { status: 502 },
     );
   }
 
-  return NextResponse.json({ reply });
+  return NextResponse.json({ reply: result.text, usage: result.usage });
 }
