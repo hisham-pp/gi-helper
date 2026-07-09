@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ShieldAlert } from "lucide-react";
 
+import { BattleCoach } from "@/components/enemies/battle-coach";
 import { EnemyDetailTabs } from "@/components/dashboard/enemy-detail-tabs";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -81,6 +82,8 @@ export default async function EnemyDetailPage({
               {enemy.description}
             </p>
           </Card>
+
+          <BattleCoach enemyId={enemy.id} enemyName={enemy.name} />
 
           <EnemyDetailTabs enemy={enemy} />
         </div>
