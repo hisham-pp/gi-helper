@@ -5,6 +5,7 @@ import { getCurrentUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { getEnemyById } from "@/lib/enemy-data";
 import { getAllCharacters } from "@/lib/static-data";
+import { autoTagItemReferences } from "@/lib/ai/item-tags";
 import { callAiProvider } from "@/lib/ai/providers";
 import { resolveAiConfig } from "@/lib/ai/settings";
 
@@ -326,7 +327,7 @@ export async function POST(
   return NextResponse.json({
     roster,
     team,
-    plan,
+    plan: autoTagItemReferences(plan),
     aiConfigured: true,
     usage: result.usage,
   });
