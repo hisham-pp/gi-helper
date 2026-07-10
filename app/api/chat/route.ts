@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 
 import { getCurrentUser } from "@/lib/auth";
 import { getAssistantTrackerContext } from "@/lib/chat-context";
+import { autoTagItemReferences } from "@/lib/ai/item-tags";
 import { callAiProvider, type ChatMessage } from "@/lib/ai/providers";
 import {
   CONTEXT_TOPICS,
@@ -119,5 +120,8 @@ export async function POST(request: Request) {
     );
   }
 
-  return NextResponse.json({ reply: result.text, usage: result.usage });
+  return NextResponse.json({
+    reply: autoTagItemReferences(result.text),
+    usage: result.usage,
+  });
 }
