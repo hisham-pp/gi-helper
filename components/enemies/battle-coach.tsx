@@ -6,6 +6,7 @@ import { useState } from "react";
 import { Loader2, Settings, Swords, Users } from "lucide-react";
 import { toast } from "sonner";
 
+import { useItemDataMaps } from "@/components/assistant/use-item-data";
 import AppTextField from "@/components/core/app-textfield";
 import { Card } from "@/components/ui/card";
 import { CachedImage } from "@/components/ui/cached-image";
@@ -163,6 +164,7 @@ export function BattleCoach({
   const [notes, setNotes] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState<BattlePlanResponse | null>(null);
+  const itemData = useItemDataMaps();
 
   async function handleAnalyze() {
     try {
@@ -337,7 +339,7 @@ export function BattleCoach({
                     Coach&apos;s plan
                   </p>
                   <div className="text-on-surface mt-2 rounded-lg border border-outline-variant bg-surface-variant/30 p-4">
-                    <Markdown>{result.plan}</Markdown>
+                    <Markdown itemData={itemData}>{result.plan}</Markdown>
                   </div>
                 </div>
               ) : null}
