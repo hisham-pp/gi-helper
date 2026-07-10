@@ -18,6 +18,7 @@ type CharacterSummary = {
   element: string;
   weaponType: string;
   rarity: number;
+  matchReason?: "element" | "absorption" | null;
 };
 
 type TeamMember = {
@@ -76,6 +77,14 @@ function CharacterChip({
         )}
       />
       {character.name}
+      {character.matchReason === "absorption" ? (
+        <span
+          className="text-on-primary-container/70 text-[10px] font-black uppercase tracking-wide"
+          title="Anemo character who can Swirl-absorb one of this enemy's counter elements"
+        >
+          Swirl
+        </span>
+      ) : null}
     </span>
   );
 }
