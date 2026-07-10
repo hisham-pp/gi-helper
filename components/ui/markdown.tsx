@@ -104,8 +104,6 @@ function renderTextNode(
           image={data.image}
           rarity={data.rarity}
           element={data.element}
-          weaponType={data.weaponType}
-          category={data.category}
         />,
       );
     }
