@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export type ChatMessage = {
   role: "user" | "assistant";
@@ -20,10 +20,70 @@ export const initialAssistantMessages: ChatMessage[] = [
   },
 ];
 
+const STORAGE_KEY = "gmt:assistant-chat:v1";
+const MAX_STORED_MESSAGES = 60;
+
+type StoredChatState = {
+  messages: ChatMessage[];
+  usage: TokenUsage | null;
+};
+
+function isChatMessage(value: unknown): value is ChatMessage {
+  if (!value || typeof value !== "object") {
+    return false;
+  }
+
+  const candidate = value as Partial<ChatMessage>;
+
+  return (
+    (candidate.role === "user" || candidate.role === "assistant") &&
+    typeof candidate.content === "string"
+  );
+}
+
+function loadStoredChat(): StoredChatState | null {
+  try {
+    const raw = window.localStorage.getItem(STORAGE_KEY);
+
+    if (!raw) {
+      return null;
+    }
+
+    const parsed = JSON.parse(raw) as Partial<StoredChatState> | null;
+    const messages = Array.isArray(parsed?.messages)
+      ? parsed.messages.filter(isChatMessage)
+      : null;
+
+    if (!messages || messages.length === 0) {
+      return null;
+    }
+
+    return { messages, usage: parsed?.usage ?? null };
+  } catch {
+    return null;
+  }
+}
+
+function saveStoredChat(state: StoredChatState) {
+  try {
+    window.localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify({
+        messages: state.messages.slice(-MAX_STORED_MESSAGES),
+        usage: state.usage,
+      }),
+    );
+  } catch {
+    // Storage may be unavailable (private browsing, quota, disabled cookies)
+    // — the conversation still works in-memory, it just won't persist.
+  }
+}
+
 /**
  * Shared chat state + send logic used by both the floating assistant modal and
  * the full-page assistant. Keeping it in one hook means the two surfaces stay
- * behaviourally identical.
+ * behaviourally identical, and since both read/write the same localStorage
+ * key, a conversation started in one continues seamlessly in the other.
  */
 export function useAssistantChat() {
   const [messages, setMessages] = useState<ChatMessage[]>(
@@ -33,6 +93,33 @@ export function useAssistantChat() {
   const [isSending, setIsSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [usage, setUsage] = useState<TokenUsage | null>(null);
+  const [isHydrated, setIsHydrated] = useState(false);
+
+  // Restore a saved conversation after mount. Deferred to an effect (rather
+  // than a useState initializer) so the server-rendered markup and the first
+  // client render match exactly; the swap to persisted content happens right
+  // after, same pattern as next-themes reading a saved theme.
+  useEffect(() => {
+    const stored = loadStoredChat();
+
+    if (stored) {
+      setMessages(stored.messages);
+      setUsage(stored.usage);
+    }
+
+    setIsHydrated(true);
+  }, []);
+
+  // Persist on every change, but only once hydration has resolved — writing
+  // before that would overwrite a saved conversation with the pre-load
+  // default state.
+  useEffect(() => {
+    if (!isHydrated) {
+      return;
+    }
+
+    saveStoredChat({ messages, usage });
+  }, [messages, usage, isHydrated]);
 
   const sendMessage = useCallback(async () => {
     const content = draft.trim();
