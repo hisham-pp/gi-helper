@@ -175,13 +175,34 @@ const getMarkdownComponents = (itemData?: ItemDataMaps): Components => ({
     </li>
   ),
   h1: ({ children }) => (
-    <h1 className="mb-2 mt-3 text-base font-black first:mt-0">{children}</h1>
+    <h1 className="mb-2 mt-3 text-base font-black first:mt-0">
+      {renderChildrenWithItems(children, itemData, "h1")}
+    </h1>
   ),
   h2: ({ children }) => (
-    <h2 className="mb-2 mt-3 text-sm font-black first:mt-0">{children}</h2>
+    <h2 className="mb-2 mt-3 text-sm font-black first:mt-0">
+      {renderChildrenWithItems(children, itemData, "h2")}
+    </h2>
   ),
   h3: ({ children }) => (
-    <h3 className="mb-1 mt-2 text-sm font-bold first:mt-0">{children}</h3>
+    <h3 className="mb-1 mt-2 text-sm font-bold first:mt-0">
+      {renderChildrenWithItems(children, itemData, "h3")}
+    </h3>
+  ),
+  h4: ({ children }) => (
+    <h4 className="mb-1 mt-2 text-sm font-bold first:mt-0">
+      {renderChildrenWithItems(children, itemData, "h4")}
+    </h4>
+  ),
+  h5: ({ children }) => (
+    <h5 className="mb-1 mt-2 text-sm font-bold first:mt-0">
+      {renderChildrenWithItems(children, itemData, "h5")}
+    </h5>
+  ),
+  h6: ({ children }) => (
+    <h6 className="mb-1 mt-2 text-sm font-bold first:mt-0">
+      {renderChildrenWithItems(children, itemData, "h6")}
+    </h6>
   ),
   blockquote: ({ children }) => (
     <blockquote className="text-on-surface-variant my-2 border-l-2 border-outline-variant pl-3 italic">
@@ -216,7 +237,7 @@ const getMarkdownComponents = (itemData?: ItemDataMaps): Components => ({
   ),
   th: ({ children }) => (
     <th className="border border-outline-variant px-2 py-1 text-left font-bold">
-      {children}
+      {renderChildrenWithItems(children, itemData, "th")}
     </th>
   ),
   td: ({ children }) => (
