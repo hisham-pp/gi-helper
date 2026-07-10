@@ -38,13 +38,42 @@ interface MarkdownProps {
  * [material:grain-of-aerosiderite] and renders them as an ItemCard.
  */
 
-const ITEM_REF_PATTERN = /\[(character|weapon|material):([a-z0-9-]+)\]/gi;
+const ITEM_REF_PATTERN = /\[(character|weapon|material|item):([a-z0-9-]+)\]/gi;
 
-function resolveItemData(
-  type: "character" | "weapon" | "material",
+type ConcreteItemType = "character" | "weapon" | "material";
+
+/**
+ * Resolves a tag to its data plus a concrete type. The generic `item` form
+ * (which some models emit and older saved chats may still contain) probes
+ * materials first, then weapons, then characters; unknown ids fall back to a
+ * material-style reference so the tag never renders as raw text.
+ */
+function resolveItemReference(
+  type: ConcreteItemType | "item",
   id: string,
   itemData?: ItemDataMaps,
-): ItemData {
+): { type: ConcreteItemType; data: ItemData } {
+  const fallback: ItemData = { id, name: id, image: "", rarity: 4 };
+
+  if (type === "item") {
+    const material = itemData?.materials.get(id);
+    if (material) {
+      return { type: "material", data: material };
+    }
+
+    const weapon = itemData?.weapons.get(id);
+    if (weapon) {
+      return { type: "weapon", data: weapon };
+    }
+
+    const character = itemData?.characters.get(id);
+    if (character) {
+      return { type: "character", data: character };
+    }
+
+    return { type: "material", data: fallback };
+  }
+
   const map =
     type === "character"
       ? itemData?.characters
@@ -52,14 +81,7 @@ function resolveItemData(
         ? itemData?.weapons
         : itemData?.materials;
 
-  return (
-    map?.get(id) ?? {
-      id,
-      name: id,
-      image: "",
-      rarity: 4,
-    }
-  );
+  return { type, data: map?.get(id) ?? fallback };
 }
 
 /**
@@ -86,20 +108,19 @@ function renderTextNode(
       nodes.push(parts[i]);
     }
 
-    const type = parts[i + 1] as
-      | "character"
-      | "weapon"
-      | "material"
+    const rawType = parts[i + 1]?.toLowerCase() as
+      | ConcreteItemType
+      | "item"
       | undefined;
-    const id = parts[i + 2];
+    const id = parts[i + 2]?.toLowerCase();
 
-    if (type && id) {
-      const data = resolveItemData(type, id, itemData);
+    if (rawType && id) {
+      const { type, data } = resolveItemReference(rawType, id, itemData);
       nodes.push(
         <ItemCard
           key={`${keyPrefix}-${type}-${id}-${i}`}
           type={type}
-          id={id}
+          id={data.id}
           name={data.name}
           image={data.image}
           rarity={data.rarity}
