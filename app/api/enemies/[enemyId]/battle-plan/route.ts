@@ -26,7 +26,19 @@ type CharacterSummary = {
     elementalSkill: number | null;
     elementalBurst: number | null;
   };
+  /** Why this character counters the enemy: a direct element match, or an
+   * Anemo character who can Swirl-absorb one of the enemy's counter
+   * elements. Null on the bench (no counter relationship). */
+  matchReason: "element" | "absorption" | null;
 };
+
+/**
+ * Elements an Anemo character can Swirl-absorb and re-apply. Matches
+ * Genshin's actual Swirl mechanic — Geo and Dendro auras cannot be
+ * absorbed, so Anemo is never a substitute for a Geo- or Dendro-only
+ * counter requirement.
+ */
+const SWIRL_ABSORBABLE_ELEMENTS = ["Pyro", "Hydro", "Electro", "Cryo"];
 
 const COACH_SYSTEM_PROMPT = [
   "You are an expert Genshin Impact combat coach helping a player beat a specific enemy.",
@@ -35,7 +47,8 @@ const COACH_SYSTEM_PROMPT = [
   'PART 1 — a single fenced ```json code block containing {"team":[{"name":"<exact name from the owned roster>","role":"Main DPS|Sub-DPS|Support|Shield/Heal","reason":"one short sentence"}]} with up to 4 characters chosen ONLY from the owned roster. Use the exact character names as written in the roster.',
   "PART 2 — after the closing ```, write the rest of the plan in Markdown using these sections as bold headings: 'Why it works' (element counters and reactions), 'Rotation & timing' (a simple step-by-step opener to practice), and 'Dodge & mechanics' (this enemy's dangerous attacks). Do NOT repeat the team roster in the Markdown.",
   "If the roster is weak against this enemy, still pick the closest owned options for the team and explain the weakness under 'Why it works', noting what to build or level next.",
-  "Each owned character includes their current level and talent levels when the player has set them; factor these in and flag anything under-levelled worth upgrading first.",
+  "Any owned Anemo character can Swirl-absorb Pyro, Hydro, Electro, or Cryo from the enemy or nearby auras and deal bonus damage of that absorbed element — treat them as a valid pick whenever the enemy's best elements include any of those four (not only when the enemy is weak to Anemo itself), and name which element they would absorb in your reasoning. Swirl cannot absorb Geo or Dendro.",
+  "Each owned character includes their current level and talent levels when the player has set them. Character level and build matter as much as elemental fit: when two owned characters could fill the same role, prefer the one with the higher level and stronger talent levels. Do not put a severely under-levelled or barely-talented character in as Main DPS or Sub-DPS just because their element matches, if a better-built character (including a Swirl-flexible Anemo pick) is a reasonable alternative — explain that trade-off in one line. Flag anything under-levelled that's still worth upgrading first.",
   "Never invent characters the player does not own. Keep it concise and actionable.",
   "IMPORTANT: Only include ONE Traveler in the team (e.g., either Traveler (Hydro) OR Traveler (Anemo), never both). The player can only use one Traveler at a time.",
 ].join("\n");
@@ -126,6 +139,21 @@ export async function POST(
     ownedFull.map((character) => [normalizeName(character.name), character]),
   );
 
+  const bestElements: readonly string[] = enemy.bestElements;
+  const canSwirlIntoCounter = bestElements.some((element) =>
+    SWIRL_ABSORBABLE_ELEMENTS.includes(element),
+  );
+
+  function matchReasonFor(element: string): CharacterSummary["matchReason"] {
+    if (bestElements.includes(element)) {
+      return "element";
+    }
+    if (element === "Anemo" && canSwirlIntoCounter) {
+      return "absorption";
+    }
+    return null;
+  }
+
   const ownedCharacters: CharacterSummary[] = ownedFull.map((character) => {
     const progress = progressById.get(character.id);
 
@@ -140,16 +168,34 @@ export async function POST(
         elementalSkill: progress?.elementalSkillLevel ?? null,
         elementalBurst: progress?.elementalBurstLevel ?? null,
       },
+      matchReason: matchReasonFor(character.element),
     };
   });
 
-  const bestElements = enemy.bestElements;
-  const recommended = ownedCharacters.filter((character) =>
-    bestElements.includes(character.element as (typeof bestElements)[number]),
-  );
-  const bench = ownedCharacters.filter(
-    (character) => !recommended.includes(character),
-  );
+  // Direct element counters first, then Swirl-flexible Anemo picks; within
+  // each group, higher-level (better-built) characters surface first so the
+  // roster panel and the AI context both lead with the strongest options.
+  const matchRank: Record<
+    NonNullable<CharacterSummary["matchReason"]>,
+    number
+  > = {
+    element: 0,
+    absorption: 1,
+  };
+
+  const recommended = ownedCharacters
+    .filter((character) => character.matchReason !== null)
+    .sort((left, right) => {
+      const rankDiff =
+        matchRank[left.matchReason!] - matchRank[right.matchReason!];
+      if (rankDiff !== 0) {
+        return rankDiff;
+      }
+      return (right.level ?? 0) - (left.level ?? 0);
+    });
+  const bench = ownedCharacters
+    .filter((character) => character.matchReason === null)
+    .sort((left, right) => (right.level ?? 0) - (left.level ?? 0));
 
   const roster = {
     recommended,
@@ -188,7 +234,14 @@ export async function POST(
       description: enemy.description,
     },
     ownedCharacters,
-    recommendedFromRoster: recommended.map((character) => character.name),
+    recommendedFromRoster: recommended.map((character) => ({
+      name: character.name,
+      matchReason:
+        character.matchReason === "absorption"
+          ? "Anemo — can Swirl-absorb one of this enemy's counter elements"
+          : "direct element counter",
+      level: character.level,
+    })),
     playerCharacterLevel: level,
     playerNotes: notes || null,
   };
