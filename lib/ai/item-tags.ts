@@ -14,11 +14,14 @@ type Candidate = {
 
 /**
  * Matches item references the model already wrote correctly
- * (`[character:id]`), inline code, and markdown links — none of these
- * should be touched by the auto-tagger.
+ * (`[character:id]`), the generic `[item:id]` form some models fall back
+ * to, inline code, and markdown links — none of these should be touched
+ * by the auto-tagger.
  */
 const PROTECTED_PATTERN =
-  /(\[(?:character|weapon|material):[a-z0-9-]+\]|`[^`]*`|\[[^\]]*\]\([^)]*\))/gi;
+  /(\[(?:character|weapon|material|item):[a-z0-9-]+\]|`[^`]*`|\[[^\]]*\]\([^)]*\))/gi;
+
+const GENERIC_ITEM_PATTERN = /\[item:([a-z0-9-]+)\]/gi;
 
 let cachedCandidates: Candidate[] | null = null;
 
@@ -123,6 +126,48 @@ function tagSegment(segment: string, usedIds: Set<string>): string {
   return result;
 }
 
+let cachedTypeById: Map<string, ItemType> | null = null;
+
+/**
+ * Maps every known id to its concrete type so a generic `[item:id]` tag can
+ * be rewritten as the typed tag the renderer links correctly. Materials are
+ * registered last so they win id collisions — generic "item" mentions are
+ * materials far more often than not.
+ */
+function getTypeById(): Map<string, ItemType> {
+  if (cachedTypeById) {
+    return cachedTypeById;
+  }
+
+  const typeById = new Map<string, ItemType>();
+
+  for (const character of getAllCharacters()) {
+    typeById.set(character.id, "character");
+  }
+  for (const weapon of getAllWeapons()) {
+    typeById.set(weapon.id, "weapon");
+  }
+  for (const material of getAllMaterials()) {
+    typeById.set(material.id, "material");
+  }
+
+  cachedTypeById = typeById;
+  return typeById;
+}
+
+/**
+ * Rewrites the generic `[item:id]` form some models produce into the typed
+ * `[material:id]` / `[weapon:id]` / `[character:id]` tag when the id is
+ * known. Unknown ids are left alone; the Markdown renderer shows them as a
+ * plain material-style reference.
+ */
+function normalizeGenericItemTags(text: string): string {
+  return text.replace(GENERIC_ITEM_PATTERN, (match, id: string) => {
+    const type = getTypeById().get(id.toLowerCase());
+    return type ? `[${type}:${id.toLowerCase()}]` : match;
+  });
+}
+
 /**
  * Best-effort fallback for models that ignore the `[type:id]` formatting
  * instruction: finds plain-text mentions of known characters, weapons, and
@@ -138,7 +183,8 @@ export function autoTagItemReferences(text: string): string {
     return text;
   }
 
-  const segments = text.split(PROTECTED_PATTERN);
+  const normalized = normalizeGenericItemTags(text);
+  const segments = normalized.split(PROTECTED_PATTERN);
   const usedIds = new Set<string>();
 
   return segments
