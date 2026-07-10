@@ -2,48 +2,24 @@
 
 import type { Route } from "next";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Loader2, Settings, Swords, Users } from "lucide-react";
 import { toast } from "sonner";
 
 import { useItemDataMaps } from "@/components/assistant/use-item-data";
+import {
+  loadStoredBattlePlan,
+  saveStoredBattlePlan,
+  type BattlePlanResponse,
+  type CharacterSummary,
+  type TeamMember,
+} from "@/components/enemies/use-battle-plan-storage";
 import AppTextField from "@/components/core/app-textfield";
 import { Card } from "@/components/ui/card";
 import { CachedImage } from "@/components/ui/cached-image";
 import { Markdown } from "@/components/ui/markdown";
 import { rarityColorMap } from "@/lib/constants";
 import { cn } from "@/lib/utils";
-
-type CharacterSummary = {
-  name: string;
-  element: string;
-  weaponType: string;
-  rarity: number;
-  matchReason?: "element" | "absorption" | null;
-};
-
-type TeamMember = {
-  name: string;
-  role: string | null;
-  reason: string | null;
-  characterId: string | null;
-  image: string | null;
-  element: string | null;
-  rarity: number | null;
-};
-
-type BattlePlanResponse = {
-  roster: {
-    recommended: CharacterSummary[];
-    bench: CharacterSummary[];
-    ownedCount: number;
-  };
-  team: TeamMember[];
-  plan: string | null;
-  aiConfigured: boolean;
-  aiError?: string;
-  usage: { totalTokens: number | null } | null;
-};
 
 const elementDotClass: Record<string, string> = {
   Pyro: "bg-red-500",
@@ -166,6 +142,20 @@ export function BattleCoach({
   const [result, setResult] = useState<BattlePlanResponse | null>(null);
   const itemData = useItemDataMaps();
 
+  // Restore this enemy's last saved plan after mount. Deferred to an effect
+  // (rather than a useState initializer) so the server-rendered markup and
+  // the first client render match exactly — same pattern as the assistant
+  // chat restoring its conversation.
+  useEffect(() => {
+    const stored = loadStoredBattlePlan(enemyId);
+
+    if (stored) {
+      setLevel(stored.level);
+      setNotes(stored.notes);
+      setResult(stored.result);
+    }
+  }, [enemyId]);
+
   async function handleAnalyze() {
     try {
       setIsLoading(true);
@@ -195,6 +185,14 @@ export function BattleCoach({
 
       if (payload.aiError) {
         toast.error(`Roster ready, but the AI plan failed: ${payload.aiError}`);
+      } else {
+        // Keep the last good plan per enemy; a failed AI run shouldn't
+        // overwrite a previously saved complete one.
+        saveStoredBattlePlan(enemyId, {
+          level,
+          notes,
+          result: payload,
+        });
       }
     } catch (error) {
       toast.error(
