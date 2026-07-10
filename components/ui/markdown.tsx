@@ -1,5 +1,6 @@
 "use client";
 
+import { Children, cloneElement, isValidElement, type ReactNode } from "react";
 import ReactMarkdown, { type Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
 
@@ -16,137 +17,139 @@ interface ItemData {
   category?: string;
 }
 
+type ItemDataMaps = {
+  characters: Map<string, ItemData>;
+  weapons: Map<string, ItemData>;
+  materials: Map<string, ItemData>;
+};
+
 interface MarkdownProps {
   children: string;
   className?: string;
-  itemData?: {
-    characters: Map<string, ItemData>;
-    weapons: Map<string, ItemData>;
-    materials: Map<string, ItemData>;
-  };
+  itemData?: ItemDataMaps;
 }
 
 /**
  * Themed Markdown renderer for AI assistant output. Element styles are applied
  * per-node so we don't need the Tailwind typography plugin, and everything
  * stays on the app's MD3 color tokens in light and dark mode.
+ *
+ * It also recognizes inline item references like [character:albedo] or
+ * [material:grain-of-aerosiderite] and renders them as an ItemCard.
  */
 
-// Parse item references like [character:albedo] or [material:grain-of-aerosiderite]
-function parseItemReferences(text: string): string {
-  // Replace [type:id] with a custom markdown syntax that we can render
-  return text.replace(
-    /\[(character|weapon|material):([a-z0-9-]+)\]/gi,
-    (match, type, id) => {
-      return `::item:${type}:${id}::`;
-    },
-  );
-}
+const ITEM_REF_PATTERN = /\[(character|weapon|material):([a-z0-9-]+)\]/gi;
 
-// Custom text renderer to handle item references
-function renderTextWithItems(
-  text: string,
-  itemData?: MarkdownProps["itemData"],
-): React.ReactNode {
-  if (!text) return text;
+function resolveItemData(
+  type: "character" | "weapon" | "material",
+  id: string,
+  itemData?: ItemDataMaps,
+): ItemData {
+  const map =
+    type === "character"
+      ? itemData?.characters
+      : type === "weapon"
+        ? itemData?.weapons
+        : itemData?.materials;
 
-  const parts = text.split(/::item:(character|weapon|material):([a-z0-9-]+)::/i);
-  
-  if (parts.length === 1) {
-    return text;
-  }
-
-  const result: React.ReactNode[] = [];
-  for (let i = 0; i < parts.length; i++) {
-    if (i % 3 === 0) {
-      // Regular text
-      if (parts[i]) {
-        result.push(parts[i]);
-      }
-    } else if (i % 3 === 1) {
-      // Type
-      const type = parts[i];
-      const id = parts[i + 1];
-      result.push(
-        <ItemReference
-          key={`${type}-${id}`}
-          type={type as "character" | "weapon" | "material"}
-          id={id}
-          itemData={itemData}
-        />,
-      );
-      i++; // Skip the id part
-    }
-  }
-
-  return result;
-}
-
-function ItemReference({
-  type,
-  id,
-  itemData,
-}: {
-  type: "character" | "weapon" | "material";
-  id: string;
-  itemData?: MarkdownProps["itemData"];
-}) {
-  const getItemData = (): ItemData => {
-    if (!itemData) {
-      return {
-        id,
-        name: id,
-        image: "",
-        rarity: 4,
-        element: type === "character" ? "Pyro" : undefined,
-        weaponType: type === "weapon" ? "Sword" : undefined,
-        category: type === "material" ? "Material" : undefined,
-      };
-    }
-
-    const map =
-      type === "character"
-        ? itemData.characters
-        : type === "weapon"
-          ? itemData.weapons
-          : itemData.materials;
-
-    const data = map.get(id);
-    if (data) {
-      return data;
-    }
-
-    // Fallback to placeholder
-    return {
+  return (
+    map?.get(id) ?? {
       id,
       name: id,
       image: "",
       rarity: 4,
-      element: type === "character" ? "Pyro" : undefined,
-      weaponType: type === "weapon" ? "Sword" : undefined,
-      category: type === "material" ? "Material" : undefined,
-    };
-  };
-
-  const data = getItemData();
-
-  return (
-    <ItemCard
-      type={type}
-      id={id}
-      name={data.name}
-      image={data.image}
-      rarity={data.rarity}
-      element={data.element}
-      weaponType={data.weaponType}
-      category={data.category}
-    />
+    }
   );
 }
 
-const getMarkdownComponents = (itemData?: MarkdownProps["itemData"]): Components => ({
+/**
+ * Splits a single plain-text string on item references, returning the
+ * original string when there are none. Only ever called on actual string
+ * nodes — never on React elements or arrays of mixed children, which is
+ * what previously produced literal "[object Object]" text.
+ */
+function renderTextNode(
+  text: string,
+  itemData: ItemDataMaps | undefined,
+  keyPrefix: string,
+): ReactNode {
+  if (!text || !ITEM_REF_PATTERN.test(text)) {
+    return text;
+  }
+  ITEM_REF_PATTERN.lastIndex = 0;
+
+  const parts = text.split(ITEM_REF_PATTERN);
+  const nodes: ReactNode[] = [];
+
+  for (let i = 0; i < parts.length; i += 3) {
+    if (parts[i]) {
+      nodes.push(parts[i]);
+    }
+
+    const type = parts[i + 1] as
+      | "character"
+      | "weapon"
+      | "material"
+      | undefined;
+    const id = parts[i + 2];
+
+    if (type && id) {
+      const data = resolveItemData(type, id, itemData);
+      nodes.push(
+        <ItemCard
+          key={`${keyPrefix}-${type}-${id}-${i}`}
+          type={type}
+          id={id}
+          name={data.name}
+          image={data.image}
+          rarity={data.rarity}
+          element={data.element}
+          weaponType={data.weaponType}
+          category={data.category}
+        />,
+      );
+    }
+  }
+
+  return nodes;
+}
+
+/**
+ * Recursively walks a node's children, only ever transforming plain string
+ * nodes into text + ItemCard fragments. Existing React elements (bold,
+ * links, inline code, etc.) are preserved as-is, recursing into their own
+ * children so an item reference inside `**[character:albedo]**` still works.
+ */
+function renderChildrenWithItems(
+  children: ReactNode,
+  itemData: ItemDataMaps | undefined,
+  keyPrefix = "n",
+): ReactNode {
+  return Children.map(children, (child, index) => {
+    const key = `${keyPrefix}-${index}`;
+
+    if (typeof child === "string") {
+      return renderTextNode(child, itemData, key);
+    }
+
+    if (
+      isValidElement<{ children?: ReactNode }>(child) &&
+      child.props?.children !== undefined
+    ) {
+      return cloneElement(child, {
+        children: renderChildrenWithItems(child.props.children, itemData, key),
+      } as Partial<{ children?: ReactNode }>);
+    }
+
+    return child;
+  });
+}
+
+const getMarkdownComponents = (itemData?: ItemDataMaps): Components => ({
   p: ({ children }) => (
-    <p className="my-2 first:mt-0 last:mb-0">{renderTextWithItems(String(children), itemData)}</p>
+    <p className="my-2 first:mt-0 last:mb-0">
+      {renderChildrenWithItems(children, itemData, "p")}
+    </p>
   ),
   strong: ({ children }) => (
     <strong className="text-on-surface font-bold">{children}</strong>
@@ -168,7 +171,11 @@ const getMarkdownComponents = (itemData?: MarkdownProps["itemData"]): Components
   ol: ({ children }) => (
     <ol className="my-2 list-decimal space-y-1 pl-5">{children}</ol>
   ),
-  li: ({ children }) => <li className="leading-relaxed">{renderTextWithItems(String(children), itemData)}</li>,
+  li: ({ children }) => (
+    <li className="leading-relaxed">
+      {renderChildrenWithItems(children, itemData, "li")}
+    </li>
+  ),
   h1: ({ children }) => (
     <h1 className="mb-2 mt-3 text-base font-black first:mt-0">{children}</h1>
   ),
@@ -215,17 +222,20 @@ const getMarkdownComponents = (itemData?: MarkdownProps["itemData"]): Components
     </th>
   ),
   td: ({ children }) => (
-    <td className="border border-outline-variant px-2 py-1">{renderTextWithItems(String(children), itemData)}</td>
+    <td className="border border-outline-variant px-2 py-1">
+      {renderChildrenWithItems(children, itemData, "td")}
+    </td>
   ),
 });
 
 export function Markdown({ children, className, itemData }: MarkdownProps) {
-  const processedContent = parseItemReferences(children);
-  
   return (
     <div className={cn("text-sm leading-relaxed", className)}>
-      <ReactMarkdown remarkPlugins={[remarkGfm]} components={getMarkdownComponents(itemData)}>
-        {processedContent}
+      <ReactMarkdown
+        remarkPlugins={[remarkGfm]}
+        components={getMarkdownComponents(itemData)}
+      >
+        {children}
       </ReactMarkdown>
     </div>
   );
