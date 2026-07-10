@@ -1,5 +1,8 @@
 "use client";
 
+import Link from "next/link";
+import type { Route } from "next";
+
 import { CachedImage } from "@/components/ui/cached-image";
 import { rarityColorMap } from "@/lib/constants";
 import { cn } from "@/lib/utils";
@@ -13,8 +16,6 @@ interface ItemCardProps {
   image: string;
   rarity: number;
   element?: string;
-  weaponType?: string;
-  category?: string;
 }
 
 const elementDotClass: Record<string, string> = {
@@ -27,6 +28,19 @@ const elementDotClass: Record<string, string> = {
   Geo: "bg-amber-500",
 };
 
+const detailPathByType: Record<ItemType, string> = {
+  character: "/characters",
+  weapon: "/weapons",
+  material: "/materials",
+};
+
+/**
+ * Compact inline reference to a character, weapon, or material, used inside
+ * Markdown-rendered AI chat text (see components/ui/markdown.tsx). Must stay
+ * a single, inline-level element (no `<div>`) — this is inserted mid-sentence
+ * inside `<p>`, `<li>`, and `<td>` elements, and a block-level element there
+ * makes the browser auto-close the surrounding paragraph, fragmenting it.
+ */
 export function ItemCard({
   type,
   id,
@@ -34,56 +48,39 @@ export function ItemCard({
   image,
   rarity,
   element,
-  weaponType,
-  category,
 }: ItemCardProps) {
   return (
-    <div className="inline-flex items-center gap-2 rounded-lg border border-outline-variant bg-surface-variant/50 px-2 py-1.5 text-sm">
-      <div
+    <Link
+      href={`${detailPathByType[type]}/${id}` as Route}
+      title={name}
+      className="text-on-surface mx-0.5 inline-flex max-w-[14rem] shrink-0 items-center gap-1 rounded-md border border-outline-variant bg-surface-variant/60 py-0.5 pl-0.5 pr-1.5 align-middle text-[0.85em] font-semibold leading-none no-underline transition-colors hover:border-primary hover:bg-primary/10"
+    >
+      <span
         className={cn(
-          "relative h-8 w-8 flex-shrink-0 overflow-hidden rounded-md bg-gradient-to-br",
+          "relative h-4 w-4 flex-shrink-0 overflow-hidden rounded-sm bg-gradient-to-br",
           rarityColorMap[rarity] ?? rarityColorMap[1],
         )}
       >
         {image ? (
           <CachedImage
             src={image}
-            alt={name}
+            alt=""
             fill
             unoptimized
-            className="object-contain p-1"
-            sizes="32px"
+            className="object-contain"
+            sizes="16px"
           />
-        ) : (
-          <div className="grid h-full place-items-center text-[10px] font-black text-white">
-            {name.slice(0, 2)}
-          </div>
-        )}
-      </div>
-      <div className="min-w-0 flex-1">
-        <div className="flex items-center gap-1.5">
-          {element ? (
-            <span
-              className={cn(
-                "h-2 w-2 flex-shrink-0 rounded-full",
-                elementDotClass[element] ?? "bg-outline",
-              )}
-            />
-          ) : null}
-          <span className="text-on-surface truncate font-semibold">{name}</span>
-        </div>
-        <div className="text-on-surface-variant mt-0.5 flex items-center gap-2 text-[10px]">
-          {type === "character" && weaponType && (
-            <span>{weaponType}</span>
+        ) : null}
+      </span>
+      {element ? (
+        <span
+          className={cn(
+            "h-1.5 w-1.5 flex-shrink-0 rounded-full",
+            elementDotClass[element] ?? "bg-outline",
           )}
-          {type === "weapon" && weaponType && (
-            <span>{weaponType}</span>
-          )}
-          {type === "material" && category && (
-            <span>{category}</span>
-          )}
-        </div>
-      </div>
-    </div>
+        />
+      ) : null}
+      <span className="truncate">{name}</span>
+    </Link>
   );
 }
