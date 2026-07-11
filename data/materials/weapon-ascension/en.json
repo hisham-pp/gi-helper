@@ -628,5 +628,102 @@
         "rarity": 5
       }
     ]
+  },
+  "blazing-sacrificial-heart": {
+    "weapons": [
+      "a-thousand-blazing-suns"
+    ],
+    "availability": ["Monday", "Thursday", "Sunday"],
+    "source": "ancient-watchtower",
+    "items": [
+      {
+        "id": "blazing-sacrificial-heart-s-terror",
+        "name": "Blazing Sacrificial Heart's Terror",
+        "rarity": 2
+      },
+      {
+        "id": "blazing-sacrificial-heart-s-hesitance",
+        "name": "Blazing Sacrificial Heart's Hesitance",
+        "rarity": 3
+      },
+      {
+        "id": "blazing-sacrificial-heart-s-resolve",
+        "name": "Blazing Sacrificial Heart's Resolve",
+        "rarity": 4
+      },
+      {
+        "id": "blazing-sacrificial-heart-s-splendor",
+        "name": "Blazing Sacrificial Heart's Splendor",
+        "rarity": 5
+      }
+    ]
+  },
+  "delirious-sacred-lord": {
+    "weapons": [
+      "fang-of-the-mountain-king",
+      "starcaller-s-watch",
+      "vivid-notions",
+      "calamity-of-eshu",
+      "flame-forged-insight",
+      "footprint-of-the-rainbow",
+      "mountain-bracing-bolt",
+      "ring-of-yaxche"
+    ],
+    "availability": ["Tuesday", "Friday", "Sunday"],
+    "source": "ancient-watchtower",
+    "items": [
+      {
+        "id": "delirious-decadence-of-the-sacred-lord",
+        "name": "Delirious Decadence of the Sacred Lord",
+        "rarity": 2
+      },
+      {
+        "id": "delirious-desolation-of-the-sacred-lord",
+        "name": "Delirious Desolation of the Sacred Lord",
+        "rarity": 3
+      },
+      {
+        "id": "delirious-demeanor-of-the-sacred-lord",
+        "name": "Delirious Demeanor of the Sacred Lord",
+        "rarity": 4
+      },
+      {
+        "id": "delirious-divinity-of-the-sacred-lord",
+        "name": "Delirious Divinity of the Sacred Lord",
+        "rarity": 5
+      }
+    ]
+  },
+  "night-wind-mystic": {
+    "weapons": [
+      "nocturne-s-curtain-call",
+      "etherlight-spindlelute",
+      "master-key",
+      "moonweaver-s-dawn"
+    ],
+    "availability": ["Wednesday", "Saturday", "Sunday"],
+    "source": "ancient-watchtower",
+    "items": [
+      {
+        "id": "night-wind-s-mystic-consideration",
+        "name": "Night-Wind's Mystic Consideration",
+        "rarity": 2
+      },
+      {
+        "id": "night-wind-s-mystic-premonition",
+        "name": "Night-Wind's Mystic Premonition",
+        "rarity": 3
+      },
+      {
+        "id": "night-wind-s-mystic-augury",
+        "name": "Night-Wind's Mystic Augury",
+        "rarity": 4
+      },
+      {
+        "id": "night-wind-s-mystic-revelation",
+        "name": "Night-Wind's Mystic Revelation",
+        "rarity": 5
+      }
+    ]
   }
 }
