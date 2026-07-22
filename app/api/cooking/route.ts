@@ -9,13 +9,20 @@ export async function GET() {
   const user = await getCurrentUser();
   const data = await getCookingData(user?.id);
 
-  return NextResponse.json({
-    data,
-    user: user
-      ? {
-          username: user.username,
-          role: user.role,
-        }
-      : null,
-  });
+  return NextResponse.json(
+    {
+      data,
+      user: user
+        ? {
+            username: user.username,
+            role: user.role,
+          }
+        : null,
+    },
+    {
+      headers: {
+        "Cache-Control": "private, no-cache, no-store, must-revalidate",
+      },
+    },
+  );
 }

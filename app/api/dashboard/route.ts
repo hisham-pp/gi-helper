@@ -3,6 +3,8 @@ import { NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth";
 import { getDashboardData, getInventoryDashboardData } from "@/lib/data";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(request: Request) {
   const user = await getCurrentUser();
   const { searchParams } = new URL(request.url);
@@ -12,13 +14,21 @@ export async function GET(request: Request) {
       ? await getInventoryDashboardData(user?.id)
       : await getDashboardData(user?.id);
 
-  return NextResponse.json({
-    data,
-    user: user
-      ? {
-          username: user.username,
-          role: user.role,
-        }
-      : null,
-  });
+  return NextResponse.json(
+    {
+      data,
+      user: user
+        ? {
+            username: user.username,
+            role: user.role,
+          }
+        : null,
+    },
+    {
+      headers: {
+        "Cache-Control": "private, no-cache, no-store, must-revalidate",
+        "Content-Encoding": "gzip",
+      },
+    },
+  );
 }

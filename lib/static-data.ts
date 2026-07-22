@@ -267,6 +267,16 @@ export function getAllMaterials() {
   return materials;
 }
 
+export function getMinimalMaterials() {
+  return materials.map((material) => ({
+    id: material.id,
+    name: material.name,
+    image: material.image,
+    rarity: material.rarity,
+    category: material.category,
+  }));
+}
+
 export function getMaterialById(materialId: string) {
   return materialById.get(materialId) ?? null;
 }
@@ -285,12 +295,33 @@ export function getAllCharacters() {
   return characters;
 }
 
+export function getMinimalCharacters() {
+  return characters.map((character) => ({
+    id: character.id,
+    name: character.name,
+    rarity: character.rarity,
+    element: character.element,
+    weaponType: character.weaponType,
+    image: character.image,
+  }));
+}
+
 export function getCharacterById(characterId: string) {
   return characterById.get(characterId) ?? null;
 }
 
 export function getAllWeapons() {
   return weapons;
+}
+
+export function getMinimalWeapons() {
+  return weapons.map((weapon) => ({
+    id: weapon.id,
+    name: weapon.name,
+    image: weapon.image,
+    rarity: weapon.rarity,
+    weaponType: weapon.weaponType,
+  }));
 }
 
 export function getWeaponById(weaponId: string) {

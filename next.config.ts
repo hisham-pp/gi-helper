@@ -8,6 +8,8 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  compress: true,
+  swcMinify: true,
   images: {
     formats: ["image/avif", "image/webp"],
     remotePatterns: [
@@ -34,6 +36,9 @@ const nextConfig: NextConfig = {
       "public/images/materials/**/*",
       "public/images/weapons/**/*",
     ],
+  },
+  experimental: {
+    optimizePackageImports: ["lucide-react"],
   },
 };
 

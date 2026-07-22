@@ -1,26 +1,57 @@
-import { Suspense } from "react";
+"use client";
 
+import { useEffect, useState } from "react";
 import { DashboardShell } from "@/components/dashboard/dashboard-shell";
-import { getCurrentUser } from "@/lib/auth";
-import { getInventoryDashboardData } from "@/lib/data";
+import type { DashboardData } from "@/lib/types";
 
-export default async function InventoryPage() {
-  const user = await getCurrentUser();
-  const data = await getInventoryDashboardData(user?.id);
+export default function InventoryPage() {
+  const [data, setData] = useState<DashboardData | null>(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [username, setUsername] = useState("Traveler");
+  const [role, setRole] = useState<string | undefined>();
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadData() {
+      try {
+        const response = await fetch("/api/dashboard?view=inventory");
+        if (!response.ok) throw new Error("Failed to load");
+        const result = await response.json();
+        setData(result.data);
+        setIsAuthenticated(Boolean(result.user));
+        setUsername(result.user?.username ?? "Traveler");
+        setRole(result.user?.role);
+      } catch (error) {
+        console.error("Failed to load inventory data", error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    loadData();
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="h-96 animate-pulse rounded-2xl bg-surface-variant/20" />
+    );
+  }
+
+  if (!data) {
+    return (
+      <div className="rounded-lg border border-outline-variant p-6">
+        <p className="text-error font-bold">Unable to load inventory data</p>
+      </div>
+    );
+  }
 
   return (
-    <Suspense
-      fallback={
-        <div className="h-96 animate-pulse rounded-2xl bg-surface-variant/20" />
-      }
-    >
-      <DashboardShell
-        initialData={data}
-        isAuthenticated={Boolean(user)}
-        username={user?.username ?? "Traveler"}
-        role={user?.role}
-        view="inventory"
-      />
-    </Suspense>
+    <DashboardShell
+      initialData={data as DashboardData}
+      isAuthenticated={isAuthenticated}
+      username={username}
+      role={role}
+      view="inventory"
+    />
   );
 }
