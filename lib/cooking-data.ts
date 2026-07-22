@@ -45,6 +45,7 @@ export type CookingRecipeView = {
   completedCount: number;
   remainingCount: number;
   achievedAuto: boolean;
+  owned: boolean;
   ingredients: CookingRecipeIngredient[];
 };
 
@@ -103,6 +104,12 @@ export async function getCookingData(
         })
       : Promise.resolve([]),
   ]);
+
+  const ownedRecipeIds = new Set(
+    progress
+      .filter((item) => item.owned)
+      .map((item) => item.recipeId),
+  );
 
   const materials = getAllMaterials();
   const quantityByMaterialId = new Map(
@@ -165,6 +172,7 @@ export async function getCookingData(
         completedCount,
         remainingCount,
         achievedAuto: remainingCount === 0,
+        owned: ownedRecipeIds.has(recipeId),
         ingredients,
       };
     })
@@ -183,7 +191,7 @@ export async function getCookingData(
   const neededByMaterial = new Map<string, CookingNeededIngredient>();
 
   for (const recipe of recipes) {
-    if (recipe.achievedAuto) {
+    if (recipe.achievedAuto || recipe.owned) {
       continue;
     }
 

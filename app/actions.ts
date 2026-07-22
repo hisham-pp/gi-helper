@@ -27,6 +27,7 @@ import {
   completeGoalSchema,
   ownedCharacterSchema,
   ownedCharacterProgressSchema,
+  recipeOwnershipSchema,
 } from "@/lib/validation";
 import { getDashboardData } from "@/lib/data";
 import { getCookingData, type CookingData } from "@/lib/cooking-data";
@@ -451,6 +452,53 @@ export async function setOwnedCharacterAction(
       owned,
     },
   };
+}
+
+export async function setRecipeOwnershipAction(
+  input: unknown,
+): Promise<ActionResponse<CookingData>> {
+  const user = await requireUser();
+  const parsed = recipeOwnershipSchema.safeParse(input);
+
+  if (!parsed.success) {
+    return {
+      success: false,
+      error: "Invalid recipe ownership payload.",
+    };
+  }
+
+  const { recipeId, owned } = parsed.data;
+
+  try {
+    await prisma.cookingProgress.upsert({
+      where: {
+        userId_recipeId: {
+          userId: user.id,
+          recipeId,
+        },
+      },
+      update: {
+        owned,
+        // completedCount is not modified to preserve existing cooking progress
+      },
+      create: {
+        userId: user.id,
+        recipeId,
+        owned, // Use the user's provided value for ownership toggle
+        completedCount: 0,
+      },
+    });
+  } catch (error) {
+    console.error("Recipe ownership save failed", error);
+
+    return {
+      success: false,
+      error: "Unable to save recipe ownership right now.",
+    };
+  }
+
+  revalidateDashboardPages();
+  return refreshCooking(user.id);
 }
 
 type OwnedCharacterProgress = {

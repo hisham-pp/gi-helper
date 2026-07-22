@@ -2,10 +2,10 @@
 
 import { useEffect, useMemo, useState, useTransition } from "react";
 import type { Dispatch, SetStateAction } from "react";
-import { Check, ChefHat, Flame, Save, Search } from "lucide-react";
+import { Check, ChefHat, Flame, Save, Search, Star } from "lucide-react";
 import { toast } from "sonner";
 
-import { cookRecipeAction, saveCookingProgressAction } from "@/app/actions";
+import { cookRecipeAction, saveCookingProgressAction, setRecipeOwnershipAction } from "@/app/actions";
 import { LoginRequiredDialog } from "@/components/auth/login-required-dialog";
 import AppTextField from "@/components/core/app-textfield";
 import { EmptyState } from "@/components/dashboard/common/empty-state";
@@ -23,7 +23,8 @@ type CookingStatusFilter =
   | "Needs cooking"
   | "Ready to cook"
   | "Missing ingredients"
-  | "Auto unlocked";
+  | "Auto unlocked"
+  | "Owned";
 type QuantityDraft = Record<string, number>;
 
 type CookingApiResponse = {
@@ -60,7 +61,7 @@ export function CookingPage({
   const [loadRequest, setLoadRequest] = useState(0);
   const [search, setSearch] = useState("");
   const [typeFilter, setTypeFilter] = useState("All");
-  const [statusFilter, setStatusFilter] = useState<CookingStatusFilter>("All");
+  const [statusFilter, setStatusFilter] = useState<CookingStatusFilter>("Owned");
   const [progressDraft, setProgressDraft] = useState<QuantityDraft>(
     buildProgressDraft(initialData ?? emptyCookingData),
   );
@@ -167,6 +168,10 @@ export function CookingPage({
         return false;
       }
 
+      if (statusFilter === "Owned" && !recipe.owned) {
+        return false;
+      }
+
       if (!query) {
         return true;
       }
@@ -253,6 +258,43 @@ export function CookingPage({
     });
   }
 
+  function handleToggleOwned(recipeId: string) {
+    if (!canPersist) {
+      setShowLoginPrompt(true);
+      return;
+    }
+
+    const recipe = data.recipes.find((item) => item.id === recipeId);
+    if (!recipe) {
+      return;
+    }
+
+    const pendingKey = `owned:${recipeId}`;
+    setPendingAction(pendingKey);
+    startTransition(async () => {
+      try {
+        const result = await setRecipeOwnershipAction({
+          recipeId,
+          owned: !recipe.owned,
+        });
+
+        if (!result.success || !result.data) {
+          toast.error(result.error ?? "Unable to update recipe ownership.");
+          return;
+        }
+
+        syncCooking(result.data);
+        toast.success(
+          recipe.owned
+            ? "Recipe marked as not owned."
+            : "Recipe marked as owned.",
+        );
+      } finally {
+        setPendingAction(null);
+      }
+    });
+  }
+
   return (
     <div className="space-y-8">
       <header className="mb-8">
@@ -310,6 +352,7 @@ export function CookingPage({
             typeFilter={typeFilter}
             onCook={handleCook}
             onSave={handleProgressSave}
+            onToggleOwned={handleToggleOwned}
           />
         </>
       )}
@@ -383,6 +426,7 @@ function RecipesTab({
   setTypeFilter,
   onCook,
   onSave,
+  onToggleOwned,
 }: {
   cookDraft: QuantityDraft;
   pendingAction: string | null;
@@ -399,6 +443,7 @@ function RecipesTab({
   setTypeFilter: (value: string) => void;
   onCook: (recipeId: string) => void;
   onSave: (recipeId: string) => void;
+  onToggleOwned: (recipeId: string) => void;
 }) {
   return (
     <section className="space-y-6">
@@ -432,6 +477,7 @@ function RecipesTab({
                 "Ready to cook",
                 "Missing ingredients",
                 "Auto unlocked",
+                "Owned",
               ] satisfies CookingStatusFilter[]
             ).map((status) => ({
               label: status,
@@ -457,6 +503,7 @@ function RecipesTab({
               cookValue={cookDraft[recipe.id] ?? 1}
               isCookPending={pendingAction === `cook:${recipe.id}`}
               isProgressPending={pendingAction === `progress:${recipe.id}`}
+              isOwnedPending={pendingAction === `owned:${recipe.id}`}
               pendingAction={pendingAction}
               progressValue={progressDraft[recipe.id] ?? 0}
               recipe={recipe}
@@ -464,6 +511,7 @@ function RecipesTab({
               setProgressDraft={setProgressDraft}
               onCook={() => onCook(recipe.id)}
               onSave={() => onSave(recipe.id)}
+              onToggleOwned={() => onToggleOwned(recipe.id)}
             />
           ))
         )}
@@ -476,6 +524,7 @@ function RecipeCard({
   cookValue,
   isCookPending,
   isProgressPending,
+  isOwnedPending,
   pendingAction,
   progressValue,
   recipe,
@@ -483,10 +532,12 @@ function RecipeCard({
   setProgressDraft,
   onCook,
   onSave,
+  onToggleOwned,
 }: {
   cookValue: number;
   isCookPending: boolean;
   isProgressPending: boolean;
+  isOwnedPending: boolean;
   pendingAction: string | null;
   progressValue: number;
   recipe: CookingRecipeView;
@@ -494,6 +545,7 @@ function RecipeCard({
   setProgressDraft: Dispatch<SetStateAction<QuantityDraft>>;
   onCook: () => void;
   onSave: () => void;
+  onToggleOwned: () => void;
 }) {
   const progressPercent =
     recipe.proficiency === 0
@@ -544,21 +596,41 @@ function RecipeCard({
                 {recipe.type}
               </p>
             </div>
-            {recipe.achievedAuto ? (
-              <span className="inline-flex items-center gap-1 rounded-full bg-primary-container px-2.5 py-1 text-xs font-bold text-primary">
-                <Check className="h-3.5 w-3.5" />
-                Auto
-              </span>
-            ) : canCook ? (
-              <span className="inline-flex items-center gap-1 rounded-full bg-primary-container px-2.5 py-1 text-xs font-bold text-primary">
-                <ChefHat className="h-3.5 w-3.5" />
-                Ready x{formatNumber(cookQuantityLimit)}
-              </span>
-            ) : (
-              <span className="text-on-surface-variant inline-flex items-center gap-1 rounded-full border border-outline-variant px-2.5 py-1 text-xs font-bold">
-                Missing
-              </span>
-            )}
+            <div className="flex items-center gap-2">
+              <Button
+                variant="tonal"
+                className={cn(
+                  "h-8 w-8 p-0",
+                  recipe.owned
+                    ? "text-primary hover:text-primary/80"
+                    : "text-outline hover:text-primary",
+                )}
+                onClick={onToggleOwned}
+                disabled={isOwnedPending || hasPendingAction}
+              >
+                <Star
+                  className={cn(
+                    "h-4 w-4",
+                    recipe.owned ? "fill-current" : "",
+                  )}
+                />
+              </Button>
+              {recipe.achievedAuto ? (
+                <span className="inline-flex items-center gap-1 rounded-full bg-primary-container px-2.5 py-1 text-xs font-bold text-primary">
+                  <Check className="h-3.5 w-3.5" />
+                  Auto
+                </span>
+              ) : canCook ? (
+                <span className="inline-flex items-center gap-1 rounded-full bg-primary-container px-2.5 py-1 text-xs font-bold text-primary">
+                  <ChefHat className="h-3.5 w-3.5" />
+                  Ready x{formatNumber(cookQuantityLimit)}
+                </span>
+              ) : (
+                <span className="text-on-surface-variant inline-flex items-center gap-1 rounded-full border border-outline-variant px-2.5 py-1 text-xs font-bold">
+                  Missing
+                </span>
+              )}
+            </div>
           </div>
           <p className="text-on-surface-variant mt-2 line-clamp-2 text-sm">
             {recipe.effect || recipe.description}

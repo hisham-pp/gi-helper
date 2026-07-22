@@ -68,6 +68,11 @@ export const cookingProgressSchema = z.object({
   completedCount: z.coerce.number().int().min(0).max(999999),
 });
 
+export const recipeOwnershipSchema = z.object({
+  recipeId: z.string().min(1),
+  owned: z.boolean(),
+});
+
 export const cookRecipeSchema = z.object({
   recipeId: z.string().min(1),
   quantity: z.coerce.number().int().min(1).max(999),
