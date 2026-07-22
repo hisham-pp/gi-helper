@@ -191,7 +191,7 @@ export async function getCookingData(
   const neededByMaterial = new Map<string, CookingNeededIngredient>();
 
   for (const recipe of recipes) {
-    if (recipe.achievedAuto || recipe.owned) {
+    if (recipe.achievedAuto || !recipe.owned) {
       continue;
     }
 

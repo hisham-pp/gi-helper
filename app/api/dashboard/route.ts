@@ -27,7 +27,6 @@ export async function GET(request: Request) {
     {
       headers: {
         "Cache-Control": "private, no-cache, no-store, must-revalidate",
-        "Content-Encoding": "gzip",
       },
     },
   );
