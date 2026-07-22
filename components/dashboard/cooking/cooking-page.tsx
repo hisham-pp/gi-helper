@@ -598,11 +598,11 @@ function RecipeCard({
             </div>
             <div className="flex items-center gap-2">
               <Button
-                variant="tonal"
+                variant={recipe.owned ? "filled" : "outlined"}
                 className={cn(
-                  "h-8 w-8 p-0",
+                  "h-8 px-3",
                   recipe.owned
-                    ? "text-primary hover:text-primary/80"
+                    ? "bg-primary text-on-primary-container hover:bg-primary/90"
                     : "text-outline hover:text-primary",
                 )}
                 onClick={onToggleOwned}
@@ -610,10 +610,13 @@ function RecipeCard({
               >
                 <Star
                   className={cn(
-                    "h-4 w-4",
+                    "h-4 w-4 mr-1.5",
                     recipe.owned ? "fill-current" : "",
                   )}
                 />
+                <span className="text-xs font-medium">
+                  {recipe.owned ? "Owned" : "Mark Owned"}
+                </span>
               </Button>
               {recipe.achievedAuto ? (
                 <span className="inline-flex items-center gap-1 rounded-full bg-primary-container px-2.5 py-1 text-xs font-bold text-primary">
