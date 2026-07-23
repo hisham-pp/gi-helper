@@ -40,7 +40,7 @@ export default function GoalsPage() {
   if (!data) {
     return (
       <div className="rounded-lg border border-outline-variant p-6">
-        <p className="text-error font-bold">Unable to load goals data</p>
+        <p className="font-bold text-error">Unable to load goals data</p>
       </div>
     );
   }

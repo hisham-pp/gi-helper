@@ -9,7 +9,10 @@ export async function GET(
   const character = getCharacterById(characterId);
 
   if (!character) {
-    return NextResponse.json({ error: "Character not found." }, { status: 404 });
+    return NextResponse.json(
+      { error: "Character not found." },
+      { status: 404 },
+    );
   }
 
   return NextResponse.json(character);

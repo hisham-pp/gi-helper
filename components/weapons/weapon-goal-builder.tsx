@@ -116,9 +116,7 @@ export function WeaponGoalBuilder({
   }
 
   function selectAll() {
-    setSelected(
-      new Map(weapon.templates.map((template) => [template.id, 1])),
-    );
+    setSelected(new Map(weapon.templates.map((template) => [template.id, 1])));
   }
 
   function adjustAllSelected(delta: number) {

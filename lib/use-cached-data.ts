@@ -81,7 +81,11 @@ export function useCachedData<T>({
   }, [cacheKey]);
 
   const updateItem = useCallback(
-    <U extends { id: string }>(listKey: string, itemId: string, updatedItem: U) => {
+    <U extends { id: string }>(
+      listKey: string,
+      itemId: string,
+      updatedItem: U,
+    ) => {
       if (!data) return;
 
       // Patch localStorage

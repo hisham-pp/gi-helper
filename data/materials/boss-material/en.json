@@ -96,7 +96,7 @@
   },
   "tourbillon-device": {
     "name": "Tourbillon Device",
-    "source": "Prototype Cal. Breguet",
+    "source": "Experimental Field Generator",
     "characters": ["charlotte", "wriothesley"]
   },
   "evergloom-ring": {
@@ -230,5 +230,4 @@
     "source": "Lord of the Hidden Depths: Whisperer of Nightmares",
     "characters": ["nicole", "zibai"]
   }
-
 }

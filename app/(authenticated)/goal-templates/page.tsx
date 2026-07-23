@@ -26,9 +26,7 @@ export default async function GoalTemplatesPage() {
         </div>
       </div>
 
-      <GoalTemplates
-        isAuthenticated={Boolean(user)}
-      />
+      <GoalTemplates isAuthenticated={Boolean(user)} />
     </div>
   );
 }

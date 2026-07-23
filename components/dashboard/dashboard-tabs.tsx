@@ -11,8 +11,14 @@ export function DashboardTabs({
   onChange: (tab: DashboardTab) => void;
 }) {
   return (
-    <nav className="flex items-center justify-center" aria-label="Tracker views">
-      <div role="tablist" className="flex gap-2 rounded-full bg-surface-variant/50 p-1">
+    <nav
+      className="flex items-center justify-center"
+      aria-label="Tracker views"
+    >
+      <div
+        role="tablist"
+        className="flex gap-2 rounded-full bg-surface-variant/50 p-1"
+      >
         {tabs.map((tab) => (
           <Button
             key={tab}

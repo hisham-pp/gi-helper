@@ -27,7 +27,8 @@ type CharacterFormValues = {
 export default function AddCharacterPage() {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
-  const { data: staticCharactersData, updateItem: updateCharacterItem } = useStaticCharacters();
+  const { data: staticCharactersData, updateItem: updateCharacterItem } =
+    useStaticCharacters();
   const {
     control,
     formState: { errors },

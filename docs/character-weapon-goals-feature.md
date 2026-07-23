@@ -1,6 +1,7 @@
 # Character & Weapon Goal Templates Feature
 
 ## Overview
+
 This feature adds predefined goal templates for characters and weapons, allowing users to quickly create farming goals with pre-configured material requirements for ascensions and talent leveling.
 
 ## Database Schema Changes
@@ -39,19 +40,24 @@ This feature adds predefined goal templates for characters and weapons, allowing
 ## Seed Data
 
 ### Characters (8 total)
+
 - **5-Star**: Nahida, Raiden Shogun, Zhongli, Kazuha, Hu Tao, Yelan
 - **4-Star**: Bennett, Xingqiu
 
 ### Weapons (6 total)
+
 - **5-Star**: Mistsplitter Reforged, Staff of Homa, Thundering Pulse, Kagura's Verity
 - **4-Star**: Prototype Rancour, Favonius Lance
 
 ### Goal Templates
+
 Each character/weapon has multiple templates for:
+
 - **Ascension levels**: Materials needed for each ascension phase
 - **Talent levels**: Materials for leveling talents (characters only)
 
 Example templates for Nahida:
+
 - Ascension 1 (Lv. 20 → 40)
 - Ascension 2 (Lv. 40 → 50)
 - All Talents Level 1 → 6
@@ -60,6 +66,7 @@ Example templates for Nahida:
 ## UI Components
 
 ### 1. Goal Templates Page (`/goal-templates`)
+
 - Tab-based interface for Characters and Weapons
 - Grid layout showing all available characters/weapons
 - Each card displays:
@@ -69,12 +76,14 @@ Example templates for Nahida:
 - Click any template to instantly create a goal
 
 ### 2. Goal Templates Component
+
 - Client-side component with tab switching
 - Responsive grid layout (1-3 columns based on screen size)
 - Visual feedback during goal creation
 - Toast notifications for success/error states
 
 ### 3. Updated Materials Page
+
 - Added "Templates" button in the Goals tab
 - Updated "Create Goal" button to "Custom Goal" for clarity
 - Updated empty state message
@@ -82,6 +91,7 @@ Example templates for Nahida:
 ## Server Actions
 
 ### `createGoalFromTemplateAction`
+
 - Creates a new goal from a character or weapon template
 - Automatically copies all material requirements from the template
 - Sets goal name as "{Character/Weapon Name} - {Template Name}"
@@ -118,6 +128,7 @@ Example templates for Nahida:
 ## Files Modified/Created
 
 ### Database
+
 - `prisma/schema.prisma` - Added new models and relations
 - `prisma/seed.ts` - Updated to seed characters, weapons, and templates
 - `prisma/seed-data/characters.ts` - Character data
@@ -127,14 +138,17 @@ Example templates for Nahida:
 - `prisma/seed-data/index.ts` - Export new seed data
 
 ### Server
+
 - `app/actions.ts` - Added `createGoalFromTemplateAction`
 
 ### UI
+
 - `app/(authenticated)/goal-templates/page.tsx` - New page for browsing templates
 - `components/dashboard/goal-templates.tsx` - Template browser component
 - `components/dashboard/dashboard-shell.tsx` - Updated Goals tab UI
 
 ### Documentation
+
 - `docs/character-weapon-goals-feature.md` - This file
 
 ## Migration

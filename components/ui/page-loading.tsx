@@ -1,14 +1,13 @@
 import { cn } from "@/lib/utils";
 
-export function SkeletonBlock({
-  className,
-}: {
-  className?: string;
-}) {
+export function SkeletonBlock({ className }: { className?: string }) {
   return (
     <div
       aria-hidden="true"
-      className={cn("animate-pulse rounded-lg bg-surface-variant/25", className)}
+      className={cn(
+        "animate-pulse rounded-lg bg-surface-variant/25",
+        className,
+      )}
     />
   );
 }

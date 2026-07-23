@@ -140,11 +140,7 @@ export function GoalsSection({
       ) : (
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {goals.map((goal) => (
-            <GoalCard
-              key={goal.id}
-              goal={goal}
-              onComplete={onGoalComplete}
-            />
+            <GoalCard key={goal.id} goal={goal} onComplete={onGoalComplete} />
           ))}
         </div>
       )}

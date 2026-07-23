@@ -49,9 +49,7 @@ type GoalTemplatesProps = {
   isAuthenticated?: boolean;
 };
 
-export function GoalTemplates({
-  isAuthenticated = true,
-}: GoalTemplatesProps) {
+export function GoalTemplates({ isAuthenticated = true }: GoalTemplatesProps) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const [selectedTab, setSelectedTab] = useState<"characters" | "weapons">(
@@ -123,70 +121,70 @@ export function GoalTemplates({
       {selectedTab === "characters" && (
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {charactersLoading ? (
-            <div className="col-span-full py-12 text-center text-on-surface-variant">
+            <div className="text-on-surface-variant col-span-full py-12 text-center">
               Loading characters...
             </div>
           ) : (
             characters.map((character) => (
               <Card key={character.id} variant="outlined" className="p-6">
-              <div className="mb-4 flex items-center gap-4">
-                <div
-                  className={cn(
-                    "relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-xl bg-gradient-to-br",
-                    rarityColorMap[character.rarity] ?? rarityColorMap[1],
-                  )}
-                >
-                  <CachedImage
-                    src={character.image}
-                    alt={character.name}
-                    fill
-                    unoptimized
-                    className="object-cover"
-                    sizes="64px"
-                  />
+                <div className="mb-4 flex items-center gap-4">
+                  <div
+                    className={cn(
+                      "relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-xl bg-gradient-to-br",
+                      rarityColorMap[character.rarity] ?? rarityColorMap[1],
+                    )}
+                  >
+                    <CachedImage
+                      src={character.image}
+                      alt={character.name}
+                      fill
+                      unoptimized
+                      className="object-cover"
+                      sizes="64px"
+                    />
+                  </div>
+                  <div>
+                    <h3 className="text-on-surface font-bold">
+                      {character.name}
+                    </h3>
+                    <p className="text-on-surface-variant text-xs">
+                      {character.element} • {character.weaponType}
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-on-surface font-bold">
-                    {character.name}
-                  </h3>
-                  <p className="text-on-surface-variant text-xs">
-                    {character.element} • {character.weaponType}
-                  </p>
-                </div>
-              </div>
 
-              <div className="space-y-2">
-                {character.templates
-                  .sort((a, b) => {
-                    if (a.category !== b.category) {
-                      return a.category.localeCompare(b.category);
-                    }
-                    return a.sortOrder - b.sortOrder;
-                  })
-                  .map((template) => (
-                    <button
-                      key={template.id}
-                      onClick={() =>
-                        handleCreateFromTemplate("character", template.id)
+                <div className="space-y-2">
+                  {character.templates
+                    .sort((a, b) => {
+                      if (a.category !== b.category) {
+                        return a.category.localeCompare(b.category);
                       }
-                      disabled={isPending}
-                      className="text-on-surface-variant flex w-full items-center justify-between rounded-lg p-3 text-left text-sm transition-colors hover:bg-surface-variant/50"
-                    >
-                      <div>
-                        <p className="text-on-surface font-medium">
-                          {template.name}
-                        </p>
-                        {template.description && (
-                          <p className="text-on-surface-variant text-xs">
-                            {template.description}
+                      return a.sortOrder - b.sortOrder;
+                    })
+                    .map((template) => (
+                      <button
+                        key={template.id}
+                        onClick={() =>
+                          handleCreateFromTemplate("character", template.id)
+                        }
+                        disabled={isPending}
+                        className="text-on-surface-variant flex w-full items-center justify-between rounded-lg p-3 text-left text-sm transition-colors hover:bg-surface-variant/50"
+                      >
+                        <div>
+                          <p className="text-on-surface font-medium">
+                            {template.name}
                           </p>
-                        )}
-                      </div>
-                      <ChevronRight className="text-on-surface-variant h-4 w-4 flex-shrink-0" />
-                    </button>
-                  ))}
-              </div>
-            </Card>
+                          {template.description && (
+                            <p className="text-on-surface-variant text-xs">
+                              {template.description}
+                            </p>
+                          )}
+                        </div>
+                        <ChevronRight className="text-on-surface-variant h-4 w-4 flex-shrink-0" />
+                      </button>
+                    ))}
+                </div>
+              </Card>
             ))
           )}
         </div>
@@ -195,67 +193,67 @@ export function GoalTemplates({
       {selectedTab === "weapons" && (
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {weaponsLoading ? (
-            <div className="col-span-full py-12 text-center text-on-surface-variant">
+            <div className="text-on-surface-variant col-span-full py-12 text-center">
               Loading weapons...
             </div>
           ) : (
             weapons.map((weapon) => (
               <Card key={weapon.id} variant="outlined" className="p-6">
-              <div className="mb-4 flex items-center gap-4">
-                <div
-                  className={cn(
-                    "relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-xl bg-gradient-to-br",
-                    rarityColorMap[weapon.rarity] ?? rarityColorMap[1],
-                  )}
-                >
-                  <CachedImage
-                    src={weapon.image}
-                    alt={weapon.name}
-                    fill
-                    className="object-contain p-2"
-                    sizes="64px"
-                  />
+                <div className="mb-4 flex items-center gap-4">
+                  <div
+                    className={cn(
+                      "relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-xl bg-gradient-to-br",
+                      rarityColorMap[weapon.rarity] ?? rarityColorMap[1],
+                    )}
+                  >
+                    <CachedImage
+                      src={weapon.image}
+                      alt={weapon.name}
+                      fill
+                      className="object-contain p-2"
+                      sizes="64px"
+                    />
+                  </div>
+                  <div>
+                    <h3 className="text-on-surface font-bold">{weapon.name}</h3>
+                    <p className="text-on-surface-variant text-xs">
+                      {weapon.weaponType}
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-on-surface font-bold">{weapon.name}</h3>
-                  <p className="text-on-surface-variant text-xs">
-                    {weapon.weaponType}
-                  </p>
-                </div>
-              </div>
 
-              <div className="space-y-2">
-                {weapon.templates
-                  .sort((a, b) => {
-                    if (a.category !== b.category) {
-                      return a.category.localeCompare(b.category);
-                    }
-                    return a.sortOrder - b.sortOrder;
-                  })
-                  .map((template) => (
-                    <button
-                      key={template.id}
-                      onClick={() =>
-                        handleCreateFromTemplate("weapon", template.id)
+                <div className="space-y-2">
+                  {weapon.templates
+                    .sort((a, b) => {
+                      if (a.category !== b.category) {
+                        return a.category.localeCompare(b.category);
                       }
-                      disabled={isPending}
-                      className="text-on-surface-variant flex w-full items-center justify-between rounded-lg p-3 text-left text-sm transition-colors hover:bg-surface-variant/50"
-                    >
-                      <div>
-                        <p className="text-on-surface font-medium">
-                          {template.name}
-                        </p>
-                        {template.description && (
-                          <p className="text-on-surface-variant text-xs">
-                            {template.description}
+                      return a.sortOrder - b.sortOrder;
+                    })
+                    .map((template) => (
+                      <button
+                        key={template.id}
+                        onClick={() =>
+                          handleCreateFromTemplate("weapon", template.id)
+                        }
+                        disabled={isPending}
+                        className="text-on-surface-variant flex w-full items-center justify-between rounded-lg p-3 text-left text-sm transition-colors hover:bg-surface-variant/50"
+                      >
+                        <div>
+                          <p className="text-on-surface font-medium">
+                            {template.name}
                           </p>
-                        )}
-                      </div>
-                      <ChevronRight className="text-on-surface-variant h-4 w-4 flex-shrink-0" />
-                    </button>
-                  ))}
-              </div>
-            </Card>
+                          {template.description && (
+                            <p className="text-on-surface-variant text-xs">
+                              {template.description}
+                            </p>
+                          )}
+                        </div>
+                        <ChevronRight className="text-on-surface-variant h-4 w-4 flex-shrink-0" />
+                      </button>
+                    ))}
+                </div>
+              </Card>
             ))
           )}
         </div>

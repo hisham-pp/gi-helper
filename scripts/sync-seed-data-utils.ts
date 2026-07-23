@@ -429,7 +429,9 @@ export function buildMaterialCatalog(): MaterialCatalog {
     const normalizedName = normalizeLookupKey(material.name);
     const existingByName = byName.get(normalizedName);
     if (existingByName) {
-      if (JSON.stringify(existingByName) !== JSON.stringify(materialWithOrder)) {
+      if (
+        JSON.stringify(existingByName) !== JSON.stringify(materialWithOrder)
+      ) {
         throw new Error(
           `Conflicting duplicate material name generated: ${material.name}`,
         );
@@ -552,8 +554,7 @@ export function buildMaterialCatalog(): MaterialCatalog {
   );
   const orderedBossMaterials = Object.entries(bossMaterials).sort(
     ([leftId], [rightId]) =>
-      (normalBossMaterialRank.get(leftId) ??
-        normalBossMaterialOrder.length) -
+      (normalBossMaterialRank.get(leftId) ?? normalBossMaterialOrder.length) -
         (normalBossMaterialRank.get(rightId) ??
           normalBossMaterialOrder.length) || leftId.localeCompare(rightId),
   );
@@ -750,12 +751,7 @@ export function buildMaterialCatalog(): MaterialCatalog {
   const materialRank = getExplicitOrderRank(materialOrder);
   const orderedPlainMaterials = Object.entries(plainMaterials).sort(
     ([leftId], [rightId]) =>
-      compareExplicitIds(
-        leftId,
-        rightId,
-        materialRank,
-        materialOrder.length,
-      ),
+      compareExplicitIds(leftId, rightId, materialRank, materialOrder.length),
   );
 
   for (const [id, material] of orderedPlainMaterials) {

@@ -35,7 +35,10 @@ export function CraftingResult({
   return (
     <div className="mt-4 space-y-6">
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        <StatPill label="Requested" value={formatNumber(simulation.requested)} />
+        <StatPill
+          label="Requested"
+          value={formatNumber(simulation.requested)}
+        />
         <StatPill
           label="Total Available"
           value={formatNumber(simulation.totalAvailable)}

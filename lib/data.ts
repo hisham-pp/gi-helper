@@ -142,9 +142,7 @@ async function getDashboardSourceData(userId?: string | null): Promise<{
       : goal.templateType === "weapon" && goal.templateId
         ? (() => {
             const template = getWeaponTemplateById(goal.templateId);
-            return template?.weaponId
-              ? getWeaponById(template.weaponId)
-              : null;
+            return template?.weaponId ? getWeaponById(template.weaponId) : null;
           })()
         : null;
 

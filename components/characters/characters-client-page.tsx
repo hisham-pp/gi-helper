@@ -39,8 +39,11 @@ type CharactersPayload = {
 };
 
 export function CharactersClientPage() {
-  const { data: staticCharactersData, isLoading: isStaticLoading } = useStaticCharacters();
-  const [ownedCharacterIds, setOwnedCharacterIds] = useState<Set<string>>(new Set());
+  const { data: staticCharactersData, isLoading: isStaticLoading } =
+    useStaticCharacters();
+  const [ownedCharacterIds, setOwnedCharacterIds] = useState<Set<string>>(
+    new Set(),
+  );
   const [user, setUser] = useState<ApiUser>(null);
   const [isApiLoading, setIsApiLoading] = useState(true);
   const [loadError, setLoadError] = useState<string | null>(null);
@@ -74,9 +77,9 @@ export function CharactersClientPage() {
   }, [loadApiData]);
 
   const characters = staticCharactersData?.characters
-    ? staticCharactersData.characters.map(character => ({
+    ? staticCharactersData.characters.map((character) => ({
         ...character,
-        isOwned: ownedCharacterIds.has(character.id)
+        isOwned: ownedCharacterIds.has(character.id),
       }))
     : [];
 

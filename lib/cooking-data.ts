@@ -106,9 +106,7 @@ export async function getCookingData(
   ]);
 
   const ownedRecipeIds = new Set(
-    progress
-      .filter((item) => item.owned)
-      .map((item) => item.recipeId),
+    progress.filter((item) => item.owned).map((item) => item.recipeId),
   );
 
   const materials = getAllMaterials();

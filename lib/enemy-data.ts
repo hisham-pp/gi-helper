@@ -523,9 +523,8 @@ export function getEnemiesByMaterialId(materialId: string) {
 }
 
 function buildEnemyCatalog() {
-  const richEnemies: EnemyCatalogItem[] = localEnemyEntries.map(
-    buildLocalEnemy,
-  );
+  const richEnemies: EnemyCatalogItem[] =
+    localEnemyEntries.map(buildLocalEnemy);
   const enemiesById = new Map(richEnemies.map((enemy) => [enemy.id, enemy]));
 
   for (const archiveEnemy of enemyArchiveEntries.map(buildArchiveEnemy)) {
@@ -631,7 +630,9 @@ function collectMaterials(drops: RawEnemy["drops"]): EnemyMaterial[] {
         name: material?.name ?? drop.name ?? "Unknown Material",
         rarity: drop.rarity ?? material?.rarity ?? null,
         minimumLevel:
-          drop["minimum-level"] ?? drop.minimumLevel ?? sourceLevel(drop.source),
+          drop["minimum-level"] ??
+          drop.minimumLevel ??
+          sourceLevel(drop.source),
         source: drop.source ?? null,
         material,
       };
@@ -680,7 +681,8 @@ function buildInferredDropGroups() {
   )
     .filter(([, group]) => group.source)
     .map(([id, group]) => {
-      const material = materialIdLookup.get(id) ?? resolveMaterial(group.name ?? "");
+      const material =
+        materialIdLookup.get(id) ?? resolveMaterial(group.name ?? "");
 
       return {
         sources: [group.source ?? ""],

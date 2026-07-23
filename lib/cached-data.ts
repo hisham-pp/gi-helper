@@ -6,7 +6,17 @@ import { useCachedData } from "./use-cached-data";
  * Hook for fetching cooking ingredients data with caching
  */
 export function useCookingIngredients() {
-  return useCachedData<Record<string, { name: string; description?: string; rarity?: number; sources?: string[] }>>({
+  return useCachedData<
+    Record<
+      string,
+      {
+        name: string;
+        description?: string;
+        rarity?: number;
+        sources?: string[];
+      }
+    >
+  >({
     url: "/api/data/materials",
     cacheKey: "cooking-ingredients",
   });
@@ -37,17 +47,22 @@ export function useCookingIngredientById(ingredientId: string) {
  * Hook for fetching food data with caching
  */
 export function useFoodData() {
-  return useCachedData<Record<string, {
-    name: string;
-    rarity: number;
-    type: string;
-    effect?: string;
-    hasRecipe?: boolean;
-    description: string;
-    proficiency?: number | string;
-    baseDish?: string;
-    recipe?: Array<{ item: string; quantity: number }>;
-  }>>({
+  return useCachedData<
+    Record<
+      string,
+      {
+        name: string;
+        rarity: number;
+        type: string;
+        effect?: string;
+        hasRecipe?: boolean;
+        description: string;
+        proficiency?: number | string;
+        baseDish?: string;
+        recipe?: Array<{ item: string; quantity: number }>;
+      }
+    >
+  >({
     url: "/api/data/food",
     cacheKey: "food-data",
   });
@@ -77,19 +92,21 @@ export function useFoodById(foodId: string) {
  * Hook for fetching collectibles data with caching
  */
 export function useCollectiblesData() {
-  return useCachedData<Array<{
-    id: string;
-    label: string;
-    kind: "anemoculus" | "geoculus" | "crimson-agate";
-    region: "mondstadt" | "liyue" | "dragonspine";
-    layer: "teyvat" | "underground";
-    x: number;
-    y: number;
-    sourceId: number;
-    sourceCoordinates: [number, number];
-    hint: string;
-    routeNote: string;
-  }>>({
+  return useCachedData<
+    Array<{
+      id: string;
+      label: string;
+      kind: "anemoculus" | "geoculus" | "crimson-agate";
+      region: "mondstadt" | "liyue" | "dragonspine";
+      layer: "teyvat" | "underground";
+      x: number;
+      y: number;
+      sourceId: number;
+      sourceCoordinates: [number, number];
+      hint: string;
+      routeNote: string;
+    }>
+  >({
     url: "/api/data/collectibles",
     cacheKey: "collectibles-data",
   });
@@ -99,13 +116,18 @@ export function useCollectiblesData() {
  * Hook for fetching boss material data with caching
  */
 export function useBossMaterialData() {
-  return useCachedData<Record<string, {
-    items?: Array<{ id?: string; name?: string; rarity?: number }>;
-    sources?: string[];
-    name?: string;
-    rarity?: number;
-    source?: string;
-  }>>({
+  return useCachedData<
+    Record<
+      string,
+      {
+        items?: Array<{ id?: string; name?: string; rarity?: number }>;
+        sources?: string[];
+        name?: string;
+        rarity?: number;
+        source?: string;
+      }
+    >
+  >({
     url: "/api/data/boss-material",
     cacheKey: "boss-material-data",
   });
@@ -115,13 +137,18 @@ export function useBossMaterialData() {
  * Hook for fetching common ascension data with caching
  */
 export function useCommonAscensionData() {
-  return useCachedData<Record<string, {
-    items?: Array<{ id?: string; name?: string; rarity?: number }>;
-    sources?: string[];
-    name?: string;
-    rarity?: number;
-    source?: string;
-  }>>({
+  return useCachedData<
+    Record<
+      string,
+      {
+        items?: Array<{ id?: string; name?: string; rarity?: number }>;
+        sources?: string[];
+        name?: string;
+        rarity?: number;
+        source?: string;
+      }
+    >
+  >({
     url: "/api/data/common-ascension",
     cacheKey: "common-ascension-data",
   });
@@ -131,38 +158,40 @@ export function useCommonAscensionData() {
  * Hook for fetching static characters data with caching
  */
 export function useStaticCharacters() {
-  return useCachedData<{ characters: Array<{
-    id: string;
-    name: string;
-    rarity: number;
-    element: string;
-    weaponType: string;
-    region: string;
-    image: string;
-    portrait: string;
-    description: string;
-    details: Record<string, unknown>;
-    assets: Array<{ id: string; name: string; image: string }>;
-    templates: Array<{
+  return useCachedData<{
+    characters: Array<{
       id: string;
       name: string;
-      description: string | null;
-      category: string;
-      sortOrder: number;
-      materials: Array<{
+      rarity: number;
+      element: string;
+      weaponType: string;
+      region: string;
+      image: string;
+      portrait: string;
+      description: string;
+      details: Record<string, unknown>;
+      assets: Array<{ id: string; name: string; image: string }>;
+      templates: Array<{
         id: string;
-        templateId: string;
-        materialId: string;
-        required: number;
-        material: {
+        name: string;
+        description: string | null;
+        category: string;
+        sortOrder: number;
+        materials: Array<{
           id: string;
-          name: string;
-          image: string;
-          rarity: number;
-        };
+          templateId: string;
+          materialId: string;
+          required: number;
+          material: {
+            id: string;
+            name: string;
+            image: string;
+            rarity: number;
+          };
+        }>;
       }>;
     }>;
-  }> }>({
+  }>({
     url: "/api/data/characters",
     cacheKey: "static-characters",
   });
@@ -242,18 +271,20 @@ export function useCharacterGoalTemplateById(templateId: string) {
  * Hook for fetching static materials data with caching
  */
 export function useStaticMaterials() {
-  return useCachedData<{ materials: Array<{
-    id: string;
-    name: string;
-    image: string;
-    rarity: number;
-    category: string;
-    description: string;
-    combinable: boolean;
-    combineRatio: number | null;
-    parentMaterialId: string | null;
-    details: Record<string, unknown>;
-  }> }>({
+  return useCachedData<{
+    materials: Array<{
+      id: string;
+      name: string;
+      image: string;
+      rarity: number;
+      category: string;
+      description: string;
+      combinable: boolean;
+      combineRatio: number | null;
+      parentMaterialId: string | null;
+      details: Record<string, unknown>;
+    }>;
+  }>({
     url: "/api/data/static-materials",
     cacheKey: "static-materials",
   });
@@ -284,36 +315,38 @@ export function useMaterialById(materialId: string) {
  * Hook for fetching static weapons data with caching
  */
 export function useStaticWeapons() {
-  return useCachedData<{ weapons: Array<{
-    id: string;
-    name: string;
-    image: string;
-    rarity: number;
-    weaponType: string;
-    baseAttack: number;
-    subStat: string;
-    subStatValue: number;
-    description: string;
-    templates: Array<{
+  return useCachedData<{
+    weapons: Array<{
       id: string;
       name: string;
-      description: string | null;
-      category: string;
-      sortOrder: number;
-      materials: Array<{
+      image: string;
+      rarity: number;
+      weaponType: string;
+      baseAttack: number;
+      subStat: string;
+      subStatValue: number;
+      description: string;
+      templates: Array<{
         id: string;
-        templateId: string;
-        materialId: string;
-        required: number;
-        material: {
+        name: string;
+        description: string | null;
+        category: string;
+        sortOrder: number;
+        materials: Array<{
           id: string;
-          name: string;
-          image: string;
-          rarity: number;
-        };
+          templateId: string;
+          materialId: string;
+          required: number;
+          material: {
+            id: string;
+            name: string;
+            image: string;
+            rarity: number;
+          };
+        }>;
       }>;
     }>;
-  }> }>({
+  }>({
     url: "/api/data/weapons",
     cacheKey: "static-weapons",
   });
@@ -391,32 +424,34 @@ export function useWeaponGoalTemplateById(templateId: string) {
  * Hook for fetching enemies data with caching
  */
 export function useEnemiesData() {
-  return useCachedData<{ enemies: Array<{
-    id: string;
-    name: string;
-    type: string;
-    family: string;
-    faction: string | null;
-    region: string;
-    description: string;
-    elements: string[];
-    bestElements: string[];
-    materials: Array<{
-      id: string | null;
+  return useCachedData<{
+    enemies: Array<{
+      id: string;
       name: string;
-      rarity: number | null;
-      minimumLevel: number | null;
-      source: string | null;
-    }>;
-    image: string | null;
-    portrait: string | null;
-    sourceUrl: string | null;
-    advice: Array<{
-      element: string;
+      type: string;
+      family: string;
+      faction: string | null;
+      region: string;
+      description: string;
+      elements: string[];
       bestElements: string[];
-      note: string;
+      materials: Array<{
+        id: string | null;
+        name: string;
+        rarity: number | null;
+        minimumLevel: number | null;
+        source: string | null;
+      }>;
+      image: string | null;
+      portrait: string | null;
+      sourceUrl: string | null;
+      advice: Array<{
+        element: string;
+        bestElements: string[];
+        note: string;
+      }>;
     }>;
-  }> }>({
+  }>({
     url: "/api/data/enemies",
     cacheKey: "enemies-data",
   });
@@ -456,4 +491,3 @@ export function useEnemyById(enemyId: string) {
     cacheKey: `enemy-${enemyId}`,
   });
 }
-

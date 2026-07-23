@@ -7,20 +7,24 @@ I've implemented a comprehensive goal template system that allows you to quickly
 ## Key Features
 
 ### 1. Predefined Templates
+
 - **8 Characters**: Nahida, Raiden Shogun, Zhongli, Kazuha, Hu Tao, Yelan, Bennett, Xingqiu
 - **6 Weapons**: Mistsplitter Reforged, Staff of Homa, Thundering Pulse, Kagura's Verity, Prototype Rancour, Favonius Lance
 - **Multiple templates per item**: Ascension levels, talent levels, etc.
 
 ### 2. Template Categories
+
 - **Ascension**: Materials needed for each ascension phase (Lv. 20→40, 40→50, etc.)
 - **Talent**: Materials for leveling talents (1→6, 6→10, etc.)
 
 ### 3. One-Click Goal Creation
+
 - Browse templates in a beautiful tabbed interface
 - Click any template to instantly create a goal with all materials pre-configured
 - No manual material selection needed
 
 ### 4. Smart Integration
+
 - Templates integrate seamlessly with existing goal system
 - Progress tracking works exactly the same
 - Can still create custom goals manually
@@ -50,6 +54,7 @@ I've implemented a comprehensive goal template system that allows you to quickly
 ## Database Changes
 
 ### New Tables
+
 - `characters` - Character information
 - `weapons` - Weapon information
 - `character_goal_templates` - Character goal templates
@@ -58,12 +63,14 @@ I've implemented a comprehensive goal template system that allows you to quickly
 - `weapon_goal_template_materials` - Template material requirements
 
 ### Updated Tables
+
 - `goals` - Added `templateType` and `templateId` to track template source
 - `materials` - Added relations to template materials
 
 ## Files Created/Modified
 
 ### Database & Seed Data
+
 - `prisma/schema.prisma` - Schema updates
 - `prisma/seed.ts` - Seed logic for templates
 - `prisma/seed-data/characters.ts` - Character data
@@ -73,14 +80,17 @@ I've implemented a comprehensive goal template system that allows you to quickly
 - `prisma/seed-data/index.ts` - Export updates
 
 ### Server
+
 - `app/actions.ts` - Added `createGoalFromTemplateAction`
 
 ### UI
+
 - `app/(authenticated)/goal-templates/page.tsx` - Template browser page
 - `components/dashboard/goal-templates.tsx` - Template browser component
 - `components/dashboard/dashboard-shell.tsx` - Updated Goals tab
 
 ### Documentation
+
 - `docs/character-weapon-goals-feature.md` - Detailed feature documentation
 - `docs/requirements.md` - Updated requirements
 - `FEATURE_SUMMARY.md` - This file
@@ -88,20 +98,24 @@ I've implemented a comprehensive goal template system that allows you to quickly
 ## Example Templates
 
 ### Nahida
+
 - ✅ Ascension 1 (Lv. 20 → 40) - Fungal Spores, Slime Condensate
 - ✅ Ascension 2 (Lv. 40 → 50) - Fungal Spores, Luminescent Pollen, Slime Secretions
 - ✅ All Talents Level 1 → 6 - Fungal Spores, Luminescent Pollen
 - ✅ Single Talent Level 6 → 10 - Luminescent Pollen, Crystalline Cyst Dust
 
 ### Raiden Shogun
+
 - ✅ Ascension 1 (Lv. 20 → 40) - Old Handguard, Slime Condensate
 - ✅ All Talents Level 1 → 6 - Old Handguard, Kageuchi Handguard
 
 ### Bennett
+
 - ✅ Ascension 1 (Lv. 20 → 40) - Treasure Hoarder Insignia, Slime Condensate
 - ✅ All Talents Level 1 → 6 - Treasure Hoarder Insignia, Silver Raven Insignia
 
 ### Mistsplitter Reforged
+
 - ✅ Ascension 1 (Lv. 20 → 40) - Old Handguard, Slime Condensate
 - ✅ Ascension 2 (Lv. 40 → 50) - Kageuchi Handguard, Slime Secretions
 
@@ -161,5 +175,6 @@ npx prisma db seed
 ## Support
 
 For issues or questions about this feature, refer to:
+
 - `docs/character-weapon-goals-feature.md` - Detailed technical documentation
 - `docs/requirements.md` - Updated requirements document

@@ -15,8 +15,7 @@ export function initCacheVersion(): void {
   if (typeof window === "undefined") return;
 
   try {
-    const buildId =
-      process.env.NEXT_PUBLIC_BUILD_ID ?? "dev";
+    const buildId = process.env.NEXT_PUBLIC_BUILD_ID ?? "dev";
     const storedVersion = localStorage.getItem(CACHE_VERSION_KEY);
 
     if (storedVersion !== buildId) {
@@ -109,13 +108,17 @@ export function clearAllCache(): void {
 /**
  * Get cache info for debugging
  */
-export function getCacheInfo(): Array<{ key: string; age: number; expired: boolean }> {
+export function getCacheInfo(): Array<{
+  key: string;
+  age: number;
+  expired: boolean;
+}> {
   if (typeof window === "undefined") return [];
 
   try {
     const keys = Object.keys(localStorage);
     const cacheKeys = keys.filter((key) => key.startsWith(CACHE_PREFIX));
-    
+
     return cacheKeys.map((key) => {
       const cached = localStorage.getItem(key);
       if (!cached) return { key, age: 0, expired: true };

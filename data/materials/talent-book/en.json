@@ -12,11 +12,7 @@
       "traveler-geo",
       "linnea"
     ],
-    "availability": [
-      "Monday",
-      "Thursday",
-      "Sunday"
-    ],
+    "availability": ["Monday", "Thursday", "Sunday"],
     "source": "forsaken-rift",
     "items": [
       {
@@ -50,11 +46,7 @@
       "prune",
       "lohen"
     ],
-    "availability": [
-      "Tuesday",
-      "Friday",
-      "Sunday"
-    ],
+    "availability": ["Tuesday", "Friday", "Sunday"],
     "source": "forsaken-rift",
     "items": [
       {
@@ -89,11 +81,7 @@
       "dahlia",
       "durin"
     ],
-    "availability": [
-      "Wednesday",
-      "Saturday",
-      "Sunday"
-    ],
+    "availability": ["Wednesday", "Saturday", "Sunday"],
     "source": "forsaken-rift",
     "items": [
       {
@@ -124,11 +112,7 @@
       "yelan",
       "gaming"
     ],
-    "availability": [
-      "Monday",
-      "Thursday",
-      "Sunday"
-    ],
+    "availability": ["Monday", "Thursday", "Sunday"],
     "source": "taishan-mansion",
     "items": [
       {
@@ -160,11 +144,7 @@
       "yun-jin",
       "lan-yan"
     ],
-    "availability": [
-      "Tuesday",
-      "Friday",
-      "Sunday"
-    ],
+    "availability": ["Tuesday", "Friday", "Sunday"],
     "source": "taishan-mansion",
     "items": [
       {
@@ -196,11 +176,7 @@
       "xianyun",
       "zibai"
     ],
-    "availability": [
-      "Wednesday",
-      "Saturday",
-      "Sunday"
-    ],
+    "availability": ["Wednesday", "Saturday", "Sunday"],
     "source": "taishan-mansion",
     "items": [
       {
@@ -230,11 +206,7 @@
       "shikanoin-heizou",
       "yumemizuki-mizuki"
     ],
-    "availability": [
-      "Monday",
-      "Thursday",
-      "Sunday"
-    ],
+    "availability": ["Monday", "Thursday", "Sunday"],
     "source": "violet-court",
     "items": [
       {
@@ -263,11 +235,7 @@
       "ayato",
       "kuki-shinobu"
     ],
-    "availability": [
-      "Tuesday",
-      "Friday",
-      "Sunday"
-    ],
+    "availability": ["Tuesday", "Friday", "Sunday"],
     "source": "violet-court",
     "items": [
       {
@@ -296,11 +264,7 @@
       "traveler-electro",
       "yae-miko"
     ],
-    "availability": [
-      "Wednesday",
-      "Saturday",
-      "Sunday"
-    ],
+    "availability": ["Wednesday", "Saturday", "Sunday"],
     "source": "violet-court",
     "items": [
       {
@@ -321,18 +285,8 @@
     ]
   },
   "admonition": {
-    "characters": [
-      "candace",
-      "cyno",
-      "faruzan",
-      "tighnari",
-      "traveler-dendro"
-    ],
-    "availability": [
-      "Monday",
-      "Thursday",
-      "Sunday"
-    ],
+    "characters": ["candace", "cyno", "faruzan", "tighnari", "traveler-dendro"],
+    "availability": ["Monday", "Thursday", "Sunday"],
     "source": "steeple-of-ignorance",
     "items": [
       {
@@ -361,11 +315,7 @@
       "nahida",
       "traveler-dendro"
     ],
-    "availability": [
-      "Tuesday",
-      "Friday",
-      "Sunday"
-    ],
+    "availability": ["Tuesday", "Friday", "Sunday"],
     "source": "steeple-of-ignorance",
     "items": [
       {
@@ -394,11 +344,7 @@
       "dehya",
       "sethos"
     ],
-    "availability": [
-      "Wednesday",
-      "Saturday",
-      "Sunday"
-    ],
+    "availability": ["Wednesday", "Saturday", "Sunday"],
     "source": "steeple-of-ignorance",
     "items": [
       {
@@ -426,11 +372,7 @@
       "navia",
       "sigewinne"
     ],
-    "availability": [
-      "Monday",
-      "Thursday",
-      "Sunday"
-    ],
+    "availability": ["Monday", "Thursday", "Sunday"],
     "source": "pale-of-forgotten-glory",
     "items": [
       {
@@ -459,11 +401,7 @@
       "clorinde",
       "escoffier"
     ],
-    "availability": [
-      "Tuesday",
-      "Friday",
-      "Sunday"
-    ],
+    "availability": ["Tuesday", "Friday", "Sunday"],
     "source": "pale-of-forgotten-glory",
     "items": [
       {
@@ -492,11 +430,7 @@
       "wriothesley",
       "emilie"
     ],
-    "availability": [
-      "Wednesday",
-      "Saturday",
-      "Sunday"
-    ],
+    "availability": ["Wednesday", "Saturday", "Sunday"],
     "source": "pale-of-forgotten-glory",
     "items": [
       {
@@ -525,11 +459,7 @@
       "ineffa",
       "varesa"
     ],
-    "availability": [
-      "Wednesday",
-      "Saturday",
-      "Sunday"
-    ],
+    "availability": ["Wednesday", "Saturday", "Sunday"],
     "source": "blazing-ruins",
     "items": [
       {
@@ -550,18 +480,8 @@
     ]
   },
   "contention": {
-    "characters": [
-      "mualani",
-      "traveler-pyro",
-      "iansan",
-      "mavuika",
-      "skirk"
-    ],
-    "availability": [
-      "Monday",
-      "Thursday",
-      "Sunday"
-    ],
+    "characters": ["mualani", "traveler-pyro", "iansan", "mavuika", "skirk"],
+    "availability": ["Monday", "Thursday", "Sunday"],
     "source": "blazing-ruins",
     "items": [
       {
@@ -582,18 +502,8 @@
     ]
   },
   "kindling": {
-    "characters": [
-      "kinich",
-      "traveler-pyro",
-      "citlali",
-      "ororon",
-      "xilonen"
-    ],
-    "availability": [
-      "Tuesday",
-      "Friday",
-      "Sunday"
-    ],
+    "characters": ["kinich", "traveler-pyro", "citlali", "ororon", "xilonen"],
+    "availability": ["Tuesday", "Friday", "Sunday"],
     "source": "myriad-illusions",
     "items": [
       {
@@ -614,15 +524,8 @@
     ]
   },
   "moonlight": {
-    "characters": [
-      "columbina",
-      "lauma"
-    ],
-    "availability": [
-      "Monday",
-      "Thursday",
-      "Sunday"
-    ],
+    "characters": ["columbina", "lauma"],
+    "availability": ["Monday", "Thursday", "Sunday"],
     "source": "lightless-capital",
     "items": [
       {
@@ -643,17 +546,8 @@
     ]
   },
   "elysium": {
-    "characters": [
-      "aino",
-      "illuga",
-      "nefer",
-      "nicole"
-    ],
-    "availability": [
-      "Tuesday",
-      "Friday",
-      "Sunday"
-    ],
+    "characters": ["aino", "illuga", "nefer", "nicole"],
+    "availability": ["Tuesday", "Friday", "Sunday"],
     "source": "lightless-capital",
     "items": [
       {
@@ -674,17 +568,8 @@
     ]
   },
   "vagrancy": {
-    "characters": [
-      "flins",
-      "jahoda",
-      "linnea",
-      "sandrone"
-    ],
-    "availability": [
-      "Wednesday",
-      "Saturday",
-      "Sunday"
-    ],
+    "characters": ["flins", "jahoda", "linnea", "sandrone"],
+    "availability": ["Wednesday", "Saturday", "Sunday"],
     "source": "lightless-capital",
     "items": [
       {

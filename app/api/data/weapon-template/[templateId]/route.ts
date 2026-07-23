@@ -9,7 +9,10 @@ export async function GET(
   const template = getWeaponTemplateById(templateId);
 
   if (!template) {
-    return NextResponse.json({ error: "Weapon template not found." }, { status: 404 });
+    return NextResponse.json(
+      { error: "Weapon template not found." },
+      { status: 404 },
+    );
   }
 
   return NextResponse.json(template);

@@ -1,4 +1,7 @@
-import { buildMaterialCatalog, writeGeneratedModule } from "./sync-seed-data-utils";
+import {
+  buildMaterialCatalog,
+  writeGeneratedModule,
+} from "./sync-seed-data-utils";
 
 const { materials } = buildMaterialCatalog();
 

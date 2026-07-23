@@ -5,7 +5,11 @@ import type { Dispatch, SetStateAction } from "react";
 import { Check, ChefHat, Flame, Save, Search, Star } from "lucide-react";
 import { toast } from "sonner";
 
-import { cookRecipeAction, saveCookingProgressAction, setRecipeOwnershipAction } from "@/app/actions";
+import {
+  cookRecipeAction,
+  saveCookingProgressAction,
+  setRecipeOwnershipAction,
+} from "@/app/actions";
 import { LoginRequiredDialog } from "@/components/auth/login-required-dialog";
 import AppTextField from "@/components/core/app-textfield";
 import { EmptyState } from "@/components/dashboard/common/empty-state";
@@ -61,7 +65,8 @@ export function CookingPage({
   const [loadRequest, setLoadRequest] = useState(0);
   const [search, setSearch] = useState("");
   const [typeFilter, setTypeFilter] = useState("All");
-  const [statusFilter, setStatusFilter] = useState<CookingStatusFilter>("Owned");
+  const [statusFilter, setStatusFilter] =
+    useState<CookingStatusFilter>("Owned");
   const [progressDraft, setProgressDraft] = useState<QuantityDraft>(
     buildProgressDraft(initialData ?? emptyCookingData),
   );
@@ -602,7 +607,7 @@ function RecipeCard({
                 className={cn(
                   "h-8 px-3",
                   recipe.owned
-                    ? "bg-primary text-on-primary-container hover:bg-primary/90"
+                    ? "text-on-primary-container bg-primary hover:bg-primary/90"
                     : "text-outline hover:text-primary",
                 )}
                 onClick={onToggleOwned}
@@ -610,7 +615,7 @@ function RecipeCard({
               >
                 <Star
                   className={cn(
-                    "h-4 w-4 mr-1.5",
+                    "mr-1.5 h-4 w-4",
                     recipe.owned ? "fill-current" : "",
                   )}
                 />

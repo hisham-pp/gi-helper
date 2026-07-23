@@ -15,7 +15,12 @@ type GoalDetailPayload = {
   materials: MaterialView[];
 };
 
-type LoadStatus = "loading" | "ready" | "login-required" | "not-found" | "error";
+type LoadStatus =
+  | "loading"
+  | "ready"
+  | "login-required"
+  | "not-found"
+  | "error";
 
 export function GoalEditClientPage({ goalId }: { goalId: string }) {
   const router = useRouter();

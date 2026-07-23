@@ -1,6 +1,10 @@
 import { prisma } from "@/lib/prisma";
 import { getDashboardData } from "@/lib/data";
-import { getAllCharacters, getAllMaterials, getAllWeapons } from "@/lib/static-data";
+import {
+  getAllCharacters,
+  getAllMaterials,
+  getAllWeapons,
+} from "@/lib/static-data";
 
 const MAX_INVENTORY_ITEMS = 160;
 const MAX_NEEDED_ITEMS = 120;

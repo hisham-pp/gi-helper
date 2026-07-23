@@ -84,7 +84,8 @@ export function DashboardShell({
       ? tabFromUrl
       : "materials";
 
-  const { data: staticMaterialsData, updateItem: updateMaterialItem } = useStaticMaterials();
+  const { data: staticMaterialsData, updateItem: updateMaterialItem } =
+    useStaticMaterials();
   const [data, setData] = useState(initialData);
   const [activeTab, setActiveTab] = useState<DashboardTab>(initialTab);
   const [inventoryTab, setInventoryTab] = useState<"needed" | "edit">("needed");
@@ -405,10 +406,7 @@ export function DashboardShell({
       ) {
         return false;
       }
-      if (
-        goalWeaponFilter !== "All" &&
-        goal.weaponName !== goalWeaponFilter
-      ) {
+      if (goalWeaponFilter !== "All" && goal.weaponName !== goalWeaponFilter) {
         return false;
       }
       if (
@@ -462,7 +460,9 @@ export function DashboardShell({
 
       // Update cached materials incrementally with new quantity
       if (staticMaterialsData?.materials && updateMaterialItem) {
-        const material = staticMaterialsData.materials.find(m => m.id === materialId);
+        const material = staticMaterialsData.materials.find(
+          (m) => m.id === materialId,
+        );
         if (material) {
           updateMaterialItem("materials", materialId, { ...material });
         }

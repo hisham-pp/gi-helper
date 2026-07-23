@@ -44,7 +44,10 @@ export default function HomePage() {
         </header>
         <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
           {Array.from({ length: 5 }).map((_, i) => (
-            <div key={i} className="h-24 animate-pulse rounded-lg bg-surface-variant/40" />
+            <div
+              key={i}
+              className="h-24 animate-pulse rounded-lg bg-surface-variant/40"
+            />
           ))}
         </div>
       </div>
@@ -60,7 +63,7 @@ export default function HomePage() {
           </h1>
         </header>
         <div className="rounded-lg border border-outline-variant p-6">
-          <p className="text-error font-bold">
+          <p className="font-bold text-error">
             {error || "Unable to load dashboard data"}
           </p>
         </div>

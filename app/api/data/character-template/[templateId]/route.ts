@@ -9,7 +9,10 @@ export async function GET(
   const template = getCharacterTemplateById(templateId);
 
   if (!template) {
-    return NextResponse.json({ error: "Character template not found." }, { status: 404 });
+    return NextResponse.json(
+      { error: "Character template not found." },
+      { status: 404 },
+    );
   }
 
   return NextResponse.json(template);

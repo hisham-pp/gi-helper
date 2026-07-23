@@ -39,7 +39,7 @@ export function NeedCard({ item }: { item: GoalMaterialView }) {
           </h3>
           <Link
             href={`/materials/${item.materialId}`}
-            className="inline-flex h-7 w-7 items-center justify-center rounded-full text-on-surface-variant transition-all hover:bg-primary/10 hover:text-primary"
+            className="text-on-surface-variant inline-flex h-7 w-7 items-center justify-center rounded-full transition-all hover:bg-primary/10 hover:text-primary"
             aria-label={`View details for ${item.materialName}`}
           >
             <ExternalLink className="h-4 w-4" />

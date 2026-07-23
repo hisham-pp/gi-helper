@@ -124,11 +124,7 @@ export function CreateGoal() {
               </p>
             )}
             <div className="flex gap-3">
-              <Button
-                className="flex-1"
-                disabled={isPending}
-                type="submit"
-              >
+              <Button className="flex-1" disabled={isPending} type="submit">
                 {isPending ? "Creating..." : "Create Goal"}
               </Button>
               <Link href="/goals" className="flex-1">

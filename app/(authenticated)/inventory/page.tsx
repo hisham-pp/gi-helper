@@ -40,7 +40,7 @@ export default function InventoryPage() {
   if (!data) {
     return (
       <div className="rounded-lg border border-outline-variant p-6">
-        <p className="text-error font-bold">Unable to load inventory data</p>
+        <p className="font-bold text-error">Unable to load inventory data</p>
       </div>
     );
   }

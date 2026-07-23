@@ -2,52 +2,33 @@
   "ajilenakh-nut": {
     "name": "Ajilenakh Nut",
     "description": "A fruit that grows on evergreen trees within desert oases. The flesh under the tough skin is thick, sweet, and delicious, making it an important food source amongst the desert peoples.",
-    "sources": [
-      "Found in the wild",
-      "Sold by Azalai",
-      "Sold by Eugenie"
-    ]
+    "sources": ["Found in the wild", "Sold by Azalai", "Sold by Eugenie"]
   },
   "almond": {
     "name": "Almond",
     "description": "A seed with a peculiar fragrance that gives food a refreshing taste.",
-    "sources": [
-      "Sold by Second Life",
-      "Sold by Ms. Bai"
-    ]
+    "sources": ["Sold by Second Life", "Sold by Ms. Bai"]
   },
   "apple": {
     "name": "Apple",
     "description": "Crisp and fragrant. Delicious raw or fermented into wine. Can be also made into a refreshing alcohol-free beverage.",
-    "sources": [
-      "Found in the wild",
-      "Investigation",
-      "Expeditions"
-    ]
+    "sources": ["Found in the wild", "Investigation", "Expeditions"]
   },
   "bacon": {
     "name": "Bacon",
     "description": "Smoked strips of pork. With just enough fat, but not too greasy.Mmmmm... Bacon.Meat must be processed first to be made into Bacon.",
     "rarity": 3,
-    "sources": [
-      "Sold by Good Hunter",
-      "Processing"
-    ]
+    "sources": ["Sold by Good Hunter", "Processing"]
   },
   "bamboo-shoot": {
     "name": "Bamboo Shoot",
     "description": "A fresh young bamboo shoot, straight out of the ground. It is a delicious cooking ingredient with an exotic aroma, found exclusively in bamboo-growing regions.",
-    "sources": [
-      "Found in the wild",
-      "Sold by Wanmin Restaurant"
-    ]
+    "sources": ["Found in the wild", "Sold by Wanmin Restaurant"]
   },
   "berry": {
     "name": "Berry",
     "description": "Small brightly-colored fruit. They can be found everywhere, and the taste of them wipes the fatigue of a long journey away.",
-    "sources": [
-      "Found in the wild"
-    ]
+    "sources": ["Found in the wild"]
   },
   "bird-egg": {
     "name": "Bird Egg",
@@ -73,11 +54,7 @@
     "name": "Butter",
     "description": "An extract from milk. With the appropriate application, it can bring rich aromas to even the most basic ingredients.",
     "rarity": 2,
-    "sources": [
-      "Sold by Good Hunter",
-      "Sold by Verr Goldet",
-      "Processing"
-    ]
+    "sources": ["Sold by Good Hunter", "Sold by Verr Goldet", "Processing"]
   },
   "cabbage": {
     "name": "Cabbage",
@@ -92,11 +69,7 @@
   "calla-lily": {
     "name": "Calla Lily",
     "description": "A flower that grows near water sources. When cooked the petals have a chunky texture, yet are sweet and a little bitter.",
-    "sources": [
-      "Found near lakes",
-      "Found in Springvale",
-      "Sold by Flora"
-    ]
+    "sources": ["Found near lakes", "Found in Springvale", "Sold by Flora"]
   },
   "carrot": {
     "name": "Carrot",
@@ -111,11 +84,7 @@
     "name": "Cheese",
     "description": "Made from fermented milk. With high energy and limitless possibilities, it's used in a wide range of dishes.Milk must be processed first to be made into Cheese.",
     "rarity": 3,
-    "sources": [
-      "Sold by Good Hunter",
-      "Processing",
-      "Sold by Changshun"
-    ]
+    "sources": ["Sold by Good Hunter", "Processing", "Sold by Changshun"]
   },
   "chenyu-adeptea": {
     "name": "Chenyu Adeptea",
@@ -129,18 +98,12 @@
   "chilled-meat": {
     "name": "Chilled Meat",
     "description": "Rare, fresh meat.This species of boar is recorded to have gone extinct several hundred years ago and has been preserved by the extreme temperatures on Dragonspine. For the gourmets of Teyvat, this is an ingredient of unspeakable sacrosanctness.",
-    "sources": [
-      "Snowboars"
-    ]
+    "sources": ["Snowboars"]
   },
   "coffee-beans": {
     "name": "Coffee Beans",
     "description": "A common fruit in Teyvat with a special aroma. It can be used to make beverages after being ground.",
-    "sources": [
-      "Sold by Arouet",
-      "Sold by Enteka",
-      "Sold by Kofitse"
-    ]
+    "sources": ["Sold by Arouet", "Sold by Enteka", "Sold by Kofitse"]
   },
   "crab": {
     "name": "Crab",
@@ -155,19 +118,13 @@
     "name": "Crab Roe",
     "description": "A delicacy specific to female crabs. A rare and prized ingredient that isn't quite to everyone's taste.",
     "rarity": 3,
-    "sources": [
-      "Sold by Good Hunter",
-      "Processing"
-    ]
+    "sources": ["Sold by Good Hunter", "Processing"]
   },
   "cream": {
     "name": "Cream",
     "description": "A dairy product made from milk. An essential ingredient in making pastries.",
     "rarity": 2,
-    "sources": [
-      "Sold by Good Hunter",
-      "Processing"
-    ]
+    "sources": ["Sold by Good Hunter", "Processing"]
   },
   "eel-meat": {
     "name": "Eel Meat",
@@ -181,9 +138,7 @@
   "fermented-juice": {
     "name": "Fermented Juice",
     "description": "A fermented juice with a unique fruity scent. It is often used as a marinade.",
-    "sources": [
-      "Sold by Boucicaut"
-    ]
+    "sources": ["Sold by Boucicaut"]
   },
   "fish": {
     "name": "Fish",
@@ -225,10 +180,7 @@
   "grainfruit": {
     "name": "Grainfruit",
     "description": "This plant is named after the giant grains that grow along the cob.",
-    "sources": [
-      "Found in Natlan",
-      "Sold by Cintli"
-    ]
+    "sources": ["Found in Natlan", "Sold by Cintli"]
   },
   "ham": {
     "name": "Ham",
@@ -256,10 +208,7 @@
     "name": "Jam",
     "description": "A puree made from fruit and sugar. Even a little bit can easily wake up drowsy taste buds. Apples and Berries must be processed first to be made into Jam.",
     "rarity": 3,
-    "sources": [
-      "Sold by Good Hunter",
-      "Processing"
-    ]
+    "sources": ["Sold by Good Hunter", "Processing"]
   },
   "jueyun-chili": {
     "name": "Jueyun Chili",
@@ -273,9 +222,7 @@
   "lakkaberry": {
     "name": "Lakkaberry",
     "description": "A fruit as white as pearl that tastes refreshingly sweet.",
-    "sources": [
-      "Found in the wild"
-    ]
+    "sources": ["Found in the wild"]
   },
   "lavender-melon": {
     "name": "Lavender Melon",
@@ -318,63 +265,42 @@
   "midsommar-berry": {
     "name": "Midsommar Berry",
     "description": "A fruit that grows in the warmer parts of Nod-Krai. It is beloved by animals emerging from winter and hungry children alike.",
-    "sources": [
-      "Found in the wild"
-    ]
+    "sources": ["Found in the wild"]
   },
   "milk": {
     "name": "Milk",
     "description": "Sweet and fragrant cow's milk. Don't waste a single drop, not even that one rolling down your chin.",
-    "sources": [
-      "Sold by Mondstadt General Goods",
-      "Sold by Second Life"
-    ]
+    "sources": ["Sold by Mondstadt General Goods", "Sold by Second Life"]
   },
   "mint": {
     "name": "Mint",
     "description": "A refreshingly cool ingredient. The cool, fresh flavor can cut through the heat of many dishes.",
-    "sources": [
-      "Found in the wild",
-      "Sold by Chloris"
-    ]
+    "sources": ["Found in the wild", "Sold by Chloris"]
   },
   "mushroom": {
     "name": "Mushroom",
     "description": "Hardy common fungi. Can grow anywhere with the right amount of shade and moisture.",
-    "sources": [
-      "Found in the wild",
-      "Purchased at Wanmin Restaurant"
-    ]
+    "sources": ["Found in the wild", "Purchased at Wanmin Restaurant"]
   },
   "mysterious-meat": {
     "name": "Mysterious Meat",
     "description": "A fresh chunk of meat that seems to be radiating an enigmatic aura. Wonder what it'll taste like?",
-    "sources": [
-      "Found in the wild"
-    ]
+    "sources": ["Found in the wild"]
   },
   "onion": {
     "name": "Onion",
     "description": "A spherical vegetable. As vengeance for cutting it, it will make you cry, no matter how brave you are.",
-    "sources": [
-      "Sold by Mondstadt General Goods",
-      "Sold by Second Life"
-    ]
+    "sources": ["Sold by Mondstadt General Goods", "Sold by Second Life"]
   },
   "pepper": {
     "name": "Pepper",
     "description": "Peppery. Cuts through oily flavors and excites the taste buds. Goes best on meat.",
-    "sources": [
-      "Sold by Second Life",
-      "Sold by Mondstadt General Goods"
-    ]
+    "sources": ["Sold by Second Life", "Sold by Mondstadt General Goods"]
   },
   "pinecone": {
     "name": "Pinecone",
     "description": "Filled with oil-rich seeds. Certainly won't be growing into a tree from inside a squirrel's stomach.",
-    "sources": [
-      "Found in the wild"
-    ]
+    "sources": ["Found in the wild"]
   },
   "potato": {
     "name": "Potato",
@@ -408,49 +334,32 @@
   "raw-meat": {
     "name": "Raw Meat",
     "description": "A fresh chunk of meat. Handled properly it can be used to make delicious food.",
-    "sources": [
-      "Found in the wild",
-      "Sold by Draff",
-      "Processing"
-    ]
+    "sources": ["Found in the wild", "Sold by Draff", "Processing"]
   },
   "red-berryshroom": {
     "name": "Red Berryshroom",
     "description": "An ordinary-looking mushroom with an extraordinary flavor. It has a fruity flavor when eaten raw, but exposing it to heat brings out a rich, mushroomy aroma.",
-    "sources": [
-      "Found in Natlan",
-      "Sold by Cintli"
-    ]
+    "sources": ["Found in Natlan", "Sold by Cintli"]
   },
   "rice": {
     "name": "Rice",
     "description": "A grain crop commonly found in Teyvat. People of all walks of life enjoy its distinct grainy texture. As the saying goes, \"The same kind of rice can feed one hundred kinds of people.\"",
-    "sources": [
-      "Sold by Second Life"
-    ]
+    "sources": ["Sold by Second Life"]
   },
   "rye": {
     "name": "Rye",
     "description": "The gray-brown ears are a gift from the earth. Their richness can only be brought out by grounding and roasting.",
-    "sources": [
-      "Investigation",
-      "Sold by Cairuo"
-    ]
+    "sources": ["Investigation", "Sold by Cairuo"]
   },
   "rye-flour": {
     "name": "Rye Flour",
     "description": "A coarse, dark powder produced from grinding rye. Food made with it has a unique texture and a somewhat sour flavor.",
-    "sources": [
-      "Processing"
-    ]
+    "sources": ["Processing"]
   },
   "salt": {
     "name": "Salt",
     "description": "A savory seasoning. A precise but adequate amount will elevate the quality of the cuisine.",
-    "sources": [
-      "Sold by Mondstadt General Goods",
-      "Sold by Second Life"
-    ]
+    "sources": ["Sold by Mondstadt General Goods", "Sold by Second Life"]
   },
   "sausage": {
     "name": "Sausage",
@@ -477,10 +386,7 @@
   "shrimp-meat": {
     "name": "Shrimp Meat",
     "description": "A whole piece of deep sea shrimp meat, full of nutrients and bursting with delicious flavor.",
-    "sources": [
-      "Sold by Second Life",
-      "Sold by Uncle Sun"
-    ]
+    "sources": ["Sold by Second Life", "Sold by Uncle Sun"]
   },
   "small-lamp-grass": {
     "name": "Small Lamp Grass",
@@ -496,51 +402,34 @@
     "name": "Smetana",
     "description": "A dairy product produced through complex processes such as separation and fermentation. It has a smooth texture and a refreshing sourness, often serving as the finishing touch in many dishes.",
     "rarity": 2,
-    "sources": [
-      "Processing"
-    ]
+    "sources": ["Processing"]
   },
   "smoked-fowl": {
     "name": "Smoked Fowl",
     "description": "Fowl that has been smoked. The firm texture gives new taste to dishes.Fowl must be processed first to be made into Smoked Fowl.",
     "rarity": 2,
-    "sources": [
-      "Sold by Good Hunter",
-      "Processing"
-    ]
+    "sources": ["Sold by Good Hunter", "Processing"]
   },
   "snapdragon": {
     "name": "Snapdragon",
     "description": "Can be eaten once cooked. As a spice it can bring wonderful flavor to dishes.",
-    "sources": [
-      "Found in the wild",
-      "Sold by Chloris"
-    ]
+    "sources": ["Found in the wild", "Sold by Chloris"]
   },
   "spice": {
     "name": "Spice",
     "description": "A seasoning with varied flavors. It is made from dried Harra Fruits and can enrich the taste of a dish. Therefore, Sumeru locals say, \"Spice goes well with anything.\"",
     "rarity": 2,
-    "sources": [
-      "Processing",
-      "Sold by Lambad"
-    ]
+    "sources": ["Processing", "Sold by Lambad"]
   },
   "spinel-fruit": {
     "name": "Spinel Fruit",
     "description": "The crystalline trees that grow widely in areas with Liquid Phlogiston produce these gem-shaped fruits after absorbing phlogiston.",
-    "sources": [
-      "Found in the wild in Natlan",
-      "Sold by Cintli"
-    ]
+    "sources": ["Found in the wild in Natlan", "Sold by Cintli"]
   },
   "starshroom": {
     "name": "Starshroom",
     "description": "A fungus with a cap that resembles a five-pointed star. It is quite hardy indeed. Once it matures, the center of the cap will split open.",
-    "sources": [
-      "Found in the wild",
-      "Sold by Lambad"
-    ]
+    "sources": ["Found in the wild", "Sold by Lambad"]
   },
   "sugar": {
     "name": "Sugar",
@@ -556,45 +445,27 @@
   "sumeru-rose": {
     "name": "Sumeru Rose",
     "description": "Bright and beautiful, these pure purple flowers give off a pleasant fragrance that will give any passerby pause. While some like to call this type of \"rambler rose,\" its relative lack of multiple flowers means that it falls under a different floral classification.",
-    "sources": [
-      "Found in the wild",
-      "Gardening",
-      "Expeditions"
-    ]
+    "sources": ["Found in the wild", "Gardening", "Expeditions"]
   },
   "sunsettia": {
     "name": "Sunsettia",
     "description": "A plump fruit, beautiful like the sunset, that is abundant across all of Teyvat. It has a curious, sweet aroma and is able to energize an individual.",
-    "sources": [
-      "Found in the wild",
-      "Expeditions",
-      "Investigation"
-    ]
+    "sources": ["Found in the wild", "Expeditions", "Investigation"]
   },
   "sweet-flower": {
     "name": "Sweet Flower",
     "description": "Particularly fragrant flowers. They can be found easily, even in the dark. Just follow the scent.",
-    "sources": [
-      "Found in the wild",
-      "Purchase from Flora in Mondstadt"
-    ]
+    "sources": ["Found in the wild", "Purchase from Flora in Mondstadt"]
   },
   "tidalga": {
     "name": "Tidalga",
     "description": "An algae floating with the tides that sustains itself by feeding on substances produced by other plants. Though often mistaken for zooplankton, based on its nature, Tidalga is actually a type of phytoplankton.",
-    "sources": [
-      "Diving",
-      "Sold by Hinterman",
-      "Expeditions"
-    ]
+    "sources": ["Diving", "Sold by Hinterman", "Expeditions"]
   },
   "tofu": {
     "name": "Tofu",
     "description": "Freshly made bean product that has a silky-smooth tender texture.",
-    "sources": [
-      "Sold by Second Life",
-      "Sold by Ms. Bai"
-    ]
+    "sources": ["Sold by Second Life", "Sold by Ms. Bai"]
   },
   "tomato": {
     "name": "Tomato",
@@ -626,9 +497,7 @@
   "windrest-flower": {
     "name": "Windrest Flower",
     "description": "An exquisite flower that remains delicate and fresh, found primarily in the northern part of Mondstadt. Its fragrance is clear and enduring, making it one of the primary ingredients used in perfumery.",
-    "sources": [
-      "Found in the wild"
-    ]
+    "sources": ["Found in the wild"]
   },
   "zaytun-peach": {
     "name": "Zaytun Peach",

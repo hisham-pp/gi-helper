@@ -630,9 +630,7 @@
     ]
   },
   "blazing-sacrificial-heart": {
-    "weapons": [
-      "a-thousand-blazing-suns"
-    ],
+    "weapons": ["a-thousand-blazing-suns"],
     "availability": ["Monday", "Thursday", "Sunday"],
     "source": "ancient-watchtower",
     "items": [
