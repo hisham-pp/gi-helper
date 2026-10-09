@@ -1,4 +1,4 @@
-import { sliceGridFromImage } from "./grid-detector";
+import { sliceGridFromImage, GridConfig } from "./grid-detector";
 import { calculateDHash } from "./image-hasher";
 import { findBestMatch } from "./item-matcher";
 import { DetectedItem } from "@/lib/types";
@@ -6,7 +6,7 @@ import Tesseract from "tesseract.js";
 
 export async function processInventoryImages(
   files: FileList | File[],
-  config: import('./grid-detector').GridConfig,
+  config: GridConfig,
   onProgress: (progress: number, currentFileIndex: number, totalFiles: number) => void
 ): Promise<DetectedItem[]> {
   const fileArray = Array.from(files);
