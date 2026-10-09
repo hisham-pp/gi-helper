@@ -9,30 +9,17 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "vercel-build": "prisma migrate deploy && next build",
-    "start": "prisma migrate deploy && prisma db seed && next start",
+    "start": "next start",
     "lint": "eslint .",
     "format": "prettier --write .",
     "db:migrate": "prisma migrate dev",
     "db:seed": "prisma db seed",
     "repo:sync": "bash scripts/fetch-genshindev-assets.sh",
-    "seed:sync:materials": "tsx scripts/sync-material-seed.ts",
-    "seed:sync:characters": "tsx scripts/sync-character-seed.ts",
-    "seed:sync:character-goals": "tsx scripts/sync-character-goal-templates.ts",
-    "seed:sync:weapons": "tsx scripts/sync-weapon-seed.ts",
-    "seed:sync:weapon-goals": "tsx scripts/sync-weapon-goal-templates.ts",
-    "prisma:generate": "prisma generate",
-    "postinstall": "prisma generate"
-  },
-  "prisma": {
-    "seed": "tsx prisma/seed.ts"
+    "seed:sync:materials": "tsx scripts/sync-material-seed.ts"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
-      "@prisma/client",
-      "@prisma/engines",
       "esbuild",
-      "prisma",
       "sharp",
       "unrs-resolver"
     ]
@@ -54,6 +41,7 @@
     "react-select": "^5.10.2",
     "remark-gfm": "^4.0.1",
     "sonner": "^2.0.1",
+    "tesseract.js": "^7.0.0",
     "zod": "^3.24.2"
   },
   "devDependencies": {
@@ -69,7 +57,6 @@
     "postcss": "^8.4.49",
     "prettier": "^3.4.2",
     "prettier-plugin-tailwindcss": "^0.6.9",
-    "prisma": "^6.7.0",
     "tailwindcss": "^3.4.17",
     "tsx": "^4.19.2",
     "typescript": "^5.7.2"

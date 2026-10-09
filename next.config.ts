@@ -9,7 +9,6 @@ const nextConfig: NextConfig = {
     ignoreDuringBuilds: true,
   },
   compress: true,
-  swcMinify: true,
   images: {
     formats: ["image/avif", "image/webp"],
     remotePatterns: [
