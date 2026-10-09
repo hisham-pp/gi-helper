@@ -6,7 +6,7 @@ import Tesseract from "tesseract.js";
 
 export async function processInventoryImages(
   files: FileList | File[],
-  config: GridConfig,
+  config: GridConfig | null,
   onProgress: (progress: number, currentFileIndex: number, totalFiles: number) => void
 ): Promise<DetectedItem[]> {
   const fileArray = Array.from(files);
@@ -22,7 +22,7 @@ export async function processInventoryImages(
     const file = fileArray[i];
     
     // Slice image into grid cells
-    const cells = await sliceGridFromImage(file, config);
+    const cells = await sliceGridFromImage(file, config || undefined);
     let cellIndex = 0;
 
     for (const cell of cells) {

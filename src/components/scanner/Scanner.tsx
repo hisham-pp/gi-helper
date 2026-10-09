@@ -7,14 +7,14 @@ import { ResultGrid } from "./ResultGrid";
 import { GridCalibration } from "./GridCalibration";
 import { DetectedItem } from "@/lib/types";
 import { processInventoryImages } from "@/lib/cv/orchestrator";
-import { GENSHIN_1080P_GRID, GridConfig } from "@/lib/cv/grid-detector";
+import { GridConfig } from "@/lib/cv/grid-detector";
 import { exportToGOODFormat } from "@/lib/good-format";
 
 export function Scanner() {
   const [isScanning, setIsScanning] = useState(false);
   const [progress, setProgress] = useState(0);
   const [detectedItems, setDetectedItems] = useState<DetectedItem[]>([]);
-  const [gridConfig, setGridConfig] = useState<GridConfig>(GENSHIN_1080P_GRID);
+  const [gridConfig, setGridConfig] = useState<GridConfig | null>(null);
   const [showCalibration, setShowCalibration] = useState(false);
   const [lastUploadedFile, setLastUploadedFile] = useState<File | null>(null);
 

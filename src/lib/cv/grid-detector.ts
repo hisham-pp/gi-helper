@@ -18,37 +18,71 @@ export interface GridConfig {
 
 /**
  * Standard 16:9 Genshin Inventory layout approximations (scaled to 1920x1080)
- * Note: Needs fine-tuning based on actual UI resolutions.
  */
 export const GENSHIN_1080P_GRID: GridConfig = {
   columns: 7,
   rows: 4,
-  startX: 240,   // approximate X start
-  startY: 180,   // approximate Y start
+  startX: 240,   
+  startY: 180,   
   cellWidth: 120,
   cellHeight: 140,
   gapX: 16,
   gapY: 16,
 };
 
+/**
+ * Automatically calculates the perfect grid configuration for any given image
+ * resolution and aspect ratio (e.g., 4K, 1440p, Ultrawide 21:9, Mobile).
+ * Genshin Impact scales its UI based on the screen's height.
+ */
+export function autoDetectGrid(width: number, height: number): GridConfig {
+  // UI scales based on height relative to 1080p
+  const scale = height / 1080;
+
+  // Calculate the 16:9 safe zone (Genshin anchors its UI to a 16:9 center on ultrawide displays)
+  const safeZoneWidth = height * (16 / 9);
+  
+  // Calculate horizontal pillarbox if aspect ratio is wider than 16:9
+  const emptySpaceX = Math.max(0, width - safeZoneWidth) / 2;
+
+  // Base 1080p constants
+  const baseCellWidth = 120;
+  const baseCellHeight = 140;
+  const baseGapX = 16;
+  const baseGapY = 16;
+  const baseColumns = 7;
+  const baseRows = Math.floor((height - (180 * scale)) / ((baseCellHeight + baseGapY) * scale)); // Dynamically count visible rows
+
+  // Calculate scaled configuration
+  return {
+    columns: baseColumns,
+    rows: Math.min(5, Math.max(3, baseRows)), // usually 4 rows are fully visible, sometimes 5 on weird ratios
+    startX: Math.round(emptySpaceX + (240 * scale)),
+    startY: Math.round(180 * scale),
+    cellWidth: Math.round(baseCellWidth * scale),
+    cellHeight: Math.round(baseCellHeight * scale),
+    gapX: Math.round(baseGapX * scale),
+    gapY: Math.round(baseGapY * scale),
+  };
+}
+
 export async function sliceGridFromImage(
   file: File, 
-  config: GridConfig = GENSHIN_1080P_GRID
+  config?: GridConfig
 ): Promise<{ icon: ImageBitmap, quantityArea: ImageBitmap }[]> {
   const imageBitmap = await createImageBitmap(file);
   
-  // TODO: Scale calculations if image is not exactly 1920x1080
-  const scaleX = imageBitmap.width / 1920;
-  const scaleY = imageBitmap.height / 1080;
+  // If no config provided, auto-calculate it based on the image dimensions
+  const activeConfig = config || autoDetectGrid(imageBitmap.width, imageBitmap.height);
 
   const cells: { icon: ImageBitmap, quantityArea: ImageBitmap }[] = [];
 
-  for (let row = 0; row < config.rows; row++) {
-    for (let col = 0; col < config.columns; col++) {
-      const x = (config.startX + col * (config.cellWidth + config.gapX)) * scaleX;
-      const y = (config.startY + row * (config.cellHeight + config.gapY)) * scaleY;
-      const w = config.cellWidth * scaleX;
-      const h = config.cellHeight * scaleY;
+  for (let row = 0; row < activeConfig.rows; row++) {
+    for (let col = 0; col < activeConfig.columns; col++) {
+      const x = activeConfig.startX + col * (activeConfig.cellWidth + activeConfig.gapX);
+      const y = activeConfig.startY + row * (activeConfig.cellHeight + activeConfig.gapY);
+      const w = activeConfig.cellWidth;
+      const h = activeConfig.cellHeight;
 
       // Extract just the inner icon (ignoring borders and quantity)
       const iconRect = {

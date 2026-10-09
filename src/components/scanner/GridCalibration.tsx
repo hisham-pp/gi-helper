@@ -1,9 +1,9 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { GridConfig } from '@/lib/cv/grid-detector';
+import { GridConfig, autoDetectGrid } from '@/lib/cv/grid-detector';
 
 interface GridCalibrationProps {
   imageFile: File;
-  config: GridConfig;
+  config: GridConfig | null;
   onChange: (config: GridConfig) => void;
 }
 
@@ -17,6 +17,13 @@ export function GridCalibration({ imageFile, config, onChange }: GridCalibration
 
   useEffect(() => {
     if (!canvasRef.current || !imageBitmap) return;
+
+    // If config is null, auto-detect it and set it as the starting point!
+    if (!config) {
+      onChange(autoDetectGrid(imageBitmap.width, imageBitmap.height));
+      return; // wait for the state to update
+    }
+
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
@@ -41,10 +48,10 @@ export function GridCalibration({ imageFile, config, onChange }: GridCalibration
 
     for (let row = 0; row < config.rows; row++) {
       for (let col = 0; col < config.columns; col++) {
-        const x = (config.startX + col * (config.cellWidth + config.gapX)) * scaleX * displayScale;
-        const y = (config.startY + row * (config.cellHeight + config.gapY)) * scaleY * displayScale;
-        const w = config.cellWidth * scaleX * displayScale;
-        const h = config.cellHeight * scaleY * displayScale;
+        const x = (config.startX + col * (config.cellWidth + config.gapX)) * displayScale;
+        const y = (config.startY + row * (config.cellHeight + config.gapY)) * displayScale;
+        const w = config.cellWidth * displayScale;
+        const h = config.cellHeight * displayScale;
 
         // Draw cell border
         ctx.strokeRect(x, y, w, h);
@@ -63,8 +70,10 @@ export function GridCalibration({ imageFile, config, onChange }: GridCalibration
   }, [imageBitmap, config]);
 
   const handleChange = (key: keyof GridConfig, value: number) => {
-    onChange({ ...config, [key]: value });
+    if (config) onChange({ ...config, [key]: value });
   };
+
+  if (!config) return null;
 
   return (
     <div className="bg-surface-variant p-6 rounded-xl space-y-6">
