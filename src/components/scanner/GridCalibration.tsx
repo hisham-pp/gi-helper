@@ -49,9 +49,9 @@ export function GridCalibration({ imageFile, config, onChange }: GridCalibration
         // Draw cell border
         ctx.strokeRect(x, y, w, h);
 
-        // Draw inner icon rect (blue)
+        // Draw inner icon rect (blue) - Tighter crop to remove rarity backgrounds
         ctx.strokeStyle = '#3b82f6';
-        ctx.strokeRect(x + w * 0.1, y + h * 0.1, w * 0.8, h * 0.6);
+        ctx.strokeRect(x + w * 0.15, y + h * 0.15, w * 0.7, h * 0.55);
 
         // Draw quantity rect (green)
         ctx.strokeStyle = '#22c55e';

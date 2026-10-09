@@ -12,6 +12,12 @@ export async function processInventoryImages(
   const fileArray = Array.from(files);
   const foundItems: Record<string, DetectedItem> = {};
 
+  // Initialize a single reusable worker for faster performance
+  const worker = await Tesseract.createWorker("eng");
+  await worker.setParameters({
+    tessedit_char_whitelist: '0123456789',
+  });
+
   for (let i = 0; i < fileArray.length; i++) {
     const file = fileArray[i];
     
@@ -28,11 +34,20 @@ export async function processInventoryImages(
         // 2. Quantity OCR (only if we found a match)
         let quantity = 1;
         try {
-          // Fast OCR on the tiny slice
-          const result = await Tesseract.recognize(cell.quantityArea, "eng");
-          const text = result.data.text.trim().replace(/[^0-9]/g, '');
-          if (text) {
-             quantity = parseInt(text, 10) || 1;
+          // Convert ImageBitmap to Canvas for Tesseract
+          const canvas = document.createElement("canvas");
+          canvas.width = cell.quantityArea.width;
+          canvas.height = cell.quantityArea.height;
+          const ctx = canvas.getContext("2d");
+          if (ctx) {
+            ctx.drawImage(cell.quantityArea, 0, 0);
+            
+            // Fast OCR using the initialized worker
+            const result = await worker.recognize(canvas);
+            const text = result.data.text.trim().replace(/[^0-9]/g, '');
+            if (text) {
+               quantity = parseInt(text, 10) || 1;
+            }
           }
         } catch (e) {
           console.warn("Failed to read quantity for", match.name, e);
@@ -57,5 +72,6 @@ export async function processInventoryImages(
     }
   }
 
+  await worker.terminate();
   return Object.values(foundItems);
 }

@@ -21,8 +21,8 @@ export function findBestMatch(hash: string): MatchResult | null {
     }
   }
 
-  // If distance is too high, it's not a confident match (e.g., max 15 bit difference for a 64-bit hash)
-  if (!bestMatchId || lowestDistance > 15) {
+  // If distance is too high, it's not a confident match (e.g., max 25 bit difference for a 64-bit hash)
+  if (!bestMatchId || lowestDistance > 25) {
     return null;
   }
 
@@ -32,7 +32,7 @@ export function findBestMatch(hash: string): MatchResult | null {
   return {
     id: material.id,
     name: material.name,
-    // Turn distance into a pseudo-confidence percentage (0 dist = 100%, 15 dist = 0%)
-    confidence: Math.max(0, 100 - (lowestDistance / 15) * 100)
+    // Turn distance into a pseudo-confidence percentage (0 dist = 100%, 25 dist = 0%)
+    confidence: Math.max(0, 100 - (lowestDistance / 25) * 100)
   };
 }

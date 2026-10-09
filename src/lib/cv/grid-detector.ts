@@ -52,10 +52,10 @@ export async function sliceGridFromImage(
 
       // Extract just the inner icon (ignoring borders and quantity)
       const iconRect = {
-        x: x + w * 0.1,
-        y: y + h * 0.1,
-        width: w * 0.8,
-        height: h * 0.6 // Top 60% contains the icon
+        x: x + w * 0.15,
+        y: y + h * 0.15,
+        width: w * 0.7,
+        height: h * 0.55 // Tighter crop to remove rarity background
       };
 
       // Extract just the bottom strip for the quantity number
