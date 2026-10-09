@@ -96,25 +96,73 @@
 
 html {
   scroll-behavior: smooth;
+  background-color: rgb(var(--md-sys-color-background) / 1);
+}
+
+@keyframes pan-bg {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 body {
   min-height: 100vh;
+  color: rgb(var(--md-sys-color-on-background) / 1);
+  font-family: var(--font-plus-jakarta-sans), ui-sans-serif, system-ui, sans-serif;
+  background-color: transparent;
+}
+
+::selection {
+  background-color: rgb(var(--md-sys-color-primary) / 0.5);
+  color: white;
+}
+
+/* Base image layer with slow panning animation */
+body::before {
+  content: "";
+  position: fixed;
+  top: -10%;
+  left: -10%;
+  width: 120%;
+  height: 120%;
+  z-index: -2;
+  background-image: url('/images/bg.png');
+  background-size: cover;
+  background-position: center;
+  animation: pan-bg 60s ease-in-out infinite;
+  /* Blur the edges, scale it slightly to avoid white borders */
+  filter: blur(8px) saturate(1.2);
+  opacity: 0.6;
+}
+
+.dark body::before {
+  filter: blur(8px) saturate(1.2) brightness(0.35);
+  opacity: 0.85;
+}
+
+/* Glossy glassmorphism overlay */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
   background:
     radial-gradient(
       circle at top left,
-      rgb(var(--md-sys-color-primary) / 0.08),
+      rgb(var(--md-sys-color-primary) / 0.15),
       transparent 35%
     ),
     radial-gradient(
       circle at bottom right,
-      rgb(var(--md-sys-color-secondary) / 0.05),
+      rgb(var(--md-sys-color-secondary) / 0.1),
       transparent 30%
     ),
-    rgb(var(--md-sys-color-background) / 1);
-  color: rgb(var(--md-sys-color-on-background) / 1);
-  font-family:
-    var(--font-plus-jakarta-sans), ui-sans-serif, system-ui, sans-serif;
+    linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, transparent 100%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 input,
@@ -122,4 +170,37 @@ textarea,
 select,
 button {
   font: inherit;
+}
+
+/* Hide number input spin buttons */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* Custom Glassmorphism Scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  border: 3px solid transparent;
+  background-clip: padding-box;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.1);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.4);
 }

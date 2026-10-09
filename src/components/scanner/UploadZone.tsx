@@ -38,16 +38,18 @@ export function UploadZone({ isScanning, progress, onFilesSelected }: UploadZone
   };
   return (
     <div 
-      className="rounded-2xl border border-outline-variant bg-surface p-8 shadow-sm"
+      className="relative rounded-[2rem] border-[0.5px] border-t-white/30 border-l-white/20 border-b-white/5 border-r-white/5 bg-gradient-to-br from-white/10 via-white/5 to-black/20 p-8 shadow-[0_8px_32px_0_rgba(0,0,0,0.3),inset_0_1px_1px_rgba(255,255,255,0.2)] backdrop-blur-2xl overflow-hidden group transition-all duration-500 hover:bg-white/10"
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
     >
       <label
         htmlFor="screenshot-upload"
-        className={`flex cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed p-12 transition-all ${
-          isDragging ? "border-primary bg-primary/5" : "border-outline-variant bg-surface-variant/30 hover:bg-surface-variant/50 hover:border-primary/50"
-        } ${isScanning ? "opacity-60 pointer-events-none" : ""}`}
+        className={`relative z-10 flex cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed p-12 transition-all duration-300 ${
+          isDragging 
+            ? "border-primary/60 bg-primary/20 scale-[0.99] shadow-[inset_0_0_40px_rgba(var(--md-sys-color-primary),0.3)]" 
+            : "border-white/20 bg-black/10 hover:border-white/40 hover:bg-black/20 shadow-[inset_0_0_20px_rgba(0,0,0,0.2)] hover:shadow-[inset_0_0_30px_rgba(0,0,0,0.3)]"
+        } ${isScanning ? "opacity-60 pointer-events-none scale-95" : ""}`}
       >
         {isScanning ? (
           <div className="flex flex-col items-center space-y-4">
@@ -61,12 +63,14 @@ export function UploadZone({ isScanning, progress, onFilesSelected }: UploadZone
             </div>
           </div>
         ) : (
-          <div className="flex flex-col items-center space-y-4 text-center">
-            <div className="p-4 bg-primary/10 rounded-full mb-2 text-primary">
-              <Upload className="h-10 w-10" />
+          <div className="flex flex-col items-center space-y-5 text-center">
+            <div className="p-5 bg-gradient-to-br from-primary/30 to-primary/10 rounded-full mb-2 text-primary shadow-[inset_0_1px_1px_rgba(255,255,255,0.4),0_8px_16px_rgba(0,0,0,0.3)] border border-t-white/30 border-l-white/20 border-b-transparent border-r-transparent group-hover:scale-110 transition-transform duration-300 backdrop-blur-md">
+              <Upload className="h-10 w-10 drop-shadow-md" />
             </div>
-            <span className="text-xl font-semibold text-on-surface">Click to upload or drag & drop</span>
-            <span className="text-sm text-on-surface-variant max-w-sm">
+            <span className="text-2xl font-bold text-on-surface drop-shadow-sm tracking-tight">
+              Click to upload or drag & drop
+            </span>
+            <span className="text-sm font-medium text-on-surface/80 max-w-sm drop-shadow-sm">
               Select multiple inventory screenshots to process them all at once. For best results, use uncompressed 16:9 images.
             </span>
           </div>

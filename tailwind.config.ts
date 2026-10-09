@@ -78,6 +78,22 @@ const config: Config = {
         "hero-grid":
           "radial-gradient(circle at top, rgba(56, 189, 248, 0.22), transparent 30%), radial-gradient(circle at right, rgba(250, 204, 21, 0.18), transparent 24%)",
       },
+      keyframes: {
+        "float-up": {
+          "0%": { transform: "translateY(0) scale(0)", opacity: "0" },
+          "10%": { opacity: "1", transform: "translateY(-10vh) scale(1) rotate(10deg)" },
+          "90%": { opacity: "1" },
+          "100%": { transform: "translateY(-120vh) scale(0.5) rotate(-20deg)", opacity: "0" },
+        },
+        sweep: {
+          "0%": { transform: "translateX(-100%) rotate(-45deg)" },
+          "100%": { transform: "translateX(200%) rotate(-45deg)" },
+        },
+      },
+      animation: {
+        "float-up": "float-up 20s linear infinite",
+        sweep: "sweep 15s ease-in-out infinite",
+      },
     },
   },
   plugins: [],

@@ -76,10 +76,10 @@ export function GridCalibration({ imageFile, config, onChange }: GridCalibration
   if (!config) return null;
 
   return (
-    <div className="bg-surface-variant p-6 rounded-xl space-y-6">
-      <div>
-        <h3 className="text-xl font-bold mb-2">Grid Calibration</h3>
-        <p className="text-sm text-on-surface-variant mb-4">
+    <div className="relative rounded-[2rem] border-[0.5px] border-t-white/30 border-l-white/20 border-b-white/5 border-r-white/5 bg-gradient-to-br from-white/10 via-white/5 to-black/20 p-8 shadow-[0_8px_32px_0_rgba(0,0,0,0.3),inset_0_1px_1px_rgba(255,255,255,0.2)] backdrop-blur-2xl space-y-6 overflow-hidden">
+      <div className="relative z-10">
+        <h3 className="text-xl font-bold mb-2 text-on-surface drop-shadow-md">Grid Calibration</h3>
+        <p className="text-sm text-on-surface/80 drop-shadow-sm mb-4">
           Adjust the sliders so the red boxes match your item cells exactly. 
           The blue box should cover the icon, and the green box should cover the number.
         </p>

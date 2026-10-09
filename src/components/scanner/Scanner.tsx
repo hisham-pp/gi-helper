@@ -103,19 +103,19 @@ export function Scanner() {
   return (
     <div className="w-full max-w-5xl mx-auto space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-700">
       <div className="text-center space-y-4">
-        <h1 className="text-4xl md:text-5xl font-extrabold text-on-surface tracking-tight">
+        <h1 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight drop-shadow-[0_4px_10px_rgba(0,0,0,0.5)]">
           Inventory Scanner
         </h1>
-        <p className="text-lg text-on-surface-variant max-w-2xl mx-auto leading-relaxed">
+        <p className="text-lg text-white/90 max-w-2xl mx-auto leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
           Upload screenshots of your Genshin Impact inventory to instantly extract materials.
           Review, adjust quantities, and export directly to .GOOD format for your favorite optimizers.
         </p>
       </div>
 
-      <div className="flex justify-center">
+      <div className="flex justify-center relative z-10">
         <button 
           onClick={() => setShowCalibration(!showCalibration)}
-          className="text-sm font-medium text-primary hover:underline"
+          className="text-sm font-bold text-white hover:text-primary drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] transition-colors bg-black/20 px-4 py-2 rounded-full border border-white/10 hover:border-white/30 backdrop-blur-md"
         >
           {showCalibration ? "Hide Calibration Tools" : "Having accuracy issues? Try Grid Calibration"}
         </button>
@@ -129,7 +129,7 @@ export function Scanner() {
         />
       )}
       {showCalibration && !lastUploadedFile && (
-        <div className="text-center text-sm text-on-surface-variant bg-surface-variant/30 p-4 rounded-xl border border-outline-variant">
+        <div className="relative text-center text-sm font-medium text-white drop-shadow-md bg-white/5 backdrop-blur-md p-4 rounded-xl border border-white/10 shadow-lg">
           Upload an image first to use the Calibration Tool.
         </div>
       )}

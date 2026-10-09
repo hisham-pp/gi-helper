@@ -14,8 +14,8 @@ export function ResultGrid({ items, onClear, onExport, onUpdateQuantity, onRemov
   if (items.length === 0) return null;
 
   return (
-    <div className="rounded-2xl border border-outline-variant bg-surface p-6 shadow-sm space-y-6 animate-in fade-in duration-500">
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-outline-variant pb-4 gap-4">
+    <div className="relative rounded-[2rem] border-[0.5px] border-t-white/30 border-l-white/20 border-b-white/5 border-r-white/5 bg-gradient-to-br from-white/10 via-white/5 to-black/20 p-8 shadow-[0_8px_32px_0_rgba(0,0,0,0.3),inset_0_1px_1px_rgba(255,255,255,0.2)] backdrop-blur-2xl space-y-6 animate-in fade-in duration-500 overflow-hidden">
+      <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-white/10 pb-4 gap-4">
         <h2 className="text-2xl font-bold flex items-center gap-2 text-on-surface">
           <CheckCircle2 className="h-6 w-6 text-success" />
           Scanned Inventory
@@ -39,11 +39,11 @@ export function ResultGrid({ items, onClear, onExport, onUpdateQuantity, onRemov
         </div>
       </div>
       
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 max-h-[60vh] overflow-y-auto p-2 scrollbar-thin scrollbar-thumb-outline-variant scrollbar-track-transparent">
+      <div className="relative z-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 max-h-[60vh] overflow-y-auto p-2">
         {items.map((item) => (
           <div 
             key={item.id} 
-            className="group flex flex-col p-4 rounded-xl bg-surface-variant/30 border border-outline-variant hover:border-primary/50 hover:bg-surface-variant/50 transition-all items-center text-center relative shadow-sm hover:shadow"
+            className="group flex flex-col p-4 rounded-xl bg-gradient-to-br from-white/10 to-transparent border-[0.5px] border-t-white/30 border-l-white/20 border-b-white/5 border-r-white/5 hover:border-primary/50 transition-all items-center text-center relative shadow-[0_4px_16px_rgba(0,0,0,0.2)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.3)] backdrop-blur-md hover:-translate-y-1"
           >
             <button 
               onClick={() => onRemoveItem(item.id)}
@@ -52,7 +52,7 @@ export function ResultGrid({ items, onClear, onExport, onUpdateQuantity, onRemov
             >
               <Trash2 className="h-4 w-4" />
             </button>
-            <div className="w-16 h-16 mb-3 rounded-lg overflow-hidden bg-surface flex items-center justify-center shadow-inner relative">
+            <div className="w-16 h-16 mb-3 rounded-lg overflow-hidden bg-black/20 flex items-center justify-center shadow-[inset_0_2px_10px_rgba(0,0,0,0.3)] relative">
               <img 
                 src={`/images/materials/${item.id}.png`} 
                 alt={item.name} 
@@ -66,10 +66,10 @@ export function ResultGrid({ items, onClear, onExport, onUpdateQuantity, onRemov
             <span className="font-semibold text-sm line-clamp-2 text-on-surface w-full min-h-[40px]" title={item.name}>
               {item.name}
             </span>
-            <div className="mt-3 flex items-center w-full bg-surface rounded-lg border border-outline-variant overflow-hidden group-hover:border-primary/30 transition-colors">
+            <div className="mt-3 flex items-center w-full bg-black/30 rounded-lg border-[0.5px] border-t-black/50 border-white/10 shadow-[inset_0_2px_10px_rgba(0,0,0,0.2)] overflow-hidden group-hover:border-primary/50 transition-colors">
               <button 
                 onClick={() => onUpdateQuantity(item.id, Math.max(1, item.quantity - 1))}
-                className="px-2 py-1 bg-surface-variant/50 hover:bg-surface-variant hover:text-primary transition-colors font-bold"
+                className="px-2 py-1 bg-white/5 hover:bg-white/20 hover:text-primary transition-colors font-bold text-on-surface"
               >
                 -
               </button>
@@ -78,11 +78,11 @@ export function ResultGrid({ items, onClear, onExport, onUpdateQuantity, onRemov
                 min="1"
                 value={item.quantity}
                 onChange={(e) => onUpdateQuantity(item.id, parseInt(e.target.value) || 1)}
-                className="w-full text-center text-sm font-medium bg-transparent border-none focus:outline-none focus:ring-0 p-1"
+                className="w-full text-center text-sm font-medium bg-transparent border-none focus:outline-none focus:ring-0 p-1 text-on-surface drop-shadow-md"
               />
               <button 
                 onClick={() => onUpdateQuantity(item.id, item.quantity + 1)}
-                className="px-2 py-1 bg-surface-variant/50 hover:bg-surface-variant hover:text-primary transition-colors font-bold"
+                className="px-2 py-1 bg-white/5 hover:bg-white/20 hover:text-primary transition-colors font-bold text-on-surface"
               >
                 +
               </button>
