@@ -3,7 +3,6 @@
 import { useState, useCallback, useEffect } from "react";
 import { Upload, Loader2, CheckCircle2, Download, Trash2 } from "lucide-react";
 import Tesseract from "tesseract.js";
-import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import materialsData from "@/data/materials.json";
 
@@ -194,19 +193,20 @@ export default function ScannerPage() {
                 Scanned Inventory ({detectedItems.length} items)
               </h2>
               <div className="flex items-center gap-3">
-                <Button onClick={clearItems} variant="text" className="text-error hover:bg-error/10">
+                <button onClick={clearItems} className="text-error hover:bg-error/10 flex items-center px-4 py-2 rounded-md font-medium text-sm">
                   <Trash2 className="h-4 w-4 mr-2" /> Clear
-                </Button>
-                <Button onClick={exportGoodFormat} variant="filled" className="bg-primary text-on-primary">
+                </button>
+                <button onClick={exportGoodFormat} className="bg-primary text-primary-foreground hover:bg-primary/90 flex items-center px-4 py-2 rounded-md font-medium text-sm">
                   <Download className="h-4 w-4 mr-2" /> Export .GOOD JSON
-                </Button>
+                </button>
               </div>
             </div>
             
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 max-h-[60vh] overflow-y-auto p-2">
               {detectedItems.map((item) => (
-                <div key={item.id} className="flex flex-col p-4 rounded-xl bg-surface-variant/30 border border-outline-variant hover:border-primary/50 transition-colors">
-                  <span className="font-semibold text-sm truncate text-on-surface" title={item.name}>{item.name}</span>
+                <div key={item.id} className="flex flex-col p-4 rounded-xl bg-surface-variant/30 border border-outline-variant hover:border-primary/50 transition-colors items-center text-center">
+                  <img src={`/images/materials/${item.id}.png`} alt={item.name} className="w-12 h-12 mb-2 object-contain" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
+                  <span className="font-semibold text-sm truncate text-on-surface w-full" title={item.name}>{item.name}</span>
                   <span className="text-xs text-on-surface-variant mt-1 font-medium">Quantity: {item.quantity}</span>
                 </div>
               ))}

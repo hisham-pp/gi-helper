@@ -1,38 +1,18 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans } from "next/font/google";
-import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
-import { Toaster } from "sonner";
-
-import "@/app/globals.css";
-
-import { ServiceWorkerRegister } from "@/components/providers/service-worker-register";
-import { ThemeProvider } from "@/components/providers/theme-provider";
+import "@/app/globals.css"; // Note: we need to fix this import too!
 
 export const metadata: Metadata = {
-  title: "Genshin Material Tracker",
-  description:
-    "Track Genshin Impact material inventory, goals, and recursive crafting progress.",
-  applicationName: "Genshin Material Tracker",
+  title: "Genshin Scanner",
+  description: "Scanner",
 };
-
-const plusJakartaSans = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  variable: "--font-plus-jakarta-sans",
-});
 
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={plusJakartaSans.variable}>
-        <AppRouterCacheProvider>
-          <ThemeProvider>
-            <ServiceWorkerRegister />
-            {children}
-            <Toaster richColors position="top-right" />
-          </ThemeProvider>
-        </AppRouterCacheProvider>
+    <html lang="en">
+      <body>
+        {children}
       </body>
     </html>
   );
