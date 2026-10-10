@@ -62,3 +62,20 @@ export async function saveTestResult(
     return { success: false, error: (error as Error).message };
   }
 }
+
+export async function getMaterials() {
+  try {
+    const materialsPath = path.join(process.cwd(), "src", "data", "materials.json");
+    const content = await fs.readFile(materialsPath, "utf-8");
+    const materials = JSON.parse(content);
+    return materials.map((m: any) => ({
+      id: m.id,
+      name: m.name,
+      image: m.image,
+      rarity: m.rarity || 1
+    }));
+  } catch (error) {
+    console.error("Error reading materials:", error);
+    return [];
+  }
+}

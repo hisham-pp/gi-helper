@@ -38,21 +38,20 @@ import {
 import { toast } from "sonner";
 import Tesseract from "tesseract.js";
 
-// List of sample screenshot filenames in public/samples/
 const SAMPLE_SCREENSHOTS = [
-  "GenshinImpact_20261009_220714.jpg",
-  "GenshinImpact_20261009_220726.jpg",
-  "GenshinImpact_20261009_220735.jpg",
-  "GenshinImpact_20261009_220743.jpg",
-  "GenshinImpact_20261009_220750.jpg",
-  "GenshinImpact_20261009_220755.jpg",
-  "GenshinImpact_20261009_220802.jpg",
-  "GenshinImpact_20261009_220807.jpg",
-  "GenshinImpact_20261009_220816.jpg",
-  "GenshinImpact_20261009_220821.jpg",
-  "GenshinImpact_20261009_220827.jpg",
-  "GenshinImpact_20261009_220832.jpg",
-  "GenshinImpact_20261009_220839.jpg",
+  "test-set-01/GenshinImpact_20261009_220714.jpg",
+  "test-set-01/GenshinImpact_20261009_220726.jpg",
+  "test-set-01/GenshinImpact_20261009_220735.jpg",
+  "test-set-01/GenshinImpact_20261009_220743.jpg",
+  "test-set-01/GenshinImpact_20261009_220750.jpg",
+  "test-set-01/GenshinImpact_20261009_220755.jpg",
+  "test-set-01/GenshinImpact_20261009_220802.jpg",
+  "test-set-01/GenshinImpact_20261009_220807.jpg",
+  "test-set-01/GenshinImpact_20261009_220816.jpg",
+  "test-set-01/GenshinImpact_20261009_220821.jpg",
+  "test-set-01/GenshinImpact_20261009_220827.jpg",
+  "test-set-01/GenshinImpact_20261009_220832.jpg",
+  "test-set-01/GenshinImpact_20261009_220839.jpg",
 ];
 
 export function ScannerDebugger() {

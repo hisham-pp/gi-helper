@@ -1,3 +1,34 @@
 {
-  "items": []
+  "items": [
+    {
+      "id": "black-bronze-horn",
+      "name": "Black Bronze Horn",
+      "quantity": 49
+    },
+    {
+      "id": "black-crystal-horn",
+      "name": "Black Crystal Horn",
+      "quantity": 19
+    },
+    {
+      "id": "heavy-horn",
+      "name": "Heavy Horn",
+      "quantity": 281
+    },
+    {
+      "id": "ley-line-sprout",
+      "name": "Ley Line Sprout",
+      "quantity": 7
+    },
+    {
+      "id": "dead-ley-line-leaves",
+      "name": "Dead Ley Line Leaves",
+      "quantity": 22
+    },
+    {
+      "id": "dead-ley-line-branch",
+      "name": "Dead Ley Line Branch",
+      "quantity": 154
+    }
+  ]
 }
