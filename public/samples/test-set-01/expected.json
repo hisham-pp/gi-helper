@@ -1,6 +1,171 @@
 {
   "items": [
     {
+      "id": "feathery-fin",
+      "name": "Feathery Fin",
+      "quantity": 12
+    },
+    {
+      "id": "lunar-fin",
+      "name": "Lunar Fin",
+      "quantity": 3
+    },
+    {
+      "id": "old-operative-s-pocket-watch",
+      "name": "Old Operative's Pocket Watch",
+      "quantity": 17
+    },
+    {
+      "id": "operative-s-standard-pocket-watch",
+      "name": "Operative's Standard Pocket Watch",
+      "quantity": 4
+    },
+    {
+      "id": "drop-of-tainted-water",
+      "name": "Drop of Tainted Water",
+      "quantity": 63
+    },
+    {
+      "id": "scoop-of-tainted-water",
+      "name": "Scoop of Tainted Water",
+      "quantity": 15
+    },
+    {
+      "id": "newborn-tainted-hydro-phantasm",
+      "name": "Newborn Tainted Hydro Phantasm",
+      "quantity": 4
+    },
+    {
+      "id": "a-flower-yet-to-bloom",
+      "name": "A Flower Yet to Bloom",
+      "quantity": 70
+    },
+    {
+      "id": "treasured-flower",
+      "name": "Treasured Flower",
+      "quantity": 20
+    },
+    {
+      "id": "wanderer-s-blooming-flower",
+      "name": "Wanderer's Blooming Flower",
+      "quantity": 4
+    },
+    {
+      "id": "desiccated-shell",
+      "name": "Desiccated Shell",
+      "quantity": 17
+    },
+    {
+      "id": "sturdy-shell",
+      "name": "Sturdy Shell",
+      "quantity": 3
+    },
+    {
+      "id": "marked-shell",
+      "name": "Marked Shell",
+      "quantity": 1
+    },
+    {
+      "id": "tea-scented-tassel",
+      "name": "Tea-Scented Tassel",
+      "quantity": 4
+    },
+    {
+      "id": "damaged-prism",
+      "name": "Damaged Prism",
+      "quantity": 175
+    },
+    {
+      "id": "turbid-prism",
+      "name": "Turbid Prism",
+      "quantity": 57
+    },
+    {
+      "id": "radiant-prism",
+      "name": "Radiant Prism",
+      "quantity": 14
+    },
+    {
+      "id": "chaos-storage",
+      "name": "Chaos Storage",
+      "quantity": 20
+    },
+    {
+      "id": "chaos-module",
+      "name": "Chaos Module",
+      "quantity": 5
+    },
+    {
+      "id": "chaos-bolt",
+      "name": "Chaos Bolt",
+      "quantity": 1
+    },
+    {
+      "id": "inactivated-fungal-nucleus",
+      "name": "Inactivated Fungal Nucleus",
+      "quantity": 472
+    },
+    {
+      "id": "dormant-fungal-nucleus",
+      "name": "Dormant Fungal Nucleus",
+      "quantity": 110
+    },
+    {
+      "id": "robust-fungal-nucleus",
+      "name": "Robust Fungal Nucleus",
+      "quantity": 37
+    },
+    {
+      "id": "gloomy-statuette",
+      "name": "Gloomy Statuette",
+      "quantity": 11
+    },
+    {
+      "id": "dark-statuette",
+      "name": "Dark Statuette",
+      "quantity": 3
+    },
+    {
+      "id": "deathly-statuette",
+      "name": "Deathly Statuette",
+      "quantity": 2
+    },
+    {
+      "id": "concealed-claw",
+      "name": "Concealed Claw",
+      "quantity": 116
+    },
+    {
+      "id": "concealed-unguis",
+      "name": "Concealed Unguis",
+      "quantity": 32
+    },
+    {
+      "id": "concealed-talon",
+      "name": "Concealed Talon",
+      "quantity": 11
+    },
+    {
+      "id": "dismal-prism",
+      "name": "Dismal Prism",
+      "quantity": 60
+    },
+    {
+      "id": "crystal-prism",
+      "name": "Crystal Prism",
+      "quantity": 12
+    },
+    {
+      "id": "polarizing-prism",
+      "name": "Polarizing Prism",
+      "quantity": 7
+    },
+    {
+      "id": "chaos-gear",
+      "name": "Chaos Gear",
+      "quantity": 260
+    },
+    {
       "id": "black-bronze-horn",
       "name": "Black Bronze Horn",
       "quantity": 49
