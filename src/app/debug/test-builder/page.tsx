@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useRef } from "react";
 import { getTestImages, getTestResult, getTestSets, saveTestResult, getMaterials } from "./actions";
-import { ArrowLeft, Save, AlertCircle, Plus, Minus, Trash2, List, Code, ChevronDown } from "lucide-react";
+import { ArrowLeft, Save, AlertCircle, Plus, Minus, Trash2, List, Code, ChevronDown, ChevronLeft, ChevronRight, Image as ImageIcon } from "lucide-react";
 import Link from "next/link";
 import { toast } from "sonner";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -58,6 +58,32 @@ export default function TestBuilderPage() {
   const [visualItems, setVisualItems] = useState<ExpectedItem[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [isSetDropdownOpen, setIsSetDropdownOpen] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [itemToAdd, setItemToAdd] = useState<Material | null>(null);
+  const [quantityToAdd, setQuantityToAdd] = useState<number | string>(1);
+  const [isImageDropdownOpen, setIsImageDropdownOpen] = useState(false);
+  
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const imageDropdownRef = useRef<HTMLDivElement>(null);
+
+  // Close dropdowns when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsSetDropdownOpen(false);
+      }
+      if (imageDropdownRef.current && !imageDropdownRef.current.contains(event.target as Node)) {
+        setIsImageDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  // Reset selected index when search changes
+  useEffect(() => {
+    setSelectedIndex(0);
+  }, [searchQuery]);
 
   // Fetch initial data
   useEffect(() => {
@@ -158,16 +184,39 @@ export default function TestBuilderPage() {
   };
 
   // Visual Editor Handlers
-  const handleAddItem = (material: Material) => {
+  const openQuantityModal = (material: Material) => {
     const existing = visualItems.find((i) => i.id === material.id);
     if (existing) {
       toast.info(`${material.name} is already in the list.`);
       setSearchQuery("");
       return;
     }
-    const newItems = [...visualItems, { id: material.id, name: material.name, quantity: 1 }];
+    setItemToAdd(material);
+    setQuantityToAdd(1);
+  };
+
+  const confirmAddItem = () => {
+    if (!itemToAdd) return;
+    const qty = typeof quantityToAdd === "number" ? quantityToAdd : parseInt(quantityToAdd as string) || 1;
+    const newItems = [...visualItems, { id: itemToAdd.id, name: itemToAdd.name, quantity: qty }];
     syncVisualToJson(newItems);
+    setItemToAdd(null);
     setSearchQuery("");
+  };
+
+  const handleSearchKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setSelectedIndex((prev) => Math.min(prev + 1, filteredMaterials.length - 1));
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setSelectedIndex((prev) => Math.max(prev - 1, 0));
+    } else if (e.key === "Enter") {
+      e.preventDefault();
+      if (filteredMaterials.length > 0) {
+        openQuantityModal(filteredMaterials[selectedIndex]);
+      }
+    }
   };
 
   const handleUpdateQuantity = (id: string, newQuantity: number) => {
@@ -183,6 +232,20 @@ export default function TestBuilderPage() {
     syncVisualToJson(newItems);
   };
 
+  const handlePrevImage = () => {
+    if (images.length === 0) return;
+    const currentIndex = images.indexOf(selectedImage);
+    const newIndex = (currentIndex - 1 + images.length) % images.length;
+    setSelectedImage(images[newIndex]);
+  };
+  
+  const handleNextImage = () => {
+    if (images.length === 0) return;
+    const currentIndex = images.indexOf(selectedImage);
+    const newIndex = (currentIndex + 1) % images.length;
+    setSelectedImage(images[newIndex]);
+  };
+
   const filteredMaterials = useMemo(() => {
     if (!searchQuery.trim()) return [];
     return materials
@@ -194,15 +257,84 @@ export default function TestBuilderPage() {
     <div className="relative z-10 flex min-h-screen flex-col items-center justify-start bg-transparent p-4 pt-8 md:p-8">
       {/* Top Navigation Bar */}
       <div className="mb-6 flex w-full max-w-7xl items-center justify-between">
-        <Link
-          href="/debug"
-          className="text-on-surface flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-4 py-2 text-xs font-bold shadow-sm backdrop-blur-md transition-all hover:scale-105 hover:bg-white/20 active:scale-95 sm:text-sm"
-        >
-          <ArrowLeft className="h-4 w-4 text-primary" />
-          <span>Back to Debugger</span>
-        </Link>
+        <div className="flex items-center gap-4">
+          <Link
+            href="/debug"
+            className="text-on-surface flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-4 py-2 text-xs font-bold shadow-sm backdrop-blur-md transition-all hover:scale-105 hover:bg-white/20 active:scale-95 sm:text-sm shrink-0"
+          >
+            <ArrowLeft className="h-4 w-4 text-primary" />
+            <span className="hidden sm:inline">Back to Debugger</span>
+            <span className="sm:hidden">Back</span>
+          </Link>
+          
+          {/* Pill-styled Test Sets Dropdown */}
+          <div className="relative z-[100]" ref={dropdownRef}>
+            <button
+              onClick={() => setIsSetDropdownOpen(!isSetDropdownOpen)}
+              className="text-on-surface flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-4 py-2 text-xs shadow-sm backdrop-blur-md transition-all hover:bg-white/20 active:scale-95 sm:text-sm"
+            >
+              <span className="text-muted-foreground hidden sm:inline">Test Set:</span>
+              <span className="font-bold">{selectedSet || (testSets.length === 0 ? "None" : "Select...")}</span>
+              <ChevronDown className="w-4 h-4 ml-1 opacity-50" />
+            </button>
+            
+            {isSetDropdownOpen && testSets.length > 0 && (
+              <div className="absolute top-full left-0 mt-2 w-48 rounded-2xl border border-white/10 bg-background/95 backdrop-blur-xl shadow-2xl p-1.5 flex flex-col gap-1 max-h-60 overflow-y-auto">
+                {testSets.map((set) => (
+                  <button
+                    key={set}
+                    onClick={() => {
+                      setSelectedSet(set);
+                      setIsSetDropdownOpen(false);
+                    }}
+                    className={`w-full text-left px-3 py-2 text-sm rounded-full transition-all ${
+                      selectedSet === set ? "bg-primary/20 text-primary font-semibold" : "text-foreground font-medium hover:bg-white/10"
+                    }`}
+                  >
+                    {set}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Pill-styled Image Dropdown */}
+          {images.length > 0 && (
+            <div className="relative z-[90]" ref={imageDropdownRef}>
+              <button
+                onClick={() => setIsImageDropdownOpen(!isImageDropdownOpen)}
+                className="text-on-surface flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-4 py-2 text-xs shadow-sm backdrop-blur-md transition-all hover:bg-white/20 active:scale-95 sm:text-sm"
+              >
+                <ImageIcon className="w-4 h-4 text-primary" />
+                <span className="text-muted-foreground hidden sm:inline">Image:</span>
+                <span className="font-bold max-w-[150px] sm:max-w-[200px] truncate">{selectedImage || "Select..."}</span>
+                <ChevronDown className="w-4 h-4 ml-1 opacity-50 shrink-0" />
+              </button>
+              
+              {isImageDropdownOpen && (
+                <div className="absolute top-full left-0 mt-2 w-64 rounded-2xl border border-white/10 bg-background/95 backdrop-blur-xl shadow-2xl p-1.5 flex flex-col gap-1 max-h-60 overflow-y-auto">
+                  {images.map((img) => (
+                    <button
+                      key={img}
+                      onClick={() => {
+                        setSelectedImage(img);
+                        setIsImageDropdownOpen(false);
+                      }}
+                      className={`w-full text-left px-3 py-2 text-sm rounded-full transition-all truncate ${
+                        selectedImage === img ? "bg-primary/20 text-primary font-semibold" : "text-foreground font-medium hover:bg-white/10"
+                      }`}
+                      title={img}
+                    >
+                      {img}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+        </div>
         
-        <h1 className="text-xl font-bold tracking-tight md:text-2xl">
+        <h1 className="hidden md:block text-xl font-bold tracking-tight md:text-2xl">
           Scanner Test Builder
         </h1>
 
@@ -210,78 +342,46 @@ export default function TestBuilderPage() {
       </div>
 
       <div className="w-full max-w-7xl flex flex-col lg:flex-row gap-6">
-        <div className="w-full lg:w-64 shrink-0 flex flex-col gap-4">
-          <div className="relative z-20 rounded-xl border border-white/10 bg-surface/50 p-4 backdrop-blur-md">
-            <h2 className="mb-3 font-semibold">Test Sets</h2>
-            <div className="relative">
-              <button
-                onClick={() => setIsSetDropdownOpen(!isSetDropdownOpen)}
-                className="w-full flex items-center justify-between rounded-md border border-white/10 bg-background/50 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary text-left"
-              >
-                <span>{selectedSet || (testSets.length === 0 ? "No sets found" : "Select a test set...")}</span>
-                <ChevronDown className="w-4 h-4 text-muted-foreground" />
-              </button>
-              
-              {isSetDropdownOpen && testSets.length > 0 && (
-                <div className="absolute top-full left-0 right-0 mt-1 z-50 rounded-md border border-white/10 bg-background shadow-xl py-1 max-h-60 overflow-y-auto">
-                  {testSets.map((set) => (
-                    <button
-                      key={set}
-                      onClick={() => {
-                        setSelectedSet(set);
-                        setIsSetDropdownOpen(false);
-                      }}
-                      className={`w-full text-left px-3 py-2 text-sm hover:bg-white/10 transition-colors ${
-                        selectedSet === set ? "bg-primary/20 text-primary font-medium" : "text-foreground"
-                      }`}
-                    >
-                      {set}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-          </div>
-
-          <div className="flex-1 rounded-xl border border-white/10 bg-surface/50 p-4 backdrop-blur-md overflow-hidden flex flex-col min-h-[300px]">
-            <h2 className="mb-3 font-semibold">Images ({images.length})</h2>
-            <div className="flex-1 overflow-y-auto pr-2 space-y-1">
-              {images.map((img) => (
-                <button
-                  key={img}
-                  onClick={() => setSelectedImage(img)}
-                  className={`w-full text-left px-3 py-2 text-sm rounded-md truncate transition-colors ${
-                    selectedImage === img 
-                      ? "bg-primary/20 text-primary font-medium" 
-                      : "hover:bg-white/5 text-muted-foreground hover:text-foreground"
-                  }`}
-                  title={img}
-                >
-                  {img}
-                </button>
-              ))}
-              {images.length === 0 && (
-                <div className="text-sm text-muted-foreground italic">No images found in set</div>
-              )}
-            </div>
-          </div>
-        </div>
-
-        {/* Main Content */}
-        <div className="flex-1 flex flex-col gap-4 min-h-[600px]">
+        {/* Left Column: Image Preview */}
+        <div className="flex-1 flex flex-col gap-4 min-h-[400px]">
           {selectedImage ? (
             <>
-              {/* Image Preview */}
-              <div className="relative rounded-xl border border-white/10 bg-surface/50 p-2 backdrop-blur-md flex items-center justify-center min-h-[300px] overflow-hidden">
+              <div className="relative rounded-xl border border-white/10 bg-surface/50 p-4 backdrop-blur-md flex items-center justify-center min-h-[300px] lg:min-h-[500px] overflow-hidden">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img 
                   src={`/samples/${selectedSet}/${selectedImage}`} 
                   alt={selectedImage} 
-                  className="max-h-[500px] max-w-full object-contain rounded-lg shadow-md"
+                  className="max-h-[600px] max-w-full object-contain rounded-lg shadow-md"
                 />
               </div>
+              <div className="flex items-center justify-between rounded-xl border border-white/10 bg-surface/50 p-3 backdrop-blur-md">
+                <button 
+                  onClick={handlePrevImage} 
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded bg-white/5 hover:bg-white/10 text-sm font-medium transition-colors"
+                >
+                  <ChevronLeft className="w-4 h-4" /> Prev Image
+                </button>
+                <div className="text-sm text-muted-foreground truncate px-4 hidden sm:block">
+                  {images.indexOf(selectedImage) + 1} / {images.length}
+                </div>
+                <button 
+                  onClick={handleNextImage} 
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded bg-white/5 hover:bg-white/10 text-sm font-medium transition-colors"
+                >
+                  Next Image <ChevronRight className="w-4 h-4" />
+                </button>
+              </div>
+            </>
+          ) : (
+            <div className="flex-1 rounded-xl border border-white/10 bg-surface/50 backdrop-blur-md flex flex-col items-center justify-center text-muted-foreground min-h-[400px]">
+              <div className="text-4xl mb-4">🖼️</div>
+              <p>Select an image to view</p>
+            </div>
+          )}
+        </div>
 
-              {/* Editor Header */}
+        {/* Right Column: Editor */}
+            <div className="w-full lg:w-[500px] shrink-0 flex flex-col gap-4 min-h-[600px]">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-surface/50 border border-white/10 p-4 rounded-xl backdrop-blur-md">
                 <h2 className="font-semibold flex items-center gap-2">
                   {selectedSet} Expected Result
@@ -348,16 +448,19 @@ export default function TestBuilderPage() {
                         type="text"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
+                        onKeyDown={handleSearchKeyDown}
                         placeholder="Search materials to add..."
                         className="w-full rounded-md border border-white/10 bg-background/50 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
                       />
                       {filteredMaterials.length > 0 && (
                         <div className="absolute top-full left-0 right-0 mt-1 rounded-md border border-white/10 bg-surface shadow-xl z-20 max-h-60 overflow-y-auto">
-                          {filteredMaterials.map((m) => (
+                          {filteredMaterials.map((m, index) => (
                             <button
                               key={m.id}
-                              onClick={() => handleAddItem(m)}
-                              className="w-full flex items-center gap-3 px-4 py-2 text-sm text-left hover:bg-white/10 transition-colors"
+                              onClick={() => openQuantityModal(m)}
+                              className={`w-full flex items-center gap-3 px-4 py-2 text-sm text-left transition-colors ${
+                                selectedIndex === index ? "bg-white/10" : "hover:bg-white/10"
+                              }`}
                             >
                               {/* eslint-disable-next-line @next/next/no-img-element */}
                               <div className={`shrink-0 w-8 h-8 rounded ${getRarityBg(m.rarity)} flex items-center justify-center overflow-hidden`}>
@@ -454,15 +557,52 @@ export default function TestBuilderPage() {
                   />
                 )}
               </div>
-            </>
-          ) : (
-            <div className="flex-1 rounded-xl border border-white/10 bg-surface/50 backdrop-blur-md flex flex-col items-center justify-center text-muted-foreground min-h-[400px]">
-              <div className="text-4xl mb-4">🖼️</div>
-              <p>Select an image to view and add expected results</p>
-            </div>
-          )}
         </div>
       </div>
+
+      {/* Quantity Modal */}
+      {itemToAdd && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+          <div className="w-full max-w-sm rounded-xl border border-white/10 bg-surface p-6 shadow-2xl">
+            <h3 className="mb-4 text-lg font-semibold">Add Quantity</h3>
+            <div className="flex items-center gap-4 mb-6">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <div className={`shrink-0 w-12 h-12 rounded-md ${getRarityBg(itemToAdd.rarity)} flex items-center justify-center overflow-hidden`}>
+                <img src={itemToAdd.image} alt={itemToAdd.name} className="w-full h-full object-contain" />
+              </div>
+              <div className="flex-1">
+                <div className="font-medium truncate">{itemToAdd.name}</div>
+              </div>
+            </div>
+            <input
+              type="number"
+              autoFocus
+              value={quantityToAdd}
+              onChange={(e) => setQuantityToAdd(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") confirmAddItem();
+                if (e.key === "Escape") setItemToAdd(null);
+              }}
+              className="w-full rounded-md border border-white/10 bg-background/50 px-4 py-3 text-lg font-semibold focus:outline-none focus:ring-2 focus:ring-primary mb-6"
+              min="1"
+            />
+            <div className="flex gap-3 justify-end">
+              <button 
+                onClick={() => setItemToAdd(null)} 
+                className="px-4 py-2 text-sm rounded-md border border-white/10 hover:bg-white/5 transition-colors"
+              >
+                Cancel
+              </button>
+              <button 
+                onClick={confirmAddItem} 
+                className="px-4 py-2 text-sm rounded-md bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors"
+              >
+                Add Item
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

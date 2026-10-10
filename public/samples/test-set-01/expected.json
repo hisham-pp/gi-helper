@@ -29,6 +29,16 @@
       "id": "dead-ley-line-branch",
       "name": "Dead Ley Line Branch",
       "quantity": 154
+    },
+    {
+      "id": "chaos-core",
+      "name": "Chaos Core",
+      "quantity": 10
+    },
+    {
+      "id": "chaos-circuit",
+      "name": "Chaos Circuit",
+      "quantity": 47
     }
   ]
 }
