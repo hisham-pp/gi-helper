@@ -13,7 +13,8 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "test": "npx tsx --test tests/**/*.test.ts",
-    "test:cv": "npx tsx --test tests/cv/hasher.test.ts"
+    "test:cv": "npx tsx --test tests/cv/hasher.test.ts",
+    "sync-data": "tsx scripts/scrape-materials.ts && tsx scripts/update-families.ts && tsx scripts/generate-hashes.ts"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
