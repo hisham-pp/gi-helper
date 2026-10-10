@@ -137,6 +137,7 @@ export async function analyzeCell(
     colorWeight: hyperparams.colorWeight,
     minConfidence: 0, // Keep all top 5 candidates even if below threshold for debugging!
     expectedRarity: rarity.rarity,
+    neighborNames: hyperparams.neighborNames,
   });
   const matchMs = Math.round(performance.now() - matchStart);
 
@@ -212,6 +213,7 @@ export function reEvaluateCell(
       colorWeight: hyperparams.colorWeight,
       minConfidence: 0,
       expectedRarity: cell.rarity?.rarity,
+      neighborNames: hyperparams.neighborNames,
     },
   );
 

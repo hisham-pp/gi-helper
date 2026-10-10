@@ -24,6 +24,8 @@ export async function processInventoryImages(
     tessedit_char_whitelist: "0123456789",
   });
 
+  let previousMatchName: string | null = null;
+
   for (let i = 0; i < fileArray.length; i++) {
     const file = fileArray[i];
 
@@ -44,14 +46,17 @@ export async function processInventoryImages(
       // 2. Rarity & Star Detection
       const cellRarity = detectCellRarity(cell.cellBitmap);
 
-      // 3. Image Recognition (with rarity weighting)
+      // 3. Image Recognition (with rarity weighting and contextual sibling boosting)
       const fingerprint = await calculateFingerprint(cell.icon);
       const match = findBestMatch(fingerprint, {
         expectedRarity: cellRarity.rarity,
         minConfidence: 0.55,
+        neighborNames: previousMatchName ? [previousMatchName] : undefined,
       });
 
       if (match) {
+        previousMatchName = match.name;
+
         // Look up material metadata (such as true rarity)
         const material = materialsData.find((m) => m.id === match.id);
         const itemRarity = material?.rarity ?? cellRarity.rarity ?? undefined;
@@ -111,6 +116,9 @@ export async function processInventoryImages(
             rarity: itemRarity,
           };
         }
+      } else {
+        // If it was not empty but didn't match anything, we break the chain
+        previousMatchName = null;
       }
 
       cellIndex++;

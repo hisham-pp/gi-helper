@@ -34,6 +34,7 @@ export interface DebugHyperparams {
   emptyThreshold: number; // typically 18
   hashWeight: number; // 0..1
   colorWeight: number; // 0..1
+  neighborNames?: string[];
 }
 
 export interface ScanBenchmark {

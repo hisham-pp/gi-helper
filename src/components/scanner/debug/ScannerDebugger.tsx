@@ -214,11 +214,19 @@ export function ScannerDebugger() {
       let matchedCount = 0;
       let totalQty = 0;
       let sumConfidence = 0;
+      let previousMatchName: string | null = null;
 
       // 3. Process cell by cell
       for (let i = 0; i < slices.length; i++) {
         const slice = slices[i];
-        const cellData = await analyzeCell(slice, hyperparams, worker);
+        
+        // Pass the previous match name for sibling contextual boosting
+        const currentHyperparams = {
+          ...hyperparams,
+          neighborNames: previousMatchName ? [previousMatchName] : undefined
+        };
+        
+        const cellData = await analyzeCell(slice, currentHyperparams, worker);
         const key = `${slice.row}-${slice.col}`;
         results.set(key, cellData);
 
@@ -233,6 +241,9 @@ export function ScannerDebugger() {
           matchedCount++;
           sumConfidence += cellData.matched.confidence;
           totalQty += cellData.ocr ? cellData.ocr.quantity : 1;
+          previousMatchName = cellData.matched.name;
+        } else {
+          previousMatchName = null;
         }
 
         setScanProgress(Math.round(((i + 1) / slices.length) * 100));

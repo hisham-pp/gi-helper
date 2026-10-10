@@ -29,6 +29,7 @@ export interface MatchCandidate {
   colorSim: number;
   hammingDist: number;
   rarityMatch?: boolean;
+  siblingMatch?: boolean;
 }
 
 /**
@@ -43,6 +44,7 @@ export function findTopCandidates(
     colorWeight?: number;
     minConfidence?: number;
     expectedRarity?: number | null;
+    neighborNames?: string[];
   },
 ): MatchCandidate[] {
   const MAX_HASH_BITS = 256;
@@ -93,6 +95,22 @@ export function findTopCandidates(
       }
     }
 
+    let siblingMatch = false;
+    if (options?.neighborNames && material) {
+      const matWords = material.name.toLowerCase().split(/[\s-']+/);
+      for (const neighborName of options.neighborNames) {
+        if (!neighborName) continue;
+        const neighborWords = neighborName.toLowerCase().split(/[\s-']+/);
+        // Look for shared significant words (length >= 4)
+        const sharesWord = matWords.some(w => w.length >= 4 && neighborWords.includes(w));
+        if (sharesWord) {
+          finalScore *= 1.15; // 15% boost if it shares a word with a neighbor (sibling material)
+          siblingMatch = true;
+          break;
+        }
+      }
+    }
+
     const confidence = Math.min(100, Math.round(finalScore * 100));
 
     if (finalScore >= minConfidence) {
@@ -107,6 +125,7 @@ export function findTopCandidates(
         colorSim: Math.round(colorSim * 1000) / 10,
         hammingDist: dist,
         rarityMatch,
+        siblingMatch,
       });
     }
   }
@@ -124,6 +143,7 @@ export function findBestMatch(
   options?: {
     expectedRarity?: number | null;
     minConfidence?: number;
+    neighborNames?: string[];
   },
 ): MatchResult | null {
   const top = findTopCandidates(fingerprint, 1, {
@@ -131,6 +151,7 @@ export function findBestMatch(
     colorWeight: 0.4,
     minConfidence: options?.minConfidence ?? 0.55,
     expectedRarity: options?.expectedRarity,
+    neighborNames: options?.neighborNames,
   });
 
   if (top.length === 0) {
