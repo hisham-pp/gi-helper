@@ -1,6 +1,191 @@
 {
   "items": [
     {
+      "id": "firm-arrowhead",
+      "name": "Firm Arrowhead",
+      "quantity": 80
+    },
+    {
+      "id": "sharp-arrowhead",
+      "name": "Sharp Arrowhead",
+      "quantity": 2
+    },
+    {
+      "id": "weathered-arrowhead",
+      "name": "Weathered Arrowhead",
+      "quantity": 1
+    },
+    {
+      "id": "divining-scroll",
+      "name": "Divining Scroll",
+      "quantity": 462
+    },
+    {
+      "id": "sealed-scroll",
+      "name": "Sealed Scroll",
+      "quantity": 80
+    },
+    {
+      "id": "forbidden-curse-scroll",
+      "name": "Forbidden Curse Scroll",
+      "quantity": 28
+    },
+    {
+      "id": "damaged-mask",
+      "name": "Damaged Mask",
+      "quantity": 270
+    },
+    {
+      "id": "stained-mask",
+      "name": "Stained Mask",
+      "quantity": 45
+    },
+    {
+      "id": "ominous-mask",
+      "name": "Ominous Mask",
+      "quantity": 28
+    },
+    {
+      "id": "slime-condensate",
+      "name": "Slime Condensate",
+      "quantity": 603
+    },
+    {
+      "id": "slime-secretions",
+      "name": "Slime Secretions",
+      "quantity": 128
+    },
+    {
+      "id": "slime-concentrate",
+      "name": "Slime Concentrate",
+      "quantity": 29
+    },
+    {
+      "id": "fractured-lunar-iron",
+      "name": "Fractured Lunar Iron",
+      "quantity": 22
+    },
+    {
+      "id": "depleted-lunar-iron",
+      "name": "Depleted Lunar Iron",
+      "quantity": 7
+    },
+    {
+      "id": "faded-flaming-hilt",
+      "name": "Faded Flaming Hilt",
+      "quantity": 110
+    },
+    {
+      "id": "fractured-flaming-hilt",
+      "name": "Fractured Flaming Hilt",
+      "quantity": 28
+    },
+    {
+      "id": "jeweled-flaming-hilt",
+      "name": "Jeweled Flaming Hilt",
+      "quantity": 6
+    },
+    {
+      "id": "fractured-eye-of-the-deep-shadow",
+      "name": "Fractured Eye of the Deep Shadow",
+      "quantity": 11
+    },
+    {
+      "id": "aberrant-core-of-the-deep-shadow",
+      "name": "Aberrant Core of the Deep Shadow",
+      "quantity": 3
+    },
+    {
+      "id": "mistshroud-manifestation",
+      "name": "Mistshroud Manifestation",
+      "quantity": 17
+    },
+    {
+      "id": "mistshroud-plate",
+      "name": "Mistshroud Plate",
+      "quantity": 5
+    },
+    {
+      "id": "mistshroud-helmet",
+      "name": "Mistshroud Helmet",
+      "quantity": 1
+    },
+    {
+      "id": "lightless-bone",
+      "name": "Lightless Bone",
+      "quantity": 78
+    },
+    {
+      "id": "glowing-remains",
+      "name": "Glowing Remains",
+      "quantity": 24
+    },
+    {
+      "id": "radiant-exoskeleton",
+      "name": "Radiant Exoskeleton",
+      "quantity": 6
+    },
+    {
+      "id": "frostnight-s-glimmer",
+      "name": "Frostnight's Glimmer",
+      "quantity": 66
+    },
+    {
+      "id": "frostnight-s-glow",
+      "name": "Frostnight's Glow",
+      "quantity": 16
+    },
+    {
+      "id": "frostnight-s-glory",
+      "name": "Frostnight's Glory",
+      "quantity": 4
+    },
+    {
+      "id": "refractive-bud",
+      "name": "Refractive Bud",
+      "quantity": 35
+    },
+    {
+      "id": "bewildering-broadleaf",
+      "name": "Bewildering Broadleaf",
+      "quantity": 11
+    },
+    {
+      "id": "illusory-leafcoil",
+      "name": "Illusory Leafcoil",
+      "quantity": 2
+    },
+    {
+      "id": "ignited-stone",
+      "name": "Ignited Stone",
+      "quantity": 5
+    },
+    {
+      "id": "shard-of-a-shattered-will",
+      "name": "Shard of a Shattered Will",
+      "quantity": 12
+    },
+    {
+      "id": "locus-of-a-clear-will",
+      "name": "Locus of a Clear Will",
+      "quantity": 4
+    },
+    {
+      "id": "ruined-hilt",
+      "name": "Ruined Hilt",
+      "quantity": 23
+    },
+    {
+      "id": "splintered-hilt",
+      "name": "Splintered Hilt",
+      "quantity": 5
+    },
+    {
+      "id": "still-smoldering-hilt",
+      "name": "Still-Smoldering Hilt",
+      "quantity": 2
+    },
+    {
       "id": "feathery-fin",
       "name": "Feathery Fin",
       "quantity": 12

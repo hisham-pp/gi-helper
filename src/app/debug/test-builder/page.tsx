@@ -469,8 +469,13 @@ export default function TestBuilderPage() {
                               }`}
                             >
                               {/* eslint-disable-next-line @next/next/no-img-element */}
-                              <div className={`shrink-0 w-8 h-8 rounded ${getRarityBg(m.rarity)} flex items-center justify-center overflow-hidden`}>
-                                <img src={m.image} alt={m.name} className="w-full h-full object-contain" />
+                              <div className={`shrink-0 w-8 h-8 rounded ${getRarityBg(m.rarity)} flex items-center justify-center overflow-hidden relative`}>
+                                <img 
+                                  src={m.image} 
+                                  alt={m.name} 
+                                  className="w-full h-full object-contain" 
+                                  onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                                />
                               </div>
                               <div className="flex-1 min-w-0">
                                 <div className="truncate">{m.name}</div>
@@ -503,10 +508,10 @@ export default function TestBuilderPage() {
                               {/* eslint-disable-next-line @next/next/no-img-element */}
                               <div className={`shrink-0 w-12 h-12 rounded-md ${getRarityBg(rarity)} shadow-sm flex flex-col justify-end overflow-hidden relative`}>
                                 <img 
-                                  src={material?.image || "/images/materials/placeholder.png"} 
+                                  src={material?.image || ""} 
                                   alt={item.name || item.id} 
                                   className="absolute inset-0 w-full h-full object-contain"
-                                  onError={(e) => { (e.target as HTMLImageElement).src = "/images/materials/placeholder.png" }}
+                                  onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
                                 />
                                 <div className="relative z-10 w-full text-center text-[10px] leading-none tracking-widest text-yellow-300 drop-shadow-md pb-0.5 bg-gradient-to-t from-black/60 to-transparent">
                                   {"★".repeat(rarity)}
@@ -573,8 +578,13 @@ export default function TestBuilderPage() {
             <h3 className="mb-4 text-lg font-semibold">Add Quantity</h3>
             <div className="flex items-center gap-4 mb-6">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <div className={`shrink-0 w-12 h-12 rounded-md ${getRarityBg(itemToAdd.rarity)} flex items-center justify-center overflow-hidden`}>
-                <img src={itemToAdd.image} alt={itemToAdd.name} className="w-full h-full object-contain" />
+              <div className={`shrink-0 w-12 h-12 rounded-md ${getRarityBg(itemToAdd.rarity)} flex items-center justify-center overflow-hidden relative`}>
+                <img 
+                  src={itemToAdd.image} 
+                  alt={itemToAdd.name} 
+                  className="w-full h-full object-contain" 
+                  onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                />
               </div>
               <div className="flex-1">
                 <div className="font-medium truncate">{itemToAdd.name}</div>
