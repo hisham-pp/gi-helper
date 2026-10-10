@@ -100,6 +100,18 @@ export function findTopCandidates(
       const matWords = material.name.toLowerCase().split(/[\s-']+/);
       for (const neighborName of options.neighborNames) {
         if (!neighborName) continue;
+        
+        // 1. Check if families match explicitly from scraped JSON data
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const neighborMaterial = materialsData.find((m: any) => m.name === neighborName);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        if ((material as any).family && neighborMaterial && (neighborMaterial as any).family === (material as any).family) {
+          finalScore *= 1.15; // 15% boost for explicit family match
+          siblingMatch = true;
+          break;
+        }
+
+        // 2. Fallback to dynamic string match if no family is defined
         const neighborWords = neighborName.toLowerCase().split(/[\s-']+/);
         // Look for shared significant words (length >= 4)
         const sharesWord = matWords.some(w => w.length >= 4 && neighborWords.includes(w));
