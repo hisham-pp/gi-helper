@@ -1,6 +1,906 @@
 {
   "items": [
     {
+      "id": "artful-device-inheritance",
+      "name": "Artful Device Inheritance",
+      "quantity": 1
+    },
+    {
+      "id": "night-wind-s-mystic-premonition",
+      "name": "Night-Wind's Mystic Premonition",
+      "quantity": 6
+    },
+    {
+      "id": "delirious-desolation-of-the-sacred-lord",
+      "name": "Delirious Desolation of the Sacred Lord",
+      "quantity": 6
+    },
+    {
+      "id": "blazing-sacrificial-heart-s-hesitance",
+      "name": "Blazing Sacrificial Heart's Hesitance",
+      "quantity": 12
+    },
+    {
+      "id": "wine-goblet-of-the-pristine-sea",
+      "name": "Wine Goblet of the Pristine Sea",
+      "quantity": 12
+    },
+    {
+      "id": "sublimation-of-pure-sacred-dewdrop",
+      "name": "Sublimation of Pure Sacred Dewdrop",
+      "quantity": 15
+    },
+    {
+      "id": "chapter-of-an-ancient-chord",
+      "name": "Chapter of an Ancient Chord",
+      "quantity": 12
+    },
+    {
+      "id": "movement-of-an-ancient-chord",
+      "name": "Movement of an Ancient Chord",
+      "quantity": 1
+    },
+    {
+      "id": "mask-of-the-one-horned",
+      "name": "Mask of the One-Horned",
+      "quantity": 3
+    },
+    {
+      "id": "narukami-s-affection",
+      "name": "Narukami's Affection",
+      "quantity": 3
+    },
+    {
+      "id": "jade-branch-of-a-distant-sea",
+      "name": "Jade Branch of a Distant Sea",
+      "quantity": 3
+    },
+    {
+      "id": "grain-of-aerosiderite",
+      "name": "Grain of Aerosiderite",
+      "quantity": 31
+    },
+    {
+      "id": "piece-of-aerosiderite",
+      "name": "Piece of Aerosiderite",
+      "quantity": 6
+    },
+    {
+      "id": "bit-of-aerosiderite",
+      "name": "Bit of Aerosiderite",
+      "quantity": 3
+    },
+    {
+      "id": "mist-veiled-gold-elixir",
+      "name": "Mist Veiled Gold Elixir",
+      "quantity": 3
+    },
+    {
+      "id": "relic-from-guyun",
+      "name": "Relic from Guyun",
+      "quantity": 3
+    },
+    {
+      "id": "fetters-of-the-dandelion-gladiator",
+      "name": "Fetters of the Dandelion Gladiator",
+      "quantity": 2
+    },
+    {
+      "id": "chains-of-the-dandelion-gladiator",
+      "name": "Chains of the Dandelion Gladiator",
+      "quantity": 3
+    },
+    {
+      "id": "shackles-of-the-dandelion-gladiator",
+      "name": "Shackles of the Dandelion Gladiator",
+      "quantity": 2
+    },
+    {
+      "id": "boreal-wolf-s-cracked-tooth",
+      "name": "Boreal Wolf's Cracked Tooth",
+      "quantity": 4
+    },
+    {
+      "id": "boreal-wolf-s-broken-fang",
+      "name": "Boreal Wolf's Broken Fang",
+      "quantity": 4
+    },
+    {
+      "id": "tile-of-decarabian-s-tower",
+      "name": "Tile of Decarabian's Tower",
+      "quantity": 7
+    },
+    {
+      "id": "scattered-piece-of-decarabian-s-dream",
+      "name": "Scattered Piece of Decarabian's Dream",
+      "quantity": 1
+    },
+    {
+      "id": "crown-of-insight",
+      "name": "Crown of Insight",
+      "quantity": 21
+    },
+    {
+      "id": "teachings-of-fortitude",
+      "name": "Teachings of Fortitude",
+      "quantity": 1
+    },
+    {
+      "id": "teachings-of-charity",
+      "name": "Teachings of Charity",
+      "quantity": 2
+    },
+    {
+      "id": "teachings-of-vagrancy",
+      "name": "Teachings of Vagrancy",
+      "quantity": 35
+    },
+    {
+      "id": "guide-to-vagrancy",
+      "name": "Guide to Vagrancy",
+      "quantity": 35
+    },
+    {
+      "id": "philosophies-of-vagrancy",
+      "name": "Philosophies of Vagrancy",
+      "quantity": 8
+    },
+    {
+      "id": "teachings-of-elysium",
+      "name": "Teachings of Elysium",
+      "quantity": 5
+    },
+    {
+      "id": "guide-to-elysium",
+      "name": "Guide to Elysium",
+      "quantity": 4
+    },
+    {
+      "id": "philosophies-of-elysium",
+      "name": "Philosophies of Elysium",
+      "quantity": 3
+    },
+    {
+      "id": "teachings-of-moonlight",
+      "name": "Teachings of Moonlight",
+      "quantity": 31
+    },
+    {
+      "id": "guide-to-moonlight",
+      "name": "Guide to Moonlight",
+      "quantity": 30
+    },
+    {
+      "id": "philosophies-of-moonlight",
+      "name": "Philosophies of Moonlight",
+      "quantity": 3
+    },
+    {
+      "id": "teachings-of-conflict",
+      "name": "Teachings of Conflict",
+      "quantity": 11
+    },
+    {
+      "id": "guide-to-conflict",
+      "name": "Guide to Conflict",
+      "quantity": 11
+    },
+    {
+      "id": "philosophies-of-conflict",
+      "name": "Philosophies of Conflict",
+      "quantity": 9
+    },
+    {
+      "id": "teachings-of-kindling",
+      "name": "Teachings of Kindling",
+      "quantity": 13
+    },
+    {
+      "id": "guide-to-kindling",
+      "name": "Guide to Kindling",
+      "quantity": 21
+    },
+    {
+      "id": "philosophies-of-kindling",
+      "name": "Philosophies of Kindling",
+      "quantity": 7
+    },
+    {
+      "id": "teachings-of-contention",
+      "name": "Teachings of Contention",
+      "quantity": 12
+    },
+    {
+      "id": "guide-to-contention",
+      "name": "Guide to Contention",
+      "quantity": 21
+    },
+    {
+      "id": "philosophies-of-contention",
+      "name": "Philosophies of Contention",
+      "quantity": 8
+    },
+    {
+      "id": "teachings-of-order",
+      "name": "Teachings of Order",
+      "quantity": 15
+    },
+    {
+      "id": "guide-to-order",
+      "name": "Guide to Order",
+      "quantity": 36
+    },
+    {
+      "id": "philosophies-of-order",
+      "name": "Philosophies of Order",
+      "quantity": 6
+    },
+    {
+      "id": "teachings-of-justice",
+      "name": "Teachings of Justice",
+      "quantity": 20
+    },
+    {
+      "id": "guide-to-justice",
+      "name": "Guide to Justice",
+      "quantity": 36
+    },
+    {
+      "id": "philosophies-of-justice",
+      "name": "Philosophies of Justice",
+      "quantity": 10
+    },
+    {
+      "id": "teachings-of-equity",
+      "name": "Teachings of Equity",
+      "quantity": 9
+    },
+    {
+      "id": "guide-to-equity",
+      "name": "Guide to Equity",
+      "quantity": 17
+    },
+    {
+      "id": "philosophies-of-equity",
+      "name": "Philosophies of Equity",
+      "quantity": 10
+    },
+    {
+      "id": "teachings-of-praxis",
+      "name": "Teachings of Praxis",
+      "quantity": 10
+    },
+    {
+      "id": "guide-to-praxis",
+      "name": "Guide to Praxis",
+      "quantity": 12
+    },
+    {
+      "id": "philosophies-of-praxis",
+      "name": "Philosophies of Praxis",
+      "quantity": 6
+    },
+    {
+      "id": "teachings-of-ingenuity",
+      "name": "Teachings of Ingenuity",
+      "quantity": 20
+    },
+    {
+      "id": "guide-to-ingenuity",
+      "name": "Guide to Ingenuity",
+      "quantity": 18
+    },
+    {
+      "id": "philosophies-of-ingenuity",
+      "name": "Philosophies of Ingenuity",
+      "quantity": 11
+    },
+    {
+      "id": "teachings-of-admonition",
+      "name": "Teachings of Admonition",
+      "quantity": 14
+    },
+    {
+      "id": "guide-to-admonition",
+      "name": "Guide to Admonition",
+      "quantity": 1
+    },
+    {
+      "id": "philosophies-of-admonition",
+      "name": "Philosophies of Admonition",
+      "quantity": 5
+    },
+    {
+      "id": "teachings-of-light",
+      "name": "Teachings of Light",
+      "quantity": 21
+    },
+    {
+      "id": "guide-to-light",
+      "name": "Guide to Light",
+      "quantity": 18
+    },
+    {
+      "id": "philosophies-of-light",
+      "name": "Philosophies of Light",
+      "quantity": 11
+    },
+    {
+      "id": "teachings-of-elegance",
+      "name": "Teachings of Elegance",
+      "quantity": 20
+    },
+    {
+      "id": "guide-to-elegance",
+      "name": "Guide to Elegance",
+      "quantity": 15
+    },
+    {
+      "id": "philosophies-of-elegance",
+      "name": "Philosophies of Elegance",
+      "quantity": 13
+    },
+    {
+      "id": "teachings-of-transience",
+      "name": "Teachings of Transience",
+      "quantity": 16
+    },
+    {
+      "id": "guide-to-transience",
+      "name": "Guide to Transience",
+      "quantity": 16
+    },
+    {
+      "id": "philosophies-of-transience",
+      "name": "Philosophies of Transience",
+      "quantity": 16
+    },
+    {
+      "id": "teachings-of-gold",
+      "name": "Teachings of Gold",
+      "quantity": 61
+    },
+    {
+      "id": "guide-to-gold",
+      "name": "Guide to Gold",
+      "quantity": 34
+    },
+    {
+      "id": "philosophies-of-gold",
+      "name": "Philosophies of Gold",
+      "quantity": 7
+    },
+    {
+      "id": "teachings-of-diligence",
+      "name": "Teachings of Diligence",
+      "quantity": 45
+    },
+    {
+      "id": "guide-to-diligence",
+      "name": "Guide to Diligence",
+      "quantity": 45
+    },
+    {
+      "id": "philosophies-of-diligence",
+      "name": "Philosophies of Diligence",
+      "quantity": 7
+    },
+    {
+      "id": "teachings-of-prosperity",
+      "name": "Teachings of Prosperity",
+      "quantity": 1
+    },
+    {
+      "id": "guide-to-prosperity",
+      "name": "Guide to Prosperity",
+      "quantity": 9
+    },
+    {
+      "id": "philosophies-of-prosperity",
+      "name": "Philosophies of Prosperity",
+      "quantity": 7
+    },
+    {
+      "id": "teachings-of-ballad",
+      "name": "Teachings of Ballad",
+      "quantity": 25
+    },
+    {
+      "id": "guide-to-ballad",
+      "name": "Guide to Ballad",
+      "quantity": 3
+    },
+    {
+      "id": "philosophies-of-ballad",
+      "name": "Philosophies of Ballad",
+      "quantity": 4
+    },
+    {
+      "id": "teachings-of-resistance",
+      "name": "Teachings of Resistance",
+      "quantity": 6
+    },
+    {
+      "id": "guide-to-resistance",
+      "name": "Guide to Resistance",
+      "quantity": 3
+    },
+    {
+      "id": "philosophies-of-resistance",
+      "name": "Philosophies of Resistance",
+      "quantity": 8
+    },
+    {
+      "id": "teachings-of-freedom",
+      "name": "Teachings of Freedom",
+      "quantity": 14
+    },
+    {
+      "id": "philosophies-of-freedom",
+      "name": "Philosophies of Freedom",
+      "quantity": 5
+    },
+    {
+      "id": "prithiva-topaz-sliver",
+      "name": "Prithiva Topaz Sliver",
+      "quantity": 89
+    },
+    {
+      "id": "prithiva-topaz-fragment",
+      "name": "Prithiva Topaz Fragment",
+      "quantity": 77
+    },
+    {
+      "id": "prithiva-topaz-chunk",
+      "name": "Prithiva Topaz Chunk",
+      "quantity": 7
+    },
+    {
+      "id": "shivada-jade-sliver",
+      "name": "Shivada Jade Sliver",
+      "quantity": 22
+    },
+    {
+      "id": "shivada-jade-fragment",
+      "name": "Shivada Jade Fragment",
+      "quantity": 18
+    },
+    {
+      "id": "shivada-jade-chunk",
+      "name": "Shivada Jade Chunk",
+      "quantity": 2
+    },
+    {
+      "id": "shivada-jade-gemstone",
+      "name": "Shivada Jade Gemstone",
+      "quantity": 1
+    },
+    {
+      "id": "vayuda-turquoise-sliver",
+      "name": "Vayuda Turquoise Sliver",
+      "quantity": 80
+    },
+    {
+      "id": "vayuda-turquoise-fragment",
+      "name": "Vayuda Turquoise Fragment",
+      "quantity": 56
+    },
+    {
+      "id": "vayuda-turquoise-chunk",
+      "name": "Vayuda Turquoise Chunk",
+      "quantity": 3
+    },
+    {
+      "id": "vajrada-amethyst-sliver",
+      "name": "Vajrada Amethyst Sliver",
+      "quantity": 190
+    },
+    {
+      "id": "vajrada-amethyst-fragment",
+      "name": "Vajrada Amethyst Fragment",
+      "quantity": 172
+    },
+    {
+      "id": "vajrada-amethyst-chunk",
+      "name": "Vajrada Amethyst Chunk",
+      "quantity": 15
+    },
+    {
+      "id": "nagadus-emerald-sliver",
+      "name": "Nagadus Emerald Sliver",
+      "quantity": 87
+    },
+    {
+      "id": "nagadus-emerald-fragment",
+      "name": "Nagadus Emerald Fragment",
+      "quantity": 46
+    },
+    {
+      "id": "nagadus-emerald-chunk",
+      "name": "Nagadus Emerald Chunk",
+      "quantity": 7
+    },
+    {
+      "id": "varunada-lazurite-sliver",
+      "name": "Varunada Lazurite Sliver",
+      "quantity": 128
+    },
+    {
+      "id": "varunada-lazurite-fragment",
+      "name": "Varunada Lazurite Fragment",
+      "quantity": 41
+    },
+    {
+      "id": "agnidus-agate-sliver",
+      "name": "Agnidus Agate Sliver",
+      "quantity": 125
+    },
+    {
+      "id": "agnidus-agate-fragment",
+      "name": "Agnidus Agate Fragment",
+      "quantity": 84
+    },
+    {
+      "id": "agnidus-agate-chunk",
+      "name": "Agnidus Agate Chunk",
+      "quantity": 4
+    },
+    {
+      "id": "agnidus-agate-gemstone",
+      "name": "Agnidus Agate Gemstone",
+      "quantity": 1
+    },
+    {
+      "id": "vagabond-s-cracked-armor",
+      "name": "Vagabond's Cracked Armor",
+      "quantity": 6
+    },
+    {
+      "id": "unscorched-blossom-branch",
+      "name": "Unscorched Blossom Branch",
+      "quantity": 8
+    },
+    {
+      "id": "plume-of-the-fallen-watcher",
+      "name": "Plume of the Fallen Watcher",
+      "quantity": 12
+    },
+    {
+      "id": "remnant-of-the-dreadwing",
+      "name": "Remnant of the Dreadwing",
+      "quantity": 6
+    },
+    {
+      "id": "cyclic-military-kuuvahki-core",
+      "name": "Cyclic Military Kuuvahki Core",
+      "quantity": 46
+    },
+    {
+      "id": "lightbearing-scale-feather",
+      "name": "Lightbearing Scale-Feather",
+      "quantity": 48
+    },
+    {
+      "id": "sparkless-statue-core",
+      "name": "Sparkless Statue Core",
+      "quantity": 6
+    },
+    {
+      "id": "cloudseam-scale",
+      "name": "Cloudseam Scale",
+      "quantity": 46
+    },
+    {
+      "id": "-tourbillon-device-",
+      "name": "\"Tourbillon Device\"",
+      "quantity": 46
+    },
+    {
+      "id": "emperor-s-resolution",
+      "name": "Emperor's Resolution",
+      "quantity": 45
+    },
+    {
+      "id": "quelled-creeper",
+      "name": "Quelled Creeper",
+      "quantity": 46
+    },
+    {
+      "id": "thunderclap-fruitcore",
+      "name": "Thunderclap Fruitcore",
+      "quantity": 48
+    },
+    {
+      "id": "majestic-hooked-beak",
+      "name": "Majestic Hooked Beak",
+      "quantity": 47
+    },
+    {
+      "id": "dragonheir-s-false-fin",
+      "name": "Dragonheir's False Fin",
+      "quantity": 2
+    },
+    {
+      "id": "storm-beads",
+      "name": "Storm Beads",
+      "quantity": 3
+    },
+    {
+      "id": "dew-of-repudiation",
+      "name": "Dew of Repudiation",
+      "quantity": 26
+    },
+    {
+      "id": "juvenile-jade",
+      "name": "Juvenile Jade",
+      "quantity": 46
+    },
+    {
+      "id": "cleansing-heart",
+      "name": "Cleansing Heart",
+      "quantity": 45
+    },
+    {
+      "id": "everflame-seed",
+      "name": "Everflame Seed",
+      "quantity": 100
+    },
+    {
+      "id": "basalt-pillar",
+      "name": "Basalt Pillar",
+      "quantity": 41
+    },
+    {
+      "id": "lightning-prism",
+      "name": "Lightning Prism",
+      "quantity": 176
+    },
+    {
+      "id": "hurricane-seed",
+      "name": "Hurricane Seed",
+      "quantity": 51
+    },
+    {
+      "id": "the-cornerstone-of-stars-and-flames",
+      "name": "The Cornerstone of Stars and Flames",
+      "quantity": 11
+    },
+    {
+      "id": "shadow-of-the-warrior",
+      "name": "Shadow of the Warrior",
+      "quantity": 1
+    },
+    {
+      "id": "tusk-of-monoceros-caeli",
+      "name": "Tusk of Monoceros Caeli",
+      "quantity": 1
+    },
+    {
+      "id": "spirit-locket-of-boreas",
+      "name": "Spirit Locket of Boreas",
+      "quantity": 4
+    },
+    {
+      "id": "ring-of-boreas",
+      "name": "Ring of Boreas",
+      "quantity": 4
+    },
+    {
+      "id": "tail-of-boreas",
+      "name": "Tail of Boreas",
+      "quantity": 3
+    },
+    {
+      "id": "dvalin-s-sigh",
+      "name": "Dvalin's Sigh",
+      "quantity": 4
+    },
+    {
+      "id": "dvalin-s-claw",
+      "name": "Dvalin's Claw",
+      "quantity": 3
+    },
+    {
+      "id": "dvalin-s-plume",
+      "name": "Dvalin's Plume",
+      "quantity": 5
+    },
+    {
+      "id": "chimeric-core",
+      "name": "Chimeric Core",
+      "quantity": 18
+    },
+    {
+      "id": "symbiotic-chimeric-nucleus",
+      "name": "Symbiotic Chimeric Nucleus",
+      "quantity": 13
+    },
+    {
+      "id": "ethereal-glimmershard",
+      "name": "Ethereal Glimmershard",
+      "quantity": 26
+    },
+    {
+      "id": "ethereal-crystal",
+      "name": "Ethereal Crystal",
+      "quantity": 13
+    },
+    {
+      "id": "immaculate-warrant",
+      "name": "Immaculate Warrant",
+      "quantity": 23
+    },
+    {
+      "id": "frost-etched-warrant",
+      "name": "Frost-Etched Warrant",
+      "quantity": 4
+    },
+    {
+      "id": "broken-drive-shaft",
+      "name": "Broken Drive Shaft",
+      "quantity": 65
+    },
+    {
+      "id": "reinforced-drive-shaft",
+      "name": "Reinforced Drive Shaft",
+      "quantity": 32
+    },
+    {
+      "id": "precision-drive-shaft",
+      "name": "Precision Drive Shaft",
+      "quantity": 4
+    },
+    {
+      "id": "sentry-s-wooden-whistle",
+      "name": "Sentry's Wooden Whistle",
+      "quantity": 85
+    },
+    {
+      "id": "warrior-s-metal-whistle",
+      "name": "Warrior's Metal Whistle",
+      "quantity": 24
+    },
+    {
+      "id": "saurian-crowned-warrior-s-golden-whistle",
+      "name": "Saurian-Crowned Warrior's Golden Whistle",
+      "quantity": 4
+    },
+    {
+      "id": "juvenile-fang",
+      "name": "Juvenile Fang",
+      "quantity": 39
+    },
+    {
+      "id": "seasoned-fang",
+      "name": "Seasoned Fang",
+      "quantity": 14
+    },
+    {
+      "id": "meshing-gear",
+      "name": "Meshing Gear",
+      "quantity": 166
+    },
+    {
+      "id": "mechanical-spur-gear",
+      "name": "Mechanical Spur Gear",
+      "quantity": 36
+    },
+    {
+      "id": "artificed-dynamic-gear",
+      "name": "Artificed Dynamic Gear",
+      "quantity": 8
+    },
+    {
+      "id": "transoceanic-pearl",
+      "name": "Transoceanic Pearl",
+      "quantity": 23
+    },
+    {
+      "id": "transoceanic-chunk",
+      "name": "Transoceanic Chunk",
+      "quantity": 2
+    },
+    {
+      "id": "xenochromatic-crystal",
+      "name": "Xenochromatic Crystal",
+      "quantity": 1
+    },
+    {
+      "id": "faded-red-satin",
+      "name": "Faded Red Satin",
+      "quantity": 138
+    },
+    {
+      "id": "trimmed-red-silk",
+      "name": "Trimmed Red Silk",
+      "quantity": 31
+    },
+    {
+      "id": "rich-red-brocade",
+      "name": "Rich Red Brocade",
+      "quantity": 8
+    },
+    {
+      "id": "fungal-spores",
+      "name": "Fungal Spores",
+      "quantity": 74
+    },
+    {
+      "id": "luminescent-pollen",
+      "name": "Luminescent Pollen",
+      "quantity": 16
+    },
+    {
+      "id": "crystalline-cyst-dust",
+      "name": "Crystalline Cyst Dust",
+      "quantity": 7
+    },
+    {
+      "id": "spectral-husk",
+      "name": "Spectral Husk",
+      "quantity": 17
+    },
+    {
+      "id": "spectral-heart",
+      "name": "Spectral Heart",
+      "quantity": 3
+    },
+    {
+      "id": "old-handguard",
+      "name": "Old Handguard",
+      "quantity": 268
+    },
+    {
+      "id": "kageuchi-handguard",
+      "name": "Kageuchi Handguard",
+      "quantity": 33
+    },
+    {
+      "id": "famed-handguard",
+      "name": "Famed Handguard",
+      "quantity": 14
+    },
+    {
+      "id": "whopperflower-nectar",
+      "name": "Whopperflower Nectar",
+      "quantity": 144
+    },
+    {
+      "id": "shimmering-nectar",
+      "name": "Shimmering Nectar",
+      "quantity": 4
+    },
+    {
+      "id": "treasure-hoarder-insignia",
+      "name": "Treasure Hoarder Insignia",
+      "quantity": 376
+    },
+    {
+      "id": "silver-raven-insignia",
+      "name": "Silver Raven Insignia",
+      "quantity": 52
+    },
+    {
+      "id": "golden-raven-insignia",
+      "name": "Golden Raven Insignia",
+      "quantity": 4
+    },
+    {
+      "id": "recruit-s-insignia",
+      "name": "Recruit's Insignia",
+      "quantity": 374
+    },
+    {
+      "id": "sergeant-s-insignia",
+      "name": "Sergeant's Insignia",
+      "quantity": 74
+    },
+    {
+      "id": "lieutenant-s-insignia",
+      "name": "Lieutenant's Insignia",
+      "quantity": 21
+    },
+    {
       "id": "firm-arrowhead",
       "name": "Firm Arrowhead",
       "quantity": 80

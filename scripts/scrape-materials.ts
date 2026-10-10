@@ -10,7 +10,13 @@ const USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
 
 async function downloadImage(url: string, filename: string): Promise<boolean> {
   try {
-    const response = await fetch(url, { headers: { "User-Agent": USER_AGENT } });
+    const response = await fetch(url, { 
+      headers: { 
+        "User-Agent": USER_AGENT,
+        "Accept": "image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8",
+        "Referer": "https://genshin-impact.fandom.com/"
+      } 
+    });
     if (!response.ok)
       throw new Error(`unexpected response ${response.status} ${response.statusText}`);
     const buffer = await response.arrayBuffer();
@@ -24,7 +30,8 @@ async function downloadImage(url: string, filename: string): Promise<boolean> {
 async function getFandomImageUrl(itemName: string): Promise<string | null> {
   try {
     const formattedName = itemName.replace(/ /g, "_");
-    const apiUrl = `https://genshin-impact.fandom.com/api.php?action=query&titles=File:Item_${formattedName}.png&prop=imageinfo&iiprop=url&format=json`;
+    const title = encodeURIComponent(`File:Item_${formattedName}.png`);
+    const apiUrl = `https://genshin-impact.fandom.com/api.php?action=query&titles=${title}&prop=imageinfo&iiprop=url&format=json`;
     const res = await fetch(apiUrl, { headers: { "User-Agent": USER_AGENT } });
     if (!res.ok) return null;
     const data = await res.json();
@@ -32,7 +39,12 @@ async function getFandomImageUrl(itemName: string): Promise<string | null> {
     if (!pages) return null;
     const pageId = Object.keys(pages)[0];
     if (pageId === "-1") return null;
-    return pages[pageId].imageinfo?.[0]?.url || null;
+    
+    let url = pages[pageId].imageinfo?.[0]?.url || null;
+    if (url) {
+      url = url.split('/revision')[0];
+    }
+    return url;
   } catch (e) {
     return null;
   }
