@@ -32,47 +32,51 @@ export function Scanner() {
 
   // Save to localStorage whenever detected items change
   useEffect(() => {
-    localStorage.setItem("scanner_detected_items", JSON.stringify(detectedItems));
+    localStorage.setItem(
+      "scanner_detected_items",
+      JSON.stringify(detectedItems),
+    );
   }, [detectedItems]);
 
-  const handleFiles = useCallback(
-    async (files: FileList | File[]) => {
-      if (!files || files.length === 0) return;
+  const handleFiles = useCallback(async (files: FileList | File[]) => {
+    if (!files || files.length === 0) return;
 
-      setIsScanning(true);
-      setProgress(0);
+    setIsScanning(true);
+    setProgress(0);
 
-      try {
-        setLastUploadedFile(files[0]); // Save one for calibration testing
-        // Run the new Computer Vision based image scanner
-        const newItems = await processInventoryImages(files, gridConfig, (progressVal) => {
+    try {
+      setLastUploadedFile(files[0]); // Save one for calibration testing
+      // Run the new Computer Vision based image scanner
+      const newItems = await processInventoryImages(
+        files,
+        gridConfig,
+        (progressVal) => {
           setProgress(progressVal);
-        });
-        
-        // Merge with existing items
-        setDetectedItems((prev) => {
-          const merged = [...prev];
-          for (const item of newItems) {
-            const existing = merged.find(i => i.id === item.id);
-            if (existing) {
-              existing.quantity += item.quantity;
-            } else {
-              merged.push(item);
-            }
-          }
-          return merged;
-        });
+        },
+      );
 
-        toast.success("Scanning complete!");
-      } catch (error) {
-        console.error("OCR Error:", error);
-        toast.error("Failed to scan images. Please try again.");
-      } finally {
-        setIsScanning(false);
-      }
-    },
-    []
-  );
+      // Merge with existing items
+      setDetectedItems((prev) => {
+        const merged = [...prev];
+        for (const item of newItems) {
+          const existing = merged.find((i) => i.id === item.id);
+          if (existing) {
+            existing.quantity += item.quantity;
+          } else {
+            merged.push(item);
+          }
+        }
+        return merged;
+      });
+
+      toast.success("Scanning complete!");
+    } catch (error) {
+      console.error("OCR Error:", error);
+      toast.error("Failed to scan images. Please try again.");
+    } finally {
+      setIsScanning(false);
+    }
+  }, []);
 
   const handleClear = () => {
     if (confirm("Are you sure you want to clear all scanned items?")) {
@@ -91,58 +95,63 @@ export function Scanner() {
   };
 
   const handleUpdateQuantity = (id: string, quantity: number) => {
-    setDetectedItems(prev => prev.map(item => 
-      item.id === id ? { ...item, quantity: Math.max(1, quantity) } : item
-    ));
+    setDetectedItems((prev) =>
+      prev.map((item) =>
+        item.id === id ? { ...item, quantity: Math.max(1, quantity) } : item,
+      ),
+    );
   };
 
   const handleRemoveItem = (id: string) => {
-    setDetectedItems(prev => prev.filter(item => item.id !== id));
+    setDetectedItems((prev) => prev.filter((item) => item.id !== id));
   };
 
   return (
-    <div className="w-full max-w-5xl mx-auto space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-700">
-      <div className="text-center space-y-4">
-        <h1 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight drop-shadow-[0_4px_10px_rgba(0,0,0,0.5)]">
+    <div className="animate-in fade-in slide-in-from-bottom-4 mx-auto w-full max-w-5xl space-y-10 duration-700">
+      <div className="space-y-4 text-center">
+        <h1 className="text-4xl font-extrabold tracking-tight text-white drop-shadow-[0_4px_10px_rgba(0,0,0,0.5)] md:text-5xl">
           Inventory Scanner
         </h1>
-        <p className="text-lg text-white/90 max-w-2xl mx-auto leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
-          Upload screenshots of your Genshin Impact inventory to instantly extract materials.
-          Review, adjust quantities, and export directly to .GOOD format for your favorite optimizers.
+        <p className="mx-auto max-w-2xl text-lg leading-relaxed text-white/90 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
+          Upload screenshots of your Genshin Impact inventory to instantly
+          extract materials. Review, adjust quantities, and export directly to
+          .GOOD format for your favorite optimizers.
         </p>
       </div>
 
-      <div className="flex justify-center relative z-10">
-        <button 
+      <div className="relative z-10 flex justify-center">
+        <button
           onClick={() => setShowCalibration(!showCalibration)}
-          className="text-sm font-bold text-white hover:text-primary drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] transition-colors bg-black/20 px-4 py-2 rounded-full border border-white/10 hover:border-white/30 backdrop-blur-md"
+          className="rounded-full border border-white/10 bg-black/20 px-4 py-2 text-sm font-bold text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] backdrop-blur-md transition-colors hover:border-white/30 hover:text-primary"
         >
-          {showCalibration ? "Hide Calibration Tools" : "Having accuracy issues? Try Grid Calibration"}
+          {showCalibration
+            ? "Hide Calibration Tools"
+            : "Having accuracy issues? Try Grid Calibration"}
         </button>
       </div>
 
       {showCalibration && lastUploadedFile && (
-        <GridCalibration 
-          imageFile={lastUploadedFile} 
-          config={gridConfig} 
-          onChange={setGridConfig} 
+        <GridCalibration
+          imageFile={lastUploadedFile}
+          config={gridConfig}
+          onChange={setGridConfig}
         />
       )}
       {showCalibration && !lastUploadedFile && (
-        <div className="relative text-center text-sm font-medium text-white drop-shadow-md bg-white/5 backdrop-blur-md p-4 rounded-xl border border-white/10 shadow-lg">
+        <div className="relative rounded-xl border border-white/10 bg-white/5 p-4 text-center text-sm font-medium text-white shadow-lg drop-shadow-md backdrop-blur-md">
           Upload an image first to use the Calibration Tool.
         </div>
       )}
 
-      <UploadZone 
-        isScanning={isScanning} 
-        progress={progress} 
-        onFilesSelected={handleFiles} 
+      <UploadZone
+        isScanning={isScanning}
+        progress={progress}
+        onFilesSelected={handleFiles}
       />
 
-      <ResultGrid 
-        items={detectedItems} 
-        onClear={handleClear} 
+      <ResultGrid
+        items={detectedItems}
+        onClear={handleClear}
         onExport={handleExport}
         onUpdateQuantity={handleUpdateQuantity}
         onRemoveItem={handleRemoveItem}

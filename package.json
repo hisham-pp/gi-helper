@@ -12,10 +12,8 @@
     "start": "next start",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "db:migrate": "prisma migrate dev",
-    "db:seed": "prisma db seed",
-    "repo:sync": "bash scripts/fetch-genshindev-assets.sh",
-    "seed:sync:materials": "tsx scripts/sync-material-seed.ts"
+    "test": "npx tsx --test tests/**/*.test.ts",
+    "test:cv": "npx tsx --test tests/cv/hasher.test.ts"
   },
   "pnpm": {
     "onlyBuiltDependencies": [

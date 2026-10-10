@@ -3,19 +3,31 @@
 import React, { useEffect, useState } from "react";
 
 export function BackgroundEffects() {
-  const [particles, setParticles] = useState<Array<{ id: number; size: number; left: number; duration: number; delay: number; color: string; swayDuration: number; swayType: string; blur: number }>>([]);
+  const [particles, setParticles] = useState<
+    Array<{
+      id: number;
+      size: number;
+      left: number;
+      duration: number;
+      delay: number;
+      color: string;
+      swayDuration: number;
+      swayType: string;
+      blur: number;
+    }>
+  >([]);
 
   useEffect(() => {
     // Generate magical, ethereal floating motes
     const newParticles = [];
     const colors = [
       "110, 247, 246", // Anemo Teal
-      "255, 215, 0",   // Geo Gold
+      "255, 215, 0", // Geo Gold
       "255, 255, 255", // Pure White
       "186, 120, 255", // Electro Purple
-      "165, 200, 59",  // Dendro Green
-      "58, 203, 255",  // Hydro Blue
-      "255, 110, 80",  // Pyro Red/Orange
+      "165, 200, 59", // Dendro Green
+      "58, 203, 255", // Hydro Blue
+      "255, 110, 80", // Pyro Red/Orange
       "153, 255, 255", // Cryo Ice
     ];
 
@@ -75,12 +87,15 @@ export function BackgroundEffects() {
           animation: sweep 15s ease-in-out infinite;
         }
       `}</style>
-      <div className="fixed inset-0 overflow-hidden pointer-events-none" style={{ zIndex: 0 }}>
+      <div
+        className="pointer-events-none fixed inset-0 overflow-hidden"
+        style={{ zIndex: 0 }}
+      >
         {/* Ethereal Floating Motes */}
         {particles.map((p) => (
           <div
             key={p.id}
-            className="absolute anim-float-up opacity-0"
+            className="anim-float-up absolute opacity-0"
             style={{
               left: `${p.left}%`,
               bottom: "-10%",
@@ -101,9 +116,9 @@ export function BackgroundEffects() {
             />
           </div>
         ))}
-        
+
         {/* Subtle sweeping light rays */}
-        <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/5 to-white/0 anim-sweep w-[200%] h-full opacity-30 transform -rotate-45" />
+        <div className="anim-sweep absolute inset-0 h-full w-[200%] -rotate-45 transform bg-gradient-to-tr from-white/0 via-white/5 to-white/0 opacity-30" />
       </div>
     </>
   );

@@ -17,105 +17,278 @@ export interface GridConfig {
 }
 
 /**
- * Standard 16:9 Genshin Inventory layout approximations (scaled to 1920x1080)
+ * Standard 16:9 Genshin Inventory layout approximations (calibrated at 1080p base: 1920x1080)
+ * Scaled to 2800x1272: startX=347, startY=175, cellWidth=180, cellHeight=223, gapX=35, gapY=33
  */
 export const GENSHIN_1080P_GRID: GridConfig = {
   columns: 7,
-  rows: 4,
-  startX: 240,   
-  startY: 180,   
-  cellWidth: 120,
-  cellHeight: 140,
-  gapX: 16,
-  gapY: 16,
+  rows: 5,
+  startX: 295,
+  startY: 149,
+  cellWidth: 153,
+  cellHeight: 189,
+  gapX: 30,
+  gapY: 28,
 };
 
 /**
- * Automatically calculates the perfect grid configuration for any given image
- * resolution and aspect ratio (e.g., 4K, 1440p, Ultrawide 21:9, Mobile).
- * Genshin Impact scales its UI based on the screen's height.
+ * Detects if the uploaded image is a single cropped material rather than a full inventory grid.
+ * A full Genshin inventory grid is at least 7 columns wide (~936px minimum).
+ * If the image is small (width < 650 or height < 450) or roughly square/portrait (aspect ratio < 1.25),
+ * it is a single cropped material or cell.
+ */
+export function isSingleItemImage(width: number, height: number): boolean {
+  return width < 650 || height < 450 || width / height < 1.25;
+}
+
+/**
+ * Automatically calculates the calibrated grid configuration for any given image
+ * resolution and aspect ratio (e.g., 4K, 1440p, Ultrawide 21:9, Mobile, or Single Item Crop).
+ * Genshin Impact scales its inventory UI based on the screen's height.
  */
 export function autoDetectGrid(width: number, height: number): GridConfig {
+  // If the user uploaded a cropped image of a single material, treat it as 1 cell!
+  if (isSingleItemImage(width, height)) {
+    return {
+      columns: 1,
+      rows: 1,
+      startX: 0,
+      startY: 0,
+      cellWidth: width,
+      cellHeight: height,
+      gapX: 0,
+      gapY: 0,
+    };
+  }
+
   // UI scales based on height relative to 1080p
   const scale = height / 1080;
+  const baseRows = Math.ceil((height - 149 * scale) / ((189 + 28) * scale));
 
-  // Calculate the 16:9 safe zone (Genshin anchors its UI to a 16:9 center on ultrawide displays)
-  const safeZoneWidth = height * (16 / 9);
-  
-  // Calculate horizontal pillarbox if aspect ratio is wider than 16:9
-  const emptySpaceX = Math.max(0, width - safeZoneWidth) / 2;
-
-  // Base 1080p constants
-  const baseCellWidth = 120;
-  const baseCellHeight = 140;
-  const baseGapX = 16;
-  const baseGapY = 16;
-  const baseColumns = 7;
-  const baseRows = Math.floor((height - (180 * scale)) / ((baseCellHeight + baseGapY) * scale)); // Dynamically count visible rows
-
-  // Calculate scaled configuration
   return {
-    columns: baseColumns,
-    rows: Math.min(5, Math.max(3, baseRows)), // usually 4 rows are fully visible, sometimes 5 on weird ratios
-    startX: Math.round(emptySpaceX + (240 * scale)),
-    startY: Math.round(180 * scale),
-    cellWidth: Math.round(baseCellWidth * scale),
-    cellHeight: Math.round(baseCellHeight * scale),
-    gapX: Math.round(baseGapX * scale),
-    gapY: Math.round(baseGapY * scale),
+    columns: 7,
+    rows: Math.min(6, Math.max(3, baseRows)),
+    startX: Math.round(295 * scale),
+    startY: Math.round(149 * scale),
+    cellWidth: Math.round(153 * scale),
+    cellHeight: Math.round(189 * scale),
+    gapX: Math.round(30 * scale),
+    gapY: Math.round(28 * scale),
   };
 }
 
-export async function sliceGridFromImage(
-  file: File, 
-  config?: GridConfig
-): Promise<{ icon: ImageBitmap, quantityArea: ImageBitmap }[]> {
-  const imageBitmap = await createImageBitmap(file);
-  
-  // If no config provided, auto-calculate it based on the image dimensions
-  const activeConfig = config || autoDetectGrid(imageBitmap.width, imageBitmap.height);
+export interface DetailedCellSlice {
+  row: number;
+  col: number;
+  index: number;
+  cellRect: { x: number; y: number; width: number; height: number };
+  iconRect: { x: number; y: number; width: number; height: number };
+  starRect: { x: number; y: number; width: number; height: number };
+  quantityRect: { x: number; y: number; width: number; height: number };
+  cellBitmap: ImageBitmap;
+  iconBitmap: ImageBitmap;
+  starBitmap: ImageBitmap;
+  quantityBitmap: ImageBitmap;
+}
 
-  const cells: { icon: ImageBitmap, quantityArea: ImageBitmap }[] = [];
+export async function sliceDetailedGridFromBitmap(
+  imageBitmap: ImageBitmap,
+  config?: GridConfig,
+): Promise<DetailedCellSlice[]> {
+  const activeConfig =
+    config || autoDetectGrid(imageBitmap.width, imageBitmap.height);
+  const cells: DetailedCellSlice[] = [];
+
+  // Special case: Single Item Crop (1x1)
+  if (activeConfig.columns === 1 && activeConfig.rows === 1) {
+    const w = imageBitmap.width;
+    const h = imageBitmap.height;
+    const isCellLike = h >= w * 1.05; // Portrait cell (e.g. 180x223 or 120x140)
+
+    const cellRect = { x: 0, y: 0, width: w, height: h };
+    const iconRect = isCellLike
+      ? {
+          x: Math.round(w * 0.06),
+          y: Math.round(h * 0.05),
+          width: Math.max(1, Math.round(w * 0.88)),
+          height: Math.max(1, Math.round(h * 0.65)),
+        }
+      : {
+          x: 0,
+          y: 0,
+          width: w,
+          height: h,
+        };
+    const starRect = isCellLike
+      ? {
+          x: Math.round(w * 0.04),
+          y: Math.round(h * 0.69),
+          width: Math.max(1, Math.round(w * 0.92)),
+          height: Math.max(1, Math.round(h * 0.17)),
+        }
+      : {
+          x: 0,
+          y: 0,
+          width: w,
+          height: h,
+        };
+    const quantityRect = {
+      x: Math.round(w * 0.05),
+      y: Math.round(h * 0.86),
+      width: Math.max(1, Math.round(w * 0.90)),
+      height: Math.max(1, Math.round(h * 0.13)),
+    };
+
+    try {
+      const [cellBitmap, iconBitmap, starBitmap, quantityBitmap] = await Promise.all([
+        createImageBitmap(imageBitmap, 0, 0, w, h),
+        createImageBitmap(
+          imageBitmap,
+          iconRect.x,
+          iconRect.y,
+          iconRect.width,
+          iconRect.height,
+        ),
+        createImageBitmap(
+          imageBitmap,
+          starRect.x,
+          starRect.y,
+          starRect.width,
+          starRect.height,
+        ),
+        createImageBitmap(
+          imageBitmap,
+          quantityRect.x,
+          quantityRect.y,
+          quantityRect.width,
+          quantityRect.height,
+        ),
+      ]);
+
+      cells.push({
+        row: 0,
+        col: 0,
+        index: 0,
+        cellRect,
+        iconRect,
+        starRect,
+        quantityRect,
+        cellBitmap,
+        iconBitmap,
+        starBitmap,
+        quantityBitmap,
+      });
+    } catch (e) {
+      console.error("Failed to slice single item crop", e);
+    }
+
+    return cells;
+  }
+
+  let index = 0;
 
   for (let row = 0; row < activeConfig.rows; row++) {
     for (let col = 0; col < activeConfig.columns; col++) {
-      const x = activeConfig.startX + col * (activeConfig.cellWidth + activeConfig.gapX);
-      const y = activeConfig.startY + row * (activeConfig.cellHeight + activeConfig.gapY);
+      const x = Math.max(
+        0,
+        activeConfig.startX +
+          col * (activeConfig.cellWidth + activeConfig.gapX),
+      );
+      const y = Math.max(
+        0,
+        activeConfig.startY +
+          row * (activeConfig.cellHeight + activeConfig.gapY),
+      );
       const w = activeConfig.cellWidth;
       const h = activeConfig.cellHeight;
 
-      // Extract just the inner icon (ignoring borders and quantity)
+      const cellRect = { x, y, width: w, height: h };
       const iconRect = {
-        x: x + w * 0.15,
-        y: y + h * 0.15,
-        width: w * 0.7,
-        height: h * 0.55 // Tighter crop to remove rarity background
+        x: Math.round(x + w * 0.06),
+        y: Math.round(y + h * 0.05),
+        width: Math.max(1, Math.round(w * 0.88)),
+        height: Math.max(1, Math.round(h * 0.65)),
       };
-
-      // Extract just the bottom strip for the quantity number
+      const starRect = {
+        x: Math.round(x + w * 0.04),
+        y: Math.round(y + h * 0.69),
+        width: Math.max(1, Math.round(w * 0.92)),
+        height: Math.max(1, Math.round(h * 0.17)),
+      };
       const quantityRect = {
-        x: x + w * 0.1,
-        y: y + h * 0.75,
-        width: w * 0.8,
-        height: h * 0.2 // Bottom 20% contains the number
+        x: Math.round(x + w * 0.05),
+        y: Math.round(y + h * 0.86),
+        width: Math.max(1, Math.round(w * 0.90)),
+        height: Math.max(1, Math.round(h * 0.13)),
       };
 
       try {
-        const iconSlice = await createImageBitmap(
-          imageBitmap, 
-          iconRect.x, iconRect.y, iconRect.width, iconRect.height
-        );
-        const quantitySlice = await createImageBitmap(
-          imageBitmap,
-          quantityRect.x, quantityRect.y, quantityRect.width, quantityRect.height
-        );
-        
-        cells.push({ icon: iconSlice, quantityArea: quantitySlice });
+        const [cellBitmap, iconBitmap, starBitmap, quantityBitmap] = await Promise.all([
+          createImageBitmap(
+            imageBitmap,
+            cellRect.x,
+            cellRect.y,
+            cellRect.width,
+            cellRect.height,
+          ),
+          createImageBitmap(
+            imageBitmap,
+            iconRect.x,
+            iconRect.y,
+            iconRect.width,
+            iconRect.height,
+          ),
+          createImageBitmap(
+            imageBitmap,
+            starRect.x,
+            starRect.y,
+            starRect.width,
+            starRect.height,
+          ),
+          createImageBitmap(
+            imageBitmap,
+            quantityRect.x,
+            quantityRect.y,
+            quantityRect.width,
+            quantityRect.height,
+          ),
+        ]);
+
+        cells.push({
+          row,
+          col,
+          index: index++,
+          cellRect,
+          iconRect,
+          starRect,
+          quantityRect,
+          cellBitmap,
+          iconBitmap,
+          starBitmap,
+          quantityBitmap,
+        });
       } catch (e) {
-        console.error("Failed to slice cell", e);
+        console.error("Failed to slice detailed cell", row, col, e);
       }
     }
   }
 
   return cells;
+}
+
+export async function sliceGridFromImage(
+  file: File,
+  config?: GridConfig,
+): Promise<
+  { icon: ImageBitmap; starArea: ImageBitmap; quantityArea: ImageBitmap; cellBitmap: ImageBitmap }[]
+> {
+  const imageBitmap = await createImageBitmap(file);
+  const detailed = await sliceDetailedGridFromBitmap(imageBitmap, config);
+
+  return detailed.map((d) => ({
+    icon: d.iconBitmap,
+    starArea: d.starBitmap,
+    quantityArea: d.quantityBitmap,
+    cellBitmap: d.cellBitmap,
+  }));
 }

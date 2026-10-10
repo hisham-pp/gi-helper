@@ -1,4 +1,8 @@
-import { hammingDistance } from "./image-hasher";
+import {
+  hammingDistance,
+  histogramIntersection,
+  ImageFingerprint,
+} from "./image-hasher";
 import materialsData from "@/data/materials.json";
 import materialHashes from "@/data/material-hashes.json";
 
@@ -8,31 +12,134 @@ export interface MatchResult {
   confidence: number;
 }
 
-export function findBestMatch(hash: string): MatchResult | null {
-  let bestMatchId: string | null = null;
-  let lowestDistance = Infinity;
+/**
+ * The stored hash data format (v2).
+ * Supports both the legacy string format and the new fingerprint format.
+ */
+type StoredHash = string | { dHash: string; colorHist: number[] };
 
-  for (const [id, targetHash] of Object.entries(materialHashes as Record<string, string>)) {
-    const distance = hammingDistance(hash, targetHash);
-    
-    if (distance < lowestDistance) {
-      lowestDistance = distance;
-      bestMatchId = id;
+export interface MatchCandidate {
+  id: string;
+  name: string;
+  rarity?: number;
+  image?: string;
+  score: number;
+  confidence: number;
+  hashSim: number;
+  colorSim: number;
+  hammingDist: number;
+  rarityMatch?: boolean;
+}
+
+/**
+ * Finds top matching material candidates for a given fingerprint using
+ * combined dHash + color histogram scoring and optional rarity star weighting.
+ */
+export function findTopCandidates(
+  fingerprint: ImageFingerprint,
+  limit: number = 5,
+  options?: {
+    hashWeight?: number;
+    colorWeight?: number;
+    minConfidence?: number;
+    expectedRarity?: number | null;
+  },
+): MatchCandidate[] {
+  const MAX_HASH_BITS = 256;
+  const hashWeight = options?.hashWeight ?? 0.6;
+  const colorWeight = options?.colorWeight ?? 0.4;
+  const minConfidence = options?.minConfidence ?? 0;
+  const expectedRarity = options?.expectedRarity ?? null;
+
+  const candidates: MatchCandidate[] = [];
+
+  for (const [id, stored] of Object.entries(
+    materialHashes as Record<string, StoredHash>,
+  )) {
+    const storedHash = typeof stored === "string" ? stored : stored.dHash;
+    const storedHist =
+      typeof stored === "object" && stored.colorHist ? stored.colorHist : null;
+
+    const dist = hammingDistance(fingerprint.dHash, storedHash);
+    const hashSim = 1 - dist / MAX_HASH_BITS;
+
+    let colorSim = 0.5;
+    if (storedHist) {
+      colorSim = histogramIntersection(fingerprint.colorHist, storedHist);
+    }
+
+    const rawScore = storedHist
+      ? hashWeight * hashSim + colorWeight * colorSim
+      : hashSim;
+
+    const material = materialsData.find((m) => m.id === id);
+    const matRarity = material?.rarity;
+
+    let finalScore = rawScore;
+    let rarityMatch: boolean | undefined = undefined;
+
+    // Apply rarity weighting if cell rarity (stars/background) was detected
+    if (expectedRarity && matRarity) {
+      const diff = Math.abs(matRarity - expectedRarity);
+      if (diff === 0) {
+        finalScore *= 1.1; // Boost exact star/rarity match
+        rarityMatch = true;
+      } else if (diff === 1) {
+        finalScore *= 0.85; // Slight penalty for 1 star difference
+        rarityMatch = false;
+      } else {
+        finalScore *= 0.4; // Heavy penalty for difference >= 2 stars (eliminates 1-star matching 4-star)
+        rarityMatch = false;
+      }
+    }
+
+    const confidence = Math.min(100, Math.round(finalScore * 100));
+
+    if (finalScore >= minConfidence) {
+      candidates.push({
+        id,
+        name: material ? material.name : id,
+        rarity: matRarity,
+        image: material?.image,
+        score: finalScore,
+        confidence,
+        hashSim: Math.round(hashSim * 1000) / 10,
+        colorSim: Math.round(colorSim * 1000) / 10,
+        hammingDist: dist,
+        rarityMatch,
+      });
     }
   }
 
-  // If distance is too high, it's not a confident match (e.g., max 25 bit difference for a 64-bit hash)
-  if (!bestMatchId || lowestDistance > 25) {
+  candidates.sort((a, b) => b.score - a.score);
+  return candidates.slice(0, limit);
+}
+
+/**
+ * Finds the best matching material for a given fingerprint using a combined
+ * dHash + color histogram score and optional rarity star weighting.
+ */
+export function findBestMatch(
+  fingerprint: ImageFingerprint,
+  options?: {
+    expectedRarity?: number | null;
+    minConfidence?: number;
+  },
+): MatchResult | null {
+  const top = findTopCandidates(fingerprint, 1, {
+    hashWeight: 0.6,
+    colorWeight: 0.4,
+    minConfidence: options?.minConfidence ?? 0.55,
+    expectedRarity: options?.expectedRarity,
+  });
+
+  if (top.length === 0) {
     return null;
   }
 
-  const material = materialsData.find(m => m.id === bestMatchId);
-  if (!material) return null;
-
   return {
-    id: material.id,
-    name: material.name,
-    // Turn distance into a pseudo-confidence percentage (0 dist = 100%, 25 dist = 0%)
-    confidence: Math.max(0, 100 - (lowestDistance / 25) * 100)
+    id: top[0].id,
+    name: top[0].name,
+    confidence: top[0].confidence,
   };
 }

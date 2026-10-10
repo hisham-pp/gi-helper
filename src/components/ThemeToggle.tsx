@@ -15,7 +15,7 @@ export function ThemeToggle() {
 
   if (!mounted) {
     return (
-      <div className="w-10 h-10 rounded-full bg-surface-variant animate-pulse" />
+      <div className="h-10 w-10 animate-pulse rounded-full bg-surface-variant" />
     );
   }
 
@@ -26,7 +26,7 @@ export function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="p-2 rounded-full bg-surface-variant/50 text-on-surface-variant hover:bg-surface-variant hover:text-on-surface transition-colors"
+      className="text-on-surface-variant hover:text-on-surface rounded-full bg-surface-variant/50 p-2 transition-colors hover:bg-surface-variant"
       aria-label="Toggle theme"
     >
       {theme === "dark" ? (
