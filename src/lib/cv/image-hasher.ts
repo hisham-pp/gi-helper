@@ -84,12 +84,18 @@ export async function calculateFingerprint(
     dHash += parseInt(hashBits.slice(i, i + 4), 2).toString(16);
   }
 
-  // --- Color Histogram ---
+  // --- Color Histogram (Tighter 50% crop to focus purely on the item, avoiding background) ---
   const histCanvas = document.createElement("canvas");
   histCanvas.width = 32;
   histCanvas.height = 32;
   const histCtx = histCanvas.getContext("2d", { willReadFrequently: true })!;
-  histCtx.drawImage(imageBitmap, cx, cy, cw, ch, 0, 0, 32, 32);
+  
+  const hx = Math.floor(imageBitmap.width * 0.25);
+  const hy = Math.floor(imageBitmap.height * 0.25);
+  const hw = Math.max(1, imageBitmap.width - 2 * hx);
+  const hh = Math.max(1, imageBitmap.height - 2 * hy);
+  
+  histCtx.drawImage(imageBitmap, hx, hy, hw, hh, 0, 0, 32, 32);
   const histData = histCtx.getImageData(0, 0, 32, 32);
 
   const rHist = new Float32Array(HIST_BINS);

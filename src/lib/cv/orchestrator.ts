@@ -1,5 +1,5 @@
 import { sliceGridFromImage, GridConfig } from "./grid-detector";
-import { calculateFingerprint, isEmptyCell } from "./image-hasher";
+import { calculateFingerprint, isEmptyCell, getCellStats } from "./image-hasher";
 import { findBestMatch } from "./item-matcher";
 import { detectCellRarity } from "./rarity-detector";
 import materialsData from "@/data/materials.json";
@@ -34,6 +34,12 @@ export async function processInventoryImages(
     for (const cell of cells) {
       // 1. Skip blank slots (partial last row, empty inventory pages)
       if (isEmptyCell(cell.icon)) continue;
+
+      // 1b. Skip cut-off/incomplete cells by checking if the quantity area
+      // contains any text. A valid item always has a quantity number (high variance).
+      // A cut-off cell falls on the solid UI background (low variance).
+      const qtyStats = getCellStats(cell.quantityArea, 10);
+      if (qtyStats.isEmpty) continue;
 
       // 2. Rarity & Star Detection
       const cellRarity = detectCellRarity(cell.cellBitmap);
