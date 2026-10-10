@@ -65,6 +65,7 @@ export default function TestBuilderPage() {
   
   const dropdownRef = useRef<HTMLDivElement>(null);
   const imageDropdownRef = useRef<HTMLDivElement>(null);
+  const searchInputRef = useRef<HTMLInputElement>(null);
 
   // Close dropdowns when clicking outside
   useEffect(() => {
@@ -202,6 +203,10 @@ export default function TestBuilderPage() {
     syncVisualToJson(newItems);
     setItemToAdd(null);
     setSearchQuery("");
+    
+    setTimeout(() => {
+      searchInputRef.current?.focus();
+    }, 50);
   };
 
   const handleSearchKeyDown = (e: React.KeyboardEvent) => {
@@ -287,7 +292,7 @@ export default function TestBuilderPage() {
                       setSelectedSet(set);
                       setIsSetDropdownOpen(false);
                     }}
-                    className={`w-full text-left px-3 py-2 text-sm rounded-full transition-all ${
+                    className={`w-full text-left px-3 py-2 text-sm rounded-full transition-all shrink-0 ${
                       selectedSet === set ? "bg-primary/20 text-primary font-semibold" : "text-foreground font-medium hover:bg-white/10"
                     }`}
                   >
@@ -320,7 +325,7 @@ export default function TestBuilderPage() {
                         setSelectedImage(img);
                         setIsImageDropdownOpen(false);
                       }}
-                      className={`w-full text-left px-3 py-2 text-sm rounded-full transition-all truncate ${
+                      className={`w-full text-left px-3 py-2 text-sm rounded-full transition-all truncate shrink-0 ${
                         selectedImage === img ? "bg-primary/20 text-primary font-semibold" : "text-foreground font-medium hover:bg-white/10"
                       }`}
                       title={img}
@@ -445,6 +450,7 @@ export default function TestBuilderPage() {
                     {/* Add Item Combobox */}
                     <div className="relative">
                       <input
+                        ref={searchInputRef}
                         type="text"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
