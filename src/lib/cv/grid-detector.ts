@@ -63,17 +63,25 @@ export function autoDetectGrid(width: number, height: number): GridConfig {
 
   // UI scales based on height relative to 1080p
   const scale = height / 1080;
-  const baseRows = Math.ceil((height - 149 * scale) / ((189 + 28) * scale));
+  const startY = Math.round(149 * scale);
+  const cellH  = Math.round(189 * scale);
+  const gapY   = Math.round(28 * scale);
+  const maxRows = Math.floor((height - startY) / (cellH + gapY));
+
+  // Genshin centers its 16:9 safe-zone UI within the ultrawide frame.
+  // For standard 16:9 screens, emptySpaceX is 0 and startX is unchanged.
+  const safeZoneWidth = height * (16 / 9);
+  const emptySpaceX = Math.max(0, (width - safeZoneWidth) / 2);
 
   return {
     columns: 7,
-    rows: Math.min(6, Math.max(3, baseRows)),
-    startX: Math.round(295 * scale),
-    startY: Math.round(149 * scale),
+    rows: Math.min(6, Math.max(3, maxRows)),
+    startX: Math.round(emptySpaceX + 295 * scale),
+    startY,
     cellWidth: Math.round(153 * scale),
-    cellHeight: Math.round(189 * scale),
+    cellHeight: cellH,
     gapX: Math.round(30 * scale),
-    gapY: Math.round(28 * scale),
+    gapY,
   };
 }
 

@@ -5,6 +5,7 @@
 import fs from "fs";
 import path from "path";
 import { Jimp } from "jimp";
+import sharp from "sharp";
 import materialsData from "../src/data/materials.json";
 
 const DATA_DIR = path.join(process.cwd(), "src", "data");
@@ -28,8 +29,29 @@ const RARITY_COLORS: Record<number, number> = {
   1: 0x737578ff, // Gray
 };
 
+/**
+ * Returns true if the file at imgPath is actually a WebP image
+ * (RIFF....WEBP magic bytes), even if named .png.
+ */
+function isWebpFile(imgPath: string): boolean {
+  const buf = Buffer.alloc(12);
+  const fd = fs.openSync(imgPath, "r");
+  fs.readSync(fd, buf, 0, 12, 0);
+  fs.closeSync(fd);
+  return buf.slice(0, 4).toString("ascii") === "RIFF" &&
+         buf.slice(8, 12).toString("ascii") === "WEBP";
+}
+
 async function computeFingerprint(imgPath: string, rarity: number = 1): Promise<Fingerprint> {
-  const image = await Jimp.read(imgPath);
+  // Some scraped images have a .png extension but are WebP format.
+  // Jimp v1 has no WebP decoder, so convert to PNG via sharp first.
+  let image: Jimp;
+  if (isWebpFile(imgPath)) {
+    const pngBuffer = await sharp(imgPath).png().toBuffer();
+    image = await Jimp.read(pngBuffer);
+  } else {
+    image = await Jimp.read(imgPath);
+  }
   const { width, height } = image.bitmap;
 
   // Composite icon onto a colored background matching its rarity

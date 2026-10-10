@@ -62,15 +62,23 @@ export async function processInventoryImages(
         const itemRarity = material?.rarity ?? cellRarity.rarity ?? undefined;
 
         // 4. Quantity OCR (only if we found a match)
+        const MIN_OCR_HEIGHT = 64;
         let quantity = 1;
         try {
           // Convert ImageBitmap to Canvas for Tesseract
           const canvas = document.createElement("canvas");
-          canvas.width = cell.quantityArea.width;
-          canvas.height = cell.quantityArea.height;
+          const nativeW = cell.quantityArea.width;
+          const nativeH = cell.quantityArea.height;
+          // Upscale small quantity regions so Tesseract can read digits reliably.
+          // At 2800×1272 the region is only ~29px tall; Tesseract needs ≥40px.
+          const ocrScale =
+            nativeH < MIN_OCR_HEIGHT ? Math.ceil(MIN_OCR_HEIGHT / nativeH) : 1;
+          canvas.width = nativeW * ocrScale;
+          canvas.height = nativeH * ocrScale;
           const ctx = canvas.getContext("2d", { willReadFrequently: true });
           if (ctx) {
-            ctx.drawImage(cell.quantityArea, 0, 0);
+            ctx.imageSmoothingEnabled = false; // nearest-neighbor: keeps digit edges sharp
+            ctx.drawImage(cell.quantityArea, 0, 0, canvas.width, canvas.height);
 
             // Pre-process for Tesseract: Black text on White background
             const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);

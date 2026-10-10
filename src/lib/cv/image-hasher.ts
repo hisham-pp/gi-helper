@@ -158,7 +158,7 @@ export function getCellStats(
   return {
     mean: Math.round(mean * 100) / 100,
     stddev: Math.round(stddev * 100) / 100,
-    isEmpty: stddev < threshold,
+    isEmpty: stddev < threshold && mean < 60,
   };
 }
 
@@ -173,7 +173,7 @@ export function getCellStats(
  *
  * This prevents the last partially-filled row from producing false matches.
  */
-export function isEmptyCell(imageBitmap: ImageBitmap, threshold = 18): boolean {
+export function isEmptyCell(imageBitmap: ImageBitmap, threshold = 15): boolean {
   return getCellStats(imageBitmap, threshold).isEmpty;
 }
 

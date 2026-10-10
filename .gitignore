@@ -12,3 +12,4 @@ prisma/prod.db-journal
 tmp
 tsconfig.tsbuildinfo
 .claude/*
+.kiro/*
