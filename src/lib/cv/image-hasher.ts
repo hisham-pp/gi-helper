@@ -42,12 +42,27 @@ function getImageData(
  * The fingerprint includes:
  * - 256-bit dHash (hex string) for structural/shape similarity
  * - Normalized RGB color histogram for color similarity
+ *
+ * Uses only the central 80% of the bitmap to avoid background border
+ * contamination from the in-game rarity gradient.
  */
 export async function calculateFingerprint(
   imageBitmap: ImageBitmap,
 ): Promise<ImageFingerprint> {
+  // Center-crop to 80% to strip colored rarity background edges
+  const cx = Math.floor(imageBitmap.width * 0.1);
+  const cy = Math.floor(imageBitmap.height * 0.1);
+  const cw = Math.max(1, imageBitmap.width - 2 * cx);
+  const ch = Math.max(1, imageBitmap.height - 2 * cy);
+
   // --- dHash (256-bit) ---
-  const hashData = getImageData(imageBitmap, DHASH_W, DHASH_H);
+  const hashCanvas = document.createElement("canvas");
+  hashCanvas.width = DHASH_W;
+  hashCanvas.height = DHASH_H;
+  const hashCtx = hashCanvas.getContext("2d", { willReadFrequently: true })!;
+  hashCtx.drawImage(imageBitmap, cx, cy, cw, ch, 0, 0, DHASH_W, DHASH_H);
+  const hashData = hashCtx.getImageData(0, 0, DHASH_W, DHASH_H);
+
   const grays = new Uint8Array(DHASH_W * DHASH_H);
   for (let i = 0; i < hashData.data.length; i += 4) {
     grays[i / 4] =
@@ -70,8 +85,13 @@ export async function calculateFingerprint(
   }
 
   // --- Color Histogram ---
-  // Use a larger canvas for more accurate color sampling
-  const histData = getImageData(imageBitmap, 32, 32);
+  const histCanvas = document.createElement("canvas");
+  histCanvas.width = 32;
+  histCanvas.height = 32;
+  const histCtx = histCanvas.getContext("2d", { willReadFrequently: true })!;
+  histCtx.drawImage(imageBitmap, cx, cy, cw, ch, 0, 0, 32, 32);
+  const histData = histCtx.getImageData(0, 0, 32, 32);
+
   const rHist = new Float32Array(HIST_BINS);
   const gHist = new Float32Array(HIST_BINS);
   const bHist = new Float32Array(HIST_BINS);
@@ -80,7 +100,7 @@ export async function calculateFingerprint(
 
   for (let i = 0; i < histData.data.length; i += 4) {
     const a = histData.data[i + 3];
-    if (a < 10) continue; // Skip transparent pixels (icon backgrounds)
+    if (a < 10) continue; // Skip transparent pixels
     rHist[Math.floor(histData.data[i] / binSize)]++;
     gHist[Math.floor(histData.data[i + 1] / binSize)]++;
     bHist[Math.floor(histData.data[i + 2] / binSize)]++;
