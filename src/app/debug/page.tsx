@@ -23,7 +23,15 @@ export default function ScannerDebugPage() {
           <span>Back to Scanner</span>
         </Link>
 
-        <ThemeToggle />
+        <div className="flex gap-4 items-center">
+          <Link
+            href="/debug/test-builder"
+            className="text-on-surface flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-4 py-2 text-xs font-bold shadow-sm backdrop-blur-md transition-all hover:scale-105 hover:bg-white/20 active:scale-95 sm:text-sm"
+          >
+            <span>Test Builder</span>
+          </Link>
+          <ThemeToggle />
+        </div>
       </div>
 
       {/* Debugger Suite Container */}

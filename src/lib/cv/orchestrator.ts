@@ -63,9 +63,32 @@ export async function processInventoryImages(
           const canvas = document.createElement("canvas");
           canvas.width = cell.quantityArea.width;
           canvas.height = cell.quantityArea.height;
-          const ctx = canvas.getContext("2d");
+          const ctx = canvas.getContext("2d", { willReadFrequently: true });
           if (ctx) {
             ctx.drawImage(cell.quantityArea, 0, 0);
+
+            // Pre-process for Tesseract: Black text on White background
+            const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const data = imgData.data;
+            for (let i = 0; i < data.length; i += 4) {
+              const r = data[i];
+              const g = data[i + 1];
+              const b = data[i + 2];
+              const luminance = r * 0.299 + g * 0.587 + b * 0.114;
+              
+              // Genshin's quantity text is bright white with a dark shadow.
+              // We turn bright pixels BLACK (for Tesseract), and everything else WHITE.
+              if (luminance > 160) {
+                data[i] = 0;     // R
+                data[i + 1] = 0; // G
+                data[i + 2] = 0; // B
+              } else {
+                data[i] = 255;
+                data[i + 1] = 255;
+                data[i + 2] = 255;
+              }
+            }
+            ctx.putImageData(imgData, 0, 0);
 
             // Fast OCR using the initialized worker
             const result = await worker.recognize(canvas);
