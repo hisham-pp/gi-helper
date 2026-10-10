@@ -193,13 +193,13 @@ export default function TestBuilderPage() {
       return;
     }
     setItemToAdd(material);
-    setQuantityToAdd(1);
+    setQuantityToAdd("");
   };
 
   const confirmAddItem = () => {
     if (!itemToAdd) return;
     const qty = typeof quantityToAdd === "number" ? quantityToAdd : parseInt(quantityToAdd as string) || 1;
-    const newItems = [...visualItems, { id: itemToAdd.id, name: itemToAdd.name, quantity: qty }];
+    const newItems = [{ id: itemToAdd.id, name: itemToAdd.name, quantity: qty }, ...visualItems];
     syncVisualToJson(newItems);
     setItemToAdd(null);
     setSearchQuery("");
@@ -591,6 +591,7 @@ export default function TestBuilderPage() {
               }}
               className="w-full rounded-md border border-white/10 bg-background/50 px-4 py-3 text-lg font-semibold focus:outline-none focus:ring-2 focus:ring-primary mb-6"
               min="1"
+              placeholder="1"
             />
             <div className="flex gap-3 justify-end">
               <button 

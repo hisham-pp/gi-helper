@@ -39,6 +39,66 @@
       "id": "chaos-circuit",
       "name": "Chaos Circuit",
       "quantity": 47
+    },
+    {
+      "id": "chaos-device",
+      "name": "Chaos Device",
+      "quantity": 241
+    },
+    {
+      "id": "mist-grass-wick",
+      "name": "Mist Grass Wick",
+      "quantity": 3
+    },
+    {
+      "id": "mist-grass",
+      "name": "Mist Grass",
+      "quantity": 26
+    },
+    {
+      "id": "mist-grass-pollen",
+      "name": "Mist Grass Pollen",
+      "quantity": 101
+    },
+    {
+      "id": "inspector-s-sacrificial-knife",
+      "name": "Inspector's Sacrificial Knife",
+      "quantity": 6
+    },
+    {
+      "id": "agent-s-sacrificial-knife",
+      "name": "Agent's Sacrificial Knife",
+      "quantity": 12
+    },
+    {
+      "id": "hunter-s-sacrificial-knife",
+      "name": "Hunter's Sacrificial Knife",
+      "quantity": 53
+    },
+    {
+      "id": "fossilized-bone-shard",
+      "name": "Fossilized Bone Shard",
+      "quantity": 4
+    },
+    {
+      "id": "sturdy-bone-shard",
+      "name": "Sturdy Bone Shard",
+      "quantity": 2
+    },
+    {
+      "id": "fragile-bone-shard",
+      "name": "Fragile Bone Shard",
+      "quantity": 89
+    },
+    {
+      "id": "chaos-oculus",
+      "name": "Chaos Oculus",
+      "quantity": 13
+    },
+    {
+      "id": "chaos-axis",
+      "name": "Chaos Axis",
+      "quantity": 63
     }
   ]
 }
