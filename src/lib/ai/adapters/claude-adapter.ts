@@ -63,6 +63,7 @@ export class ClaudeVisionAdapter implements AiVisionAdapter {
         "x-api-key": apiKey,
         "anthropic-version": "2023-06-01",
       },
+      signal: AbortSignal.timeout(90_000),
       body: JSON.stringify({
         model: activeModel,
         max_tokens: 4096,

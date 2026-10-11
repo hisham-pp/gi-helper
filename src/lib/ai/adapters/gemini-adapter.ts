@@ -9,8 +9,8 @@ import {
 } from "./types";
 
 function resolveGeminiModel(model?: string): string {
-  if (!model || model === "gemini-1.5-flash" || model === "gemini-2.0-flash") {
-    return "gemini-flash-latest";
+  if (!model) {
+    return "gemini-2.0-flash";
   }
   return model.replace(/^models\//, "");
 }
@@ -18,27 +18,32 @@ function resolveGeminiModel(model?: string): string {
 export class GeminiVisionAdapter implements AiVisionAdapter {
   readonly providerId = "gemini";
   readonly displayName = "Google Gemini";
-  readonly defaultModel = "gemini-flash-latest";
+  readonly defaultModel = "gemini-2.0-flash";
   readonly description =
     "Fast, accurate multimodal vision with a free tier available (via Google AI Studio).";
   readonly docsUrl = "https://aistudio.google.com/app/apikey";
 
   readonly supportedModels: SupportedModelMeta[] = [
     {
-      id: "gemini-flash-latest",
-      label: "Gemini Flash (Latest & Recommended)",
+      id: "gemini-2.0-flash",
+      label: "Gemini 2.0 Flash (Fastest & Recommended)",
       recommended: true,
-      description: "Evergreen flash model with low latency and high accuracy.",
+      description: "Ultra-fast multimodal vision with low latency (~10s).",
     },
     {
-      id: "gemini-3.8-flash",
-      label: "Gemini 3.8 Flash",
-      description: "Next-generation multimodal vision model.",
+      id: "gemini-flash-latest",
+      label: "Gemini Flash (Latest)",
+      description: "Evergreen flash model with high accuracy.",
     },
     {
       id: "gemini-2.5-flash",
       label: "Gemini 2.5 Flash",
-      description: "Fast multimodal reasoning.",
+      description: "Next-generation multimodal reasoning.",
+    },
+    {
+      id: "gemini-1.5-flash",
+      label: "Gemini 1.5 Flash",
+      description: "Standard multimodal model.",
     },
   ];
 
@@ -52,6 +57,7 @@ export class GeminiVisionAdapter implements AiVisionAdapter {
       headers: {
         "Content-Type": "application/json",
       },
+      signal: AbortSignal.timeout(90_000),
       body: JSON.stringify({
         contents: [
           {
@@ -157,6 +163,7 @@ export class GeminiVisionAdapter implements AiVisionAdapter {
       return fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        signal: AbortSignal.timeout(20_000),
         body: JSON.stringify({
           contents: [{ role: "user", parts: [{ text: "ping" }] }],
         }),

@@ -59,6 +59,7 @@ export class CustomVisionAdapter implements AiVisionAdapter {
     const response = await fetch(url, {
       method: "POST",
       headers,
+      signal: AbortSignal.timeout(90_000),
       body: JSON.stringify({
         model: activeModel,
         messages: [

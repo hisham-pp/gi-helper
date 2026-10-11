@@ -12,7 +12,7 @@ export async function GET() {
     providers: {
       gemini: {
         hasKey: Boolean(process.env.GEMINI_API_KEY?.trim()),
-        defaultModel: process.env.GEMINI_MODEL || "gemini-flash-latest",
+        defaultModel: process.env.GEMINI_MODEL || "gemini-2.0-flash",
       },
       openai: {
         hasKey: Boolean(process.env.OPENAI_API_KEY?.trim()),
@@ -157,13 +157,28 @@ export async function POST(req: NextRequest) {
     });
   } catch (error: any) {
     console.error("AI Vision Scanner Route Error:", error);
+
+    const causeMsg = String(error.cause?.message || error.cause?.code || "");
+    const isTimeout =
+      error.name === "TimeoutError" ||
+      causeMsg.includes("TIMEOUT") ||
+      causeMsg.includes("Timeout") ||
+      String(error.message || "")
+        .toLowerCase()
+        .includes("timeout");
+
+    const errorMessage = isTimeout
+      ? "AI Vision scan request timed out while waiting for model response. Please try scanning again or switch model to Gemini 2.0 Flash."
+      : causeMsg
+        ? `${error.message || "Scan failed"}: ${causeMsg}`
+        : error.message || "An unexpected error occurred during AI scanning.";
+
     return NextResponse.json(
       {
         success: false,
-        error:
-          error.message || "An unexpected error occurred during AI scanning.",
+        error: errorMessage,
       },
-      { status: 500 },
+      { status: isTimeout ? 504 : 500 },
     );
   }
 }

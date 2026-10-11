@@ -47,6 +47,7 @@ export class OpenAiVisionAdapter implements AiVisionAdapter {
         "Content-Type": "application/json",
         Authorization: `Bearer ${apiKey}`,
       },
+      signal: AbortSignal.timeout(90_000),
       body: JSON.stringify({
         model: activeModel,
         messages: [

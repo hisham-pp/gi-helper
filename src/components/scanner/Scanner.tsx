@@ -15,7 +15,14 @@ import {
   AiProvider,
 } from "@/lib/scanner-settings";
 import { getAiAdapter } from "@/lib/ai/adapters";
-import { Eye, Settings, Sparkles, KeyRound } from "lucide-react";
+import {
+  Eye,
+  Settings,
+  Sparkles,
+  KeyRound,
+  AlertCircle,
+  X,
+} from "lucide-react";
 import { ScanningFileItem } from "./ScanningAnimation";
 
 export type { ServerEnvProviderInfo };
@@ -26,6 +33,7 @@ export function Scanner() {
   const [progress, setProgress] = useState(0);
   const [statusMessage, setStatusMessage] = useState<string>("");
   const [detectedItems, setDetectedItems] = useState<DetectedItem[]>([]);
+  const [scanError, setScanError] = useState<string | null>(null);
   const [serverEnv, setServerEnv] = useState<
     Record<string, ServerEnvProviderInfo>
   >({});
@@ -159,6 +167,8 @@ export function Scanner() {
         return;
       }
 
+      setScanError(null);
+
       // Prepare file previews immediately so active image preview and queue appear instantly
       setTotalFilesCount(files.length);
       setActiveFileIndex(1);
@@ -213,22 +223,47 @@ export function Scanner() {
             `Analyzing screenshot ${i + 1} of ${totalFiles} (${file.name}) with ${currentAdapter.displayName}...`,
           );
 
-          const response = await fetch("/api/scanner/ai-vision", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              action: "scan",
-              provider: currentConfig.provider,
-              apiKey: currentConfig.apiKey,
-              model: currentConfig.model,
-              baseUrl: currentConfig.baseUrl,
-              image: dataUrl,
-            }),
-          });
+          const controller = new AbortController();
+          const clientTimeout = setTimeout(() => controller.abort(), 95_000);
 
-          const data = await response.json();
+          let response: Response;
+          try {
+            response = await fetch("/api/scanner/ai-vision", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              signal: controller.signal,
+              body: JSON.stringify({
+                action: "scan",
+                provider: currentConfig.provider,
+                apiKey: currentConfig.apiKey,
+                model: currentConfig.model,
+                baseUrl: currentConfig.baseUrl,
+                image: dataUrl,
+              }),
+            });
+          } catch (fetchErr: any) {
+            clearTimeout(clientTimeout);
+            if (fetchErr.name === "AbortError") {
+              throw new Error(
+                "Scan timed out after 95s while waiting for AI model response. Please try again or switch to Gemini 2.0 Flash in Settings.",
+              );
+            }
+            throw fetchErr;
+          } finally {
+            clearTimeout(clientTimeout);
+          }
+
+          let data: any = {};
+          try {
+            data = await response.json();
+          } catch {
+            const rawText = await response.text().catch(() => "");
+            throw new Error(
+              `Server error (${response.status}): ${rawText || "Request failed or timed out"}`,
+            );
+          }
 
           if (!response.ok || !data.success) {
             const errorMsg =
@@ -300,7 +335,9 @@ export function Scanner() {
         }
       } catch (error: any) {
         console.error("AI Vision Scan Error:", error);
-        toast.error(`Scan failed: ${error.message || "Unknown error"}`);
+        const errorMsg = error.message || "Unknown scan error";
+        setScanError(errorMsg);
+        toast.error(`Scan failed: ${errorMsg}`, { duration: 9000 });
       } finally {
         setIsScanning(false);
         setProgress(0);
@@ -421,6 +458,29 @@ export function Scanner() {
           )}
         </div>
       </div>
+
+      {/* Scan Error Banner */}
+      {scanError && !isScanning && (
+        <div className="animate-in fade-in slide-in-from-top-2 mx-auto flex w-full max-w-2xl items-start justify-between gap-3 rounded-2xl border border-rose-500/40 bg-rose-950/50 p-4 text-xs text-rose-200 shadow-xl backdrop-blur-xl">
+          <div className="flex min-w-0 items-start gap-2.5">
+            <AlertCircle className="mt-0.5 h-5 w-5 shrink-0 text-rose-400" />
+            <div className="min-w-0 space-y-1">
+              <p className="text-sm font-bold text-white">AI Scan Error</p>
+              <p className="break-words leading-relaxed text-rose-200/90">
+                {scanError}
+              </p>
+            </div>
+          </div>
+          <button
+            type="button"
+            onClick={() => setScanError(null)}
+            className="shrink-0 rounded-lg p-1 text-white/60 transition-colors hover:bg-white/10 hover:text-white"
+            title="Dismiss error"
+          >
+            <X className="h-4 w-4" />
+          </button>
+        </div>
+      )}
 
       {/* Upload Zone & Unique AI Vision Scanning Chamber */}
       <UploadZone
