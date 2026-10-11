@@ -1,4 +1,4 @@
-import { sliceGridFromImage, GridConfig } from "./grid-detector";
+import { sliceGridFromImage, GridConfig, isSingleItemImage } from "./grid-detector";
 import { calculateFingerprint, isEmptyCell, getCellStats } from "./image-hasher";
 import { findBestMatch } from "./item-matcher";
 import { detectCellRarity } from "./rarity-detector";
@@ -14,6 +14,9 @@ export async function processInventoryImages(
     currentFileIndex: number,
     totalFiles: number,
   ) => void,
+  options?: {
+    continueOrder?: boolean;
+  },
 ): Promise<DetectedItem[]> {
   const fileArray = Array.from(files);
   const foundItems: Record<string, DetectedItem> = {};
@@ -26,8 +29,26 @@ export async function processInventoryImages(
 
   let previousMatchName: string | null = null;
 
+  // Order-constraint state tracked across cells (and optionally across files)
+  let lastMatchedOrder = 0;
+  let lastBlockId: string | null = null;
+
   for (let i = 0; i < fileArray.length; i++) {
     const file = fileArray[i];
+
+    // Reset order state at the start of each file unless the caller explicitly
+    // asked to continue the order sequence across files (continueOrder: true).
+    // The first file always resets regardless of continueOrder.
+    if (i === 0 || !options?.continueOrder) {
+      lastMatchedOrder = 0;
+      lastBlockId = null;
+    }
+
+    // Detect whether this file is a single-item crop (small/portrait image).
+    // For single-item crops we skip the order constraint so the matcher is unconstrained.
+    const bitmap = await createImageBitmap(file);
+    const isSingleItem = isSingleItemImage(bitmap.width, bitmap.height);
+    bitmap.close();
 
     // Slice image into grid cells
     const cells = await sliceGridFromImage(file, config || undefined);
@@ -52,10 +73,23 @@ export async function processInventoryImages(
         expectedRarity: cellRarity.rarity,
         minConfidence: 0.55,
         neighborNames: previousMatchName ? [previousMatchName] : undefined,
+        orderConstraint: isSingleItem
+          ? undefined
+          : { minOrder: lastMatchedOrder, blockId: lastBlockId },
       });
 
       if (match) {
         previousMatchName = match.name;
+
+        // Update order-constraint state after a non-null match.
+        // Rules:
+        //  1. If constraintRelaxed → do NOT update state (preserve last valid position).
+        //  2. If not relaxed AND blockId changed → advance lastMatchedOrder and lastBlockId.
+        //  3. If not relaxed AND same block peer (blockId unchanged) → do NOT update state.
+        if (!match.constraintRelaxed && match.blockId !== lastBlockId) {
+          lastMatchedOrder = match.order ?? lastMatchedOrder;
+          lastBlockId = match.blockId;
+        }
 
         // Look up material metadata (such as true rarity)
         const material = materialsData.find((m) => m.id === match.id);

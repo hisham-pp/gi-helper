@@ -6,6 +6,37 @@ const DATA_DIR = path.join(process.cwd(), "src", "data");
 const IMAGES_DIR = path.join(process.cwd(), "public", "images", "materials");
 const JSON_FILE = path.join(DATA_DIR, "materials.json");
 
+interface RawMaterial {
+  id: string;
+  name: string;
+  description: string;
+  type: string;
+  rarity?: number;
+  image: string;
+  sortRank?: number;
+  order?: number;
+}
+
+/**
+ * Locale-independent four-level sort comparator for materials.
+ * Order: sortRank asc (missing → MAX_SAFE_INTEGER), rarity asc, name asc (locale-insensitive), id asc (tie-breaker).
+ */
+function compareMaterials(a: RawMaterial, b: RawMaterial): number {
+  const rankA = a.sortRank ?? Number.MAX_SAFE_INTEGER;
+  const rankB = b.sortRank ?? Number.MAX_SAFE_INTEGER;
+  if (rankA !== rankB) return rankA - rankB;
+
+  const rarA = a.rarity ?? 0;
+  const rarB = b.rarity ?? 0;
+  if (rarA !== rarB) return rarA - rarB;
+
+  const nameComp = a.name.localeCompare(b.name, "en", { sensitivity: "base" });
+  if (nameComp !== 0) return nameComp;
+
+  // Tie-breaker: id (lexicographic, ascending)
+  return a.id.localeCompare(b.id, "en");
+}
+
 const USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36";
 
 async function downloadImage(url: string, filename: string): Promise<boolean> {
@@ -92,14 +123,45 @@ async function scrapeMaterials() {
       }
     }
 
-    materialsData.push({
+    const entry: RawMaterial = {
       id,
       name: material.name,
       description: material.description,
       type: material.category,
       rarity: material.rarity,
       image: `/images/materials/${filename}`,
-    });
+    };
+
+    // Task 1.1: capture sortRank from genshin-db; omit the field entirely if absent
+    if (material.sortRank !== undefined && material.sortRank !== null) {
+      entry.sortRank = material.sortRank;
+    }
+
+    materialsData.push(entry);
+  }
+
+  // Task 1.2 / 1.3: sort materials, warn on duplicate sort keys, assign order, write sorted array
+
+  // Warn about duplicate (sortRank, rarity, normalized-name) keys before sorting
+  const seenKeys = new Map<string, string>();
+  for (const mat of materialsData) {
+    const normalizedName = mat.name.normalize("NFC").toLowerCase();
+    const key = `${mat.sortRank ?? "MAX"}:${mat.rarity ?? 0}:${normalizedName}`;
+    if (seenKeys.has(key)) {
+      process.stderr.write(
+        `WARNING: duplicate sort key "${key}" for materials "${seenKeys.get(key)}" and "${mat.id}" — tie-breaking by id\n`,
+      );
+    } else {
+      seenKeys.set(key, mat.id);
+    }
+  }
+
+  // Sort using the locale-independent comparator
+  materialsData.sort(compareMaterials);
+
+  // Assign sequential 1-based order integers
+  for (let i = 0; i < materialsData.length; i++) {
+    materialsData[i].order = i + 1;
   }
 
   fs.writeFileSync(JSON_FILE, JSON.stringify(materialsData, null, 2));

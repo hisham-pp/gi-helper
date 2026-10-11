@@ -10,6 +10,9 @@ export interface MatchResult {
   id: string;
   name: string;
   confidence: number;
+  constraintRelaxed: boolean; // true when the order constraint was relaxed (no candidate passed)
+  order: number | null;       // Inventory_Order of the matched candidate, or null if unavailable
+  blockId: string | null;     // "{sortRank}:{rarity}" of the matched candidate, or null
 }
 
 /**
@@ -30,6 +33,8 @@ export interface MatchCandidate {
   hammingDist: number;
   rarityMatch?: boolean;
   siblingMatch?: boolean;
+  order: number | null;
+  blockId: string | null; // "{sortRank}:{rarity}" or null
 }
 
 /**
@@ -76,6 +81,12 @@ export function findTopCandidates(
 
     const material = materialsData.find((m) => m.id === id);
     const matRarity = material?.rarity;
+    const matOrder: number | null = (material as any)?.order ?? null;
+    const matSortRank: number | null = (material as any)?.sortRank ?? null;
+    const blockId: string | null =
+      matSortRank !== null && matRarity != null
+        ? `${matSortRank}:${matRarity}`
+        : null;
 
     let finalScore = rawScore;
     let rarityMatch: boolean | undefined = undefined;
@@ -138,6 +149,8 @@ export function findTopCandidates(
         hammingDist: dist,
         rarityMatch,
         siblingMatch,
+        order: matOrder,
+        blockId,
       });
     }
   }
@@ -156,9 +169,17 @@ export function findBestMatch(
     expectedRarity?: number | null;
     minConfidence?: number;
     neighborNames?: string[];
+    orderConstraint?: { minOrder: number; blockId: string | null };
   },
 ): MatchResult | null {
-  const top = findTopCandidates(fingerprint, 1, {
+  const orderConstraint = options?.orderConstraint;
+
+  // When an order constraint is provided, we need the full candidate list to
+  // partition into constrained vs. unconstrained pools.  When there is no
+  // constraint we can short-circuit with limit=1 for efficiency.
+  const limit = orderConstraint ? 9999 : 1;
+
+  const all = findTopCandidates(fingerprint, limit, {
     hashWeight: 0.6,
     colorWeight: 0.4,
     minConfidence: options?.minConfidence ?? 0.55,
@@ -166,13 +187,57 @@ export function findBestMatch(
     neighborNames: options?.neighborNames,
   });
 
-  if (top.length === 0) {
+  if (all.length === 0) {
     return null;
   }
 
+  // No constraint — return the top candidate directly (legacy behaviour).
+  if (!orderConstraint) {
+    return {
+      id: all[0].id,
+      name: all[0].name,
+      confidence: all[0].confidence,
+      constraintRelaxed: false,
+      order: all[0].order,
+      blockId: all[0].blockId,
+    };
+  }
+
+  // Partition into a constrained pool:
+  // A candidate is eligible when:
+  //   • order >= minOrder  (advances the sequence), OR
+  //   • blockId === orderConstraint.blockId AND blockId !== null  (same block peer)
+  // Candidates with order === null are excluded from the constrained pool
+  // and are only eligible in the unconstrained fallback.
+  const { minOrder, blockId: constraintBlockId } = orderConstraint;
+
+  const constrained = all.filter((c) => {
+    if (c.order === null) return false;
+    if (c.order >= minOrder) return true;
+    if (constraintBlockId !== null && c.blockId === constraintBlockId) return true;
+    return false;
+  });
+
+  if (constrained.length > 0) {
+    // constrained is already sorted by score descending (inherited from findTopCandidates)
+    return {
+      id: constrained[0].id,
+      name: constrained[0].name,
+      confidence: constrained[0].confidence,
+      constraintRelaxed: false,
+      order: constrained[0].order,
+      blockId: constrained[0].blockId,
+    };
+  }
+
+  // Graceful fallback: no candidate passed the constraint — return the best
+  // overall candidate (including null-order ones) and flag the relaxation.
   return {
-    id: top[0].id,
-    name: top[0].name,
-    confidence: top[0].confidence,
+    id: all[0].id,
+    name: all[0].name,
+    confidence: all[0].confidence,
+    constraintRelaxed: true,
+    order: all[0].order,
+    blockId: all[0].blockId,
   };
 }

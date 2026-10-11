@@ -223,7 +223,7 @@ function isEmptyCell(img: JimpImage): boolean {
   const mean = grays.reduce((s, v) => s + v, 0) / grays.length;
   const variance =
     grays.reduce((s, v) => s + (v - mean) ** 2, 0) / grays.length;
-  return Math.sqrt(variance) < 18;
+  return Math.sqrt(variance) < 15 && mean < 60;
 }
 
 /** Auto-detect the inventory grid config for an image of given dimensions. */
@@ -336,8 +336,12 @@ describe("image-hasher: empty cell detection", () => {
   });
 
   it("a near-uniform gray crop is classified as empty", async () => {
-    const img = new Jimp({ width: 50, height: 50, color: 0x555555ff });
-    assert.ok(isEmptyCell(img), "Uniform gray should be empty");
+    // Use a dark gray (#3a3a3a, mean≈58) that satisfies the mean < 60 guard.
+    // The production isEmptyCell requires stddev < threshold AND mean < 60,
+    // so only dark uniform areas are classified as empty (bright gray, mean≥60,
+    // is NOT classified empty to avoid falsely rejecting low-contrast gray icons).
+    const img = new Jimp({ width: 50, height: 50, color: 0x3a3a3aff });
+    assert.ok(isEmptyCell(img), "Uniform dark-gray should be empty");
   });
 
   it("a real material icon is NOT classified as empty", async () => {
@@ -414,7 +418,14 @@ describe("image-hasher: empty cell detection", () => {
 
 describe("image-hasher: fingerprint stability", () => {
   it("hashing the same icon twice produces identical fingerprints", async () => {
-    const [firstId] = Object.keys(hashes);
+    // Use a hardcoded material known to be a real PNG (not a WebP disguised as .png).
+    // Object.keys(hashes)[0] can yield a WebP-as-PNG file because the scraper saved
+    // some images in WebP format; those files are not readable by Jimp's PNG decoder.
+    const candidates = ["accreted-fragment", "slime-condensate", "firm-arrowhead"];
+    const firstId = candidates.find(
+      (id) => id in hashes && fs.existsSync(path.join(ROOT, "public", "images", "materials", `${id}.png`)),
+    )!;
+    assert.ok(firstId, `No usable PNG material found among candidates: ${candidates.join(", ")}`);
     const imgPath = path.join(
       ROOT,
       "public",
@@ -945,7 +956,7 @@ describe("bug condition exploration", () => {
     ): Promise<Map<string, number>> {
       const img = await Jimp.read(imgPath);
       const { width, height } = img.bitmap;
-      const grid = productionAutoDetectGrid(width, height);
+      const grid = autoDetectGrid(width, height);
       const counts = new Map<string, number>();
 
       for (let row = 0; row < grid.rows; row++) {
