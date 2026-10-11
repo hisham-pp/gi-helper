@@ -1,7 +1,7 @@
 import { Jimp } from "jimp";
 import fs from "fs";
-import { findBestMatch, findTopCandidates } from "./src/lib/cv/item-matcher";
-import { calculateFingerprint } from "./src/lib/cv/image-hasher";
+import { findBestMatch, findTopCandidates } from "../../src/lib/cv/item-matcher";
+import { calculateFingerprint } from "../../src/lib/cv/image-hasher";
 
 // Jimp to ImageFingerprint simulation
 function getFingerprintFromJimp(img: any) {
@@ -77,7 +77,7 @@ async function run() {
   console.log("\n=== Top 10 Candidates (expectedRarity: 2) ===");
   const top = findTopCandidates(fp, 10, { expectedRarity: 2, hashWeight: 0.8, colorWeight: 0.2 });
   for (const c of top) {
-    console.log(`${c.name} (${c.id}): score=${(c.score*100).toFixed(1)}% conf=${c.confidence}%`);
+    console.log(`${c.name} (${c.id}): score=${(c.score * 100).toFixed(1)}% conf=${c.confidence}%`);
   }
 }
 

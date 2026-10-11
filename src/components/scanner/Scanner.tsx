@@ -4,34 +4,36 @@ import React, { useState, useCallback, useEffect } from "react";
 import { toast } from "sonner";
 import { UploadZone } from "./UploadZone";
 import { ResultGrid } from "./ResultGrid";
-import { GridCalibration } from "./GridCalibration";
-import { GridLayoutModal } from "./GridLayoutModal";
 import { ScanReviewModal } from "./ScanReviewModal";
+import { ScannerSettingsModal } from "./ScannerSettingsModal";
 import { DetectedItem, ScannedReviewItem } from "@/lib/types";
-import { processInventoryImages } from "@/lib/cv/orchestrator";
-import { GridConfig } from "@/lib/cv/grid-detector";
 import { exportToGOODFormat } from "@/lib/good-format";
-import { useScannerSettings } from "@/lib/scanner-settings";
-import { Eye } from "lucide-react";
+import {
+  useScannerSettings,
+  getActiveProviderConfig,
+} from "@/lib/scanner-settings";
+import { getAiAdapter } from "@/lib/ai/adapters";
+import { Eye, Settings, Sparkles, KeyRound } from "lucide-react";
 
 export function Scanner() {
   const { settings } = useScannerSettings();
   const [isScanning, setIsScanning] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [statusMessage, setStatusMessage] = useState<string>("");
   const [detectedItems, setDetectedItems] = useState<DetectedItem[]>([]);
-  const [gridConfig, setGridConfig] = useState<GridConfig | null>(null);
-  const [showCalibration, setShowCalibration] = useState(false);
-  const [lastUploadedFile, setLastUploadedFile] = useState<File | null>(null);
 
   // Modal states
-  const [pendingFiles, setPendingFiles] = useState<File[]>([]);
-  const [isLayoutModalOpen, setIsLayoutModalOpen] = useState(false);
   const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [lastReviewItems, setLastReviewItems] = useState<ScannedReviewItem[]>(
     [],
   );
 
-  // Load any previously detected items from localStorage to persist
+  const activeAdapter = getAiAdapter(settings.aiProvider);
+  const activeConfig = getActiveProviderConfig(settings);
+  const hasKeyConfigured = Boolean(activeConfig.apiKey?.trim());
+
+  // Load any previously detected items from localStorage
   useEffect(() => {
     const saved = localStorage.getItem("scanner_detected_items");
     if (saved) {
@@ -51,42 +53,118 @@ export function Scanner() {
     );
   }, [detectedItems]);
 
+  const readFileAsDataUrl = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  };
+
   const executeScan = useCallback(
-    async (
-      files: File[],
-      configs: GridConfig | (GridConfig | null)[] | null,
-    ) => {
+    async (files: File[]) => {
       if (!files || files.length === 0) return;
 
-      setIsScanning(true);
-      setProgress(0);
+      const currentConfig = getActiveProviderConfig(settings);
+      const currentAdapter = getAiAdapter(settings.aiProvider);
 
-      try {
-        setLastUploadedFile(files[0]); // Save one for calibration testing
-        const result = await processInventoryImages(
-          files,
-          configs,
-          (progressVal) => {
-            setProgress(progressVal);
+      // If no API key is saved in browser, remind user and open settings
+      if (!currentConfig.apiKey?.trim()) {
+        toast.error(
+          `Please configure your ${currentAdapter.displayName} API Key in Settings first.`,
+          {
+            action: {
+              label: "Open Settings",
+              onClick: () => setIsSettingsOpen(true),
+            },
           },
         );
+        setIsSettingsOpen(true);
+        return;
+      }
 
-        if (result.items.length === 0) {
-          toast.info("No materials detected in uploaded images.");
+      setIsScanning(true);
+      setProgress(5);
+      setStatusMessage(`Starting ${currentAdapter.displayName} Vision AI...`);
+
+      const allDetected: DetectedItem[] = [];
+      const allReview: ScannedReviewItem[] = [];
+
+      try {
+        const totalFiles = files.length;
+
+        for (let i = 0; i < totalFiles; i++) {
+          const file = files[i];
+          setStatusMessage(
+            `Analyzing screenshot ${i + 1} of ${totalFiles} (${file.name}) with ${currentAdapter.displayName}...`,
+          );
+
+          const dataUrl = await readFileAsDataUrl(file);
+
+          const response = await fetch("/api/scanner/ai-vision", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              action: "scan",
+              provider: currentConfig.provider,
+              apiKey: currentConfig.apiKey,
+              model: currentConfig.model,
+              baseUrl: currentConfig.baseUrl,
+              image: dataUrl,
+            }),
+          });
+
+          const data = await response.json();
+
+          if (!response.ok || !data.success) {
+            const errorMsg =
+              data.error ||
+              data.message ||
+              `Failed scanning ${file.name} (Status: ${response.status})`;
+            throw new Error(errorMsg);
+          }
+
+          const fileItems: DetectedItem[] = data.items || [];
+
+          // Add to detected items
+          for (const item of fileItems) {
+            allDetected.push(item);
+            allReview.push({
+              id: `${file.name}-${item.id}-${Math.random().toString(36).slice(2, 7)}`,
+              materialId: item.id,
+              name: item.name,
+              quantity: item.quantity,
+              rarity: item.rarity,
+              imageSnippet: `/images/materials/${item.id}.png`,
+              sourceImageName: file.name,
+            });
+          }
+
+          const fileProgress = Math.round(((i + 1) / totalFiles) * 100);
+          setProgress(fileProgress);
+        }
+
+        if (allDetected.length === 0) {
+          toast.info("No materials detected in the uploaded screenshot(s).");
           return;
         }
 
-        setLastReviewItems(result.reviewItems);
+        setLastReviewItems(allReview);
 
-        // If autoReviewResults is enabled, open the review modal
-        if (settings.autoReviewResults && result.reviewItems.length > 0) {
+        // Open review modal if autoReviewResults is enabled
+        if (settings.autoReviewResults && allReview.length > 0) {
           setIsReviewModalOpen(true);
-          toast.success("Scanning complete! Please review your results.");
+          toast.success(
+            `AI Vision Scan complete! Detected ${allDetected.length} items. Please review results.`,
+          );
         } else {
-          // Merge directly with existing items
+          // Merge directly
           setDetectedItems((prev) => {
             const merged = [...prev];
-            for (const item of result.items) {
+            for (const item of allDetected) {
               const existing = merged.find((i) => i.id === item.id);
               if (existing) {
                 existing.quantity += item.quantity;
@@ -97,40 +175,29 @@ export function Scanner() {
             return merged;
           });
           toast.success(
-            `Scanning complete! Added ${result.items.length} materials.`,
+            `AI Vision Scan complete! Added ${allDetected.length} materials.`,
           );
         }
-      } catch (error) {
-        console.error("Scan Error:", error);
-        toast.error("Failed to scan images. Please try again.");
+      } catch (error: any) {
+        console.error("AI Vision Scan Error:", error);
+        toast.error(`Scan failed: ${error.message || "Unknown error"}`);
       } finally {
         setIsScanning(false);
+        setProgress(0);
+        setStatusMessage("");
       }
     },
-    [settings.autoReviewResults],
+    [settings],
   );
 
   const handleFiles = useCallback(
     (incomingFiles: FileList | File[]) => {
       if (!incomingFiles || incomingFiles.length === 0) return;
       const fileArray = Array.from(incomingFiles);
-
-      // If auto-preview layout is enabled, open layout adjustment modal first
-      if (settings.autoPreviewLayout) {
-        setPendingFiles(fileArray);
-        setIsLayoutModalOpen(true);
-      } else {
-        // Otherwise, directly run scan with auto-detected grids
-        executeScan(fileArray, gridConfig);
-      }
+      executeScan(fileArray);
     },
-    [settings.autoPreviewLayout, gridConfig, executeScan],
+    [executeScan],
   );
-
-  const handleConfirmLayoutScan = (configs: GridConfig[]) => {
-    setIsLayoutModalOpen(false);
-    executeScan(pendingFiles, configs);
-  };
 
   const handleConfirmReview = (confirmedItems: DetectedItem[]) => {
     setDetectedItems((prev) => {
@@ -178,57 +245,75 @@ export function Scanner() {
 
   return (
     <div className="animate-in fade-in slide-in-from-bottom-4 mx-auto w-full max-w-5xl space-y-10 duration-700">
+      {/* Title & Introduction */}
       <div className="space-y-4 text-center">
         <h1 className="text-4xl font-extrabold tracking-tight text-white drop-shadow-[0_4px_10px_rgba(0,0,0,0.5)] md:text-5xl">
           Inventory Scanner
         </h1>
         <p className="mx-auto max-w-2xl text-lg leading-relaxed text-white/90 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
           Upload screenshots of your Genshin Impact inventory to instantly
-          extract materials. Review, adjust quantities, and export directly to
-          .GOOD format for your favorite optimizers.
+          extract materials using Multimodal AI Vision.
         </p>
-      </div>
 
-      <div className="relative z-10 flex flex-wrap items-center justify-center gap-3">
-        <button
-          onClick={() => setShowCalibration(!showCalibration)}
-          className="rounded-full border border-white/10 bg-black/20 px-4 py-2 text-sm font-bold text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] backdrop-blur-md transition-colors hover:border-white/30 hover:text-primary"
-        >
-          {showCalibration
-            ? "Hide Calibration Tools"
-            : "Having accuracy issues? Try Grid Calibration"}
-        </button>
-
-        {lastReviewItems.length > 0 && !isScanning && (
+        {/* AI Provider Status Pill */}
+        <div className="flex flex-wrap items-center justify-center gap-2 pt-1">
           <button
-            onClick={() => setIsReviewModalOpen(true)}
-            className="flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/20 px-4 py-2 text-sm font-bold text-emerald-300 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] backdrop-blur-md transition-all hover:scale-105 hover:bg-emerald-500/30 active:scale-95"
+            onClick={() => setIsSettingsOpen(true)}
+            className={`group flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-semibold backdrop-blur-md transition-all hover:scale-105 active:scale-95 ${
+              hasKeyConfigured
+                ? "border-emerald-500/40 bg-emerald-500/15 text-emerald-300 hover:bg-emerald-500/25"
+                : "border-amber-500/50 bg-amber-500/20 text-amber-300 hover:bg-amber-500/30 shadow-[0_0_15px_rgba(245,158,11,0.2)]"
+            }`}
           >
-            <Eye className="h-4 w-4" />
-            <span>Review Last Scan ({lastReviewItems.length})</span>
+            {hasKeyConfigured ? (
+              <>
+                <Sparkles className="h-3.5 w-3.5 text-emerald-400" />
+                <span>
+                  Vision AI: <strong className="font-bold">{activeAdapter.displayName}</strong> ({activeConfig.model})
+                </span>
+                <Settings className="h-3.5 w-3.5 opacity-60 transition-transform group-hover:rotate-45" />
+              </>
+            ) : (
+              <>
+                <KeyRound className="h-3.5 w-3.5 text-amber-400" />
+                <span>
+                  Setup API Key ({activeAdapter.displayName})
+                </span>
+                <span className="rounded bg-amber-400/30 px-1.5 py-0.5 text-[10px] font-bold">
+                  Required
+                </span>
+              </>
+            )}
           </button>
-        )}
+
+          {lastReviewItems.length > 0 && !isScanning && (
+            <button
+              onClick={() => setIsReviewModalOpen(true)}
+              className="flex items-center gap-1.5 rounded-full border border-primary/30 bg-primary/20 px-4 py-1.5 text-xs font-bold text-primary backdrop-blur-md transition-all hover:scale-105 hover:bg-primary/30 active:scale-95"
+            >
+              <Eye className="h-3.5 w-3.5" />
+              <span>Review Last Scan ({lastReviewItems.length})</span>
+            </button>
+          )}
+        </div>
       </div>
 
-      {showCalibration && lastUploadedFile && (
-        <GridCalibration
-          imageFile={lastUploadedFile}
-          config={gridConfig}
-          onChange={setGridConfig}
-        />
-      )}
-      {showCalibration && !lastUploadedFile && (
-        <div className="relative rounded-xl border border-white/10 bg-white/5 p-4 text-center text-sm font-medium text-white shadow-lg drop-shadow-md backdrop-blur-md">
-          Upload an image first to use the Calibration Tool.
-        </div>
-      )}
-
+      {/* Upload Zone */}
       <UploadZone
         isScanning={isScanning}
         progress={progress}
         onFilesSelected={handleFiles}
       />
 
+      {/* Scanning status banner */}
+      {isScanning && statusMessage && (
+        <div className="mx-auto flex max-w-md items-center justify-center gap-2 rounded-xl border border-primary/30 bg-black/60 px-4 py-2.5 text-center text-xs font-medium text-white/90 backdrop-blur-md shadow-lg animate-pulse">
+          <Sparkles className="h-4 w-4 text-primary animate-spin" />
+          <span>{statusMessage}</span>
+        </div>
+      )}
+
+      {/* Scanned Results Grid */}
       <ResultGrid
         items={detectedItems}
         onClear={handleClear}
@@ -237,20 +322,18 @@ export function Scanner() {
         onRemoveItem={handleRemoveItem}
       />
 
-      {/* Grid Layout Adjustment Modal (Pre-Scan) */}
-      <GridLayoutModal
-        isOpen={isLayoutModalOpen}
-        files={pendingFiles}
-        onClose={() => setIsLayoutModalOpen(false)}
-        onConfirmScan={handleConfirmLayoutScan}
-      />
-
-      {/* Results Review Modal (Post-Scan) */}
+      {/* Post-Scan Review Modal */}
       <ScanReviewModal
         isOpen={isReviewModalOpen}
         reviewItems={lastReviewItems}
         onClose={() => setIsReviewModalOpen(false)}
         onConfirm={handleConfirmReview}
+      />
+
+      {/* Settings Modal */}
+      <ScannerSettingsModal
+        isOpen={isSettingsOpen}
+        onClose={() => setIsSettingsOpen(false)}
       />
     </div>
   );

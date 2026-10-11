@@ -3,6 +3,7 @@ import { MaterialItem } from "./types";
 
 export type MaterialCategory =
   | "ALL"
+  | "EXP"
   | "REFINEMENT"
   | "ENHANCEMENT"
   | "BOSS"
@@ -25,6 +26,13 @@ export const MATERIAL_CATEGORIES: CategoryMeta[] = [
     shortLabel: "All",
     description: "Every material available in the game",
     sortRankRange: "1 - 15124",
+  },
+  {
+    id: "EXP",
+    label: "Character & Weapon EXP",
+    shortLabel: "EXP Materials",
+    description: "Hero's Wit, Adventurer's Experience, and Enhancement Ores",
+    sortRankRange: "5 - 100",
   },
   {
     id: "REFINEMENT",
@@ -74,6 +82,17 @@ export const MATERIAL_CATEGORIES: CategoryMeta[] = [
  * Returns the category ID of a material based on its sortRank and in-game semantics.
  */
 export function getMaterialCategoryId(item: MaterialItem): MaterialCategory {
+  if (
+    item.type === "EXP_FRUIT" ||
+    item.type === "WEAPON_EXP_STONE" ||
+    item.name.includes("Hero's Wit") ||
+    item.name.includes("Adventurer's Experience") ||
+    item.name.includes("Wanderer's Advice") ||
+    item.name.includes("Enhancement Ore")
+  ) {
+    return "EXP";
+  }
+
   const rank = item.sortRank ?? 0;
   if (
     rank <= 90 ||
@@ -109,7 +128,7 @@ export function getMaterialCategoryLabel(item: MaterialItem): string {
 }
 
 /**
- * Returns all materials guaranteed sorted by canonical application order (1..475).
+ * Returns all materials guaranteed sorted by canonical application order.
  */
 export function getAllMaterials(): MaterialItem[] {
   return (materialsData as MaterialItem[])

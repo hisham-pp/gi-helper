@@ -1,190 +1,177 @@
-# Genshin Material Tracker
+# Genshin Material Tracker & AI Inventory Scanner
 
-Production-ready full-stack material tracker for Genshin Impact built with Next.js 15, TypeScript, Tailwind CSS, Prisma, and PostgreSQL.
+A modern, full-stack Genshin Impact material management tool and multimodal AI inventory scanner built with **Next.js 15**, **React 19**, **TypeScript**, and **Tailwind CSS**.
 
-## Stack
+Scan your in-game inventory screenshots using leading Vision AI models (Google Gemini, OpenAI GPT, Anthropic Claude, xAI Grok, or local/custom endpoints), verify detected items in an interactive review modal, and export directly to `.GOOD` format.
 
-- Next.js 15 App Router
-- TypeScript
-- Tailwind CSS
-- Prisma ORM
-- PostgreSQL
-- Simple username/password authentication
-- Server actions plus route handlers
-- Railway-compatible deployment
+---
 
-## Features
+## Key Features
 
-- Preloaded seed database with 80+ Genshin materials across enemy drops, elite drops, and talent books
-- Inventory CRUD with optimistic UI updates
-- Multi-user inventory and goals with cookie sessions
-- Farming goals and goal material requirements
-- Recursive 3:1 crafting calculations
-- Dashboard overview cards and progress bars
-- Dedicated routed material tracker page plus future-ready module pages
-- Full backup export/import for shared materials plus user inventory and goals
-- Search and category filters
-- Responsive card-based UI
-- Dark mode
-- JSON inventory import/export
-- Proxied material image caching
-- Basic PWA manifest and service worker
-- Idempotent Prisma seed with split seed-data modules
+### 1. Multimodal AI Inventory Scanner
+- **Direct Vision Recognition:** Upload screenshots of your in-game material bags to automatically identify items and counts.
+- **Pluggable AI Adapter Architecture:** Switch between multiple providers on the fly:
+  - **Google Gemini** (`gemini-1.5-flash` [Free Tier / Recommended], `gemini-2.0-flash`, `gemini-1.5-pro`)
+  - **OpenAI** (`gpt-4o-mini`, `gpt-4o`)
+  - **Anthropic Claude** (`claude-3-5-sonnet-latest`, `claude-3-5-haiku-latest`)
+  - **xAI Grok** (`grok-2-vision-1212`, `grok-vision-beta`)
+  - **Custom / OpenAI-Compatible** (OpenRouter, Local Ollama, DeepSeek, vLLM)
+- **Local Storage Key Management:** API keys and model preferences are saved directly in browser `localStorage`, seamlessly overriding any server `.env` variables.
+- **Live Connection Test:** Test API credentials with real-time feedback directly inside the settings modal.
+
+### 2. Canonical Genshin Impact Dataset (475 Materials)
+- Pre-compiled dataset covering all 475 materials:
+  - Character Ascension Materials & Gems
+  - Character Talent Books (Teachings, Guides, Philosophies)
+  - Weapon Ascension Materials
+  - Common & Elite Enemy Drops
+  - Normal Boss & Weekly Trounce Domain Drops
+  - Local Specialties, Ores, and Refinement Items
+- Single canonical dataset under `src/data/materials.json` (also served dynamically at `/data/materials.json`).
+- In-prompt reference dictionary ensures AI models select canonical IDs and names with zero hallucination.
+- Resilient fuzzy matching fallback ([`src/lib/ai/material-matcher.ts`](./src/lib/ai/material-matcher.ts)) handles minor OCR typos and spelling variations.
+
+### 3. Interactive Review & GOOD Format Export
+- **Post-Scan Review Modal:** Verify every detected item, adjust quantities with quick `+`/`-` steppers, search and re-assign materials, or delete entries.
+- **Genshin Open Object Description (GOOD):** Export scanned materials to standardized `.json` format compatible with popular Genshin optimizers and tools.
+
+---
+
+## Technology Stack
+
+- **Framework:** Next.js 15 (App Router, Dynamic Route Handlers)
+- **Frontend:** React 19, Tailwind CSS, Lucide Icons, Sonner (Toast notifications)
+- **AI Vision Engine:** Multimodal REST adapters (Gemini, OpenAI, Claude, Grok, Custom)
+- **Static Assets:** 475 material icons, PWA manifest
+- **Runtime & Package Manager:** Node.js 22.x, `pnpm` (v10.17.1)
+
+---
 
 ## Project Structure
 
 ```text
-app/
-  api/
-  actions.ts
-  challenges/
-  collectibles/
-  globals.css
-  layout.tsx
-  login/
-  loading.tsx
-  manifest.ts
-  map/
-  materials/
-  page.tsx
-  register/
-  shrines/
-components/
-  auth/
-  dashboard/
-  layout/
-  providers/
-docs/
-  requirements.md
-lib/
-  constants.ts
-  crafting.ts
-  data.ts
-  material-seed.ts
-  prisma.ts
-  types.ts
-  utils.ts
-  validation.ts
-prisma/
-  migrations/
-  schema.prisma
-  seed-data/
-  seed.ts
+src/
+├── app/
+│   ├── api/
+│   │   └── scanner/
+│   │       └── ai-vision/route.ts      # Server Route Handler for Vision AI & connection tests
+│   ├── debug/                          # Internal testing & debug pages
+│   ├── materials/page.tsx              # Canonical materials directory page
+│   ├── globals.css                     # Global design tokens and styles
+│   ├── layout.tsx                      # Root layout with navbar & providers
+│   └── page.tsx                        # Main landing & inventory scanner page
+├── components/
+│   ├── materials/                      # Material directory & category components
+│   ├── scanner/                        # Scanner UI components:
+│   │   ├── Scanner.tsx                 # Core scanner pipeline
+│   │   ├── ScannerSettingsModal.tsx    # Multi-provider configuration modal
+│   │   ├── ScannerSettingsButton.tsx   # Header quick-access settings button
+│   │   ├── ScanReviewModal.tsx         # Interactive post-scan review modal
+│   │   ├── UploadZone.tsx              # Drag-and-drop file upload zone
+│   │   └── ResultGrid.tsx              # Scanned items table & export controls
+│   └── ui/                             # Reusable UI primitives
+├── data/
+│   └── materials.json                  # Canonical 475-item material dataset
+└── lib/
+    ├── ai/
+    │   ├── adapters/                   # Pluggable AI Vision Adapters:
+    │   │   ├── types.ts                # AiVisionAdapter interface & contracts
+    │   │   ├── gemini-adapter.ts       # Google Gemini Vision implementation
+    │   │   ├── openai-adapter.ts       # OpenAI GPT implementation
+    │   │   ├── claude-adapter.ts       # Anthropic Claude implementation
+    │   │   ├── grok-adapter.ts         # xAI Grok implementation
+    │   │   ├── custom-adapter.ts       # OpenAI-Compatible / OpenRouter implementation
+    │   │   └── index.ts                # Adapter registry & factory
+    │   ├── material-matcher.ts         # Exact & Levenshtein material resolver
+    │   ├── prompts.ts                  # In-prompt reference dictionary generator
+    │   └── vision-scanner.ts           # Vision scan execution helpers
+    ├── cv/                             # Preserved legacy CV/dHash pipeline (for future reference)
+    ├── good-format.ts                  # GOOD format exporter
+    ├── materials.ts                    # Category helpers & rarity styles
+    ├── scanner-settings.ts             # LocalStorage settings hook & persistence
+    └── types.ts                        # Core TypeScript domain types
 public/
-  service-worker.js
+└── images/
+    └── materials/                      # 475 material thumbnail icons
 ```
 
-## Local Development
+---
 
-1. Install dependencies:
+## Getting Started
+
+### Prerequisites
+
+- Node.js `22.x` (or `20.x`+)
+- `pnpm` (recommended): `npm install -g pnpm`
+
+### Installation
 
 ```bash
-npm install
+# Clone the repository
+git clone https://github.com/hisham-pp/gi-helper.git
+cd gi-helper
+
+# Install dependencies
+pnpm install
 ```
 
-2. Create your environment file:
+### Environment Variables (Optional)
 
-```bash
-cp .env.example .env
-```
-
-3. Run Prisma migrations:
-
-```bash
-npx prisma migrate dev
-```
-
-4. Seed the database:
-
-```bash
-npx prisma db seed
-```
-
-5. Start the development server:
-
-```bash
-npm run dev
-```
-
-Open `http://localhost:3000`.
-
-Create an account from `/register`, then log in from `/login`.
-
-## Commands
-
-```bash
-npm run dev
-npm run build
-npm run start
-npm run lint
-npm run format
-npm run db:migrate
-npm run db:seed
-```
-
-## Environment Variables
-
-See [.env.example](./.env.example).
+You can configure optional server-side fallback API keys in `.env` (copy from `.env.example`):
 
 ```env
-DATABASE_URL="file:./dev.db"
-NEXT_PUBLIC_APP_NAME="Genshin Material Tracker"
+# Optional server fallback keys (browser localStorage overrides these)
+GEMINI_API_KEY=""
+OPENAI_API_KEY=""
+ANTHROPIC_API_KEY=""
+GROK_API_KEY=""
+CUSTOM_AI_API_KEY=""
 ```
 
-## Prisma Notes
+> **Note:** Keys can be entered directly in the web UI under **Scanner Settings** (gear icon). Browser keys are saved in `localStorage` and never require editing `.env` files.
 
-- Schema is defined in [prisma/schema.prisma](./prisma/schema.prisma).
-- Initial migration is committed under [prisma/migrations/20260516193000_init/migration.sql](./prisma/migrations/20260516193000_init/migration.sql).
-- Auth and multi-user migration is committed under [prisma/migrations/20260516203000_add_auth_and_multi_user/migration.sql](./prisma/migrations/20260516203000_add_auth_and_multi_user/migration.sql).
-- Seed data is split under [prisma/seed-data](./prisma/seed-data) and re-exported by [lib/material-seed.ts](./lib/material-seed.ts).
-- The seed script uses `upsert`, so rerunning it adds or updates shared material reference data without clearing user data. That makes it safe to run on every deployment start.
+### Development Server
 
-## Vercel Deployment
+```bash
+pnpm dev
+```
 
-Vercel runs the configured build command for deployments, but it does not run the
-app's `start` script. The included [vercel.json](./vercel.json) points Vercel at
-`pnpm vercel-build`, which runs Prisma migrations, seeds shared reference data,
-and then builds Next.js.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-Make sure the Vercel project has `DATABASE_URL` and `DIRECT_URL` configured for
-the production PostgreSQL database. Set `SEED_MASTER_PASSWORD` on the first
-deploy if you want the seeded `master` account to use a password other than the
-local fallback.
+---
 
-## Railway Deployment
+## Available Commands
 
-This application is optimized for deployment on Railway with a PostgreSQL database.
+| Command | Description |
+| :--- | :--- |
+| `pnpm dev` | Start local Next.js development server at `localhost:3000` |
+| `pnpm build` | Create optimized production build |
+| `pnpm start` | Start production server |
+| `pnpm test` | Run unit tests with Node test runner (`node:test`) |
+| `pnpm lint` | Run ESLint with Next.js core web vitals configuration |
+| `pnpm format` | Run Prettier across the codebase |
 
-### Recommended Setup
+---
 
-1. Create a new Railway project from this repo.
-2. Add a **PostgreSQL** service to your Railway project.
-3. Railway will automatically provide a `DATABASE_URL` environment variable to your application.
-4. Deploy normally. Railway will use:
-   - `npm run build` for build
-   - `npm run start` for runtime
+## AI Scanner Provider Guide
 
-The runtime start command runs Prisma migrations, seeds shared materials, and then starts Next.js.
+1. **Google Gemini (Recommended):**
+   - Free tier available via [Google AI Studio](https://aistudio.google.com/app/apikey).
+   - Fast responses (typically 1–2 seconds) using `gemini-1.5-flash` or `gemini-2.0-flash`.
+2. **OpenAI:**
+   - Requires API key from [OpenAI Platform](https://platform.openai.com/api-keys).
+   - Recommended model: `gpt-4o-mini` (cost-effective) or `gpt-4o`.
+3. **Anthropic Claude:**
+   - Requires API key from [Anthropic Console](https://console.anthropic.com/settings/keys).
+   - Recommended model: `claude-3-5-sonnet-latest` or `claude-3-5-haiku-latest`.
+4. **xAI Grok:**
+   - Requires API key from [xAI Console](https://console.x.ai).
+   - Recommended model: `grok-2-vision-1212`.
+5. **Custom / Local:**
+   - Point to any OpenAI-compatible Vision API (e.g., OpenRouter `https://openrouter.ai/api/v1` or local Ollama).
 
-### Included Railway Config
+---
 
-- [railway.json](./railway.json)
-- `postinstall` Prisma client generation
-- `start` script with `prisma migrate deploy && prisma db seed && next start`
+## License
 
-### Backup
-
-- Use the `Export all` button in the top bar to download a full JSON backup.
-- Use `Import all` to restore that backup for the logged-in user.
-
-## API Endpoints
-
-- `GET /api/inventory/export`
-- `POST /api/inventory/import`
-- `GET /api/material-image/[materialId]`
-
-## Notes
-
-- Authentication is simple by design: local username/password plus session cookies.
-- Inventory and goals are scoped per user.
-- The architecture is intentionally simple so characters and weapons can be added later without reworking the app foundation.
+MIT
