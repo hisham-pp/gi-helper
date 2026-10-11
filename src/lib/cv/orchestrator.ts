@@ -44,6 +44,7 @@ export async function processInventoryImages(
   ) => void,
   options?: {
     continueOrder?: boolean;
+    useOrderConstraint?: boolean;
   },
 ): Promise<ProcessScanResult> {
   const fileArray = Array.from(files);
@@ -105,9 +106,10 @@ export async function processInventoryImages(
         expectedRarity: cellRarity.rarity,
         minConfidence: 0.48,
         neighborNames: previousMatchName ? [previousMatchName] : undefined,
-        orderConstraint: isSingleItem
-          ? undefined
-          : { minOrder: lastMatchedOrder, blockId: lastBlockId },
+        // Match visually on true features like genshin-reader (avoid false order-lockouts)
+        orderConstraint: options?.useOrderConstraint
+          ? { minOrder: lastMatchedOrder, blockId: lastBlockId }
+          : undefined,
       });
 
       if (match) {

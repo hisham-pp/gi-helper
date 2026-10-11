@@ -254,8 +254,8 @@ export function findBestMatch(
   const limit = orderConstraint ? 9999 : 5;
 
   const all = findTopCandidates(fingerprint, limit, {
-    hashWeight: 0.6,
-    colorWeight: 0.4,
+    hashWeight: 0.8,
+    colorWeight: 0.2,
     minConfidence: options?.minConfidence ?? 0.48,
     expectedRarity: options?.expectedRarity,
     neighborNames: options?.neighborNames,
