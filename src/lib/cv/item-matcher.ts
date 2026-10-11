@@ -13,6 +13,7 @@ export interface MatchResult {
   constraintRelaxed: boolean; // true when the order constraint was relaxed (no candidate passed)
   order: number | null; // Inventory_Order of the matched candidate, or null if unavailable
   blockId: string | null; // "{sortRank}:{rarity}" of the matched candidate, or null
+  candidates?: MatchCandidate[];
 }
 
 /**
@@ -36,6 +37,60 @@ export interface MatchCandidate {
   order: number | null;
   blockId: string | null; // "{sortRank}:{rarity}" or null
 }
+
+const GENERIC_STOP_WORDS = new Set([
+  "ancient",
+  "fragment",
+  "piece",
+  "shard",
+  "broken",
+  "damaged",
+  "stained",
+  "weathered",
+  "pristine",
+  "refined",
+  "heavy",
+  "sharp",
+  "common",
+  "fossilized",
+  "glowing",
+  "decayed",
+  "pure",
+  "corrupted",
+  "dull",
+  "crystal",
+  "chunk",
+  "silver",
+  "golden",
+  "iron",
+  "copper",
+  "mask",
+  "horn",
+  "drop",
+  "branch",
+  "core",
+  "flower",
+  "scale",
+  "teeth",
+  "fang",
+  "bone",
+  "scroll",
+  "arrowhead",
+  "insignia",
+  "blade",
+  "sword",
+  "guide",
+  "teachings",
+  "philosophies",
+  "echo",
+  "movement",
+  "chapter",
+  "sacrificial",
+  "blessed",
+  "device",
+  "mystic",
+  "whistle",
+]);
 
 /**
  * Finds top matching material candidates for a given fingerprint using
@@ -101,13 +156,19 @@ export function findTopCandidates(
         finalScore *= 0.85; // Slight penalty for 1 star difference
         rarityMatch = false;
       } else {
-        finalScore *= 0.4; // Heavy penalty for difference >= 2 stars (eliminates 1-star matching 4-star)
+        finalScore *= 0.7; // Moderate penalty for >= 2 stars difference (retains true matches when star detection fluctuates)
         rarityMatch = false;
       }
     }
 
     let siblingMatch = false;
-    if (options?.neighborNames && material) {
+    // Guard sibling boost: only apply if the candidate has plausible visual similarity
+    if (
+      options?.neighborNames &&
+      material &&
+      rawScore >= 0.52 &&
+      hashSim >= 0.46
+    ) {
       const matWords = material.name.toLowerCase().split(/[\s-']+/);
       for (const neighborName of options.neighborNames) {
         if (!neighborName) continue;
@@ -123,21 +184,26 @@ export function findTopCandidates(
           neighborMaterial &&
           (neighborMaterial as any).family === (material as any).family
         ) {
-          finalScore *= 1.15; // 15% boost for explicit family match
+          finalScore *= 1.1; // 10% boost for explicit family match
           siblingMatch = true;
           break;
         }
 
         // 2. Fallback to dynamic string match if no family is defined
-        const neighborWords = neighborName.toLowerCase().split(/[\s-']+/);
-        // Look for shared significant words (length >= 4)
-        const sharesWord = matWords.some(
-          (w) => w.length >= 4 && neighborWords.includes(w),
-        );
-        if (sharesWord) {
-          finalScore *= 1.15; // 15% boost if it shares a word with a neighbor (sibling material)
-          siblingMatch = true;
-          break;
+        if (rawScore >= 0.55 && hashSim >= 0.48) {
+          const neighborWords = neighborName.toLowerCase().split(/[\s-']+/);
+          // Look for shared significant non-generic words (length >= 4)
+          const sharesWord = matWords.some(
+            (w) =>
+              w.length >= 4 &&
+              !GENERIC_STOP_WORDS.has(w) &&
+              neighborWords.includes(w),
+          );
+          if (sharesWord) {
+            finalScore *= 1.08; // 8% boost if it shares a distinctive word with a neighbor
+            siblingMatch = true;
+            break;
+          }
         }
       }
     }
@@ -183,14 +249,14 @@ export function findBestMatch(
   const orderConstraint = options?.orderConstraint;
 
   // When an order constraint is provided, we need the full candidate list to
-  // partition into constrained vs. unconstrained pools.  When there is no
-  // constraint we can short-circuit with limit=1 for efficiency.
-  const limit = orderConstraint ? 9999 : 1;
+  // partition into constrained vs. unconstrained pools. When there is no
+  // constraint we retrieve top candidates for alternative suggestions.
+  const limit = orderConstraint ? 9999 : 5;
 
   const all = findTopCandidates(fingerprint, limit, {
     hashWeight: 0.6,
     colorWeight: 0.4,
-    minConfidence: options?.minConfidence ?? 0.55,
+    minConfidence: options?.minConfidence ?? 0.48,
     expectedRarity: options?.expectedRarity,
     neighborNames: options?.neighborNames,
   });
@@ -198,6 +264,8 @@ export function findBestMatch(
   if (all.length === 0) {
     return null;
   }
+
+  const topCandidates = all.slice(0, 5);
 
   // No constraint — return the top candidate directly (legacy behaviour).
   if (!orderConstraint) {
@@ -208,6 +276,7 @@ export function findBestMatch(
       constraintRelaxed: false,
       order: all[0].order,
       blockId: all[0].blockId,
+      candidates: topCandidates,
     };
   }
 
@@ -227,8 +296,14 @@ export function findBestMatch(
     return false;
   });
 
-  if (constrained.length > 0) {
-    // constrained is already sorted by score descending (inherited from findTopCandidates)
+  // If the unconstrained top visual candidate is significantly stronger than the
+  // best candidate that satisfied the order constraint (e.g. difference >= 0.08),
+  // the order sequence was corrupted by an earlier misidentification.
+  // Relax the constraint and trust the superior visual match instead of forcing a mismatch.
+  const visualDisparity =
+    constrained.length > 0 ? all[0].score - constrained[0].score : 1.0;
+
+  if (constrained.length > 0 && visualDisparity < 0.08) {
     return {
       id: constrained[0].id,
       name: constrained[0].name,
@@ -236,11 +311,12 @@ export function findBestMatch(
       constraintRelaxed: false,
       order: constrained[0].order,
       blockId: constrained[0].blockId,
+      candidates: topCandidates,
     };
   }
 
-  // Graceful fallback: no candidate passed the constraint — return the best
-  // overall candidate (including null-order ones) and flag the relaxation.
+  // Graceful fallback: no candidate passed the constraint, or top visual match
+  // vastly outperformed the constrained option.
   return {
     id: all[0].id,
     name: all[0].name,
@@ -248,5 +324,6 @@ export function findBestMatch(
     constraintRelaxed: true,
     order: all[0].order,
     blockId: all[0].blockId,
+    candidates: topCandidates,
   };
 }

@@ -5,6 +5,13 @@ export interface DetectedItem {
   rarity?: number;
 }
 
+export interface ReviewCandidate {
+  id: string;
+  name: string;
+  rarity?: number;
+  confidence: number;
+}
+
 export interface ScannedReviewItem {
   id: string;
   materialId: string;
@@ -15,6 +22,7 @@ export interface ScannedReviewItem {
   sourceImageName: string;
   row?: number;
   col?: number;
+  candidates?: ReviewCandidate[];
 }
 
 export interface ProcessScanResult {

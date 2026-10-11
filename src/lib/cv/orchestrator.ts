@@ -103,7 +103,7 @@ export async function processInventoryImages(
       const fingerprint = await calculateFingerprint(cell.icon);
       const match = findBestMatch(fingerprint, {
         expectedRarity: cellRarity.rarity,
-        minConfidence: 0.55,
+        minConfidence: 0.48,
         neighborNames: previousMatchName ? [previousMatchName] : undefined,
         orderConstraint: isSingleItem
           ? undefined
@@ -114,12 +114,9 @@ export async function processInventoryImages(
         previousMatchName = match.name;
 
         // Update order-constraint state after a non-null match.
-        // Rules:
-        //  1. If constraintRelaxed → do NOT update state (preserve last valid position).
-        //  2. If not relaxed AND blockId changed → advance lastMatchedOrder and lastBlockId.
-        //  3. If not relaxed AND same block peer (blockId unchanged) → do NOT update state.
-        if (!match.constraintRelaxed && match.blockId !== lastBlockId) {
-          lastMatchedOrder = match.order ?? lastMatchedOrder;
+        // If the match advanced or realigned the sequence, adopt the new order position.
+        if (match.order !== null && match.blockId !== lastBlockId) {
+          lastMatchedOrder = match.order;
           lastBlockId = match.blockId;
         }
 
@@ -203,6 +200,12 @@ export async function processInventoryImages(
           sourceImageName: file.name,
           row: cell.row,
           col: cell.col,
+          candidates: match.candidates?.map((c) => ({
+            id: c.id,
+            name: c.name,
+            rarity: c.rarity,
+            confidence: c.confidence,
+          })),
         });
       } else {
         // If it was not empty but didn't match anything, we break the chain

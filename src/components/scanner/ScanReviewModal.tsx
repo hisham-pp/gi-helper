@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { ScannedReviewItem, DetectedItem } from "@/lib/types";
+import React, { useState, useEffect, useMemo } from "react";
+import { ScannedReviewItem, DetectedItem, ReviewCandidate, MaterialItem } from "@/lib/types";
 import {
   CheckCircle2,
   Trash2,
@@ -12,8 +12,16 @@ import {
   ArrowRight,
   Sparkles,
   Search,
+  Pencil,
 } from "lucide-react";
 import { toast } from "sonner";
+import {
+  getAllMaterials,
+  MATERIAL_CATEGORIES,
+  MaterialCategory,
+  getMaterialCategoryId,
+  getRarityStyles,
+} from "@/lib/materials";
 
 interface ScanReviewModalProps {
   isOpen: boolean;
@@ -31,10 +39,19 @@ export function ScanReviewModal({
   const [items, setItems] = useState<ScannedReviewItem[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
 
+  // Material Picker Sub-modal state
+  const [editingSlotId, setEditingSlotId] = useState<string | null>(null);
+  const [pickerSearch, setPickerSearch] = useState("");
+  const [pickerCategory, setPickerCategory] = useState<MaterialCategory>("ALL");
+  const [pickerRarity, setPickerRarity] = useState<number | null>(null);
+
+  const allMaterials = useMemo(() => getAllMaterials(), []);
+
   useEffect(() => {
     if (isOpen) {
       setItems(reviewItems);
       setSearchQuery("");
+      setEditingSlotId(null);
     }
   }, [isOpen, reviewItems]);
 
@@ -63,6 +80,27 @@ export function ScanReviewModal({
 
   const handleRemove = (id: string) => {
     setItems((prev) => prev.filter((item) => item.id !== id));
+  };
+
+  const handleSelectMaterial = (
+    slotId: string,
+    material: MaterialItem | ReviewCandidate,
+  ) => {
+    setItems((prev) =>
+      prev.map((item) => {
+        if (item.id === slotId) {
+          return {
+            ...item,
+            materialId: material.id,
+            name: material.name,
+            rarity: material.rarity,
+          };
+        }
+        return item;
+      }),
+    );
+    setEditingSlotId(null);
+    toast.success(`Assigned ${material.name}`);
   };
 
   const handleConfirm = () => {
@@ -99,6 +137,29 @@ export function ScanReviewModal({
 
   const totalQuantity = items.reduce((sum, item) => sum + item.quantity, 0);
 
+  const editingItem = items.find((it) => it.id === editingSlotId);
+
+  const filteredMaterials = allMaterials.filter((m) => {
+    if (
+      pickerCategory !== "ALL" &&
+      getMaterialCategoryId(m) !== pickerCategory
+    ) {
+      return false;
+    }
+    if (pickerRarity !== null && m.rarity !== pickerRarity) {
+      return false;
+    }
+    if (pickerSearch.trim()) {
+      const q = pickerSearch.toLowerCase().trim();
+      return (
+        m.name.toLowerCase().includes(q) ||
+        m.id.toLowerCase().includes(q) ||
+        (m.family && m.family.toLowerCase().includes(q))
+      );
+    }
+    return true;
+  });
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6">
       {/* Backdrop */}
@@ -120,8 +181,7 @@ export function ScanReviewModal({
                 Review Scan Results
               </h2>
               <p className="text-xs text-white/60">
-                Compare screenshot snippets against matched items and adjust
-                quantities before saving.
+                Compare screenshot snippets against matched items, select correct materials, and adjust quantities.
               </p>
             </div>
           </div>
@@ -189,7 +249,7 @@ export function ScanReviewModal({
                 return (
                   <div
                     key={item.id}
-                    className={`flex flex-col items-center justify-between gap-4 rounded-2xl border p-3 transition-all hover:bg-white/[0.06] sm:flex-row sm:p-4 ${rarityColor}`}
+                    className={`flex flex-col items-start justify-between gap-4 rounded-2xl border p-3 transition-all hover:bg-white/[0.06] sm:flex-row sm:items-center sm:p-4 ${rarityColor}`}
                   >
                     {/* Left: Image Part (Screenshot Crop) */}
                     <div className="flex w-full items-center gap-3 sm:w-auto">
@@ -230,37 +290,81 @@ export function ScanReviewModal({
                       <ArrowRight className="h-4 w-4" />
                     </div>
 
-                    {/* Right: Matched Material Result */}
-                    <div className="flex w-full flex-1 items-center gap-3 sm:w-auto">
-                      <div className="relative flex h-14 w-14 flex-shrink-0 items-center justify-center overflow-hidden rounded-xl border border-white/15 bg-black/40 shadow-inner">
-                        <img
-                          src={`/images/materials/${item.materialId}.png`}
-                          alt={item.name}
-                          className="h-11 w-11 object-contain"
-                          onError={(e) => {
-                            e.currentTarget.style.display = "none";
-                            e.currentTarget.parentElement!.innerHTML =
-                              '<span class="text-[10px] text-white/40">No Img</span>';
-                          }}
-                        />
+                    {/* Right: Matched Material Result & Suggestions */}
+                    <div className="flex w-full flex-1 flex-col gap-2 sm:w-auto">
+                      <div className="flex items-center gap-3">
+                        <div className="relative flex h-14 w-14 flex-shrink-0 items-center justify-center overflow-hidden rounded-xl border border-white/15 bg-black/40 shadow-inner">
+                          <img
+                            src={`/images/materials/${item.materialId}.png`}
+                            alt={item.name}
+                            className="h-11 w-11 object-contain"
+                            onError={(e) => {
+                              e.currentTarget.style.display = "none";
+                              e.currentTarget.parentElement!.innerHTML =
+                                '<span class="text-[10px] text-white/40">No Img</span>';
+                            }}
+                          />
+                        </div>
+
+                        <div className="space-y-1">
+                          <div className="flex flex-wrap items-center gap-2">
+                            <span className="text-sm font-bold text-white drop-shadow-sm">
+                              {item.name}
+                            </span>
+                            <button
+                              onClick={() => {
+                                setEditingSlotId(item.id);
+                                setPickerSearch("");
+                                setPickerCategory("ALL");
+                                setPickerRarity(item.rarity ?? null);
+                              }}
+                              className="flex items-center gap-1 rounded-md border border-white/10 bg-white/5 px-2 py-0.5 text-[11px] font-medium text-white/70 transition-colors hover:border-primary/50 hover:bg-primary/20 hover:text-white"
+                              title="Select a different material for this slot"
+                            >
+                              <Pencil className="h-3 w-3" />
+                              <span>Change</span>
+                            </button>
+                          </div>
+
+                          {item.rarity && item.rarity >= 1 ? (
+                            <div className="flex items-center gap-0.5 text-[11px] font-bold text-amber-400">
+                              {Array.from({ length: item.rarity }).map((_, i) => (
+                                <span key={i}>★</span>
+                              ))}
+                            </div>
+                          ) : (
+                            <span className="text-[10px] text-white/40">
+                              Common
+                            </span>
+                          )}
+                        </div>
                       </div>
 
-                      <div className="space-y-1">
-                        <span className="text-sm font-bold text-white drop-shadow-sm">
-                          {item.name}
-                        </span>
-                        {item.rarity && item.rarity >= 1 ? (
-                          <div className="flex items-center gap-0.5 text-[11px] font-bold text-amber-400">
-                            {Array.from({ length: item.rarity }).map((_, i) => (
-                              <span key={i}>★</span>
-                            ))}
+                      {/* Candidate Suggestions */}
+                      {item.candidates &&
+                        item.candidates.filter((c) => c.id !== item.materialId).length > 0 && (
+                          <div className="flex flex-wrap items-center gap-1.5 pt-0.5">
+                            <span className="text-[10px] font-semibold text-white/40">
+                              Suggestions:
+                            </span>
+                            {item.candidates
+                              .filter((c) => c.id !== item.materialId)
+                              .slice(0, 3)
+                              .map((cand) => (
+                                <button
+                                  key={cand.id}
+                                  onClick={() => handleSelectMaterial(item.id, cand)}
+                                  className="group flex items-center gap-1 rounded-md border border-white/10 bg-white/[0.04] px-2 py-0.5 text-[10px] text-white/70 transition-all hover:border-primary/50 hover:bg-primary/20 hover:text-white"
+                                  title={`Switch to ${cand.name} (${cand.confidence}%)`}
+                                >
+                                  <span className="max-w-[130px] truncate">{cand.name}</span>
+                                  <span className="font-mono text-[9px] font-semibold text-primary group-hover:text-primary-foreground">
+                                    {cand.confidence}%
+                                  </span>
+                                </button>
+                              ))}
                           </div>
-                        ) : (
-                          <span className="text-[10px] text-white/40">
-                            Common
-                          </span>
                         )}
-                      </div>
                     </div>
 
                     {/* Quantity Adjustment Controls & Remove Button */}
@@ -328,6 +432,158 @@ export function ScanReviewModal({
           </button>
         </div>
       </div>
+
+      {/* Material Picker Sub-Modal */}
+      {editingItem && (
+        <div className="fixed inset-0 z-[60] flex items-center justify-center p-3 sm:p-6">
+          <div
+            className="fixed inset-0 bg-black/85 backdrop-blur-md transition-opacity"
+            onClick={() => setEditingSlotId(null)}
+          />
+          <div className="relative z-10 flex max-h-[88vh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl border border-white/20 bg-neutral-900 shadow-2xl backdrop-blur-2xl text-white">
+            {/* Header */}
+            <div className="flex items-center justify-between border-b border-white/10 bg-black/40 px-5 py-3.5">
+              <div className="flex items-center gap-3">
+                <div className="relative flex h-12 w-12 flex-shrink-0 items-center justify-center overflow-hidden rounded-xl border border-white/20 bg-black/60 shadow-inner">
+                  {editingItem.imageSnippet ? (
+                    <img
+                      src={editingItem.imageSnippet}
+                      alt="Target crop"
+                      className="h-full w-full object-cover"
+                    />
+                  ) : (
+                    <span className="text-[10px] text-white/40">Crop</span>
+                  )}
+                </div>
+                <div>
+                  <h3 className="text-base font-bold text-white">Select Material</h3>
+                  <p className="text-xs text-white/60">
+                    Comparing against detected crop. Currently:{" "}
+                    <span className="font-semibold text-white/90">{editingItem.name}</span>
+                  </p>
+                </div>
+              </div>
+              <button
+                onClick={() => setEditingSlotId(null)}
+                className="rounded-full border border-white/10 bg-white/5 p-1.5 text-white/70 hover:bg-white/15 hover:text-white"
+                aria-label="Close picker"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+
+            {/* Search & Filter Bar */}
+            <div className="space-y-2 border-b border-white/10 bg-black/20 p-4">
+              <div className="relative">
+                <Search className="absolute left-3 top-2.5 h-4 w-4 text-white/40" />
+                <input
+                  type="text"
+                  placeholder="Search material by name, category, or type..."
+                  value={pickerSearch}
+                  onChange={(e) => setPickerSearch(e.target.value)}
+                  autoFocus
+                  className="w-full rounded-xl border border-white/15 bg-white/5 py-2 pl-9 pr-3 text-xs text-white placeholder-white/40 outline-none transition-colors focus:border-primary/60"
+                />
+              </div>
+
+              {/* Category Pills & Rarity Stars Filter */}
+              <div className="flex flex-wrap items-center justify-between gap-2 pt-1 text-xs">
+                <div className="flex flex-wrap items-center gap-1">
+                  {MATERIAL_CATEGORIES.map((cat) => (
+                    <button
+                      key={cat.id}
+                      onClick={() => setPickerCategory(cat.id)}
+                      className={`rounded-lg px-2.5 py-1 text-[11px] font-semibold transition-all ${
+                        pickerCategory === cat.id
+                          ? "bg-primary text-primary-foreground shadow-sm"
+                          : "bg-white/5 text-white/60 hover:bg-white/10 hover:text-white"
+                      }`}
+                    >
+                      {cat.shortLabel}
+                    </button>
+                  ))}
+                </div>
+
+                <div className="flex items-center gap-1">
+                  <button
+                    onClick={() => setPickerRarity(null)}
+                    className={`rounded-lg px-2 py-0.5 text-[11px] font-semibold ${
+                      pickerRarity === null
+                        ? "bg-white/20 text-white"
+                        : "bg-white/5 text-white/50 hover:bg-white/10 hover:text-white"
+                    }`}
+                  >
+                    All ★
+                  </button>
+                  {[5, 4, 3, 2, 1].map((r) => (
+                    <button
+                      key={r}
+                      onClick={() =>
+                        setPickerRarity(pickerRarity === r ? null : r)
+                      }
+                      className={`rounded-lg px-2 py-0.5 text-[11px] font-bold ${
+                        pickerRarity === r
+                          ? "border border-amber-500/50 bg-amber-500/30 text-amber-300"
+                          : "bg-white/5 text-amber-400/60 hover:bg-white/10 hover:text-amber-400"
+                      }`}
+                    >
+                      {r}★
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Material Grid / List */}
+            <div className="flex-1 overflow-y-auto p-4 max-h-[55vh]">
+              {filteredMaterials.length === 0 ? (
+                <div className="py-12 text-center text-xs text-white/50">
+                  No materials found matching your filters.
+                </div>
+              ) : (
+                <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4">
+                  {filteredMaterials.slice(0, 100).map((mat) => {
+                    const styles = getRarityStyles(mat.rarity);
+                    const isSelected = mat.id === editingItem.materialId;
+                    return (
+                      <button
+                        key={mat.id}
+                        onClick={() => handleSelectMaterial(editingItem.id, mat)}
+                        className={`flex flex-col items-center gap-2 rounded-xl border p-2.5 text-center transition-all hover:scale-[1.02] active:scale-95 bg-gradient-to-b ${
+                          isSelected
+                            ? "border-primary bg-primary/20 shadow-[0_0_15px_rgba(var(--primary),0.3)] ring-2 ring-primary"
+                            : `${styles.border} ${styles.cardBg}`
+                        }`}
+                      >
+                        <div className="relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-lg bg-black/40 shadow-inner">
+                          <img
+                            src={`/images/materials/${mat.id}.png`}
+                            alt={mat.name}
+                            className="h-10 w-10 object-contain"
+                            onError={(e) => {
+                              e.currentTarget.style.display = "none";
+                            }}
+                          />
+                        </div>
+                        <div className="w-full">
+                          <div className="line-clamp-2 text-[11px] font-bold text-white/90">
+                            {mat.name}
+                          </div>
+                          {mat.rarity && (
+                            <div className="text-[10px] font-bold text-amber-400">
+                              {"★".repeat(mat.rarity)}
+                            </div>
+                          )}
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
