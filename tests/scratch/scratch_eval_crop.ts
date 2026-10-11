@@ -1,6 +1,9 @@
 import { Jimp } from "jimp";
 import fs from "fs";
-import { findBestMatch, findTopCandidates } from "../../src/lib/cv/item-matcher";
+import {
+  findBestMatch,
+  findTopCandidates,
+} from "../../src/lib/cv/item-matcher";
 import { calculateFingerprint } from "../../src/lib/cv/image-hasher";
 
 // Jimp to ImageFingerprint simulation
@@ -11,7 +14,10 @@ function getFingerprintFromJimp(img: any) {
   const cw = Math.max(1, width - 2 * cx);
   const ch = Math.max(1, height - 2 * cy);
 
-  const hashImg = img.clone().crop({ x: cx, y: cy, w: cw, h: ch }).resize({ w: 17, h: 16 });
+  const hashImg = img
+    .clone()
+    .crop({ x: cx, y: cy, w: cw, h: ch })
+    .resize({ w: 17, h: 16 });
   const grays = new Uint8Array(17 * 16);
   for (let y = 0; y < 16; y++) {
     for (let x = 0; x < 17; x++) {
@@ -38,15 +44,25 @@ function getFingerprintFromJimp(img: any) {
   const hy = Math.floor(height * 0.25);
   const hw = Math.max(1, width - 2 * hx);
   const hh = Math.max(1, height - 2 * hy);
-  const histImg = img.clone().crop({ x: hx, y: hy, w: hw, h: hh }).resize({ w: 32, h: 32 });
-  const rH = new Float32Array(8), gH = new Float32Array(8), bH = new Float32Array(8);
+  const histImg = img
+    .clone()
+    .crop({ x: hx, y: hy, w: hw, h: hh })
+    .resize({ w: 32, h: 32 });
+  const rH = new Float32Array(8),
+    gH = new Float32Array(8),
+    bH = new Float32Array(8);
   let total = 0;
   for (let y = 0; y < 32; y++) {
     for (let x = 0; x < 32; x++) {
       const rgba = histImg.getPixelColor(x, y);
-      const r = (rgba >>> 24) & 0xff, g = (rgba >>> 16) & 0xff, b = (rgba >>> 8) & 0xff, a = rgba & 0xff;
+      const r = (rgba >>> 24) & 0xff,
+        g = (rgba >>> 16) & 0xff,
+        b = (rgba >>> 8) & 0xff,
+        a = rgba & 0xff;
       if (a < 10) continue;
-      rH[Math.floor(r / 32)]++; gH[Math.floor(g / 32)]++; bH[Math.floor(b / 32)]++;
+      rH[Math.floor(r / 32)]++;
+      gH[Math.floor(g / 32)]++;
+      bH[Math.floor(b / 32)]++;
       total++;
     }
   }
@@ -75,9 +91,15 @@ async function run() {
   console.log("Best match (expectedRarity: null):", matchNull);
 
   console.log("\n=== Top 10 Candidates (expectedRarity: 2) ===");
-  const top = findTopCandidates(fp, 10, { expectedRarity: 2, hashWeight: 0.8, colorWeight: 0.2 });
+  const top = findTopCandidates(fp, 10, {
+    expectedRarity: 2,
+    hashWeight: 0.8,
+    colorWeight: 0.2,
+  });
   for (const c of top) {
-    console.log(`${c.name} (${c.id}): score=${(c.score * 100).toFixed(1)}% conf=${c.confidence}%`);
+    console.log(
+      `${c.name} (${c.id}): score=${(c.score * 100).toFixed(1)}% conf=${c.confidence}%`,
+    );
   }
 }
 

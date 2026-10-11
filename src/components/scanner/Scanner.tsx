@@ -11,9 +11,12 @@ import { exportToGOODFormat } from "@/lib/good-format";
 import {
   useScannerSettings,
   getActiveProviderConfig,
+  ServerEnvProviderInfo,
 } from "@/lib/scanner-settings";
 import { getAiAdapter } from "@/lib/ai/adapters";
 import { Eye, Settings, Sparkles, KeyRound } from "lucide-react";
+
+export type { ServerEnvProviderInfo };
 
 export function Scanner() {
   const { settings } = useScannerSettings();
@@ -21,6 +24,9 @@ export function Scanner() {
   const [progress, setProgress] = useState(0);
   const [statusMessage, setStatusMessage] = useState<string>("");
   const [detectedItems, setDetectedItems] = useState<DetectedItem[]>([]);
+  const [serverEnv, setServerEnv] = useState<
+    Record<string, ServerEnvProviderInfo>
+  >({});
 
   // Modal states
   const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
@@ -29,9 +35,22 @@ export function Scanner() {
     [],
   );
 
+  // Check server environment configuration on mount
+  useEffect(() => {
+    fetch("/api/scanner/ai-vision")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data?.providers) {
+          setServerEnv(data.providers);
+        }
+      })
+      .catch(() => {});
+  }, []);
+
   const activeAdapter = getAiAdapter(settings.aiProvider);
   const activeConfig = getActiveProviderConfig(settings);
-  const hasKeyConfigured = Boolean(activeConfig.apiKey?.trim());
+  const serverHasKey = Boolean(serverEnv[settings.aiProvider]?.hasKey);
+  const hasKeyConfigured = Boolean(activeConfig.apiKey?.trim() || serverHasKey);
 
   // Load any previously detected items from localStorage
   useEffect(() => {
@@ -68,11 +87,12 @@ export function Scanner() {
 
       const currentConfig = getActiveProviderConfig(settings);
       const currentAdapter = getAiAdapter(settings.aiProvider);
+      const envHasKey = Boolean(serverEnv[settings.aiProvider]?.hasKey);
 
-      // If no API key is saved in browser, remind user and open settings
-      if (!currentConfig.apiKey?.trim()) {
+      // If neither browser localStorage nor server has a key, prompt user to configure in settings
+      if (!currentConfig.apiKey?.trim() && !envHasKey) {
         toast.error(
-          `Please configure your ${currentAdapter.displayName} API Key in Settings first.`,
+          `Please configure your ${currentAdapter.displayName} API Key in Scanner Settings first.`,
           {
             action: {
               label: "Open Settings",
@@ -187,7 +207,7 @@ export function Scanner() {
         setStatusMessage("");
       }
     },
-    [settings],
+    [settings, serverEnv],
   );
 
   const handleFiles = useCallback(
@@ -262,23 +282,25 @@ export function Scanner() {
             className={`group flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-semibold backdrop-blur-md transition-all hover:scale-105 active:scale-95 ${
               hasKeyConfigured
                 ? "border-emerald-500/40 bg-emerald-500/15 text-emerald-300 hover:bg-emerald-500/25"
-                : "border-amber-500/50 bg-amber-500/20 text-amber-300 hover:bg-amber-500/30 shadow-[0_0_15px_rgba(245,158,11,0.2)]"
+                : "border-amber-500/50 bg-amber-500/20 text-amber-300 shadow-[0_0_15px_rgba(245,158,11,0.2)] hover:bg-amber-500/30"
             }`}
           >
             {hasKeyConfigured ? (
               <>
                 <Sparkles className="h-3.5 w-3.5 text-emerald-400" />
                 <span>
-                  Vision AI: <strong className="font-bold">{activeAdapter.displayName}</strong> ({activeConfig.model})
+                  Vision AI:{" "}
+                  <strong className="font-bold">
+                    {activeAdapter.displayName}
+                  </strong>{" "}
+                  ({activeConfig.model})
                 </span>
                 <Settings className="h-3.5 w-3.5 opacity-60 transition-transform group-hover:rotate-45" />
               </>
             ) : (
               <>
                 <KeyRound className="h-3.5 w-3.5 text-amber-400" />
-                <span>
-                  Setup API Key ({activeAdapter.displayName})
-                </span>
+                <span>Setup API Key ({activeAdapter.displayName})</span>
                 <span className="rounded bg-amber-400/30 px-1.5 py-0.5 text-[10px] font-bold">
                   Required
                 </span>
@@ -307,8 +329,8 @@ export function Scanner() {
 
       {/* Scanning status banner */}
       {isScanning && statusMessage && (
-        <div className="mx-auto flex max-w-md items-center justify-center gap-2 rounded-xl border border-primary/30 bg-black/60 px-4 py-2.5 text-center text-xs font-medium text-white/90 backdrop-blur-md shadow-lg animate-pulse">
-          <Sparkles className="h-4 w-4 text-primary animate-spin" />
+        <div className="mx-auto flex max-w-md animate-pulse items-center justify-center gap-2 rounded-xl border border-primary/30 bg-black/60 px-4 py-2.5 text-center text-xs font-medium text-white/90 shadow-lg backdrop-blur-md">
+          <Sparkles className="h-4 w-4 animate-spin text-primary" />
           <span>{statusMessage}</span>
         </div>
       )}
@@ -334,6 +356,7 @@ export function Scanner() {
       <ScannerSettingsModal
         isOpen={isSettingsOpen}
         onClose={() => setIsSettingsOpen(false)}
+        serverEnv={serverEnv}
       />
     </div>
   );

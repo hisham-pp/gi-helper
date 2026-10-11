@@ -2,7 +2,9 @@ import sharp from "sharp";
 import { Jimp } from "jimp";
 import fs from "fs";
 
-const materials = JSON.parse(fs.readFileSync("src/data/materials.json", "utf-8"));
+const materials = JSON.parse(
+  fs.readFileSync("src/data/materials.json", "utf-8"),
+);
 
 async function readImage(p: string) {
   const buf = await sharp(p).png().toBuffer();
@@ -25,7 +27,9 @@ function getNormalizedGrays(img: any, size: number = 32): Float32Array {
   for (let y = 0; y < size; y++) {
     for (let x = 0; x < size; x++) {
       const rgba = scaled.getPixelColor(x, y);
-      const r = (rgba >>> 24) & 0xff, g = (rgba >>> 16) & 0xff, b = (rgba >>> 8) & 0xff;
+      const r = (rgba >>> 24) & 0xff,
+        g = (rgba >>> 16) & 0xff,
+        b = (rgba >>> 8) & 0xff;
       const gray = r * 0.299 + g * 0.587 + b * 0.114;
       grays[y * size + x] = gray;
       mean += gray;
@@ -54,7 +58,7 @@ const groundTruth: string[][] = [
     "black-crystal-horn",
     "black-bronze-horn",
     "heavy-horn",
-    "ley-line-sprout"
+    "ley-line-sprout",
   ],
   // Row 1
   [
@@ -64,7 +68,7 @@ const groundTruth: string[][] = [
     "chaos-circuit",
     "chaos-device",
     "mist-grass-wick",
-    "mist-grass"
+    "mist-grass",
   ],
   // Row 2
   [
@@ -74,7 +78,7 @@ const groundTruth: string[][] = [
     "hunter-s-sacrificial-knife",
     "fossilized-bone-shard",
     "sturdy-bone-shard",
-    "fragile-bone-shard"
+    "fragile-bone-shard",
   ],
   // Row 3
   [
@@ -84,29 +88,40 @@ const groundTruth: string[][] = [
     "concealed-talon",
     "concealed-unguis",
     "concealed-claw",
-    "deathly-statuette"
-  ]
+    "deathly-statuette",
+  ],
 ];
 
 async function testAll28Cells() {
   console.log("Loading templates for the test items...");
   const uniqueIds = Array.from(new Set(groundTruth.flat()));
-  const templates: Map<string, { id: string; name: string; vec: Float32Array }> = new Map();
+  const templates: Map<
+    string,
+    { id: string; name: string; vec: Float32Array }
+  > = new Map();
 
   for (const id of uniqueIds) {
     const mat = materials.find((m: any) => m.id === id);
     const ref = await readImage(`public/images/materials/${id}.png`);
-    const bg = new Jimp({ width: 256, height: 256, color: RARITY_COLORS[mat?.rarity || 1] || 0x737578ff });
+    const bg = new Jimp({
+      width: 256,
+      height: 256,
+      color: RARITY_COLORS[mat?.rarity || 1] || 0x737578ff,
+    });
     bg.composite(ref, 0, 0);
     const refCrop = bg.crop({ x: 30, y: 30, w: 196, h: 196 });
     const vec = getNormalizedGrays(refCrop, 32);
     templates.set(id, { id, name: mat?.name || id, vec });
   }
 
-  const img = await Jimp.read("public/samples/test-set-01/GenshinImpact_20261009_220714.jpg");
+  const img = await Jimp.read(
+    "public/samples/test-set-01/GenshinImpact_20261009_220714.jpg",
+  );
   const scale = 1272 / 1080;
-  const cellW = Math.round(153 * scale), cellH = Math.round(189 * scale);
-  const gapX = Math.round(30 * scale), gapY = Math.round(28 * scale);
+  const cellW = Math.round(153 * scale),
+    cellH = Math.round(189 * scale);
+  const gapX = Math.round(30 * scale),
+    gapY = Math.round(28 * scale);
   const startY = Math.round(149 * scale);
   const sx = 347;
 
@@ -123,7 +138,9 @@ async function testAll28Cells() {
       const cellX = Math.round(cellW * 0.14);
       const cellY = Math.round(cellH * 0.11);
       const cellS = Math.round(cellW * 0.78);
-      const cellCrop = cell.clone().crop({ x: cellX, y: cellY, w: cellS, h: cellS });
+      const cellCrop = cell
+        .clone()
+        .crop({ x: cellX, y: cellY, w: cellS, h: cellS });
       const cellVec = getNormalizedGrays(cellCrop, 32);
 
       let bestScore = -1;
@@ -141,11 +158,15 @@ async function testAll28Cells() {
       const matchOk = bestId === expectedId;
       if (matchOk) correctCount++;
       const mark = matchOk ? "✓" : "✗";
-      console.log(`[R${r+1}:C${c+1}] ${mark} Expected: ${expectedId} | Matched: ${bestId} (${(bestScore * 100).toFixed(1)}%)`);
+      console.log(
+        `[R${r + 1}:C${c + 1}] ${mark} Expected: ${expectedId} | Matched: ${bestId} (${(bestScore * 100).toFixed(1)}%)`,
+      );
     }
   }
 
-  console.log(`\nOverall Accuracy on 220714: ${correctCount} / 28 (${((correctCount / 28) * 100).toFixed(1)}%)`);
+  console.log(
+    `\nOverall Accuracy on 220714: ${correctCount} / 28 (${((correctCount / 28) * 100).toFixed(1)}%)`,
+  );
 }
 
 testAll28Cells().catch(console.error);

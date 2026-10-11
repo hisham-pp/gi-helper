@@ -20,7 +20,9 @@ function getNormalizedGrays(img: any, size: number = 32): Float32Array {
   for (let y = 0; y < size; y++) {
     for (let x = 0; x < size; x++) {
       const rgba = scaled.getPixelColor(x, y);
-      const r = (rgba >>> 24) & 0xff, g = (rgba >>> 16) & 0xff, b = (rgba >>> 8) & 0xff;
+      const r = (rgba >>> 24) & 0xff,
+        g = (rgba >>> 16) & 0xff,
+        b = (rgba >>> 8) & 0xff;
       const gray = r * 0.299 + g * 0.587 + b * 0.114;
       grays[y * size + x] = gray;
       mean += gray;
@@ -59,7 +61,7 @@ async function findBestAlignment() {
       x: refMargin,
       y: refMargin,
       w: 256 - 2 * refMargin,
-      h: 256 - 2 * refMargin
+      h: 256 - 2 * refMargin,
     });
     const refVec = getNormalizedGrays(refCrop, 32);
 
@@ -67,7 +69,9 @@ async function findBestAlignment() {
       for (let cellY = 5; cellY <= 30; cellY += 5) {
         for (let cellS = 120; cellS <= 160; cellS += 5) {
           if (cellX + cellS > 180 || cellY + cellS > 223) continue;
-          const cellCrop = cell.clone().crop({ x: cellX, y: cellY, w: cellS, h: cellS });
+          const cellCrop = cell
+            .clone()
+            .crop({ x: cellX, y: cellY, w: cellS, h: cellS });
           const cellVec = getNormalizedGrays(cellCrop, 32);
           const score = ncc(cellVec, refVec);
           if (score > maxScore) {

@@ -20,7 +20,9 @@ function getNormalizedGrays(img: any, size: number): Float32Array {
   for (let y = 0; y < size; y++) {
     for (let x = 0; x < size; x++) {
       const rgba = scaled.getPixelColor(x, y);
-      const r = (rgba >>> 24) & 0xff, g = (rgba >>> 16) & 0xff, b = (rgba >>> 8) & 0xff;
+      const r = (rgba >>> 24) & 0xff,
+        g = (rgba >>> 16) & 0xff,
+        b = (rgba >>> 8) & 0xff;
       const gray = r * 0.299 + g * 0.587 + b * 0.114;
       grays[y * size + x] = gray;
       mean += gray;
@@ -40,10 +42,14 @@ function getNormalizedGrays(img: any, size: number): Float32Array {
 }
 
 async function testRes() {
-  const img = await Jimp.read("public/samples/test-set-01/GenshinImpact_20261009_220714.jpg");
+  const img = await Jimp.read(
+    "public/samples/test-set-01/GenshinImpact_20261009_220714.jpg",
+  );
   const scale = 1272 / 1080;
-  const cellW = Math.round(153 * scale), cellH = Math.round(189 * scale);
-  const gapX = Math.round(30 * scale), gapY = Math.round(28 * scale);
+  const cellW = Math.round(153 * scale),
+    cellH = Math.round(189 * scale);
+  const gapX = Math.round(30 * scale),
+    gapY = Math.round(28 * scale);
   const startY = Math.round(149 * scale);
   const sx = 347;
 
@@ -55,7 +61,9 @@ async function testRes() {
   const cellX = Math.round(cellW * 0.14);
   const cellY = Math.round(cellH * 0.11);
   const cellS = Math.round(cellW * 0.78);
-  const cellCrop = cell.clone().crop({ x: cellX, y: cellY, w: cellS, h: cellS });
+  const cellCrop = cell
+    .clone()
+    .crop({ x: cellX, y: cellY, w: cellS, h: cellS });
 
   const ref = await readImage("public/images/materials/chaos-device.png");
   const bg = new Jimp({ width: 256, height: 256, color: 0x609373ff });
@@ -65,7 +73,9 @@ async function testRes() {
   for (const size of [16, 20, 24, 32]) {
     const cVec = getNormalizedGrays(cellCrop, size);
     const rVec = getNormalizedGrays(refCrop, size);
-    console.log(`Size ${size}x${size} (${size*size} values): score = ${(ncc(cVec, rVec) * 100).toFixed(1)}%`);
+    console.log(
+      `Size ${size}x${size} (${size * size} values): score = ${(ncc(cVec, rVec) * 100).toFixed(1)}%`,
+    );
   }
 }
 

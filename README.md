@@ -9,6 +9,7 @@ Scan your in-game inventory screenshots using leading Vision AI models (Google G
 ## Key Features
 
 ### 1. Multimodal AI Inventory Scanner
+
 - **Direct Vision Recognition:** Upload screenshots of your in-game material bags to automatically identify items and counts.
 - **Pluggable AI Adapter Architecture:** Switch between multiple providers on the fly:
   - **Google Gemini** (`gemini-1.5-flash` [Free Tier / Recommended], `gemini-2.0-flash`, `gemini-1.5-pro`)
@@ -20,6 +21,7 @@ Scan your in-game inventory screenshots using leading Vision AI models (Google G
 - **Live Connection Test:** Test API credentials with real-time feedback directly inside the settings modal.
 
 ### 2. Canonical Genshin Impact Dataset (475 Materials)
+
 - Pre-compiled dataset covering all 475 materials:
   - Character Ascension Materials & Gems
   - Character Talent Books (Teachings, Guides, Philosophies)
@@ -32,6 +34,7 @@ Scan your in-game inventory screenshots using leading Vision AI models (Google G
 - Resilient fuzzy matching fallback ([`src/lib/ai/material-matcher.ts`](./src/lib/ai/material-matcher.ts)) handles minor OCR typos and spelling variations.
 
 ### 3. Interactive Review & GOOD Format Export
+
 - **Post-Scan Review Modal:** Verify every detected item, adjust quantities with quick `+`/`-` steppers, search and re-assign materials, or delete entries.
 - **Genshin Open Object Description (GOOD):** Export scanned materials to standardized `.json` format compatible with popular Genshin optimizers and tools.
 
@@ -142,14 +145,14 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Available Commands
 
-| Command | Description |
-| :--- | :--- |
-| `pnpm dev` | Start local Next.js development server at `localhost:3000` |
-| `pnpm build` | Create optimized production build |
-| `pnpm start` | Start production server |
-| `pnpm test` | Run unit tests with Node test runner (`node:test`) |
-| `pnpm lint` | Run ESLint with Next.js core web vitals configuration |
-| `pnpm format` | Run Prettier across the codebase |
+| Command       | Description                                                |
+| :------------ | :--------------------------------------------------------- |
+| `pnpm dev`    | Start local Next.js development server at `localhost:3000` |
+| `pnpm build`  | Create optimized production build                          |
+| `pnpm start`  | Start production server                                    |
+| `pnpm test`   | Run unit tests with Node test runner (`node:test`)         |
+| `pnpm lint`   | Run ESLint with Next.js core web vitals configuration      |
+| `pnpm format` | Run Prettier across the codebase                           |
 
 ---
 

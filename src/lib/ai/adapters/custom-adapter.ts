@@ -33,7 +33,8 @@ export class CustomVisionAdapter implements AiVisionAdapter {
     {
       id: "custom",
       label: "Custom Model ID...",
-      description: "Specify any custom model identifier supported by your endpoint.",
+      description:
+        "Specify any custom model identifier supported by your endpoint.",
     },
   ];
 

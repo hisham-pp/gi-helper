@@ -1,7 +1,12 @@
 "use client";
 
 import React, { useState, useEffect, useMemo } from "react";
-import { ScannedReviewItem, DetectedItem, ReviewCandidate, MaterialItem } from "@/lib/types";
+import {
+  ScannedReviewItem,
+  DetectedItem,
+  ReviewCandidate,
+  MaterialItem,
+} from "@/lib/types";
 import {
   CheckCircle2,
   Trash2,
@@ -181,7 +186,8 @@ export function ScanReviewModal({
                 Review Scan Results
               </h2>
               <p className="text-xs text-white/60">
-                Compare screenshot snippets against matched items, select correct materials, and adjust quantities.
+                Compare screenshot snippets against matched items, select
+                correct materials, and adjust quantities.
               </p>
             </div>
           </div>
@@ -328,9 +334,11 @@ export function ScanReviewModal({
 
                           {item.rarity && item.rarity >= 1 ? (
                             <div className="flex items-center gap-0.5 text-[11px] font-bold text-amber-400">
-                              {Array.from({ length: item.rarity }).map((_, i) => (
-                                <span key={i}>★</span>
-                              ))}
+                              {Array.from({ length: item.rarity }).map(
+                                (_, i) => (
+                                  <span key={i}>★</span>
+                                ),
+                              )}
                             </div>
                           ) : (
                             <span className="text-[10px] text-white/40">
@@ -342,7 +350,8 @@ export function ScanReviewModal({
 
                       {/* Candidate Suggestions */}
                       {item.candidates &&
-                        item.candidates.filter((c) => c.id !== item.materialId).length > 0 && (
+                        item.candidates.filter((c) => c.id !== item.materialId)
+                          .length > 0 && (
                           <div className="flex flex-wrap items-center gap-1.5 pt-0.5">
                             <span className="text-[10px] font-semibold text-white/40">
                               Suggestions:
@@ -353,11 +362,15 @@ export function ScanReviewModal({
                               .map((cand) => (
                                 <button
                                   key={cand.id}
-                                  onClick={() => handleSelectMaterial(item.id, cand)}
+                                  onClick={() =>
+                                    handleSelectMaterial(item.id, cand)
+                                  }
                                   className="group flex items-center gap-1 rounded-md border border-white/10 bg-white/[0.04] px-2 py-0.5 text-[10px] text-white/70 transition-all hover:border-primary/50 hover:bg-primary/20 hover:text-white"
                                   title={`Switch to ${cand.name} (${cand.confidence}%)`}
                                 >
-                                  <span className="max-w-[130px] truncate">{cand.name}</span>
+                                  <span className="max-w-[130px] truncate">
+                                    {cand.name}
+                                  </span>
                                   <span className="font-mono text-[9px] font-semibold text-primary group-hover:text-primary-foreground">
                                     {cand.confidence}%
                                   </span>
@@ -440,7 +453,7 @@ export function ScanReviewModal({
             className="fixed inset-0 bg-black/85 backdrop-blur-md transition-opacity"
             onClick={() => setEditingSlotId(null)}
           />
-          <div className="relative z-10 flex max-h-[88vh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl border border-white/20 bg-neutral-900 shadow-2xl backdrop-blur-2xl text-white">
+          <div className="relative z-10 flex max-h-[88vh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl border border-white/20 bg-neutral-900 text-white shadow-2xl backdrop-blur-2xl">
             {/* Header */}
             <div className="flex items-center justify-between border-b border-white/10 bg-black/40 px-5 py-3.5">
               <div className="flex items-center gap-3">
@@ -456,10 +469,14 @@ export function ScanReviewModal({
                   )}
                 </div>
                 <div>
-                  <h3 className="text-base font-bold text-white">Select Material</h3>
+                  <h3 className="text-base font-bold text-white">
+                    Select Material
+                  </h3>
                   <p className="text-xs text-white/60">
                     Comparing against detected crop. Currently:{" "}
-                    <span className="font-semibold text-white/90">{editingItem.name}</span>
+                    <span className="font-semibold text-white/90">
+                      {editingItem.name}
+                    </span>
                   </p>
                 </div>
               </div>
@@ -535,7 +552,7 @@ export function ScanReviewModal({
             </div>
 
             {/* Material Grid / List */}
-            <div className="flex-1 overflow-y-auto p-4 max-h-[55vh]">
+            <div className="max-h-[55vh] flex-1 overflow-y-auto p-4">
               {filteredMaterials.length === 0 ? (
                 <div className="py-12 text-center text-xs text-white/50">
                   No materials found matching your filters.
@@ -548,8 +565,10 @@ export function ScanReviewModal({
                     return (
                       <button
                         key={mat.id}
-                        onClick={() => handleSelectMaterial(editingItem.id, mat)}
-                        className={`flex flex-col items-center gap-2 rounded-xl border p-2.5 text-center transition-all hover:scale-[1.02] active:scale-95 bg-gradient-to-b ${
+                        onClick={() =>
+                          handleSelectMaterial(editingItem.id, mat)
+                        }
+                        className={`flex flex-col items-center gap-2 rounded-xl border bg-gradient-to-b p-2.5 text-center transition-all hover:scale-[1.02] active:scale-95 ${
                           isSelected
                             ? "border-primary bg-primary/20 shadow-[0_0_15px_rgba(var(--primary),0.3)] ring-2 ring-primary"
                             : `${styles.border} ${styles.cardBg}`

@@ -100,8 +100,13 @@ async function scrapeMaterials() {
       continue;
 
     // Filter to only character/weapon enhancement materials and EXP items
-    const validCategories = ["AVATAR_MATERIAL", "EXP_FRUIT", "WEAPON_EXP_STONE"];
-    if (!material.category || !validCategories.includes(material.category)) continue;
+    const validCategories = [
+      "AVATAR_MATERIAL",
+      "EXP_FRUIT",
+      "WEAPON_EXP_STONE",
+    ];
+    if (!material.category || !validCategories.includes(material.category))
+      continue;
 
     const id = name.toLowerCase().replace(/[^a-z0-9]+/g, "-");
     const iconName = material.images.filename_icon;

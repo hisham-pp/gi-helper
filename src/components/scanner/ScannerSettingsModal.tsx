@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Settings,
   X,
@@ -20,6 +20,7 @@ import {
   useScannerSettings,
   AiProvider,
   getActiveProviderConfig,
+  ServerEnvProviderInfo,
 } from "@/lib/scanner-settings";
 import { listSupportedAdapters, getAiAdapter } from "@/lib/ai/adapters";
 import { toast } from "sonner";
@@ -27,14 +28,36 @@ import { toast } from "sonner";
 interface ScannerSettingsModalProps {
   isOpen: boolean;
   onClose: () => void;
+  serverEnv?: Record<string, ServerEnvProviderInfo>;
 }
 
 export function ScannerSettingsModal({
   isOpen,
   onClose,
+  serverEnv: serverEnvProp,
 }: ScannerSettingsModalProps) {
   const { settings, updateSetting, mounted } = useScannerSettings();
   const [showKey, setShowKey] = useState(false);
+  const [internalServerEnv, setInternalServerEnv] = useState<
+    Record<string, ServerEnvProviderInfo>
+  >({});
+
+  useEffect(() => {
+    if (serverEnvProp) {
+      setInternalServerEnv(serverEnvProp);
+      return;
+    }
+    fetch("/api/scanner/ai-vision")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data?.providers) {
+          setInternalServerEnv(data.providers);
+        }
+      })
+      .catch(() => {});
+  }, [serverEnvProp, isOpen]);
+
+  const serverEnv = serverEnvProp || internalServerEnv;
   const [testingStatus, setTestingStatus] = useState<{
     loading: boolean;
     success?: boolean;
@@ -244,19 +267,25 @@ export function ScannerSettingsModal({
               </label>
               <span className="flex items-center gap-1 text-[11px] font-medium text-emerald-400">
                 <Sparkles className="h-3 w-3" />
-                Browser LocalStorage overrides .env
+                Keys stored securely in your browser
               </span>
             </div>
 
             <div className="grid grid-cols-2 gap-2 sm:grid-cols-5">
               {adapters.map((adapter) => {
                 const isSelected = settings.aiProvider === adapter.providerId;
+                const isServerReady = Boolean(
+                  serverEnv[adapter.providerId]?.hasKey,
+                );
                 return (
                   <button
                     key={adapter.providerId}
                     type="button"
                     onClick={() => {
-                      updateSetting("aiProvider", adapter.providerId as AiProvider);
+                      updateSetting(
+                        "aiProvider",
+                        adapter.providerId as AiProvider,
+                      );
                       setTestingStatus({ loading: false });
                     }}
                     className={`relative flex flex-col items-center justify-center gap-1 rounded-xl border p-2.5 text-center transition-all ${
@@ -265,12 +294,18 @@ export function ScannerSettingsModal({
                         : "border-white/10 bg-white/[0.04] text-white/70 hover:border-white/20 hover:bg-white/[0.08] hover:text-white"
                     }`}
                   >
-                    <span className="text-xs font-bold">{adapter.displayName}</span>
-                    {adapter.providerId === "gemini" && (
-                      <span className="rounded bg-emerald-500/20 px-1 py-0.2 text-[9px] font-semibold text-emerald-300">
+                    <span className="text-xs font-bold">
+                      {adapter.displayName}
+                    </span>
+                    {isServerReady ? (
+                      <span className="py-0.2 rounded bg-emerald-500/20 px-1 text-[9px] font-semibold text-emerald-300">
+                        Ready
+                      </span>
+                    ) : adapter.providerId === "gemini" ? (
+                      <span className="py-0.2 rounded bg-sky-500/20 px-1 text-[9px] font-semibold text-sky-300">
                         Free Tier
                       </span>
-                    )}
+                    ) : null}
                   </button>
                 );
               })}
@@ -308,16 +343,28 @@ export function ScannerSettingsModal({
                   <Key className="h-3.5 w-3.5 text-primary" />
                   <span>API Key</span>
                 </label>
-                <span className="text-[10px] text-white/40">
-                  Stored securely in your browser
-                </span>
+                {Boolean(serverEnv[settings.aiProvider]?.hasKey) &&
+                !currentKey?.trim() ? (
+                  <span className="flex items-center gap-1 text-[11px] font-semibold text-emerald-400">
+                    <CheckCircle2 className="h-3 w-3" />
+                    Ready (Default key active)
+                  </span>
+                ) : (
+                  <span className="text-[10px] text-white/40">
+                    Stored securely in your browser
+                  </span>
+                )}
               </div>
               <div className="relative">
                 <input
                   type={showKey ? "text" : "password"}
                   value={currentKey}
                   onChange={(e) => handleUpdateActiveKey(e.target.value)}
-                  placeholder={`Enter your ${currentAdapter.displayName} API key...`}
+                  placeholder={
+                    Boolean(serverEnv[settings.aiProvider]?.hasKey)
+                      ? "Pre-configured on server (enter to override)"
+                      : `Enter your ${currentAdapter.displayName} API key...`
+                  }
                   className="w-full rounded-xl border border-white/15 bg-black/50 px-3.5 py-2.5 pr-10 text-sm text-white placeholder-white/30 transition-all focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
                 />
                 <button
@@ -392,8 +439,7 @@ export function ScannerSettingsModal({
                   value={currentBaseUrl}
                   onChange={(e) => handleUpdateActiveBaseUrl(e.target.value)}
                   placeholder={
-                    currentAdapter.defaultBaseUrl ||
-                    "https://api.openai.com/v1"
+                    currentAdapter.defaultBaseUrl || "https://api.openai.com/v1"
                   }
                   className="w-full rounded-xl border border-white/15 bg-black/50 px-3.5 py-2.5 text-sm text-white placeholder-white/30 transition-all focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
                 />
@@ -471,7 +517,10 @@ export function ScannerSettingsModal({
                 role="switch"
                 aria-checked={settings.autoReviewResults}
                 onClick={() =>
-                  updateSetting("autoReviewResults", !settings.autoReviewResults)
+                  updateSetting(
+                    "autoReviewResults",
+                    !settings.autoReviewResults,
+                  )
                 }
                 className={`relative mt-1 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${
                   settings.autoReviewResults

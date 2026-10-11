@@ -1,10 +1,6 @@
 import { resolveMaterial } from "./material-matcher";
 import { DetectedItem } from "@/lib/types";
-import {
-  getAiAdapter,
-  RawExtractedItem,
-  VisionScanOptions,
-} from "./adapters";
+import { getAiAdapter, RawExtractedItem, VisionScanOptions } from "./adapters";
 
 export interface AiVisionScanResult {
   success: boolean;
@@ -46,8 +42,7 @@ export function mapAiItemsToMaterials(rawItems: RawExtractedItem[]): {
     if (isNaN(qty) || qty <= 0) qty = 1;
 
     const matched =
-      resolveMaterial(rawNameOrId) ||
-      (raw.id ? resolveMaterial(raw.id) : null);
+      resolveMaterial(rawNameOrId) || (raw.id ? resolveMaterial(raw.id) : null);
 
     if (matched) {
       detectedItems.push({

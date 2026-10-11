@@ -92,7 +92,8 @@ test("Adapter registry returns all 5 adapters", () => {
 });
 
 test("extractJsonFromResponse strips markdown code blocks", () => {
-  const raw = '```json\n{\n  "items": [\n    { "id": "mora", "quantity": 500 }\n  ]\n}\n```';
+  const raw =
+    '```json\n{\n  "items": [\n    { "id": "mora", "quantity": 500 }\n  ]\n}\n```';
   const parsed = extractJsonFromResponse(raw);
   assert.deepEqual(parsed, {
     items: [{ id: "mora", quantity: 500 }],

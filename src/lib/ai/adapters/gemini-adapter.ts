@@ -136,7 +136,9 @@ export class GeminiVisionAdapter implements AiVisionAdapter {
 
     const parsedJson = extractJsonFromResponse(textContent);
     if (!parsedJson || !Array.isArray(parsedJson.items)) {
-      throw new Error("Invalid response format from Gemini: missing 'items' array.");
+      throw new Error(
+        "Invalid response format from Gemini: missing 'items' array.",
+      );
     }
 
     return parsedJson.items;

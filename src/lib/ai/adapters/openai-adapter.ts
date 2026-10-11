@@ -89,7 +89,9 @@ export class OpenAiVisionAdapter implements AiVisionAdapter {
 
     const parsedJson = extractJsonFromResponse(textContent);
     if (!parsedJson || !Array.isArray(parsedJson.items)) {
-      throw new Error("Invalid response format from OpenAI: missing 'items' array.");
+      throw new Error(
+        "Invalid response format from OpenAI: missing 'items' array.",
+      );
     }
 
     return parsedJson.items;

@@ -5,6 +5,42 @@ import {
 } from "@/lib/ai/vision-scanner";
 import { getAiAdapter } from "@/lib/ai/adapters";
 
+export async function GET() {
+  return NextResponse.json({
+    providers: {
+      gemini: {
+        hasKey: Boolean(process.env.GEMINI_API_KEY?.trim()),
+        defaultModel: process.env.GEMINI_MODEL || "gemini-flash-latest",
+      },
+      openai: {
+        hasKey: Boolean(process.env.OPENAI_API_KEY?.trim()),
+        defaultModel: process.env.OPENAI_MODEL || "gpt-4o-mini",
+        defaultBaseUrl: process.env.OPENAI_BASE_URL || "",
+      },
+      claude: {
+        hasKey: Boolean(
+          (process.env.ANTHROPIC_API_KEY || process.env.CLAUDE_API_KEY)?.trim(),
+        ),
+        defaultModel: process.env.ANTHROPIC_MODEL || "claude-3-5-sonnet-latest",
+      },
+      grok: {
+        hasKey: Boolean(
+          (process.env.GROK_API_KEY || process.env.XAI_API_KEY)?.trim(),
+        ),
+        defaultModel: process.env.GROK_MODEL || "grok-2-vision-1212",
+        defaultBaseUrl: process.env.GROK_BASE_URL || "https://api.x.ai/v1",
+      },
+      custom: {
+        hasKey: Boolean(process.env.CUSTOM_AI_API_KEY?.trim()),
+        defaultModel:
+          process.env.CUSTOM_AI_MODEL || "qwen/qwen-2-vl-72b-instruct",
+        defaultBaseUrl:
+          process.env.CUSTOM_AI_BASE_URL || "https://openrouter.ai/api/v1",
+      },
+    },
+  });
+}
+
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();

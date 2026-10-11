@@ -21,7 +21,9 @@ function getNormalizedGrays(img: any, size: number): Float32Array {
   for (let y = 0; y < size; y++) {
     for (let x = 0; x < size; x++) {
       const rgba = scaled.getPixelColor(x, y);
-      const r = (rgba >>> 24) & 0xff, g = (rgba >>> 16) & 0xff, b = (rgba >>> 8) & 0xff;
+      const r = (rgba >>> 24) & 0xff,
+        g = (rgba >>> 16) & 0xff,
+        b = (rgba >>> 8) & 0xff;
       const gray = r * 0.299 + g * 0.587 + b * 0.114;
       grays[y * size + x] = gray;
       mean += gray;
@@ -41,10 +43,14 @@ function getNormalizedGrays(img: any, size: number): Float32Array {
 }
 
 async function compareResolutions() {
-  const cell = await Jimp.read("public/samples/test-set-01/GenshinImpact_20261009_220714.jpg");
+  const cell = await Jimp.read(
+    "public/samples/test-set-01/GenshinImpact_20261009_220714.jpg",
+  );
   const scale = 1272 / 1080;
-  const cellW = Math.round(153 * scale), cellH = Math.round(189 * scale);
-  const gapX = Math.round(30 * scale), gapY = Math.round(28 * scale);
+  const cellW = Math.round(153 * scale),
+    cellH = Math.round(189 * scale);
+  const gapX = Math.round(30 * scale),
+    gapY = Math.round(28 * scale);
   const startY = Math.round(149 * scale);
   const sx = 347;
 
@@ -54,10 +60,10 @@ async function compareResolutions() {
   const cellCrop = cell.clone().crop({ x, y, w: cellW, h: cellH });
   // In Genshin, the item icon is roughly the top 70% of the cell
   const iconCrop = cellCrop.clone().crop({
-    x: Math.round(cellW * 0.10),
+    x: Math.round(cellW * 0.1),
     y: Math.round(cellH * 0.06),
-    w: Math.round(cellW * 0.80),
-    h: Math.round(cellW * 0.80), // square
+    w: Math.round(cellW * 0.8),
+    h: Math.round(cellW * 0.8), // square
   });
 
   const candidates = [
@@ -65,11 +71,13 @@ async function compareResolutions() {
     "teachings-of-ingenuity",
     "teachings-of-praxis",
     "sublimation-of-pure-sacred-dewdrop",
-    "chaos-circuit"
+    "chaos-circuit",
   ];
 
   for (const size of [16, 24, 32]) {
-    console.log(`\n=== Testing size ${size}x${size} (${size*size} values) ===`);
+    console.log(
+      `\n=== Testing size ${size}x${size} (${size * size} values) ===`,
+    );
     const cropVec = getNormalizedGrays(iconCrop, size);
 
     for (const id of candidates) {

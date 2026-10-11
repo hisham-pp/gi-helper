@@ -3,8 +3,12 @@ import fs from "fs";
 import { findBestMatch } from "./src/lib/cv/item-matcher";
 import { calculateFingerprint } from "./src/lib/cv/image-hasher";
 
-const expectedData = JSON.parse(fs.readFileSync("public/samples/test-set-01/expected.json", "utf-8"));
-const materials = JSON.parse(fs.readFileSync("src/data/materials.json", "utf-8"));
+const expectedData = JSON.parse(
+  fs.readFileSync("public/samples/test-set-01/expected.json", "utf-8"),
+);
+const materials = JSON.parse(
+  fs.readFileSync("src/data/materials.json", "utf-8"),
+);
 
 // Simulation of calculateFingerprint using Jimp
 function getFingerprintFromJimp(img: any) {
@@ -14,7 +18,10 @@ function getFingerprintFromJimp(img: any) {
   const cw = Math.max(1, width - 2 * cx);
   const ch = Math.max(1, height - 2 * cy);
 
-  const hashImg = img.clone().crop({ x: cx, y: cy, w: cw, h: ch }).resize({ w: 17, h: 16 });
+  const hashImg = img
+    .clone()
+    .crop({ x: cx, y: cy, w: cw, h: ch })
+    .resize({ w: 17, h: 16 });
   const grays = new Uint8Array(17 * 16);
   for (let y = 0; y < 16; y++) {
     for (let x = 0; x < 17; x++) {
@@ -41,15 +48,25 @@ function getFingerprintFromJimp(img: any) {
   const hy = Math.floor(height * 0.25);
   const hw = Math.max(1, width - 2 * hx);
   const hh = Math.max(1, height - 2 * hy);
-  const histImg = img.clone().crop({ x: hx, y: hy, w: hw, h: hh }).resize({ w: 32, h: 32 });
-  const rH = new Float32Array(8), gH = new Float32Array(8), bH = new Float32Array(8);
+  const histImg = img
+    .clone()
+    .crop({ x: hx, y: hy, w: hw, h: hh })
+    .resize({ w: 32, h: 32 });
+  const rH = new Float32Array(8),
+    gH = new Float32Array(8),
+    bH = new Float32Array(8);
   let total = 0;
   for (let y = 0; y < 32; y++) {
     for (let x = 0; x < 32; x++) {
       const rgba = histImg.getPixelColor(x, y);
-      const r = (rgba >>> 24) & 0xff, g = (rgba >>> 16) & 0xff, b = (rgba >>> 8) & 0xff, a = rgba & 0xff;
+      const r = (rgba >>> 24) & 0xff,
+        g = (rgba >>> 16) & 0xff,
+        b = (rgba >>> 8) & 0xff,
+        a = rgba & 0xff;
       if (a < 10) continue;
-      rH[Math.floor(r / 32)]++; gH[Math.floor(g / 32)]++; bH[Math.floor(b / 32)]++;
+      rH[Math.floor(r / 32)]++;
+      gH[Math.floor(g / 32)]++;
+      bH[Math.floor(b / 32)]++;
       total++;
     }
   }
@@ -62,10 +79,14 @@ function getFingerprintFromJimp(img: any) {
 }
 
 async function simulateScan() {
-  const img = await Jimp.read("public/samples/test-set-01/GenshinImpact_20261009_220714.jpg");
+  const img = await Jimp.read(
+    "public/samples/test-set-01/GenshinImpact_20261009_220714.jpg",
+  );
   const scale = 1272 / 1080;
-  const cellW = Math.round(153 * scale), cellH = Math.round(189 * scale);
-  const gapX = Math.round(30 * scale), gapY = Math.round(28 * scale);
+  const cellW = Math.round(153 * scale),
+    cellH = Math.round(189 * scale);
+  const gapX = Math.round(30 * scale),
+    gapY = Math.round(28 * scale);
   const startY = Math.round(149 * scale);
   const sx = 347;
 
@@ -98,13 +119,20 @@ async function simulateScan() {
 
       if (match) {
         previousMatchName = match.name;
-        console.log(`[R${r+1}:C${c+1}] -> ${match.name} (${match.id}) conf=${match.confidence}%`);
+        console.log(
+          `[R${r + 1}:C${c + 1}] -> ${match.name} (${match.id}) conf=${match.confidence}%`,
+        );
         if (r === 1 && c === 4) {
           console.log("\n>>> DETAILED FOR R2:C5 (Chaos Device cell):");
-          console.log("Top suggestions:", match.candidates?.map(cand => `${cand.name} (${cand.score.toFixed(3)})`));
+          console.log(
+            "Top suggestions:",
+            match.candidates?.map(
+              (cand) => `${cand.name} (${cand.score.toFixed(3)})`,
+            ),
+          );
         }
       } else {
-        console.log(`[R${r+1}:C${c+1}] -> (NO MATCH)`);
+        console.log(`[R${r + 1}:C${c + 1}] -> (NO MATCH)`);
       }
     }
   }

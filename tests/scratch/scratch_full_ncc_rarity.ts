@@ -3,8 +3,12 @@ import { Jimp } from "jimp";
 import fs from "fs";
 import path from "path";
 
-const materials = JSON.parse(fs.readFileSync("src/data/materials.json", "utf-8"));
-const expectedData = JSON.parse(fs.readFileSync("public/samples/test-set-01/expected.json", "utf-8"));
+const materials = JSON.parse(
+  fs.readFileSync("src/data/materials.json", "utf-8"),
+);
+const expectedData = JSON.parse(
+  fs.readFileSync("public/samples/test-set-01/expected.json", "utf-8"),
+);
 const expectedIds = new Set(expectedData.items.map((i: any) => i.id));
 
 async function readImage(p: string) {
@@ -47,7 +51,9 @@ function getGraysFromJimp(img: any): Float32Array {
   for (let y = 0; y < SIZE; y++) {
     for (let x = 0; x < SIZE; x++) {
       const rgba = img.getPixelColor(x, y);
-      const r = (rgba >>> 24) & 0xff, g = (rgba >>> 16) & 0xff, b = (rgba >>> 8) & 0xff;
+      const r = (rgba >>> 24) & 0xff,
+        g = (rgba >>> 16) & 0xff,
+        b = (rgba >>> 8) & 0xff;
       grays[y * SIZE + x] = r * 0.299 + g * 0.587 + b * 0.114;
     }
   }
@@ -56,7 +62,8 @@ function getGraysFromJimp(img: any): Float32Array {
 
 function detectRarityFromCell(cell: any): number | null {
   // Sample background color arch at top corners
-  const w = cell.bitmap.width, h = cell.bitmap.height;
+  const w = cell.bitmap.width,
+    h = cell.bitmap.height;
   const samples = [
     cell.getPixelColor(Math.round(w * 0.15), Math.round(h * 0.15)),
     cell.getPixelColor(Math.round(w * 0.85), Math.round(h * 0.15)),
@@ -64,11 +71,19 @@ function detectRarityFromCell(cell: any): number | null {
     cell.getPixelColor(Math.round(w * 0.85), Math.round(h * 0.35)),
   ];
 
-  let sumH = 0, sumS = 0, sumV = 0, count = 0;
+  let sumH = 0,
+    sumS = 0,
+    sumV = 0,
+    count = 0;
   for (const px of samples) {
-    const r = (px >>> 24) & 0xff, g = (px >>> 16) & 0xff, b = (px >>> 8) & 0xff;
-    const rf = r / 255, gf = g / 255, bf = b / 255;
-    const max = Math.max(rf, gf, bf), min = Math.min(rf, gf, bf);
+    const r = (px >>> 24) & 0xff,
+      g = (px >>> 16) & 0xff,
+      b = (px >>> 8) & 0xff;
+    const rf = r / 255,
+      gf = g / 255,
+      bf = b / 255;
+    const max = Math.max(rf, gf, bf),
+      min = Math.min(rf, gf, bf);
     const d = max - min;
     let hue = 0;
     if (d > 0) {
@@ -79,9 +94,14 @@ function detectRarityFromCell(cell: any): number | null {
       if (hue < 0) hue += 360;
     }
     const sat = max === 0 ? 0 : d / max;
-    sumH += hue; sumS += sat; sumV += max; count++;
+    sumH += hue;
+    sumS += sat;
+    sumV += max;
+    count++;
   }
-  const avgH = sumH / count, avgS = sumS / count, avgV = sumV / count;
+  const avgH = sumH / count,
+    avgS = sumS / count,
+    avgV = sumV / count;
   if (avgV < 0.15) return null;
   if (avgS < 0.22) return 1; // Gray
   if (avgH >= 105 && avgH <= 180) return 2; // Green
@@ -92,29 +112,45 @@ function detectRarityFromCell(cell: any): number | null {
 }
 
 async function runFullTest() {
-  const templates: { id: string; name: string; rarity: number; vec: Float32Array }[] = [];
+  const templates: {
+    id: string;
+    name: string;
+    rarity: number;
+    vec: Float32Array;
+  }[] = [];
 
   for (const mat of materials) {
     const p = `public/images/materials/${mat.id}.png`;
     if (!fs.existsSync(p)) continue;
     try {
       const ref = await readImage(p);
-      const bg = new Jimp({ width: 256, height: 256, color: RARITY_COLORS[mat.rarity] || 0x737578ff });
+      const bg = new Jimp({
+        width: 256,
+        height: 256,
+        color: RARITY_COLORS[mat.rarity] || 0x737578ff,
+      });
       bg.composite(ref, 0, 0);
-      const refCrop = bg.crop({ x: 30, y: 30, w: 196, h: 196 }).resize({ w: SIZE, h: SIZE });
+      const refCrop = bg
+        .crop({ x: 30, y: 30, w: 196, h: 196 })
+        .resize({ w: SIZE, h: SIZE });
       const vec = normalizeGrayscale(getGraysFromJimp(refCrop));
       templates.push({ id: mat.id, name: mat.name, rarity: mat.rarity, vec });
     } catch {}
   }
 
   const sampleDir = "public/samples/test-set-01";
-  const files = fs.readdirSync(sampleDir).filter(f => f.endsWith(".jpg")).sort();
+  const files = fs
+    .readdirSync(sampleDir)
+    .filter((f) => f.endsWith(".jpg"))
+    .sort();
   const detectedIds = new Set<string>();
   const falsePositives = new Set<string>();
 
   const scale = 1272 / 1080;
-  const cellW = Math.round(153 * scale), cellH = Math.round(189 * scale);
-  const gapX = Math.round(30 * scale), gapY = Math.round(28 * scale);
+  const cellW = Math.round(153 * scale),
+    cellH = Math.round(189 * scale);
+  const gapX = Math.round(30 * scale),
+    gapY = Math.round(28 * scale);
   const startY = Math.round(149 * scale);
   const sx = 347;
 
@@ -131,7 +167,10 @@ async function runFullTest() {
         const cellX = Math.round(cellW * 0.14);
         const cellY = Math.round(cellH * 0.11);
         const cellS = Math.round(cellW * 0.78);
-        const cellCrop = cell.clone().crop({ x: cellX, y: cellY, w: cellS, h: cellS }).resize({ w: SIZE, h: SIZE });
+        const cellCrop = cell
+          .clone()
+          .crop({ x: cellX, y: cellY, w: cellS, h: cellS })
+          .resize({ w: SIZE, h: SIZE });
 
         const vec = normalizeGrayscale(getGraysFromJimp(cellCrop));
 
@@ -166,12 +205,14 @@ async function runFullTest() {
     }
   }
 
-  const hits = [...detectedIds].filter(id => expectedIds.has(id)).length;
+  const hits = [...detectedIds].filter((id) => expectedIds.has(id)).length;
   const hitRate = (hits / expectedIds.size) * 100;
   console.log(`\n=== 16x16 NCC + RARITY WEIGHTING RESULTS ===`);
-  console.log(`Detected: ${hits} / ${expectedIds.size} (${hitRate.toFixed(1)}%)`);
+  console.log(
+    `Detected: ${hits} / ${expectedIds.size} (${hitRate.toFixed(1)}%)`,
+  );
   console.log(`False Positives: ${falsePositives.size}`);
-  const missing = [...expectedIds].filter(id => !detectedIds.has(id));
+  const missing = [...expectedIds].filter((id) => !detectedIds.has(id));
   console.log(`Missing count: ${missing.length}`);
   console.log("Missing items:", missing);
 }

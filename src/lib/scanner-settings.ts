@@ -5,6 +5,12 @@ import { AiProviderId } from "./ai/adapters/types";
 
 export type AiProvider = AiProviderId;
 
+export interface ServerEnvProviderInfo {
+  hasKey: boolean;
+  defaultModel?: string;
+  defaultBaseUrl?: string;
+}
+
 export interface ScannerSettings {
   autoPreviewLayout: boolean;
   autoReviewResults: boolean;
@@ -87,7 +93,10 @@ export function getScannerSettings(): ScannerSettings {
       DEFAULT_SCANNER_SETTINGS.geminiModel;
 
     // Migrate deprecated model strings
-    if (storedGeminiModel === "gemini-1.5-flash" || storedGeminiModel === "gemini-2.0-flash") {
+    if (
+      storedGeminiModel === "gemini-1.5-flash" ||
+      storedGeminiModel === "gemini-2.0-flash"
+    ) {
       storedGeminiModel = "gemini-flash-latest";
       try {
         localStorage.setItem(STORAGE_KEY_GEMINI_MODEL, "gemini-flash-latest");

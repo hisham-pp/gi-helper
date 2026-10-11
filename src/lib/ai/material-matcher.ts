@@ -89,12 +89,17 @@ export function resolveMaterial(rawInput: string): MatchedMaterial | null {
   for (const mat of materials) {
     const targetNorm = normalize(mat.name);
     // If one contains the other
-    if (norm.length > 5 && (targetNorm.includes(norm) || norm.includes(targetNorm))) {
+    if (
+      norm.length > 5 &&
+      (targetNorm.includes(norm) || norm.includes(targetNorm))
+    ) {
       return { id: mat.id, name: mat.name, rarity: mat.rarity };
     }
 
     const dist = levenshteinDistance(norm, targetNorm);
-    const maxAllowed = Math.floor(Math.max(norm.length, targetNorm.length) * 0.25); // allow ~25% edit distance
+    const maxAllowed = Math.floor(
+      Math.max(norm.length, targetNorm.length) * 0.25,
+    ); // allow ~25% edit distance
 
     if (dist <= maxAllowed && dist < minDistance) {
       minDistance = dist;

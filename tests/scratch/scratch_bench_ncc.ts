@@ -9,7 +9,8 @@ for (let i = 0; i < numMaterials; i++) {
 // Benchmark
 const start = performance.now();
 for (let rep = 0; rep < 100; rep++) {
-  let bestScore = -1, bestIdx = -1;
+  let bestScore = -1,
+    bestIdx = -1;
   for (let i = 0; i < numMaterials; i++) {
     const t = templates[i];
     let dot = 0;
@@ -23,4 +24,6 @@ for (let rep = 0; rep < 100; rep++) {
   }
 }
 const elapsed = performance.now() - start;
-console.log(`100 full searches across ${numMaterials} materials took ${elapsed.toFixed(1)}ms (${(elapsed / 100).toFixed(3)}ms per cell)`);
+console.log(
+  `100 full searches across ${numMaterials} materials took ${elapsed.toFixed(1)}ms (${(elapsed / 100).toFixed(3)}ms per cell)`,
+);

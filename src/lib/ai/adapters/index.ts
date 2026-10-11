@@ -48,5 +48,11 @@ export function getAiAdapter(providerId: string = "gemini"): AiVisionAdapter {
  * List all supported AI Vision Adapters
  */
 export function listSupportedAdapters(): AiVisionAdapter[] {
-  return [geminiAdapter, openAiAdapter, claudeAdapter, grokAdapter, customAdapter];
+  return [
+    geminiAdapter,
+    openAiAdapter,
+    claudeAdapter,
+    grokAdapter,
+    customAdapter,
+  ];
 }

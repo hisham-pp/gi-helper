@@ -3,8 +3,12 @@ import { Jimp } from "jimp";
 import fs from "fs";
 import path from "path";
 
-const materials = JSON.parse(fs.readFileSync("src/data/materials.json", "utf-8"));
-const expectedData = JSON.parse(fs.readFileSync("public/samples/test-set-01/expected.json", "utf-8"));
+const materials = JSON.parse(
+  fs.readFileSync("src/data/materials.json", "utf-8"),
+);
+const expectedData = JSON.parse(
+  fs.readFileSync("public/samples/test-set-01/expected.json", "utf-8"),
+);
 const expectedIds = new Set(expectedData.items.map((i: any) => i.id));
 
 async function readImage(p: string) {
@@ -47,7 +51,9 @@ function getGraysFromJimp(img: any): Float32Array {
   for (let y = 0; y < SIZE; y++) {
     for (let x = 0; x < SIZE; x++) {
       const rgba = img.getPixelColor(x, y);
-      const r = (rgba >>> 24) & 0xff, g = (rgba >>> 16) & 0xff, b = (rgba >>> 8) & 0xff;
+      const r = (rgba >>> 24) & 0xff,
+        g = (rgba >>> 16) & 0xff,
+        b = (rgba >>> 8) & 0xff;
       grays[y * SIZE + x] = r * 0.299 + g * 0.587 + b * 0.114;
     }
   }
@@ -56,16 +62,27 @@ function getGraysFromJimp(img: any): Float32Array {
 
 async function runFullTest() {
   console.log("Generating 16x16 templates for all materials...");
-  const templates: { id: string; name: string; rarity: number; vec: Float32Array }[] = [];
+  const templates: {
+    id: string;
+    name: string;
+    rarity: number;
+    vec: Float32Array;
+  }[] = [];
 
   for (const mat of materials) {
     const p = `public/images/materials/${mat.id}.png`;
     if (!fs.existsSync(p)) continue;
     try {
       const ref = await readImage(p);
-      const bg = new Jimp({ width: 256, height: 256, color: RARITY_COLORS[mat.rarity] || 0x737578ff });
+      const bg = new Jimp({
+        width: 256,
+        height: 256,
+        color: RARITY_COLORS[mat.rarity] || 0x737578ff,
+      });
       bg.composite(ref, 0, 0);
-      const refCrop = bg.crop({ x: 30, y: 30, w: 196, h: 196 }).resize({ w: SIZE, h: SIZE });
+      const refCrop = bg
+        .crop({ x: 30, y: 30, w: 196, h: 196 })
+        .resize({ w: SIZE, h: SIZE });
       const vec = normalizeGrayscale(getGraysFromJimp(refCrop));
       templates.push({ id: mat.id, name: mat.name, rarity: mat.rarity, vec });
     } catch {}
@@ -73,13 +90,18 @@ async function runFullTest() {
   console.log(`Loaded ${templates.length} templates.\nScanning test-set-01...`);
 
   const sampleDir = "public/samples/test-set-01";
-  const files = fs.readdirSync(sampleDir).filter(f => f.endsWith(".jpg")).sort();
+  const files = fs
+    .readdirSync(sampleDir)
+    .filter((f) => f.endsWith(".jpg"))
+    .sort();
   const detectedIds = new Set<string>();
   const falsePositives = new Set<string>();
 
   const scale = 1272 / 1080;
-  const cellW = Math.round(153 * scale), cellH = Math.round(189 * scale);
-  const gapX = Math.round(30 * scale), gapY = Math.round(28 * scale);
+  const cellW = Math.round(153 * scale),
+    cellH = Math.round(189 * scale);
+  const gapX = Math.round(30 * scale),
+    gapY = Math.round(28 * scale);
   const startY = Math.round(149 * scale);
   const sx = 347;
 
@@ -96,7 +118,10 @@ async function runFullTest() {
         const cellX = Math.round(cellW * 0.14);
         const cellY = Math.round(cellH * 0.11);
         const cellS = Math.round(cellW * 0.78);
-        const cellCrop = cell.clone().crop({ x: cellX, y: cellY, w: cellS, h: cellS }).resize({ w: SIZE, h: SIZE });
+        const cellCrop = cell
+          .clone()
+          .crop({ x: cellX, y: cellY, w: cellS, h: cellS })
+          .resize({ w: SIZE, h: SIZE });
 
         const vec = normalizeGrayscale(getGraysFromJimp(cellCrop));
 
@@ -112,7 +137,7 @@ async function runFullTest() {
           }
         }
 
-        if (bestMat && bestScore >= 0.50) {
+        if (bestMat && bestScore >= 0.5) {
           detectedIds.add(bestMat.id);
           if (!expectedIds.has(bestMat.id)) {
             falsePositives.add(bestMat.id);
@@ -122,13 +147,18 @@ async function runFullTest() {
     }
   }
 
-  const hits = [...detectedIds].filter(id => expectedIds.has(id)).length;
+  const hits = [...detectedIds].filter((id) => expectedIds.has(id)).length;
   const hitRate = (hits / expectedIds.size) * 100;
   console.log(`\n=== 16x16 NCC RESULTS ===`);
-  console.log(`Detected: ${hits} / ${expectedIds.size} (${hitRate.toFixed(1)}%)`);
+  console.log(
+    `Detected: ${hits} / ${expectedIds.size} (${hitRate.toFixed(1)}%)`,
+  );
   console.log(`False Positives: ${falsePositives.size}`);
   if (falsePositives.size > 0) {
-    console.log("Sample false positives:", Array.from(falsePositives).slice(0, 10));
+    console.log(
+      "Sample false positives:",
+      Array.from(falsePositives).slice(0, 10),
+    );
   }
 }
 

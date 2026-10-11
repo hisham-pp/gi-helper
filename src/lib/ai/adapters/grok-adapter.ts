@@ -23,7 +23,8 @@ export class GrokVisionAdapter implements AiVisionAdapter {
       id: "grok-2-vision-1212",
       label: "Grok 2 Vision (Recommended)",
       recommended: true,
-      description: "Flagship xAI vision model for high-fidelity OCR and perception.",
+      description:
+        "Flagship xAI vision model for high-fidelity OCR and perception.",
     },
     {
       id: "grok-vision-beta",
@@ -90,7 +91,9 @@ export class GrokVisionAdapter implements AiVisionAdapter {
 
     const parsedJson = extractJsonFromResponse(textContent);
     if (!parsedJson || !Array.isArray(parsedJson.items)) {
-      throw new Error("Invalid response format from Grok: missing 'items' array.");
+      throw new Error(
+        "Invalid response format from Grok: missing 'items' array.",
+      );
     }
 
     return parsedJson.items;

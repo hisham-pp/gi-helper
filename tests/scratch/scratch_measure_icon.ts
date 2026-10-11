@@ -16,7 +16,9 @@ async function measureIcon() {
   await sq1.write("icon_sq140.png");
 
   // Let's do the same on found_chaos_device.png
-  const cdCell = await Jimp.read("test_r2_c5_GenshinImpact_20261009_220821_347.png");
+  const cdCell = await Jimp.read(
+    "test_r2_c5_GenshinImpact_20261009_220821_347.png",
+  );
   const cdSq = cdCell.clone().crop({ x: 20, y: 10, w: 140, h: 140 });
   await cdSq.write("icon_cd_sq140.png");
 
