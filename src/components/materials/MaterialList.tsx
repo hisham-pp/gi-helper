@@ -296,12 +296,18 @@ export function MaterialList() {
                 value={sortBy}
                 onChange={(v) => setSortBy(v as SortOption)}
                 options={[
-                  { value: "order-asc",   label: `In-Game Order (#1 → #${stats.total})` },
-                  { value: "order-desc",  label: `In-Game Order (#${stats.total} → #1)` },
+                  {
+                    value: "order-asc",
+                    label: `In-Game Order (#1 → #${stats.total})`,
+                  },
+                  {
+                    value: "order-desc",
+                    label: `In-Game Order (#${stats.total} → #1)`,
+                  },
                   { value: "rarity-desc", label: "Rarity (5★ → 1★)" },
-                  { value: "rarity-asc",  label: "Rarity (1★ → 5★)" },
-                  { value: "name-asc",    label: "Name (A → Z)" },
-                  { value: "name-desc",   label: "Name (Z → A)" },
+                  { value: "rarity-asc", label: "Rarity (1★ → 5★)" },
+                  { value: "name-asc", label: "Name (A → Z)" },
+                  { value: "name-desc", label: "Name (Z → A)" },
                 ]}
               />
 

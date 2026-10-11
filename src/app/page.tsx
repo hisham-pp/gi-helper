@@ -1,5 +1,6 @@
 import { Scanner } from "@/components/scanner/Scanner";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { ScannerSettingsButton } from "@/components/scanner/ScannerSettingsButton";
 import Link from "next/link";
 import { Bug } from "lucide-react";
 
@@ -20,6 +21,7 @@ export default function ScannerPage() {
           <Bug className="h-4 w-4 text-amber-400" />
           <span className="hidden sm:inline">Debug</span>
         </Link>
+        <ScannerSettingsButton />
         <ThemeToggle />
       </div>
       <Scanner />

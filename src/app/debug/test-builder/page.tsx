@@ -94,7 +94,6 @@ export default function TestBuilderPage() {
 
   const searchInputRef = useRef<HTMLInputElement>(null);
 
-
   // Reset selected index when search changes
   useEffect(() => {
     setSelectedIndex(0);

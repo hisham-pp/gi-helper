@@ -11,12 +11,32 @@ import {
 import { findBestMatch } from "./item-matcher";
 import { detectCellRarity } from "./rarity-detector";
 import materialsData from "@/data/materials.json";
-import { DetectedItem } from "@/lib/types";
+import {
+  DetectedItem,
+  ScannedReviewItem,
+  ProcessScanResult,
+} from "@/lib/types";
 import Tesseract from "tesseract.js";
+
+function cellBitmapToDataUrl(bitmap: ImageBitmap): string {
+  try {
+    const canvas = document.createElement("canvas");
+    canvas.width = bitmap.width;
+    canvas.height = bitmap.height;
+    const ctx = canvas.getContext("2d");
+    if (ctx) {
+      ctx.drawImage(bitmap, 0, 0);
+      return canvas.toDataURL("image/png");
+    }
+  } catch (e) {
+    console.warn("Failed to generate image snippet for cell", e);
+  }
+  return "";
+}
 
 export async function processInventoryImages(
   files: FileList | File[],
-  config: GridConfig | null,
+  config: GridConfig | (GridConfig | null)[] | null,
   onProgress: (
     progress: number,
     currentFileIndex: number,
@@ -25,9 +45,10 @@ export async function processInventoryImages(
   options?: {
     continueOrder?: boolean;
   },
-): Promise<DetectedItem[]> {
+): Promise<ProcessScanResult> {
   const fileArray = Array.from(files);
   const foundItems: Record<string, DetectedItem> = {};
+  const reviewItems: ScannedReviewItem[] = [];
 
   // Initialize a single reusable worker for faster performance
   const worker = await Tesseract.createWorker("eng");
@@ -52,6 +73,9 @@ export async function processInventoryImages(
       lastBlockId = null;
     }
 
+    // Determine config for this image: if array of configs, pick config[i], else single config
+    const activeConfig = Array.isArray(config) ? config[i] || null : config;
+
     // Detect whether this file is a single-item crop (small/portrait image).
     // For single-item crops we skip the order constraint so the matcher is unconstrained.
     const bitmap = await createImageBitmap(file);
@@ -59,7 +83,7 @@ export async function processInventoryImages(
     bitmap.close();
 
     // Slice image into grid cells
-    const cells = await sliceGridFromImage(file, config || undefined);
+    const cells = await sliceGridFromImage(file, activeConfig || undefined);
     let cellIndex = 0;
 
     for (const cell of cells) {
@@ -166,6 +190,20 @@ export async function processInventoryImages(
             rarity: itemRarity,
           };
         }
+
+        // Capture image snippet for the review modal
+        const snippetUrl = cellBitmapToDataUrl(cell.cellBitmap);
+        reviewItems.push({
+          id: `${i}-${cell.row}-${cell.col}-${cellIndex}`,
+          materialId: match.id,
+          name: match.name,
+          quantity,
+          rarity: itemRarity,
+          imageSnippet: snippetUrl,
+          sourceImageName: file.name,
+          row: cell.row,
+          col: cell.col,
+        });
       } else {
         // If it was not empty but didn't match anything, we break the chain
         previousMatchName = null;
@@ -185,5 +223,8 @@ export async function processInventoryImages(
   }
 
   await worker.terminate();
-  return Object.values(foundItems);
+  return {
+    items: Object.values(foundItems),
+    reviewItems,
+  };
 }

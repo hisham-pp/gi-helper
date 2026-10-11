@@ -89,9 +89,9 @@ export function PillDropdown<T extends string = string>({
     const handler = (e: MouseEvent) => {
       const target = e.target as Node;
       const clickedInsideWrapper = wrapperRef.current?.contains(target);
-      const clickedInsidePanel = (
-        document.getElementById("pill-dropdown-portal")?.contains(target)
-      );
+      const clickedInsidePanel = document
+        .getElementById("pill-dropdown-portal")
+        ?.contains(target);
       if (!clickedInsideWrapper && !clickedInsidePanel) {
         setOpen(false);
       }
@@ -112,33 +112,34 @@ export function PillDropdown<T extends string = string>({
 
   const selected = options.find((o) => o.value === value);
 
-  const panel = open && typeof document !== "undefined"
-    ? createPortal(
-        <div
-          id="pill-dropdown-portal"
-          style={panelStyle}
-          className={`flex max-h-60 min-w-max flex-col gap-1 overflow-y-auto border border-white/10 bg-background/95 p-1.5 shadow-2xl backdrop-blur-xl ${panelRadius} ${panelZIndex}`}
-        >
-          {options.map((opt) => (
-            <button
-              key={opt.value}
-              onClick={() => {
-                onChange(opt.value);
-                setOpen(false);
-              }}
-              className={`w-full shrink-0 rounded-full px-3 py-2 text-left text-sm transition-all ${
-                opt.value === value
-                  ? "bg-primary/20 font-semibold text-primary"
-                  : "font-medium text-foreground hover:bg-white/10"
-              }`}
-            >
-              {opt.label}
-            </button>
-          ))}
-        </div>,
-        document.body,
-      )
-    : null;
+  const panel =
+    open && typeof document !== "undefined"
+      ? createPortal(
+          <div
+            id="pill-dropdown-portal"
+            style={panelStyle}
+            className={`flex max-h-60 min-w-max flex-col gap-1 overflow-y-auto border border-white/10 bg-background/95 p-1.5 shadow-2xl backdrop-blur-xl ${panelRadius} ${panelZIndex}`}
+          >
+            {options.map((opt) => (
+              <button
+                key={opt.value}
+                onClick={() => {
+                  onChange(opt.value);
+                  setOpen(false);
+                }}
+                className={`w-full shrink-0 rounded-full px-3 py-2 text-left text-sm transition-all ${
+                  opt.value === value
+                    ? "bg-primary/20 font-semibold text-primary"
+                    : "font-medium text-foreground hover:bg-white/10"
+                }`}
+              >
+                {opt.label}
+              </button>
+            ))}
+          </div>,
+          document.body,
+        )
+      : null;
 
   return (
     <div className={`relative ${className}`} ref={wrapperRef}>

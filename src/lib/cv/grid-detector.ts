@@ -295,6 +295,9 @@ export async function sliceGridFromImage(
     starArea: ImageBitmap;
     quantityArea: ImageBitmap;
     cellBitmap: ImageBitmap;
+    row: number;
+    col: number;
+    index: number;
   }[]
 > {
   const imageBitmap = await createImageBitmap(file);
@@ -305,5 +308,8 @@ export async function sliceGridFromImage(
     starArea: d.starBitmap,
     quantityArea: d.quantityBitmap,
     cellBitmap: d.cellBitmap,
+    row: d.row,
+    col: d.col,
+    index: d.index,
   }));
 }
