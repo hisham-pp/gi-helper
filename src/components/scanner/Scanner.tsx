@@ -27,6 +27,62 @@ import { ScanningFileItem } from "./ScanningAnimation";
 
 export type { ServerEnvProviderInfo };
 
+/**
+ * Simulates a smooth, realistic gradual progress increase during asynchronous AI Vision scans.
+ * Prevents the progress bar from remaining stuck at a static percentage (e.g. 10%) while waiting for model inference.
+ */
+function startProgressSimulation(
+  fileIndex: number,
+  totalFiles: number,
+  onProgress: (pct: number) => void,
+  onStatus: (status: string) => void,
+  adapterName: string,
+  modelName: string,
+  fileName: string,
+) {
+  const startPct = Math.round((fileIndex / totalFiles) * 100);
+  const endPct = Math.round(((fileIndex + 1) / totalFiles) * 100);
+  const range = endPct - startPct;
+  const maxSimulatedPct = Math.min(
+    endPct - 2,
+    Math.round(startPct + range * 0.94),
+  );
+
+  let current = Math.max(10, startPct + Math.round(range * 0.1));
+  onProgress(current);
+
+  const timer = setInterval(() => {
+    if (current < maxSimulatedPct) {
+      if (current < startPct + range * 0.3) {
+        current += Math.random() * 1.8 + 1.2;
+        onStatus(`Ingesting screenshot buffer for ${fileName}...`);
+      } else if (current < startPct + range * 0.65) {
+        current += Math.random() * 1.2 + 0.8;
+        onStatus(
+          `Analyzing inventory items with ${adapterName} (${modelName})...`,
+        );
+      } else if (current < startPct + range * 0.85) {
+        current += Math.random() * 0.6 + 0.4;
+        onStatus(`Matching visual features against 475 canonical materials...`);
+      } else {
+        current += Math.random() * 0.25 + 0.1;
+        onStatus(`Resolving item quantities and verifying slots...`);
+      }
+
+      current = Math.min(current, maxSimulatedPct);
+      onProgress(Math.round(current));
+    }
+  }, 250);
+
+  return {
+    stop: () => clearInterval(timer),
+    complete: () => {
+      clearInterval(timer);
+      onProgress(endPct);
+    },
+  };
+}
+
 export function Scanner() {
   const { settings, updateSetting } = useScannerSettings();
   const [isScanning, setIsScanning] = useState(false);
@@ -197,6 +253,8 @@ export function Scanner() {
 
       const allDetected: DetectedItem[] = [];
       const allReview: ScannedReviewItem[] = [];
+      let activeProgressSim: ReturnType<typeof startProgressSimulation> | null =
+        null;
 
       try {
         const totalFiles = files.length;
@@ -219,8 +277,15 @@ export function Scanner() {
             })),
           );
 
-          setStatusMessage(
-            `Analyzing screenshot ${i + 1} of ${totalFiles} (${file.name}) with ${currentAdapter.displayName}...`,
+          // Start gradual progress simulation for this file
+          activeProgressSim = startProgressSimulation(
+            i,
+            totalFiles,
+            (pct) => setProgress(pct),
+            (status) => setStatusMessage(status),
+            currentAdapter.displayName,
+            currentConfig.model,
+            file.name,
           );
 
           const controller = new AbortController();
@@ -245,6 +310,7 @@ export function Scanner() {
             });
           } catch (fetchErr: any) {
             clearTimeout(clientTimeout);
+            activeProgressSim?.stop();
             if (fetchErr.name === "AbortError") {
               throw new Error(
                 "Scan timed out after 95s while waiting for AI model response. Please try again or switch to Gemini 2.0 Flash in Settings.",
@@ -259,6 +325,7 @@ export function Scanner() {
           try {
             data = await response.json();
           } catch {
+            activeProgressSim?.stop();
             const rawText = await response.text().catch(() => "");
             throw new Error(
               `Server error (${response.status}): ${rawText || "Request failed or timed out"}`,
@@ -266,12 +333,16 @@ export function Scanner() {
           }
 
           if (!response.ok || !data.success) {
+            activeProgressSim?.stop();
             const errorMsg =
               data.error ||
               data.message ||
               `Failed scanning ${file.name} (Status: ${response.status})`;
             throw new Error(errorMsg);
           }
+
+          // Complete progress for this file
+          activeProgressSim.complete();
 
           const fileItems: DetectedItem[] = data.items || [];
 
@@ -297,9 +368,6 @@ export function Scanner() {
               sourceImageName: file.name,
             });
           }
-
-          const fileProgress = Math.round(((i + 1) / totalFiles) * 100);
-          setProgress(fileProgress);
         }
 
         if (allDetected.length === 0) {
@@ -339,6 +407,7 @@ export function Scanner() {
         setScanError(errorMsg);
         toast.error(`Scan failed: ${errorMsg}`, { duration: 9000 });
       } finally {
+        activeProgressSim?.stop();
         setIsScanning(false);
         setProgress(0);
         setStatusMessage("");
