@@ -8,12 +8,12 @@ import {
 } from "../src/lib/materials";
 
 describe("Materials Directory & Canonical Ordering Tests", () => {
-  it("returns exactly 475 materials from the application dataset", () => {
+  it("returns exactly 481 materials from the application dataset", () => {
     const materials = getAllMaterials();
-    assert.equal(materials.length, 475);
+    assert.equal(materials.length, 481);
   });
 
-  it("materials are strictly sorted in ascending canonical order (1 to 475) with no gaps", () => {
+  it("materials are strictly sorted in ascending canonical order (1 to 481) with no gaps", () => {
     const materials = getAllMaterials();
     for (let i = 0; i < materials.length; i++) {
       const expectedOrder = i + 1;
@@ -92,7 +92,7 @@ describe("Materials Directory & Canonical Ordering Tests", () => {
   });
 
   it("all categories defined in MATERIAL_CATEGORIES have valid metadata", () => {
-    assert.equal(MATERIAL_CATEGORIES.length, 7);
+    assert.equal(MATERIAL_CATEGORIES.length, 8);
     for (const cat of MATERIAL_CATEGORIES) {
       assert.ok(cat.id, "Category must have id");
       assert.ok(cat.label, "Category must have label");

@@ -19,32 +19,51 @@ export async function POST(req: NextRequest) {
 
     const adapter = getAiAdapter(provider);
 
-    // API Key Resolution:
-    // User key from localStorage passed in request has HIGHEST priority (overrides env)
+    // API Key, Model, and BaseUrl Resolution:
+    // User configuration from request payload (saved in localStorage) has HIGHEST priority
     // Server environment variables act as fallback
     let envKey: string | undefined;
+    let envModel: string | undefined;
+    let envBaseUrl: string | undefined;
+
     switch (provider) {
       case "gemini":
         envKey = process.env.GEMINI_API_KEY;
+        envModel = process.env.GEMINI_MODEL;
         break;
       case "openai":
         envKey = process.env.OPENAI_API_KEY;
+        envModel = process.env.OPENAI_MODEL;
+        envBaseUrl = process.env.OPENAI_BASE_URL;
         break;
       case "claude":
         envKey = process.env.ANTHROPIC_API_KEY || process.env.CLAUDE_API_KEY;
+        envModel = process.env.ANTHROPIC_MODEL || process.env.CLAUDE_MODEL;
         break;
       case "grok":
         envKey = process.env.GROK_API_KEY || process.env.XAI_API_KEY;
+        envModel = process.env.GROK_MODEL || process.env.XAI_MODEL;
+        envBaseUrl = process.env.GROK_BASE_URL || process.env.XAI_BASE_URL;
         break;
       case "custom":
         envKey = process.env.CUSTOM_AI_API_KEY;
+        envModel = process.env.CUSTOM_AI_MODEL;
+        envBaseUrl = process.env.CUSTOM_AI_BASE_URL;
         break;
     }
 
     const resolvedApiKey =
       (requestApiKey && String(requestApiKey).trim()) || envKey;
 
-    const activeModel = model || adapter.defaultModel;
+    const activeModel =
+      (model && String(model).trim()) ||
+      (envModel && String(envModel).trim()) ||
+      adapter.defaultModel;
+
+    const activeBaseUrl =
+      (baseUrl && String(baseUrl).trim()) ||
+      (envBaseUrl && String(envBaseUrl).trim()) ||
+      adapter.defaultBaseUrl;
 
     // 1. Connection Test Action
     if (action === "test") {
@@ -61,7 +80,7 @@ export async function POST(req: NextRequest) {
       const testResult = await testAiApiConnection(provider, {
         apiKey: resolvedApiKey,
         model: activeModel,
-        baseUrl,
+        baseUrl: activeBaseUrl,
       });
 
       return NextResponse.json(testResult);
@@ -88,7 +107,7 @@ export async function POST(req: NextRequest) {
     const { items, rawCount } = await executeAiVisionScan(image, provider, {
       apiKey: resolvedApiKey,
       model: activeModel,
-      baseUrl,
+      baseUrl: activeBaseUrl,
     });
 
     return NextResponse.json({
