@@ -277,7 +277,8 @@
     "rarity": 4,
     "image": "/images/materials/black-crystal-horn.png",
     "sortRank": 10105,
-    "order": 28
+    "order": 28,
+    "family": "Mitachurl Materials"
   },
   {
     "id": "black-bronze-horn",
@@ -287,7 +288,8 @@
     "rarity": 3,
     "image": "/images/materials/black-bronze-horn.png",
     "sortRank": 10105,
-    "order": 29
+    "order": 29,
+    "family": "Mitachurl Materials"
   },
   {
     "id": "heavy-horn",
@@ -297,7 +299,8 @@
     "rarity": 2,
     "image": "/images/materials/heavy-horn.png",
     "sortRank": 10105,
-    "order": 30
+    "order": 30,
+    "family": "Mitachurl Materials"
   },
   {
     "id": "ley-line-sprout",
@@ -307,7 +310,8 @@
     "rarity": 4,
     "image": "/images/materials/ley-line-sprout.png",
     "sortRank": 10107,
-    "order": 31
+    "order": 31,
+    "family": "Abyss Mage Materials"
   },
   {
     "id": "dead-ley-line-leaves",
@@ -317,7 +321,8 @@
     "rarity": 3,
     "image": "/images/materials/dead-ley-line-leaves.png",
     "sortRank": 10107,
-    "order": 32
+    "order": 32,
+    "family": "Abyss Mage Materials"
   },
   {
     "id": "dead-ley-line-branch",
@@ -327,7 +332,8 @@
     "rarity": 2,
     "image": "/images/materials/dead-ley-line-branch.png",
     "sortRank": 10107,
-    "order": 33
+    "order": 33,
+    "family": "Abyss Mage Materials"
   },
   {
     "id": "chaos-core",
@@ -337,7 +343,8 @@
     "rarity": 4,
     "image": "/images/materials/chaos-core.png",
     "sortRank": 10108,
-    "order": 34
+    "order": 34,
+    "family": "Humanoid Ruin Machine Materials"
   },
   {
     "id": "chaos-circuit",
@@ -347,7 +354,8 @@
     "rarity": 3,
     "image": "/images/materials/chaos-circuit.png",
     "sortRank": 10108,
-    "order": 35
+    "order": 35,
+    "family": "Humanoid Ruin Machine Materials"
   },
   {
     "id": "chaos-device",
@@ -357,7 +365,8 @@
     "rarity": 2,
     "image": "/images/materials/chaos-device.png",
     "sortRank": 10108,
-    "order": 36
+    "order": 36,
+    "family": "Humanoid Ruin Machine Materials"
   },
   {
     "id": "mist-grass-wick",
@@ -367,7 +376,8 @@
     "rarity": 4,
     "image": "/images/materials/mist-grass-wick.png",
     "sortRank": 10109,
-    "order": 37
+    "order": 37,
+    "family": "Fatui Cicin Mage Materials"
   },
   {
     "id": "mist-grass",
@@ -377,7 +387,8 @@
     "rarity": 3,
     "image": "/images/materials/mist-grass.png",
     "sortRank": 10109,
-    "order": 38
+    "order": 38,
+    "family": "Fatui Cicin Mage Materials"
   },
   {
     "id": "mist-grass-pollen",
@@ -387,7 +398,8 @@
     "rarity": 2,
     "image": "/images/materials/mist-grass-pollen.png",
     "sortRank": 10109,
-    "order": 39
+    "order": 39,
+    "family": "Fatui Cicin Mage Materials"
   },
   {
     "id": "inspector-s-sacrificial-knife",
@@ -397,7 +409,8 @@
     "rarity": 4,
     "image": "/images/materials/inspector-s-sacrificial-knife.png",
     "sortRank": 10110,
-    "order": 40
+    "order": 40,
+    "family": "Fatui Pyro Agent Materials"
   },
   {
     "id": "agent-s-sacrificial-knife",
@@ -407,7 +420,8 @@
     "rarity": 3,
     "image": "/images/materials/agent-s-sacrificial-knife.png",
     "sortRank": 10110,
-    "order": 41
+    "order": 41,
+    "family": "Fatui Pyro Agent Materials"
   },
   {
     "id": "hunter-s-sacrificial-knife",
@@ -417,7 +431,8 @@
     "rarity": 2,
     "image": "/images/materials/hunter-s-sacrificial-knife.png",
     "sortRank": 10110,
-    "order": 42
+    "order": 42,
+    "family": "Fatui Pyro Agent Materials"
   },
   {
     "id": "fossilized-bone-shard",
@@ -427,7 +442,8 @@
     "rarity": 4,
     "image": "/images/materials/fossilized-bone-shard.png",
     "sortRank": 10114,
-    "order": 43
+    "order": 43,
+    "family": "Vishap Materials"
   },
   {
     "id": "sturdy-bone-shard",
@@ -437,7 +453,8 @@
     "rarity": 3,
     "image": "/images/materials/sturdy-bone-shard.png",
     "sortRank": 10114,
-    "order": 44
+    "order": 44,
+    "family": "Vishap Materials"
   },
   {
     "id": "fragile-bone-shard",
@@ -447,7 +464,8 @@
     "rarity": 2,
     "image": "/images/materials/fragile-bone-shard.png",
     "sortRank": 10114,
-    "order": 45
+    "order": 45,
+    "family": "Vishap Materials"
   },
   {
     "id": "chaos-oculus",
@@ -457,7 +475,8 @@
     "rarity": 4,
     "image": "/images/materials/chaos-oculus.png",
     "sortRank": 10116,
-    "order": 46
+    "order": 46,
+    "family": "Ruin Sentinel Materials"
   },
   {
     "id": "chaos-axis",
@@ -467,7 +486,8 @@
     "rarity": 3,
     "image": "/images/materials/chaos-axis.png",
     "sortRank": 10116,
-    "order": 47
+    "order": 47,
+    "family": "Ruin Sentinel Materials"
   },
   {
     "id": "chaos-gear",
@@ -477,7 +497,8 @@
     "rarity": 2,
     "image": "/images/materials/chaos-gear.png",
     "sortRank": 10116,
-    "order": 48
+    "order": 48,
+    "family": "Ruin Sentinel Materials"
   },
   {
     "id": "polarizing-prism",
@@ -487,7 +508,8 @@
     "rarity": 4,
     "image": "/images/materials/polarizing-prism.png",
     "sortRank": 10117,
-    "order": 49
+    "order": 49,
+    "family": "Mirror Maiden Materials"
   },
   {
     "id": "crystal-prism",
@@ -497,7 +519,8 @@
     "rarity": 3,
     "image": "/images/materials/crystal-prism.png",
     "sortRank": 10117,
-    "order": 50
+    "order": 50,
+    "family": "Mirror Maiden Materials"
   },
   {
     "id": "dismal-prism",
@@ -507,7 +530,8 @@
     "rarity": 2,
     "image": "/images/materials/dismal-prism.png",
     "sortRank": 10117,
-    "order": 51
+    "order": 51,
+    "family": "Mirror Maiden Materials"
   },
   {
     "id": "concealed-talon",
@@ -517,7 +541,8 @@
     "rarity": 4,
     "image": "/images/materials/concealed-talon.png",
     "sortRank": 10119,
-    "order": 52
+    "order": 52,
+    "family": "Riftwolf Materials"
   },
   {
     "id": "concealed-unguis",
@@ -527,7 +552,8 @@
     "rarity": 3,
     "image": "/images/materials/concealed-unguis.png",
     "sortRank": 10119,
-    "order": 53
+    "order": 53,
+    "family": "Riftwolf Materials"
   },
   {
     "id": "concealed-claw",
@@ -537,7 +563,8 @@
     "rarity": 2,
     "image": "/images/materials/concealed-claw.png",
     "sortRank": 10119,
-    "order": 54
+    "order": 54,
+    "family": "Riftwolf Materials"
   },
   {
     "id": "deathly-statuette",
@@ -547,7 +574,8 @@
     "rarity": 4,
     "image": "/images/materials/deathly-statuette.png",
     "sortRank": 10120,
-    "order": 55
+    "order": 55,
+    "family": "The Black Serpents Material"
   },
   {
     "id": "dark-statuette",
@@ -557,7 +585,8 @@
     "rarity": 3,
     "image": "/images/materials/dark-statuette.png",
     "sortRank": 10120,
-    "order": 56
+    "order": 56,
+    "family": "The Black Serpents Material"
   },
   {
     "id": "gloomy-statuette",
@@ -567,7 +596,8 @@
     "rarity": 2,
     "image": "/images/materials/gloomy-statuette.png",
     "sortRank": 10120,
-    "order": 57
+    "order": 57,
+    "family": "The Black Serpents Material"
   },
   {
     "id": "robust-fungal-nucleus",
@@ -577,7 +607,8 @@
     "rarity": 4,
     "image": "/images/materials/robust-fungal-nucleus.png",
     "sortRank": 10122,
-    "order": 58
+    "order": 58,
+    "family": "State-Shifted Fungus Materials"
   },
   {
     "id": "dormant-fungal-nucleus",
@@ -587,7 +618,8 @@
     "rarity": 3,
     "image": "/images/materials/dormant-fungal-nucleus.png",
     "sortRank": 10122,
-    "order": 59
+    "order": 59,
+    "family": "State-Shifted Fungus Materials"
   },
   {
     "id": "inactivated-fungal-nucleus",
@@ -597,7 +629,8 @@
     "rarity": 2,
     "image": "/images/materials/inactivated-fungal-nucleus.png",
     "sortRank": 10122,
-    "order": 60
+    "order": 60,
+    "family": "State-Shifted Fungus Materials"
   },
   {
     "id": "chaos-bolt",
@@ -607,7 +640,8 @@
     "rarity": 4,
     "image": "/images/materials/chaos-bolt.png",
     "sortRank": 10124,
-    "order": 61
+    "order": 61,
+    "family": "Ruin Drake Materials"
   },
   {
     "id": "chaos-module",
@@ -617,7 +651,8 @@
     "rarity": 3,
     "image": "/images/materials/chaos-module.png",
     "sortRank": 10124,
-    "order": 62
+    "order": 62,
+    "family": "Ruin Drake Materials"
   },
   {
     "id": "chaos-storage",
@@ -627,7 +662,8 @@
     "rarity": 2,
     "image": "/images/materials/chaos-storage.png",
     "sortRank": 10124,
-    "order": 63
+    "order": 63,
+    "family": "Ruin Drake Materials"
   },
   {
     "id": "radiant-prism",
@@ -637,7 +673,8 @@
     "rarity": 4,
     "image": "/images/materials/radiant-prism.png",
     "sortRank": 10125,
-    "order": 64
+    "order": 64,
+    "family": "Primal Construct Materials"
   },
   {
     "id": "turbid-prism",
@@ -647,7 +684,8 @@
     "rarity": 3,
     "image": "/images/materials/turbid-prism.png",
     "sortRank": 10125,
-    "order": 65
+    "order": 65,
+    "family": "Primal Construct Materials"
   },
   {
     "id": "damaged-prism",
@@ -657,7 +695,8 @@
     "rarity": 2,
     "image": "/images/materials/damaged-prism.png",
     "sortRank": 10125,
-    "order": 66
+    "order": 66,
+    "family": "Primal Construct Materials"
   },
   {
     "id": "marked-shell",
@@ -667,7 +706,8 @@
     "rarity": 4,
     "image": "/images/materials/marked-shell.png",
     "sortRank": 10126,
-    "order": 67
+    "order": 67,
+    "family": "Consecrated Beast Materials"
   },
   {
     "id": "sturdy-shell",
@@ -677,7 +717,8 @@
     "rarity": 3,
     "image": "/images/materials/sturdy-shell.png",
     "sortRank": 10126,
-    "order": 68
+    "order": 68,
+    "family": "Consecrated Beast Materials"
   },
   {
     "id": "desiccated-shell",
@@ -687,7 +728,8 @@
     "rarity": 2,
     "image": "/images/materials/desiccated-shell.png",
     "sortRank": 10126,
-    "order": 69
+    "order": 69,
+    "family": "Consecrated Beast Materials"
   },
   {
     "id": "wanderer-s-blooming-flower",
@@ -697,7 +739,8 @@
     "rarity": 4,
     "image": "/images/materials/wanderer-s-blooming-flower.png",
     "sortRank": 10127,
-    "order": 70
+    "order": 70,
+    "family": "Hilichurl Rogue Materials"
   },
   {
     "id": "treasured-flower",
@@ -707,7 +750,8 @@
     "rarity": 3,
     "image": "/images/materials/treasured-flower.png",
     "sortRank": 10127,
-    "order": 71
+    "order": 71,
+    "family": "Hilichurl Rogue Materials"
   },
   {
     "id": "a-flower-yet-to-bloom",
@@ -717,7 +761,8 @@
     "rarity": 2,
     "image": "/images/materials/a-flower-yet-to-bloom.png",
     "sortRank": 10127,
-    "order": 72
+    "order": 72,
+    "family": "Hilichurl Rogue Materials"
   },
   {
     "id": "newborn-tainted-hydro-phantasm",
@@ -727,7 +772,8 @@
     "rarity": 4,
     "image": "/images/materials/newborn-tainted-hydro-phantasm.png",
     "sortRank": 10130,
-    "order": 73
+    "order": 73,
+    "family": "Tainted Hydro Phantasm Materials"
   },
   {
     "id": "scoop-of-tainted-water",
@@ -737,7 +783,8 @@
     "rarity": 3,
     "image": "/images/materials/scoop-of-tainted-water.png",
     "sortRank": 10130,
-    "order": 74
+    "order": 74,
+    "family": "Tainted Hydro Phantasm Materials"
   },
   {
     "id": "drop-of-tainted-water",
@@ -747,7 +794,8 @@
     "rarity": 2,
     "image": "/images/materials/drop-of-tainted-water.png",
     "sortRank": 10130,
-    "order": 75
+    "order": 75,
+    "family": "Tainted Hydro Phantasm Materials"
   },
   {
     "id": "alien-life-core",
@@ -757,7 +805,8 @@
     "rarity": 4,
     "image": "/images/materials/alien-life-core.png",
     "sortRank": 10131,
-    "order": 76
+    "order": 76,
+    "family": "Breacher Primus Materials"
   },
   {
     "id": "foreign-synapse",
@@ -767,7 +816,8 @@
     "rarity": 3,
     "image": "/images/materials/foreign-synapse.png",
     "sortRank": 10131,
-    "order": 77
+    "order": 77,
+    "family": "Breacher Primus Materials"
   },
   {
     "id": "rift-core",
@@ -777,7 +827,8 @@
     "rarity": 2,
     "image": "/images/materials/rift-core.png",
     "sortRank": 10131,
-    "order": 78
+    "order": 78,
+    "family": "Breacher Primus Materials"
   },
   {
     "id": "operative-s-constancy",
@@ -787,7 +838,8 @@
     "rarity": 4,
     "image": "/images/materials/operative-s-constancy.png",
     "sortRank": 10132,
-    "order": 79
+    "order": 79,
+    "family": "Fatui Operative Materials"
   },
   {
     "id": "operative-s-standard-pocket-watch",
@@ -797,7 +849,8 @@
     "rarity": 3,
     "image": "/images/materials/operative-s-standard-pocket-watch.png",
     "sortRank": 10132,
-    "order": 80
+    "order": 80,
+    "family": "Fatui Operative Materials"
   },
   {
     "id": "old-operative-s-pocket-watch",
@@ -807,7 +860,8 @@
     "rarity": 2,
     "image": "/images/materials/old-operative-s-pocket-watch.png",
     "sortRank": 10132,
-    "order": 81
+    "order": 81,
+    "family": "Fatui Operative Materials"
   },
   {
     "id": "chasmlight-fin",
@@ -817,7 +871,8 @@
     "rarity": 4,
     "image": "/images/materials/chasmlight-fin.png",
     "sortRank": 10133,
-    "order": 82
+    "order": 82,
+    "family": "Xuanwen Beast Materials"
   },
   {
     "id": "lunar-fin",
@@ -827,7 +882,8 @@
     "rarity": 3,
     "image": "/images/materials/lunar-fin.png",
     "sortRank": 10133,
-    "order": 83
+    "order": 83,
+    "family": "Xuanwen Beast Materials"
   },
   {
     "id": "feathery-fin",
@@ -837,7 +893,8 @@
     "rarity": 2,
     "image": "/images/materials/feathery-fin.png",
     "sortRank": 10133,
-    "order": 84
+    "order": 84,
+    "family": "Xuanwen Beast Materials"
   },
   {
     "id": "still-smoldering-hilt",
@@ -847,7 +904,8 @@
     "rarity": 4,
     "image": "/images/materials/still-smoldering-hilt.png",
     "sortRank": 10134,
-    "order": 85
+    "order": 85,
+    "family": "Praetorian Golem Materials"
   },
   {
     "id": "splintered-hilt",
@@ -857,7 +915,8 @@
     "rarity": 3,
     "image": "/images/materials/splintered-hilt.png",
     "sortRank": 10134,
-    "order": 86
+    "order": 86,
+    "family": "Praetorian Golem Materials"
   },
   {
     "id": "ruined-hilt",
@@ -867,7 +926,8 @@
     "rarity": 2,
     "image": "/images/materials/ruined-hilt.png",
     "sortRank": 10134,
-    "order": 87
+    "order": 87,
+    "family": "Praetorian Golem Materials"
   },
   {
     "id": "sigil-of-a-striding-will",
@@ -877,7 +937,8 @@
     "rarity": 4,
     "image": "/images/materials/sigil-of-a-striding-will.png",
     "sortRank": 10137,
-    "order": 88
+    "order": 88,
+    "family": "Wayob Manifestation Materials"
   },
   {
     "id": "locus-of-a-clear-will",
@@ -887,7 +948,8 @@
     "rarity": 3,
     "image": "/images/materials/locus-of-a-clear-will.png",
     "sortRank": 10137,
-    "order": 89
+    "order": 89,
+    "family": "Wayob Manifestation Materials"
   },
   {
     "id": "shard-of-a-shattered-will",
@@ -897,7 +959,8 @@
     "rarity": 2,
     "image": "/images/materials/shard-of-a-shattered-will.png",
     "sortRank": 10137,
-    "order": 90
+    "order": 90,
+    "family": "Wayob Manifestation Materials"
   },
   {
     "id": "ignited-seeing-eye",
@@ -907,7 +970,8 @@
     "rarity": 4,
     "image": "/images/materials/ignited-seeing-eye.png",
     "sortRank": 10138,
-    "order": 91
+    "order": 91,
+    "family": "Avatar of Lava Materials"
   },
   {
     "id": "ignited-seed-of-life",
@@ -917,7 +981,8 @@
     "rarity": 3,
     "image": "/images/materials/ignited-seed-of-life.png",
     "sortRank": 10138,
-    "order": 92
+    "order": 92,
+    "family": "Avatar of Lava Materials"
   },
   {
     "id": "ignited-stone",
@@ -927,7 +992,8 @@
     "rarity": 2,
     "image": "/images/materials/ignited-stone.png",
     "sortRank": 10138,
-    "order": 93
+    "order": 93,
+    "family": "Avatar of Lava Materials"
   },
   {
     "id": "heart-of-the-secret-source",
@@ -937,7 +1003,8 @@
     "rarity": 4,
     "image": "/images/materials/heart-of-the-secret-source.png",
     "sortRank": 10139,
-    "order": 94
+    "order": 94,
+    "family": "Secret Source Automaton: Hunter-Seeker Materials"
   },
   {
     "id": "sheath-of-the-secret-source",
@@ -947,7 +1014,8 @@
     "rarity": 3,
     "image": "/images/materials/sheath-of-the-secret-source.png",
     "sortRank": 10139,
-    "order": 95
+    "order": 95,
+    "family": "Secret Source Automaton: Hunter-Seeker Materials"
   },
   {
     "id": "axis-of-the-secret-source",
@@ -957,7 +1025,8 @@
     "rarity": 2,
     "image": "/images/materials/axis-of-the-secret-source.png",
     "sortRank": 10139,
-    "order": 96
+    "order": 96,
+    "family": "Secret Source Automaton: Hunter-Seeker Materials"
   },
   {
     "id": "illusory-leafcoil",
@@ -967,7 +1036,8 @@
     "rarity": 4,
     "image": "/images/materials/illusory-leafcoil.png",
     "sortRank": 10140,
-    "order": 97
+    "order": 97,
+    "family": "Tenebrous Mimesis Materials"
   },
   {
     "id": "bewildering-broadleaf",
@@ -977,7 +1047,8 @@
     "rarity": 3,
     "image": "/images/materials/bewildering-broadleaf.png",
     "sortRank": 10140,
-    "order": 98
+    "order": 98,
+    "family": "Tenebrous Mimesis Materials"
   },
   {
     "id": "refractive-bud",
@@ -987,7 +1058,8 @@
     "rarity": 2,
     "image": "/images/materials/refractive-bud.png",
     "sortRank": 10140,
-    "order": 99
+    "order": 99,
+    "family": "Tenebrous Mimesis Materials"
   },
   {
     "id": "blazing-prismshell",
@@ -997,7 +1069,8 @@
     "rarity": 4,
     "image": "/images/materials/blazing-prismshell.png",
     "sortRank": 10141,
-    "order": 100
+    "order": 100,
+    "family": "Furnace Shell Mountain Weasel Materials"
   },
   {
     "id": "warm-back-shell",
@@ -1007,7 +1080,8 @@
     "rarity": 3,
     "image": "/images/materials/warm-back-shell.png",
     "sortRank": 10141,
-    "order": 101
+    "order": 101,
+    "family": "Furnace Shell Mountain Weasel Materials"
   },
   {
     "id": "cold-cracked-shellshard",
@@ -1017,7 +1091,8 @@
     "rarity": 2,
     "image": "/images/materials/cold-cracked-shellshard.png",
     "sortRank": 10141,
-    "order": 102
+    "order": 102,
+    "family": "Furnace Shell Mountain Weasel Materials"
   },
   {
     "id": "frostnight-s-glory",
@@ -1027,7 +1102,8 @@
     "rarity": 4,
     "image": "/images/materials/frostnight-s-glory.png",
     "sortRank": 10142,
-    "order": 103
+    "order": 103,
+    "family": "Frostnight Scion Materials"
   },
   {
     "id": "frostnight-s-glow",
@@ -1037,7 +1113,8 @@
     "rarity": 3,
     "image": "/images/materials/frostnight-s-glow.png",
     "sortRank": 10142,
-    "order": 104
+    "order": 104,
+    "family": "Frostnight Scion Materials"
   },
   {
     "id": "frostnight-s-glimmer",
@@ -1047,7 +1124,8 @@
     "rarity": 2,
     "image": "/images/materials/frostnight-s-glimmer.png",
     "sortRank": 10142,
-    "order": 105
+    "order": 105,
+    "family": "Frostnight Scion Materials"
   },
   {
     "id": "radiant-exoskeleton",
@@ -1057,7 +1135,8 @@
     "rarity": 4,
     "image": "/images/materials/radiant-exoskeleton.png",
     "sortRank": 10143,
-    "order": 106
+    "order": 106,
+    "family": "Radiant Beast Materials"
   },
   {
     "id": "glowing-remains",
@@ -1067,7 +1146,8 @@
     "rarity": 3,
     "image": "/images/materials/glowing-remains.png",
     "sortRank": 10143,
-    "order": 107
+    "order": 107,
+    "family": "Radiant Beast Materials"
   },
   {
     "id": "lightless-bone",
@@ -1077,7 +1157,8 @@
     "rarity": 2,
     "image": "/images/materials/lightless-bone.png",
     "sortRank": 10143,
-    "order": 108
+    "order": 108,
+    "family": "Radiant Beast Materials"
   },
   {
     "id": "mistshroud-helmet",
@@ -1087,7 +1168,8 @@
     "rarity": 4,
     "image": "/images/materials/mistshroud-helmet.png",
     "sortRank": 10144,
-    "order": 109
+    "order": 109,
+    "family": "Wasteland Wild Hunt Materials"
   },
   {
     "id": "mistshroud-plate",
@@ -1097,7 +1179,8 @@
     "rarity": 3,
     "image": "/images/materials/mistshroud-plate.png",
     "sortRank": 10144,
-    "order": 110
+    "order": 110,
+    "family": "Wasteland Wild Hunt Materials"
   },
   {
     "id": "mistshroud-manifestation",
@@ -1107,7 +1190,8 @@
     "rarity": 2,
     "image": "/images/materials/mistshroud-manifestation.png",
     "sortRank": 10144,
-    "order": 111
+    "order": 111,
+    "family": "Wasteland Wild Hunt Materials"
   },
   {
     "id": "hooked-beak-of-the-deep-shadow",
@@ -1117,7 +1201,8 @@
     "rarity": 4,
     "image": "/images/materials/hooked-beak-of-the-deep-shadow.png",
     "sortRank": 10145,
-    "order": 112
+    "order": 112,
+    "family": "Fisher of Hidden Depths Materials"
   },
   {
     "id": "aberrant-core-of-the-deep-shadow",
@@ -1127,7 +1212,8 @@
     "rarity": 3,
     "image": "/images/materials/aberrant-core-of-the-deep-shadow.png",
     "sortRank": 10145,
-    "order": 113
+    "order": 113,
+    "family": "Fisher of Hidden Depths Materials"
   },
   {
     "id": "fractured-eye-of-the-deep-shadow",
@@ -1137,7 +1223,8 @@
     "rarity": 2,
     "image": "/images/materials/fractured-eye-of-the-deep-shadow.png",
     "sortRank": 10145,
-    "order": 114
+    "order": 114,
+    "family": "Fisher of Hidden Depths Materials"
   },
   {
     "id": "jeweled-flaming-hilt",
@@ -1147,7 +1234,8 @@
     "rarity": 4,
     "image": "/images/materials/jeweled-flaming-hilt.png",
     "sortRank": 10146,
-    "order": 115
+    "order": 115,
+    "family": "Domain Keeper Materials"
   },
   {
     "id": "fractured-flaming-hilt",
@@ -1157,7 +1245,8 @@
     "rarity": 3,
     "image": "/images/materials/fractured-flaming-hilt.png",
     "sortRank": 10146,
-    "order": 116
+    "order": 116,
+    "family": "Domain Keeper Materials"
   },
   {
     "id": "faded-flaming-hilt",
@@ -1167,7 +1256,8 @@
     "rarity": 2,
     "image": "/images/materials/faded-flaming-hilt.png",
     "sortRank": 10146,
-    "order": 117
+    "order": 117,
+    "family": "Domain Keeper Materials"
   },
   {
     "id": "unblemished-lunar-iron",
@@ -1177,7 +1267,8 @@
     "rarity": 4,
     "image": "/images/materials/unblemished-lunar-iron.png",
     "sortRank": 10147,
-    "order": 118
+    "order": 118,
+    "family": "Precursor's Secret Source Matrix of Overseer Network Materials"
   },
   {
     "id": "depleted-lunar-iron",
@@ -1187,7 +1278,8 @@
     "rarity": 3,
     "image": "/images/materials/depleted-lunar-iron.png",
     "sortRank": 10147,
-    "order": 119
+    "order": 119,
+    "family": "Precursor's Secret Source Matrix of Overseer Network Materials"
   },
   {
     "id": "fractured-lunar-iron",
@@ -1197,7 +1289,8 @@
     "rarity": 2,
     "image": "/images/materials/fractured-lunar-iron.png",
     "sortRank": 10147,
-    "order": 120
+    "order": 120,
+    "family": "Precursor's Secret Source Matrix of Overseer Network Materials"
   },
   {
     "id": "accreted-growth",
@@ -1217,7 +1310,8 @@
     "rarity": 3,
     "image": "/images/materials/accreted-mass.png",
     "sortRank": 10148,
-    "order": 122
+    "order": 122,
+    "family": "Volkodlak Brute Materials"
   },
   {
     "id": "accreted-fragment",
@@ -1227,7 +1321,8 @@
     "rarity": 2,
     "image": "/images/materials/accreted-fragment.png",
     "sortRank": 10148,
-    "order": 123
+    "order": 123,
+    "family": "Volkodlak Brute Materials"
   },
   {
     "id": "coiled-core-of-life",
@@ -1237,7 +1332,8 @@
     "rarity": 4,
     "image": "/images/materials/coiled-core-of-life.png",
     "sortRank": 10149,
-    "order": 124
+    "order": 124,
+    "family": "Wildwood Leshy Materials"
   },
   {
     "id": "sprout-node-of-life",
@@ -1247,7 +1343,8 @@
     "rarity": 3,
     "image": "/images/materials/sprout-node-of-life.png",
     "sortRank": 10149,
-    "order": 125
+    "order": 125,
+    "family": "Wildwood Leshy Materials"
   },
   {
     "id": "hollow-root-of-life",
@@ -1257,7 +1354,8 @@
     "rarity": 2,
     "image": "/images/materials/hollow-root-of-life.png",
     "sortRank": 10149,
-    "order": 126
+    "order": 126,
+    "family": "Wildwood Leshy Materials"
   },
   {
     "id": "slime-concentrate",
@@ -1267,7 +1365,8 @@
     "rarity": 3,
     "image": "/images/materials/slime-concentrate.png",
     "sortRank": 10601,
-    "order": 127
+    "order": 127,
+    "family": "Slime Materials"
   },
   {
     "id": "slime-secretions",
@@ -1277,7 +1376,8 @@
     "rarity": 2,
     "image": "/images/materials/slime-secretions.png",
     "sortRank": 10601,
-    "order": 128
+    "order": 128,
+    "family": "Slime Materials"
   },
   {
     "id": "slime-condensate",
@@ -1287,7 +1387,8 @@
     "rarity": 1,
     "image": "/images/materials/slime-condensate.png",
     "sortRank": 10601,
-    "order": 129
+    "order": 129,
+    "family": "Slime Materials"
   },
   {
     "id": "ominous-mask",
@@ -1297,7 +1398,8 @@
     "rarity": 3,
     "image": "/images/materials/ominous-mask.png",
     "sortRank": 10602,
-    "order": 130
+    "order": 130,
+    "family": "Hilichurl Materials"
   },
   {
     "id": "stained-mask",
@@ -1307,7 +1409,8 @@
     "rarity": 2,
     "image": "/images/materials/stained-mask.png",
     "sortRank": 10602,
-    "order": 131
+    "order": 131,
+    "family": "Hilichurl Materials"
   },
   {
     "id": "damaged-mask",
@@ -1317,7 +1420,8 @@
     "rarity": 1,
     "image": "/images/materials/damaged-mask.png",
     "sortRank": 10602,
-    "order": 132
+    "order": 132,
+    "family": "Hilichurl Materials"
   },
   {
     "id": "forbidden-curse-scroll",
@@ -1327,7 +1431,8 @@
     "rarity": 3,
     "image": "/images/materials/forbidden-curse-scroll.png",
     "sortRank": 10603,
-    "order": 133
+    "order": 133,
+    "family": "Samachurl Materials"
   },
   {
     "id": "sealed-scroll",
@@ -1337,7 +1442,8 @@
     "rarity": 2,
     "image": "/images/materials/sealed-scroll.png",
     "sortRank": 10603,
-    "order": 134
+    "order": 134,
+    "family": "Samachurl Materials"
   },
   {
     "id": "divining-scroll",
@@ -1347,7 +1453,8 @@
     "rarity": 1,
     "image": "/images/materials/divining-scroll.png",
     "sortRank": 10603,
-    "order": 135
+    "order": 135,
+    "family": "Samachurl Materials"
   },
   {
     "id": "weathered-arrowhead",
@@ -1357,7 +1464,8 @@
     "rarity": 3,
     "image": "/images/materials/weathered-arrowhead.png",
     "sortRank": 10604,
-    "order": 136
+    "order": 136,
+    "family": "Hilichurl Shooter Materials"
   },
   {
     "id": "sharp-arrowhead",
@@ -1367,7 +1475,8 @@
     "rarity": 2,
     "image": "/images/materials/sharp-arrowhead.png",
     "sortRank": 10604,
-    "order": 137
+    "order": 137,
+    "family": "Hilichurl Shooter Materials"
   },
   {
     "id": "firm-arrowhead",
@@ -1377,7 +1486,8 @@
     "rarity": 1,
     "image": "/images/materials/firm-arrowhead.png",
     "sortRank": 10604,
-    "order": 138
+    "order": 138,
+    "family": "Hilichurl Shooter Materials"
   },
   {
     "id": "lieutenant-s-insignia",
@@ -1387,7 +1497,8 @@
     "rarity": 3,
     "image": "/images/materials/lieutenant-s-insignia.png",
     "sortRank": 10611,
-    "order": 139
+    "order": 139,
+    "family": "Fatui Skirmisher Materials"
   },
   {
     "id": "sergeant-s-insignia",
@@ -1397,7 +1508,8 @@
     "rarity": 2,
     "image": "/images/materials/sergeant-s-insignia.png",
     "sortRank": 10611,
-    "order": 140
+    "order": 140,
+    "family": "Fatui Skirmisher Materials"
   },
   {
     "id": "recruit-s-insignia",
@@ -1407,7 +1519,8 @@
     "rarity": 1,
     "image": "/images/materials/recruit-s-insignia.png",
     "sortRank": 10611,
-    "order": 141
+    "order": 141,
+    "family": "Fatui Skirmisher Materials"
   },
   {
     "id": "golden-raven-insignia",
@@ -1417,7 +1530,8 @@
     "rarity": 3,
     "image": "/images/materials/golden-raven-insignia.png",
     "sortRank": 10612,
-    "order": 142
+    "order": 142,
+    "family": "Treasure Hoarder Materials"
   },
   {
     "id": "silver-raven-insignia",
@@ -1427,7 +1541,8 @@
     "rarity": 2,
     "image": "/images/materials/silver-raven-insignia.png",
     "sortRank": 10612,
-    "order": 143
+    "order": 143,
+    "family": "Treasure Hoarder Materials"
   },
   {
     "id": "treasure-hoarder-insignia",
@@ -1437,7 +1552,8 @@
     "rarity": 1,
     "image": "/images/materials/treasure-hoarder-insignia.png",
     "sortRank": 10612,
-    "order": 144
+    "order": 144,
+    "family": "Treasure Hoarder Materials"
   },
   {
     "id": "energy-nectar",
@@ -1447,7 +1563,8 @@
     "rarity": 3,
     "image": "/images/materials/energy-nectar.png",
     "sortRank": 10613,
-    "order": 145
+    "order": 145,
+    "family": "Whopperflower Materials"
   },
   {
     "id": "shimmering-nectar",
@@ -1457,7 +1574,8 @@
     "rarity": 2,
     "image": "/images/materials/shimmering-nectar.png",
     "sortRank": 10613,
-    "order": 146
+    "order": 146,
+    "family": "Whopperflower Materials"
   },
   {
     "id": "whopperflower-nectar",
@@ -1467,7 +1585,8 @@
     "rarity": 1,
     "image": "/images/materials/whopperflower-nectar.png",
     "sortRank": 10613,
-    "order": 147
+    "order": 147,
+    "family": "Whopperflower Materials"
   },
   {
     "id": "famed-handguard",
@@ -1477,7 +1596,8 @@
     "rarity": 3,
     "image": "/images/materials/famed-handguard.png",
     "sortRank": 10615,
-    "order": 148
+    "order": 148,
+    "family": "Nobushi Materials"
   },
   {
     "id": "kageuchi-handguard",
@@ -1487,7 +1607,8 @@
     "rarity": 2,
     "image": "/images/materials/kageuchi-handguard.png",
     "sortRank": 10615,
-    "order": 149
+    "order": 149,
+    "family": "Nobushi Materials"
   },
   {
     "id": "old-handguard",
@@ -1497,7 +1618,8 @@
     "rarity": 1,
     "image": "/images/materials/old-handguard.png",
     "sortRank": 10615,
-    "order": 150
+    "order": 150,
+    "family": "Nobushi Materials"
   },
   {
     "id": "spectral-nucleus",
@@ -1507,7 +1629,8 @@
     "rarity": 3,
     "image": "/images/materials/spectral-nucleus.png",
     "sortRank": 10618,
-    "order": 151
+    "order": 151,
+    "family": "Specter Materials"
   },
   {
     "id": "spectral-heart",
@@ -1517,7 +1640,8 @@
     "rarity": 2,
     "image": "/images/materials/spectral-heart.png",
     "sortRank": 10618,
-    "order": 152
+    "order": 152,
+    "family": "Specter Materials"
   },
   {
     "id": "spectral-husk",
@@ -1527,7 +1651,8 @@
     "rarity": 1,
     "image": "/images/materials/spectral-husk.png",
     "sortRank": 10618,
-    "order": 153
+    "order": 153,
+    "family": "Specter Materials"
   },
   {
     "id": "crystalline-cyst-dust",
@@ -1537,7 +1662,8 @@
     "rarity": 3,
     "image": "/images/materials/crystalline-cyst-dust.png",
     "sortRank": 10621,
-    "order": 154
+    "order": 154,
+    "family": "Fungus Materials"
   },
   {
     "id": "luminescent-pollen",
@@ -1547,7 +1673,8 @@
     "rarity": 2,
     "image": "/images/materials/luminescent-pollen.png",
     "sortRank": 10621,
-    "order": 155
+    "order": 155,
+    "family": "Fungus Materials"
   },
   {
     "id": "fungal-spores",
@@ -1557,7 +1684,8 @@
     "rarity": 1,
     "image": "/images/materials/fungal-spores.png",
     "sortRank": 10621,
-    "order": 156
+    "order": 156,
+    "family": "Fungus Materials"
   },
   {
     "id": "rich-red-brocade",
@@ -1567,7 +1695,8 @@
     "rarity": 3,
     "image": "/images/materials/rich-red-brocade.png",
     "sortRank": 10623,
-    "order": 157
+    "order": 157,
+    "family": "The Eremites Materials"
   },
   {
     "id": "trimmed-red-silk",
@@ -1577,7 +1706,8 @@
     "rarity": 2,
     "image": "/images/materials/trimmed-red-silk.png",
     "sortRank": 10623,
-    "order": 158
+    "order": 158,
+    "family": "The Eremites Materials"
   },
   {
     "id": "faded-red-satin",
@@ -1587,7 +1717,8 @@
     "rarity": 1,
     "image": "/images/materials/faded-red-satin.png",
     "sortRank": 10623,
-    "order": 159
+    "order": 159,
+    "family": "The Eremites Materials"
   },
   {
     "id": "xenochromatic-crystal",
@@ -1597,7 +1728,8 @@
     "rarity": 3,
     "image": "/images/materials/xenochromatic-crystal.png",
     "sortRank": 10628,
-    "order": 160
+    "order": 160,
+    "family": "Fontemer Aberrant Materials"
   },
   {
     "id": "transoceanic-chunk",
@@ -1607,7 +1739,8 @@
     "rarity": 2,
     "image": "/images/materials/transoceanic-chunk.png",
     "sortRank": 10628,
-    "order": 161
+    "order": 161,
+    "family": "Fontemer Aberrant Materials"
   },
   {
     "id": "transoceanic-pearl",
@@ -1617,7 +1750,8 @@
     "rarity": 1,
     "image": "/images/materials/transoceanic-pearl.png",
     "sortRank": 10628,
-    "order": 162
+    "order": 162,
+    "family": "Fontemer Aberrant Materials"
   },
   {
     "id": "artificed-dynamic-gear",
@@ -1627,7 +1761,8 @@
     "rarity": 3,
     "image": "/images/materials/artificed-dynamic-gear.png",
     "sortRank": 10629,
-    "order": 163
+    "order": 163,
+    "family": "Clockwork Meka Materials"
   },
   {
     "id": "mechanical-spur-gear",
@@ -1637,7 +1772,8 @@
     "rarity": 2,
     "image": "/images/materials/mechanical-spur-gear.png",
     "sortRank": 10629,
-    "order": 164
+    "order": 164,
+    "family": "Clockwork Meka Materials"
   },
   {
     "id": "meshing-gear",
@@ -1647,7 +1783,8 @@
     "rarity": 1,
     "image": "/images/materials/meshing-gear.png",
     "sortRank": 10629,
-    "order": 165
+    "order": 165,
+    "family": "Clockwork Meka Materials"
   },
   {
     "id": "tyrant-s-fang",
@@ -1657,7 +1794,8 @@
     "rarity": 3,
     "image": "/images/materials/tyrant-s-fang.png",
     "sortRank": 10635,
-    "order": 166
+    "order": 166,
+    "family": "Natlan Saurian Materials"
   },
   {
     "id": "seasoned-fang",
@@ -1667,7 +1805,8 @@
     "rarity": 2,
     "image": "/images/materials/seasoned-fang.png",
     "sortRank": 10635,
-    "order": 167
+    "order": 167,
+    "family": "Natlan Saurian Materials"
   },
   {
     "id": "juvenile-fang",
@@ -1677,7 +1816,8 @@
     "rarity": 1,
     "image": "/images/materials/juvenile-fang.png",
     "sortRank": 10635,
-    "order": 168
+    "order": 168,
+    "family": "Natlan Saurian Materials"
   },
   {
     "id": "saurian-crowned-warrior-s-golden-whistle",
@@ -1687,7 +1827,8 @@
     "rarity": 3,
     "image": "/images/materials/saurian-crowned-warrior-s-golden-whistle.png",
     "sortRank": 10636,
-    "order": 169
+    "order": 169,
+    "family": "Sauroform Tribal Warrior Materials"
   },
   {
     "id": "warrior-s-metal-whistle",
@@ -1697,7 +1838,8 @@
     "rarity": 2,
     "image": "/images/materials/warrior-s-metal-whistle.png",
     "sortRank": 10636,
-    "order": 170
+    "order": 170,
+    "family": "Sauroform Tribal Warrior Materials"
   },
   {
     "id": "sentry-s-wooden-whistle",
@@ -1707,7 +1849,8 @@
     "rarity": 1,
     "image": "/images/materials/sentry-s-wooden-whistle.png",
     "sortRank": 10636,
-    "order": 171
+    "order": 171,
+    "family": "Sauroform Tribal Warrior Materials"
   },
   {
     "id": "precision-drive-shaft",
@@ -1717,7 +1860,8 @@
     "rarity": 3,
     "image": "/images/materials/precision-drive-shaft.png",
     "sortRank": 10637,
-    "order": 172
+    "order": 172,
+    "family": "Landcruiser Materials"
   },
   {
     "id": "reinforced-drive-shaft",
@@ -1727,7 +1871,8 @@
     "rarity": 2,
     "image": "/images/materials/reinforced-drive-shaft.png",
     "sortRank": 10637,
-    "order": 173
+    "order": 173,
+    "family": "Landcruiser Materials"
   },
   {
     "id": "broken-drive-shaft",
@@ -1737,7 +1882,8 @@
     "rarity": 1,
     "image": "/images/materials/broken-drive-shaft.png",
     "sortRank": 10637,
-    "order": 174
+    "order": 174,
+    "family": "Landcruiser Materials"
   },
   {
     "id": "frost-etched-warrant",
@@ -1747,7 +1893,8 @@
     "rarity": 3,
     "image": "/images/materials/frost-etched-warrant.png",
     "sortRank": 10638,
-    "order": 175
+    "order": 175,
+    "family": "Fatui Oprichniki Materials"
   },
   {
     "id": "immaculate-warrant",
@@ -1757,7 +1904,8 @@
     "rarity": 2,
     "image": "/images/materials/immaculate-warrant.png",
     "sortRank": 10638,
-    "order": 176
+    "order": 176,
+    "family": "Fatui Oprichniki Materials"
   },
   {
     "id": "tattered-warrant",
@@ -1767,7 +1915,8 @@
     "rarity": 1,
     "image": "/images/materials/tattered-warrant.png",
     "sortRank": 10638,
-    "order": 177
+    "order": 177,
+    "family": "Fatui Oprichniki Materials"
   },
   {
     "id": "ethereal-crystalscale-stone",
@@ -1777,7 +1926,8 @@
     "rarity": 3,
     "image": "/images/materials/ethereal-crystalscale-stone.png",
     "sortRank": 10639,
-    "order": 178
+    "order": 178,
+    "family": "Snowland Fae Materials"
   },
   {
     "id": "ethereal-crystal",
@@ -1787,7 +1937,8 @@
     "rarity": 2,
     "image": "/images/materials/ethereal-crystal.png",
     "sortRank": 10639,
-    "order": 179
+    "order": 179,
+    "family": "Snowland Fae Materials"
   },
   {
     "id": "ethereal-glimmershard",
@@ -1797,7 +1948,8 @@
     "rarity": 1,
     "image": "/images/materials/ethereal-glimmershard.png",
     "sortRank": 10639,
-    "order": 180
+    "order": 180,
+    "family": "Snowland Fae Materials"
   },
   {
     "id": "prime-chimeric-nexus",
@@ -1807,7 +1959,8 @@
     "rarity": 3,
     "image": "/images/materials/prime-chimeric-nexus.png",
     "sortRank": 10640,
-    "order": 181
+    "order": 181,
+    "family": "Aberrant Chimeric Monster Materials"
   },
   {
     "id": "symbiotic-chimeric-nucleus",
@@ -1817,7 +1970,8 @@
     "rarity": 2,
     "image": "/images/materials/symbiotic-chimeric-nucleus.png",
     "sortRank": 10640,
-    "order": 182
+    "order": 182,
+    "family": "Aberrant Chimeric Monster Materials"
   },
   {
     "id": "chimeric-core",
@@ -1827,7 +1981,8 @@
     "rarity": 1,
     "image": "/images/materials/chimeric-core.png",
     "sortRank": 10640,
-    "order": 183
+    "order": 183,
+    "family": "Aberrant Chimeric Monster Materials"
   },
   {
     "id": "ascended-sample-knight",
@@ -1837,7 +1992,8 @@
     "rarity": 5,
     "image": "/images/materials/ascended-sample-knight.png",
     "sortRank": 11101,
-    "order": 184
+    "order": 184,
+    "family": "The Game Before the Gate Materials"
   },
   {
     "id": "ascended-sample-queen",
@@ -1847,7 +2003,8 @@
     "rarity": 5,
     "image": "/images/materials/ascended-sample-queen.png",
     "sortRank": 11101,
-    "order": 185
+    "order": 185,
+    "family": "The Game Before the Gate Materials"
   },
   {
     "id": "ascended-sample-rook",
@@ -1857,7 +2014,8 @@
     "rarity": 5,
     "image": "/images/materials/ascended-sample-rook.png",
     "sortRank": 11101,
-    "order": 186
+    "order": 186,
+    "family": "The Game Before the Gate Materials"
   },
   {
     "id": "ashen-heart",
@@ -1867,7 +2025,8 @@
     "rarity": 5,
     "image": "/images/materials/ashen-heart.png",
     "sortRank": 11101,
-    "order": 187
+    "order": 187,
+    "family": "La Signora Materials"
   },
   {
     "id": "bloodjade-branch",
@@ -1877,7 +2036,8 @@
     "rarity": 5,
     "image": "/images/materials/bloodjade-branch.png",
     "sortRank": 11101,
-    "order": 188
+    "order": 188,
+    "family": "Azhdaha Materials"
   },
   {
     "id": "counterfeit-resin",
@@ -1887,7 +2047,8 @@
     "rarity": 5,
     "image": "/images/materials/counterfeit-resin.png",
     "sortRank": 11101,
-    "order": 189
+    "order": 189,
+    "family": "Il Dottore Materials"
   },
   {
     "id": "daka-s-bell",
@@ -1897,7 +2058,8 @@
     "rarity": 5,
     "image": "/images/materials/daka-s-bell.png",
     "sortRank": 11101,
-    "order": 190
+    "order": 190,
+    "family": "Everlasting Lord of Arcane Wisdom Materials"
   },
   {
     "id": "denial-and-judgment",
@@ -1907,7 +2069,8 @@
     "rarity": 5,
     "image": "/images/materials/denial-and-judgment.png",
     "sortRank": 11101,
-    "order": 191
+    "order": 191,
+    "family": "The Knave Materials"
   },
   {
     "id": "dragon-lord-s-crown",
@@ -1917,7 +2080,8 @@
     "rarity": 5,
     "image": "/images/materials/dragon-lord-s-crown.png",
     "sortRank": 11101,
-    "order": 192
+    "order": 192,
+    "family": "Azhdaha Materials"
   },
   {
     "id": "dvalin-s-claw",
@@ -1927,7 +2091,8 @@
     "rarity": 5,
     "image": "/images/materials/dvalin-s-claw.png",
     "sortRank": 11101,
-    "order": 193
+    "order": 193,
+    "family": "Dvalin Materials"
   },
   {
     "id": "dvalin-s-plume",
@@ -1937,7 +2102,8 @@
     "rarity": 5,
     "image": "/images/materials/dvalin-s-plume.png",
     "sortRank": 11101,
-    "order": 194
+    "order": 194,
+    "family": "Dvalin Materials"
   },
   {
     "id": "dvalin-s-sigh",
@@ -1947,7 +2113,8 @@
     "rarity": 5,
     "image": "/images/materials/dvalin-s-sigh.png",
     "sortRank": 11101,
-    "order": 195
+    "order": 195,
+    "family": "Dvalin Materials"
   },
   {
     "id": "elixir-of-the-heretic",
@@ -1957,7 +2124,8 @@
     "rarity": 5,
     "image": "/images/materials/elixir-of-the-heretic.png",
     "sortRank": 11101,
-    "order": 196
+    "order": 196,
+    "family": "The Doctor Materials"
   },
   {
     "id": "eroded-horn",
@@ -1967,7 +2135,8 @@
     "rarity": 5,
     "image": "/images/materials/eroded-horn.png",
     "sortRank": 11101,
-    "order": 197
+    "order": 197,
+    "family": "Lord of Eroded Primal Fire Materials"
   },
   {
     "id": "eroded-scale-feather",
@@ -1977,7 +2146,8 @@
     "rarity": 5,
     "image": "/images/materials/eroded-scale-feather.png",
     "sortRank": 11101,
-    "order": 198
+    "order": 198,
+    "family": "Lord of Eroded Primal Fire Materials"
   },
   {
     "id": "eroded-sunfire",
@@ -1987,7 +2157,8 @@
     "rarity": 5,
     "image": "/images/materials/eroded-sunfire.png",
     "sortRank": 11101,
-    "order": 199
+    "order": 199,
+    "family": "Lord of Eroded Primal Fire Materials"
   },
   {
     "id": "everamber",
@@ -1997,7 +2168,8 @@
     "rarity": 5,
     "image": "/images/materials/everamber.png",
     "sortRank": 11101,
-    "order": 200
+    "order": 200,
+    "family": "Guardian of Apep's Oasis Materials"
   },
   {
     "id": "fading-candle",
@@ -2007,7 +2179,8 @@
     "rarity": 5,
     "image": "/images/materials/fading-candle.png",
     "sortRank": 11101,
-    "order": 201
+    "order": 201,
+    "family": "The Knave Materials"
   },
   {
     "id": "gilded-scale",
@@ -2017,7 +2190,8 @@
     "rarity": 5,
     "image": "/images/materials/gilded-scale.png",
     "sortRank": 11101,
-    "order": 202
+    "order": 202,
+    "family": "Azhdaha Materials"
   },
   {
     "id": "hellfire-butterfly",
@@ -2027,7 +2201,8 @@
     "rarity": 5,
     "image": "/images/materials/hellfire-butterfly.png",
     "sortRank": 11101,
-    "order": 203
+    "order": 203,
+    "family": "La Signora Materials"
   },
   {
     "id": "lightless-eye-of-the-maelstrom",
@@ -2037,7 +2212,8 @@
     "rarity": 5,
     "image": "/images/materials/lightless-eye-of-the-maelstrom.png",
     "sortRank": 11101,
-    "order": 204
+    "order": 204,
+    "family": "All-Devouring Narwhal Materials"
   },
   {
     "id": "lightless-mass",
@@ -2047,7 +2223,8 @@
     "rarity": 5,
     "image": "/images/materials/lightless-mass.png",
     "sortRank": 11101,
-    "order": 205
+    "order": 205,
+    "family": "All-Devouring Narwhal Materials"
   },
   {
     "id": "lightless-silk-string",
@@ -2057,7 +2234,8 @@
     "rarity": 5,
     "image": "/images/materials/lightless-silk-string.png",
     "sortRank": 11101,
-    "order": 206
+    "order": 206,
+    "family": "All-Devouring Narwhal Materials"
   },
   {
     "id": "madman-s-restraint",
@@ -2067,7 +2245,8 @@
     "rarity": 5,
     "image": "/images/materials/madman-s-restraint.png",
     "sortRank": 11101,
-    "order": 207
+    "order": 207,
+    "family": "The Doctor Materials"
   },
   {
     "id": "mask-of-the-virtuous-doctor",
@@ -2077,7 +2256,8 @@
     "rarity": 5,
     "image": "/images/materials/mask-of-the-virtuous-doctor.png",
     "sortRank": 11101,
-    "order": 208
+    "order": 208,
+    "family": "The Doctor Materials"
   },
   {
     "id": "mirror-of-mushin",
@@ -2087,7 +2267,8 @@
     "rarity": 5,
     "image": "/images/materials/mirror-of-mushin.png",
     "sortRank": 11101,
-    "order": 209
+    "order": 209,
+    "family": "Everlasting Lord of Arcane Wisdom Materials"
   },
   {
     "id": "molten-moment",
@@ -2097,7 +2278,8 @@
     "rarity": 5,
     "image": "/images/materials/molten-moment.png",
     "sortRank": 11101,
-    "order": 210
+    "order": 210,
+    "family": "La Signora Materials"
   },
   {
     "id": "mudra-of-the-malefic-general",
@@ -2107,7 +2289,8 @@
     "rarity": 5,
     "image": "/images/materials/mudra-of-the-malefic-general.png",
     "sortRank": 11101,
-    "order": 211
+    "order": 211,
+    "family": "Magatsu Mitake Narukami no Mikoto Materials"
   },
   {
     "id": "primordial-greenbloom",
@@ -2117,7 +2300,8 @@
     "rarity": 5,
     "image": "/images/materials/primordial-greenbloom.png",
     "sortRank": 11101,
-    "order": 212
+    "order": 212,
+    "family": "Guardian of Apep's Oasis Materials"
   },
   {
     "id": "profaned-sprout",
@@ -2127,7 +2311,8 @@
     "rarity": 5,
     "image": "/images/materials/profaned-sprout.png",
     "sortRank": 11101,
-    "order": 213
+    "order": 213,
+    "family": "Il Dottore Materials"
   },
   {
     "id": "puppet-strings",
@@ -2137,7 +2322,8 @@
     "rarity": 5,
     "image": "/images/materials/puppet-strings.png",
     "sortRank": 11101,
-    "order": 214
+    "order": 214,
+    "family": "Everlasting Lord of Arcane Wisdom Materials"
   },
   {
     "id": "ring-of-boreas",
@@ -2147,7 +2333,8 @@
     "rarity": 5,
     "image": "/images/materials/ring-of-boreas.png",
     "sortRank": 11101,
-    "order": 215
+    "order": 215,
+    "family": "Lupus Boreas Materials"
   },
   {
     "id": "shadow-of-the-warrior",
@@ -2157,7 +2344,8 @@
     "rarity": 5,
     "image": "/images/materials/shadow-of-the-warrior.png",
     "sortRank": 11101,
-    "order": 216
+    "order": 216,
+    "family": "Childe Materials"
   },
   {
     "id": "shard-of-a-foul-legacy",
@@ -2167,7 +2355,8 @@
     "rarity": 5,
     "image": "/images/materials/shard-of-a-foul-legacy.png",
     "sortRank": 11101,
-    "order": 217
+    "order": 217,
+    "family": "Childe Materials"
   },
   {
     "id": "silken-feather",
@@ -2177,7 +2366,8 @@
     "rarity": 5,
     "image": "/images/materials/silken-feather.png",
     "sortRank": 11101,
-    "order": 218
+    "order": 218,
+    "family": "The Knave Materials"
   },
   {
     "id": "spirit-locket-of-boreas",
@@ -2187,7 +2377,8 @@
     "rarity": 5,
     "image": "/images/materials/spirit-locket-of-boreas.png",
     "sortRank": 11101,
-    "order": 219
+    "order": 219,
+    "family": "Lupus Boreas Materials"
   },
   {
     "id": "tail-of-boreas",
@@ -2197,7 +2388,8 @@
     "rarity": 5,
     "image": "/images/materials/tail-of-boreas.png",
     "sortRank": 11101,
-    "order": 220
+    "order": 220,
+    "family": "Lupus Boreas Materials"
   },
   {
     "id": "tears-of-the-calamitous-god",
@@ -2207,7 +2399,8 @@
     "rarity": 5,
     "image": "/images/materials/tears-of-the-calamitous-god.png",
     "sortRank": 11101,
-    "order": 221
+    "order": 221,
+    "family": "Magatsu Mitake Narukami no Mikoto Materials"
   },
   {
     "id": "the-cornerstone-of-stars-and-flames",
@@ -2227,7 +2420,8 @@
     "rarity": 5,
     "image": "/images/materials/the-meaning-of-aeons.png",
     "sortRank": 11101,
-    "order": 223
+    "order": 223,
+    "family": "Magatsu Mitake Narukami no Mikoto Materials"
   },
   {
     "id": "tusk-of-monoceros-caeli",
@@ -2237,7 +2431,8 @@
     "rarity": 5,
     "image": "/images/materials/tusk-of-monoceros-caeli.png",
     "sortRank": 11101,
-    "order": 224
+    "order": 224,
+    "family": "Childe Materials"
   },
   {
     "id": "twisted-withered-branch",
@@ -2247,7 +2442,8 @@
     "rarity": 5,
     "image": "/images/materials/twisted-withered-branch.png",
     "sortRank": 11101,
-    "order": 225
+    "order": 225,
+    "family": "Il Dottore Materials"
   },
   {
     "id": "worldspan-fern",
@@ -2257,7 +2453,8 @@
     "rarity": 5,
     "image": "/images/materials/worldspan-fern.png",
     "sortRank": 11101,
-    "order": 226
+    "order": 226,
+    "family": "Guardian of Apep's Oasis Materials"
   },
   {
     "id": "-tourbillon-device-",
@@ -2267,7 +2464,8 @@
     "rarity": 4,
     "image": "/images/materials/-tourbillon-device-.png",
     "sortRank": 11101,
-    "order": 227
+    "order": 227,
+    "family": "Normal Boss Drops"
   },
   {
     "id": "artificed-spare-clockwork-component-coppelia",
@@ -2277,7 +2475,8 @@
     "rarity": 4,
     "image": "/images/materials/artificed-spare-clockwork-component-coppelia.png",
     "sortRank": 11101,
-    "order": 228
+    "order": 228,
+    "family": "Normal Boss Drops"
   },
   {
     "id": "artificed-spare-clockwork-component-coppelius",
@@ -2287,7 +2486,8 @@
     "rarity": 4,
     "image": "/images/materials/artificed-spare-clockwork-component-coppelius.png",
     "sortRank": 11101,
-    "order": 229
+    "order": 229,
+    "family": "Normal Boss Drops"
   },
   {
     "id": "basalt-pillar",
@@ -2297,7 +2497,8 @@
     "rarity": 4,
     "image": "/images/materials/basalt-pillar.png",
     "sortRank": 11101,
-    "order": 230
+    "order": 230,
+    "family": "Normal Boss Drops"
   },
   {
     "id": "cleansing-heart",
@@ -2307,7 +2508,8 @@
     "rarity": 4,
     "image": "/images/materials/cleansing-heart.png",
     "sortRank": 11101,
-    "order": 231
+    "order": 231,
+    "family": "Normal Boss Drops"
   },
   {
     "id": "cloudseam-scale",
@@ -2317,7 +2519,8 @@
     "rarity": 4,
     "image": "/images/materials/cloudseam-scale.png",
     "sortRank": 11101,
-    "order": 232
+    "order": 232,
+    "family": "Normal Boss Drops"
   },
   {
     "id": "crystalline-bloom",
@@ -2327,7 +2530,8 @@
     "rarity": 4,
     "image": "/images/materials/crystalline-bloom.png",
     "sortRank": 11101,
-    "order": 233
+    "order": 233,
+    "family": "Normal Boss Drops"
   },
   {
     "id": "cyclic-military-kuuvahki-core",
@@ -2337,7 +2541,8 @@
     "rarity": 4,
     "image": "/images/materials/cyclic-military-kuuvahki-core.png",
     "sortRank": 11101,
-    "order": 234
+    "order": 234,
+    "family": "Normal Boss Drops"
   },
   {
     "id": "dew-of-repudiation",
@@ -2347,7 +2552,8 @@
     "rarity": 4,
     "image": "/images/materials/dew-of-repudiation.png",
     "sortRank": 11101,
-    "order": 235
+    "order": 235,
+    "family": "Normal Boss Drops"
   },
   {
     "id": "dragonheir-s-false-fin",
@@ -2357,7 +2563,8 @@
     "rarity": 4,
     "image": "/images/materials/dragonheir-s-false-fin.png",
     "sortRank": 11101,
-    "order": 236
+    "order": 236,
+    "family": "Normal Boss Drops"
   },
   {
     "id": "emperor-s-resolution",
@@ -2367,7 +2574,8 @@
     "rarity": 4,
     "image": "/images/materials/emperor-s-resolution.png",
     "sortRank": 11101,
-    "order": 237
+    "order": 237,
+    "family": "Normal Boss Drops"
   },
   {
     "id": "ensnaring-gaze",
@@ -2377,7 +2585,8 @@
     "rarity": 4,
     "image": "/images/materials/ensnaring-gaze.png",
     "sortRank": 11101,
-    "order": 238
+    "order": 238,
+    "family": "Normal Boss Drops"
   },
   {
     "id": "everflame-seed",
@@ -2387,7 +2596,8 @@
     "rarity": 4,
     "image": "/images/materials/everflame-seed.png",
     "sortRank": 11101,
-    "order": 239
+    "order": 239,
+    "family": "Normal Boss Drops"
   },
   {
     "id": "evergloom-ring",
@@ -2397,7 +2607,8 @@
     "rarity": 4,
     "image": "/images/materials/evergloom-ring.png",
     "sortRank": 11101,
-    "order": 240
+    "order": 240,
+    "family": "Normal Boss Drops"
   },
   {
     "id": "fontemer-unihorn",
@@ -2407,7 +2618,8 @@
     "rarity": 4,
     "image": "/images/materials/fontemer-unihorn.png",
     "sortRank": 11101,
-    "order": 241
+    "order": 241,
+    "family": "Normal Boss Drops"
   },
   {
     "id": "fragment-of-a-golden-melody",
@@ -2417,7 +2629,8 @@
     "rarity": 4,
     "image": "/images/materials/fragment-of-a-golden-melody.png",
     "sortRank": 11101,
-    "order": 242
+    "order": 242,
+    "family": "Normal Boss Drops"
   },
   {
     "id": "gold-inscribed-secret-source-core",
@@ -2427,7 +2640,8 @@
     "rarity": 4,
     "image": "/images/materials/gold-inscribed-secret-source-core.png",
     "sortRank": 11101,
-    "order": 243
+    "order": 243,
+    "family": "Normal Boss Drops"
   },
   {
     "id": "hoarfrost-core",
@@ -2437,7 +2651,8 @@
     "rarity": 4,
     "image": "/images/materials/hoarfrost-core.png",
     "sortRank": 11101,
-    "order": 244
+    "order": 244,
+    "family": "Normal Boss Drops"
   },
   {
     "id": "hurricane-seed",
@@ -2447,7 +2662,8 @@
     "rarity": 4,
     "image": "/images/materials/hurricane-seed.png",
     "sortRank": 11101,
-    "order": 245
+    "order": 245,
+    "family": "Normal Boss Drops"
   },
   {
     "id": "juvenile-jade",
@@ -2457,7 +2673,8 @@
     "rarity": 4,
     "image": "/images/materials/juvenile-jade.png",
     "sortRank": 11101,
-    "order": 246
+    "order": 246,
+    "family": "Normal Boss Drops"
   },
   {
     "id": "light-guiding-tetrahedron",
@@ -2467,7 +2684,8 @@
     "rarity": 4,
     "image": "/images/materials/light-guiding-tetrahedron.png",
     "sortRank": 11101,
-    "order": 247
+    "order": 247,
+    "family": "Normal Boss Drops"
   },
   {
     "id": "lightbearing-scale-feather",
@@ -2477,7 +2695,8 @@
     "rarity": 4,
     "image": "/images/materials/lightbearing-scale-feather.png",
     "sortRank": 11101,
-    "order": 248
+    "order": 248,
+    "family": "Normal Boss Drops"
   },
   {
     "id": "lightning-prism",
@@ -2487,7 +2706,8 @@
     "rarity": 4,
     "image": "/images/materials/lightning-prism.png",
     "sortRank": 11101,
-    "order": 249
+    "order": 249,
+    "family": "Normal Boss Drops"
   },
   {
     "id": "majestic-hooked-beak",
@@ -2497,7 +2717,8 @@
     "rarity": 4,
     "image": "/images/materials/majestic-hooked-beak.png",
     "sortRank": 11101,
-    "order": 250
+    "order": 250,
+    "family": "Normal Boss Drops"
   },
   {
     "id": "marionette-core",
@@ -2507,7 +2728,8 @@
     "rarity": 4,
     "image": "/images/materials/marionette-core.png",
     "sortRank": 11101,
-    "order": 251
+    "order": 251,
+    "family": "Normal Boss Drops"
   },
   {
     "id": "mark-of-the-binding-blessing",
@@ -2517,7 +2739,8 @@
     "rarity": 4,
     "image": "/images/materials/mark-of-the-binding-blessing.png",
     "sortRank": 11101,
-    "order": 252
+    "order": 252,
+    "family": "Normal Boss Drops"
   },
   {
     "id": "overripe-flamegranate",
@@ -2527,7 +2750,8 @@
     "rarity": 4,
     "image": "/images/materials/overripe-flamegranate.png",
     "sortRank": 11101,
-    "order": 253
+    "order": 253,
+    "family": "Normal Boss Drops"
   },
   {
     "id": "perpetual-caliber",
@@ -2537,7 +2761,8 @@
     "rarity": 4,
     "image": "/images/materials/perpetual-caliber.png",
     "sortRank": 11101,
-    "order": 254
+    "order": 254,
+    "family": "Normal Boss Drops"
   },
   {
     "id": "perpetual-heart",
@@ -2547,7 +2772,8 @@
     "rarity": 4,
     "image": "/images/materials/perpetual-heart.png",
     "sortRank": 11101,
-    "order": 255
+    "order": 255,
+    "family": "Normal Boss Drops"
   },
   {
     "id": "plume-of-the-fallen-watcher",
@@ -2557,7 +2783,8 @@
     "rarity": 4,
     "image": "/images/materials/plume-of-the-fallen-watcher.png",
     "sortRank": 11101,
-    "order": 256
+    "order": 256,
+    "family": "Normal Boss Drops"
   },
   {
     "id": "precision-kuuvahki-stamping-die",
@@ -2567,7 +2794,8 @@
     "rarity": 4,
     "image": "/images/materials/precision-kuuvahki-stamping-die.png",
     "sortRank": 11101,
-    "order": 257
+    "order": 257,
+    "family": "Normal Boss Drops"
   },
   {
     "id": "prismatic-severed-tail",
@@ -2577,7 +2805,8 @@
     "rarity": 4,
     "image": "/images/materials/prismatic-severed-tail.png",
     "sortRank": 11101,
-    "order": 258
+    "order": 258,
+    "family": "Normal Boss Drops"
   },
   {
     "id": "pseudo-stamens",
@@ -2587,7 +2816,8 @@
     "rarity": 4,
     "image": "/images/materials/pseudo-stamens.png",
     "sortRank": 11101,
-    "order": 259
+    "order": 259,
+    "family": "Normal Boss Drops"
   },
   {
     "id": "quelled-creeper",
@@ -2597,7 +2827,8 @@
     "rarity": 4,
     "image": "/images/materials/quelled-creeper.png",
     "sortRank": 11101,
-    "order": 260
+    "order": 260,
+    "family": "Normal Boss Drops"
   },
   {
     "id": "radiant-antler",
@@ -2607,7 +2838,8 @@
     "rarity": 4,
     "image": "/images/materials/radiant-antler.png",
     "sortRank": 11101,
-    "order": 261
+    "order": 261,
+    "family": "Normal Boss Drops"
   },
   {
     "id": "remnant-of-the-dreadwing",
@@ -2617,7 +2849,8 @@
     "rarity": 4,
     "image": "/images/materials/remnant-of-the-dreadwing.png",
     "sortRank": 11101,
-    "order": 262
+    "order": 262,
+    "family": "Normal Boss Drops"
   },
   {
     "id": "riftborn-regalia",
@@ -2627,7 +2860,8 @@
     "rarity": 4,
     "image": "/images/materials/riftborn-regalia.png",
     "sortRank": 11101,
-    "order": 263
+    "order": 263,
+    "family": "Normal Boss Drops"
   },
   {
     "id": "runic-fang",
@@ -2637,7 +2871,8 @@
     "rarity": 4,
     "image": "/images/materials/runic-fang.png",
     "sortRank": 11101,
-    "order": 264
+    "order": 264,
+    "family": "Normal Boss Drops"
   },
   {
     "id": "secret-source-airflow-accumulator",
@@ -2647,7 +2882,8 @@
     "rarity": 4,
     "image": "/images/materials/secret-source-airflow-accumulator.png",
     "sortRank": 11101,
-    "order": 265
+    "order": 265,
+    "family": "Normal Boss Drops"
   },
   {
     "id": "severed-tail-of-the-sky-roamer",
@@ -2657,7 +2893,8 @@
     "rarity": 4,
     "image": "/images/materials/severed-tail-of-the-sky-roamer.png",
     "sortRank": 11101,
-    "order": 266
+    "order": 266,
+    "family": "Normal Boss Drops"
   },
   {
     "id": "smoldering-pearl",
@@ -2667,7 +2904,8 @@
     "rarity": 4,
     "image": "/images/materials/smoldering-pearl.png",
     "sortRank": 11101,
-    "order": 267
+    "order": 267,
+    "family": "Normal Boss Drops"
   },
   {
     "id": "sparkless-statue-core",
@@ -2677,7 +2915,8 @@
     "rarity": 4,
     "image": "/images/materials/sparkless-statue-core.png",
     "sortRank": 11101,
-    "order": 268
+    "order": 268,
+    "family": "Normal Boss Drops"
   },
   {
     "id": "storm-beads",
@@ -2687,7 +2926,8 @@
     "rarity": 4,
     "image": "/images/materials/storm-beads.png",
     "sortRank": 11101,
-    "order": 269
+    "order": 269,
+    "family": "Normal Boss Drops"
   },
   {
     "id": "talisman-of-the-enigmatic-land",
@@ -2697,7 +2937,8 @@
     "rarity": 4,
     "image": "/images/materials/talisman-of-the-enigmatic-land.png",
     "sortRank": 11101,
-    "order": 270
+    "order": 270,
+    "family": "Normal Boss Drops"
   },
   {
     "id": "thunderclap-fruitcore",
@@ -2707,7 +2948,8 @@
     "rarity": 4,
     "image": "/images/materials/thunderclap-fruitcore.png",
     "sortRank": 11101,
-    "order": 271
+    "order": 271,
+    "family": "Normal Boss Drops"
   },
   {
     "id": "unscorched-blossom-branch",
@@ -2717,7 +2959,8 @@
     "rarity": 4,
     "image": "/images/materials/unscorched-blossom-branch.png",
     "sortRank": 11101,
-    "order": 272
+    "order": 272,
+    "family": "Normal Boss Drops"
   },
   {
     "id": "vagabond-s-cracked-armor",
@@ -2727,7 +2970,8 @@
     "rarity": 4,
     "image": "/images/materials/vagabond-s-cracked-armor.png",
     "sortRank": 11101,
-    "order": 273
+    "order": 273,
+    "family": "Normal Boss Drops"
   },
   {
     "id": "water-that-failed-to-transcend",
@@ -2737,7 +2981,8 @@
     "rarity": 4,
     "image": "/images/materials/water-that-failed-to-transcend.png",
     "sortRank": 11101,
-    "order": 274
+    "order": 274,
+    "family": "Normal Boss Drops"
   },
   {
     "id": "brilliant-diamond-gemstone",
@@ -2747,7 +2992,8 @@
     "rarity": 5,
     "image": "/images/materials/brilliant-diamond-gemstone.png",
     "sortRank": 12101,
-    "order": 275
+    "order": 275,
+    "family": "Brilliant Diamond"
   },
   {
     "id": "brilliant-diamond-chunk",
@@ -2757,7 +3003,8 @@
     "rarity": 4,
     "image": "/images/materials/brilliant-diamond-chunk.png",
     "sortRank": 12101,
-    "order": 276
+    "order": 276,
+    "family": "Brilliant Diamond"
   },
   {
     "id": "brilliant-diamond-fragment",
@@ -2767,7 +3014,8 @@
     "rarity": 3,
     "image": "/images/materials/brilliant-diamond-fragment.png",
     "sortRank": 12101,
-    "order": 277
+    "order": 277,
+    "family": "Brilliant Diamond"
   },
   {
     "id": "brilliant-diamond-sliver",
@@ -2777,7 +3025,8 @@
     "rarity": 2,
     "image": "/images/materials/brilliant-diamond-sliver.png",
     "sortRank": 12101,
-    "order": 278
+    "order": 278,
+    "family": "Brilliant Diamond"
   },
   {
     "id": "agnidus-agate-gemstone",
@@ -2787,7 +3036,8 @@
     "rarity": 5,
     "image": "/images/materials/agnidus-agate-gemstone.png",
     "sortRank": 12102,
-    "order": 279
+    "order": 279,
+    "family": "Agnidus Agate"
   },
   {
     "id": "agnidus-agate-chunk",
@@ -2797,7 +3047,8 @@
     "rarity": 4,
     "image": "/images/materials/agnidus-agate-chunk.png",
     "sortRank": 12102,
-    "order": 280
+    "order": 280,
+    "family": "Agnidus Agate"
   },
   {
     "id": "agnidus-agate-fragment",
@@ -2807,7 +3058,8 @@
     "rarity": 3,
     "image": "/images/materials/agnidus-agate-fragment.png",
     "sortRank": 12102,
-    "order": 281
+    "order": 281,
+    "family": "Agnidus Agate"
   },
   {
     "id": "agnidus-agate-sliver",
@@ -2817,7 +3069,8 @@
     "rarity": 2,
     "image": "/images/materials/agnidus-agate-sliver.png",
     "sortRank": 12102,
-    "order": 282
+    "order": 282,
+    "family": "Agnidus Agate"
   },
   {
     "id": "varunada-lazurite-gemstone",
@@ -2827,7 +3080,8 @@
     "rarity": 5,
     "image": "/images/materials/varunada-lazurite-gemstone.png",
     "sortRank": 12103,
-    "order": 283
+    "order": 283,
+    "family": "Varunada Lazurite"
   },
   {
     "id": "varunada-lazurite-chunk",
@@ -2837,7 +3091,8 @@
     "rarity": 4,
     "image": "/images/materials/varunada-lazurite-chunk.png",
     "sortRank": 12103,
-    "order": 284
+    "order": 284,
+    "family": "Varunada Lazurite"
   },
   {
     "id": "varunada-lazurite-fragment",
@@ -2847,7 +3102,8 @@
     "rarity": 3,
     "image": "/images/materials/varunada-lazurite-fragment.png",
     "sortRank": 12103,
-    "order": 285
+    "order": 285,
+    "family": "Varunada Lazurite"
   },
   {
     "id": "varunada-lazurite-sliver",
@@ -2857,7 +3113,8 @@
     "rarity": 2,
     "image": "/images/materials/varunada-lazurite-sliver.png",
     "sortRank": 12103,
-    "order": 286
+    "order": 286,
+    "family": "Varunada Lazurite"
   },
   {
     "id": "nagadus-emerald-gemstone",
@@ -2867,7 +3124,8 @@
     "rarity": 5,
     "image": "/images/materials/nagadus-emerald-gemstone.png",
     "sortRank": 12104,
-    "order": 287
+    "order": 287,
+    "family": "Nagadus Emerald"
   },
   {
     "id": "nagadus-emerald-chunk",
@@ -2877,7 +3135,8 @@
     "rarity": 4,
     "image": "/images/materials/nagadus-emerald-chunk.png",
     "sortRank": 12104,
-    "order": 288
+    "order": 288,
+    "family": "Nagadus Emerald"
   },
   {
     "id": "nagadus-emerald-fragment",
@@ -2887,7 +3146,8 @@
     "rarity": 3,
     "image": "/images/materials/nagadus-emerald-fragment.png",
     "sortRank": 12104,
-    "order": 289
+    "order": 289,
+    "family": "Nagadus Emerald"
   },
   {
     "id": "nagadus-emerald-sliver",
@@ -2897,7 +3157,8 @@
     "rarity": 2,
     "image": "/images/materials/nagadus-emerald-sliver.png",
     "sortRank": 12104,
-    "order": 290
+    "order": 290,
+    "family": "Nagadus Emerald"
   },
   {
     "id": "vajrada-amethyst-gemstone",
@@ -2907,7 +3168,8 @@
     "rarity": 5,
     "image": "/images/materials/vajrada-amethyst-gemstone.png",
     "sortRank": 12105,
-    "order": 291
+    "order": 291,
+    "family": "Vajrada Amethyst"
   },
   {
     "id": "vajrada-amethyst-chunk",
@@ -2917,7 +3179,8 @@
     "rarity": 4,
     "image": "/images/materials/vajrada-amethyst-chunk.png",
     "sortRank": 12105,
-    "order": 292
+    "order": 292,
+    "family": "Vajrada Amethyst"
   },
   {
     "id": "vajrada-amethyst-fragment",
@@ -2927,7 +3190,8 @@
     "rarity": 3,
     "image": "/images/materials/vajrada-amethyst-fragment.png",
     "sortRank": 12105,
-    "order": 293
+    "order": 293,
+    "family": "Vajrada Amethyst"
   },
   {
     "id": "vajrada-amethyst-sliver",
@@ -2937,7 +3201,8 @@
     "rarity": 2,
     "image": "/images/materials/vajrada-amethyst-sliver.png",
     "sortRank": 12105,
-    "order": 294
+    "order": 294,
+    "family": "Vajrada Amethyst"
   },
   {
     "id": "vayuda-turquoise-gemstone",
@@ -2947,7 +3212,8 @@
     "rarity": 5,
     "image": "/images/materials/vayuda-turquoise-gemstone.png",
     "sortRank": 12106,
-    "order": 295
+    "order": 295,
+    "family": "Vayuda Turquoise"
   },
   {
     "id": "vayuda-turquoise-chunk",
@@ -2957,7 +3223,8 @@
     "rarity": 4,
     "image": "/images/materials/vayuda-turquoise-chunk.png",
     "sortRank": 12106,
-    "order": 296
+    "order": 296,
+    "family": "Vayuda Turquoise"
   },
   {
     "id": "vayuda-turquoise-fragment",
@@ -2967,7 +3234,8 @@
     "rarity": 3,
     "image": "/images/materials/vayuda-turquoise-fragment.png",
     "sortRank": 12106,
-    "order": 297
+    "order": 297,
+    "family": "Vayuda Turquoise"
   },
   {
     "id": "vayuda-turquoise-sliver",
@@ -2977,7 +3245,8 @@
     "rarity": 2,
     "image": "/images/materials/vayuda-turquoise-sliver.png",
     "sortRank": 12106,
-    "order": 298
+    "order": 298,
+    "family": "Vayuda Turquoise"
   },
   {
     "id": "shivada-jade-gemstone",
@@ -2987,7 +3256,8 @@
     "rarity": 5,
     "image": "/images/materials/shivada-jade-gemstone.png",
     "sortRank": 12107,
-    "order": 299
+    "order": 299,
+    "family": "Shivada Jade"
   },
   {
     "id": "shivada-jade-chunk",
@@ -2997,7 +3267,8 @@
     "rarity": 4,
     "image": "/images/materials/shivada-jade-chunk.png",
     "sortRank": 12107,
-    "order": 300
+    "order": 300,
+    "family": "Shivada Jade"
   },
   {
     "id": "shivada-jade-fragment",
@@ -3007,7 +3278,8 @@
     "rarity": 3,
     "image": "/images/materials/shivada-jade-fragment.png",
     "sortRank": 12107,
-    "order": 301
+    "order": 301,
+    "family": "Shivada Jade"
   },
   {
     "id": "shivada-jade-sliver",
@@ -3017,7 +3289,8 @@
     "rarity": 2,
     "image": "/images/materials/shivada-jade-sliver.png",
     "sortRank": 12107,
-    "order": 302
+    "order": 302,
+    "family": "Shivada Jade"
   },
   {
     "id": "prithiva-topaz-gemstone",
@@ -3027,7 +3300,8 @@
     "rarity": 5,
     "image": "/images/materials/prithiva-topaz-gemstone.png",
     "sortRank": 12108,
-    "order": 303
+    "order": 303,
+    "family": "Prithiva Topaz"
   },
   {
     "id": "prithiva-topaz-chunk",
@@ -3037,7 +3311,8 @@
     "rarity": 4,
     "image": "/images/materials/prithiva-topaz-chunk.png",
     "sortRank": 12108,
-    "order": 304
+    "order": 304,
+    "family": "Prithiva Topaz"
   },
   {
     "id": "prithiva-topaz-fragment",
@@ -3047,7 +3322,8 @@
     "rarity": 3,
     "image": "/images/materials/prithiva-topaz-fragment.png",
     "sortRank": 12108,
-    "order": 305
+    "order": 305,
+    "family": "Prithiva Topaz"
   },
   {
     "id": "prithiva-topaz-sliver",
@@ -3057,7 +3333,8 @@
     "rarity": 2,
     "image": "/images/materials/prithiva-topaz-sliver.png",
     "sortRank": 12108,
-    "order": 306
+    "order": 306,
+    "family": "Prithiva Topaz"
   },
   {
     "id": "philosophies-of-freedom",
@@ -3067,7 +3344,8 @@
     "rarity": 4,
     "image": "/images/materials/philosophies-of-freedom.png",
     "sortRank": 13101,
-    "order": 307
+    "order": 307,
+    "family": "Freedom Books"
   },
   {
     "id": "guide-to-freedom",
@@ -3077,7 +3355,8 @@
     "rarity": 3,
     "image": "/images/materials/guide-to-freedom.png",
     "sortRank": 13101,
-    "order": 308
+    "order": 308,
+    "family": "Freedom Books"
   },
   {
     "id": "teachings-of-freedom",
@@ -3087,7 +3366,8 @@
     "rarity": 2,
     "image": "/images/materials/teachings-of-freedom.png",
     "sortRank": 13101,
-    "order": 309
+    "order": 309,
+    "family": "Freedom Books"
   },
   {
     "id": "philosophies-of-resistance",
@@ -3097,7 +3377,8 @@
     "rarity": 4,
     "image": "/images/materials/philosophies-of-resistance.png",
     "sortRank": 13102,
-    "order": 310
+    "order": 310,
+    "family": "Resistance Books"
   },
   {
     "id": "guide-to-resistance",
@@ -3107,7 +3388,8 @@
     "rarity": 3,
     "image": "/images/materials/guide-to-resistance.png",
     "sortRank": 13102,
-    "order": 311
+    "order": 311,
+    "family": "Resistance Books"
   },
   {
     "id": "teachings-of-resistance",
@@ -3117,7 +3399,8 @@
     "rarity": 2,
     "image": "/images/materials/teachings-of-resistance.png",
     "sortRank": 13102,
-    "order": 312
+    "order": 312,
+    "family": "Resistance Books"
   },
   {
     "id": "philosophies-of-ballad",
@@ -3127,7 +3410,8 @@
     "rarity": 4,
     "image": "/images/materials/philosophies-of-ballad.png",
     "sortRank": 13103,
-    "order": 313
+    "order": 313,
+    "family": "Ballad Books"
   },
   {
     "id": "guide-to-ballad",
@@ -3137,7 +3421,8 @@
     "rarity": 3,
     "image": "/images/materials/guide-to-ballad.png",
     "sortRank": 13103,
-    "order": 314
+    "order": 314,
+    "family": "Ballad Books"
   },
   {
     "id": "teachings-of-ballad",
@@ -3147,7 +3432,8 @@
     "rarity": 2,
     "image": "/images/materials/teachings-of-ballad.png",
     "sortRank": 13103,
-    "order": 315
+    "order": 315,
+    "family": "Ballad Books"
   },
   {
     "id": "philosophies-of-prosperity",
@@ -3157,7 +3443,8 @@
     "rarity": 4,
     "image": "/images/materials/philosophies-of-prosperity.png",
     "sortRank": 13104,
-    "order": 316
+    "order": 316,
+    "family": "Prosperity Books"
   },
   {
     "id": "guide-to-prosperity",
@@ -3167,7 +3454,8 @@
     "rarity": 3,
     "image": "/images/materials/guide-to-prosperity.png",
     "sortRank": 13104,
-    "order": 317
+    "order": 317,
+    "family": "Prosperity Books"
   },
   {
     "id": "teachings-of-prosperity",
@@ -3177,7 +3465,8 @@
     "rarity": 2,
     "image": "/images/materials/teachings-of-prosperity.png",
     "sortRank": 13104,
-    "order": 318
+    "order": 318,
+    "family": "Prosperity Books"
   },
   {
     "id": "philosophies-of-diligence",
@@ -3187,7 +3476,8 @@
     "rarity": 4,
     "image": "/images/materials/philosophies-of-diligence.png",
     "sortRank": 13105,
-    "order": 319
+    "order": 319,
+    "family": "Diligence Books"
   },
   {
     "id": "guide-to-diligence",
@@ -3197,7 +3487,8 @@
     "rarity": 3,
     "image": "/images/materials/guide-to-diligence.png",
     "sortRank": 13105,
-    "order": 320
+    "order": 320,
+    "family": "Diligence Books"
   },
   {
     "id": "teachings-of-diligence",
@@ -3207,7 +3498,8 @@
     "rarity": 2,
     "image": "/images/materials/teachings-of-diligence.png",
     "sortRank": 13105,
-    "order": 321
+    "order": 321,
+    "family": "Diligence Books"
   },
   {
     "id": "philosophies-of-gold",
@@ -3217,7 +3509,8 @@
     "rarity": 4,
     "image": "/images/materials/philosophies-of-gold.png",
     "sortRank": 13106,
-    "order": 322
+    "order": 322,
+    "family": "Gold Books"
   },
   {
     "id": "guide-to-gold",
@@ -3227,7 +3520,8 @@
     "rarity": 3,
     "image": "/images/materials/guide-to-gold.png",
     "sortRank": 13106,
-    "order": 323
+    "order": 323,
+    "family": "Gold Books"
   },
   {
     "id": "teachings-of-gold",
@@ -3237,7 +3531,8 @@
     "rarity": 2,
     "image": "/images/materials/teachings-of-gold.png",
     "sortRank": 13106,
-    "order": 324
+    "order": 324,
+    "family": "Gold Books"
   },
   {
     "id": "philosophies-of-transience",
@@ -3247,7 +3542,8 @@
     "rarity": 4,
     "image": "/images/materials/philosophies-of-transience.png",
     "sortRank": 13107,
-    "order": 325
+    "order": 325,
+    "family": "Transience Books"
   },
   {
     "id": "guide-to-transience",
@@ -3257,7 +3553,8 @@
     "rarity": 3,
     "image": "/images/materials/guide-to-transience.png",
     "sortRank": 13107,
-    "order": 326
+    "order": 326,
+    "family": "Transience Books"
   },
   {
     "id": "teachings-of-transience",
@@ -3267,7 +3564,8 @@
     "rarity": 2,
     "image": "/images/materials/teachings-of-transience.png",
     "sortRank": 13107,
-    "order": 327
+    "order": 327,
+    "family": "Transience Books"
   },
   {
     "id": "philosophies-of-elegance",
@@ -3277,7 +3575,8 @@
     "rarity": 4,
     "image": "/images/materials/philosophies-of-elegance.png",
     "sortRank": 13108,
-    "order": 328
+    "order": 328,
+    "family": "Elegance Books"
   },
   {
     "id": "guide-to-elegance",
@@ -3287,7 +3586,8 @@
     "rarity": 3,
     "image": "/images/materials/guide-to-elegance.png",
     "sortRank": 13108,
-    "order": 329
+    "order": 329,
+    "family": "Elegance Books"
   },
   {
     "id": "teachings-of-elegance",
@@ -3297,7 +3597,8 @@
     "rarity": 2,
     "image": "/images/materials/teachings-of-elegance.png",
     "sortRank": 13108,
-    "order": 330
+    "order": 330,
+    "family": "Elegance Books"
   },
   {
     "id": "philosophies-of-light",
@@ -3307,7 +3608,8 @@
     "rarity": 4,
     "image": "/images/materials/philosophies-of-light.png",
     "sortRank": 13109,
-    "order": 331
+    "order": 331,
+    "family": "Light Books"
   },
   {
     "id": "guide-to-light",
@@ -3317,7 +3619,8 @@
     "rarity": 3,
     "image": "/images/materials/guide-to-light.png",
     "sortRank": 13109,
-    "order": 332
+    "order": 332,
+    "family": "Light Books"
   },
   {
     "id": "teachings-of-light",
@@ -3327,7 +3630,8 @@
     "rarity": 2,
     "image": "/images/materials/teachings-of-light.png",
     "sortRank": 13109,
-    "order": 333
+    "order": 333,
+    "family": "Light Books"
   },
   {
     "id": "philosophies-of-admonition",
@@ -3337,7 +3641,8 @@
     "rarity": 4,
     "image": "/images/materials/philosophies-of-admonition.png",
     "sortRank": 13110,
-    "order": 334
+    "order": 334,
+    "family": "Admonition Books"
   },
   {
     "id": "guide-to-admonition",
@@ -3347,7 +3652,8 @@
     "rarity": 3,
     "image": "/images/materials/guide-to-admonition.png",
     "sortRank": 13110,
-    "order": 335
+    "order": 335,
+    "family": "Admonition Books"
   },
   {
     "id": "teachings-of-admonition",
@@ -3357,7 +3663,8 @@
     "rarity": 2,
     "image": "/images/materials/teachings-of-admonition.png",
     "sortRank": 13110,
-    "order": 336
+    "order": 336,
+    "family": "Admonition Books"
   },
   {
     "id": "philosophies-of-ingenuity",
@@ -3367,7 +3674,8 @@
     "rarity": 4,
     "image": "/images/materials/philosophies-of-ingenuity.png",
     "sortRank": 13111,
-    "order": 337
+    "order": 337,
+    "family": "Ingenuity Books"
   },
   {
     "id": "guide-to-ingenuity",
@@ -3377,7 +3685,8 @@
     "rarity": 3,
     "image": "/images/materials/guide-to-ingenuity.png",
     "sortRank": 13111,
-    "order": 338
+    "order": 338,
+    "family": "Ingenuity Books"
   },
   {
     "id": "teachings-of-ingenuity",
@@ -3387,7 +3696,8 @@
     "rarity": 2,
     "image": "/images/materials/teachings-of-ingenuity.png",
     "sortRank": 13111,
-    "order": 339
+    "order": 339,
+    "family": "Ingenuity Books"
   },
   {
     "id": "philosophies-of-praxis",
@@ -3397,7 +3707,8 @@
     "rarity": 4,
     "image": "/images/materials/philosophies-of-praxis.png",
     "sortRank": 13112,
-    "order": 340
+    "order": 340,
+    "family": "Praxis Books"
   },
   {
     "id": "guide-to-praxis",
@@ -3407,7 +3718,8 @@
     "rarity": 3,
     "image": "/images/materials/guide-to-praxis.png",
     "sortRank": 13112,
-    "order": 341
+    "order": 341,
+    "family": "Praxis Books"
   },
   {
     "id": "teachings-of-praxis",
@@ -3417,7 +3729,8 @@
     "rarity": 2,
     "image": "/images/materials/teachings-of-praxis.png",
     "sortRank": 13112,
-    "order": 342
+    "order": 342,
+    "family": "Praxis Books"
   },
   {
     "id": "philosophies-of-equity",
@@ -3427,7 +3740,8 @@
     "rarity": 4,
     "image": "/images/materials/philosophies-of-equity.png",
     "sortRank": 13113,
-    "order": 343
+    "order": 343,
+    "family": "Equity Books"
   },
   {
     "id": "guide-to-equity",
@@ -3437,7 +3751,8 @@
     "rarity": 3,
     "image": "/images/materials/guide-to-equity.png",
     "sortRank": 13113,
-    "order": 344
+    "order": 344,
+    "family": "Equity Books"
   },
   {
     "id": "teachings-of-equity",
@@ -3447,7 +3762,8 @@
     "rarity": 2,
     "image": "/images/materials/teachings-of-equity.png",
     "sortRank": 13113,
-    "order": 345
+    "order": 345,
+    "family": "Equity Books"
   },
   {
     "id": "philosophies-of-justice",
@@ -3457,7 +3773,8 @@
     "rarity": 4,
     "image": "/images/materials/philosophies-of-justice.png",
     "sortRank": 13114,
-    "order": 346
+    "order": 346,
+    "family": "Justice Books"
   },
   {
     "id": "guide-to-justice",
@@ -3467,7 +3784,8 @@
     "rarity": 3,
     "image": "/images/materials/guide-to-justice.png",
     "sortRank": 13114,
-    "order": 347
+    "order": 347,
+    "family": "Justice Books"
   },
   {
     "id": "teachings-of-justice",
@@ -3477,7 +3795,8 @@
     "rarity": 2,
     "image": "/images/materials/teachings-of-justice.png",
     "sortRank": 13114,
-    "order": 348
+    "order": 348,
+    "family": "Justice Books"
   },
   {
     "id": "philosophies-of-order",
@@ -3487,7 +3806,8 @@
     "rarity": 4,
     "image": "/images/materials/philosophies-of-order.png",
     "sortRank": 13115,
-    "order": 349
+    "order": 349,
+    "family": "Order Books"
   },
   {
     "id": "guide-to-order",
@@ -3497,7 +3817,8 @@
     "rarity": 3,
     "image": "/images/materials/guide-to-order.png",
     "sortRank": 13115,
-    "order": 350
+    "order": 350,
+    "family": "Order Books"
   },
   {
     "id": "teachings-of-order",
@@ -3507,7 +3828,8 @@
     "rarity": 2,
     "image": "/images/materials/teachings-of-order.png",
     "sortRank": 13115,
-    "order": 351
+    "order": 351,
+    "family": "Order Books"
   },
   {
     "id": "philosophies-of-contention",
@@ -3517,7 +3839,8 @@
     "rarity": 4,
     "image": "/images/materials/philosophies-of-contention.png",
     "sortRank": 13116,
-    "order": 352
+    "order": 352,
+    "family": "Contention Books"
   },
   {
     "id": "guide-to-contention",
@@ -3527,7 +3850,8 @@
     "rarity": 3,
     "image": "/images/materials/guide-to-contention.png",
     "sortRank": 13116,
-    "order": 353
+    "order": 353,
+    "family": "Contention Books"
   },
   {
     "id": "teachings-of-contention",
@@ -3537,7 +3861,8 @@
     "rarity": 2,
     "image": "/images/materials/teachings-of-contention.png",
     "sortRank": 13116,
-    "order": 354
+    "order": 354,
+    "family": "Contention Books"
   },
   {
     "id": "philosophies-of-kindling",
@@ -3547,7 +3872,8 @@
     "rarity": 4,
     "image": "/images/materials/philosophies-of-kindling.png",
     "sortRank": 13117,
-    "order": 355
+    "order": 355,
+    "family": "Kindling Books"
   },
   {
     "id": "guide-to-kindling",
@@ -3557,7 +3883,8 @@
     "rarity": 3,
     "image": "/images/materials/guide-to-kindling.png",
     "sortRank": 13117,
-    "order": 356
+    "order": 356,
+    "family": "Kindling Books"
   },
   {
     "id": "teachings-of-kindling",
@@ -3567,7 +3894,8 @@
     "rarity": 2,
     "image": "/images/materials/teachings-of-kindling.png",
     "sortRank": 13117,
-    "order": 357
+    "order": 357,
+    "family": "Kindling Books"
   },
   {
     "id": "philosophies-of-conflict",
@@ -3577,7 +3905,8 @@
     "rarity": 4,
     "image": "/images/materials/philosophies-of-conflict.png",
     "sortRank": 13118,
-    "order": 358
+    "order": 358,
+    "family": "Conflict Books"
   },
   {
     "id": "guide-to-conflict",
@@ -3587,7 +3916,8 @@
     "rarity": 3,
     "image": "/images/materials/guide-to-conflict.png",
     "sortRank": 13118,
-    "order": 359
+    "order": 359,
+    "family": "Conflict Books"
   },
   {
     "id": "teachings-of-conflict",
@@ -3597,7 +3927,8 @@
     "rarity": 2,
     "image": "/images/materials/teachings-of-conflict.png",
     "sortRank": 13118,
-    "order": 360
+    "order": 360,
+    "family": "Conflict Books"
   },
   {
     "id": "philosophies-of-moonlight",
@@ -3607,7 +3938,8 @@
     "rarity": 4,
     "image": "/images/materials/philosophies-of-moonlight.png",
     "sortRank": 13119,
-    "order": 361
+    "order": 361,
+    "family": "Moonlight Books"
   },
   {
     "id": "guide-to-moonlight",
@@ -3617,7 +3949,8 @@
     "rarity": 3,
     "image": "/images/materials/guide-to-moonlight.png",
     "sortRank": 13119,
-    "order": 362
+    "order": 362,
+    "family": "Moonlight Books"
   },
   {
     "id": "teachings-of-moonlight",
@@ -3627,7 +3960,8 @@
     "rarity": 2,
     "image": "/images/materials/teachings-of-moonlight.png",
     "sortRank": 13119,
-    "order": 363
+    "order": 363,
+    "family": "Moonlight Books"
   },
   {
     "id": "philosophies-of-elysium",
@@ -3637,7 +3971,8 @@
     "rarity": 4,
     "image": "/images/materials/philosophies-of-elysium.png",
     "sortRank": 13120,
-    "order": 364
+    "order": 364,
+    "family": "Elysium Books"
   },
   {
     "id": "guide-to-elysium",
@@ -3647,7 +3982,8 @@
     "rarity": 3,
     "image": "/images/materials/guide-to-elysium.png",
     "sortRank": 13120,
-    "order": 365
+    "order": 365,
+    "family": "Elysium Books"
   },
   {
     "id": "teachings-of-elysium",
@@ -3657,7 +3993,8 @@
     "rarity": 2,
     "image": "/images/materials/teachings-of-elysium.png",
     "sortRank": 13120,
-    "order": 366
+    "order": 366,
+    "family": "Elysium Books"
   },
   {
     "id": "philosophies-of-vagrancy",
@@ -3667,7 +4004,8 @@
     "rarity": 4,
     "image": "/images/materials/philosophies-of-vagrancy.png",
     "sortRank": 13121,
-    "order": 367
+    "order": 367,
+    "family": "Vagrancy Books"
   },
   {
     "id": "guide-to-vagrancy",
@@ -3677,7 +4015,8 @@
     "rarity": 3,
     "image": "/images/materials/guide-to-vagrancy.png",
     "sortRank": 13121,
-    "order": 368
+    "order": 368,
+    "family": "Vagrancy Books"
   },
   {
     "id": "teachings-of-vagrancy",
@@ -3687,7 +4026,8 @@
     "rarity": 2,
     "image": "/images/materials/teachings-of-vagrancy.png",
     "sortRank": 13121,
-    "order": 369
+    "order": 369,
+    "family": "Vagrancy Books"
   },
   {
     "id": "philosophies-of-charity",
@@ -3697,7 +4037,8 @@
     "rarity": 4,
     "image": "/images/materials/philosophies-of-charity.png",
     "sortRank": 13122,
-    "order": 370
+    "order": 370,
+    "family": "Charity Books"
   },
   {
     "id": "guide-to-charity",
@@ -3707,7 +4048,8 @@
     "rarity": 3,
     "image": "/images/materials/guide-to-charity.png",
     "sortRank": 13122,
-    "order": 371
+    "order": 371,
+    "family": "Charity Books"
   },
   {
     "id": "teachings-of-charity",
@@ -3717,7 +4059,8 @@
     "rarity": 2,
     "image": "/images/materials/teachings-of-charity.png",
     "sortRank": 13122,
-    "order": 372
+    "order": 372,
+    "family": "Charity Books"
   },
   {
     "id": "philosophies-of-fortitude",
@@ -3727,7 +4070,8 @@
     "rarity": 4,
     "image": "/images/materials/philosophies-of-fortitude.png",
     "sortRank": 13123,
-    "order": 373
+    "order": 373,
+    "family": "Fortitude Books"
   },
   {
     "id": "guide-to-fortitude",
@@ -3737,7 +4081,8 @@
     "rarity": 3,
     "image": "/images/materials/guide-to-fortitude.png",
     "sortRank": 13123,
-    "order": 374
+    "order": 374,
+    "family": "Fortitude Books"
   },
   {
     "id": "teachings-of-fortitude",
@@ -3747,7 +4092,8 @@
     "rarity": 2,
     "image": "/images/materials/teachings-of-fortitude.png",
     "sortRank": 13123,
-    "order": 375
+    "order": 375,
+    "family": "Fortitude Books"
   },
   {
     "id": "philosophies-of-glory",
@@ -3757,7 +4103,8 @@
     "rarity": 4,
     "image": "/images/materials/philosophies-of-glory.png",
     "sortRank": 13124,
-    "order": 376
+    "order": 376,
+    "family": "Glory Books"
   },
   {
     "id": "guide-to-glory",
@@ -3767,7 +4114,8 @@
     "rarity": 3,
     "image": "/images/materials/guide-to-glory.png",
     "sortRank": 13124,
-    "order": 377
+    "order": 377,
+    "family": "Glory Books"
   },
   {
     "id": "teachings-of-glory",
@@ -3777,7 +4125,8 @@
     "rarity": 2,
     "image": "/images/materials/teachings-of-glory.png",
     "sortRank": 13124,
-    "order": 378
+    "order": 378,
+    "family": "Glory Books"
   },
   {
     "id": "crown-of-insight",
@@ -3797,7 +4146,8 @@
     "rarity": 5,
     "image": "/images/materials/scattered-piece-of-decarabian-s-dream.png",
     "sortRank": 15101,
-    "order": 380
+    "order": 380,
+    "family": "Decarabian Tiles"
   },
   {
     "id": "fragment-of-decarabian-s-epic",
@@ -3807,7 +4157,8 @@
     "rarity": 4,
     "image": "/images/materials/fragment-of-decarabian-s-epic.png",
     "sortRank": 15101,
-    "order": 381
+    "order": 381,
+    "family": "Decarabian Tiles"
   },
   {
     "id": "debris-of-decarabian-s-city",
@@ -3817,7 +4168,8 @@
     "rarity": 3,
     "image": "/images/materials/debris-of-decarabian-s-city.png",
     "sortRank": 15101,
-    "order": 382
+    "order": 382,
+    "family": "Decarabian Tiles"
   },
   {
     "id": "tile-of-decarabian-s-tower",
@@ -3827,7 +4179,8 @@
     "rarity": 2,
     "image": "/images/materials/tile-of-decarabian-s-tower.png",
     "sortRank": 15101,
-    "order": 383
+    "order": 383,
+    "family": "Decarabian Tiles"
   },
   {
     "id": "boreal-wolf-s-nostalgia",
@@ -3837,7 +4190,8 @@
     "rarity": 5,
     "image": "/images/materials/boreal-wolf-s-nostalgia.png",
     "sortRank": 15102,
-    "order": 384
+    "order": 384,
+    "family": "Boreal Wolf Teeth"
   },
   {
     "id": "boreal-wolf-s-broken-fang",
@@ -3847,7 +4201,8 @@
     "rarity": 4,
     "image": "/images/materials/boreal-wolf-s-broken-fang.png",
     "sortRank": 15102,
-    "order": 385
+    "order": 385,
+    "family": "Boreal Wolf Teeth"
   },
   {
     "id": "boreal-wolf-s-cracked-tooth",
@@ -3857,7 +4212,8 @@
     "rarity": 3,
     "image": "/images/materials/boreal-wolf-s-cracked-tooth.png",
     "sortRank": 15102,
-    "order": 386
+    "order": 386,
+    "family": "Boreal Wolf Teeth"
   },
   {
     "id": "boreal-wolf-s-milk-tooth",
@@ -3867,7 +4223,8 @@
     "rarity": 2,
     "image": "/images/materials/boreal-wolf-s-milk-tooth.png",
     "sortRank": 15102,
-    "order": 387
+    "order": 387,
+    "family": "Boreal Wolf Teeth"
   },
   {
     "id": "dream-of-the-dandelion-gladiator",
@@ -3877,7 +4234,8 @@
     "rarity": 5,
     "image": "/images/materials/dream-of-the-dandelion-gladiator.png",
     "sortRank": 15103,
-    "order": 388
+    "order": 388,
+    "family": "Gladiator Shackles"
   },
   {
     "id": "shackles-of-the-dandelion-gladiator",
@@ -3887,7 +4245,8 @@
     "rarity": 4,
     "image": "/images/materials/shackles-of-the-dandelion-gladiator.png",
     "sortRank": 15103,
-    "order": 389
+    "order": 389,
+    "family": "Gladiator Shackles"
   },
   {
     "id": "chains-of-the-dandelion-gladiator",
@@ -3897,7 +4256,8 @@
     "rarity": 3,
     "image": "/images/materials/chains-of-the-dandelion-gladiator.png",
     "sortRank": 15103,
-    "order": 390
+    "order": 390,
+    "family": "Gladiator Shackles"
   },
   {
     "id": "fetters-of-the-dandelion-gladiator",
@@ -3907,7 +4267,8 @@
     "rarity": 2,
     "image": "/images/materials/fetters-of-the-dandelion-gladiator.png",
     "sortRank": 15103,
-    "order": 391
+    "order": 391,
+    "family": "Gladiator Shackles"
   },
   {
     "id": "divine-body-from-guyun",
@@ -3917,7 +4278,8 @@
     "rarity": 5,
     "image": "/images/materials/divine-body-from-guyun.png",
     "sortRank": 15104,
-    "order": 392
+    "order": 392,
+    "family": "Guyun Pillars"
   },
   {
     "id": "relic-from-guyun",
@@ -3927,7 +4289,8 @@
     "rarity": 4,
     "image": "/images/materials/relic-from-guyun.png",
     "sortRank": 15104,
-    "order": 393
+    "order": 393,
+    "family": "Guyun Pillars"
   },
   {
     "id": "lustrous-stone-from-guyun",
@@ -3937,7 +4300,8 @@
     "rarity": 3,
     "image": "/images/materials/lustrous-stone-from-guyun.png",
     "sortRank": 15104,
-    "order": 394
+    "order": 394,
+    "family": "Guyun Pillars"
   },
   {
     "id": "luminous-sands-from-guyun",
@@ -3947,7 +4311,8 @@
     "rarity": 2,
     "image": "/images/materials/luminous-sands-from-guyun.png",
     "sortRank": 15104,
-    "order": 395
+    "order": 395,
+    "family": "Guyun Pillars"
   },
   {
     "id": "mist-veiled-primo-elixir",
@@ -3957,7 +4322,8 @@
     "rarity": 5,
     "image": "/images/materials/mist-veiled-primo-elixir.png",
     "sortRank": 15105,
-    "order": 396
+    "order": 396,
+    "family": "Elixirs"
   },
   {
     "id": "mist-veiled-gold-elixir",
@@ -3967,7 +4333,8 @@
     "rarity": 4,
     "image": "/images/materials/mist-veiled-gold-elixir.png",
     "sortRank": 15105,
-    "order": 397
+    "order": 397,
+    "family": "Elixirs"
   },
   {
     "id": "mist-veiled-mercury-elixir",
@@ -3977,7 +4344,8 @@
     "rarity": 3,
     "image": "/images/materials/mist-veiled-mercury-elixir.png",
     "sortRank": 15105,
-    "order": 398
+    "order": 398,
+    "family": "Elixirs"
   },
   {
     "id": "mist-veiled-lead-elixir",
@@ -3987,7 +4355,8 @@
     "rarity": 2,
     "image": "/images/materials/mist-veiled-lead-elixir.png",
     "sortRank": 15105,
-    "order": 399
+    "order": 399,
+    "family": "Elixirs"
   },
   {
     "id": "chunk-of-aerosiderite",
@@ -3997,7 +4366,8 @@
     "rarity": 5,
     "image": "/images/materials/chunk-of-aerosiderite.png",
     "sortRank": 15106,
-    "order": 400
+    "order": 400,
+    "family": "Aerosiderite"
   },
   {
     "id": "bit-of-aerosiderite",
@@ -4007,7 +4377,8 @@
     "rarity": 4,
     "image": "/images/materials/bit-of-aerosiderite.png",
     "sortRank": 15106,
-    "order": 401
+    "order": 401,
+    "family": "Aerosiderite"
   },
   {
     "id": "piece-of-aerosiderite",
@@ -4017,7 +4388,8 @@
     "rarity": 3,
     "image": "/images/materials/piece-of-aerosiderite.png",
     "sortRank": 15106,
-    "order": 402
+    "order": 402,
+    "family": "Aerosiderite"
   },
   {
     "id": "grain-of-aerosiderite",
@@ -4027,7 +4399,8 @@
     "rarity": 2,
     "image": "/images/materials/grain-of-aerosiderite.png",
     "sortRank": 15106,
-    "order": 403
+    "order": 403,
+    "family": "Aerosiderite"
   },
   {
     "id": "golden-branch-of-a-distant-sea",
@@ -4037,7 +4410,8 @@
     "rarity": 5,
     "image": "/images/materials/golden-branch-of-a-distant-sea.png",
     "sortRank": 15107,
-    "order": 404
+    "order": 404,
+    "family": "Branches of a Distant Sea"
   },
   {
     "id": "jade-branch-of-a-distant-sea",
@@ -4047,7 +4421,8 @@
     "rarity": 4,
     "image": "/images/materials/jade-branch-of-a-distant-sea.png",
     "sortRank": 15107,
-    "order": 405
+    "order": 405,
+    "family": "Branches of a Distant Sea"
   },
   {
     "id": "jeweled-branch-of-a-distant-sea",
@@ -4057,7 +4432,8 @@
     "rarity": 3,
     "image": "/images/materials/jeweled-branch-of-a-distant-sea.png",
     "sortRank": 15107,
-    "order": 406
+    "order": 406,
+    "family": "Branches of a Distant Sea"
   },
   {
     "id": "coral-branch-of-a-distant-sea",
@@ -4067,7 +4443,8 @@
     "rarity": 2,
     "image": "/images/materials/coral-branch-of-a-distant-sea.png",
     "sortRank": 15107,
-    "order": 407
+    "order": 407,
+    "family": "Branches of a Distant Sea"
   },
   {
     "id": "narukami-s-valor",
@@ -4077,7 +4454,8 @@
     "rarity": 5,
     "image": "/images/materials/narukami-s-valor.png",
     "sortRank": 15108,
-    "order": 408
+    "order": 408,
+    "family": "Narukami's Magatamas"
   },
   {
     "id": "narukami-s-affection",
@@ -4087,7 +4465,8 @@
     "rarity": 4,
     "image": "/images/materials/narukami-s-affection.png",
     "sortRank": 15108,
-    "order": 409
+    "order": 409,
+    "family": "Narukami's Magatamas"
   },
   {
     "id": "narukami-s-joy",
@@ -4097,7 +4476,8 @@
     "rarity": 3,
     "image": "/images/materials/narukami-s-joy.png",
     "sortRank": 15108,
-    "order": 410
+    "order": 410,
+    "family": "Narukami's Magatamas"
   },
   {
     "id": "narukami-s-wisdom",
@@ -4107,7 +4487,8 @@
     "rarity": 2,
     "image": "/images/materials/narukami-s-wisdom.png",
     "sortRank": 15108,
-    "order": 411
+    "order": 411,
+    "family": "Narukami's Magatamas"
   },
   {
     "id": "mask-of-the-kijin",
@@ -4117,7 +4498,8 @@
     "rarity": 5,
     "image": "/images/materials/mask-of-the-kijin.png",
     "sortRank": 15109,
-    "order": 412
+    "order": 412,
+    "family": "Oni Masks"
   },
   {
     "id": "mask-of-the-one-horned",
@@ -4127,7 +4509,8 @@
     "rarity": 4,
     "image": "/images/materials/mask-of-the-one-horned.png",
     "sortRank": 15109,
-    "order": 413
+    "order": 413,
+    "family": "Oni Masks"
   },
   {
     "id": "mask-of-the-tiger-s-bite",
@@ -4137,7 +4520,8 @@
     "rarity": 3,
     "image": "/images/materials/mask-of-the-tiger-s-bite.png",
     "sortRank": 15109,
-    "order": 414
+    "order": 414,
+    "family": "Oni Masks"
   },
   {
     "id": "mask-of-the-wicked-lieutenant",
@@ -4147,7 +4531,8 @@
     "rarity": 2,
     "image": "/images/materials/mask-of-the-wicked-lieutenant.png",
     "sortRank": 15109,
-    "order": 415
+    "order": 415,
+    "family": "Oni Masks"
   },
   {
     "id": "golden-talisman-of-the-forest-dew",
@@ -4157,7 +4542,8 @@
     "rarity": 5,
     "image": "/images/materials/golden-talisman-of-the-forest-dew.png",
     "sortRank": 15110,
-    "order": 416
+    "order": 416,
+    "family": "Talismans of the Forest Dew"
   },
   {
     "id": "silver-talisman-of-the-forest-dew",
@@ -4167,7 +4553,8 @@
     "rarity": 4,
     "image": "/images/materials/silver-talisman-of-the-forest-dew.png",
     "sortRank": 15110,
-    "order": 417
+    "order": 417,
+    "family": "Talismans of the Forest Dew"
   },
   {
     "id": "iron-talisman-of-the-forest-dew",
@@ -4177,7 +4564,8 @@
     "rarity": 3,
     "image": "/images/materials/iron-talisman-of-the-forest-dew.png",
     "sortRank": 15110,
-    "order": 418
+    "order": 418,
+    "family": "Talismans of the Forest Dew"
   },
   {
     "id": "copper-talisman-of-the-forest-dew",
@@ -4187,7 +4575,8 @@
     "rarity": 2,
     "image": "/images/materials/copper-talisman-of-the-forest-dew.png",
     "sortRank": 15110,
-    "order": 419
+    "order": 419,
+    "family": "Talismans of the Forest Dew"
   },
   {
     "id": "oasis-garden-s-truth",
@@ -4197,7 +4586,8 @@
     "rarity": 5,
     "image": "/images/materials/oasis-garden-s-truth.png",
     "sortRank": 15111,
-    "order": 420
+    "order": 420,
+    "family": "Oasis Gardens"
   },
   {
     "id": "oasis-garden-s-mourning",
@@ -4207,7 +4597,8 @@
     "rarity": 4,
     "image": "/images/materials/oasis-garden-s-mourning.png",
     "sortRank": 15111,
-    "order": 421
+    "order": 421,
+    "family": "Oasis Gardens"
   },
   {
     "id": "oasis-garden-s-kindness",
@@ -4217,7 +4608,8 @@
     "rarity": 3,
     "image": "/images/materials/oasis-garden-s-kindness.png",
     "sortRank": 15111,
-    "order": 422
+    "order": 422,
+    "family": "Oasis Gardens"
   },
   {
     "id": "oasis-garden-s-reminiscence",
@@ -4227,7 +4619,8 @@
     "rarity": 2,
     "image": "/images/materials/oasis-garden-s-reminiscence.png",
     "sortRank": 15111,
-    "order": 423
+    "order": 423,
+    "family": "Oasis Gardens"
   },
   {
     "id": "olden-days-of-scorching-might",
@@ -4237,7 +4630,8 @@
     "rarity": 5,
     "image": "/images/materials/olden-days-of-scorching-might.png",
     "sortRank": 15112,
-    "order": 424
+    "order": 424,
+    "family": "Scorching Mights"
   },
   {
     "id": "dream-of-scorching-might",
@@ -4247,7 +4641,8 @@
     "rarity": 4,
     "image": "/images/materials/dream-of-scorching-might.png",
     "sortRank": 15112,
-    "order": 425
+    "order": 425,
+    "family": "Scorching Mights"
   },
   {
     "id": "remnant-glow-of-scorching-might",
@@ -4257,7 +4652,8 @@
     "rarity": 3,
     "image": "/images/materials/remnant-glow-of-scorching-might.png",
     "sortRank": 15112,
-    "order": 426
+    "order": 426,
+    "family": "Scorching Mights"
   },
   {
     "id": "echo-of-scorching-might",
@@ -4267,7 +4663,8 @@
     "rarity": 2,
     "image": "/images/materials/echo-of-scorching-might.png",
     "sortRank": 15112,
-    "order": 427
+    "order": 427,
+    "family": "Scorching Mights"
   },
   {
     "id": "echo-of-an-ancient-chord",
@@ -4277,7 +4674,8 @@
     "rarity": 5,
     "image": "/images/materials/echo-of-an-ancient-chord.png",
     "sortRank": 15113,
-    "order": 428
+    "order": 428,
+    "family": "Ancient Chords"
   },
   {
     "id": "movement-of-an-ancient-chord",
@@ -4287,7 +4685,8 @@
     "rarity": 4,
     "image": "/images/materials/movement-of-an-ancient-chord.png",
     "sortRank": 15113,
-    "order": 429
+    "order": 429,
+    "family": "Ancient Chords"
   },
   {
     "id": "chapter-of-an-ancient-chord",
@@ -4297,7 +4696,8 @@
     "rarity": 3,
     "image": "/images/materials/chapter-of-an-ancient-chord.png",
     "sortRank": 15113,
-    "order": 430
+    "order": 430,
+    "family": "Ancient Chords"
   },
   {
     "id": "fragment-of-an-ancient-chord",
@@ -4307,7 +4707,8 @@
     "rarity": 2,
     "image": "/images/materials/fragment-of-an-ancient-chord.png",
     "sortRank": 15113,
-    "order": 431
+    "order": 431,
+    "family": "Ancient Chords"
   },
   {
     "id": "essence-of-pure-sacred-dewdrop",
@@ -4317,7 +4718,8 @@
     "rarity": 5,
     "image": "/images/materials/essence-of-pure-sacred-dewdrop.png",
     "sortRank": 15114,
-    "order": 432
+    "order": 432,
+    "family": "Sacred Dewdrops"
   },
   {
     "id": "spring-of-pure-sacred-dewdrop",
@@ -4327,7 +4729,8 @@
     "rarity": 4,
     "image": "/images/materials/spring-of-pure-sacred-dewdrop.png",
     "sortRank": 15114,
-    "order": 433
+    "order": 433,
+    "family": "Sacred Dewdrops"
   },
   {
     "id": "sublimation-of-pure-sacred-dewdrop",
@@ -4337,7 +4740,8 @@
     "rarity": 3,
     "image": "/images/materials/sublimation-of-pure-sacred-dewdrop.png",
     "sortRank": 15114,
-    "order": 434
+    "order": 434,
+    "family": "Sacred Dewdrops"
   },
   {
     "id": "dross-of-pure-sacred-dewdrop",
@@ -4347,7 +4751,8 @@
     "rarity": 2,
     "image": "/images/materials/dross-of-pure-sacred-dewdrop.png",
     "sortRank": 15114,
-    "order": 435
+    "order": 435,
+    "family": "Sacred Dewdrops"
   },
   {
     "id": "golden-goblet-of-the-pristine-sea",
@@ -4357,7 +4762,8 @@
     "rarity": 5,
     "image": "/images/materials/golden-goblet-of-the-pristine-sea.png",
     "sortRank": 15115,
-    "order": 436
+    "order": 436,
+    "family": "Goblets of the Pristine Sea"
   },
   {
     "id": "silver-goblet-of-the-pristine-sea",
@@ -4367,7 +4773,8 @@
     "rarity": 4,
     "image": "/images/materials/silver-goblet-of-the-pristine-sea.png",
     "sortRank": 15115,
-    "order": 437
+    "order": 437,
+    "family": "Goblets of the Pristine Sea"
   },
   {
     "id": "wine-goblet-of-the-pristine-sea",
@@ -4377,7 +4784,8 @@
     "rarity": 3,
     "image": "/images/materials/wine-goblet-of-the-pristine-sea.png",
     "sortRank": 15115,
-    "order": 438
+    "order": 438,
+    "family": "Goblets of the Pristine Sea"
   },
   {
     "id": "broken-goblet-of-the-pristine-sea",
@@ -4387,7 +4795,8 @@
     "rarity": 2,
     "image": "/images/materials/broken-goblet-of-the-pristine-sea.png",
     "sortRank": 15115,
-    "order": 439
+    "order": 439,
+    "family": "Goblets of the Pristine Sea"
   },
   {
     "id": "blazing-sacrificial-heart-s-splendor",
@@ -4397,7 +4806,8 @@
     "rarity": 5,
     "image": "/images/materials/blazing-sacrificial-heart-s-splendor.png",
     "sortRank": 15116,
-    "order": 440
+    "order": 440,
+    "family": "Blazing Sacrificial Hearts"
   },
   {
     "id": "blazing-sacrificial-heart-s-resolve",
@@ -4407,7 +4817,8 @@
     "rarity": 4,
     "image": "/images/materials/blazing-sacrificial-heart-s-resolve.png",
     "sortRank": 15116,
-    "order": 441
+    "order": 441,
+    "family": "Blazing Sacrificial Hearts"
   },
   {
     "id": "blazing-sacrificial-heart-s-hesitance",
@@ -4417,7 +4828,8 @@
     "rarity": 3,
     "image": "/images/materials/blazing-sacrificial-heart-s-hesitance.png",
     "sortRank": 15116,
-    "order": 442
+    "order": 442,
+    "family": "Blazing Sacrificial Hearts"
   },
   {
     "id": "blazing-sacrificial-heart-s-terror",
@@ -4427,7 +4839,8 @@
     "rarity": 2,
     "image": "/images/materials/blazing-sacrificial-heart-s-terror.png",
     "sortRank": 15116,
-    "order": 443
+    "order": 443,
+    "family": "Blazing Sacrificial Hearts"
   },
   {
     "id": "delirious-divinity-of-the-sacred-lord",
@@ -4437,7 +4850,8 @@
     "rarity": 5,
     "image": "/images/materials/delirious-divinity-of-the-sacred-lord.png",
     "sortRank": 15117,
-    "order": 444
+    "order": 444,
+    "family": "Delirious Masks of the Sacred Lord"
   },
   {
     "id": "delirious-demeanor-of-the-sacred-lord",
@@ -4447,7 +4861,8 @@
     "rarity": 4,
     "image": "/images/materials/delirious-demeanor-of-the-sacred-lord.png",
     "sortRank": 15117,
-    "order": 445
+    "order": 445,
+    "family": "Delirious Masks of the Sacred Lord"
   },
   {
     "id": "delirious-desolation-of-the-sacred-lord",
@@ -4457,7 +4872,8 @@
     "rarity": 3,
     "image": "/images/materials/delirious-desolation-of-the-sacred-lord.png",
     "sortRank": 15117,
-    "order": 446
+    "order": 446,
+    "family": "Delirious Masks of the Sacred Lord"
   },
   {
     "id": "delirious-decadence-of-the-sacred-lord",
@@ -4467,7 +4883,8 @@
     "rarity": 2,
     "image": "/images/materials/delirious-decadence-of-the-sacred-lord.png",
     "sortRank": 15117,
-    "order": 447
+    "order": 447,
+    "family": "Delirious Masks of the Sacred Lord"
   },
   {
     "id": "night-wind-s-mystic-revelation",
@@ -4477,7 +4894,8 @@
     "rarity": 5,
     "image": "/images/materials/night-wind-s-mystic-revelation.png",
     "sortRank": 15118,
-    "order": 448
+    "order": 448,
+    "family": "Night-Wind's Mystics"
   },
   {
     "id": "night-wind-s-mystic-augury",
@@ -4487,7 +4905,8 @@
     "rarity": 4,
     "image": "/images/materials/night-wind-s-mystic-augury.png",
     "sortRank": 15118,
-    "order": 449
+    "order": 449,
+    "family": "Night-Wind's Mystics"
   },
   {
     "id": "night-wind-s-mystic-premonition",
@@ -4497,7 +4916,8 @@
     "rarity": 3,
     "image": "/images/materials/night-wind-s-mystic-premonition.png",
     "sortRank": 15118,
-    "order": 450
+    "order": 450,
+    "family": "Night-Wind's Mystics"
   },
   {
     "id": "night-wind-s-mystic-consideration",
@@ -4507,7 +4927,8 @@
     "rarity": 2,
     "image": "/images/materials/night-wind-s-mystic-consideration.png",
     "sortRank": 15118,
-    "order": 451
+    "order": 451,
+    "family": "Night-Wind's Mystics"
   },
   {
     "id": "artful-device-wish",
@@ -4517,7 +4938,8 @@
     "rarity": 5,
     "image": "/images/materials/artful-device-wish.png",
     "sortRank": 15119,
-    "order": 452
+    "order": 452,
+    "family": "Artful Devices"
   },
   {
     "id": "artful-device-inheritance",
@@ -4527,7 +4949,8 @@
     "rarity": 4,
     "image": "/images/materials/artful-device-inheritance.png",
     "sortRank": 15119,
-    "order": 453
+    "order": 453,
+    "family": "Artful Devices"
   },
   {
     "id": "artful-device-replica",
@@ -4537,7 +4960,8 @@
     "rarity": 3,
     "image": "/images/materials/artful-device-replica.png",
     "sortRank": 15119,
-    "order": 454
+    "order": 454,
+    "family": "Artful Devices"
   },
   {
     "id": "artful-device-fragment",
@@ -4547,7 +4971,8 @@
     "rarity": 2,
     "image": "/images/materials/artful-device-fragment.png",
     "sortRank": 15119,
-    "order": 455
+    "order": 455,
+    "family": "Artful Devices"
   },
   {
     "id": "blaze-of-long-night-flint",
@@ -4557,7 +4982,8 @@
     "rarity": 5,
     "image": "/images/materials/blaze-of-long-night-flint.png",
     "sortRank": 15120,
-    "order": 456
+    "order": 456,
+    "family": "Long Night Flints"
   },
   {
     "id": "flare-of-long-night-flint",
@@ -4567,7 +4993,8 @@
     "rarity": 4,
     "image": "/images/materials/flare-of-long-night-flint.png",
     "sortRank": 15120,
-    "order": 457
+    "order": 457,
+    "family": "Long Night Flints"
   },
   {
     "id": "afterglow-of-long-night-flint",
@@ -4577,7 +5004,8 @@
     "rarity": 3,
     "image": "/images/materials/afterglow-of-long-night-flint.png",
     "sortRank": 15120,
-    "order": 458
+    "order": 458,
+    "family": "Long Night Flints"
   },
   {
     "id": "ember-of-long-night-flint",
@@ -4587,7 +5015,8 @@
     "rarity": 2,
     "image": "/images/materials/ember-of-long-night-flint.png",
     "sortRank": 15120,
-    "order": 459
+    "order": 459,
+    "family": "Long Night Flints"
   },
   {
     "id": "aureate-radiance-of-the-far-north-scions",
@@ -4597,7 +5026,8 @@
     "rarity": 5,
     "image": "/images/materials/aureate-radiance-of-the-far-north-scions.png",
     "sortRank": 15121,
-    "order": 460
+    "order": 460,
+    "family": "The Far-North Scions"
   },
   {
     "id": "oblation-of-the-far-north-scions",
@@ -4607,7 +5037,8 @@
     "rarity": 4,
     "image": "/images/materials/oblation-of-the-far-north-scions.png",
     "sortRank": 15121,
-    "order": 461
+    "order": 461,
+    "family": "The Far-North Scions"
   },
   {
     "id": "unyielding-delusion-of-the-far-north-scions",
@@ -4617,7 +5048,8 @@
     "rarity": 3,
     "image": "/images/materials/unyielding-delusion-of-the-far-north-scions.png",
     "sortRank": 15121,
-    "order": 462
+    "order": 462,
+    "family": "The Far-North Scions"
   },
   {
     "id": "sundered-glory-of-the-far-north-scions",
@@ -4627,7 +5059,8 @@
     "rarity": 2,
     "image": "/images/materials/sundered-glory-of-the-far-north-scions.png",
     "sortRank": 15121,
-    "order": 463
+    "order": 463,
+    "family": "The Far-North Scions"
   },
   {
     "id": "triumph-of-the-pale-star-army",
@@ -4637,7 +5070,8 @@
     "rarity": 5,
     "image": "/images/materials/triumph-of-the-pale-star-army.png",
     "sortRank": 15122,
-    "order": 464
+    "order": 464,
+    "family": "Pale Star Army"
   },
   {
     "id": "clarion-of-the-pale-star-army",
@@ -4647,7 +5081,8 @@
     "rarity": 4,
     "image": "/images/materials/clarion-of-the-pale-star-army.png",
     "sortRank": 15122,
-    "order": 465
+    "order": 465,
+    "family": "Pale Star Army"
   },
   {
     "id": "muster-of-the-pale-star-army",
@@ -4657,7 +5092,8 @@
     "rarity": 3,
     "image": "/images/materials/muster-of-the-pale-star-army.png",
     "sortRank": 15122,
-    "order": 466
+    "order": 466,
+    "family": "Pale Star Army"
   },
   {
     "id": "rise-of-the-pale-star-army",
@@ -4667,7 +5103,8 @@
     "rarity": 2,
     "image": "/images/materials/rise-of-the-pale-star-army.png",
     "sortRank": 15122,
-    "order": 467
+    "order": 467,
+    "family": "Pale Star Army"
   },
   {
     "id": "revelry-of-the-cellared-spiritual-nectar",
@@ -4677,7 +5114,8 @@
     "rarity": 5,
     "image": "/images/materials/revelry-of-the-cellared-spiritual-nectar.png",
     "sortRank": 15123,
-    "order": 468
+    "order": 468,
+    "family": "Cellared Spiritual Nectar"
   },
   {
     "id": "exhilaration-of-the-cellared-spiritual-nectar",
@@ -4687,7 +5125,8 @@
     "rarity": 4,
     "image": "/images/materials/exhilaration-of-the-cellared-spiritual-nectar.png",
     "sortRank": 15123,
-    "order": 469
+    "order": 469,
+    "family": "Cellared Spiritual Nectar"
   },
   {
     "id": "intoxication-of-the-cellared-spiritual-nectar",
@@ -4697,7 +5136,8 @@
     "rarity": 3,
     "image": "/images/materials/intoxication-of-the-cellared-spiritual-nectar.png",
     "sortRank": 15123,
-    "order": 470
+    "order": 470,
+    "family": "Cellared Spiritual Nectar"
   },
   {
     "id": "measured-pour-of-the-cellared-spiritual-nectar",
@@ -4707,7 +5147,8 @@
     "rarity": 2,
     "image": "/images/materials/measured-pour-of-the-cellared-spiritual-nectar.png",
     "sortRank": 15123,
-    "order": 471
+    "order": 471,
+    "family": "Cellared Spiritual Nectar"
   },
   {
     "id": "the-frost-emperor-s-farewell",
@@ -4717,7 +5158,8 @@
     "rarity": 5,
     "image": "/images/materials/the-frost-emperor-s-farewell.png",
     "sortRank": 15124,
-    "order": 472
+    "order": 472,
+    "family": "The Frost Emperor"
   },
   {
     "id": "the-frost-emperor-s-lament",
@@ -4727,7 +5169,8 @@
     "rarity": 4,
     "image": "/images/materials/the-frost-emperor-s-lament.png",
     "sortRank": 15124,
-    "order": 473
+    "order": 473,
+    "family": "The Frost Emperor"
   },
   {
     "id": "the-frost-emperor-s-ceremony",
@@ -4737,7 +5180,8 @@
     "rarity": 3,
     "image": "/images/materials/the-frost-emperor-s-ceremony.png",
     "sortRank": 15124,
-    "order": 474
+    "order": 474,
+    "family": "The Frost Emperor"
   },
   {
     "id": "the-frost-emperor-s-revival",
@@ -4747,6 +5191,7 @@
     "rarity": 2,
     "image": "/images/materials/the-frost-emperor-s-revival.png",
     "sortRank": 15124,
-    "order": 475
+    "order": 475,
+    "family": "The Frost Emperor"
   }
 ]
