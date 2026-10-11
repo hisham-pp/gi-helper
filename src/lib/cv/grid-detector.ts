@@ -64,8 +64,8 @@ export function autoDetectGrid(width: number, height: number): GridConfig {
   // UI scales based on height relative to 1080p
   const scale = height / 1080;
   const startY = Math.round(149 * scale);
-  const cellH  = Math.round(189 * scale);
-  const gapY   = Math.round(28 * scale);
+  const cellH = Math.round(189 * scale);
+  const gapY = Math.round(28 * scale);
   const maxRows = Math.floor((height - startY) / (cellH + gapY));
 
   // Genshin centers its 16:9 safe-zone UI within the ultrawide frame.
@@ -143,35 +143,36 @@ export async function sliceDetailedGridFromBitmap(
     const quantityRect = {
       x: Math.round(w * 0.05),
       y: Math.round(h * 0.86),
-      width: Math.max(1, Math.round(w * 0.90)),
+      width: Math.max(1, Math.round(w * 0.9)),
       height: Math.max(1, Math.round(h * 0.13)),
     };
 
     try {
-      const [cellBitmap, iconBitmap, starBitmap, quantityBitmap] = await Promise.all([
-        createImageBitmap(imageBitmap, 0, 0, w, h),
-        createImageBitmap(
-          imageBitmap,
-          iconRect.x,
-          iconRect.y,
-          iconRect.width,
-          iconRect.height,
-        ),
-        createImageBitmap(
-          imageBitmap,
-          starRect.x,
-          starRect.y,
-          starRect.width,
-          starRect.height,
-        ),
-        createImageBitmap(
-          imageBitmap,
-          quantityRect.x,
-          quantityRect.y,
-          quantityRect.width,
-          quantityRect.height,
-        ),
-      ]);
+      const [cellBitmap, iconBitmap, starBitmap, quantityBitmap] =
+        await Promise.all([
+          createImageBitmap(imageBitmap, 0, 0, w, h),
+          createImageBitmap(
+            imageBitmap,
+            iconRect.x,
+            iconRect.y,
+            iconRect.width,
+            iconRect.height,
+          ),
+          createImageBitmap(
+            imageBitmap,
+            starRect.x,
+            starRect.y,
+            starRect.width,
+            starRect.height,
+          ),
+          createImageBitmap(
+            imageBitmap,
+            quantityRect.x,
+            quantityRect.y,
+            quantityRect.width,
+            quantityRect.height,
+          ),
+        ]);
 
       cells.push({
         row: 0,
@@ -226,41 +227,42 @@ export async function sliceDetailedGridFromBitmap(
       const quantityRect = {
         x: Math.round(x + w * 0.05),
         y: Math.round(y + h * 0.86),
-        width: Math.max(1, Math.round(w * 0.90)),
+        width: Math.max(1, Math.round(w * 0.9)),
         height: Math.max(1, Math.round(h * 0.13)),
       };
 
       try {
-        const [cellBitmap, iconBitmap, starBitmap, quantityBitmap] = await Promise.all([
-          createImageBitmap(
-            imageBitmap,
-            cellRect.x,
-            cellRect.y,
-            cellRect.width,
-            cellRect.height,
-          ),
-          createImageBitmap(
-            imageBitmap,
-            iconRect.x,
-            iconRect.y,
-            iconRect.width,
-            iconRect.height,
-          ),
-          createImageBitmap(
-            imageBitmap,
-            starRect.x,
-            starRect.y,
-            starRect.width,
-            starRect.height,
-          ),
-          createImageBitmap(
-            imageBitmap,
-            quantityRect.x,
-            quantityRect.y,
-            quantityRect.width,
-            quantityRect.height,
-          ),
-        ]);
+        const [cellBitmap, iconBitmap, starBitmap, quantityBitmap] =
+          await Promise.all([
+            createImageBitmap(
+              imageBitmap,
+              cellRect.x,
+              cellRect.y,
+              cellRect.width,
+              cellRect.height,
+            ),
+            createImageBitmap(
+              imageBitmap,
+              iconRect.x,
+              iconRect.y,
+              iconRect.width,
+              iconRect.height,
+            ),
+            createImageBitmap(
+              imageBitmap,
+              starRect.x,
+              starRect.y,
+              starRect.width,
+              starRect.height,
+            ),
+            createImageBitmap(
+              imageBitmap,
+              quantityRect.x,
+              quantityRect.y,
+              quantityRect.width,
+              quantityRect.height,
+            ),
+          ]);
 
         cells.push({
           row,
@@ -288,7 +290,12 @@ export async function sliceGridFromImage(
   file: File,
   config?: GridConfig,
 ): Promise<
-  { icon: ImageBitmap; starArea: ImageBitmap; quantityArea: ImageBitmap; cellBitmap: ImageBitmap }[]
+  {
+    icon: ImageBitmap;
+    starArea: ImageBitmap;
+    quantityArea: ImageBitmap;
+    cellBitmap: ImageBitmap;
+  }[]
 > {
   const imageBitmap = await createImageBitmap(file);
   const detailed = await sliceDetailedGridFromBitmap(imageBitmap, config);

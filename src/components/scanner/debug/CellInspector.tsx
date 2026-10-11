@@ -103,7 +103,8 @@ export function CellInspector({
               </span>
             ) : matched ? (
               <span className="inline-flex items-center gap-1 rounded-full border border-emerald-500/30 bg-emerald-500/20 px-2.5 py-0.5 text-xs font-medium text-emerald-300">
-                <CheckCircle2 className="h-3 w-3" /> Matched: {matched.name} ({matched.confidence}%)
+                <CheckCircle2 className="h-3 w-3" /> Matched: {matched.name} (
+                {matched.confidence}%)
                 {ocr && (
                   <span className="ml-1 border-l border-emerald-500/40 pl-1.5 font-mono text-emerald-200">
                     x{ocr.quantity}
@@ -155,7 +156,9 @@ export function CellInspector({
         <div className="grid grid-cols-[auto_auto_1fr] items-center gap-4 rounded-2xl border border-white/10 bg-black/30 p-3">
           {/* Scanned cell */}
           <div className="flex flex-col items-center">
-            <span className="text-on-surface/60 mb-1.5 text-[10px] font-semibold uppercase tracking-wide">Scanned</span>
+            <span className="text-on-surface/60 mb-1.5 text-[10px] font-semibold uppercase tracking-wide">
+              Scanned
+            </span>
             <div className="flex h-28 w-24 items-center justify-center overflow-hidden rounded-xl border border-white/10 bg-black/40 shadow-inner">
               <BitmapPreview
                 bitmap={slice.cellBitmap}
@@ -171,23 +174,29 @@ export function CellInspector({
 
           {/* Arrow + matched image */}
           <div className="flex items-center gap-3">
-            <span className="text-white/20 text-lg">→</span>
+            <span className="text-lg text-white/20">→</span>
             <div className="flex flex-col items-center">
               <span className="text-on-surface/60 mb-1.5 text-[10px] font-semibold uppercase tracking-wide">
                 {stats.isEmpty ? "Empty" : matched ? "Result" : "No Match"}
               </span>
-              <div className={`flex h-28 w-24 items-center justify-center overflow-hidden rounded-xl border shadow-inner ${
-                matched ? "border-emerald-500/40 bg-white/5" : "border-white/10 bg-white/5"
-              }`}>
+              <div
+                className={`flex h-28 w-24 items-center justify-center overflow-hidden rounded-xl border shadow-inner ${
+                  matched
+                    ? "border-emerald-500/40 bg-white/5"
+                    : "border-white/10 bg-white/5"
+                }`}
+              >
                 {matched ? (
                   <img
                     src={`/images/materials/${matched.id}.png`}
                     alt={matched.name}
                     className="max-h-full max-w-full object-contain p-2"
-                    onError={(e) => { e.currentTarget.style.display = "none"; }}
+                    onError={(e) => {
+                      e.currentTarget.style.display = "none";
+                    }}
                   />
                 ) : (
-                  <span className="text-[10px] text-on-surface/30">—</span>
+                  <span className="text-on-surface/30 text-[10px]">—</span>
                 )}
               </div>
               <span className="text-on-surface/40 mt-1 font-mono text-[10px]">
@@ -197,21 +206,30 @@ export function CellInspector({
           </div>
 
           {/* Match details */}
-          <div className="flex flex-col gap-1.5 min-w-0 pl-1">
+          <div className="flex min-w-0 flex-col gap-1.5 pl-1">
             {stats.isEmpty ? (
               <span className="text-sm text-slate-400">Empty slot</span>
             ) : matched ? (
               <>
-                <span className="text-on-surface text-sm font-bold leading-tight" title={matched.name}>
+                <span
+                  className="text-on-surface text-sm font-bold leading-tight"
+                  title={matched.name}
+                >
                   {matched.name}
                 </span>
-                <span className="text-[11px] text-emerald-400 font-mono">{matched.confidence}% confidence</span>
+                <span className="font-mono text-[11px] text-emerald-400">
+                  {matched.confidence}% confidence
+                </span>
                 {ocr && (
-                  <span className="text-[11px] font-mono text-primary">Qty: x{ocr.quantity}</span>
+                  <span className="font-mono text-[11px] text-primary">
+                    Qty: x{ocr.quantity}
+                  </span>
                 )}
               </>
             ) : (
-              <span className="text-xs text-amber-400">No match above {hyperparams.minConfidence}% threshold</span>
+              <span className="text-xs text-amber-400">
+                No match above {hyperparams.minConfidence}% threshold
+              </span>
             )}
           </div>
         </div>
@@ -250,11 +268,13 @@ export function CellInspector({
                   className="max-h-full max-w-full object-contain"
                 />
               ) : (
-                <span className="text-[10px] text-on-surface/40">N/A</span>
+                <span className="text-on-surface/40 text-[10px]">N/A</span>
               )}
             </div>
             <span className="text-on-surface/50 mt-1 font-mono text-[10px]">
-              {slice.starRect ? `${slice.starRect.width}×${slice.starRect.height}` : ""}
+              {slice.starRect
+                ? `${slice.starRect.width}×${slice.starRect.height}`
+                : ""}
             </span>
           </div>
 

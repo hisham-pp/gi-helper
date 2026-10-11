@@ -58,12 +58,14 @@ const _orderAbsent: _NoOrder = true;
 void _orderAbsent; // suppress unused-variable warning
 
 // Verify DetectedItem does NOT have `blockId`
-type _NoBlockId = Omit<DetectedItem, "blockId"> extends DetectedItem ? true : false;
+type _NoBlockId =
+  Omit<DetectedItem, "blockId"> extends DetectedItem ? true : false;
 const _blockIdAbsent: _NoBlockId = true;
 void _blockIdAbsent;
 
 // Verify DetectedItem does NOT have `constraintRelaxed`
-type _NoConstraintRelaxed = Omit<DetectedItem, "constraintRelaxed"> extends DetectedItem ? true : false;
+type _NoConstraintRelaxed =
+  Omit<DetectedItem, "constraintRelaxed"> extends DetectedItem ? true : false;
 const _constraintRelaxedAbsent: _NoConstraintRelaxed = true;
 void _constraintRelaxedAbsent;
 
@@ -137,9 +139,7 @@ function assertDetectedItemShape(item: object, label: string): void {
 // ─── Tests ────────────────────────────────────────────────────────────────────
 
 describe("DetectedItem output shape — task 6.1 (Requirement 5.3)", () => {
-
   describe("output-building logic strips internal MatchResult fields", () => {
-
     it("item built from a constrained match (constraintRelaxed: false) has no extra fields", () => {
       const match: MatchResultShape = {
         id: "agnidus-agate-sliver",
@@ -171,7 +171,10 @@ describe("DetectedItem output shape — task 6.1 (Requirement 5.3)", () => {
 
       assertDetectedItemShape(item, "relaxed match");
       // `constraintRelaxed` must not appear on the output
-      assert.ok(!("constraintRelaxed" in item), "constraintRelaxed must not be on DetectedItem");
+      assert.ok(
+        !("constraintRelaxed" in item),
+        "constraintRelaxed must not be on DetectedItem",
+      );
     });
 
     it("item built from a match with null order and null blockId has no extra fields", () => {
@@ -214,26 +217,62 @@ describe("DetectedItem output shape — task 6.1 (Requirement 5.3)", () => {
 
     it("all forbidden MatchResult fields are absent from every built DetectedItem", () => {
       // Test a batch of realistic match results spanning different scenarios
-      const scenarios: Array<{ match: MatchResultShape; qty: number; rarity: number | undefined }> = [
+      const scenarios: Array<{
+        match: MatchResultShape;
+        qty: number;
+        rarity: number | undefined;
+      }> = [
         // High-order constrained match
         {
-          match: { id: "philosophies-of-ballad", name: "Philosophies of Ballad", confidence: 91, constraintRelaxed: false, order: 200, blockId: "30:4" },
-          qty: 2, rarity: 4,
+          match: {
+            id: "philosophies-of-ballad",
+            name: "Philosophies of Ballad",
+            confidence: 91,
+            constraintRelaxed: false,
+            order: 200,
+            blockId: "30:4",
+          },
+          qty: 2,
+          rarity: 4,
         },
         // Low-order same-block peer
         {
-          match: { id: "guide-to-ballad", name: "Guide to Ballad", confidence: 88, constraintRelaxed: false, order: 199, blockId: "30:3" },
-          qty: 9, rarity: 3,
+          match: {
+            id: "guide-to-ballad",
+            name: "Guide to Ballad",
+            confidence: 88,
+            constraintRelaxed: false,
+            order: 199,
+            blockId: "30:3",
+          },
+          qty: 9,
+          rarity: 3,
         },
         // Relaxed fallback with large order value
         {
-          match: { id: "mora", name: "Mora", confidence: 55, constraintRelaxed: true, order: 999, blockId: null },
-          qty: 100000, rarity: undefined,
+          match: {
+            id: "mora",
+            name: "Mora",
+            confidence: 55,
+            constraintRelaxed: true,
+            order: 999,
+            blockId: null,
+          },
+          qty: 100000,
+          rarity: undefined,
         },
         // Null order (material not in materials.json with order field)
         {
-          match: { id: "unknown-new-mat", name: "Unknown New Material", confidence: 58, constraintRelaxed: false, order: null, blockId: null },
-          qty: 1, rarity: undefined,
+          match: {
+            id: "unknown-new-mat",
+            name: "Unknown New Material",
+            confidence: 58,
+            constraintRelaxed: false,
+            order: null,
+            blockId: null,
+          },
+          qty: 1,
+          rarity: undefined,
         },
       ];
 
@@ -251,7 +290,6 @@ describe("DetectedItem output shape — task 6.1 (Requirement 5.3)", () => {
   });
 
   describe("ALLOWED_KEYS contract is exhaustive", () => {
-
     it("ALLOWED_KEYS matches the DetectedItem interface definition exactly", () => {
       // Build a fully-populated DetectedItem and verify its keys are a subset of ALLOWED_KEYS
       const fullyPopulated: DetectedItem = {
@@ -277,7 +315,11 @@ describe("DetectedItem output shape — task 6.1 (Requirement 5.3)", () => {
       const noRarity: DetectedItem = { id: "x", name: "X", quantity: 1 };
       const keys = ownKeys(noRarity);
       const unexpected = keys.filter((k) => !ALLOWED_KEYS.has(k));
-      assert.deepEqual(unexpected, [], "DetectedItem without rarity must still be shape-compliant");
+      assert.deepEqual(
+        unexpected,
+        [],
+        "DetectedItem without rarity must still be shape-compliant",
+      );
     });
   });
 });

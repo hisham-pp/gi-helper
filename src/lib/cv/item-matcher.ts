@@ -11,8 +11,8 @@ export interface MatchResult {
   name: string;
   confidence: number;
   constraintRelaxed: boolean; // true when the order constraint was relaxed (no candidate passed)
-  order: number | null;       // Inventory_Order of the matched candidate, or null if unavailable
-  blockId: string | null;     // "{sortRank}:{rarity}" of the matched candidate, or null
+  order: number | null; // Inventory_Order of the matched candidate, or null if unavailable
+  blockId: string | null; // "{sortRank}:{rarity}" of the matched candidate, or null
 }
 
 /**
@@ -111,12 +111,18 @@ export function findTopCandidates(
       const matWords = material.name.toLowerCase().split(/[\s-']+/);
       for (const neighborName of options.neighborNames) {
         if (!neighborName) continue;
-        
+
         // 1. Check if families match explicitly from scraped JSON data
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const neighborMaterial = materialsData.find((m: any) => m.name === neighborName);
+        const neighborMaterial = materialsData.find(
+          (m: any) => m.name === neighborName,
+        );
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        if ((material as any).family && neighborMaterial && (neighborMaterial as any).family === (material as any).family) {
+        if (
+          (material as any).family &&
+          neighborMaterial &&
+          (neighborMaterial as any).family === (material as any).family
+        ) {
           finalScore *= 1.15; // 15% boost for explicit family match
           siblingMatch = true;
           break;
@@ -125,7 +131,9 @@ export function findTopCandidates(
         // 2. Fallback to dynamic string match if no family is defined
         const neighborWords = neighborName.toLowerCase().split(/[\s-']+/);
         // Look for shared significant words (length >= 4)
-        const sharesWord = matWords.some(w => w.length >= 4 && neighborWords.includes(w));
+        const sharesWord = matWords.some(
+          (w) => w.length >= 4 && neighborWords.includes(w),
+        );
         if (sharesWord) {
           finalScore *= 1.15; // 15% boost if it shares a word with a neighbor (sibling material)
           siblingMatch = true;
@@ -214,7 +222,8 @@ export function findBestMatch(
   const constrained = all.filter((c) => {
     if (c.order === null) return false;
     if (c.order >= minOrder) return true;
-    if (constraintBlockId !== null && c.blockId === constraintBlockId) return true;
+    if (constraintBlockId !== null && c.blockId === constraintBlockId)
+      return true;
     return false;
   });
 

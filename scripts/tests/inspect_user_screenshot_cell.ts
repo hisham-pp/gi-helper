@@ -1,7 +1,9 @@
 import { Jimp } from "jimp";
 
 async function inspectRow2Cells() {
-  const sample = await Jimp.read("public/samples/GenshinImpact_20261009_220714.jpg");
+  const sample = await Jimp.read(
+    "public/samples/GenshinImpact_20261009_220714.jpg",
+  );
 
   // Grid coordinates:
   // startX: 347, startY: 175, cellWidth: 180, cellHeight: 223, gapX: 35, gapY: 33
@@ -26,7 +28,7 @@ async function inspectRow2Cells() {
       const starsOnly = cell.clone().crop({
         x: Math.round(180 * 0.05),
         y: Math.round(223 * 0.65),
-        w: Math.round(180 * 0.90),
+        w: Math.round(180 * 0.9),
         h: Math.round(223 * 0.17),
       });
       await starsOnly.write("scripts/cell_2_4_stars_only.png");
@@ -36,7 +38,7 @@ async function inspectRow2Cells() {
       const numberOnly = cell.clone().crop({
         x: Math.round(180 * 0.05),
         y: Math.round(223 * 0.81),
-        w: Math.round(180 * 0.90),
+        w: Math.round(180 * 0.9),
         h: Math.round(223 * 0.17),
       });
       await numberOnly.write("scripts/cell_2_4_number_only.png");

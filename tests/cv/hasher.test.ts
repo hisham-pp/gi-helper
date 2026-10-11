@@ -72,7 +72,10 @@ const RARITY_COLORS: Record<number, number> = {
 };
 
 /** Composites a material icon onto its in-game rarity background. */
-async function compositeRarityBackground(img: JimpImage, rarity: number = 1): Promise<JimpImage> {
+async function compositeRarityBackground(
+  img: JimpImage,
+  rarity: number = 1,
+): Promise<JimpImage> {
   const { width, height } = img.bitmap;
   const bgColor = RARITY_COLORS[rarity] || RARITY_COLORS[1];
   const bg = new Jimp({ width, height, color: bgColor });
@@ -89,7 +92,10 @@ async function computeFingerprint(img: JimpImage): Promise<Fingerprint> {
   const ch = Math.max(1, height - 2 * cy);
 
   // --- 256-bit dHash ---
-  const hashImg = img.clone().crop({ x: cx, y: cy, w: cw, h: ch }).resize({ w: DHASH_W, h: DHASH_H });
+  const hashImg = img
+    .clone()
+    .crop({ x: cx, y: cy, w: cw, h: ch })
+    .resize({ w: DHASH_W, h: DHASH_H });
   const grays = new Uint8Array(DHASH_W * DHASH_H);
   for (let y = 0; y < DHASH_H; y++) {
     for (let x = 0; x < DHASH_W; x++) {
@@ -108,7 +114,7 @@ async function computeFingerprint(img: JimpImage): Promise<Fingerprint> {
       hashBits += grays[idx] > grays[idx + 1] ? "1" : "0";
     }
   }
-  
+
   let dHash = "";
   for (let i = 0; i < hashBits.length; i += 4) {
     dHash += parseInt(hashBits.slice(i, i + 4), 2).toString(16);
@@ -120,7 +126,10 @@ async function computeFingerprint(img: JimpImage): Promise<Fingerprint> {
   const hw = Math.max(1, width - 2 * hx);
   const hh = Math.max(1, height - 2 * hy);
 
-  const histImg = img.clone().crop({ x: hx, y: hy, w: hw, h: hh }).resize({ w: 32, h: 32 });
+  const histImg = img
+    .clone()
+    .crop({ x: hx, y: hy, w: hw, h: hh })
+    .resize({ w: 32, h: 32 });
   const rH = new Float32Array(HIST_BINS);
   const gH = new Float32Array(HIST_BINS);
   const bH = new Float32Array(HIST_BINS);
@@ -232,8 +241,8 @@ function autoDetectGrid(width: number, height: number) {
   const safeZoneWidth = height * (16 / 9);
   const emptySpaceX = Math.max(0, width - safeZoneWidth) / 2;
   const startY = Math.round(BASE_START_Y * scale);
-  const cellH  = Math.round(BASE_CELL_H * scale);
-  const gapY   = Math.round(BASE_GAP_Y * scale);
+  const cellH = Math.round(BASE_CELL_H * scale);
+  const gapY = Math.round(BASE_GAP_Y * scale);
   // Use Math.floor (matches the fixed production autoDetectGrid) to prevent
   // the last row from overflowing the image boundary (fix for D1a).
   const maxRows = Math.floor((height - startY) / (cellH + gapY));
@@ -314,12 +323,12 @@ before(() => {
   const testSetDir = path.join(SAMPLES_DIR, "test-set-01");
   const expectedPath = path.join(testSetDir, "expected.json");
   const expected = JSON.parse(fs.readFileSync(expectedPath, "utf-8"));
-  
+
   expectedGOOD = {};
   for (const item of expected.items) {
     expectedGOOD[toGOODKey(item.name)] = item.quantity;
   }
-  
+
   sampleFiles = fs
     .readdirSync(testSetDir)
     .filter((f) => /\.(jpg|jpeg|png|webp)$/i.test(f))
@@ -421,11 +430,22 @@ describe("image-hasher: fingerprint stability", () => {
     // Use a hardcoded material known to be a real PNG (not a WebP disguised as .png).
     // Object.keys(hashes)[0] can yield a WebP-as-PNG file because the scraper saved
     // some images in WebP format; those files are not readable by Jimp's PNG decoder.
-    const candidates = ["accreted-fragment", "slime-condensate", "firm-arrowhead"];
+    const candidates = [
+      "accreted-fragment",
+      "slime-condensate",
+      "firm-arrowhead",
+    ];
     const firstId = candidates.find(
-      (id) => id in hashes && fs.existsSync(path.join(ROOT, "public", "images", "materials", `${id}.png`)),
+      (id) =>
+        id in hashes &&
+        fs.existsSync(
+          path.join(ROOT, "public", "images", "materials", `${id}.png`),
+        ),
     )!;
-    assert.ok(firstId, `No usable PNG material found among candidates: ${candidates.join(", ")}`);
+    assert.ok(
+      firstId,
+      `No usable PNG material found among candidates: ${candidates.join(", ")}`,
+    );
     const imgPath = path.join(
       ROOT,
       "public",
@@ -733,9 +753,7 @@ describe("bug condition exploration", () => {
     const scale = height / 1080;
 
     // Production formula — uses Math.ceil (the bug)
-    const baseRows = Math.ceil(
-      (height - 149 * scale) / ((189 + 28) * scale),
-    );
+    const baseRows = Math.ceil((height - 149 * scale) / ((189 + 28) * scale));
     const productionRows = Math.min(6, Math.max(3, baseRows));
 
     const startY = Math.round(149 * scale);
@@ -826,10 +844,15 @@ describe("bug condition exploration", () => {
   it("Case 4 — D3: isEmptyCell(icon, 18) === false for 1-star gray icons", async () => {
     // These are 1-star common drop materials with gray backgrounds.
     // With threshold=18, some will be incorrectly flagged as empty.
-    const grayIconIds = ["slime-condensate", "firm-arrowhead", "divining-scroll"];
+    const grayIconIds = [
+      "slime-condensate",
+      "firm-arrowhead",
+      "divining-scroll",
+    ];
     const materialsDir = path.join(ROOT, "public", "images", "materials");
 
-    const falseRejections: Array<{ id: string; stddev: number; mean: number }> = [];
+    const falseRejections: Array<{ id: string; stddev: number; mean: number }> =
+      [];
 
     for (const id of grayIconIds) {
       const imgPath = path.join(materialsDir, `${id}.png`);
@@ -879,7 +902,9 @@ describe("bug condition exploration", () => {
         `  CONFIRMED BUG D3: ${falseRejections.length} 1-star gray icon(s) falsely rejected as empty:`,
       );
       for (const { id, stddev, mean } of falseRejections) {
-        console.log(`    ${id}: stddev=${stddev.toFixed(1)}, mean=${mean.toFixed(1)}`);
+        console.log(
+          `    ${id}: stddev=${stddev.toFixed(1)}, mean=${mean.toFixed(1)}`,
+        );
       }
     }
 
@@ -890,7 +915,10 @@ describe("bug condition exploration", () => {
       0,
       `BUG D3 CONFIRMED: ${falseRejections.length} 1-star gray icon(s) falsely classified as empty with threshold=18:\n` +
         falseRejections
-          .map(({ id, stddev, mean }) => `  ${id}: stddev=${stddev.toFixed(1)}, mean=${mean.toFixed(1)}`)
+          .map(
+            ({ id, stddev, mean }) =>
+              `  ${id}: stddev=${stddev.toFixed(1)}, mean=${mean.toFixed(1)}`,
+          )
           .join("\n") +
         `\nFix: lower threshold to 15 AND add mean < 60 brightness guard.`,
     );
@@ -925,18 +953,20 @@ describe("bug condition exploration", () => {
       // Single-item crop check (unchanged — not buggy)
       if (width < 650 || height < 450 || width / height < 1.25) {
         return {
-          columns: 1, rows: 1,
-          startX: 0, startY: 0,
-          cellW: width, cellH: height,
-          gapX: 0, gapY: 0,
+          columns: 1,
+          rows: 1,
+          startX: 0,
+          startY: 0,
+          cellW: width,
+          cellH: height,
+          gapX: 0,
+          gapY: 0,
         };
       }
 
       const scale = height / 1080;
       // BUG D1a: Math.ceil causes row overflow for ultrawide screenshots
-      const baseRows = Math.ceil(
-        (height - 149 * scale) / ((189 + 28) * scale),
-      );
+      const baseRows = Math.ceil((height - 149 * scale) / ((189 + 28) * scale));
       return {
         columns: 7,
         rows: Math.min(6, Math.max(3, baseRows)),
@@ -1074,12 +1104,15 @@ describe("preservation baseline", () => {
   it("Case P1 — single-item crop: isSingleItemImage returns true and processImage returns correct ID", async () => {
     // Pick a material whose ID exists in material-hashes.json and whose PNG exists
     const testId = "agnidus-agate-chunk";
-    const imgPath = path.join(ROOT, "public", "images", "materials", `${testId}.png`);
-
-    assert.ok(
-      fs.existsSync(imgPath),
-      `Material image not found: ${imgPath}`,
+    const imgPath = path.join(
+      ROOT,
+      "public",
+      "images",
+      "materials",
+      `${testId}.png`,
     );
+
+    assert.ok(fs.existsSync(imgPath), `Material image not found: ${imgPath}`);
     assert.ok(
       testId in hashes,
       `Material "${testId}" not in material-hashes.json`,
@@ -1107,7 +1140,9 @@ describe("preservation baseline", () => {
     // (processImage's autoDetectGrid helper iterates a single cell at (0,0) for small images,
     //  since the icon crop of 256×256 fits within bounds and fingerprints correctly)
     const counts = await processImage(imgPath, hashes);
-    console.log(`  P1: processImage detected: ${[...counts.keys()].join(", ") || "(none)"}`);
+    console.log(
+      `  P1: processImage detected: ${[...counts.keys()].join(", ") || "(none)"}`,
+    );
     assert.ok(
       counts.has(testId),
       `processImage should detect "${testId}" from its own PNG, but got: ${[...counts.keys()].join(", ") || "(none)"}`,
@@ -1133,7 +1168,16 @@ describe("preservation baseline", () => {
     // Uses Math.ceil for rows and does NOT add emptySpaceX offset (unfixed).
     function productionAutoDetectGrid(width: number, height: number) {
       if (width < 650 || height < 450 || width / height < 1.25) {
-        return { columns: 1, rows: 1, startX: 0, startY: 0, cellW: width, cellH: height, gapX: 0, gapY: 0 };
+        return {
+          columns: 1,
+          rows: 1,
+          startX: 0,
+          startY: 0,
+          cellW: width,
+          cellH: height,
+          gapX: 0,
+          gapY: 0,
+        };
       }
       const scale = height / 1080;
       const baseRows = Math.ceil((height - 149 * scale) / ((189 + 28) * scale));
@@ -1196,10 +1240,12 @@ describe("preservation baseline", () => {
       }
     }
 
-    const mean = grays.length > 0 ? grays.reduce((s, v) => s + v, 0) / grays.length : 0;
-    const variance = grays.length > 0
-      ? grays.reduce((s, v) => s + (v - mean) ** 2, 0) / grays.length
-      : 0;
+    const mean =
+      grays.length > 0 ? grays.reduce((s, v) => s + v, 0) / grays.length : 0;
+    const variance =
+      grays.length > 0
+        ? grays.reduce((s, v) => s + (v - mean) ** 2, 0) / grays.length
+        : 0;
     const stddev = Math.sqrt(variance);
 
     // Production threshold=18: isEmpty = stddev < 18
@@ -1236,7 +1282,13 @@ describe("preservation baseline", () => {
     for (const id of testIds) {
       assert.ok(id in hashes, `"${id}" must exist in material-hashes.json`);
 
-      const imgPath = path.join(ROOT, "public", "images", "materials", `${id}.png`);
+      const imgPath = path.join(
+        ROOT,
+        "public",
+        "images",
+        "materials",
+        `${id}.png`,
+      );
       assert.ok(fs.existsSync(imgPath), `Material image not found: ${imgPath}`);
 
       const rawImg = await Jimp.read(imgPath);
@@ -1249,7 +1301,10 @@ describe("preservation baseline", () => {
         `  P4: "${id}" → matched="${match?.id ?? "null"}", confidence=${match?.confidence ?? "N/A"}%`,
       );
 
-      assert.ok(match !== null, `"${id}" should match itself but findBestMatch returned null`);
+      assert.ok(
+        match !== null,
+        `"${id}" should match itself but findBestMatch returned null`,
+      );
       assert.equal(
         match!.id,
         id,
@@ -1281,19 +1336,20 @@ describe("preservation baseline", () => {
     }
 
     const heights = [
-      900, 950, 1000, 1050, 1080, 1100, 1150, 1200,
-      1250, 1300, 1350, 1440, 1500, 1600, 1800, 1920,
-      2000, 2100, 2160, 2200,
+      900, 950, 1000, 1050, 1080, 1100, 1150, 1200, 1250, 1300, 1350, 1440,
+      1500, 1600, 1800, 1920, 2000, 2100, 2160, 2200,
     ];
 
     let failures = 0;
     for (const h of heights) {
-      const w = Math.round(h * 16 / 9);
+      const w = Math.round((h * 16) / 9);
       const sx = productionStartX(w, h);
-      const expected = Math.round(295 * h / 1080);
+      const expected = Math.round((295 * h) / 1080);
 
       if (sx !== expected) {
-        console.log(`  P5 FAIL: ${w}×${h} → startX=${sx}, expected=${expected}`);
+        console.log(
+          `  P5 FAIL: ${w}×${h} → startX=${sx}, expected=${expected}`,
+        );
         failures++;
       }
     }
@@ -1328,7 +1384,16 @@ describe("preservation baseline", () => {
     // ── Inline the PRODUCTION autoDetectGrid formula (unfixed) ──
     function productionAutoDetectGrid(width: number, height: number) {
       if (width < 650 || height < 450 || width / height < 1.25) {
-        return { columns: 1, rows: 1, startX: 0, startY: 0, cellW: width, cellH: height, gapX: 0, gapY: 0 };
+        return {
+          columns: 1,
+          rows: 1,
+          startX: 0,
+          startY: 0,
+          cellW: width,
+          cellH: height,
+          gapX: 0,
+          gapY: 0,
+        };
       }
       const scale = height / 1080;
       const baseRows = Math.ceil((height - 149 * scale) / ((189 + 28) * scale));
@@ -1345,14 +1410,13 @@ describe("preservation baseline", () => {
     }
 
     const heights = [
-      900, 950, 1000, 1050, 1080, 1100, 1150, 1200,
-      1250, 1300, 1350, 1440, 1500, 1600, 1800, 1920,
-      2000, 2100, 2160, 2200,
+      900, 950, 1000, 1050, 1080, 1100, 1150, 1200, 1250, 1300, 1350, 1440,
+      1500, 1600, 1800, 1920, 2000, 2100, 2160, 2200,
     ];
 
     let failures = 0;
     for (const h of heights) {
-      const w = Math.round(h * 16 / 9);
+      const w = Math.round((h * 16) / 9);
       const g = productionAutoDetectGrid(w, h);
 
       // The production formula always returns rows=5 for 16:9 resolutions in this range.
@@ -1431,11 +1495,7 @@ describe("grid-detector: autoDetectGrid fixes", () => {
       `  autoDetectGrid(1920, 1080): rows=${grid.rows}, startX=${grid.startX}`,
     );
 
-    assert.equal(
-      grid.rows,
-      4,
-      `rows should be 4, got ${grid.rows}`,
-    );
+    assert.equal(grid.rows, 4, `rows should be 4, got ${grid.rows}`);
     assert.equal(
       grid.startX,
       295,
@@ -1451,11 +1511,7 @@ describe("grid-detector: autoDetectGrid fixes", () => {
       `  autoDetectGrid(3840, 2160): rows=${grid.rows}, startX=${grid.startX}`,
     );
 
-    assert.equal(
-      grid.rows,
-      4,
-      `rows should be 4, got ${grid.rows}`,
-    );
+    assert.equal(grid.rows, 4, `rows should be 4, got ${grid.rows}`);
     assert.equal(
       grid.startX,
       590,
@@ -1476,8 +1532,7 @@ describe("grid-detector: autoDetectGrid fixes", () => {
 
     for (const [w, h] of resolutions) {
       const g = autoDetectGridReal(w, h);
-      const lastRowBottom =
-        g.startY + g.rows * (g.cellHeight + g.gapY);
+      const lastRowBottom = g.startY + g.rows * (g.cellHeight + g.gapY);
 
       console.log(
         `  ${w}×${h}: rows=${g.rows}, startX=${g.startX}, lastRowBottom=${lastRowBottom} (height=${h})`,
@@ -1498,16 +1553,15 @@ describe("grid-detector: autoDetectGrid fixes", () => {
   // We allow ±1 tolerance to accommodate these floating-point edge cases.
   it("autoDetectGrid: for all 16:9 resolutions, startX is within ±1 of round(295 * height/1080)", () => {
     const heights = [
-      900, 950, 1000, 1050, 1080, 1100, 1150, 1200,
-      1250, 1300, 1350, 1440, 1500, 1600, 1800, 1920,
-      2000, 2100, 2160, 2200,
+      900, 950, 1000, 1050, 1080, 1100, 1150, 1200, 1250, 1300, 1350, 1440,
+      1500, 1600, 1800, 1920, 2000, 2100, 2160, 2200,
     ];
 
     let failures = 0;
     for (const h of heights) {
-      const w = Math.round(h * 16 / 9);
+      const w = Math.round((h * 16) / 9);
       const g = autoDetectGridReal(w, h);
-      const expected = Math.round(295 * h / 1080);
+      const expected = Math.round((295 * h) / 1080);
       const diff = Math.abs(g.startX - expected);
 
       if (diff > 1) {

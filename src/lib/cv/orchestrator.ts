@@ -1,5 +1,13 @@
-import { sliceGridFromImage, GridConfig, isSingleItemImage } from "./grid-detector";
-import { calculateFingerprint, isEmptyCell, getCellStats } from "./image-hasher";
+import {
+  sliceGridFromImage,
+  GridConfig,
+  isSingleItemImage,
+} from "./grid-detector";
+import {
+  calculateFingerprint,
+  isEmptyCell,
+  getCellStats,
+} from "./image-hasher";
 import { findBestMatch } from "./item-matcher";
 import { detectCellRarity } from "./rarity-detector";
 import materialsData from "@/data/materials.json";
@@ -122,11 +130,11 @@ export async function processInventoryImages(
               const g = data[i + 1];
               const b = data[i + 2];
               const luminance = r * 0.299 + g * 0.587 + b * 0.114;
-              
+
               // Genshin's quantity text is bright white with a dark shadow.
               // We turn bright pixels BLACK (for Tesseract), and everything else WHITE.
               if (luminance > 160) {
-                data[i] = 0;     // R
+                data[i] = 0; // R
                 data[i + 1] = 0; // G
                 data[i + 2] = 0; // B
               } else {

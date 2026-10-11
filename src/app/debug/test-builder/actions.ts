@@ -9,7 +9,9 @@ export async function getTestSets() {
   try {
     const entries = await fs.readdir(SAMPLES_DIR, { withFileTypes: true });
     return entries
-      .filter((entry) => entry.isDirectory() && entry.name.startsWith("test-set"))
+      .filter(
+        (entry) => entry.isDirectory() && entry.name.startsWith("test-set"),
+      )
       .map((entry) => entry.name);
   } catch (error) {
     console.error("Error reading test sets:", error);
@@ -25,7 +27,7 @@ export async function getTestImages(setName: string) {
       .filter(
         (entry) =>
           entry.isFile() &&
-          (entry.name.endsWith(".jpg") || entry.name.endsWith(".png"))
+          (entry.name.endsWith(".jpg") || entry.name.endsWith(".png")),
       )
       .map((entry) => entry.name);
   } catch (error) {
@@ -45,16 +47,13 @@ export async function getTestResult(setName: string) {
   }
 }
 
-export async function saveTestResult(
-  setName: string,
-  jsonContent: string
-) {
+export async function saveTestResult(setName: string, jsonContent: string) {
   try {
     const jsonPath = path.join(SAMPLES_DIR, setName, "expected.json");
-    
+
     // Validate JSON before saving
     JSON.parse(jsonContent);
-    
+
     await fs.writeFile(jsonPath, jsonContent, "utf-8");
     return { success: true };
   } catch (error) {
@@ -65,14 +64,19 @@ export async function saveTestResult(
 
 export async function getMaterials() {
   try {
-    const materialsPath = path.join(process.cwd(), "src", "data", "materials.json");
+    const materialsPath = path.join(
+      process.cwd(),
+      "src",
+      "data",
+      "materials.json",
+    );
     const content = await fs.readFile(materialsPath, "utf-8");
     const materials = JSON.parse(content);
     return materials.map((m: any) => ({
       id: m.id,
       name: m.name,
       image: m.image,
-      rarity: m.rarity || 1
+      rarity: m.rarity || 1,
     }));
   } catch (error) {
     console.error("Error reading materials:", error);

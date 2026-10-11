@@ -20,7 +20,7 @@ async function testCalibratedInnerSlices() {
     const starRect = {
       x: Math.round(w * 0.05),
       y: Math.round(h * 0.71),
-      w: Math.round(w * 0.90),
+      w: Math.round(w * 0.9),
       h: Math.round(h * 0.15),
     };
 

@@ -1,7 +1,9 @@
 import { Jimp } from "jimp";
 
 async function verifyExpandedBoxes() {
-  const sample = await Jimp.read("public/samples/GenshinImpact_20261009_220714.jpg");
+  const sample = await Jimp.read(
+    "public/samples/GenshinImpact_20261009_220714.jpg",
+  );
 
   // Coordinates of cell [2, 4]
   const row = 2;
@@ -16,8 +18,8 @@ async function verifyExpandedBoxes() {
   // 1. Star Box:
   const starBox = {
     x: Math.round(w * 0.05),
-    y: Math.round(h * 0.70),
-    w: Math.round(w * 0.90),
+    y: Math.round(h * 0.7),
+    w: Math.round(w * 0.9),
     h: Math.round(h * 0.17),
   };
   const starImg = cell.clone().crop(starBox);
@@ -27,7 +29,7 @@ async function verifyExpandedBoxes() {
   const numBox = {
     x: Math.round(w * 0.05),
     y: Math.round(h * 0.84),
-    w: Math.round(w * 0.90),
+    w: Math.round(w * 0.9),
     h: Math.round(h * 0.15),
   };
   const numImg = cell.clone().crop(numBox);

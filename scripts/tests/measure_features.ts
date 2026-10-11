@@ -38,7 +38,7 @@ async function measureExactFeatures() {
 
     if (starPixels > 0 || darkTextPixels > 0 || y % 5 === 0) {
       console.log(
-        `y=${y} (${(y / h).toFixed(3)}h): starPixels=${starPixels}, darkTextPixels=${darkTextPixels}, lightBgPixels=${lightBgPixels}`
+        `y=${y} (${(y / h).toFixed(3)}h): starPixels=${starPixels}, darkTextPixels=${darkTextPixels}, lightBgPixels=${lightBgPixels}`,
       );
     }
   }

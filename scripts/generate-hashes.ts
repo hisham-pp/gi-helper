@@ -38,11 +38,16 @@ function isWebpFile(imgPath: string): boolean {
   const fd = fs.openSync(imgPath, "r");
   fs.readSync(fd, buf, 0, 12, 0);
   fs.closeSync(fd);
-  return buf.slice(0, 4).toString("ascii") === "RIFF" &&
-         buf.slice(8, 12).toString("ascii") === "WEBP";
+  return (
+    buf.slice(0, 4).toString("ascii") === "RIFF" &&
+    buf.slice(8, 12).toString("ascii") === "WEBP"
+  );
 }
 
-async function computeFingerprint(imgPath: string, rarity: number = 1): Promise<Fingerprint> {
+async function computeFingerprint(
+  imgPath: string,
+  rarity: number = 1,
+): Promise<Fingerprint> {
   // Some scraped images have a .png extension but are WebP format.
   // Jimp v1 has no WebP decoder, so convert to PNG via sharp first.
   let image: Jimp;
@@ -102,7 +107,7 @@ async function computeFingerprint(imgPath: string, rarity: number = 1): Promise<
   const hh = Math.max(1, height - 2 * hy);
   const colorCropped = bg.clone().crop({ x: hx, y: hy, w: hw, h: hh });
   const histImg = colorCropped.resize({ w: 32, h: 32 });
-  
+
   const rHist = new Float32Array(HIST_BINS);
   const gHist = new Float32Array(HIST_BINS);
   const bHist = new Float32Array(HIST_BINS);
@@ -115,7 +120,7 @@ async function computeFingerprint(imgPath: string, rarity: number = 1): Promise<
       const r = (rgba >>> 24) & 0xff;
       const g = (rgba >>> 16) & 0xff;
       const b = (rgba >>> 8) & 0xff;
-      
+
       rHist[Math.floor(r / binSize)]++;
       gHist[Math.floor(g / binSize)]++;
       bHist[Math.floor(b / binSize)]++;

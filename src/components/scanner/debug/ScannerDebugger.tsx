@@ -219,13 +219,13 @@ export function ScannerDebugger() {
       // 3. Process cell by cell
       for (let i = 0; i < slices.length; i++) {
         const slice = slices[i];
-        
+
         // Pass the previous match name for sibling contextual boosting
         const currentHyperparams = {
           ...hyperparams,
-          neighborNames: previousMatchName ? [previousMatchName] : undefined
+          neighborNames: previousMatchName ? [previousMatchName] : undefined,
         };
-        
+
         const cellData = await analyzeCell(slice, currentHyperparams, worker);
         const key = `${slice.row}-${slice.col}`;
         results.set(key, cellData);

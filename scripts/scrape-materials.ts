@@ -37,19 +37,23 @@ function compareMaterials(a: RawMaterial, b: RawMaterial): number {
   return a.id.localeCompare(b.id, "en");
 }
 
-const USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36";
+const USER_AGENT =
+  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36";
 
 async function downloadImage(url: string, filename: string): Promise<boolean> {
   try {
-    const response = await fetch(url, { 
-      headers: { 
+    const response = await fetch(url, {
+      headers: {
         "User-Agent": USER_AGENT,
-        "Accept": "image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8",
-        "Referer": "https://genshin-impact.fandom.com/"
-      } 
+        Accept:
+          "image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8",
+        Referer: "https://genshin-impact.fandom.com/",
+      },
     });
     if (!response.ok)
-      throw new Error(`unexpected response ${response.status} ${response.statusText}`);
+      throw new Error(
+        `unexpected response ${response.status} ${response.statusText}`,
+      );
     const buffer = await response.arrayBuffer();
     fs.writeFileSync(path.join(IMAGES_DIR, filename), Buffer.from(buffer));
     return true;
@@ -70,10 +74,10 @@ async function getFandomImageUrl(itemName: string): Promise<string | null> {
     if (!pages) return null;
     const pageId = Object.keys(pages)[0];
     if (pageId === "-1") return null;
-    
+
     let url = pages[pageId].imageinfo?.[0]?.url || null;
     if (url) {
-      url = url.split('/revision')[0];
+      url = url.split("/revision")[0];
     }
     return url;
   } catch (e) {
@@ -105,7 +109,7 @@ async function scrapeMaterials() {
 
     const existingPath = path.join(IMAGES_DIR, filename);
     let success = false;
-    
+
     if (fs.existsSync(existingPath)) {
       success = true;
     } else {

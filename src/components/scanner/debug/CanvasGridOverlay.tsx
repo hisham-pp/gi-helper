@@ -169,7 +169,7 @@ export function CanvasGridOverlay({
         if (showQuantityBounds) {
           const qx = Math.round(x + w * 0.05);
           const qy = Math.round(y + h * 0.86);
-          const qw = Math.max(1, Math.round(w * 0.90));
+          const qw = Math.max(1, Math.round(w * 0.9));
           const qh = Math.max(1, Math.round(h * 0.13));
           ctx.lineWidth = 1.5;
           ctx.strokeStyle = "#22c55e";

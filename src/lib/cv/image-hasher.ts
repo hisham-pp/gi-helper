@@ -89,12 +89,12 @@ export async function calculateFingerprint(
   histCanvas.width = 32;
   histCanvas.height = 32;
   const histCtx = histCanvas.getContext("2d", { willReadFrequently: true })!;
-  
+
   const hx = Math.floor(imageBitmap.width * 0.25);
   const hy = Math.floor(imageBitmap.height * 0.25);
   const hw = Math.max(1, imageBitmap.width - 2 * hx);
   const hh = Math.max(1, imageBitmap.height - 2 * hy);
-  
+
   histCtx.drawImage(imageBitmap, hx, hy, hw, hh, 0, 0, 32, 32);
   const histData = histCtx.getImageData(0, 0, 32, 32);
 
