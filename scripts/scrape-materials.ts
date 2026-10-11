@@ -19,7 +19,7 @@ interface RawMaterial {
 
 /**
  * Locale-independent four-level sort comparator for materials.
- * Order: sortRank asc (missing → MAX_SAFE_INTEGER), rarity asc, name asc (locale-insensitive), id asc (tie-breaker).
+ * Order: sortRank asc (missing → MAX_SAFE_INTEGER), rarity desc (highest rarity first), name asc (locale-insensitive), id asc (tie-breaker).
  */
 function compareMaterials(a: RawMaterial, b: RawMaterial): number {
   const rankA = a.sortRank ?? Number.MAX_SAFE_INTEGER;
@@ -28,7 +28,7 @@ function compareMaterials(a: RawMaterial, b: RawMaterial): number {
 
   const rarA = a.rarity ?? 0;
   const rarB = b.rarity ?? 0;
-  if (rarA !== rarB) return rarA - rarB;
+  if (rarA !== rarB) return rarB - rarA; // desc: highest rarity first (matches in-game order)
 
   const nameComp = a.name.localeCompare(b.name, "en", { sensitivity: "base" });
   if (nameComp !== 0) return nameComp;
