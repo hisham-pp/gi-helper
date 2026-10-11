@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback, useEffect, useRef } from "react";
 import { toast } from "sonner";
 import { UploadZone } from "./UploadZone";
 import { ResultGrid } from "./ResultGrid";
@@ -12,14 +12,16 @@ import {
   useScannerSettings,
   getActiveProviderConfig,
   ServerEnvProviderInfo,
+  AiProvider,
 } from "@/lib/scanner-settings";
 import { getAiAdapter } from "@/lib/ai/adapters";
 import { Eye, Settings, Sparkles, KeyRound } from "lucide-react";
+import { ScanningFileItem } from "./ScanningAnimation";
 
 export type { ServerEnvProviderInfo };
 
 export function Scanner() {
-  const { settings } = useScannerSettings();
+  const { settings, updateSetting } = useScannerSettings();
   const [isScanning, setIsScanning] = useState(false);
   const [progress, setProgress] = useState(0);
   const [statusMessage, setStatusMessage] = useState<string>("");
@@ -27,6 +29,18 @@ export function Scanner() {
   const [serverEnv, setServerEnv] = useState<
     Record<string, ServerEnvProviderInfo>
   >({});
+  const hasAutoSwitchedRef = useRef(false);
+
+  // Scanning animation states
+  const [activeImagePreview, setActiveImagePreview] = useState<string | null>(
+    null,
+  );
+  const [activeFileName, setActiveFileName] = useState<string>("");
+  const [activeFileIndex, setActiveFileIndex] = useState<number>(1);
+  const [totalFilesCount, setTotalFilesCount] = useState<number>(1);
+  const [scanningFilesList, setScanningFilesList] = useState<
+    ScanningFileItem[]
+  >([]);
 
   // Modal states
   const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
@@ -42,10 +56,31 @@ export function Scanner() {
       .then((data) => {
         if (data?.providers) {
           setServerEnv(data.providers);
+
+          // If current provider has NO key (neither locally nor on server),
+          // automatically switch to a provider that has a server key configured!
+          if (!hasAutoSwitchedRef.current) {
+            const currentConfig = getActiveProviderConfig(settings);
+            const currentHasKey = Boolean(
+              currentConfig.apiKey?.trim() ||
+              data.providers[settings.aiProvider]?.hasKey,
+            );
+
+            if (!currentHasKey) {
+              const readyProviderId = (
+                Object.keys(data.providers) as AiProvider[]
+              ).find((p) => Boolean(data.providers[p]?.hasKey));
+
+              if (readyProviderId) {
+                hasAutoSwitchedRef.current = true;
+                updateSetting("aiProvider", readyProviderId);
+              }
+            }
+          }
         }
       })
       .catch(() => {});
-  }, []);
+  }, [settings, updateSetting]);
 
   const activeAdapter = getAiAdapter(settings.aiProvider);
   const activeConfig = getActiveProviderConfig(settings);
@@ -91,21 +126,63 @@ export function Scanner() {
 
       // If neither browser localStorage nor server has a key, prompt user to configure in settings
       if (!currentConfig.apiKey?.trim() && !envHasKey) {
-        toast.error(
-          `Please configure your ${currentAdapter.displayName} API Key in Scanner Settings first.`,
-          {
-            action: {
-              label: "Open Settings",
-              onClick: () => setIsSettingsOpen(true),
-            },
-          },
+        const readyProvider = (Object.keys(serverEnv) as AiProvider[]).find(
+          (p) => Boolean(serverEnv[p]?.hasKey),
         );
-        setIsSettingsOpen(true);
+
+        if (readyProvider) {
+          const readyAdapter = getAiAdapter(readyProvider);
+          toast.error(
+            `${currentAdapter.displayName} has no API key configured. Switch to ${readyAdapter.displayName} to scan.`,
+            {
+              action: {
+                label: `Use ${readyAdapter.displayName}`,
+                onClick: () => {
+                  updateSetting("aiProvider", readyProvider);
+                  toast.success(`Switched to ${readyAdapter.displayName}`);
+                },
+              },
+            },
+          );
+        } else {
+          toast.error(
+            `Please configure your ${currentAdapter.displayName} API Key in Scanner Settings first.`,
+            {
+              action: {
+                label: "Open Settings",
+                onClick: () => setIsSettingsOpen(true),
+              },
+            },
+          );
+          setIsSettingsOpen(true);
+        }
         return;
       }
 
+      // Prepare file previews immediately so active image preview and queue appear instantly
+      setTotalFilesCount(files.length);
+      setActiveFileIndex(1);
+      setActiveFileName(files[0]?.name || "");
+
+      const initialQueue: ScanningFileItem[] = [];
+      for (let idx = 0; idx < files.length; idx++) {
+        const file = files[idx];
+        const previewUrl = await readFileAsDataUrl(file);
+        initialQueue.push({
+          file,
+          previewUrl,
+          name: file.name,
+          status: idx === 0 ? "scanning" : "pending",
+        });
+      }
+
+      setScanningFilesList(initialQueue);
+      if (initialQueue.length > 0) {
+        setActiveImagePreview(initialQueue[0].previewUrl);
+      }
+
       setIsScanning(true);
-      setProgress(5);
+      setProgress(10);
       setStatusMessage(`Starting ${currentAdapter.displayName} Vision AI...`);
 
       const allDetected: DetectedItem[] = [];
@@ -116,11 +193,25 @@ export function Scanner() {
 
         for (let i = 0; i < totalFiles; i++) {
           const file = files[i];
+          const currentQueueItem = initialQueue[i];
+          const dataUrl =
+            currentQueueItem?.previewUrl || (await readFileAsDataUrl(file));
+
+          setActiveImagePreview(dataUrl);
+          setActiveFileName(file.name);
+          setActiveFileIndex(i + 1);
+
+          setScanningFilesList((prev) =>
+            prev.map((item, idx) => ({
+              ...item,
+              status:
+                idx === i ? "scanning" : idx < i ? "completed" : "pending",
+            })),
+          );
+
           setStatusMessage(
             `Analyzing screenshot ${i + 1} of ${totalFiles} (${file.name}) with ${currentAdapter.displayName}...`,
           );
-
-          const dataUrl = await readFileAsDataUrl(file);
 
           const response = await fetch("/api/scanner/ai-vision", {
             method: "POST",
@@ -148,6 +239,15 @@ export function Scanner() {
           }
 
           const fileItems: DetectedItem[] = data.items || [];
+
+          // Mark current item completed with detected count
+          setScanningFilesList((prev) =>
+            prev.map((item, idx) =>
+              idx === i
+                ? { ...item, status: "completed", itemCount: fileItems.length }
+                : item,
+            ),
+          );
 
           // Add to detected items
           for (const item of fileItems) {
@@ -205,6 +305,8 @@ export function Scanner() {
         setIsScanning(false);
         setProgress(0);
         setStatusMessage("");
+        setActiveImagePreview(null);
+        setScanningFilesList([]);
       }
     },
     [settings, serverEnv],
@@ -320,20 +422,27 @@ export function Scanner() {
         </div>
       </div>
 
-      {/* Upload Zone */}
+      {/* Upload Zone & Unique AI Vision Scanning Chamber */}
       <UploadZone
         isScanning={isScanning}
         progress={progress}
+        statusMessage={statusMessage}
+        activeImageSrc={activeImagePreview}
+        activeFileName={activeFileName}
+        fileIndex={activeFileIndex}
+        totalFiles={totalFilesCount}
+        providerDisplayName={activeAdapter.displayName}
+        modelName={activeConfig.model}
+        scanningFiles={scanningFilesList}
         onFilesSelected={handleFiles}
+        onSelectThumbnail={(idx) => {
+          if (scanningFilesList[idx]) {
+            setActiveImagePreview(scanningFilesList[idx].previewUrl);
+            setActiveFileName(scanningFilesList[idx].name);
+            setActiveFileIndex(idx + 1);
+          }
+        }}
       />
-
-      {/* Scanning status banner */}
-      {isScanning && statusMessage && (
-        <div className="mx-auto flex max-w-md animate-pulse items-center justify-center gap-2 rounded-xl border border-primary/30 bg-black/60 px-4 py-2.5 text-center text-xs font-medium text-white/90 shadow-lg backdrop-blur-md">
-          <Sparkles className="h-4 w-4 animate-spin text-primary" />
-          <span>{statusMessage}</span>
-        </div>
-      )}
 
       {/* Scanned Results Grid */}
       <ResultGrid

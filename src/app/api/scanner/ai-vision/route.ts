@@ -5,6 +5,8 @@ import {
 } from "@/lib/ai/vision-scanner";
 import { getAiAdapter } from "@/lib/ai/adapters";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   return NextResponse.json({
     providers: {
