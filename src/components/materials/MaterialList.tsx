@@ -3,11 +3,11 @@
 import React, { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
 import {
+  ArrowUpDown,
   Search,
   X,
   LayoutGrid,
   List,
-  ArrowUpDown,
   Filter,
   ArrowLeft,
   Bug,
@@ -31,6 +31,7 @@ import { MaterialCard } from "./MaterialCard";
 import { MaterialTableView } from "./MaterialTableView";
 import { MaterialModal } from "./MaterialModal";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { PillDropdown } from "@/components/ui/PillDropdown";
 
 type SortOption =
   | "order-asc"
@@ -288,43 +289,21 @@ export function MaterialList() {
             {/* Sort & View Mode Controls */}
             <div className="flex flex-wrap items-center gap-2.5">
               {/* Sort Selector */}
-              <div className="flex items-center gap-1.5 rounded-xl border border-white/15 bg-white/5 px-3 py-2 text-xs font-medium text-white shadow-sm backdrop-blur-md">
-                <ArrowUpDown className="h-3.5 w-3.5 shrink-0 text-primary" />
-                <span className="hidden text-white/50 sm:inline">Sort:</span>
-                <select
-                  value={sortBy}
-                  onChange={(e) => setSortBy(e.target.value as SortOption)}
-                  className="cursor-pointer bg-transparent font-semibold text-white focus:outline-none"
-                >
-                  <option value="order-asc" className="bg-slate-900 text-white">
-                    In-Game Order (#1 → #{stats.total})
-                  </option>
-                  <option
-                    value="order-desc"
-                    className="bg-slate-900 text-white"
-                  >
-                    In-Game Order (#{stats.total} → #1)
-                  </option>
-                  <option
-                    value="rarity-desc"
-                    className="bg-slate-900 text-white"
-                  >
-                    Rarity (5★ → 1★)
-                  </option>
-                  <option
-                    value="rarity-asc"
-                    className="bg-slate-900 text-white"
-                  >
-                    Rarity (1★ → 5★)
-                  </option>
-                  <option value="name-asc" className="bg-slate-900 text-white">
-                    Name (A → Z)
-                  </option>
-                  <option value="name-desc" className="bg-slate-900 text-white">
-                    Name (Z → A)
-                  </option>
-                </select>
-              </div>
+              <PillDropdown
+                triggerRadius="rounded-xl"
+                label="Sort:"
+                icon={<ArrowUpDown className="h-3.5 w-3.5 text-primary" />}
+                value={sortBy}
+                onChange={(v) => setSortBy(v as SortOption)}
+                options={[
+                  { value: "order-asc",   label: `In-Game Order (#1 → #${stats.total})` },
+                  { value: "order-desc",  label: `In-Game Order (#${stats.total} → #1)` },
+                  { value: "rarity-desc", label: "Rarity (5★ → 1★)" },
+                  { value: "rarity-asc",  label: "Rarity (1★ → 5★)" },
+                  { value: "name-asc",    label: "Name (A → Z)" },
+                  { value: "name-desc",   label: "Name (Z → A)" },
+                ]}
+              />
 
               {/* View Mode Toggle */}
               <div className="flex items-center rounded-xl border border-white/15 bg-white/5 p-1 shadow-sm backdrop-blur-md">

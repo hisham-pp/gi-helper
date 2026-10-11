@@ -17,7 +17,6 @@ import {
   Trash2,
   List,
   Code,
-  ChevronDown,
   ChevronLeft,
   ChevronRight,
   Image as ImageIcon,
@@ -25,6 +24,7 @@ import {
 import Link from "next/link";
 import { toast } from "sonner";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { PillDropdown } from "@/components/ui/PillDropdown";
 import Image from "next/image";
 
 type ExpectedItem = {
@@ -88,35 +88,12 @@ export default function TestBuilderPage() {
   const [visualMode, setVisualMode] = useState(true);
   const [visualItems, setVisualItems] = useState<ExpectedItem[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [isSetDropdownOpen, setIsSetDropdownOpen] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [itemToAdd, setItemToAdd] = useState<Material | null>(null);
   const [quantityToAdd, setQuantityToAdd] = useState<number | string>(1);
-  const [isImageDropdownOpen, setIsImageDropdownOpen] = useState(false);
 
-  const dropdownRef = useRef<HTMLDivElement>(null);
-  const imageDropdownRef = useRef<HTMLDivElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
-  // Close dropdowns when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
-        setIsSetDropdownOpen(false);
-      }
-      if (
-        imageDropdownRef.current &&
-        !imageDropdownRef.current.contains(event.target as Node)
-      ) {
-        setIsImageDropdownOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
 
   // Reset selected index when search changes
   useEffect(() => {
@@ -322,81 +299,26 @@ export default function TestBuilderPage() {
           </Link>
 
           {/* Pill-styled Test Sets Dropdown */}
-          <div className="relative z-[100]" ref={dropdownRef}>
-            <button
-              onClick={() => setIsSetDropdownOpen(!isSetDropdownOpen)}
-              className="text-on-surface flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-4 py-2 text-xs shadow-sm backdrop-blur-md transition-all hover:bg-white/20 active:scale-95 sm:text-sm"
-            >
-              <span className="text-muted-foreground hidden sm:inline">
-                Test Set:
-              </span>
-              <span className="font-bold">
-                {selectedSet || (testSets.length === 0 ? "None" : "Select...")}
-              </span>
-              <ChevronDown className="ml-1 h-4 w-4 opacity-50" />
-            </button>
-
-            {isSetDropdownOpen && testSets.length > 0 && (
-              <div className="absolute left-0 top-full mt-2 flex max-h-60 w-48 flex-col gap-1 overflow-y-auto rounded-2xl border border-white/10 bg-background/95 p-1.5 shadow-2xl backdrop-blur-xl">
-                {testSets.map((set) => (
-                  <button
-                    key={set}
-                    onClick={() => {
-                      setSelectedSet(set);
-                      setIsSetDropdownOpen(false);
-                    }}
-                    className={`w-full shrink-0 rounded-full px-3 py-2 text-left text-sm transition-all ${
-                      selectedSet === set
-                        ? "bg-primary/20 font-semibold text-primary"
-                        : "font-medium text-foreground hover:bg-white/10"
-                    }`}
-                  >
-                    {set}
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
+          {testSets.length > 0 && (
+            <PillDropdown
+              value={selectedSet}
+              onChange={setSelectedSet}
+              label="Test Set:"
+              panelZIndex="z-[100]"
+              options={testSets.map((s) => ({ value: s, label: s }))}
+            />
+          )}
 
           {/* Pill-styled Image Dropdown */}
           {images.length > 0 && (
-            <div className="relative z-[90]" ref={imageDropdownRef}>
-              <button
-                onClick={() => setIsImageDropdownOpen(!isImageDropdownOpen)}
-                className="text-on-surface flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-4 py-2 text-xs shadow-sm backdrop-blur-md transition-all hover:bg-white/20 active:scale-95 sm:text-sm"
-              >
-                <ImageIcon className="h-4 w-4 text-primary" />
-                <span className="text-muted-foreground hidden sm:inline">
-                  Image:
-                </span>
-                <span className="max-w-[150px] truncate font-bold sm:max-w-[200px]">
-                  {selectedImage || "Select..."}
-                </span>
-                <ChevronDown className="ml-1 h-4 w-4 shrink-0 opacity-50" />
-              </button>
-
-              {isImageDropdownOpen && (
-                <div className="absolute left-0 top-full mt-2 flex max-h-60 w-64 flex-col gap-1 overflow-y-auto rounded-2xl border border-white/10 bg-background/95 p-1.5 shadow-2xl backdrop-blur-xl">
-                  {images.map((img) => (
-                    <button
-                      key={img}
-                      onClick={() => {
-                        setSelectedImage(img);
-                        setIsImageDropdownOpen(false);
-                      }}
-                      className={`w-full shrink-0 truncate rounded-full px-3 py-2 text-left text-sm transition-all ${
-                        selectedImage === img
-                          ? "bg-primary/20 font-semibold text-primary"
-                          : "font-medium text-foreground hover:bg-white/10"
-                      }`}
-                      title={img}
-                    >
-                      {img}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
+            <PillDropdown
+              value={selectedImage}
+              onChange={setSelectedImage}
+              label="Image:"
+              icon={<ImageIcon className="h-4 w-4 text-primary" />}
+              panelZIndex="z-[90]"
+              options={images.map((img) => ({ value: img, label: img }))}
+            />
           )}
         </div>
 
