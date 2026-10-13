@@ -1,0 +1,19 @@
+{
+  "title": "New app icon",
+  "date": "2026-10-13",
+  "summary": "GI Helper has a new icon, a scanner frame around a gem, used everywhere: browser tab, top bar, share image and home screen.",
+  "changes": [
+    {
+      "type": "improved",
+      "text": "New icon: teal scanner brackets framing a glowing gem. The browser tab, top bar and share image all use it."
+    },
+    {
+      "type": "new",
+      "text": "Proper icons when you add GI Helper to your home screen on iPhone, iPad and Android."
+    },
+    {
+      "type": "fixed",
+      "text": "Installing the app now shows the name GI Helper and the current description, instead of an old name."
+    }
+  ]
+}
