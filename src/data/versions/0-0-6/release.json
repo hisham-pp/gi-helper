@@ -1,0 +1,19 @@
+{
+  "title": "Redesigned icon",
+  "date": "2026-10-13",
+  "summary": "A new icon that says what GI Helper does: a Genshin-style crystal star inside a glowing scan frame.",
+  "changes": [
+    {
+      "type": "improved",
+      "text": "New icon: a four-point crystal star (Genshin, and the familiar AI sparkle) framed by a glowing scanner viewfinder."
+    },
+    {
+      "type": "improved",
+      "text": "The same icon now appears everywhere: browser tab, home screen, top bar, the scanner heading and the share image."
+    },
+    {
+      "type": "improved",
+      "text": "Sharper browser tab icon at small sizes."
+    }
+  ]
+}
