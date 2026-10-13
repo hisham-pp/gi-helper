@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useMemo, useEffect } from "react";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import {
   ArrowUpDown,
@@ -29,7 +30,6 @@ import {
 } from "@/lib/materials";
 import { MaterialCard } from "./MaterialCard";
 import { MaterialTableView } from "./MaterialTableView";
-import { MaterialModal } from "./MaterialModal";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { PillDropdown } from "@/components/ui/PillDropdown";
 import { GlassSegmentedControl } from "@/components/ui/GlassSegmentedControl";
@@ -41,6 +41,12 @@ type SortOption =
   | "name-desc"
   | "rarity-desc"
   | "rarity-asc";
+
+/** Loaded on demand: its code stays out of the page bundle until the page is idle. */
+const MaterialModal = dynamic(
+  () => import("./MaterialModal").then((m) => m.MaterialModal),
+  { ssr: false },
+);
 
 const PAGE_SIZE_OPTIONS = [36, 72, 144];
 /** Page size that shows every material on one page. */
@@ -61,6 +67,19 @@ export function MaterialList() {
   const [selectedMaterial, setSelectedMaterial] = useState<MaterialItem | null>(
     null,
   );
+
+  // Fetch the detail modal's code once the page is idle, so the first click opens it instantly
+  useEffect(() => {
+    const preload = () => {
+      import("./MaterialModal").catch(() => {});
+    };
+    if (typeof window.requestIdleCallback === "function") {
+      const id = window.requestIdleCallback(preload, { timeout: 3000 });
+      return () => window.cancelIdleCallback(id);
+    }
+    const timer = setTimeout(preload, 1500);
+    return () => clearTimeout(timer);
+  }, []);
 
   // Reset page when filters change
   useEffect(() => {
@@ -431,7 +450,7 @@ export function MaterialList() {
               <MaterialCard
                 key={mat.id}
                 material={mat}
-                onClick={() => setSelectedMaterial(mat)}
+                onSelect={setSelectedMaterial}
               />
             ))}
           </div>
@@ -440,7 +459,7 @@ export function MaterialList() {
         {totalItems > 0 && viewMode === "table" && (
           <MaterialTableView
             materials={paginatedMaterials}
-            onSelectMaterial={(mat) => setSelectedMaterial(mat)}
+            onSelectMaterial={setSelectedMaterial}
           />
         )}
 
@@ -516,16 +535,18 @@ export function MaterialList() {
         )}
       </div>
 
-      {/* Material Detail Modal */}
-      <MaterialModal
-        material={selectedMaterial}
-        onClose={() => setSelectedMaterial(null)}
-        onNavigateNext={handleNextModal}
-        onNavigatePrev={handlePrevModal}
-        hasNext={hasNextModal}
-        hasPrev={hasPrevModal}
-        total={stats.total}
-      />
+      {/* Material Detail Modal (mounted only while a material is selected) */}
+      {selectedMaterial && (
+        <MaterialModal
+          material={selectedMaterial}
+          onClose={() => setSelectedMaterial(null)}
+          onNavigateNext={handleNextModal}
+          onNavigatePrev={handlePrevModal}
+          hasNext={hasNextModal}
+          hasPrev={hasPrevModal}
+          total={stats.total}
+        />
+      )}
     </div>
   );
 }

@@ -27,14 +27,19 @@ import { listSupportedAdapters, getAiAdapter } from "@/lib/ai/adapters";
 import { toast } from "sonner";
 
 import { PillDropdown } from "@/components/ui/PillDropdown";
+import { usePauseBackground } from "@/lib/use-pause-background";
+
 interface ScannerSettingsModalProps {
-  isOpen: boolean;
   onClose: () => void;
   serverEnv?: Record<string, ServerEnvProviderInfo>;
 }
 
+/**
+ * AI Vision settings. The parent mounts it only while open (via
+ * LazyScannerSettingsModal), so the server-env check runs once per open
+ * instead of on every page load.
+ */
 export function ScannerSettingsModal({
-  isOpen,
   onClose,
   serverEnv: serverEnvProp,
 }: ScannerSettingsModalProps) {
@@ -43,6 +48,8 @@ export function ScannerSettingsModal({
   const [internalServerEnv, setInternalServerEnv] = useState<
     Record<string, ServerEnvProviderInfo>
   >({});
+
+  usePauseBackground();
 
   useEffect(() => {
     if (serverEnvProp) {
@@ -57,7 +64,7 @@ export function ScannerSettingsModal({
         }
       })
       .catch(() => {});
-  }, [serverEnvProp, isOpen]);
+  }, [serverEnvProp]);
 
   const serverEnv = serverEnvProp || internalServerEnv;
   const [testingStatus, setTestingStatus] = useState<{
@@ -69,7 +76,7 @@ export function ScannerSettingsModal({
   const adapters = listSupportedAdapters();
   const currentAdapter = getAiAdapter(settings.aiProvider);
 
-  if (!isOpen || !mounted) return null;
+  if (!mounted) return null;
 
   // Helpers to get and set active provider's specific fields
   const getActiveKey = (): string => {

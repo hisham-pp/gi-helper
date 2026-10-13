@@ -5,6 +5,7 @@ import { MaterialItem } from "@/lib/types";
 import { getRarityStyles, getMaterialCategoryLabel } from "@/lib/materials";
 import { Copy, Check, Eye } from "lucide-react";
 import { toast } from "sonner";
+import { MaterialThumb } from "@/components/ui/MaterialThumb";
 
 interface MaterialTableViewProps {
   materials: MaterialItem[];
@@ -89,15 +90,7 @@ export function MaterialTableView({
                   {/* Icon */}
                   <td className="px-4 py-3 text-center">
                     <div className="glass-well glass-well--tinted relative mx-auto flex h-10 w-10 items-center justify-center overflow-hidden rounded-xl transition-transform group-hover:scale-105">
-                      <img
-                        src={mat.image}
-                        alt={mat.name}
-                        className="h-8 w-8 object-contain"
-                        loading="lazy"
-                        onError={(e) => {
-                          e.currentTarget.style.display = "none";
-                        }}
-                      />
+                      <MaterialThumb id={mat.id} alt={mat.name} size={32} className="h-8 w-8" />
                     </div>
                   </td>
 

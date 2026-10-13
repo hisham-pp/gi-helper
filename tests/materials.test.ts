@@ -1,7 +1,10 @@
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
+import { existsSync } from "node:fs";
+import path from "node:path";
 import {
   getAllMaterials,
+  materialThumbUrl,
   getMaterialCategoryId,
   getMaterialCategoryLabel,
   MATERIAL_CATEGORIES,
@@ -98,5 +101,12 @@ describe("Materials Directory & Canonical Ordering Tests", () => {
       assert.ok(cat.label, "Category must have label");
       assert.ok(cat.shortLabel, "Category must have shortLabel");
     }
+  });
+
+  it("every material has a list thumbnail (run `pnpm build:material-thumbs` if this fails)", () => {
+    const missing = getAllMaterials().filter(
+      (m) => !existsSync(path.join(process.cwd(), "public", materialThumbUrl(m.id))),
+    );
+    assert.deepEqual(missing.map((m) => m.id), []);
   });
 });

@@ -1,20 +1,22 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { memo, useState } from "react";
 import Image from "next/image";
 import { Copy, Check, Info } from "lucide-react";
 import { MaterialItem } from "@/lib/types";
 import { getRarityStyles, getMaterialCategoryLabel } from "@/lib/materials";
 import { toast } from "sonner";
+import { MaterialThumb } from "@/components/ui/MaterialThumb";
 
 interface MaterialCardProps {
   material: MaterialItem;
-  onClick: () => void;
+  /** Should be stable (e.g. a state setter) so the memoized card can skip re-renders. */
+  onSelect: (material: MaterialItem) => void;
 }
 
-export function MaterialCard({ material, onClick }: MaterialCardProps) {
+export const MaterialCard = memo(function MaterialCard({ material, onSelect }: MaterialCardProps) {
   const [copied, setCopied] = useState(false);
-  const [imgError, setImgError] = useState(false);
+  const onClick = () => onSelect(material);
   const rarity = material.rarity || 1;
   const styles = getRarityStyles(rarity);
   const categoryLabel = getMaterialCategoryLabel(material);
@@ -68,19 +70,17 @@ export function MaterialCard({ material, onClick }: MaterialCardProps) {
 
       {/* Material Thumbnail with Rarity Glow Frame */}
       <div className="glass-well glass-well--tinted relative my-2.5 flex h-20 w-20 items-center justify-center overflow-hidden rounded-2xl transition-transform duration-300 group-hover:scale-105">
-        {!imgError ? (
-          <img
-            src={material.image}
-            alt={material.name}
-            className="h-16 w-16 object-contain drop-shadow-[0_4px_8px_rgba(0,0,0,0.6)]"
-            loading="lazy"
-            onError={() => setImgError(true)}
-          />
-        ) : (
-          <div className="flex flex-col items-center justify-center text-[10px] text-white/50">
-            <span>No Icon</span>
-          </div>
-        )}
+        <MaterialThumb
+          id={material.id}
+          alt={material.name}
+          size={64}
+          className="h-16 w-16 drop-shadow-[0_4px_8px_rgba(0,0,0,0.6)]"
+          fallback={
+            <div className="flex flex-col items-center justify-center text-[10px] text-white/50">
+              <span>No Icon</span>
+            </div>
+          }
+        />
       </div>
 
       {/* Rarity Stars */}
@@ -118,4 +118,4 @@ export function MaterialCard({ material, onClick }: MaterialCardProps) {
       </div>
     </div>
   );
-}
+});

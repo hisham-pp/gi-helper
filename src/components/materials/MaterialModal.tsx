@@ -15,9 +15,10 @@ import {
 import { MaterialItem } from "@/lib/types";
 import { getRarityStyles, getMaterialCategoryLabel } from "@/lib/materials";
 import { toast } from "sonner";
+import { usePauseBackground } from "@/lib/use-pause-background";
 
 interface MaterialModalProps {
-  material: MaterialItem | null;
+  material: MaterialItem;
   onClose: () => void;
   onNavigateNext?: () => void;
   onNavigatePrev?: () => void;
@@ -27,6 +28,7 @@ interface MaterialModalProps {
   total?: number;
 }
 
+/** Material details. MaterialList loads it on demand and mounts it only while a material is selected. */
 export function MaterialModal({
   material,
   onClose,
@@ -39,6 +41,8 @@ export function MaterialModal({
   const [copied, setCopied] = useState(false);
   const [imgError, setImgError] = useState(false);
 
+  usePauseBackground();
+
   useEffect(() => {
     setCopied(false);
     setImgError(false);
@@ -46,8 +50,6 @@ export function MaterialModal({
 
   // Handle keyboard events (Escape, Left, Right)
   useEffect(() => {
-    if (!material) return;
-
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         onClose();
@@ -60,9 +62,7 @@ export function MaterialModal({
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [material, hasNext, hasPrev, onNavigateNext, onNavigatePrev, onClose]);
-
-  if (!material) return null;
+  }, [hasNext, hasPrev, onNavigateNext, onNavigatePrev, onClose]);
 
   const rarity = material.rarity || 1;
   const styles = getRarityStyles(rarity);
