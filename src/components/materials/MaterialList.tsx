@@ -1,8 +1,7 @@
 "use client";
 
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useState, useMemo, useEffect, useRef } from "react";
 import dynamic from "next/dynamic";
-import Link from "next/link";
 import {
   ArrowUpDown,
   Search,
@@ -10,7 +9,6 @@ import {
   LayoutGrid,
   List,
   Filter,
-  ArrowLeft,
   Bug,
   Sparkles,
   PackageCheck,
@@ -30,9 +28,9 @@ import {
 } from "@/lib/materials";
 import { MaterialCard } from "./MaterialCard";
 import { MaterialTableView } from "./MaterialTableView";
-import { ThemeToggle } from "@/components/ThemeToggle";
 import { PillDropdown } from "@/components/ui/PillDropdown";
 import { GlassSegmentedControl } from "@/components/ui/GlassSegmentedControl";
+import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion";
 
 type SortOption =
   | "order-asc"
@@ -48,12 +46,54 @@ const MaterialModal = dynamic(
   { ssr: false },
 );
 
+/**
+ * Reset button entrance/exit: the width eases open (so the search box slides
+ * aside instead of jumping) while the button pops in with the same springy
+ * overshoot as the tab thumbs. Hover transitions of .glass-btn are kept.
+ */
+const RESET_TRANSITION = [
+  "max-width 380ms cubic-bezier(0.22, 1, 0.36, 1)",
+  "padding 380ms cubic-bezier(0.22, 1, 0.36, 1)",
+  "margin 380ms cubic-bezier(0.22, 1, 0.36, 1)",
+  "opacity 220ms ease",
+  "transform 520ms cubic-bezier(0.34, 1.56, 0.64, 1)",
+  "background 200ms ease",
+  "color 200ms ease",
+  "box-shadow 200ms ease",
+].join(", ");
+
+/** Plays a small squash-and-stretch on `ref` whenever `trigger` changes (not on mount). */
+function useWiggleOnChange(
+  ref: React.RefObject<HTMLElement | null>,
+  trigger: unknown,
+  reducedMotion: boolean,
+) {
+  const prevRef = useRef(trigger);
+  useEffect(() => {
+    const prev = prevRef.current;
+    prevRef.current = trigger;
+    if (prev === trigger || reducedMotion) return;
+
+    ref.current?.animate(
+      [
+        { scale: "1 1" },
+        { scale: "1.006 0.985", offset: 0.35 },
+        { scale: "0.998 1.006", offset: 0.7 },
+        { scale: "1 1" },
+      ],
+      { duration: 520, easing: "ease-out" },
+    );
+  }, [ref, trigger, reducedMotion]);
+}
+
 const PAGE_SIZE_OPTIONS = [36, 72, 144];
 /** Page size that shows every material on one page. */
 const SHOW_ALL = Number.MAX_SAFE_INTEGER;
 
 export function MaterialList() {
   const allMaterials = useMemo(() => getAllMaterials(), []);
+
+  const reducedMotion = usePrefersReducedMotion();
 
   // UI state
   const [search, setSearch] = useState("");
@@ -207,27 +247,20 @@ export function MaterialList() {
     selectedRarity !== "ALL" ||
     sortBy !== "order-asc";
 
+  // Small squash-and-stretch feedback, echoing the scanner drop zone when tabs
+  // switch: the filter card as the Reset button slides in or out, and the
+  // header card when a rarity chip is picked or cleared.
+  const filterBarRef = useRef<HTMLDivElement>(null);
+  const heroRef = useRef<HTMLDivElement>(null);
+  useWiggleOnChange(filterBarRef, isFiltered, reducedMotion);
+  useWiggleOnChange(heroRef, selectedRarity, reducedMotion);
+
   return (
-    <div className="relative z-10 flex min-h-screen w-full flex-col items-center justify-start bg-transparent p-4 pt-6 md:p-8">
-      {/* Top Global Navigation Bar */}
-      <div className="mb-8 flex w-full max-w-7xl items-center justify-between">
-        <Link
-          href="/"
-          className="glass-btn px-4 py-2 text-xs sm:text-sm"
-        >
-          <ArrowLeft className="h-4 w-4 text-primary" />
-          <span>Back to Scanner</span>
-        </Link>
-
-        <div className="flex items-center gap-3">
-          <ThemeToggle />
-        </div>
-      </div>
-
+    <div className="flex w-full flex-1 flex-col items-center justify-start px-4 pb-4 pt-2 sm:px-6 sm:pt-4 md:px-8 md:pb-8">
       {/* Main Container */}
       <div className="w-full max-w-7xl space-y-6">
         {/* Hero Header */}
-        <div className="glass-card glass-card--lg p-6 sm:p-8">
+        <div ref={heroRef} className="glass-card glass-card--lg p-6 sm:p-8">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="space-y-1.5">
               <div className="flex items-center gap-2">
@@ -252,19 +285,21 @@ export function MaterialList() {
               </span>
               {[5, 4, 3, 2, 1].map((r) => {
                 const rStyles = getRarityStyles(r);
+                const isSelected = selectedRarity === r;
                 return (
                   <button
                     key={r}
                     onClick={() =>
-                      setSelectedRarity(selectedRarity === r ? "ALL" : r)
+                      setSelectedRarity(isSelected ? "ALL" : r)
                     }
-                    aria-pressed={selectedRarity === r}
+                    aria-pressed={isSelected}
                     style={{ "--glass-accent": rStyles.accent } as React.CSSProperties}
-                    className="glass-chip gap-1 px-2.5 py-1 text-xs font-bold"
+                    className="glass-chip glass-chip--fill gap-1 px-2.5 py-1 text-xs font-bold"
                     title={`Filter by ${r}★ Materials`}
                   >
-                    <span className={rStyles.starColor}>{r}★</span>
-                    <span className="text-[10px] text-white/50">
+                    {/* White on the selected chip's rarity-coloured fill */}
+                    <span className={isSelected ? "text-white" : rStyles.starColor}>{r}★</span>
+                    <span className={`text-[10px] ${isSelected ? "text-white/85" : "text-white/50"}`}>
                       ({stats.rarityCounts[r]})
                     </span>
                   </button>
@@ -275,7 +310,7 @@ export function MaterialList() {
         </div>
 
         {/* Filter Controls Bar */}
-        <div className="glass-card glass-card--lg space-y-4 p-5">
+        <div ref={filterBarRef} className="glass-card glass-card--lg space-y-4 p-5">
           {/* Search, Sort, and View Controls */}
           <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
             {/* Search Input */}
@@ -346,53 +381,70 @@ export function MaterialList() {
                 ]}
               />
 
-              {/* Reset Filters */}
-              {isFiltered && (
-                <button
-                  onClick={handleResetFilters}
-                  className="glass-btn glass-btn--danger gap-1 px-3 py-2 text-xs"
-                  title="Reset all filters"
-                >
-                  <RotateCcw className="h-3.5 w-3.5" />
-                  <span>Reset</span>
-                </button>
-              )}
+              {/* Reset Filters: always mounted so it can animate in and out
+                  (collapsed to zero width, and inert, while nothing is filtered) */}
+              <button
+                onClick={handleResetFilters}
+                inert={!isFiltered}
+                aria-hidden={!isFiltered}
+                style={{
+                  transition: reducedMotion ? "none" : RESET_TRANSITION,
+                  // Cancels the row's gap-2.5 while collapsed
+                  marginLeft: isFiltered ? 0 : "-0.625rem",
+                }}
+                className={`glass-btn glass-btn--danger shrink-0 gap-1 overflow-hidden whitespace-nowrap py-2 text-xs ${
+                  isFiltered
+                    ? "max-w-[7rem] scale-100 px-3 opacity-100"
+                    : "pointer-events-none max-w-0 scale-75 px-0 opacity-0"
+                }`}
+                title="Reset all filters"
+              >
+                <RotateCcw className="h-3.5 w-3.5 shrink-0" />
+                <span>Reset</span>
+              </button>
             </div>
           </div>
 
           {/* Category Filter Pills */}
-          <div className="no-scrollbar -mx-1 flex items-center gap-2 overflow-x-auto px-1 py-2">
-            <span className="shrink-0 text-[11px] font-bold uppercase tracking-wider text-white/40">
-              Category:
-            </span>
-            {MATERIAL_CATEGORIES.map((cat) => {
-              const isSelected = selectedCategory === cat.id;
-              const count =
-                cat.id === "ALL"
-                  ? stats.total
-                  : stats.categoryCounts[cat.id] || 0;
+          {/* A horizontal scroller also clips vertically: its padding (cancelled by
+              negative margins) leaves room for the selected chip's glow. The
+              wrapper takes the card's space-y margin, so those can collapse. */}
+          <div>
+            <div className="no-scrollbar -mx-4 -my-3 flex items-center gap-2 overflow-x-auto px-4 py-5">
+              <span className="shrink-0 text-[11px] font-bold uppercase tracking-wider text-white/40">
+                Category:
+              </span>
+              {MATERIAL_CATEGORIES.map((cat) => {
+                const isSelected = selectedCategory === cat.id;
+                const count =
+                  cat.id === "ALL"
+                    ? stats.total
+                    : stats.categoryCounts[cat.id] || 0;
 
-              return (
-                <button
-                  key={cat.id}
-                  onClick={() => setSelectedCategory(cat.id)}
-                  aria-pressed={isSelected}
-                  className="glass-chip shrink-0 px-3 py-1.5 text-xs font-semibold"
-                  title={`${cat.label} (sortRank: ${cat.sortRankRange})`}
-                >
-                  <span>{cat.shortLabel}</span>
-                  <span
-                    className={`rounded-full px-1.5 text-[10px] ${
-                      isSelected
-                        ? "bg-cyan-300/25 text-cyan-50"
-                        : "bg-white/10 text-white/60"
-                    }`}
+                return (
+                  <button
+                    key={cat.id}
+                    onClick={() => setSelectedCategory(cat.id)}
+                    aria-pressed={isSelected}
+                    // Explicit accent: the card's pale cyan would make the fill read as white
+                    style={{ "--glass-accent": "34, 211, 238" } as React.CSSProperties}
+                    className="glass-chip glass-chip--fill shrink-0 px-3 py-1.5 text-xs font-semibold"
+                    title={`${cat.label} (sortRank: ${cat.sortRankRange})`}
                   >
-                    {count}
-                  </span>
-                </button>
-              );
-            })}
+                    <span>{cat.shortLabel}</span>
+                    <span
+                      className={`rounded-full px-1.5 text-[10px] ${
+                        isSelected
+                          ? "bg-black/25 text-white"
+                          : "bg-white/10 text-white/60"
+                      }`}
+                    >
+                      {count}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
 

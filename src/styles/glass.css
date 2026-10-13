@@ -583,6 +583,36 @@ button.glass-chip:disabled {
     0 0 16px -4px rgba(var(--glass-accent, 165, 243, 252), 0.5);
 }
 
+/* Filter chips whose selection must read at a glance: once selected, the
+   chip fills with its --glass-accent colour and gets a bright rim and glow.
+   The :hover selectors keep the fill over the generic chip hover style. */
+.glass-chip--fill[data-active="true"],
+.glass-chip--fill[aria-pressed="true"],
+.glass-chip--fill[data-active="true"]:hover,
+.glass-chip--fill[aria-pressed="true"]:hover {
+  color: #fff;
+  background: linear-gradient(
+    180deg,
+    rgba(var(--glass-accent, 34, 211, 238), 0.5),
+    rgba(var(--glass-accent, 34, 211, 238), 0.26)
+  );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 0 0 1px rgba(var(--glass-accent, 34, 211, 238), 0.9),
+    0 0 0 1px rgba(var(--glass-accent, 34, 211, 238), 0.3),
+    0 0 18px -2px rgba(var(--glass-accent, 34, 211, 238), 0.75),
+    0 4px 12px -4px rgba(0, 0, 0, 0.45);
+}
+
+.glass-chip--fill[data-active="true"]:hover,
+.glass-chip--fill[aria-pressed="true"]:hover {
+  background: linear-gradient(
+    180deg,
+    rgba(var(--glass-accent, 34, 211, 238), 0.6),
+    rgba(var(--glass-accent, 34, 211, 238), 0.34)
+  );
+}
+
 /* Soft hairline divider that fades out at both ends */
 .glass-divider {
   height: 1px;
