@@ -14,6 +14,8 @@
     "format": "prettier --write .",
     "test": "npx tsx --test tests/**/*.test.ts",
     "test:cv": "npx tsx --test tests/cv/hasher.test.ts",
+    "test:grid-detector": "npx tsx --test tests/grid-detector.test.ts tests/grid-detector-samples.test.ts",
+    "eval:grid-detector": "tsx scripts/evaluate-grid-detector.ts",
     "sync-data": "tsx scripts/scrape-materials.ts && tsx scripts/update-families.ts && tsx scripts/generate-hashes.ts"
   },
   "pnpm": {

@@ -1,4 +1,8 @@
-import { GridConfig, GridDetectionResult, GridSession, SessionImage } from "./types";
+/**
+ * IndexedDB persistence for the Grid Detector studio: named sessions holding
+ * uploaded screenshots, their automatic detection and any manual edits.
+ */
+import type { DetectedGrid, GridDetectionResult, GridSession, SessionImage } from "./types";
 
 const DB_NAME = "gi_grid_detector_sessions";
 const DB_VERSION = 1;
@@ -8,13 +12,12 @@ const IMAGES_STORE = "images";
 function openDB(): Promise<IDBDatabase> {
   return new Promise((resolve, reject) => {
     if (typeof window === "undefined" || !window.indexedDB) {
-      return reject(new Error("IndexedDB is not available in this environment"));
+      reject(new Error("IndexedDB is not available in this environment"));
+      return;
     }
-
     const request = window.indexedDB.open(DB_NAME, DB_VERSION);
-
-    request.onupgradeneeded = (event) => {
-      const db = (event.target as IDBOpenDBRequest).result;
+    request.onupgradeneeded = () => {
+      const db = request.result;
       if (!db.objectStoreNames.contains(SESSIONS_STORE)) {
         db.createObjectStore(SESSIONS_STORE, { keyPath: "id" });
       }
@@ -23,28 +26,80 @@ function openDB(): Promise<IDBDatabase> {
         store.createIndex("sessionId", "sessionId", { unique: false });
       }
     };
-
     request.onsuccess = () => resolve(request.result);
     request.onerror = () => reject(request.error);
   });
 }
 
+function requestToPromise<T>(req: IDBRequest<T>): Promise<T> {
+  return new Promise((resolve, reject) => {
+    req.onsuccess = () => resolve(req.result);
+    req.onerror = () => reject(req.error);
+  });
+}
+
+function txDone(tx: IDBTransaction): Promise<void> {
+  return new Promise((resolve, reject) => {
+    tx.oncomplete = () => resolve();
+    tx.onerror = () => reject(tx.error);
+    tx.onabort = () => reject(tx.error);
+  });
+}
+
+const newId = (prefix: string) =>
+  `${prefix}_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`;
+
+/** Records written by the first version of the studio stored a data URL and a uniform grid. */
+interface LegacyImageRecord {
+  id: string;
+  sessionId: string;
+  name: string;
+  dataUrl?: string;
+  blob?: Blob;
+  width: number;
+  height: number;
+  detection?: GridDetectionResult | null;
+  grids?: DetectedGrid[] | null;
+  isManuallyAdjusted?: boolean;
+  createdAt: number;
+}
+
+function dataUrlToBlob(dataUrl: string): Blob {
+  const [header, payload = ""] = dataUrl.split(",");
+  const mime = /data:([^;]+)/.exec(header)?.[1] ?? "application/octet-stream";
+  const binary = atob(payload);
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+  return new Blob([bytes], { type: mime });
+}
+
+function normalizeImage(record: LegacyImageRecord): SessionImage | null {
+  const blob = record.blob ?? (record.dataUrl ? dataUrlToBlob(record.dataUrl) : null);
+  if (!blob) return null;
+  return {
+    id: record.id,
+    sessionId: record.sessionId,
+    name: record.name,
+    blob,
+    width: record.width,
+    height: record.height,
+    // Legacy uniform-grid results are dropped; the image is re-detected on open.
+    detection: record.detection ?? null,
+    grids: record.grids ?? null,
+    isManuallyAdjusted: record.isManuallyAdjusted ?? false,
+    createdAt: record.createdAt,
+  };
+}
+
 export async function getAllSessions(): Promise<GridSession[]> {
   try {
     const db = await openDB();
-    return new Promise((resolve, reject) => {
-      const tx = db.transaction(SESSIONS_STORE, "readonly");
-      const store = tx.objectStore(SESSIONS_STORE);
-      const req = store.getAll();
-      req.onsuccess = () => {
-        const sessions = (req.result as GridSession[]) || [];
-        sessions.sort((a, b) => b.updatedAt - a.updatedAt);
-        resolve(sessions);
-      };
-      req.onerror = () => reject(req.error);
-    });
+    const sessions = await requestToPromise(
+      db.transaction(SESSIONS_STORE, "readonly").objectStore(SESSIONS_STORE).getAll(),
+    );
+    return (sessions as GridSession[]).sort((a, b) => b.updatedAt - a.updatedAt);
   } catch (err) {
-    console.warn("IndexedDB unavailable, returning fallback empty list", err);
+    console.warn("IndexedDB unavailable, starting without saved sessions", err);
     return [];
   }
 }
@@ -52,178 +107,114 @@ export async function getAllSessions(): Promise<GridSession[]> {
 export async function createSession(name: string): Promise<GridSession> {
   const db = await openDB();
   const session: GridSession = {
-    id: `session_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`,
+    id: newId("session"),
     name: name.trim() || `Session #${new Date().toLocaleTimeString()}`,
     createdAt: Date.now(),
     updatedAt: Date.now(),
   };
-
-  return new Promise((resolve, reject) => {
-    const tx = db.transaction(SESSIONS_STORE, "readwrite");
-    const store = tx.objectStore(SESSIONS_STORE);
-    const req = store.add(session);
-    req.onsuccess = () => resolve(session);
-    req.onerror = () => reject(req.error);
-  });
+  const tx = db.transaction(SESSIONS_STORE, "readwrite");
+  tx.objectStore(SESSIONS_STORE).add(session);
+  await txDone(tx);
+  return session;
 }
 
-export async function updateSession(session: GridSession): Promise<void> {
+export async function updateSession(session: GridSession): Promise<GridSession> {
   const db = await openDB();
-  return new Promise((resolve, reject) => {
-    const tx = db.transaction(SESSIONS_STORE, "readwrite");
-    const store = tx.objectStore(SESSIONS_STORE);
-    session.updatedAt = Date.now();
-    const req = store.put(session);
-    req.onsuccess = () => resolve();
-    req.onerror = () => reject(req.error);
-  });
+  const updated = { ...session, updatedAt: Date.now() };
+  const tx = db.transaction(SESSIONS_STORE, "readwrite");
+  tx.objectStore(SESSIONS_STORE).put(updated);
+  await txDone(tx);
+  return updated;
 }
 
 export async function deleteSession(sessionId: string): Promise<void> {
   const db = await openDB();
-  return new Promise((resolve, reject) => {
-    const tx = db.transaction([SESSIONS_STORE, IMAGES_STORE], "readwrite");
-    const sStore = tx.objectStore(SESSIONS_STORE);
-    const iStore = tx.objectStore(IMAGES_STORE);
-
-    sStore.delete(sessionId);
-
-    // Delete associated images
-    const index = iStore.index("sessionId");
-    const req = index.getAllKeys(sessionId);
-    req.onsuccess = () => {
-      const keys = req.result;
-      for (const key of keys) {
-        iStore.delete(key);
-      }
-    };
-
-    tx.oncomplete = () => resolve();
-    tx.onerror = () => reject(tx.error);
-  });
+  const tx = db.transaction([SESSIONS_STORE, IMAGES_STORE], "readwrite");
+  tx.objectStore(SESSIONS_STORE).delete(sessionId);
+  const images = tx.objectStore(IMAGES_STORE);
+  const keys = await requestToPromise(images.index("sessionId").getAllKeys(sessionId));
+  for (const key of keys) images.delete(key);
+  await txDone(tx);
 }
 
-export async function getImagesForSession(
-  sessionId: string,
-): Promise<SessionImage[]> {
+export async function getImagesForSession(sessionId: string): Promise<SessionImage[]> {
   try {
     const db = await openDB();
-    return new Promise((resolve, reject) => {
-      const tx = db.transaction(IMAGES_STORE, "readonly");
-      const store = tx.objectStore(IMAGES_STORE);
-      const index = store.index("sessionId");
-      const req = index.getAll(sessionId);
-      req.onsuccess = () => {
-        const images = (req.result as SessionImage[]) || [];
-        images.sort((a, b) => a.createdAt - b.createdAt);
-        resolve(images);
-      };
-      req.onerror = () => reject(req.error);
-    });
+    const records = await requestToPromise(
+      db.transaction(IMAGES_STORE, "readonly").objectStore(IMAGES_STORE).index("sessionId").getAll(sessionId),
+    );
+    return (records as LegacyImageRecord[])
+      .map(normalizeImage)
+      .filter((img): img is SessionImage => img !== null)
+      .sort((a, b) => a.createdAt - b.createdAt);
   } catch (err) {
-    console.warn("Failed to get images for session", err);
+    console.warn("Failed to load session images", err);
     return [];
   }
 }
 
 export async function addImageToSession(
   sessionId: string,
-  dataUrl: string,
-  name: string,
-  width: number,
-  height: number,
-  detectionResult: GridDetectionResult,
+  image: Pick<SessionImage, "name" | "blob" | "width" | "height" | "detection" | "grids">,
 ): Promise<SessionImage> {
   const db = await openDB();
-  const sessionImage: SessionImage = {
-    id: `img_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`,
+  const record: SessionImage = {
+    ...image,
+    id: newId("img"),
     sessionId,
-    name,
-    dataUrl,
-    width,
-    height,
-    detectedGrid: detectionResult.config,
-    confidence: detectionResult.confidence,
-    method: detectionResult.method,
-    detectedCellsCount: detectionResult.detectedCellsCount,
     isManuallyAdjusted: false,
     createdAt: Date.now(),
   };
-
-  return new Promise((resolve, reject) => {
-    const tx = db.transaction([IMAGES_STORE, SESSIONS_STORE], "readwrite");
-    const iStore = tx.objectStore(IMAGES_STORE);
-    const sStore = tx.objectStore(SESSIONS_STORE);
-
-    iStore.add(sessionImage);
-
-    // Bump session updatedAt
-    const sReq = sStore.get(sessionId);
-    sReq.onsuccess = () => {
-      const s = sReq.result as GridSession | undefined;
-      if (s) {
-        s.updatedAt = Date.now();
-        sStore.put(s);
-      }
-    };
-
-    tx.oncomplete = () => resolve(sessionImage);
-    tx.onerror = () => reject(tx.error);
-  });
+  const tx = db.transaction([IMAGES_STORE, SESSIONS_STORE], "readwrite");
+  tx.objectStore(IMAGES_STORE).add(record);
+  const sessions = tx.objectStore(SESSIONS_STORE);
+  const session = (await requestToPromise(sessions.get(sessionId))) as GridSession | undefined;
+  if (session) sessions.put({ ...session, updatedAt: Date.now() });
+  await txDone(tx);
+  return record;
 }
 
-export async function updateImageGrid(
+export async function updateImageResult(
   imageId: string,
-  config: GridConfig,
-  isManuallyAdjusted = true,
+  patch: Partial<Pick<SessionImage, "detection" | "grids" | "isManuallyAdjusted">>,
 ): Promise<void> {
   const db = await openDB();
-  return new Promise((resolve, reject) => {
-    const tx = db.transaction(IMAGES_STORE, "readwrite");
-    const store = tx.objectStore(IMAGES_STORE);
-    const req = store.get(imageId);
-    req.onsuccess = () => {
-      const img = req.result as SessionImage | undefined;
-      if (img) {
-        img.detectedGrid = config;
-        img.detectedCellsCount = config.columns * config.rows;
-        img.isManuallyAdjusted = isManuallyAdjusted;
-        store.put(img);
-      }
-    };
-    tx.oncomplete = () => resolve();
-    tx.onerror = () => reject(tx.error);
-  });
+  const tx = db.transaction(IMAGES_STORE, "readwrite");
+  const store = tx.objectStore(IMAGES_STORE);
+  const record = (await requestToPromise(store.get(imageId))) as LegacyImageRecord | undefined;
+  if (record) {
+    const normalized = normalizeImage(record);
+    if (normalized) store.put({ ...normalized, ...patch });
+  }
+  await txDone(tx);
 }
 
 export async function deleteImage(imageId: string): Promise<void> {
   const db = await openDB();
-  return new Promise((resolve, reject) => {
-    const tx = db.transaction(IMAGES_STORE, "readwrite");
-    const store = tx.objectStore(IMAGES_STORE);
-    const req = store.delete(imageId);
-    req.onsuccess = () => resolve();
-    req.onerror = () => reject(req.error);
-  });
+  const tx = db.transaction(IMAGES_STORE, "readwrite");
+  tx.objectStore(IMAGES_STORE).delete(imageId);
+  await txDone(tx);
 }
 
+/** Session export: detection results with original-pixel coordinates, without image data. */
 export async function exportSessionJson(sessionId: string): Promise<string> {
   const images = await getImagesForSession(sessionId);
-  const data = {
-    sessionId,
-    exportedAt: new Date().toISOString(),
-    imageCount: images.length,
-    calibrations: images.map((img) => ({
-      id: img.id,
-      name: img.name,
-      width: img.width,
-      height: img.height,
-      grid: img.detectedGrid,
-      confidence: img.confidence,
-      method: img.method,
-      detectedCells: img.detectedCellsCount,
-      isManuallyAdjusted: img.isManuallyAdjusted,
-    })),
-  };
-  return JSON.stringify(data, null, 2);
+  return JSON.stringify(
+    {
+      sessionId,
+      exportedAt: new Date().toISOString(),
+      imageCount: images.length,
+      images: images.map((img) => ({
+        id: img.id,
+        name: img.name,
+        width: img.width,
+        height: img.height,
+        isManuallyAdjusted: img.isManuallyAdjusted,
+        processingTimeMs: img.detection?.processingTimeMs ?? null,
+        grids: img.grids ?? [],
+      })),
+    },
+    null,
+    2,
+  );
 }
