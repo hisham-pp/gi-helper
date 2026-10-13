@@ -1,4 +1,4 @@
-import { ScannerDebugger } from "@/components/scanner/debug/ScannerDebugger";
+import { DebugViewManager } from "@/components/scanner/debug/DebugViewManager";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
@@ -7,7 +7,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Scanner Debugger | Genshin Material Tracker",
   description:
-    "Computer Vision & OCR Diagnostic Suite for Genshin Impact Inventory Scanner",
+    "Computer Vision & Grid Detection Diagnostic Suite for Genshin Impact Inventory Scanner",
 };
 
 export default function ScannerDebugPage() {
@@ -41,7 +41,7 @@ export default function ScannerDebugPage() {
       </div>
 
       {/* Debugger Suite Container */}
-      <ScannerDebugger />
+      <DebugViewManager />
     </div>
   );
 }
