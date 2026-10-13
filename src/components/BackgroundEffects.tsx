@@ -126,7 +126,7 @@ export function BackgroundEffects() {
         ))}
 
         {/* Subtle sweeping light rays */}
-        <div className="anim-sweep absolute inset-0 h-full w-[200%] -rotate-45 transform bg-gradient-to-tr from-white/0 via-white/5 to-white/0 opacity-30" />
+        <div className="anim-sweep absolute inset-0 h-full w-[200%] -rotate-45 transform bg-gradient-to-tr from-snow/0 via-snow/5 to-snow/0 opacity-30" />
       </div>
     </>
   );

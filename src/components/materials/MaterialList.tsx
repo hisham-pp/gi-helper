@@ -435,7 +435,7 @@ export function MaterialList() {
                     <span
                       className={`rounded-full px-1.5 text-[10px] ${
                         isSelected
-                          ? "bg-black/25 text-white"
+                          ? "bg-white/20 text-white"
                           : "bg-white/10 text-white/60"
                       }`}
                     >

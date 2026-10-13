@@ -60,7 +60,7 @@ export function ScanningAnimation({
         </div>
 
         {/* Right: Model Badge */}
-        <div className="flex shrink-0 items-center gap-1.5 rounded-full border border-cyan-500/30 bg-cyan-950/40 px-3 py-1 text-xs text-cyan-300 backdrop-blur-sm">
+        <div className="flex shrink-0 items-center gap-1.5 rounded-full border border-cyan-500/30 bg-cyan-500/10 px-3 py-1 text-xs text-cyan-300 backdrop-blur-sm">
           <Sparkles className="h-3.5 w-3.5 text-cyan-400" />
           <span className="font-medium">{providerDisplayName}</span>
           {modelName && (
@@ -71,8 +71,8 @@ export function ScanningAnimation({
         </div>
       </div>
 
-      {/* Image Scan Viewport - Matches Dropzone Size */}
-      <div className="relative h-56 w-full overflow-hidden rounded-2xl border border-cyan-500/30 bg-black/80 shadow-[inset_0_0_30px_rgba(0,0,0,0.8)] sm:h-64 md:h-72">
+      {/* Image Scan Viewport - Matches Dropzone Size (always a dark screen, so on-dark) */}
+      <div className="on-dark relative h-56 w-full overflow-hidden rounded-2xl border border-cyan-500/30 bg-black/80 shadow-[inset_0_0_30px_rgba(0,0,0,0.8)] sm:h-64 md:h-72">
         {activeImageSrc ? (
           <img
             src={activeImageSrc}

@@ -1,6 +1,7 @@
 /* Glass components come before Tailwind's output so utility classes can adjust
    them (e.g. `glass-chip rounded-xl px-4`), like Tailwind's own components layer. */
 @import "../styles/glass.css";
+@import "../styles/glass-light.css";
 
 @tailwind base;
 @tailwind components;
@@ -48,6 +49,10 @@
   --success: 16 185 129;
   --warning: 245 158 11;
   --danger: var(--md-sys-color-error);
+
+  /* Ink for text, hairlines and glass tints (Tailwind's "white"): slate on
+     the light glass */
+  --ink: 15 23 42;
 }
 
 .dark {
@@ -92,6 +97,14 @@
   --success: 52 211 153;
   --warning: 251 191 36;
   --danger: var(--md-sys-color-error);
+
+  --ink: 255 255 255;
+}
+
+/* Content on an intentionally dark surface (the scan chamber, dark banners):
+   keeps white ink and the pale accent colours in both themes */
+.on-dark {
+  --ink: 255 255 255;
 }
 
 * {
@@ -269,6 +282,12 @@ body::before {
   opacity: 0.85;
 }
 
+/* Light: a pale wash of the artwork, so slate ink stays readable on the glass */
+:where(.light) body::before {
+  filter: blur(10px) saturate(1.05) brightness(1.1);
+  opacity: 0.38;
+}
+
 /* Glossy glassmorphism overlay */
 body::after {
   content: "";
@@ -292,6 +311,13 @@ body::after {
     linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, transparent 100%);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+}
+
+:where(.light) body::after {
+  background:
+    radial-gradient(circle at top left, rgba(34, 211, 238, 0.14), transparent 40%),
+    radial-gradient(circle at bottom right, rgba(20, 184, 166, 0.1), transparent 35%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.5), rgba(240, 253, 255, 0.4));
 }
 
 input,
@@ -334,6 +360,15 @@ input[type="number"] {
   background: rgba(255, 255, 255, 0.4);
 }
 
+:where(.light) ::-webkit-scrollbar-thumb {
+  background: rgba(15, 23, 42, 0.2);
+  box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.06);
+}
+
+:where(.light) ::-webkit-scrollbar-thumb:hover {
+  background: rgba(15, 23, 42, 0.35);
+}
+
 /* ==============================================================================
    Animated Pill Tabs & Panels
    ============================================================================== */
@@ -364,3 +399,556 @@ input[type="number"] {
   }
 }
 
+/* ==============================================================================
+   Light theme: accent text and shadows
+   The pale accent shades (cyan-300, amber-400, ...) are tuned for dark glass;
+   on light glass they swap to the deep shade of the same hue (keeping any
+   /opacity). Heavy dark text shadows and glows become a hairline lift.
+   Not applied inside .on-dark.
+   ============================================================================== */
+:where(.light) .text-cyan-100:not(.on-dark *),
+:where(.light) .hover\:text-cyan-100:hover:not(.on-dark *),
+:where(.light) .group:hover .group-hover\:text-cyan-100:not(.on-dark *),
+:where(.light) .text-cyan-200:not(.on-dark *),
+:where(.light) .hover\:text-cyan-200:hover:not(.on-dark *),
+:where(.light) .group:hover .group-hover\:text-cyan-200:not(.on-dark *),
+:where(.light) .text-cyan-300:not(.on-dark *),
+:where(.light) .hover\:text-cyan-300:hover:not(.on-dark *),
+:where(.light) .group:hover .group-hover\:text-cyan-300:not(.on-dark *),
+:where(.light) .text-cyan-400:not(.on-dark *),
+:where(.light) .hover\:text-cyan-400:hover:not(.on-dark *),
+:where(.light) .group:hover .group-hover\:text-cyan-400:not(.on-dark *) {
+  color: theme("colors.cyan.700");
+}
+
+:where(.light) .text-cyan-100\/50:not(.on-dark *),
+:where(.light) .text-cyan-200\/50:not(.on-dark *),
+:where(.light) .text-cyan-300\/50:not(.on-dark *),
+:where(.light) .text-cyan-400\/50:not(.on-dark *) {
+  color: theme("colors.cyan.700 / 50%");
+}
+
+:where(.light) .text-cyan-100\/60:not(.on-dark *),
+:where(.light) .text-cyan-200\/60:not(.on-dark *),
+:where(.light) .text-cyan-300\/60:not(.on-dark *),
+:where(.light) .text-cyan-400\/60:not(.on-dark *) {
+  color: theme("colors.cyan.700 / 60%");
+}
+
+:where(.light) .text-cyan-100\/70:not(.on-dark *),
+:where(.light) .text-cyan-200\/70:not(.on-dark *),
+:where(.light) .text-cyan-300\/70:not(.on-dark *),
+:where(.light) .text-cyan-400\/70:not(.on-dark *) {
+  color: theme("colors.cyan.700 / 70%");
+}
+
+:where(.light) .text-cyan-100\/75:not(.on-dark *),
+:where(.light) .text-cyan-200\/75:not(.on-dark *),
+:where(.light) .text-cyan-300\/75:not(.on-dark *),
+:where(.light) .text-cyan-400\/75:not(.on-dark *) {
+  color: theme("colors.cyan.700 / 75%");
+}
+
+:where(.light) .text-cyan-100\/80:not(.on-dark *),
+:where(.light) .text-cyan-200\/80:not(.on-dark *),
+:where(.light) .text-cyan-300\/80:not(.on-dark *),
+:where(.light) .text-cyan-400\/80:not(.on-dark *) {
+  color: theme("colors.cyan.700 / 80%");
+}
+
+:where(.light) .text-cyan-100\/90:not(.on-dark *),
+:where(.light) .text-cyan-200\/90:not(.on-dark *),
+:where(.light) .text-cyan-300\/90:not(.on-dark *),
+:where(.light) .text-cyan-400\/90:not(.on-dark *) {
+  color: theme("colors.cyan.700 / 90%");
+}
+
+:where(.light) .text-teal-200:not(.on-dark *),
+:where(.light) .hover\:text-teal-200:hover:not(.on-dark *),
+:where(.light) .group:hover .group-hover\:text-teal-200:not(.on-dark *),
+:where(.light) .text-teal-300:not(.on-dark *),
+:where(.light) .hover\:text-teal-300:hover:not(.on-dark *),
+:where(.light) .group:hover .group-hover\:text-teal-300:not(.on-dark *) {
+  color: theme("colors.teal.700");
+}
+
+:where(.light) .text-teal-200\/50:not(.on-dark *),
+:where(.light) .text-teal-300\/50:not(.on-dark *) {
+  color: theme("colors.teal.700 / 50%");
+}
+
+:where(.light) .text-teal-200\/60:not(.on-dark *),
+:where(.light) .text-teal-300\/60:not(.on-dark *) {
+  color: theme("colors.teal.700 / 60%");
+}
+
+:where(.light) .text-teal-200\/70:not(.on-dark *),
+:where(.light) .text-teal-300\/70:not(.on-dark *) {
+  color: theme("colors.teal.700 / 70%");
+}
+
+:where(.light) .text-teal-200\/75:not(.on-dark *),
+:where(.light) .text-teal-300\/75:not(.on-dark *) {
+  color: theme("colors.teal.700 / 75%");
+}
+
+:where(.light) .text-teal-200\/80:not(.on-dark *),
+:where(.light) .text-teal-300\/80:not(.on-dark *) {
+  color: theme("colors.teal.700 / 80%");
+}
+
+:where(.light) .text-teal-200\/90:not(.on-dark *),
+:where(.light) .text-teal-300\/90:not(.on-dark *) {
+  color: theme("colors.teal.700 / 90%");
+}
+
+:where(.light) .text-emerald-200:not(.on-dark *),
+:where(.light) .hover\:text-emerald-200:hover:not(.on-dark *),
+:where(.light) .group:hover .group-hover\:text-emerald-200:not(.on-dark *),
+:where(.light) .text-emerald-300:not(.on-dark *),
+:where(.light) .hover\:text-emerald-300:hover:not(.on-dark *),
+:where(.light) .group:hover .group-hover\:text-emerald-300:not(.on-dark *),
+:where(.light) .text-emerald-400:not(.on-dark *),
+:where(.light) .hover\:text-emerald-400:hover:not(.on-dark *),
+:where(.light) .group:hover .group-hover\:text-emerald-400:not(.on-dark *) {
+  color: theme("colors.emerald.700");
+}
+
+:where(.light) .text-emerald-200\/50:not(.on-dark *),
+:where(.light) .text-emerald-300\/50:not(.on-dark *),
+:where(.light) .text-emerald-400\/50:not(.on-dark *) {
+  color: theme("colors.emerald.700 / 50%");
+}
+
+:where(.light) .text-emerald-200\/60:not(.on-dark *),
+:where(.light) .text-emerald-300\/60:not(.on-dark *),
+:where(.light) .text-emerald-400\/60:not(.on-dark *) {
+  color: theme("colors.emerald.700 / 60%");
+}
+
+:where(.light) .text-emerald-200\/70:not(.on-dark *),
+:where(.light) .text-emerald-300\/70:not(.on-dark *),
+:where(.light) .text-emerald-400\/70:not(.on-dark *) {
+  color: theme("colors.emerald.700 / 70%");
+}
+
+:where(.light) .text-emerald-200\/75:not(.on-dark *),
+:where(.light) .text-emerald-300\/75:not(.on-dark *),
+:where(.light) .text-emerald-400\/75:not(.on-dark *) {
+  color: theme("colors.emerald.700 / 75%");
+}
+
+:where(.light) .text-emerald-200\/80:not(.on-dark *),
+:where(.light) .text-emerald-300\/80:not(.on-dark *),
+:where(.light) .text-emerald-400\/80:not(.on-dark *) {
+  color: theme("colors.emerald.700 / 80%");
+}
+
+:where(.light) .text-emerald-200\/90:not(.on-dark *),
+:where(.light) .text-emerald-300\/90:not(.on-dark *),
+:where(.light) .text-emerald-400\/90:not(.on-dark *) {
+  color: theme("colors.emerald.700 / 90%");
+}
+
+:where(.light) .text-green-300:not(.on-dark *),
+:where(.light) .hover\:text-green-300:hover:not(.on-dark *),
+:where(.light) .group:hover .group-hover\:text-green-300:not(.on-dark *),
+:where(.light) .text-green-400:not(.on-dark *),
+:where(.light) .hover\:text-green-400:hover:not(.on-dark *),
+:where(.light) .group:hover .group-hover\:text-green-400:not(.on-dark *) {
+  color: theme("colors.green.700");
+}
+
+:where(.light) .text-green-300\/50:not(.on-dark *),
+:where(.light) .text-green-400\/50:not(.on-dark *) {
+  color: theme("colors.green.700 / 50%");
+}
+
+:where(.light) .text-green-300\/60:not(.on-dark *),
+:where(.light) .text-green-400\/60:not(.on-dark *) {
+  color: theme("colors.green.700 / 60%");
+}
+
+:where(.light) .text-green-300\/70:not(.on-dark *),
+:where(.light) .text-green-400\/70:not(.on-dark *) {
+  color: theme("colors.green.700 / 70%");
+}
+
+:where(.light) .text-green-300\/75:not(.on-dark *),
+:where(.light) .text-green-400\/75:not(.on-dark *) {
+  color: theme("colors.green.700 / 75%");
+}
+
+:where(.light) .text-green-300\/80:not(.on-dark *),
+:where(.light) .text-green-400\/80:not(.on-dark *) {
+  color: theme("colors.green.700 / 80%");
+}
+
+:where(.light) .text-green-300\/90:not(.on-dark *),
+:where(.light) .text-green-400\/90:not(.on-dark *) {
+  color: theme("colors.green.700 / 90%");
+}
+
+:where(.light) .text-amber-200:not(.on-dark *),
+:where(.light) .hover\:text-amber-200:hover:not(.on-dark *),
+:where(.light) .group:hover .group-hover\:text-amber-200:not(.on-dark *),
+:where(.light) .text-amber-300:not(.on-dark *),
+:where(.light) .hover\:text-amber-300:hover:not(.on-dark *),
+:where(.light) .group:hover .group-hover\:text-amber-300:not(.on-dark *),
+:where(.light) .text-amber-400:not(.on-dark *),
+:where(.light) .hover\:text-amber-400:hover:not(.on-dark *),
+:where(.light) .group:hover .group-hover\:text-amber-400:not(.on-dark *) {
+  color: theme("colors.amber.700");
+}
+
+:where(.light) .text-amber-200\/50:not(.on-dark *),
+:where(.light) .text-amber-300\/50:not(.on-dark *),
+:where(.light) .text-amber-400\/50:not(.on-dark *) {
+  color: theme("colors.amber.700 / 50%");
+}
+
+:where(.light) .text-amber-200\/60:not(.on-dark *),
+:where(.light) .text-amber-300\/60:not(.on-dark *),
+:where(.light) .text-amber-400\/60:not(.on-dark *) {
+  color: theme("colors.amber.700 / 60%");
+}
+
+:where(.light) .text-amber-200\/70:not(.on-dark *),
+:where(.light) .text-amber-300\/70:not(.on-dark *),
+:where(.light) .text-amber-400\/70:not(.on-dark *) {
+  color: theme("colors.amber.700 / 70%");
+}
+
+:where(.light) .text-amber-200\/75:not(.on-dark *),
+:where(.light) .text-amber-300\/75:not(.on-dark *),
+:where(.light) .text-amber-400\/75:not(.on-dark *) {
+  color: theme("colors.amber.700 / 75%");
+}
+
+:where(.light) .text-amber-200\/80:not(.on-dark *),
+:where(.light) .text-amber-300\/80:not(.on-dark *),
+:where(.light) .text-amber-400\/80:not(.on-dark *) {
+  color: theme("colors.amber.700 / 80%");
+}
+
+:where(.light) .text-amber-200\/90:not(.on-dark *),
+:where(.light) .text-amber-300\/90:not(.on-dark *),
+:where(.light) .text-amber-400\/90:not(.on-dark *) {
+  color: theme("colors.amber.700 / 90%");
+}
+
+:where(.light) .text-yellow-300:not(.on-dark *),
+:where(.light) .hover\:text-yellow-300:hover:not(.on-dark *),
+:where(.light) .group:hover .group-hover\:text-yellow-300:not(.on-dark *) {
+  color: theme("colors.yellow.700");
+}
+
+:where(.light) .text-yellow-300\/50:not(.on-dark *) {
+  color: theme("colors.yellow.700 / 50%");
+}
+
+:where(.light) .text-yellow-300\/60:not(.on-dark *) {
+  color: theme("colors.yellow.700 / 60%");
+}
+
+:where(.light) .text-yellow-300\/70:not(.on-dark *) {
+  color: theme("colors.yellow.700 / 70%");
+}
+
+:where(.light) .text-yellow-300\/75:not(.on-dark *) {
+  color: theme("colors.yellow.700 / 75%");
+}
+
+:where(.light) .text-yellow-300\/80:not(.on-dark *) {
+  color: theme("colors.yellow.700 / 80%");
+}
+
+:where(.light) .text-yellow-300\/90:not(.on-dark *) {
+  color: theme("colors.yellow.700 / 90%");
+}
+
+:where(.light) .text-rose-200:not(.on-dark *),
+:where(.light) .hover\:text-rose-200:hover:not(.on-dark *),
+:where(.light) .group:hover .group-hover\:text-rose-200:not(.on-dark *),
+:where(.light) .text-rose-300:not(.on-dark *),
+:where(.light) .hover\:text-rose-300:hover:not(.on-dark *),
+:where(.light) .group:hover .group-hover\:text-rose-300:not(.on-dark *),
+:where(.light) .text-rose-400:not(.on-dark *),
+:where(.light) .hover\:text-rose-400:hover:not(.on-dark *),
+:where(.light) .group:hover .group-hover\:text-rose-400:not(.on-dark *) {
+  color: theme("colors.rose.700");
+}
+
+:where(.light) .text-rose-200\/50:not(.on-dark *),
+:where(.light) .text-rose-300\/50:not(.on-dark *),
+:where(.light) .text-rose-400\/50:not(.on-dark *) {
+  color: theme("colors.rose.700 / 50%");
+}
+
+:where(.light) .text-rose-200\/60:not(.on-dark *),
+:where(.light) .text-rose-300\/60:not(.on-dark *),
+:where(.light) .text-rose-400\/60:not(.on-dark *) {
+  color: theme("colors.rose.700 / 60%");
+}
+
+:where(.light) .text-rose-200\/70:not(.on-dark *),
+:where(.light) .text-rose-300\/70:not(.on-dark *),
+:where(.light) .text-rose-400\/70:not(.on-dark *) {
+  color: theme("colors.rose.700 / 70%");
+}
+
+:where(.light) .text-rose-200\/75:not(.on-dark *),
+:where(.light) .text-rose-300\/75:not(.on-dark *),
+:where(.light) .text-rose-400\/75:not(.on-dark *) {
+  color: theme("colors.rose.700 / 75%");
+}
+
+:where(.light) .text-rose-200\/80:not(.on-dark *),
+:where(.light) .text-rose-300\/80:not(.on-dark *),
+:where(.light) .text-rose-400\/80:not(.on-dark *) {
+  color: theme("colors.rose.700 / 80%");
+}
+
+:where(.light) .text-rose-200\/90:not(.on-dark *),
+:where(.light) .text-rose-300\/90:not(.on-dark *),
+:where(.light) .text-rose-400\/90:not(.on-dark *) {
+  color: theme("colors.rose.700 / 90%");
+}
+
+:where(.light) .text-red-200:not(.on-dark *),
+:where(.light) .hover\:text-red-200:hover:not(.on-dark *),
+:where(.light) .group:hover .group-hover\:text-red-200:not(.on-dark *),
+:where(.light) .text-red-300:not(.on-dark *),
+:where(.light) .hover\:text-red-300:hover:not(.on-dark *),
+:where(.light) .group:hover .group-hover\:text-red-300:not(.on-dark *),
+:where(.light) .text-red-400:not(.on-dark *),
+:where(.light) .hover\:text-red-400:hover:not(.on-dark *),
+:where(.light) .group:hover .group-hover\:text-red-400:not(.on-dark *) {
+  color: theme("colors.red.700");
+}
+
+:where(.light) .text-red-200\/50:not(.on-dark *),
+:where(.light) .text-red-300\/50:not(.on-dark *),
+:where(.light) .text-red-400\/50:not(.on-dark *) {
+  color: theme("colors.red.700 / 50%");
+}
+
+:where(.light) .text-red-200\/60:not(.on-dark *),
+:where(.light) .text-red-300\/60:not(.on-dark *),
+:where(.light) .text-red-400\/60:not(.on-dark *) {
+  color: theme("colors.red.700 / 60%");
+}
+
+:where(.light) .text-red-200\/70:not(.on-dark *),
+:where(.light) .text-red-300\/70:not(.on-dark *),
+:where(.light) .text-red-400\/70:not(.on-dark *) {
+  color: theme("colors.red.700 / 70%");
+}
+
+:where(.light) .text-red-200\/75:not(.on-dark *),
+:where(.light) .text-red-300\/75:not(.on-dark *),
+:where(.light) .text-red-400\/75:not(.on-dark *) {
+  color: theme("colors.red.700 / 75%");
+}
+
+:where(.light) .text-red-200\/80:not(.on-dark *),
+:where(.light) .text-red-300\/80:not(.on-dark *),
+:where(.light) .text-red-400\/80:not(.on-dark *) {
+  color: theme("colors.red.700 / 80%");
+}
+
+:where(.light) .text-red-200\/90:not(.on-dark *),
+:where(.light) .text-red-300\/90:not(.on-dark *),
+:where(.light) .text-red-400\/90:not(.on-dark *) {
+  color: theme("colors.red.700 / 90%");
+}
+
+:where(.light) .text-sky-200:not(.on-dark *),
+:where(.light) .hover\:text-sky-200:hover:not(.on-dark *),
+:where(.light) .group:hover .group-hover\:text-sky-200:not(.on-dark *),
+:where(.light) .text-sky-300:not(.on-dark *),
+:where(.light) .hover\:text-sky-300:hover:not(.on-dark *),
+:where(.light) .group:hover .group-hover\:text-sky-300:not(.on-dark *) {
+  color: theme("colors.sky.700");
+}
+
+:where(.light) .text-sky-200\/50:not(.on-dark *),
+:where(.light) .text-sky-300\/50:not(.on-dark *) {
+  color: theme("colors.sky.700 / 50%");
+}
+
+:where(.light) .text-sky-200\/60:not(.on-dark *),
+:where(.light) .text-sky-300\/60:not(.on-dark *) {
+  color: theme("colors.sky.700 / 60%");
+}
+
+:where(.light) .text-sky-200\/70:not(.on-dark *),
+:where(.light) .text-sky-300\/70:not(.on-dark *) {
+  color: theme("colors.sky.700 / 70%");
+}
+
+:where(.light) .text-sky-200\/75:not(.on-dark *),
+:where(.light) .text-sky-300\/75:not(.on-dark *) {
+  color: theme("colors.sky.700 / 75%");
+}
+
+:where(.light) .text-sky-200\/80:not(.on-dark *),
+:where(.light) .text-sky-300\/80:not(.on-dark *) {
+  color: theme("colors.sky.700 / 80%");
+}
+
+:where(.light) .text-sky-200\/90:not(.on-dark *),
+:where(.light) .text-sky-300\/90:not(.on-dark *) {
+  color: theme("colors.sky.700 / 90%");
+}
+
+:where(.light) .text-blue-300:not(.on-dark *),
+:where(.light) .hover\:text-blue-300:hover:not(.on-dark *),
+:where(.light) .group:hover .group-hover\:text-blue-300:not(.on-dark *),
+:where(.light) .text-blue-400:not(.on-dark *),
+:where(.light) .hover\:text-blue-400:hover:not(.on-dark *),
+:where(.light) .group:hover .group-hover\:text-blue-400:not(.on-dark *) {
+  color: theme("colors.blue.700");
+}
+
+:where(.light) .text-blue-300\/50:not(.on-dark *),
+:where(.light) .text-blue-400\/50:not(.on-dark *) {
+  color: theme("colors.blue.700 / 50%");
+}
+
+:where(.light) .text-blue-300\/60:not(.on-dark *),
+:where(.light) .text-blue-400\/60:not(.on-dark *) {
+  color: theme("colors.blue.700 / 60%");
+}
+
+:where(.light) .text-blue-300\/70:not(.on-dark *),
+:where(.light) .text-blue-400\/70:not(.on-dark *) {
+  color: theme("colors.blue.700 / 70%");
+}
+
+:where(.light) .text-blue-300\/75:not(.on-dark *),
+:where(.light) .text-blue-400\/75:not(.on-dark *) {
+  color: theme("colors.blue.700 / 75%");
+}
+
+:where(.light) .text-blue-300\/80:not(.on-dark *),
+:where(.light) .text-blue-400\/80:not(.on-dark *) {
+  color: theme("colors.blue.700 / 80%");
+}
+
+:where(.light) .text-blue-300\/90:not(.on-dark *),
+:where(.light) .text-blue-400\/90:not(.on-dark *) {
+  color: theme("colors.blue.700 / 90%");
+}
+
+:where(.light) .text-purple-300:not(.on-dark *),
+:where(.light) .hover\:text-purple-300:hover:not(.on-dark *),
+:where(.light) .group:hover .group-hover\:text-purple-300:not(.on-dark *),
+:where(.light) .text-purple-400:not(.on-dark *),
+:where(.light) .hover\:text-purple-400:hover:not(.on-dark *),
+:where(.light) .group:hover .group-hover\:text-purple-400:not(.on-dark *) {
+  color: theme("colors.purple.700");
+}
+
+:where(.light) .text-purple-300\/50:not(.on-dark *),
+:where(.light) .text-purple-400\/50:not(.on-dark *) {
+  color: theme("colors.purple.700 / 50%");
+}
+
+:where(.light) .text-purple-300\/60:not(.on-dark *),
+:where(.light) .text-purple-400\/60:not(.on-dark *) {
+  color: theme("colors.purple.700 / 60%");
+}
+
+:where(.light) .text-purple-300\/70:not(.on-dark *),
+:where(.light) .text-purple-400\/70:not(.on-dark *) {
+  color: theme("colors.purple.700 / 70%");
+}
+
+:where(.light) .text-purple-300\/75:not(.on-dark *),
+:where(.light) .text-purple-400\/75:not(.on-dark *) {
+  color: theme("colors.purple.700 / 75%");
+}
+
+:where(.light) .text-purple-300\/80:not(.on-dark *),
+:where(.light) .text-purple-400\/80:not(.on-dark *) {
+  color: theme("colors.purple.700 / 80%");
+}
+
+:where(.light) .text-purple-300\/90:not(.on-dark *),
+:where(.light) .text-purple-400\/90:not(.on-dark *) {
+  color: theme("colors.purple.700 / 90%");
+}
+
+:where(.light) .text-violet-300:not(.on-dark *),
+:where(.light) .hover\:text-violet-300:hover:not(.on-dark *),
+:where(.light) .group:hover .group-hover\:text-violet-300:not(.on-dark *) {
+  color: theme("colors.violet.700");
+}
+
+:where(.light) .text-violet-300\/50:not(.on-dark *) {
+  color: theme("colors.violet.700 / 50%");
+}
+
+:where(.light) .text-violet-300\/60:not(.on-dark *) {
+  color: theme("colors.violet.700 / 60%");
+}
+
+:where(.light) .text-violet-300\/70:not(.on-dark *) {
+  color: theme("colors.violet.700 / 70%");
+}
+
+:where(.light) .text-violet-300\/75:not(.on-dark *) {
+  color: theme("colors.violet.700 / 75%");
+}
+
+:where(.light) .text-violet-300\/80:not(.on-dark *) {
+  color: theme("colors.violet.700 / 80%");
+}
+
+:where(.light) .text-violet-300\/90:not(.on-dark *) {
+  color: theme("colors.violet.700 / 90%");
+}
+
+:where(.light) .text-slate-300:not(.on-dark *),
+:where(.light) .hover\:text-slate-300:hover:not(.on-dark *),
+:where(.light) .group:hover .group-hover\:text-slate-300:not(.on-dark *),
+:where(.light) .text-slate-400:not(.on-dark *),
+:where(.light) .hover\:text-slate-400:hover:not(.on-dark *),
+:where(.light) .group:hover .group-hover\:text-slate-400:not(.on-dark *) {
+  color: theme("colors.slate.600");
+}
+
+:where(.light) .text-slate-300\/50:not(.on-dark *),
+:where(.light) .text-slate-400\/50:not(.on-dark *) {
+  color: theme("colors.slate.600 / 50%");
+}
+
+:where(.light) .text-slate-300\/60:not(.on-dark *),
+:where(.light) .text-slate-400\/60:not(.on-dark *) {
+  color: theme("colors.slate.600 / 60%");
+}
+
+:where(.light) .text-slate-300\/70:not(.on-dark *),
+:where(.light) .text-slate-400\/70:not(.on-dark *) {
+  color: theme("colors.slate.600 / 70%");
+}
+
+:where(.light) .text-slate-300\/75:not(.on-dark *),
+:where(.light) .text-slate-400\/75:not(.on-dark *) {
+  color: theme("colors.slate.600 / 75%");
+}
+
+:where(.light) .text-slate-300\/80:not(.on-dark *),
+:where(.light) .text-slate-400\/80:not(.on-dark *) {
+  color: theme("colors.slate.600 / 80%");
+}
+
+:where(.light) .text-slate-300\/90:not(.on-dark *),
+:where(.light) .text-slate-400\/90:not(.on-dark *) {
+  color: theme("colors.slate.600 / 90%");
+}
+
+:where(.light) [class*="drop-shadow"]:not(.on-dark *) {
+  --tw-drop-shadow: drop-shadow(0 1px 1px rgb(15 23 42 / 0.06));
+}

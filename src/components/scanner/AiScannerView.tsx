@@ -421,7 +421,7 @@ export function AiScannerView({
     >
       {/* Scan Error Banner */}
       {scanError && !isScanning && (
-        <div className="animate-in fade-in slide-in-from-top-2 mx-auto flex w-full max-w-2xl items-start justify-between gap-3 rounded-2xl border border-rose-500/40 bg-rose-950/50 p-3.5 text-xs text-rose-200 shadow-xl backdrop-blur-xl">
+        <div className="on-dark animate-in fade-in slide-in-from-top-2 mx-auto flex w-full max-w-2xl items-start justify-between gap-3 rounded-2xl border border-rose-500/40 bg-rose-950/50 p-3.5 text-xs text-rose-200 shadow-xl backdrop-blur-xl">
           <div className="flex min-w-0 items-start gap-2.5">
             <AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-rose-400" />
             <div className="min-w-0 space-y-0.5">

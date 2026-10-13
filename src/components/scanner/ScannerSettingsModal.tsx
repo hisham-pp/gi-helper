@@ -552,7 +552,7 @@ export function ScannerSettingsModal({
                 }`}
               >
                 <span
-                  className={`pointer-events-none inline-block h-5 w-5 transform rounded-full bg-gradient-to-b from-white to-cyan-50 shadow-[0_2px_6px_rgba(0,0,0,0.4),inset_0_-1px_1px_rgba(8,145,178,0.25)] ring-0 transition duration-200 ease-in-out ${
+                  className={`pointer-events-none inline-block h-5 w-5 transform rounded-full bg-gradient-to-b from-snow to-cyan-50 shadow-[0_2px_6px_rgba(0,0,0,0.4),inset_0_-1px_1px_rgba(8,145,178,0.25)] ring-0 transition duration-200 ease-in-out ${
                     settings.autoReviewResults
                       ? "translate-x-5"
                       : "translate-x-0"
