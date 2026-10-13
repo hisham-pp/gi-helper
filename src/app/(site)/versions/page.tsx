@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowLeft, Bug, History, Minus, Sparkles, TrendingUp, type LucideIcon } from "lucide-react";
-import { ThemeToggle } from "@/components/ThemeToggle";
+import { Bug, History, Minus, Sparkles, TrendingUp, type LucideIcon } from "lucide-react";
 import { pageMetadata } from "@/lib/seo";
 import { CHANGE_TYPES, getVersions, type ChangeType, type VersionRelease } from "@/lib/versions";
 
@@ -101,19 +99,7 @@ export default function VersionsPage() {
   const latest = versions[0];
 
   return (
-    <div className="relative z-10 flex min-h-screen w-full flex-col items-center justify-start bg-transparent p-4 pt-6 md:p-8">
-      {/* Top Global Navigation Bar */}
-      <div className="mb-8 flex w-full max-w-4xl items-center justify-between">
-        <Link href="/" className="glass-btn px-4 py-2 text-xs sm:text-sm">
-          <ArrowLeft className="h-4 w-4 text-primary" />
-          <span>Back to Scanner</span>
-        </Link>
-
-        <div className="flex items-center gap-3">
-          <ThemeToggle />
-        </div>
-      </div>
-
+    <div className="flex w-full flex-1 flex-col items-center justify-start px-4 pb-4 pt-2 sm:px-6 sm:pt-4 md:px-8 md:pb-8">
       <main className="w-full max-w-4xl space-y-6 pb-12">
         {/* Hero Header */}
         <div className="glass-card glass-card--lg p-6 sm:p-8">

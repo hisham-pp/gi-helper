@@ -5,9 +5,10 @@
 This is a Next.js 15 App Router project with React 19, TypeScript, and Tailwind CSS.
 
 - **Application Routes (`src/app/`):**
-  - `src/app/page.tsx`: Landing page containing the Inventory Scanner and results grid.
-  - `src/app/materials/page.tsx`: 475-material directory with category filtering and ordering.
-  - `src/app/versions/page.tsx`: Release notes page, built from `src/data/versions/` at build time.
+  - `src/app/(site)/layout.tsx`: Shared layout for the public pages; renders the common top bar (`src/components/layout/SiteHeader.tsx`), which stays mounted across page switches. Add new public pages inside `(site)`.
+  - `src/app/(site)/page.tsx`: Landing page containing the Inventory Scanner and results grid.
+  - `src/app/(site)/materials/page.tsx`: 475-material directory with category filtering and ordering.
+  - `src/app/(site)/versions/page.tsx`: Release notes page, built from `src/data/versions/` at build time.
   - `src/app/api/scanner/ai-vision/route.ts`: Server Route Handler for Vision AI calls (Gemini, OpenAI, Claude, Grok, Custom) and connection testing.
   - `src/app/debug/`: Testing utilities and debug exploration views.
 - **Components (`src/components/`):**

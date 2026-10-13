@@ -1,0 +1,27 @@
+{
+  "title": "One top bar everywhere",
+  "date": "2026-10-13",
+  "summary": "Every page now shares the same top bar, and filters on the Materials page are easier to see and nicer to use.",
+  "changes": [
+    {
+      "type": "improved",
+      "text": "The scanner, Materials and release notes pages share one top bar that stays in place when you switch pages."
+    },
+    {
+      "type": "improved",
+      "text": "Home and Materials links sit in one glass pill, like the scanner tabs, with a highlight that slides to the page you open."
+    },
+    {
+      "type": "improved",
+      "text": "Settings and theme buttons match the new glass style."
+    },
+    {
+      "type": "improved",
+      "text": "Selected rarity and category filters fill with colour, so it's clear what's applied."
+    },
+    {
+      "type": "improved",
+      "text": "The Reset button slides in smoothly instead of jumping, and the filter cards give a small wiggle when filters change."
+    }
+  ]
+}

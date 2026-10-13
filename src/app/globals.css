@@ -101,6 +101,9 @@
 html {
   scroll-behavior: smooth;
   background-color: rgb(var(--md-sys-color-background) / 1);
+  /* Reserve the scrollbar's width on every page, so the shared top bar and
+     centred content don't shift sideways between short and long pages */
+  scrollbar-gutter: stable;
 }
 
 @keyframes pan-bg {

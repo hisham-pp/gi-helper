@@ -15,7 +15,8 @@ export function ThemeToggle() {
 
   if (!mounted) {
     return (
-      <div className="h-10 w-10 animate-pulse rounded-full bg-surface-variant" />
+      // Same size as the button, so nothing shifts when it mounts
+      <div className="glass-track h-9 w-9" />
     );
   }
 
@@ -26,13 +27,14 @@ export function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="text-on-surface-variant hover:text-on-surface rounded-full bg-surface-variant/50 p-2 transition-colors hover:bg-surface-variant"
+      // Same recessed glass as the top bar's page pill (glass-track)
+      className="glass-track flex h-9 w-9 items-center justify-center text-white/55 transition-[color,transform] duration-200 hover:text-white/85 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-400"
       aria-label="Toggle theme"
     >
       {theme === "dark" ? (
-        <Sun className="h-5 w-5" />
+        <Sun className="h-4 w-4" />
       ) : (
-        <Moon className="h-5 w-5" />
+        <Moon className="h-4 w-4" />
       )}
     </button>
   );
