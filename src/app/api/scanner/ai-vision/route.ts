@@ -11,33 +11,27 @@ export async function GET() {
   return NextResponse.json({
     providers: {
       gemini: {
-        hasKey: Boolean(process.env.GEMINI_API_KEY?.trim()),
-        defaultModel: process.env.GEMINI_MODEL || "gemini-2.0-flash",
+        hasKey: false,
+        defaultModel: "gemini-2.0-flash",
       },
       openai: {
-        hasKey: Boolean(process.env.OPENAI_API_KEY?.trim()),
-        defaultModel: process.env.OPENAI_MODEL || "gpt-4o-mini",
-        defaultBaseUrl: process.env.OPENAI_BASE_URL || "",
+        hasKey: false,
+        defaultModel: "gpt-4o-mini",
+        defaultBaseUrl: "",
       },
       claude: {
-        hasKey: Boolean(
-          (process.env.ANTHROPIC_API_KEY || process.env.CLAUDE_API_KEY)?.trim(),
-        ),
-        defaultModel: process.env.ANTHROPIC_MODEL || "claude-3-5-sonnet-latest",
+        hasKey: false,
+        defaultModel: "claude-3-5-sonnet-latest",
       },
       grok: {
-        hasKey: Boolean(
-          (process.env.GROK_API_KEY || process.env.XAI_API_KEY)?.trim(),
-        ),
-        defaultModel: process.env.GROK_MODEL || "grok-2-vision-1212",
-        defaultBaseUrl: process.env.GROK_BASE_URL || "https://api.x.ai/v1",
+        hasKey: false,
+        defaultModel: "grok-2-vision-1212",
+        defaultBaseUrl: "https://api.x.ai/v1",
       },
       custom: {
-        hasKey: Boolean(process.env.CUSTOM_AI_API_KEY?.trim()),
-        defaultModel:
-          process.env.CUSTOM_AI_MODEL || "qwen/qwen-2-vl-72b-instruct",
-        defaultBaseUrl:
-          process.env.CUSTOM_AI_BASE_URL || "https://openrouter.ai/api/v1",
+        hasKey: false,
+        defaultModel: "qwen/qwen-2-vl-72b-instruct",
+        defaultBaseUrl: "https://openrouter.ai/api/v1",
       },
     },
   });
@@ -57,51 +51,19 @@ export async function POST(req: NextRequest) {
 
     const adapter = getAiAdapter(provider);
 
-    // API Key, Model, and BaseUrl Resolution:
-    // User configuration from request payload (saved in localStorage) has HIGHEST priority
-    // Server environment variables act as fallback
-    let envKey: string | undefined;
-    let envModel: string | undefined;
-    let envBaseUrl: string | undefined;
-
-    switch (provider) {
-      case "gemini":
-        envKey = process.env.GEMINI_API_KEY;
-        envModel = process.env.GEMINI_MODEL;
-        break;
-      case "openai":
-        envKey = process.env.OPENAI_API_KEY;
-        envModel = process.env.OPENAI_MODEL;
-        envBaseUrl = process.env.OPENAI_BASE_URL;
-        break;
-      case "claude":
-        envKey = process.env.ANTHROPIC_API_KEY || process.env.CLAUDE_API_KEY;
-        envModel = process.env.ANTHROPIC_MODEL || process.env.CLAUDE_MODEL;
-        break;
-      case "grok":
-        envKey = process.env.GROK_API_KEY || process.env.XAI_API_KEY;
-        envModel = process.env.GROK_MODEL || process.env.XAI_MODEL;
-        envBaseUrl = process.env.GROK_BASE_URL || process.env.XAI_BASE_URL;
-        break;
-      case "custom":
-        envKey = process.env.CUSTOM_AI_API_KEY;
-        envModel = process.env.CUSTOM_AI_MODEL;
-        envBaseUrl = process.env.CUSTOM_AI_BASE_URL;
-        break;
-    }
-
+    // API Key Resolution:
+    // AI keys can ONLY be read from user configuration (stored in client localStorage / settings modal)
+    // Server environment keys are completely disabled.
     const resolvedApiKey =
-      (requestApiKey && String(requestApiKey).trim()) || envKey;
+      requestApiKey && String(requestApiKey).trim()
+        ? String(requestApiKey).trim()
+        : "";
 
     const activeModel =
-      (model && String(model).trim()) ||
-      (envModel && String(envModel).trim()) ||
-      adapter.defaultModel;
+      (model && String(model).trim()) || adapter.defaultModel;
 
     const activeBaseUrl =
-      (baseUrl && String(baseUrl).trim()) ||
-      (envBaseUrl && String(envBaseUrl).trim()) ||
-      adapter.defaultBaseUrl;
+      (baseUrl && String(baseUrl).trim()) || adapter.defaultBaseUrl;
 
     // 1. Connection Test Action
     if (action === "test") {

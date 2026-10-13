@@ -126,3 +126,35 @@ test("mapAiItemsToMaterials maps raw AI outputs to canonical DetectedItem includ
   assert.equal(items[2].quantity, 24);
   assert.equal(items[2].rarity, 2);
 });
+
+test("GET /api/scanner/ai-vision returns hasKey: false for all providers (no server env key leakage)", async () => {
+  const { GET } = await import("../src/app/api/scanner/ai-vision/route");
+  const res = await GET();
+  const data = await res.json();
+  assert.ok(data.providers);
+  for (const providerKey of Object.keys(data.providers)) {
+    assert.equal(data.providers[providerKey].hasKey, false);
+  }
+});
+
+test("POST /api/scanner/ai-vision rejects requests without user API key", async () => {
+  const { POST } = await import("../src/app/api/scanner/ai-vision/route");
+  const { NextRequest } = await import("next/server");
+  const req = new NextRequest("http://localhost:3000/api/scanner/ai-vision", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      action: "scan",
+      provider: "gemini",
+      apiKey: "", // empty user key
+      image: "data:image/png;base64,abc",
+    }),
+  });
+
+  const res = await POST(req);
+  assert.equal(res.status, 400);
+  const data = await res.json();
+  assert.equal(data.success, false);
+  assert.match(data.error, /No API Key found/i);
+});
+

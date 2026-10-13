@@ -274,9 +274,23 @@ export function ScannerSettingsModal({
             <div className="grid grid-cols-2 gap-2 sm:grid-cols-5">
               {adapters.map((adapter) => {
                 const isSelected = settings.aiProvider === adapter.providerId;
-                const isServerReady = Boolean(
-                  serverEnv[adapter.providerId]?.hasKey,
-                );
+                const userKey = (() => {
+                  switch (adapter.providerId) {
+                    case "openai":
+                      return settings.openaiApiKey;
+                    case "claude":
+                      return settings.claudeApiKey;
+                    case "grok":
+                      return settings.grokApiKey;
+                    case "custom":
+                      return settings.customApiKey;
+                    case "gemini":
+                    default:
+                      return settings.geminiApiKey;
+                  }
+                })();
+                const hasUserKey = Boolean(userKey?.trim());
+
                 return (
                   <button
                     key={adapter.providerId}
@@ -297,9 +311,9 @@ export function ScannerSettingsModal({
                     <span className="text-xs font-bold">
                       {adapter.displayName}
                     </span>
-                    {isServerReady ? (
+                    {hasUserKey ? (
                       <span className="py-0.2 rounded bg-emerald-500/20 px-1 text-[9px] font-semibold text-emerald-300">
-                        Ready
+                        Configured
                       </span>
                     ) : adapter.providerId === "gemini" ? (
                       <span className="py-0.2 rounded bg-sky-500/20 px-1 text-[9px] font-semibold text-sky-300">
@@ -343,15 +357,14 @@ export function ScannerSettingsModal({
                   <Key className="h-3.5 w-3.5 text-primary" />
                   <span>API Key</span>
                 </label>
-                {Boolean(serverEnv[settings.aiProvider]?.hasKey) &&
-                !currentKey?.trim() ? (
+                {Boolean(currentKey?.trim()) ? (
                   <span className="flex items-center gap-1 text-[11px] font-semibold text-emerald-400">
                     <CheckCircle2 className="h-3 w-3" />
-                    Ready (Default key active)
+                    Key saved in browser
                   </span>
                 ) : (
                   <span className="text-[10px] text-white/40">
-                    Stored securely in your browser
+                    User-configured (Stored in browser)
                   </span>
                 )}
               </div>
