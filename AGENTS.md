@@ -9,6 +9,7 @@ This is a Next.js 15 App Router project with React 19, TypeScript, and Tailwind 
   - `src/app/(site)/page.tsx`: Landing page containing the Inventory Scanner and results grid.
   - `src/app/(site)/materials/page.tsx`: 475-material directory with category filtering and ordering.
   - `src/app/(site)/versions/page.tsx`: Release notes page, built from `src/data/versions/` at build time.
+  - `src/app/(site)/about/page.tsx`: About page (features, how it works, privacy, fan-project disclaimer), linked from the shared footer (`SiteFooter`).
   - `src/app/api/scanner/ai-vision/route.ts`: Server Route Handler for Vision AI calls (Gemini, OpenAI, Claude, Grok, Custom) and connection testing.
   - `src/app/debug/`: Testing utilities and debug exploration views.
 - **Components (`src/components/`):**
@@ -26,7 +27,6 @@ This is a Next.js 15 App Router project with React 19, TypeScript, and Tailwind 
   - `src/lib/good-format.ts`: Standard Genshin Open Object Description (GOOD) exporter.
   - `src/lib/grid-detector/`: Card/grid detection engine (pure TS) with a Web Worker client. See `docs/grid-detector.md`.
   - `src/lib/material-detector/`: On-device material recognition (material, rarity, quantity) of detected cards, with a Web Worker scan client. See `docs/material-detector.md`.
-  - `src/lib/cv/`: Preserved legacy Canvas CV/dHash matching modules (kept for future reference).
 - **Data & Static Assets:**
   - `src/data/materials.json`: Single canonical reference data containing all 475 Genshin Impact materials (served dynamically at `/data/materials.json`).
   - `src/data/versions/<major>-<minor>-<patch>/release.json`: Release notes per version (`{ title, date: "YYYY-MM-DD", summary?, changes: [{ type: "new" | "improved" | "fixed" | "removed", text }] }`). The folder name is the version; add a folder to publish a release. Loaded and validated by `src/lib/versions.ts`.
@@ -62,7 +62,7 @@ Prefer `pnpm`; the repo pins `pnpm@10.17.1` and Node `22.x`.
 - **Icons & Styling:** Use `lucide-react` for icons and Tailwind CSS with glassmorphic, theme-aware classes.
 - **Light/Dark Theme:** Tailwind's `white` is the theme ink (`--ink`: white in dark, slate in light), so `text-white`, `bg-white/10` and `border-white/10` adapt automatically; use `snow` for anything that must stay white. Wrap intentionally dark surfaces (scan chamber, dark banners) in `on-dark` to keep white ink and pale accents there. Light versions of the glass classes live in `src/styles/glass-light.css`; pale accent text (`text-cyan-300`, ...) is remapped to deep shades in light mode in `globals.css`.
 - **Modals:** Load modals with `next/dynamic` (`ssr: false`) and mount them only while open (see `src/components/scanner/lazy-modals.ts`); call `usePauseBackground()` inside so the animated background stops under the blur.
-- **Preserve Documentation & Legacy Modules:** Keep existing comments and legacy CV modules in `src/lib/cv/` intact.
+- **Preserve Documentation:** Keep existing comments intact.
 
 ---
 

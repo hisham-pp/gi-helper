@@ -88,7 +88,6 @@ src/
     │   ├── material-matcher.ts         # Exact & Levenshtein material resolver
     │   ├── prompts.ts                  # In-prompt reference dictionary generator
     │   └── vision-scanner.ts           # Vision scan execution helpers
-    ├── cv/                             # Preserved legacy CV/dHash pipeline (for future reference)
     ├── good-format.ts                  # GOOD format exporter
     ├── materials.ts                    # Category helpers & rarity styles
     ├── scanner-settings.ts             # LocalStorage settings hook & persistence

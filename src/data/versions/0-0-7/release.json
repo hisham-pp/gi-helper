@@ -1,0 +1,19 @@
+{
+  "title": "About page",
+  "date": "2026-10-13",
+  "summary": "A new About page explains what GI Helper does, how to use it and what happens to your data.",
+  "changes": [
+    {
+      "type": "new",
+      "text": "About page: features, a quick how-to, exactly where your screenshots and API keys go, and the fan-project disclaimer."
+    },
+    {
+      "type": "new",
+      "text": "A footer on every page with links to About and the release notes."
+    },
+    {
+      "type": "removed",
+      "text": "The old scanner engine, which the app no longer used, and its debug view."
+    }
+  ]
+}

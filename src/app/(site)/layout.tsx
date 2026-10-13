@@ -1,3 +1,4 @@
+import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { getLatestVersion } from "@/lib/versions";
 
@@ -13,6 +14,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
     <div className="relative z-10 flex min-h-screen w-full flex-col">
       <SiteHeader version={latestVersion?.version} />
       {children}
+      <SiteFooter />
     </div>
   );
 }

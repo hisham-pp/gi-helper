@@ -71,7 +71,6 @@ Located under `src/lib/ai/`:
 - `src/app/`: Next.js 15 App Router pages, `/api/scanner/ai-vision/route.ts`, and `/data/materials.json/route.ts`.
 - `src/components/scanner/`: Scanner UI, Settings Modal, Review Modal, Result Grid.
 - `src/lib/ai/`: AI adapters, prompt generator, and material matcher.
-- `src/lib/cv/`: Preserved legacy Canvas CV/dHash modules.
 - `src/data/materials.json`: Single canonical dataset of 475 materials.
 - `public/`: Static assets (`/images/materials/`).
 - `tests/ai-vision.test.ts`: Automated unit tests for AI adapters and material matching.

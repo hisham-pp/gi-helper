@@ -1,4 +1,4 @@
-import { DebugViewManager } from "@/components/scanner/debug/DebugViewManager";
+import { DebugStudio } from "./DebugStudio";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
@@ -40,8 +40,8 @@ export default function ScannerDebugPage() {
         </div>
       </div>
 
-      {/* Debugger Suite Container */}
-      <DebugViewManager />
+      {/* Grid & Material Studio */}
+      <DebugStudio />
     </div>
   );
 }
