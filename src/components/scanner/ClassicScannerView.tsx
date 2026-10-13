@@ -319,7 +319,7 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
       className="pill-tab-panel w-full space-y-4 focus-visible:outline-none"
     >
       {scanError && !isScanning && (
-        <div className="animate-in fade-in slide-in-from-top-2 mx-auto flex w-full max-w-2xl items-start justify-between gap-3 rounded-2xl border border-rose-500/40 bg-rose-950/50 p-3.5 text-xs text-rose-200 shadow-xl backdrop-blur-xl">
+        <div className="on-dark animate-in fade-in slide-in-from-top-2 mx-auto flex w-full max-w-2xl items-start justify-between gap-3 rounded-2xl border border-rose-500/40 bg-rose-950/50 p-3.5 text-xs text-rose-200 shadow-xl backdrop-blur-xl">
           <div className="flex min-w-0 items-start gap-2.5">
             <AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-rose-400" />
             <div className="min-w-0 space-y-0.5">
@@ -386,7 +386,7 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
           <button
             type="button"
             onClick={() => controllerRef.current?.abort()}
-            className="flex items-center gap-1.5 rounded-full border border-white/15 bg-black/40 px-3.5 py-1 text-xs font-semibold text-white/80 backdrop-blur-md transition-colors hover:bg-white/10 hover:text-white"
+            className="on-dark flex items-center gap-1.5 rounded-full border border-white/15 bg-black/40 px-3.5 py-1 text-xs font-semibold text-white/80 backdrop-blur-md transition-colors hover:bg-white/10 hover:text-white"
           >
             <Square className="h-3 w-3" />
             Stop scanning

@@ -10,6 +10,12 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        /* "white" is the theme's ink: white on the dark glass, slate in light
+           mode (--ink in globals.css), so text-white, bg-white/10 and
+           border-white/10 adapt to both themes. Use "snow" where it must stay
+           white, e.g. on coloured fills or the dark scan chamber. */
+        white: "rgb(var(--ink) / <alpha-value>)",
+        snow: "#ffffff",
         primary: {
           DEFAULT: "rgb(var(--md-sys-color-primary) / <alpha-value>)",
           foreground: "rgb(var(--md-sys-color-on-primary) / <alpha-value>)",

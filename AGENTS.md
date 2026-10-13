@@ -60,6 +60,7 @@ Prefer `pnpm`; the repo pins `pnpm@10.17.1` and Node `22.x`.
 - **Precedence Rule:** User API keys in `localStorage` must always take precedence over server `.env` variables.
 - **Components:** Functional React 19 components in `PascalCase`. Route segments and helper modules use `kebab-case`.
 - **Icons & Styling:** Use `lucide-react` for icons and Tailwind CSS with glassmorphic, theme-aware classes.
+- **Light/Dark Theme:** Tailwind's `white` is the theme ink (`--ink`: white in dark, slate in light), so `text-white`, `bg-white/10` and `border-white/10` adapt automatically; use `snow` for anything that must stay white. Wrap intentionally dark surfaces (scan chamber, dark banners) in `on-dark` to keep white ink and pale accents there. Light versions of the glass classes live in `src/styles/glass-light.css`; pale accent text (`text-cyan-300`, ...) is remapped to deep shades in light mode in `globals.css`.
 - **Modals:** Load modals with `next/dynamic` (`ssr: false`) and mount them only while open (see `src/components/scanner/lazy-modals.ts`); call `usePauseBackground()` inside so the animated background stops under the blur.
 - **Preserve Documentation & Legacy Modules:** Keep existing comments and legacy CV modules in `src/lib/cv/` intact.
 

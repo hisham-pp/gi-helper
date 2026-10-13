@@ -1,0 +1,19 @@
+{
+  "title": "A real light theme",
+  "date": "2026-10-13",
+  "summary": "Light mode now has its own frosted-white look with dark text, instead of the dark design on a washed-out background.",
+  "changes": [
+    {
+      "type": "fixed",
+      "text": "Light mode text, buttons, cards and modals are easy to read again: dark text on frosted white glass with cyan accents."
+    },
+    {
+      "type": "fixed",
+      "text": "Rarity colours, badges and status text switch to deeper shades in light mode so they stay visible."
+    },
+    {
+      "type": "fixed",
+      "text": "The theme button always switches to the other theme on the first click, including when following your system setting."
+    }
+  ]
+}
