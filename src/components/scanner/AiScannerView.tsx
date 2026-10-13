@@ -317,9 +317,10 @@ export function AiScannerView({
           setDetectedItems((prev) => {
             const merged = [...prev];
             for (const item of allDetected) {
-              const existing = merged.find((i) => i.id === item.id);
-              if (existing) {
-                existing.quantity += item.quantity;
+              const idx = merged.findIndex((i) => i.id === item.id);
+              // Replace rather than mutate: the inventory is shared between tabs
+              if (idx >= 0) {
+                merged[idx] = { ...merged[idx], quantity: merged[idx].quantity + item.quantity };
               } else {
                 merged.push(item);
               }
@@ -360,9 +361,10 @@ export function AiScannerView({
     setDetectedItems((prev) => {
       const merged = [...prev];
       for (const item of confirmedItems) {
-        const existing = merged.find((i) => i.id === item.id);
-        if (existing) {
-          existing.quantity += item.quantity;
+        const idx = merged.findIndex((i) => i.id === item.id);
+        // Replace rather than mutate: the inventory is shared between tabs
+        if (idx >= 0) {
+          merged[idx] = { ...merged[idx], quantity: merged[idx].quantity + item.quantity };
         } else {
           merged.push(item);
         }
