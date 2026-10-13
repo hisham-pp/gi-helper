@@ -1,0 +1,35 @@
+{
+  "title": "First release",
+  "date": "2026-10-13",
+  "summary": "GI Helper scans Genshin Impact inventory screenshots and turns them into a material list you can export to GOOD format.",
+  "changes": [
+    {
+      "type": "new",
+      "text": "On-device scanner reads each inventory card's material, rarity and quantity in your browser. No API key or upload needed."
+    },
+    {
+      "type": "new",
+      "text": "AI Vision scanner with Gemini, OpenAI, Claude, Grok or a custom endpoint, using API keys you enter, which stay in your browser."
+    },
+    {
+      "type": "new",
+      "text": "Review step to correct detected materials and quantities before exporting."
+    },
+    {
+      "type": "new",
+      "text": "Export results to GOOD format for Genshin optimizers."
+    },
+    {
+      "type": "new",
+      "text": "Materials directory with every material in in-game inventory order, plus search, category and rarity filters."
+    },
+    {
+      "type": "new",
+      "text": "Release notes page listing what changed in each version."
+    },
+    {
+      "type": "new",
+      "text": "Anonymous usage analytics (Vercel Analytics) to see which features get used."
+    }
+  ]
+}
