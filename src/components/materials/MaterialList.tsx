@@ -201,13 +201,6 @@ export function MaterialList() {
         </Link>
 
         <div className="flex items-center gap-3">
-          <Link
-            href="/debug"
-            className="glass-btn px-4 py-2 text-xs sm:text-sm"
-          >
-            <Bug className="h-4 w-4 text-amber-400" />
-            <span className="hidden sm:inline">Debugger</span>
-          </Link>
           <ThemeToggle />
         </div>
       </div>
