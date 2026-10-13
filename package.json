@@ -13,7 +13,6 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "test": "npx tsx --test tests/**/*.test.ts",
-    "test:cv": "npx tsx --test tests/cv/hasher.test.ts",
     "test:grid-detector": "npx tsx --test tests/grid-detector.test.ts tests/grid-detector-samples.test.ts",
     "eval:grid-detector": "tsx scripts/evaluate-grid-detector.ts",
     "test:material-detector": "npx tsx --test tests/material-detector.test.ts tests/material-detector-samples.test.ts",
@@ -22,7 +21,7 @@
     "build:digit-templates": "tsx scripts/build-digit-templates.ts",
     "build:material-thumbs": "tsx scripts/build-material-thumbs.ts",
     "build:brand-icons": "tsx scripts/build-brand-icons.ts",
-    "sync-data": "tsx scripts/scrape-materials.ts && tsx scripts/update-families.ts && tsx scripts/generate-hashes.ts && tsx scripts/build-material-atlas.ts && tsx scripts/build-material-thumbs.ts"
+    "sync-data": "tsx scripts/scrape-materials.ts && tsx scripts/update-families.ts && tsx scripts/build-material-atlas.ts && tsx scripts/build-material-thumbs.ts"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
@@ -44,7 +43,6 @@
     "react-select": "^5.10.2",
     "remark-gfm": "^4.0.1",
     "sonner": "^2.0.8",
-    "tesseract.js": "^7.0.0",
     "zod": "^3.25.76"
   },
   "devDependencies": {

@@ -60,7 +60,7 @@ material whose tier contradicts the stars and background is flagged too.
 
 ### What the legacy CV pipeline got wrong
 
-`src/lib/cv/` (kept for reference) used a fixed 1080p grid, a grayscale
+The original pipeline (formerly `src/lib/cv/`, removed) used a fixed 1080p grid, a grayscale
 dHash plus an RGB histogram of the icon over a flat rarity colour, and
 Tesseract for quantities. That could not separate colour variants (Agnidus
 vs. Prithiva gems share a silhouette), depended on the grid layout, and read
