@@ -4,6 +4,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import { BackgroundEffects } from "@/components/BackgroundEffects";
 import { SITE } from "@/lib/site";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next"
 
 /**
  * Site-wide SEO defaults. Pages set their own title, description and canonical;
@@ -62,6 +63,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <Analytics />
           <BackgroundEffects />
           {children}
           <Toaster position="bottom-right" richColors />
