@@ -4,9 +4,13 @@ import React, { useState, useCallback, useEffect, useRef } from "react";
 import { toast } from "sonner";
 import { UploadZone } from "./UploadZone";
 import { ResultGrid } from "./ResultGrid";
-import { ScanReviewModal } from "./ScanReviewModal";
-import { ScannerSettingsModal } from "./ScannerSettingsModal";
+import {
+  LazyScanReviewModal,
+  LazyScannerSettingsModal,
+  preloadScanReviewModal,
+} from "./lazy-modals";
 import { DetectedItem, ScannedReviewItem } from "@/lib/types";
+import { materialThumbUrl } from "@/lib/materials";
 import { exportToGOODFormat } from "@/lib/good-format";
 import {
   useScannerSettings,
@@ -183,6 +187,8 @@ export function AiScannerView({
       }
 
       setIsScanning(true);
+      // The review modal opens when the scan finishes: fetch its code meanwhile
+      preloadScanReviewModal();
       setProgress(10);
       setStatusMessage(`Starting ${currentAdapter.displayName} Vision AI...`);
 
@@ -295,7 +301,7 @@ export function AiScannerView({
               name: item.name,
               quantity: item.quantity,
               rarity: item.rarity,
-              imageSnippet: `/images/materials/${item.id}.png`,
+              imageSnippet: materialThumbUrl(item.id),
               sourceImageName: file.name,
             });
           }
@@ -357,7 +363,7 @@ export function AiScannerView({
     [executeScan],
   );
 
-  const handleConfirmReview = (confirmedItems: DetectedItem[]) => {
+  const handleConfirmReview = useCallback((confirmedItems: DetectedItem[]) => {
     setDetectedItems((prev) => {
       const merged = [...prev];
       for (const item of confirmedItems) {
@@ -372,35 +378,38 @@ export function AiScannerView({
       return merged;
     });
     setIsReviewModalOpen(false);
-  };
+  }, [setDetectedItems]);
 
-  const handleClear = () => {
+  const handleCloseReview = useCallback(() => setIsReviewModalOpen(false), []);
+
+  // Stable callbacks keep the memoized ResultGrid from re-rendering on unrelated state
+  const handleClear = useCallback(() => {
     if (confirm("Are you sure you want to clear all scanned items?")) {
       setDetectedItems([]);
       toast.success("Items cleared");
     }
-  };
+  }, [setDetectedItems]);
 
-  const handleExport = () => {
+  const handleExport = useCallback(() => {
     if (detectedItems.length === 0) {
       toast.error("No items to export");
       return;
     }
     exportToGOODFormat(detectedItems);
     toast.success("Exported to GOOD format!");
-  };
+  }, [detectedItems]);
 
-  const handleUpdateQuantity = (id: string, quantity: number) => {
+  const handleUpdateQuantity = useCallback((id: string, quantity: number) => {
     setDetectedItems((prev) =>
       prev.map((item) =>
         item.id === id ? { ...item, quantity: Math.max(1, quantity) } : item,
       ),
     );
-  };
+  }, [setDetectedItems]);
 
-  const handleRemoveItem = (id: string) => {
+  const handleRemoveItem = useCallback((id: string) => {
     setDetectedItems((prev) => prev.filter((item) => item.id !== id));
-  };
+  }, [setDetectedItems]);
 
   return (
     <div
@@ -482,19 +491,19 @@ export function AiScannerView({
         </div>
       )}
 
-      {/* Post-Scan Review Modal */}
-      <ScanReviewModal
-        isOpen={isReviewModalOpen}
-        reviewItems={lastReviewItems}
-        onClose={() => setIsReviewModalOpen(false)}
-        onConfirm={handleConfirmReview}
-      />
+      {/* Post-Scan Review Modal (loaded and mounted only while open) */}
+      {isReviewModalOpen && (
+        <LazyScanReviewModal
+          reviewItems={lastReviewItems}
+          onClose={handleCloseReview}
+          onConfirm={handleConfirmReview}
+        />
+      )}
 
-      {/* Settings Modal */}
-      <ScannerSettingsModal
-        isOpen={isSettingsOpen}
-        onClose={() => setIsSettingsOpen(false)}
-      />
+      {/* Settings Modal (loaded and mounted only while open) */}
+      {isSettingsOpen && (
+        <LazyScannerSettingsModal onClose={() => setIsSettingsOpen(false)} />
+      )}
     </div>
   );
 }

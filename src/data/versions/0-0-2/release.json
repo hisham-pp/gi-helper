@@ -1,0 +1,27 @@
+{
+  "title": "Faster modals and lighter pages",
+  "date": "2026-10-13",
+  "summary": "Modals open faster, search boxes stay responsive while you type, and pages download far less image data.",
+  "changes": [
+    {
+      "type": "improved",
+      "text": "Scan review, material picker, scanner settings and material details now load only when you open them, so pages load less code up front."
+    },
+    {
+      "type": "improved",
+      "text": "Material icons in lists, grids and the picker are about 10x smaller (around 4 KB instead of 40 KB each) and load only when scrolled into view. Opening the material picker now downloads under 200 KB of icons instead of over 2 MB."
+    },
+    {
+      "type": "improved",
+      "text": "Typing in the review and material picker search boxes stays responsive, and editing one scanned slot no longer redraws the whole list."
+    },
+    {
+      "type": "improved",
+      "text": "The animated background pauses while a modal is open, so the blurred backdrop costs less GPU time."
+    },
+    {
+      "type": "fixed",
+      "text": "Scanner settings no longer contact the server on every page load, only when you open them."
+    }
+  ]
+}

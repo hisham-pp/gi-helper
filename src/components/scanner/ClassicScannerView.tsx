@@ -5,7 +5,7 @@ import { AlertCircle, Eye, Scan, Square, X } from "lucide-react";
 import { toast } from "sonner";
 import { UploadZone } from "./UploadZone";
 import { ResultGrid } from "./ResultGrid";
-import { ScanReviewModal } from "./ScanReviewModal";
+import { LazyScanReviewModal, preloadScanReviewModal } from "./lazy-modals";
 import type { ScanningFileItem } from "./ScanningAnimation";
 import { cropToBlob } from "@/lib/grid-detector";
 import { isMaterialDetectionError, type CardRecognition, type ScanProgress } from "@/lib/material-detector";
@@ -14,6 +14,7 @@ import { useScannerSettings } from "@/lib/scanner-settings";
 import { exportToGOODFormat } from "@/lib/good-format";
 import { useScannerInventory } from "@/lib/scanner-inventory";
 import type { DetectedItem, ScannedReviewItem } from "@/lib/types";
+import { materialThumbUrl } from "@/lib/materials";
 
 interface ClassicScannerViewProps {
   id?: string;
@@ -128,6 +129,8 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
       setScanError(null);
       setSummary(null);
       setIsReviewOpen(false);
+      // The review modal opens when the scan finishes: fetch its code meanwhile
+      preloadScanReviewModal();
       setScanFiles(
         files.map((f, i) => ({ file: f, previewUrl: trackUrl(f), name: f.name, status: i === 0 ? "scanning" : "pending" })),
       );
@@ -181,7 +184,7 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
                     name: card.material.name,
                     rarity: card.material.rarity,
                     quantity: Math.max(1, card.quantity.value ?? 1),
-                    imageSnippet: crop ? trackUrl(crop) : `/images/materials/${card.material.id}.png`,
+                    imageSnippet: crop ? trackUrl(crop) : materialThumbUrl(card.material.id),
                     sourceImageName: file.name,
                     row: card.row ?? undefined,
                     col: card.column ?? undefined,
@@ -267,26 +270,43 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
     [client, isScanning, mergeIntoInventory, settings.autoReviewResults],
   );
 
-  const handleConfirmReview = (confirmed: DetectedItem[]) => {
-    mergeIntoInventory(confirmed);
-    setIsReviewOpen(false);
-  };
+  const handleConfirmReview = useCallback(
+    (confirmed: DetectedItem[]) => {
+      mergeIntoInventory(confirmed);
+      setIsReviewOpen(false);
+    },
+    [mergeIntoInventory],
+  );
 
-  const handleClear = () => {
+  const handleCloseReview = useCallback(() => setIsReviewOpen(false), []);
+
+  // Stable callbacks keep the memoized ResultGrid from re-rendering on unrelated state
+  const handleClear = useCallback(() => {
     if (confirm("Are you sure you want to clear all scanned items?")) {
       setItems([]);
       toast.success("Items cleared");
     }
-  };
+  }, [setItems]);
 
-  const handleExport = () => {
+  const handleExport = useCallback(() => {
     if (items.length === 0) {
       toast.error("No items to export");
       return;
     }
     exportToGOODFormat(items);
     toast.success("Exported to GOOD format!");
-  };
+  }, [items]);
+
+  const handleUpdateQuantity = useCallback(
+    (itemId: string, quantity: number) =>
+      setItems((prev) => prev.map((i) => (i.id === itemId ? { ...i, quantity: Math.max(1, quantity) } : i))),
+    [setItems],
+  );
+
+  const handleRemoveItem = useCallback(
+    (itemId: string) => setItems((prev) => prev.filter((i) => i.id !== itemId)),
+    [setItems],
+  );
 
   const activeFile = scanFiles[activeIndex];
 
@@ -380,20 +400,19 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
             items={items}
             onClear={handleClear}
             onExport={handleExport}
-            onUpdateQuantity={(itemId, quantity) =>
-              setItems((prev) => prev.map((i) => (i.id === itemId ? { ...i, quantity: Math.max(1, quantity) } : i)))
-            }
-            onRemoveItem={(itemId) => setItems((prev) => prev.filter((i) => i.id !== itemId))}
+            onUpdateQuantity={handleUpdateQuantity}
+            onRemoveItem={handleRemoveItem}
           />
         </div>
       )}
 
-      <ScanReviewModal
-        isOpen={isReviewOpen}
-        reviewItems={reviewItems}
-        onClose={() => setIsReviewOpen(false)}
-        onConfirm={handleConfirmReview}
-      />
+      {isReviewOpen && (
+        <LazyScanReviewModal
+          reviewItems={reviewItems}
+          onClose={handleCloseReview}
+          onConfirm={handleConfirmReview}
+        />
+      )}
     </div>
   );
 }

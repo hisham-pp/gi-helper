@@ -86,6 +86,14 @@ export function BackgroundEffects() {
         .anim-sweep {
           animation: sweep 15s ease-in-out infinite;
         }
+        /* Hidden behind an open modal's blurred backdrop: freezing the motes
+           spares the GPU re-blurring the whole screen every frame. */
+        html[data-modal-open] .anim-float-up,
+        html[data-modal-open] .anim-sway-left,
+        html[data-modal-open] .anim-sway-right,
+        html[data-modal-open] .anim-sweep {
+          animation-play-state: paused;
+        }
       `}</style>
       <div
         className="pointer-events-none fixed inset-0 overflow-hidden"

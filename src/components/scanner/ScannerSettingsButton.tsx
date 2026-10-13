@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { Settings } from "lucide-react";
-import { ScannerSettingsModal } from "./ScannerSettingsModal";
+import { LazyScannerSettingsModal, preloadScannerSettingsModal } from "./lazy-modals";
 
 export function ScannerSettingsButton() {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,6 +11,8 @@ export function ScannerSettingsButton() {
     <>
       <button
         onClick={() => setIsOpen(true)}
+        onPointerEnter={preloadScannerSettingsModal}
+        onFocus={preloadScannerSettingsModal}
         className="text-on-surface-variant hover:text-on-surface rounded-full bg-surface-variant/50 p-2 transition-colors hover:bg-surface-variant"
         aria-label="Scanner Settings"
         title="Scanner Settings"
@@ -18,7 +20,7 @@ export function ScannerSettingsButton() {
         <Settings className="h-5 w-5" />
       </button>
 
-      <ScannerSettingsModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
+      {isOpen && <LazyScannerSettingsModal onClose={() => setIsOpen(false)} />}
     </>
   );
 }
