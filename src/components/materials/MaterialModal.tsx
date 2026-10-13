@@ -23,6 +23,8 @@ interface MaterialModalProps {
   onNavigatePrev?: () => void;
   hasNext?: boolean;
   hasPrev?: boolean;
+  /** Number of materials in the dataset, shown as "#order / total". */
+  total?: number;
 }
 
 export function MaterialModal({
@@ -32,6 +34,7 @@ export function MaterialModal({
   onNavigatePrev,
   hasNext,
   hasPrev,
+  total,
 }: MaterialModalProps) {
   const [copied, setCopied] = useState(false);
   const [imgError, setImgError] = useState(false);
@@ -74,24 +77,25 @@ export function MaterialModal({
 
   return (
     <div
-      className="animate-in fade-in fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-md duration-200"
+      className="animate-in fade-in fixed inset-0 z-50 flex items-center justify-center bg-black/55 p-4 backdrop-blur-sm duration-200"
       onClick={onClose}
     >
       <div
-        className={`relative w-full max-w-lg overflow-hidden rounded-3xl border border-white/20 bg-gradient-to-b ${styles.cardBg} animate-in zoom-in-95 p-6 shadow-[0_20px_60px_rgba(0,0,0,0.6)] backdrop-blur-2xl duration-200`}
+        style={{ "--glass-accent": styles.accent } as React.CSSProperties}
+        className="glass-card glass-card--lg glass-card--raised animate-in zoom-in-95 w-full max-w-lg overflow-hidden p-6 duration-200"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Top Header Actions */}
-        <div className="flex items-center justify-between border-b border-white/10 pb-4">
+        <div className="flex items-center justify-between pb-4">
           <div className="flex items-center gap-2">
-            <span className="flex items-center gap-1 rounded-full border border-white/15 bg-black/40 px-3 py-1 font-mono text-xs font-bold text-white shadow-sm">
-              <span className="font-bold text-primary">#</span>
+            <span className="glass-chip gap-1 px-3 py-1 font-mono text-xs font-bold text-white">
+              <span className="font-bold text-cyan-300">#</span>
               {material.order}
-              <span className="ml-0.5 text-[10px] text-white/40">/ 475</span>
+              {total !== undefined && (
+                <span className="ml-0.5 text-[10px] text-white/40">/ {total}</span>
+              )}
             </span>
-            <span
-              className={`rounded-full border px-2.5 py-0.5 text-xs font-medium ${styles.badgeBg}`}
-            >
+            <span className={`glass-chip px-2.5 py-1 text-xs font-semibold ${styles.starColor}`}>
               {rarity}★ Rarity
             </span>
           </div>
@@ -101,7 +105,7 @@ export function MaterialModal({
             <button
               onClick={onNavigatePrev}
               disabled={!hasPrev}
-              className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white transition hover:bg-white/15 disabled:pointer-events-none disabled:opacity-30"
+              className="glass-icon-btn h-8 w-8 rounded-full"
               title="Previous Material (Left Arrow)"
               aria-label="Previous Material"
             >
@@ -110,7 +114,7 @@ export function MaterialModal({
             <button
               onClick={onNavigateNext}
               disabled={!hasNext}
-              className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white transition hover:bg-white/15 disabled:pointer-events-none disabled:opacity-30"
+              className="glass-icon-btn h-8 w-8 rounded-full"
               title="Next Material (Right Arrow)"
               aria-label="Next Material"
             >
@@ -118,7 +122,7 @@ export function MaterialModal({
             </button>
             <button
               onClick={onClose}
-              className="ml-2 flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white transition hover:bg-white/20"
+              className="glass-icon-btn ml-2 h-8 w-8 rounded-full"
               title="Close (Escape)"
               aria-label="Close modal"
             >
@@ -127,10 +131,12 @@ export function MaterialModal({
           </div>
         </div>
 
+        <div className="glass-divider" />
+
         {/* Material Main Content */}
         <div className="mt-5 flex flex-col items-center gap-5 sm:flex-row sm:items-start">
           {/* Big Item Frame */}
-          <div className="relative flex h-28 w-28 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-white/20 bg-black/40 shadow-[inset_0_4px_16px_rgba(0,0,0,0.6)]">
+          <div className="glass-well glass-well--tinted relative flex h-28 w-28 shrink-0 items-center justify-center overflow-hidden rounded-3xl">
             {!imgError ? (
               <img
                 src={material.image}
@@ -158,17 +164,17 @@ export function MaterialModal({
             </h2>
 
             <div className="mt-2 flex flex-wrap items-center justify-center gap-2 sm:justify-start">
-              <span className="flex items-center gap-1 rounded-md border border-white/10 bg-white/5 px-2.5 py-1 text-xs font-medium text-white/80">
-                <Tag className="h-3 w-3 text-primary" />
+              <span className="glass-chip gap-1.5 px-3 py-1 text-xs font-medium text-white/85">
+                <Tag className="h-3 w-3 text-cyan-300" />
                 {categoryLabel}
               </span>
 
               {material.sortRank !== undefined && (
                 <span
-                  className="flex items-center gap-1 rounded-md border border-white/10 bg-white/5 px-2.5 py-1 font-mono text-xs text-white/70"
+                  className="glass-chip gap-1.5 px-3 py-1 font-mono text-xs text-white/70"
                   title="In-Game sortRank field"
                 >
-                  <Layers className="h-3 w-3 text-secondary" />
+                  <Layers className="h-3 w-3 text-cyan-300/80" />
                   SortRank: {material.sortRank}
                 </span>
               )}
@@ -177,16 +183,16 @@ export function MaterialModal({
         </div>
 
         {/* Item ID Bar */}
-        <div className="mt-5 flex items-center justify-between rounded-xl border border-white/10 bg-black/30 p-2.5 px-3">
+        <div className="glass-well mt-5 flex items-center justify-between rounded-2xl p-2 pl-3.5">
           <div className="flex items-center gap-2 overflow-hidden text-xs">
             <span className="font-mono text-white/40">ID:</span>
-            <code className="truncate font-mono font-semibold text-primary">
+            <code className="truncate font-mono font-semibold text-cyan-300">
               {material.id}
             </code>
           </div>
           <button
             onClick={handleCopyId}
-            className="flex shrink-0 items-center gap-1.5 rounded-lg border border-white/10 bg-white/10 px-2.5 py-1 text-xs font-medium text-white transition hover:bg-white/20 active:scale-95"
+            className="glass-btn shrink-0 gap-1.5 px-3 py-1.5 text-xs"
           >
             {copied ? (
               <>
@@ -205,10 +211,10 @@ export function MaterialModal({
         {/* In-Game Lore / Description */}
         <div className="mt-4">
           <h4 className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-white/50">
-            <Bookmark className="h-3.5 w-3.5 text-primary" />
+            <Bookmark className="h-3.5 w-3.5 text-cyan-300" />
             In-Game Description & Lore
           </h4>
-          <div className="mt-2 max-h-48 overflow-y-auto rounded-xl border border-white/10 bg-black/20 p-3.5 text-xs leading-relaxed text-white/80 shadow-inner">
+          <div className="glass-well mt-2 max-h-48 overflow-y-auto rounded-2xl p-3.5 text-xs leading-relaxed text-white/80">
             {material.description ? (
               material.description.split("\n").map((line, idx) => (
                 <p key={idx} className={idx > 0 ? "mt-2" : ""}>
@@ -224,7 +230,8 @@ export function MaterialModal({
         </div>
 
         {/* Footer Navigation Tip */}
-        <div className="mt-4 flex items-center justify-between border-t border-white/10 pt-3 text-[11px] text-white/40">
+        <div className="glass-divider mt-4" />
+        <div className="flex items-center justify-between pt-3 text-[11px] text-white/40">
           <span>Tip: Use Arrow keys to browse materials in order</span>
           <span className="font-mono">Esc to close</span>
         </div>

@@ -1,0 +1,165 @@
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
+import { ImageResponse } from "next/og";
+import { SITE } from "@/lib/site";
+
+/** Social share card (Open Graph; X/Twitter falls back to it too). */
+export const alt = SITE.ogImageAlt;
+export const size = { width: 1200, height: 630 };
+export const contentType = "image/png";
+
+const HEADLINE = "Extract Materials from Screenshots";
+const SUBTITLE = "Scan your Genshin Impact inventory and export to GOOD format.";
+const FEATURES = ["On-device scanner", "AI Vision", "GOOD export"];
+const FONT_FAMILY = "Plus Jakarta Sans";
+
+/**
+ * Fetches a TTF subset (only the glyphs in `text`) from Google Fonts.
+ * The bundled OG font has no bold weight; returns null so rendering falls back
+ * to it if the network is unavailable.
+ */
+async function loadGoogleFont(weight: number, text: string): Promise<ArrayBuffer | null> {
+  try {
+    const family = FONT_FAMILY.replace(/ /g, "+");
+    const css = await (
+      await fetch(`https://fonts.googleapis.com/css2?family=${family}:wght@${weight}&text=${encodeURIComponent(text)}`)
+    ).text();
+    const src = css.match(/src: url\((.+?)\) format\('(opentype|truetype)'\)/)?.[1];
+    if (!src) return null;
+    const res = await fetch(src);
+    return res.ok ? await res.arrayBuffer() : null;
+  } catch {
+    return null;
+  }
+}
+
+export default async function OpengraphImage() {
+  const background = await readFile(join(process.cwd(), "public/images/bg.png"));
+  const backgroundSrc = `data:image/png;base64,${background.toString("base64")}`;
+
+  const glyphs = [SITE.name, HEADLINE, SUBTITLE, ...FEATURES].join("");
+  const [regular, semibold, bold] = await Promise.all([
+    loadGoogleFont(400, glyphs),
+    loadGoogleFont(600, glyphs),
+    loadGoogleFont(700, glyphs),
+  ]);
+  const fonts = (
+    [
+      [regular, 400],
+      [semibold, 600],
+      [bold, 700],
+    ] as const
+  )
+    .filter(([data]) => data)
+    .map(([data, weight]) => ({ name: FONT_FAMILY, data: data as ArrayBuffer, weight, style: "normal" as const }));
+
+  return new ImageResponse(
+    (
+      <div
+        style={{
+          position: "relative",
+          display: "flex",
+          width: "100%",
+          height: "100%",
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundColor: "#020e13",
+          fontFamily: fonts.length ? FONT_FAMILY : undefined,
+        }}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={backgroundSrc}
+          alt=""
+          width={1200}
+          height={630}
+          style={{ position: "absolute", top: 0, left: 0, objectFit: "cover", opacity: 0.6 }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            backgroundImage: "linear-gradient(180deg, rgba(2,14,19,0.35), rgba(2,14,19,0.85))",
+          }}
+        />
+
+        {/* Glass card echoing the drop zone */}
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            width: 1000,
+            padding: "56px 64px",
+            borderRadius: 40,
+            border: "1px solid rgba(165,243,252,0.45)",
+            backgroundImage:
+              "linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.02) 50%, rgba(255,255,255,0.05))",
+            boxShadow: "0 0 48px rgba(34,211,238,0.28)",
+          }}
+        >
+          <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 28 }}>
+            <div
+              style={{
+                width: 18,
+                height: 18,
+                borderRadius: 999,
+                backgroundColor: "#2dd4bf",
+                boxShadow: "0 0 16px rgba(45,212,191,0.9)",
+              }}
+            />
+            <div style={{ fontSize: 32, fontWeight: 700, color: "#ffffff" }}>{SITE.name}</div>
+          </div>
+
+          <div
+            style={{
+              fontSize: 68,
+              fontWeight: 700,
+              letterSpacing: -1.5,
+              color: "#ffffff",
+              textAlign: "center",
+              lineHeight: 1.1,
+            }}
+          >
+            {HEADLINE}
+          </div>
+
+          <div
+            style={{
+              marginTop: 22,
+              fontSize: 28,
+              color: "rgba(207,250,254,0.82)",
+              textAlign: "center",
+            }}
+          >
+            {SUBTITLE}
+          </div>
+
+          <div style={{ display: "flex", gap: 16, marginTop: 40 }}>
+            {FEATURES.map((feature) => (
+              <div
+                key={feature}
+                style={{
+                  display: "flex",
+                  padding: "12px 26px",
+                  borderRadius: 999,
+                  fontSize: 24,
+                  fontWeight: 600,
+                  color: "#e0faff",
+                  border: "1px solid rgba(255,255,255,0.22)",
+                  backgroundColor: "rgba(255,255,255,0.08)",
+                }}
+              >
+                {feature}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    ),
+    { ...size, fonts },
+  );
+}

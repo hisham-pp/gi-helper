@@ -13,6 +13,7 @@ import {
   getActiveProviderConfig,
 } from "@/lib/scanner-settings";
 import { getAiAdapter } from "@/lib/ai/adapters";
+import { useScannerInventory } from "@/lib/scanner-inventory";
 import {
   Eye,
   Settings,
@@ -98,7 +99,8 @@ export function AiScannerView({
   const [isScanning, setIsScanning] = useState(false);
   const [progress, setProgress] = useState(0);
   const [statusMessage, setStatusMessage] = useState<string>("");
-  const [detectedItems, setDetectedItems] = useState<DetectedItem[]>([]);
+  /** Shared with the Scanner tab: both scanners fill the same inventory. */
+  const [detectedItems, setDetectedItems] = useScannerInventory();
   const [scanError, setScanError] = useState<string | null>(null);
 
   // Scanning animation states
@@ -124,26 +126,6 @@ export function AiScannerView({
 
   // API key is strictly read from user settings (localStorage) - never from server env!
   const hasKeyConfigured = Boolean(activeConfig.apiKey?.trim());
-
-  // Load saved items from localStorage
-  useEffect(() => {
-    const saved = localStorage.getItem("scanner_detected_items");
-    if (saved) {
-      try {
-        setDetectedItems(JSON.parse(saved));
-      } catch (e) {
-        console.error("Failed to parse saved items", e);
-      }
-    }
-  }, []);
-
-  // Persist items to localStorage
-  useEffect(() => {
-    localStorage.setItem(
-      "scanner_detected_items",
-      JSON.stringify(detectedItems),
-    );
-  }, [detectedItems]);
 
   const readFileAsDataUrl = (file: File): Promise<string> => {
     return new Promise((resolve, reject) => {
@@ -475,6 +457,7 @@ export function AiScannerView({
         modelName={activeConfig.model}
         scanningFiles={scanningFilesList}
         onFilesSelected={handleFiles}
+        sampleButtonIcon={<Sparkles />}
         onSelectThumbnail={(idx) => {
           if (scanningFilesList[idx]) {
             setActiveImagePreview(scanningFilesList[idx].previewUrl);

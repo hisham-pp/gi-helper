@@ -5,7 +5,7 @@ import { ArrowLeft } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Scanner Debugger | Genshin Material Tracker",
+  title: "Scanner Debugger",
   description:
     "Computer Vision & Grid Detection Diagnostic Suite for Genshin Impact Inventory Scanner",
 };

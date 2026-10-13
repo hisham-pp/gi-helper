@@ -47,7 +47,7 @@ export function DebugViewManager() {
             }`}
           >
             <Grid className="h-4 w-4" />
-            <span>Grid Auto-Detector Sessions</span>
+            <span>Grid &amp; Material Studio</span>
           </button>
 
           <button

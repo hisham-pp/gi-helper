@@ -28,6 +28,8 @@ interface PillDropdownProps<T extends string = string> {
   panelZIndex?: string;
   /** Extra class names for the root wrapper */
   className?: string;
+  /** Stretch the trigger (and panel) to the wrapper's full width, like a form field */
+  block?: boolean;
 }
 
 /**
@@ -46,6 +48,7 @@ export function PillDropdown<T extends string = string>({
   panelRadius = "rounded-2xl",
   panelZIndex = "z-[200]",
   className = "",
+  block = false,
 }: PillDropdownProps<T>) {
   const [open, setOpen] = useState(false);
   const [panelStyle, setPanelStyle] = useState<React.CSSProperties>({});
@@ -60,8 +63,9 @@ export function PillDropdown<T extends string = string>({
       position: "fixed",
       top: rect.bottom + 8,
       left: rect.left,
+      ...(block ? { width: rect.width } : {}),
     });
-  }, [open]);
+  }, [open, block]);
 
   // Reposition on scroll/resize while open
   useEffect(() => {
@@ -73,6 +77,7 @@ export function PillDropdown<T extends string = string>({
         position: "fixed",
         top: rect.bottom + 8,
         left: rect.left,
+        ...(block ? { width: rect.width } : {}),
       });
     };
     window.addEventListener("scroll", update, true);
@@ -81,7 +86,7 @@ export function PillDropdown<T extends string = string>({
       window.removeEventListener("scroll", update, true);
       window.removeEventListener("resize", update);
     };
-  }, [open]);
+  }, [open, block]);
 
   // Close on outside click
   useEffect(() => {
@@ -112,26 +117,27 @@ export function PillDropdown<T extends string = string>({
 
   const selected = options.find((o) => o.value === value);
 
+  // Glass panel + chips (src/styles/glass.css); the selected option uses the
+  // raised "tab thumb" look via aria-selected.
   const panel =
     open && typeof document !== "undefined"
       ? createPortal(
           <div
             id="pill-dropdown-portal"
+            role="listbox"
             style={panelStyle}
-            className={`flex max-h-60 min-w-max flex-col gap-1 overflow-y-auto border border-white/10 bg-background/95 p-1.5 shadow-2xl backdrop-blur-xl ${panelRadius} ${panelZIndex}`}
+            className={`glass-card glass-card--raised flex max-h-72 min-w-max flex-col gap-1 overflow-y-auto p-1.5 ${panelRadius} ${panelZIndex}`}
           >
             {options.map((opt) => (
               <button
                 key={opt.value}
+                role="option"
+                aria-selected={opt.value === value}
                 onClick={() => {
                   onChange(opt.value);
                   setOpen(false);
                 }}
-                className={`w-full shrink-0 rounded-full px-3 py-2 text-left text-sm transition-all ${
-                  opt.value === value
-                    ? "bg-primary/20 font-semibold text-primary"
-                    : "font-medium text-foreground hover:bg-white/10"
-                }`}
+                className="glass-chip glass-chip--ghost w-full shrink-0 px-3.5 py-2 text-left text-sm font-medium"
               >
                 {opt.label}
               </button>
@@ -146,16 +152,20 @@ export function PillDropdown<T extends string = string>({
       <button
         ref={triggerRef}
         onClick={() => setOpen((prev) => !prev)}
-        className={`text-on-surface flex items-center gap-2 border border-white/10 bg-white/5 px-3 py-2 text-xs shadow-sm backdrop-blur-md transition-all hover:bg-white/10 active:scale-95 sm:text-sm ${triggerRadius}`}
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        className={`glass-chip px-3.5 py-2 text-xs sm:text-sm ${block ? "w-full justify-between py-2.5 text-left" : ""} ${triggerRadius}`}
       >
         {icon && <span className="shrink-0">{icon}</span>}
         {label && (
           <span className="hidden text-white/50 sm:inline">{label}</span>
         )}
-        <span className="font-semibold text-white">
+        <span className={`font-semibold text-white ${block ? "flex-1 truncate" : ""}`}>
           {selected?.label ?? "Select…"}
         </span>
-        <ChevronDown className="ml-1 h-4 w-4 shrink-0 opacity-50" />
+        <ChevronDown
+          className={`ml-0.5 h-4 w-4 shrink-0 opacity-60 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+        />
       </button>
 
       {panel}

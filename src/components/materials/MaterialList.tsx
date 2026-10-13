@@ -32,6 +32,7 @@ import { MaterialTableView } from "./MaterialTableView";
 import { MaterialModal } from "./MaterialModal";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { PillDropdown } from "@/components/ui/PillDropdown";
+import { GlassSegmentedControl } from "@/components/ui/GlassSegmentedControl";
 
 type SortOption =
   | "order-asc"
@@ -41,7 +42,9 @@ type SortOption =
   | "rarity-desc"
   | "rarity-asc";
 
-const PAGE_SIZE_OPTIONS = [36, 72, 144, 475];
+const PAGE_SIZE_OPTIONS = [36, 72, 144];
+/** Page size that shows every material on one page. */
+const SHOW_ALL = Number.MAX_SAFE_INTEGER;
 
 export function MaterialList() {
   const allMaterials = useMemo(() => getAllMaterials(), []);
@@ -143,7 +146,7 @@ export function MaterialList() {
   const validCurrentPage = Math.min(Math.max(currentPage, 1), totalPages);
 
   const paginatedMaterials = useMemo(() => {
-    if (pageSize >= 475) return filteredMaterials;
+    if (pageSize === SHOW_ALL) return filteredMaterials;
     const startIdx = (validCurrentPage - 1) * pageSize;
     return filteredMaterials.slice(startIdx, startIdx + pageSize);
   }, [filteredMaterials, validCurrentPage, pageSize]);
@@ -191,7 +194,7 @@ export function MaterialList() {
       <div className="mb-8 flex w-full max-w-7xl items-center justify-between">
         <Link
           href="/"
-          className="text-on-surface flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-4 py-2 text-xs font-bold shadow-sm backdrop-blur-md transition-all hover:scale-105 hover:bg-white/20 active:scale-95 sm:text-sm"
+          className="glass-btn px-4 py-2 text-xs sm:text-sm"
         >
           <ArrowLeft className="h-4 w-4 text-primary" />
           <span>Back to Scanner</span>
@@ -200,7 +203,7 @@ export function MaterialList() {
         <div className="flex items-center gap-3">
           <Link
             href="/debug"
-            className="text-on-surface flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-4 py-2 text-xs font-bold shadow-sm backdrop-blur-md transition-all hover:scale-105 hover:bg-white/20 active:scale-95 sm:text-sm"
+            className="glass-btn px-4 py-2 text-xs sm:text-sm"
           >
             <Bug className="h-4 w-4 text-amber-400" />
             <span className="hidden sm:inline">Debugger</span>
@@ -212,11 +215,11 @@ export function MaterialList() {
       {/* Main Container */}
       <div className="w-full max-w-7xl space-y-6">
         {/* Hero Header */}
-        <div className="relative overflow-hidden rounded-[2rem] border-[0.5px] border-b-white/5 border-l-white/20 border-r-white/5 border-t-white/30 bg-gradient-to-br from-white/10 via-white/5 to-black/30 p-6 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] backdrop-blur-2xl sm:p-8">
+        <div className="glass-card glass-card--lg p-6 sm:p-8">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="space-y-1.5">
               <div className="flex items-center gap-2">
-                <span className="flex h-8 w-8 items-center justify-center rounded-xl border border-primary/30 bg-primary/20 text-primary">
+                <span className="glass-chip h-9 w-9 justify-center rounded-xl text-cyan-300">
                   <PackageCheck className="h-5 w-5" />
                 </span>
                 <h1 className="text-2xl font-extrabold tracking-tight text-white drop-shadow-md sm:text-3xl md:text-4xl">
@@ -232,8 +235,8 @@ export function MaterialList() {
 
             {/* Quick Stat Badges */}
             <div className="flex flex-wrap items-center gap-2 sm:justify-end">
-              <span className="flex items-center gap-1.5 rounded-full border border-white/15 bg-black/40 px-3.5 py-1.5 font-mono text-xs font-bold text-white shadow-sm">
-                <span className="text-primary">Total:</span> {stats.total}
+              <span className="glass-chip px-3.5 py-1.5 font-mono text-xs font-bold text-white">
+                <span className="text-cyan-300">Total:</span> {stats.total}
               </span>
               {[5, 4, 3, 2, 1].map((r) => {
                 const rStyles = getRarityStyles(r);
@@ -243,14 +246,12 @@ export function MaterialList() {
                     onClick={() =>
                       setSelectedRarity(selectedRarity === r ? "ALL" : r)
                     }
-                    className={`flex items-center gap-1 rounded-full border px-2.5 py-1 text-xs font-bold transition-all ${
-                      selectedRarity === r
-                        ? `${rStyles.badgeBg} scale-105 ring-2 ring-white/30`
-                        : "border-white/10 bg-black/30 text-white/70 hover:bg-white/10"
-                    }`}
+                    aria-pressed={selectedRarity === r}
+                    style={{ "--glass-accent": rStyles.accent } as React.CSSProperties}
+                    className="glass-chip gap-1 px-2.5 py-1 text-xs font-bold"
                     title={`Filter by ${r}★ Materials`}
                   >
-                    <span>{r}★</span>
+                    <span className={rStyles.starColor}>{r}★</span>
                     <span className="text-[10px] text-white/50">
                       ({stats.rarityCounts[r]})
                     </span>
@@ -262,7 +263,7 @@ export function MaterialList() {
         </div>
 
         {/* Filter Controls Bar */}
-        <div className="space-y-4 rounded-3xl border border-white/10 bg-black/20 p-5 shadow-lg backdrop-blur-xl">
+        <div className="glass-card glass-card--lg space-y-4 p-5">
           {/* Search, Sort, and View Controls */}
           <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
             {/* Search Input */}
@@ -273,12 +274,12 @@ export function MaterialList() {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search materials by name, ID, or description..."
-                className="w-full rounded-xl border border-white/15 bg-white/5 py-2.5 pl-10 pr-9 text-sm text-white placeholder-white/40 shadow-inner backdrop-blur-md transition-all focus:border-primary/60 focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-primary/40"
+                className="glass-input w-full rounded-full py-2.5 pl-10 pr-9 text-sm"
               />
               {search && (
                 <button
                   onClick={() => setSearch("")}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full p-1 text-white/50 hover:bg-white/10 hover:text-white"
+                  className="glass-icon-btn absolute right-2.5 top-1/2 h-6 w-6 -translate-y-1/2 rounded-full"
                   title="Clear search"
                 >
                   <X className="h-3.5 w-3.5" />
@@ -290,9 +291,8 @@ export function MaterialList() {
             <div className="flex flex-wrap items-center gap-2.5">
               {/* Sort Selector */}
               <PillDropdown
-                triggerRadius="rounded-xl"
                 label="Sort:"
-                icon={<ArrowUpDown className="h-3.5 w-3.5 text-primary" />}
+                icon={<ArrowUpDown className="h-3.5 w-3.5 text-cyan-300" />}
                 value={sortBy}
                 onChange={(v) => setSortBy(v as SortOption)}
                 options={[
@@ -311,59 +311,34 @@ export function MaterialList() {
                 ]}
               />
 
-              {/* View Mode Toggle */}
-              <div className="flex items-center rounded-xl border border-white/15 bg-white/5 p-1 shadow-sm backdrop-blur-md">
-                <button
-                  onClick={() => setViewMode("grid")}
-                  className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold transition-all ${
-                    viewMode === "grid"
-                      ? "bg-primary text-primary-foreground shadow"
-                      : "text-white/70 hover:bg-white/10 hover:text-white"
-                  }`}
-                  title="Grid View"
-                >
-                  <LayoutGrid className="h-3.5 w-3.5" />
-                  <span className="hidden sm:inline">Grid</span>
-                </button>
-                <button
-                  onClick={() => setViewMode("table")}
-                  className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold transition-all ${
-                    viewMode === "table"
-                      ? "bg-primary text-primary-foreground shadow"
-                      : "text-white/70 hover:bg-white/10 hover:text-white"
-                  }`}
-                  title="Table View"
-                >
-                  <List className="h-3.5 w-3.5" />
-                  <span className="hidden sm:inline">Table</span>
-                </button>
-              </div>
+              {/* View Mode Toggle (sliding glass thumb, like the scanner tabs) */}
+              <GlassSegmentedControl
+                ariaLabel="View mode"
+                compactOnMobile
+                value={viewMode}
+                onChange={setViewMode}
+                options={[
+                  { value: "grid", label: "Grid", title: "Grid View", icon: <LayoutGrid className="h-3.5 w-3.5" /> },
+                  { value: "table", label: "Table", title: "Table View", icon: <List className="h-3.5 w-3.5" /> },
+                ]}
+              />
 
               {/* Items Per Page */}
-              <div className="flex items-center gap-1 rounded-xl border border-white/15 bg-white/5 px-2.5 py-1.5 text-xs text-white shadow-sm">
-                <span className="text-[11px] text-white/50">Show:</span>
-                <select
-                  value={pageSize}
-                  onChange={(e) => setPageSize(Number(e.target.value))}
-                  className="cursor-pointer bg-transparent font-semibold text-white focus:outline-none"
-                >
-                  {PAGE_SIZE_OPTIONS.map((size) => (
-                    <option
-                      key={size}
-                      value={size}
-                      className="bg-slate-900 text-white"
-                    >
-                      {size === 475 ? "All (475)" : size}
-                    </option>
-                  ))}
-                </select>
-              </div>
+              <PillDropdown
+                label="Show:"
+                value={pageSize === SHOW_ALL ? "all" : String(pageSize)}
+                onChange={(v) => setPageSize(v === "all" ? SHOW_ALL : Number(v))}
+                options={[
+                  ...PAGE_SIZE_OPTIONS.map((size) => ({ value: String(size), label: String(size) })),
+                  { value: "all", label: `All (${stats.total})` },
+                ]}
+              />
 
               {/* Reset Filters */}
               {isFiltered && (
                 <button
                   onClick={handleResetFilters}
-                  className="flex items-center gap-1 rounded-xl border border-error/30 bg-error/15 px-3 py-2 text-xs font-bold text-error transition hover:bg-error/25"
+                  className="glass-btn glass-btn--danger gap-1 px-3 py-2 text-xs"
                   title="Reset all filters"
                 >
                   <RotateCcw className="h-3.5 w-3.5" />
@@ -374,7 +349,7 @@ export function MaterialList() {
           </div>
 
           {/* Category Filter Pills */}
-          <div className="no-scrollbar flex items-center gap-2 overflow-x-auto pb-1 pt-1">
+          <div className="no-scrollbar -mx-1 flex items-center gap-2 overflow-x-auto px-1 py-2">
             <span className="shrink-0 text-[11px] font-bold uppercase tracking-wider text-white/40">
               Category:
             </span>
@@ -389,18 +364,15 @@ export function MaterialList() {
                 <button
                   key={cat.id}
                   onClick={() => setSelectedCategory(cat.id)}
-                  className={`flex shrink-0 items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold transition-all ${
-                    isSelected
-                      ? "border border-primary/50 bg-primary/20 text-primary shadow-sm ring-1 ring-primary/40"
-                      : "border border-white/10 bg-white/5 text-white/70 hover:bg-white/10 hover:text-white"
-                  }`}
+                  aria-pressed={isSelected}
+                  className="glass-chip shrink-0 px-3 py-1.5 text-xs font-semibold"
                   title={`${cat.label} (sortRank: ${cat.sortRankRange})`}
                 >
                   <span>{cat.shortLabel}</span>
                   <span
-                    className={`py-0.2 rounded-full px-1.5 text-[10px] ${
+                    className={`rounded-full px-1.5 text-[10px] ${
                       isSelected
-                        ? "bg-primary text-primary-foreground"
+                        ? "bg-cyan-300/25 text-cyan-50"
                         : "bg-white/10 text-white/60"
                     }`}
                   >
@@ -422,7 +394,7 @@ export function MaterialList() {
               materials
             </span>
             {sortBy === "order-asc" && (
-              <span className="rounded-md border border-white/10 bg-black/30 px-2 py-0.5 font-mono text-[11px] text-emerald-400">
+              <span className="glass-chip px-2.5 py-0.5 font-mono text-[11px] text-emerald-300">
                 ✓ Sorted by Canonical In-Game Order
               </span>
             )}
@@ -441,8 +413,8 @@ export function MaterialList() {
 
         {/* Empty State */}
         {totalItems === 0 && (
-          <div className="flex flex-col items-center justify-center rounded-3xl border border-white/10 bg-black/20 p-12 text-center backdrop-blur-xl">
-            <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl border border-white/15 bg-white/5 text-white/40">
+          <div className="glass-card glass-card--lg flex flex-col items-center justify-center p-12 text-center">
+            <div className="glass-lens mb-4 h-16 w-16 text-white/50">
               <Search className="h-8 w-8" />
             </div>
             <h3 className="text-lg font-bold text-white">No materials found</h3>
@@ -452,7 +424,7 @@ export function MaterialList() {
             </p>
             <button
               onClick={handleResetFilters}
-              className="mt-5 rounded-full bg-primary px-5 py-2 text-xs font-bold text-primary-foreground shadow transition hover:bg-primary/90"
+              className="glass-btn glass-btn--primary mt-5 px-5 py-2 text-xs"
             >
               Reset All Filters
             </button>
@@ -461,7 +433,7 @@ export function MaterialList() {
 
         {/* Materials Presentation (Grid or Table) */}
         {totalItems > 0 && viewMode === "grid" && (
-          <div className="grid grid-cols-2 gap-3.5 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
             {paginatedMaterials.map((mat) => (
               <MaterialCard
                 key={mat.id}
@@ -481,7 +453,7 @@ export function MaterialList() {
 
         {/* Pagination Bar */}
         {totalPages > 1 && (
-          <div className="flex flex-col items-center justify-between gap-4 rounded-2xl border border-white/10 bg-black/20 p-4 backdrop-blur-xl sm:flex-row">
+          <div className="glass-card flex flex-col items-center justify-between gap-4 p-4 sm:flex-row">
             <span className="text-xs text-white/60">
               Showing{" "}
               <strong className="text-white">
@@ -494,11 +466,11 @@ export function MaterialList() {
               of <strong className="text-white">{totalItems}</strong>
             </span>
 
-            <div className="flex items-center gap-1.5">
+            <div className="flex flex-wrap items-center justify-center gap-1.5">
               <button
                 onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
                 disabled={validCurrentPage <= 1}
-                className="flex h-8 items-center gap-1 rounded-lg border border-white/10 bg-white/5 px-3 text-xs font-semibold text-white transition hover:bg-white/15 disabled:pointer-events-none disabled:opacity-30"
+                className="glass-chip h-8 gap-1 px-3 text-xs font-semibold"
               >
                 <ChevronLeft className="h-3.5 w-3.5" />
                 <span>Prev</span>
@@ -525,11 +497,9 @@ export function MaterialList() {
                         )}
                         <button
                           onClick={() => setCurrentPage(p)}
-                          className={`flex h-8 w-8 items-center justify-center rounded-lg text-xs font-bold transition-all ${
-                            validCurrentPage === p
-                              ? "bg-primary text-primary-foreground shadow"
-                              : "border border-white/10 bg-white/5 text-white/80 hover:bg-white/15"
-                          }`}
+                          aria-current={validCurrentPage === p ? "page" : undefined}
+                          data-active={validCurrentPage === p}
+                          className="glass-chip h-8 w-8 justify-center text-xs font-bold"
                         >
                           {p}
                         </button>
@@ -543,7 +513,7 @@ export function MaterialList() {
                   setCurrentPage((p) => Math.min(totalPages, p + 1))
                 }
                 disabled={validCurrentPage >= totalPages}
-                className="flex h-8 items-center gap-1 rounded-lg border border-white/10 bg-white/5 px-3 text-xs font-semibold text-white transition hover:bg-white/15 disabled:pointer-events-none disabled:opacity-30"
+                className="glass-chip h-8 gap-1 px-3 text-xs font-semibold"
               >
                 <span>Next</span>
                 <ChevronRight className="h-3.5 w-3.5" />
@@ -561,6 +531,7 @@ export function MaterialList() {
         onNavigatePrev={handlePrevModal}
         hasNext={hasNextModal}
         hasPrev={hasPrevModal}
+        total={stats.total}
       />
     </div>
   );

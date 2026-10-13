@@ -30,10 +30,10 @@ export function MaterialTableView({
   }
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-white/10 bg-black/20 shadow-xl backdrop-blur-xl">
+    <div className="glass-card overflow-hidden">
       <div className="overflow-x-auto">
         <table className="w-full text-left text-sm text-white/90">
-          <thead className="border-b border-white/10 bg-white/5 text-xs font-semibold uppercase tracking-wider text-white/60">
+          <thead className="border-b border-white/10 bg-white/[0.04] text-xs font-semibold uppercase tracking-wider text-white/55">
             <tr>
               <th scope="col" className="w-16 px-4 py-3.5 text-center">
                 Order
@@ -64,7 +64,7 @@ export function MaterialTableView({
               </th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-white/5">
+          <tbody className="divide-y divide-white/[0.06]">
             {materials.map((mat) => {
               const rarity = mat.rarity || 1;
               const styles = getRarityStyles(rarity);
@@ -75,18 +75,20 @@ export function MaterialTableView({
                 <tr
                   key={mat.id}
                   onClick={() => onSelectMaterial(mat)}
-                  className="group cursor-pointer transition-colors hover:bg-white/10"
+                  // Rarity colour tints this row's glass icon well and rarity chip
+                  style={{ "--glass-accent": styles.accent } as React.CSSProperties}
+                  className="group cursor-pointer transition-colors hover:bg-white/[0.06]"
                 >
                   {/* Order */}
                   <td className="px-4 py-3 text-center">
-                    <span className="inline-block rounded-md border border-white/10 bg-black/40 px-2 py-0.5 font-mono text-xs font-bold text-white shadow-sm">
+                    <span className="glass-chip px-2.5 py-0.5 font-mono text-xs font-bold text-white">
                       #{mat.order}
                     </span>
                   </td>
 
                   {/* Icon */}
                   <td className="px-4 py-3 text-center">
-                    <div className="relative mx-auto flex h-10 w-10 items-center justify-center overflow-hidden rounded-lg border border-white/10 bg-black/40 shadow-inner transition-transform group-hover:scale-105">
+                    <div className="glass-well glass-well--tinted relative mx-auto flex h-10 w-10 items-center justify-center overflow-hidden rounded-xl transition-transform group-hover:scale-105">
                       <img
                         src={mat.image}
                         alt={mat.name}
@@ -101,7 +103,7 @@ export function MaterialTableView({
 
                   {/* Name */}
                   <td className="px-4 py-3">
-                    <div className="font-semibold text-white transition-colors group-hover:text-primary">
+                    <div className="font-semibold text-white transition-colors group-hover:text-cyan-100">
                       {mat.name}
                     </div>
                   </td>
@@ -109,7 +111,7 @@ export function MaterialTableView({
                   {/* Rarity */}
                   <td className="px-4 py-3 text-center">
                     <span
-                      className={`inline-block rounded-md border px-2 py-0.5 text-xs font-medium ${styles.badgeBg}`}
+                      className={`glass-chip px-2.5 py-0.5 text-xs font-semibold ${styles.starColor}`}
                     >
                       {rarity}★
                     </span>
@@ -117,7 +119,7 @@ export function MaterialTableView({
 
                   {/* Category */}
                   <td className="px-4 py-3 text-xs text-white/70">
-                    <span className="inline-block rounded border border-white/5 bg-white/5 px-2 py-1">
+                    <span className="glass-chip px-2.5 py-1">
                       {categoryLabel}
                     </span>
                   </td>
@@ -128,8 +130,8 @@ export function MaterialTableView({
                   </td>
 
                   {/* ID */}
-                  <td className="px-4 py-3 font-mono text-xs text-primary/90">
-                    <code className="rounded border border-white/5 bg-black/30 px-1.5 py-0.5">
+                  <td className="px-4 py-3 font-mono text-xs text-cyan-300/90">
+                    <code className="glass-well rounded-md px-2 py-0.5">
                       {mat.id}
                     </code>
                   </td>
@@ -139,7 +141,7 @@ export function MaterialTableView({
                     <div className="flex items-center justify-end gap-1">
                       <button
                         onClick={(e) => handleCopyId(e, mat.id)}
-                        className="flex h-7 w-7 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-white/70 transition hover:bg-white/15 hover:text-white"
+                        className="glass-icon-btn h-7 w-7 rounded-lg"
                         title="Copy Material ID"
                         aria-label="Copy ID"
                       >
@@ -154,7 +156,7 @@ export function MaterialTableView({
                           e.stopPropagation();
                           onSelectMaterial(mat);
                         }}
-                        className="flex h-7 w-7 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-white/70 transition hover:bg-white/15 hover:text-white"
+                        className="glass-icon-btn h-7 w-7 rounded-lg"
                         title="View Details"
                         aria-label="View Details"
                       >

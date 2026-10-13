@@ -23,6 +23,8 @@ export interface ScannedReviewItem {
   row?: number;
   col?: number;
   candidates?: ReviewCandidate[];
+  /** Why this slot should be double-checked (e.g. a close runner-up or an unreadable quantity). */
+  reviewReason?: string;
 }
 
 export interface ProcessScanResult {

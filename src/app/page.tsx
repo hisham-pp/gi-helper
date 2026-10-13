@@ -1,11 +1,61 @@
+import type { Metadata } from "next";
 import { Scanner } from "@/components/scanner/Scanner";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { ScannerSettingsButton } from "@/components/scanner/ScannerSettingsButton";
 import Link from "next/link";
+import { SITE } from "@/lib/site";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = pageMetadata({
+  title: `${SITE.title} | ${SITE.name}`,
+  absoluteTitle: true,
+  description: SITE.description,
+  path: "/",
+});
+
+/** Structured data so search engines can describe the scanner as a free web app. */
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${SITE.url}/#website`,
+      url: SITE.url,
+      name: SITE.name,
+      description: SITE.description,
+      inLanguage: "en",
+    },
+    {
+      "@type": "WebApplication",
+      "@id": `${SITE.url}/#app`,
+      name: `${SITE.name} – ${SITE.title}`,
+      url: SITE.url,
+      description: SITE.description,
+      applicationCategory: "UtilitiesApplication",
+      operatingSystem: "Any",
+      browserRequirements: "Requires JavaScript",
+      isAccessibleForFree: true,
+      offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+      featureList: [
+        "On-device scanning of inventory screenshots, no API key needed",
+        "Optional AI Vision scanning with Gemini, OpenAI, Claude or Grok",
+        "Review and correct detected materials and quantities",
+        "Export to GOOD format for Genshin optimizers",
+      ],
+      about: { "@type": "VideoGame", name: "Genshin Impact" },
+      isPartOf: { "@id": `${SITE.url}/#website` },
+    },
+  ],
+};
 
 export default function ScannerPage() {
   return (
     <div className="relative z-10 flex min-h-screen w-full flex-col bg-transparent px-4 py-4 sm:px-6 md:px-8">
+      <script
+        type="application/ld+json"
+        // Escape "<" so the JSON can never close the script tag
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
+      />
       {/* Top Header Bar */}
       <header className="flex w-full shrink-0 items-center justify-between pb-3 sm:pb-4">
         <div className="flex items-center gap-2 sm:gap-2.5">

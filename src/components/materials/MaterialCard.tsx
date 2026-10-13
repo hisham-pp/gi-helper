@@ -38,12 +38,14 @@ export function MaterialCard({ material, onClick }: MaterialCardProps) {
           onClick();
         }
       }}
-      className={`group relative flex flex-col items-center justify-between overflow-hidden rounded-2xl border-[0.5px] bg-gradient-to-br ${styles.cardBg} cursor-pointer p-3.5 text-center shadow-[0_4px_20px_rgba(0,0,0,0.2)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(0,0,0,0.35)] focus:outline-none focus:ring-2 focus:ring-primary/50 ${styles.border}`}
+      // Rarity colour tints the glass rim and edge glow
+      style={{ "--glass-accent": styles.accent } as React.CSSProperties}
+      className="glass-card glass-card--hover group flex cursor-pointer flex-col items-center justify-between p-3.5 text-center"
     >
       {/* Top Bar: Order Badge & Copy Button */}
       <div className="relative z-10 flex w-full items-center justify-between">
         <span
-          className="flex items-center gap-1 rounded-md border border-white/10 bg-black/40 px-2 py-0.5 font-mono text-[11px] font-bold tracking-tight text-white/90 shadow-sm backdrop-blur-md"
+          className="glass-chip gap-0.5 px-2 py-0.5 font-mono text-[11px] font-bold tracking-tight text-white/90"
           title={`Canonical In-Game Bag Order: #${material.order}`}
         >
           <span className="text-white/50">#</span>
@@ -52,7 +54,7 @@ export function MaterialCard({ material, onClick }: MaterialCardProps) {
 
         <button
           onClick={handleCopyId}
-          className="text-on-surface-variant flex h-6 w-6 items-center justify-center rounded-md border border-transparent opacity-60 transition-all hover:border-white/15 hover:bg-white/10 hover:opacity-100 group-hover:opacity-100"
+          className="glass-icon-btn h-6 w-6 rounded-lg opacity-60 group-hover:opacity-100 hover:opacity-100"
           title="Copy Material ID"
           aria-label="Copy Material ID"
         >
@@ -65,7 +67,7 @@ export function MaterialCard({ material, onClick }: MaterialCardProps) {
       </div>
 
       {/* Material Thumbnail with Rarity Glow Frame */}
-      <div className="relative my-2.5 flex h-20 w-20 items-center justify-center overflow-hidden rounded-xl border border-white/15 bg-black/35 shadow-[inset_0_2px_8px_rgba(0,0,0,0.5)] transition-transform duration-300 group-hover:scale-105">
+      <div className="glass-well glass-well--tinted relative my-2.5 flex h-20 w-20 items-center justify-center overflow-hidden rounded-2xl transition-transform duration-300 group-hover:scale-105">
         {!imgError ? (
           <img
             src={material.image}
@@ -92,14 +94,15 @@ export function MaterialCard({ material, onClick }: MaterialCardProps) {
 
       {/* Material Name */}
       <h3
-        className="text-on-surface line-clamp-2 min-h-[38px] w-full text-xs font-semibold leading-snug drop-shadow-sm transition-colors group-hover:text-primary sm:text-sm"
+        className="line-clamp-2 min-h-[38px] w-full text-xs font-semibold leading-snug text-white drop-shadow-sm transition-colors group-hover:text-cyan-100 sm:text-sm"
         title={material.name}
       >
         {material.name}
       </h3>
 
       {/* Category Pill */}
-      <div className="mt-2 flex w-full items-center justify-between border-t border-white/10 pt-2 text-[10px]">
+      <div className="glass-divider mt-2 w-full" />
+      <div className="flex w-full items-center justify-between pt-2 text-[10px]">
         <span
           className="truncate font-medium text-white/60"
           title={categoryLabel}

@@ -1,3 +1,7 @@
+/* Glass components come before Tailwind's output so utility classes can adjust
+   them (e.g. `glass-chip rounded-xl px-4`), like Tailwind's own components layer. */
+@import "../styles/glass.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -343,8 +347,10 @@ input[type="number"] {
   }
 }
 
+/* `backwards`, not `both`: once finished, the panel drops its transform/filter,
+   which would otherwise trap fixed overlays and backdrop blurs inside it. */
 .pill-tab-panel {
-  animation: content-enter 400ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: content-enter 400ms cubic-bezier(0.22, 1, 0.36, 1) backwards;
 }
 
 @media (prefers-reduced-motion: reduce) {

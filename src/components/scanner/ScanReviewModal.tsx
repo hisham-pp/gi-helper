@@ -1,5 +1,6 @@
 "use client";
 
+import { createPortal } from "react-dom";
 import React, { useState, useEffect, useMemo } from "react";
 import {
   ScannedReviewItem,
@@ -18,6 +19,7 @@ import {
   Sparkles,
   Search,
   Pencil,
+  AlertTriangle,
 } from "lucide-react";
 import { toast } from "sonner";
 import {
@@ -165,20 +167,22 @@ export function ScanReviewModal({
     return true;
   });
 
-  return (
+  // Portal to <body>: an ancestor's transform/filter (e.g. the tab panel's entry
+  // animation) would otherwise trap the fixed overlay and the glass blur inside it.
+  return createPortal(
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6">
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-black/75 backdrop-blur-md transition-opacity duration-300"
+        className="fixed inset-0 bg-black/55 backdrop-blur-sm transition-opacity duration-300"
         onClick={onClose}
       />
 
       {/* Modal Dialog */}
-      <div className="relative z-10 flex max-h-[92vh] w-full max-w-4xl flex-col overflow-hidden rounded-[2rem] border-[0.5px] border-b-white/5 border-l-white/20 border-r-white/5 border-t-white/30 bg-gradient-to-br from-neutral-900/95 via-neutral-900/90 to-black/95 text-white shadow-[0_20px_50px_0_rgba(0,0,0,0.7),inset_0_1px_1px_rgba(255,255,255,0.2)] backdrop-blur-2xl">
+      <div className="glass-card glass-card--lg glass-card--raised relative z-10 flex max-h-[92vh] w-full max-w-4xl flex-col overflow-hidden text-white">
         {/* Header */}
         <div className="flex flex-shrink-0 items-center justify-between border-b border-white/10 px-6 py-4">
           <div className="flex items-center gap-3">
-            <div className="rounded-xl border border-white/10 bg-emerald-500/20 p-2 text-emerald-400 shadow-inner">
+            <div className="glass-chip h-10 w-10 justify-center rounded-xl text-emerald-300">
               <CheckCircle2 className="h-5 w-5" />
             </div>
             <div>
@@ -193,7 +197,7 @@ export function ScanReviewModal({
           </div>
           <button
             onClick={onClose}
-            className="rounded-full border border-white/10 bg-white/5 p-2 text-white/70 transition-colors hover:bg-white/15 hover:text-white"
+            className="glass-icon-btn h-9 w-9 rounded-full"
             aria-label="Close modal"
           >
             <X className="h-4 w-4" />
@@ -201,23 +205,23 @@ export function ScanReviewModal({
         </div>
 
         {/* Search & Stats Bar */}
-        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/5 bg-black/20 px-6 py-3">
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 px-6 py-3">
           <div className="relative min-w-[200px] max-w-sm flex-1">
-            <Search className="absolute left-3 top-2.5 h-4 w-4 text-white/40" />
+            <Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-white/45" />
             <input
               type="text"
               placeholder="Search detected items..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full rounded-xl border border-white/10 bg-white/5 py-1.5 pl-9 pr-3 text-xs text-white placeholder-white/40 outline-none transition-colors focus:border-primary/50"
+              className="glass-input w-full rounded-full py-2 pl-10 pr-3 text-xs"
             />
           </div>
 
           <div className="flex items-center gap-3 text-xs">
-            <span className="rounded-full bg-white/10 px-3 py-1 font-semibold text-white/80">
+            <span className="glass-chip px-3 py-1 font-semibold text-white/85">
               {items.length} detected slots
             </span>
-            <span className="rounded-full bg-primary/20 px-3 py-1 font-semibold text-primary">
+            <span className="glass-chip px-3 py-1 font-semibold text-cyan-200">
               Total Qty: {totalQuantity}
             </span>
           </div>
@@ -240,31 +244,23 @@ export function ScanReviewModal({
           ) : (
             <div className="space-y-3">
               {filteredItems.map((item) => {
-                const rarity = item.rarity || 1;
-                const rarityColor =
-                  rarity === 5
-                    ? "border-amber-500/40 bg-amber-500/5 shadow-[0_0_12px_rgba(245,158,11,0.1)]"
-                    : rarity === 4
-                      ? "border-purple-500/40 bg-purple-500/5 shadow-[0_0_12px_rgba(168,85,247,0.1)]"
-                      : rarity === 3
-                        ? "border-blue-500/30 bg-blue-500/5"
-                        : rarity === 2
-                          ? "border-emerald-500/30 bg-emerald-500/5"
-                          : "border-white/10 bg-white/[0.03]";
+                const rarityStyles = getRarityStyles(item.rarity || 1);
 
                 return (
                   <div
                     key={item.id}
-                    className={`flex flex-col items-start justify-between gap-4 rounded-2xl border p-3 transition-all hover:bg-white/[0.06] sm:flex-row sm:items-center sm:p-4 ${rarityColor}`}
+                    // Rarity colour tints the row's glass rim and edge glow
+                    style={{ "--glass-accent": rarityStyles.accent } as React.CSSProperties}
+                    className="glass-card flex flex-col items-start justify-between gap-4 p-3 sm:flex-row sm:items-center sm:p-4"
                   >
                     {/* Left: Image Part (Screenshot Crop) */}
                     <div className="flex w-full items-center gap-3 sm:w-auto">
-                      <div className="relative flex h-16 w-16 flex-shrink-0 items-center justify-center overflow-hidden rounded-xl border border-white/15 bg-black/60 shadow-inner">
+                      <div className="glass-well relative flex h-16 w-16 flex-shrink-0 items-center justify-center overflow-hidden rounded-2xl">
                         {item.imageSnippet ? (
                           <img
                             src={item.imageSnippet}
                             alt="Screenshot crop"
-                            className="h-full w-full object-cover"
+                            className="h-full w-full object-contain"
                           />
                         ) : (
                           <span className="text-[10px] text-white/40">
@@ -299,7 +295,7 @@ export function ScanReviewModal({
                     {/* Right: Matched Material Result & Suggestions */}
                     <div className="flex w-full flex-1 flex-col gap-2 sm:w-auto">
                       <div className="flex items-center gap-3">
-                        <div className="relative flex h-14 w-14 flex-shrink-0 items-center justify-center overflow-hidden rounded-xl border border-white/15 bg-black/40 shadow-inner">
+                        <div className="glass-well glass-well--tinted relative flex h-14 w-14 flex-shrink-0 items-center justify-center overflow-hidden rounded-2xl">
                           <img
                             src={`/images/materials/${item.materialId}.png`}
                             alt={item.name}
@@ -324,16 +320,25 @@ export function ScanReviewModal({
                                 setPickerCategory("ALL");
                                 setPickerRarity(item.rarity ?? null);
                               }}
-                              className="flex items-center gap-1 rounded-md border border-white/10 bg-white/5 px-2 py-0.5 text-[11px] font-medium text-white/70 transition-colors hover:border-primary/50 hover:bg-primary/20 hover:text-white"
+                              className="glass-chip gap-1 px-2.5 py-0.5 text-[11px] font-medium"
                               title="Select a different material for this slot"
                             >
                               <Pencil className="h-3 w-3" />
                               <span>Change</span>
                             </button>
+                            {item.reviewReason && (
+                              <span
+                                className="glass-chip gap-1 bg-amber-400/10 px-2.5 py-0.5 text-[10px] font-semibold text-amber-200"
+                                title="The scanner was not sure about this slot"
+                              >
+                                <AlertTriangle className="h-3 w-3" />
+                                {item.reviewReason}
+                              </span>
+                            )}
                           </div>
 
                           {item.rarity && item.rarity >= 1 ? (
-                            <div className="flex items-center gap-0.5 text-[11px] font-bold text-amber-400">
+                            <div className={`flex items-center gap-0.5 text-[11px] font-bold ${rarityStyles.starColor}`}>
                               {Array.from({ length: item.rarity }).map(
                                 (_, i) => (
                                   <span key={i}>★</span>
@@ -365,13 +370,13 @@ export function ScanReviewModal({
                                   onClick={() =>
                                     handleSelectMaterial(item.id, cand)
                                   }
-                                  className="group flex items-center gap-1 rounded-md border border-white/10 bg-white/[0.04] px-2 py-0.5 text-[10px] text-white/70 transition-all hover:border-primary/50 hover:bg-primary/20 hover:text-white"
+                                  className="glass-chip gap-1.5 px-2.5 py-0.5 text-[10px]"
                                   title={`Switch to ${cand.name} (${cand.confidence}%)`}
                                 >
                                   <span className="max-w-[130px] truncate">
                                     {cand.name}
                                   </span>
-                                  <span className="font-mono text-[9px] font-semibold text-primary group-hover:text-primary-foreground">
+                                  <span className="font-mono text-[9px] font-semibold text-cyan-300">
                                     {cand.confidence}%
                                   </span>
                                 </button>
@@ -382,11 +387,11 @@ export function ScanReviewModal({
 
                     {/* Quantity Adjustment Controls & Remove Button */}
                     <div className="flex w-full items-center justify-end gap-3 sm:w-auto">
-                      <div className="flex items-center rounded-xl border border-white/15 bg-black/40 p-1">
+                      <div className="glass-well flex items-center rounded-full p-1">
                         <button
                           onClick={() => handleUpdateQuantity(item.id, -1)}
                           disabled={item.quantity <= 1}
-                          className="rounded-lg p-1 text-white/60 transition-colors hover:bg-white/10 hover:text-white disabled:opacity-30"
+                          className="rounded-full p-1.5 text-white/60 transition-colors hover:bg-white/10 hover:text-white disabled:opacity-30"
                           title="Decrease quantity"
                         >
                           <Minus className="h-3.5 w-3.5" />
@@ -401,11 +406,11 @@ export function ScanReviewModal({
                               parseInt(e.target.value) || 1,
                             )
                           }
-                          className="w-14 bg-transparent text-center text-sm font-bold text-primary outline-none"
+                          className="w-14 bg-transparent text-center text-sm font-bold text-cyan-100 outline-none"
                         />
                         <button
                           onClick={() => handleUpdateQuantity(item.id, 1)}
-                          className="rounded-lg p-1 text-white/60 transition-colors hover:bg-white/10 hover:text-white"
+                          className="rounded-full p-1.5 text-white/60 transition-colors hover:bg-white/10 hover:text-white"
                           title="Increase quantity"
                         >
                           <Plus className="h-3.5 w-3.5" />
@@ -414,7 +419,7 @@ export function ScanReviewModal({
 
                       <button
                         onClick={() => handleRemove(item.id)}
-                        className="rounded-xl border border-transparent p-2 text-white/40 transition-colors hover:border-red-500/30 hover:bg-red-500/20 hover:text-red-400"
+                        className="glass-icon-btn h-9 w-9 rounded-xl text-white/50 hover:bg-rose-500/20 hover:text-rose-300"
                         title="Remove item from batch"
                       >
                         <Trash2 className="h-4 w-4" />
@@ -431,14 +436,14 @@ export function ScanReviewModal({
         <div className="flex flex-shrink-0 items-center justify-between border-t border-white/10 px-6 py-4">
           <button
             onClick={onClose}
-            className="rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-white/80 transition-all hover:bg-white/10 hover:text-white"
+            className="glass-btn px-5 py-2 text-sm"
           >
             Discard
           </button>
           <button
             onClick={handleConfirm}
             disabled={items.length === 0}
-            className="flex items-center gap-2 rounded-xl bg-primary px-6 py-2.5 text-sm font-bold text-primary-foreground shadow-sm transition-all hover:bg-primary/90 hover:shadow-lg active:scale-95 disabled:pointer-events-none disabled:opacity-50"
+            className="glass-btn glass-btn--primary px-6 py-2.5 text-sm font-bold"
           >
             <Check className="h-4 w-4 stroke-[3]" />
             <span>Confirm & Add to Inventory</span>
@@ -450,14 +455,14 @@ export function ScanReviewModal({
       {editingItem && (
         <div className="fixed inset-0 z-[60] flex items-center justify-center p-3 sm:p-6">
           <div
-            className="fixed inset-0 bg-black/85 backdrop-blur-md transition-opacity"
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
             onClick={() => setEditingSlotId(null)}
           />
-          <div className="relative z-10 flex max-h-[88vh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl border border-white/20 bg-neutral-900 text-white shadow-2xl backdrop-blur-2xl">
+          <div className="glass-card glass-card--lg glass-card--raised relative z-10 flex max-h-[88vh] w-full max-w-2xl flex-col overflow-hidden text-white">
             {/* Header */}
-            <div className="flex items-center justify-between border-b border-white/10 bg-black/40 px-5 py-3.5">
+            <div className="flex items-center justify-between border-b border-white/10 px-5 py-3.5">
               <div className="flex items-center gap-3">
-                <div className="relative flex h-12 w-12 flex-shrink-0 items-center justify-center overflow-hidden rounded-xl border border-white/20 bg-black/60 shadow-inner">
+                <div className="glass-well relative flex h-12 w-12 flex-shrink-0 items-center justify-center overflow-hidden rounded-xl">
                   {editingItem.imageSnippet ? (
                     <img
                       src={editingItem.imageSnippet}
@@ -482,7 +487,7 @@ export function ScanReviewModal({
               </div>
               <button
                 onClick={() => setEditingSlotId(null)}
-                className="rounded-full border border-white/10 bg-white/5 p-1.5 text-white/70 hover:bg-white/15 hover:text-white"
+                className="glass-icon-btn h-8 w-8 rounded-full"
                 aria-label="Close picker"
               >
                 <X className="h-4 w-4" />
@@ -490,16 +495,16 @@ export function ScanReviewModal({
             </div>
 
             {/* Search & Filter Bar */}
-            <div className="space-y-2 border-b border-white/10 bg-black/20 p-4">
+            <div className="space-y-2 border-b border-white/10 p-4">
               <div className="relative">
-                <Search className="absolute left-3 top-2.5 h-4 w-4 text-white/40" />
+                <Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-white/45" />
                 <input
                   type="text"
                   placeholder="Search material by name, category, or type..."
                   value={pickerSearch}
                   onChange={(e) => setPickerSearch(e.target.value)}
                   autoFocus
-                  className="w-full rounded-xl border border-white/15 bg-white/5 py-2 pl-9 pr-3 text-xs text-white placeholder-white/40 outline-none transition-colors focus:border-primary/60"
+                  className="glass-input w-full rounded-full py-2 pl-10 pr-3 text-xs"
                 />
               </div>
 
@@ -510,11 +515,8 @@ export function ScanReviewModal({
                     <button
                       key={cat.id}
                       onClick={() => setPickerCategory(cat.id)}
-                      className={`rounded-lg px-2.5 py-1 text-[11px] font-semibold transition-all ${
-                        pickerCategory === cat.id
-                          ? "bg-primary text-primary-foreground shadow-sm"
-                          : "bg-white/5 text-white/60 hover:bg-white/10 hover:text-white"
-                      }`}
+                      aria-pressed={pickerCategory === cat.id}
+                      className="glass-chip px-2.5 py-1 text-[11px] font-semibold"
                     >
                       {cat.shortLabel}
                     </button>
@@ -524,11 +526,8 @@ export function ScanReviewModal({
                 <div className="flex items-center gap-1">
                   <button
                     onClick={() => setPickerRarity(null)}
-                    className={`rounded-lg px-2 py-0.5 text-[11px] font-semibold ${
-                      pickerRarity === null
-                        ? "bg-white/20 text-white"
-                        : "bg-white/5 text-white/50 hover:bg-white/10 hover:text-white"
-                    }`}
+                    aria-pressed={pickerRarity === null}
+                    className="glass-chip px-2.5 py-0.5 text-[11px] font-semibold"
                   >
                     All ★
                   </button>
@@ -538,13 +537,11 @@ export function ScanReviewModal({
                       onClick={() =>
                         setPickerRarity(pickerRarity === r ? null : r)
                       }
-                      className={`rounded-lg px-2 py-0.5 text-[11px] font-bold ${
-                        pickerRarity === r
-                          ? "border border-amber-500/50 bg-amber-500/30 text-amber-300"
-                          : "bg-white/5 text-amber-400/60 hover:bg-white/10 hover:text-amber-400"
-                      }`}
+                      aria-pressed={pickerRarity === r}
+                      style={{ "--glass-accent": getRarityStyles(r).accent } as React.CSSProperties}
+                      className="glass-chip px-2.5 py-0.5 text-[11px] font-bold"
                     >
-                      {r}★
+                      <span className={getRarityStyles(r).starColor}>{r}★</span>
                     </button>
                   ))}
                 </div>
@@ -558,7 +555,7 @@ export function ScanReviewModal({
                   No materials found matching your filters.
                 </div>
               ) : (
-                <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4">
+                <div className="grid grid-cols-2 gap-3 p-1 sm:grid-cols-3 md:grid-cols-4">
                   {filteredMaterials.slice(0, 100).map((mat) => {
                     const styles = getRarityStyles(mat.rarity);
                     const isSelected = mat.id === editingItem.materialId;
@@ -568,13 +565,12 @@ export function ScanReviewModal({
                         onClick={() =>
                           handleSelectMaterial(editingItem.id, mat)
                         }
-                        className={`flex flex-col items-center gap-2 rounded-xl border bg-gradient-to-b p-2.5 text-center transition-all hover:scale-[1.02] active:scale-95 ${
-                          isSelected
-                            ? "border-primary bg-primary/20 shadow-[0_0_15px_rgba(var(--primary),0.3)] ring-2 ring-primary"
-                            : `${styles.border} ${styles.cardBg}`
-                        }`}
+                        aria-pressed={isSelected}
+                        data-active={isSelected}
+                        style={{ "--glass-accent": styles.accent } as React.CSSProperties}
+                        className="glass-card glass-card--hover flex flex-col items-center gap-2 rounded-2xl p-2.5 text-center active:scale-95"
                       >
-                        <div className="relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-lg bg-black/40 shadow-inner">
+                        <div className="glass-well glass-well--tinted relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-xl">
                           <img
                             src={`/images/materials/${mat.id}.png`}
                             alt={mat.name}
@@ -589,7 +585,7 @@ export function ScanReviewModal({
                             {mat.name}
                           </div>
                           {mat.rarity && (
-                            <div className="text-[10px] font-bold text-amber-400">
+                            <div className={`text-[10px] font-bold ${styles.starColor}`}>
                               {"★".repeat(mat.rarity)}
                             </div>
                           )}
@@ -603,6 +599,7 @@ export function ScanReviewModal({
           </div>
         </div>
       )}
-    </div>
+    </div>,
+    document.body,
   );
 }

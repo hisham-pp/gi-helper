@@ -137,7 +137,9 @@ export function getAllMaterials(): MaterialItem[] {
 }
 
 /**
- * Styling helpers for rarities
+ * Styling helpers for rarities.
+ * `accent` is an "r, g, b" triplet for the --glass-accent variable that tints
+ * glass cards (src/styles/glass.css).
  */
 export function getRarityStyles(rarity?: number) {
   switch (rarity) {
@@ -150,6 +152,7 @@ export function getRarityStyles(rarity?: number) {
         pill: "bg-amber-500/20 text-amber-400 border border-amber-500/30",
         starColor: "text-amber-400",
         glow: "rgba(245, 158, 11, 0.25)",
+        accent: "251, 191, 36",
       };
     case 4:
       return {
@@ -160,6 +163,7 @@ export function getRarityStyles(rarity?: number) {
         pill: "bg-purple-500/20 text-purple-400 border border-purple-500/30",
         starColor: "text-purple-400",
         glow: "rgba(168, 85, 247, 0.25)",
+        accent: "192, 132, 252",
       };
     case 3:
       return {
@@ -170,6 +174,7 @@ export function getRarityStyles(rarity?: number) {
         pill: "bg-blue-500/20 text-blue-400 border border-blue-500/30",
         starColor: "text-blue-400",
         glow: "rgba(59, 130, 246, 0.2)",
+        accent: "96, 165, 250",
       };
     case 2:
       return {
@@ -180,6 +185,7 @@ export function getRarityStyles(rarity?: number) {
         pill: "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30",
         starColor: "text-emerald-400",
         glow: "rgba(16, 185, 129, 0.2)",
+        accent: "52, 211, 153",
       };
     case 1:
     default:
@@ -190,6 +196,7 @@ export function getRarityStyles(rarity?: number) {
         pill: "bg-slate-500/20 text-slate-400 border border-slate-500/30",
         starColor: "text-slate-400",
         glow: "rgba(148, 163, 184, 0.15)",
+        accent: "148, 163, 184",
       };
   }
 }

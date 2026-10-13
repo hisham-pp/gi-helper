@@ -16,7 +16,11 @@
     "test:cv": "npx tsx --test tests/cv/hasher.test.ts",
     "test:grid-detector": "npx tsx --test tests/grid-detector.test.ts tests/grid-detector-samples.test.ts",
     "eval:grid-detector": "tsx scripts/evaluate-grid-detector.ts",
-    "sync-data": "tsx scripts/scrape-materials.ts && tsx scripts/update-families.ts && tsx scripts/generate-hashes.ts"
+    "test:material-detector": "npx tsx --test tests/material-detector.test.ts tests/material-detector-samples.test.ts",
+    "eval:material-detector": "tsx scripts/evaluate-material-detector.ts",
+    "build:material-atlas": "tsx scripts/build-material-atlas.ts",
+    "build:digit-templates": "tsx scripts/build-digit-templates.ts",
+    "sync-data": "tsx scripts/scrape-materials.ts && tsx scripts/update-families.ts && tsx scripts/generate-hashes.ts && tsx scripts/build-material-atlas.ts"
   },
   "pnpm": {
     "onlyBuiltDependencies": [

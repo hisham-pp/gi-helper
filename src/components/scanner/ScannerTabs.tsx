@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
+import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion";
 
 export interface TabItem {
   id: string;
@@ -20,6 +21,8 @@ interface ScannerTabsProps {
 /**
  * Animated Pill Tabs with smooth sliding indicator and keyboard accessibility.
  * Supports Left/Right arrow navigation, Home, End, and theme-matching glassmorphic styling.
+ * The indicator is a raised glass thumb in a recessed glass track
+ * (styles in src/styles/glass.css).
  */
 export function ScannerTabs({
   tabs,
@@ -28,6 +31,26 @@ export function ScannerTabs({
   ariaLabel = "Scanner modes",
 }: ScannerTabsProps) {
   const tabButtonRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const indicatorRef = useRef<HTMLDivElement>(null);
+  const prevIndexRef = useRef(activeIndex);
+  const reducedMotion = usePrefersReducedMotion();
+
+  // The thumb stretches while it travels, then settles back like a soft lens.
+  useEffect(() => {
+    const prevIndex = prevIndexRef.current;
+    prevIndexRef.current = activeIndex;
+    if (prevIndex === activeIndex || reducedMotion) return;
+
+    indicatorRef.current?.animate(
+      [
+        { scale: "1 1" },
+        { scale: "1.06 0.92", offset: 0.35 },
+        { scale: "0.98 1.03", offset: 0.7 },
+        { scale: "1 1" },
+      ],
+      { duration: 520, easing: "ease-out" },
+    );
+  }, [activeIndex, reducedMotion]);
 
   const handleKeyDown = (event: React.KeyboardEvent, index: number) => {
     let nextIndex = index;
@@ -55,20 +78,21 @@ export function ScannerTabs({
   return (
     <div className="flex w-full justify-center">
       <div
-        className="relative flex w-full max-w-[720px] sm:max-w-[560px] md:max-w-[560px] min-w-[520px] sm:min-w-[320px] items-center gap-1 isolate rounded-full border border-white/10 bg-slate-900/60 p-1.5 shadow-[0_8px_32px_rgba(0,0,0,0.4),inset_0_1px_1px_rgba(255,255,255,0.12)] backdrop-blur-xl transition-all"
+        className="glass-track flex w-full max-w-[420px] items-center gap-1 p-1.5"
         role="tablist"
         aria-label={ariaLabel}
         data-active={activeIndex}
       >
-        {/* Animated Sliding Indicator */}
-        <span
-          className="pill-tab-indicator pointer-events-none absolute bottom-1.5 left-1.5 top-1.5 z-0 rounded-full border border-teal-400/40 bg-gradient-to-r from-teal-500/90 to-emerald-500/90 shadow-[0_0_18px_rgba(20,184,166,0.45),inset_0_1px_1px_rgba(255,255,255,0.4)] transition-transform duration-400 ease-[cubic-bezier(0.22,1,0.36,1)]"
+        {/* Raised Glass Thumb Indicator */}
+        <div
+          ref={indicatorRef}
+          className="glass-thumb"
           style={{
-            width: "calc((100% - 16px) / 2)",
+            width: "calc((100% - 12px) / 2)",
             transform:
               activeIndex === 0
                 ? "translateX(0)"
-                : "translateX(calc(100% + 4px))",
+                : "translateX(100%)",
           }}
           aria-hidden="true"
         />
@@ -91,15 +115,19 @@ export function ScannerTabs({
               data-index={index}
               onClick={() => onTabChange(index)}
               onKeyDown={(e) => handleKeyDown(e, index)}
-              className={`relative z-10 flex flex-1 min-w-0 items-center justify-center gap-2 rounded-full py-2.5 px-6 text-sm font-semibold transition-colors duration-250 select-none focus-visible:outline-2 focus-visible:outline-teal-400 focus-visible:outline-offset-2 ${isActive
-                ? "text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)]"
-                : "text-white/60 hover:text-white"
-                }`}
+              className={`relative z-10 flex flex-1 min-w-0 items-center justify-center gap-2 rounded-full py-2.5 px-5 text-sm font-semibold transition-all duration-200 select-none focus-visible:outline-2 focus-visible:outline-cyan-400 focus-visible:outline-offset-2 ${
+                isActive
+                  ? "text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]"
+                  : "text-white/55 hover:text-white/85"
+              }`}
             >
               {tab.icon && (
                 <span
-                  className={`shrink-0 transition-transform ${isActive ? "scale-110 text-white" : "text-white/60"
-                    }`}
+                  className={`shrink-0 transition-colors ${
+                    isActive
+                      ? "text-cyan-200 drop-shadow-[0_0_6px_rgba(103,232,249,0.6)]"
+                      : "text-white/45"
+                  }`}
                 >
                   {tab.icon}
                 </span>

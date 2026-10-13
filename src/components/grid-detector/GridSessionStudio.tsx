@@ -29,6 +29,9 @@ import {
   type SessionImage,
 } from "@/lib/grid-detector";
 import { useDecodedBitmap, useGridDetectionClient, useObjectUrl } from "@/lib/grid-detector/react";
+import { isMaterialDetectionError, type MaterialRecognitionResult } from "@/lib/material-detector";
+import { useMaterialScanClient } from "@/lib/material-detector/react";
+import { CardRecognitionDetails, cardLabel, RecognitionPanel, STATUS_STYLE } from "@/components/material-detector";
 import { SessionBar } from "./SessionBar";
 import { UploadZone } from "./UploadZone";
 import { SessionGallery } from "./SessionGallery";
@@ -76,6 +79,13 @@ function settingsKey(s: DetectionSettings): string {
   return JSON.stringify(s);
 }
 
+/** Identifies the card boxes recognition ran on, so edits trigger a new run. */
+function recognitionKey(grids: DetectedGrid[]): string {
+  return grids
+    .flatMap((g) => g.cards.map((c) => `${c.id}:${c.x},${c.y},${c.width},${c.height}${c.clipped ? "c" : ""}`))
+    .join("|");
+}
+
 function isTypingTarget(target: EventTarget | null): boolean {
   const el = target as HTMLElement | null;
   return !!el && (el.tagName === "INPUT" || el.tagName === "TEXTAREA" || el.isContentEditable);
@@ -107,6 +117,14 @@ export function GridSessionStudio() {
 
   const imageUrl = useObjectUrl(selectedImage?.blob);
   const bitmap = useDecodedBitmap(selectedImage?.blob);
+
+  // Material recognition (runs on the current, possibly edited, grids)
+  const scanClient = useMaterialScanClient({ preload: true });
+  const [recognitions, setRecognitions] = useState<Record<string, { key: string; result: MaterialRecognitionResult }>>({});
+  const [recognitionErrors, setRecognitionErrors] = useState<Record<string, string>>({});
+  const [recognizingId, setRecognizingId] = useState<string | null>(null);
+  const [showLabels, setShowLabels] = useState(true);
+  const recognitionRequest = useRef(0);
 
   // ── Sessions ──────────────────────────────────────────────────────────────
   // Strict Mode runs effects twice in development; without this guard both
@@ -282,6 +300,50 @@ export function GridSessionStudio() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [editor.present]);
 
+  // ── Recognition follows the grids shown in the editor ────────────────────
+  const gridsKey = useMemo(() => recognitionKey(editor.present), [editor.present]);
+
+  const runRecognition = useCallback(
+    (img: SessionImage, grids: DetectedGrid[], key: string) => {
+      // The worker handles requests in order, so the latest one lands last.
+      const request = ++recognitionRequest.current;
+      setRecognizingId(img.id);
+      scanClient
+        .recognize(img.blob, grids)
+        .then((result) => {
+          setRecognitions((prev) => ({ ...prev, [img.id]: { key, result } }));
+          setRecognitionErrors((prev) => {
+            if (!(img.id in prev)) return prev;
+            const next = { ...prev };
+            delete next[img.id];
+            return next;
+          });
+        })
+        .catch((err) => {
+          if (isMaterialDetectionError(err) && err.code === "CANCELLED") return;
+          const message = isMaterialDetectionError(err) ? err.message : "Material recognition failed.";
+          setRecognitionErrors((prev) => ({ ...prev, [img.id]: message }));
+        })
+        .finally(() => {
+          if (recognitionRequest.current === request) setRecognizingId(null);
+        });
+    },
+    [scanClient],
+  );
+
+  useEffect(() => {
+    if (!selectedImage || editorImageId.current !== selectedImage.id) return;
+    if (detectingIds.has(selectedImage.id) || editor.present.length === 0) return;
+    if (recognitions[selectedImage.id]?.key === gridsKey) return;
+    const img = selectedImage;
+    const grids = editor.present;
+    // Debounced so dragging a box doesn't queue a run per pixel.
+    const handle = window.setTimeout(() => runRecognition(img, grids, gridsKey), 350);
+    return () => window.clearTimeout(handle);
+    // Re-run only when the boxes, the image or the detection state change.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedImage?.id, gridsKey, detectingIds]);
+
   const onEdit = useCallback(
     (edit: CardEdit) => {
       if (!selectedImage) return;
@@ -412,6 +474,15 @@ export function GridSessionStudio() {
   };
 
   const isDetecting = selectedImage ? detectingIds.has(selectedImage.id) : false;
+  const recognition = selectedImage ? (recognitions[selectedImage.id]?.result ?? null) : null;
+  const isRecognizing = !!selectedImage && recognizingId === selectedImage.id;
+  const selectedRecognition = recognition?.cards.find((c) => c.cardId === selectedCardId) ?? null;
+  const cardLabels =
+    showLabels && recognition
+      ? Object.fromEntries(
+          recognition.cards.map((c) => [c.cardId, { text: cardLabel(c), color: STATUS_STYLE[c.status].stroke }]),
+        )
+      : undefined;
   const result = selectedImage?.detection ?? null;
   const settingsDirty = !!result && settingsKey(result.settings) !== settingsKey(settings);
 
@@ -492,6 +563,7 @@ export function GridSessionStudio() {
                   highConfidence={HIGH_CONFIDENCE}
                   busy={isDetecting}
                   fitRequest={fitRequest}
+                  cardLabels={cardLabels}
                 />
                 <OverlayLegend />
                 <CardCropsStrip
@@ -499,6 +571,16 @@ export function GridSessionStudio() {
                   grids={editor.present}
                   selectedCardId={selectedCardId}
                   onSelectCard={setSelectedCardId}
+                />
+                <RecognitionPanel
+                  result={recognition}
+                  busy={isRecognizing}
+                  error={recognitionErrors[selectedImage.id] ?? null}
+                  selectedCardId={selectedCardId}
+                  onSelectCard={setSelectedCardId}
+                  showLabels={showLabels}
+                  onToggleLabels={() => setShowLabels((v) => !v)}
+                  onRerun={() => runRecognition(selectedImage, editor.present, gridsKey)}
                 />
               </div>
 
@@ -515,6 +597,7 @@ export function GridSessionStudio() {
                   imageName={selectedImage.name}
                   onEdit={onEdit}
                 />
+                {selection && <CardRecognitionDetails recognition={selectedRecognition} busy={isRecognizing} />}
                 <DetectionSettingsPanel
                   settings={settings}
                   onChange={updateSettings}

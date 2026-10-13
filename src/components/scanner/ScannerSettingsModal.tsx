@@ -1,5 +1,6 @@
 "use client";
 
+import { createPortal } from "react-dom";
 import React, { useState, useEffect } from "react";
 import {
   Settings,
@@ -25,6 +26,7 @@ import {
 import { listSupportedAdapters, getAiAdapter } from "@/lib/ai/adapters";
 import { toast } from "sonner";
 
+import { PillDropdown } from "@/components/ui/PillDropdown";
 interface ScannerSettingsModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -223,20 +225,22 @@ export function ScannerSettingsModal({
   const currentModel = getActiveModel();
   const currentBaseUrl = getActiveBaseUrl();
 
-  return (
+  // Portal to <body>: an ancestor's transform/filter (e.g. the tab panel's entry
+  // animation) would otherwise trap the fixed overlay and the glass blur inside it.
+  return createPortal(
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4">
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-black/70 backdrop-blur-md transition-opacity duration-300"
+        className="fixed inset-0 bg-black/55 backdrop-blur-sm transition-opacity duration-300"
         onClick={onClose}
       />
 
       {/* Modal Dialog */}
-      <div className="relative z-10 flex max-h-[92vh] w-full max-w-2xl flex-col overflow-hidden rounded-[2rem] border-[0.5px] border-b-white/5 border-l-white/20 border-r-white/5 border-t-white/30 bg-gradient-to-br from-neutral-900/95 via-neutral-900/90 to-black/95 text-white shadow-[0_20px_60px_0_rgba(0,0,0,0.8),inset_0_1px_1px_rgba(255,255,255,0.2)] backdrop-blur-2xl">
+      <div className="glass-card glass-card--lg glass-card--raised relative z-10 flex max-h-[92vh] w-full max-w-2xl flex-col overflow-hidden text-white">
         {/* Header */}
         <div className="flex items-center justify-between border-b border-white/10 px-6 py-5 sm:px-8">
           <div className="flex items-center gap-3">
-            <div className="rounded-xl border border-white/10 bg-primary/20 p-2.5 text-primary shadow-inner">
+            <div className="glass-chip h-10 w-10 justify-center rounded-xl text-cyan-300">
               <Settings className="h-5 w-5" />
             </div>
             <div>
@@ -250,7 +254,7 @@ export function ScannerSettingsModal({
           </div>
           <button
             onClick={onClose}
-            className="rounded-full border border-white/10 bg-white/5 p-2 text-white/70 transition-colors hover:bg-white/15 hover:text-white"
+            className="glass-icon-btn h-9 w-9 rounded-full"
             aria-label="Close settings"
           >
             <X className="h-4 w-4" />
@@ -271,7 +275,7 @@ export function ScannerSettingsModal({
               </span>
             </div>
 
-            <div className="grid grid-cols-2 gap-2 sm:grid-cols-5">
+            <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-5">
               {adapters.map((adapter) => {
                 const isSelected = settings.aiProvider === adapter.providerId;
                 const userKey = (() => {
@@ -302,21 +306,21 @@ export function ScannerSettingsModal({
                       );
                       setTestingStatus({ loading: false });
                     }}
-                    className={`relative flex flex-col items-center justify-center gap-1 rounded-xl border p-2.5 text-center transition-all ${
-                      isSelected
-                        ? "border-primary bg-primary/20 text-white shadow-[0_0_15px_rgba(var(--md-sys-color-primary),0.3)]"
-                        : "border-white/10 bg-white/[0.04] text-white/70 hover:border-white/20 hover:bg-white/[0.08] hover:text-white"
+                    aria-pressed={isSelected}
+                    data-active={isSelected}
+                    className={`glass-card glass-card--hover flex flex-col items-center justify-center gap-1 rounded-2xl p-2.5 text-center ${
+                      isSelected ? "text-white" : "text-white/70 hover:text-white"
                     }`}
                   >
                     <span className="text-xs font-bold">
                       {adapter.displayName}
                     </span>
                     {hasUserKey ? (
-                      <span className="py-0.2 rounded bg-emerald-500/20 px-1 text-[9px] font-semibold text-emerald-300">
+                      <span className="rounded-full bg-emerald-500/20 px-1.5 text-[9px] font-semibold text-emerald-300">
                         Configured
                       </span>
                     ) : adapter.providerId === "gemini" ? (
-                      <span className="py-0.2 rounded bg-sky-500/20 px-1 text-[9px] font-semibold text-sky-300">
+                      <span className="rounded-full bg-sky-500/20 px-1.5 text-[9px] font-semibold text-sky-300">
                         Free Tier
                       </span>
                     ) : null}
@@ -327,7 +331,7 @@ export function ScannerSettingsModal({
           </div>
 
           {/* Active Provider Card */}
-          <div className="space-y-4 rounded-2xl border border-white/10 bg-white/[0.03] p-5 shadow-inner">
+          <div className="glass-card space-y-4 rounded-3xl p-5">
             <div className="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-3">
               <div>
                 <h3 className="text-sm font-bold text-white">
@@ -342,7 +346,7 @@ export function ScannerSettingsModal({
                   href={currentAdapter.docsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1 rounded-lg border border-white/10 bg-white/5 px-2.5 py-1 text-xs font-semibold text-white/80 transition-colors hover:border-white/20 hover:bg-white/10 hover:text-white"
+                  className="glass-chip gap-1.5 px-3 py-1 text-xs font-semibold"
                 >
                   <span>Get API Key</span>
                   <ExternalLink className="h-3 w-3" />
@@ -354,7 +358,7 @@ export function ScannerSettingsModal({
             <div className="space-y-1.5">
               <div className="flex items-center justify-between">
                 <label className="flex items-center gap-1.5 text-xs font-semibold text-white/80">
-                  <Key className="h-3.5 w-3.5 text-primary" />
+                  <Key className="h-3.5 w-3.5 text-cyan-300" />
                   <span>API Key</span>
                 </label>
                 {Boolean(currentKey?.trim()) ? (
@@ -378,12 +382,12 @@ export function ScannerSettingsModal({
                       ? "Pre-configured on server (enter to override)"
                       : `Enter your ${currentAdapter.displayName} API key...`
                   }
-                  className="w-full rounded-xl border border-white/15 bg-black/50 px-3.5 py-2.5 pr-10 text-sm text-white placeholder-white/30 transition-all focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                  className="glass-input w-full rounded-xl px-3.5 py-2.5 pr-11 text-sm"
                 />
                 <button
                   type="button"
                   onClick={() => setShowKey(!showKey)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-white/50 transition-colors hover:text-white"
+                  className="glass-icon-btn absolute right-1.5 top-1/2 h-8 w-8 -translate-y-1/2 rounded-lg bg-transparent shadow-none"
                 >
                   {showKey ? (
                     <EyeOff className="h-4 w-4" />
@@ -397,7 +401,7 @@ export function ScannerSettingsModal({
             {/* Model Selection */}
             <div className="space-y-1.5">
               <label className="flex items-center gap-1.5 text-xs font-semibold text-white/80">
-                <Cpu className="h-3.5 w-3.5 text-primary" />
+                <Cpu className="h-3.5 w-3.5 text-cyan-300" />
                 <span>Model</span>
               </label>
               {currentAdapter.providerId === "custom" ? (
@@ -406,20 +410,19 @@ export function ScannerSettingsModal({
                   value={currentModel}
                   onChange={(e) => handleUpdateActiveModel(e.target.value)}
                   placeholder="e.g. qwen/qwen-2-vl-72b-instruct"
-                  className="w-full rounded-xl border border-white/15 bg-black/50 px-3.5 py-2.5 text-sm text-white placeholder-white/30 transition-all focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                  className="glass-input w-full rounded-xl px-3.5 py-2.5 text-sm"
                 />
               ) : (
-                <select
+                <PillDropdown
+                  block
+                  triggerRadius="rounded-xl"
                   value={currentModel}
-                  onChange={(e) => handleUpdateActiveModel(e.target.value)}
-                  className="w-full rounded-xl border border-white/15 bg-neutral-900 px-3.5 py-2.5 text-sm text-white transition-all focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
-                >
-                  {currentAdapter.supportedModels.map((m) => (
-                    <option key={m.id} value={m.id}>
-                      {m.label}
-                    </option>
-                  ))}
-                </select>
+                  onChange={(v) => handleUpdateActiveModel(v)}
+                  options={currentAdapter.supportedModels.map((m) => ({
+                    value: m.id,
+                    label: m.label,
+                  }))}
+                />
               )}
             </div>
 
@@ -430,7 +433,7 @@ export function ScannerSettingsModal({
               <div className="space-y-1.5">
                 <div className="flex items-center justify-between">
                   <label className="flex items-center gap-1.5 text-xs font-semibold text-white/80">
-                    <Globe className="h-3.5 w-3.5 text-primary" />
+                    <Globe className="h-3.5 w-3.5 text-cyan-300" />
                     <span>Custom Base URL (Optional)</span>
                   </label>
                   {currentAdapter.defaultBaseUrl && (
@@ -454,7 +457,7 @@ export function ScannerSettingsModal({
                   placeholder={
                     currentAdapter.defaultBaseUrl || "https://api.openai.com/v1"
                   }
-                  className="w-full rounded-xl border border-white/15 bg-black/50 px-3.5 py-2.5 text-sm text-white placeholder-white/30 transition-all focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                  className="glass-input w-full rounded-xl px-3.5 py-2.5 text-sm"
                 />
               </div>
             )}
@@ -466,7 +469,7 @@ export function ScannerSettingsModal({
                   type="button"
                   disabled={testingStatus.loading}
                   onClick={handleTestConnection}
-                  className="flex items-center gap-2 rounded-xl border border-primary/50 bg-primary/20 px-4 py-2 text-xs font-bold text-primary transition-all hover:bg-primary/30 active:scale-95 disabled:opacity-50"
+                  className="glass-btn glass-btn--primary px-4 py-2 text-xs font-bold"
                 >
                   {testingStatus.loading ? (
                     <>
@@ -482,14 +485,14 @@ export function ScannerSettingsModal({
                 </button>
 
                 {testingStatus.success && (
-                  <div className="flex items-center gap-1.5 rounded-lg bg-emerald-500/20 px-3 py-1.5 text-xs font-medium text-emerald-300">
+                  <div className="glass-chip gap-1.5 bg-emerald-500/15 px-3 py-1.5 text-xs font-medium text-emerald-300">
                     <CheckCircle2 className="h-4 w-4" />
                     <span>{testingStatus.message}</span>
                   </div>
                 )}
 
                 {testingStatus.success === false && (
-                  <div className="flex items-center gap-1.5 rounded-lg bg-red-500/20 px-3 py-1.5 text-xs font-medium text-red-300">
+                  <div className="glass-chip gap-1.5 bg-rose-500/15 px-3 py-1.5 text-xs font-medium text-rose-300">
                     <AlertCircle className="h-4 w-4" />
                     <span>{testingStatus.message}</span>
                   </div>
@@ -505,9 +508,9 @@ export function ScannerSettingsModal({
             </h4>
 
             {/* Auto Review Toggle */}
-            <div className="group flex items-start justify-between gap-4 rounded-2xl border border-white/10 bg-white/[0.04] p-4 transition-all hover:border-white/20 hover:bg-white/[0.07]">
+            <div className="glass-card group flex items-start justify-between gap-4 rounded-3xl p-4">
               <div className="flex gap-3.5">
-                <div className="mt-0.5 rounded-lg border border-white/10 bg-white/10 p-2 text-emerald-400">
+                <div className="glass-chip mt-0.5 h-8 w-8 shrink-0 justify-center rounded-lg text-emerald-300">
                   <CheckCircle2 className="h-4 w-4" />
                 </div>
                 <div className="space-y-0.5">
@@ -535,14 +538,14 @@ export function ScannerSettingsModal({
                     !settings.autoReviewResults,
                   )
                 }
-                className={`relative mt-1 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${
+                className={`relative mt-1 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-all duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/70 ${
                   settings.autoReviewResults
-                    ? "bg-primary shadow-[0_0_12px_rgba(var(--md-sys-color-primary),0.6)]"
-                    : "bg-white/20"
+                    ? "bg-cyan-400/40 shadow-[inset_0_0_0_1px_rgba(165,243,252,0.55),inset_0_0_10px_rgba(103,232,249,0.35),0_0_14px_-2px_rgba(34,211,238,0.6)]"
+                    : "glass-well"
                 }`}
               >
                 <span
-                  className={`pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out ${
+                  className={`pointer-events-none inline-block h-5 w-5 transform rounded-full bg-gradient-to-b from-white to-cyan-50 shadow-[0_2px_6px_rgba(0,0,0,0.4),inset_0_-1px_1px_rgba(8,145,178,0.25)] ring-0 transition duration-200 ease-in-out ${
                     settings.autoReviewResults
                       ? "translate-x-5"
                       : "translate-x-0"
@@ -560,12 +563,13 @@ export function ScannerSettingsModal({
           </span>
           <button
             onClick={onClose}
-            className="rounded-xl bg-primary px-6 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm transition-all hover:bg-primary/90 hover:shadow active:scale-95"
+            className="glass-btn glass-btn--primary px-6 py-2.5 text-sm font-bold"
           >
             Done
           </button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }

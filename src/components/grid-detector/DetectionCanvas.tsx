@@ -24,6 +24,13 @@ interface DetectionCanvasProps {
   busy: boolean;
   /** Increment to request a fit-to-view (e.g. when a new image is shown). */
   fitRequest: number;
+  /** Optional per-card caption (e.g. the recognised material), drawn under the card. */
+  cardLabels?: Record<string, CardLabel>;
+}
+
+export interface CardLabel {
+  text: string;
+  color: string;
 }
 
 type Handle = "n" | "s" | "e" | "w" | "ne" | "nw" | "se" | "sw";
@@ -119,6 +126,7 @@ export function DetectionCanvas({
   highConfidence,
   busy,
   fitRequest,
+  cardLabels,
 }: DetectionCanvasProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [view, setView] = useState<View>({ zoom: 1, x: 0, y: 0 });
@@ -408,6 +416,43 @@ export function DetectionCanvas({
                 );
               }),
             )}
+
+            {cardLabels &&
+              grids.flatMap((g) =>
+                g.cards.map((card) => {
+                  const label = cardLabels[card.id];
+                  if (!label) return null;
+                  // Drawn in the gutter under the card so the quantity stays visible.
+                  const fontSize = Math.max(8, card.width * 0.075);
+                  const h = fontSize * 1.45;
+                  return (
+                    <g key={`label-${card.id}`} pointerEvents="none">
+                      <rect
+                        x={card.x}
+                        y={card.y + card.height + fontSize * 0.2}
+                        width={card.width}
+                        height={h}
+                        rx={h / 2}
+                        fill="rgba(2,6,23,0.82)"
+                        stroke={label.color}
+                        strokeWidth={1}
+                        vectorEffect="non-scaling-stroke"
+                      />
+                      <text
+                        x={card.x + card.width / 2}
+                        y={card.y + card.height + fontSize * 0.2 + h / 2}
+                        fill={label.color}
+                        fontSize={fontSize}
+                        fontWeight={700}
+                        textAnchor="middle"
+                        dominantBaseline="central"
+                      >
+                        {label.text}
+                      </text>
+                    </g>
+                  );
+                }),
+              )}
 
             {(() => {
               if (tool !== "select" || !selectedCardId) return null;

@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import { Upload, Sparkles } from "lucide-react";
+import { FolderOpen, ImageIcon } from "lucide-react";
 import { ScanningAnimation, ScanningFileItem } from "./ScanningAnimation";
+import { ScanUploadIcon } from "./ScanUploadIcon";
 
 export interface UploadZoneProps {
   isScanning?: boolean;
@@ -20,8 +21,11 @@ export interface UploadZoneProps {
   icon?: React.ReactNode;
   title?: string;
   description?: string;
+  subDescription?: string;
   inputId?: string;
   sampleButtonText?: string;
+  /** Icon shown on the sample button; defaults to a neutral image icon. */
+  sampleButtonIcon?: React.ReactNode;
   showSampleButton?: boolean;
   accent?: "teal" | "cyan";
 }
@@ -41,15 +45,15 @@ export function UploadZone({
   onSelectThumbnail,
   icon,
   title = "Click to upload or drag & drop",
-  description = "Select multiple inventory screenshots to process them all at once. For best results, use uncompressed 16:9 images.",
+  description = "Select multiple inventory screenshots to process them all at once.",
+  subDescription = "For best results, use uncompressed 16:9 images.",
   inputId = "screenshot-upload",
-  sampleButtonText = "Try Sample Screenshot (Demo Scan)",
+  sampleButtonText = "Try a sample",
+  sampleButtonIcon,
   showSampleButton = true,
-  accent = "cyan",
 }: UploadZoneProps) {
   const [isDragging, setIsDragging] = useState(false);
   const [isLoadingSample, setIsLoadingSample] = useState(false);
-  const isTeal = accent === "teal";
 
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();
@@ -58,7 +62,16 @@ export function UploadZone({
 
   const handleDragLeave = (e: React.DragEvent) => {
     e.preventDefault();
+    // Ignore leave events fired when moving between the zone's own children
+    if (e.currentTarget.contains(e.relatedTarget as Node | null)) return;
     setIsDragging(false);
+  };
+
+  // Feeds the pointer-following sheen and rim highlight in glass.css
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    e.currentTarget.style.setProperty("--glass-x", `${e.clientX - rect.left}px`);
+    e.currentTarget.style.setProperty("--glass-y", `${e.clientY - rect.top}px`);
   };
 
   const handleDrop = (e: React.DragEvent) => {
@@ -103,80 +116,84 @@ export function UploadZone({
 
   return (
     <div
-      className="group relative overflow-hidden rounded-2xl border-[0.5px] border-b-white/5 border-l-white/20 border-r-white/5 border-t-white/30 bg-gradient-to-br from-white/10 via-white/5 to-black/20 p-3.5 sm:p-5 shadow-[0_8px_32px_0_rgba(0,0,0,0.3),inset_0_1px_1px_rgba(255,255,255,0.2)] backdrop-blur-2xl transition-all duration-500 hover:bg-white/10"
+      className="glass-pane overflow-hidden"
+      data-dragging={isDragging}
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
+      onPointerMove={handlePointerMove}
     >
+      {/* Pointer-following rim highlight (styles in src/styles/glass.css) */}
+      <span className="glass-spot" aria-hidden="true" />
+
       {isScanning ? (
-        <ScanningAnimation
-          isScanning={isScanning}
-          progress={progress}
-          statusMessage={statusMessage}
-          activeImageSrc={activeImageSrc}
-          activeFileName={activeFileName}
-          fileIndex={fileIndex}
-          totalFiles={totalFiles}
-          providerDisplayName={providerDisplayName}
-          modelName={modelName}
-          scanningFiles={scanningFiles}
-          onSelectThumbnail={onSelectThumbnail}
-        />
+        <div className="relative z-10 p-5 sm:p-7 md:p-8">
+          <ScanningAnimation
+            isScanning={isScanning}
+            progress={progress}
+            statusMessage={statusMessage}
+            activeImageSrc={activeImageSrc}
+            activeFileName={activeFileName}
+            fileIndex={fileIndex}
+            totalFiles={totalFiles}
+            providerDisplayName={providerDisplayName}
+            modelName={modelName}
+            scanningFiles={scanningFiles}
+            onSelectThumbnail={onSelectThumbnail}
+          />
+        </div>
       ) : (
         <label
           htmlFor={inputId}
-          className={`relative z-10 flex cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed p-5 sm:p-7 transition-all duration-300 ${
-            isDragging
-              ? isTeal
-                ? "scale-[0.99] border-teal-400 bg-teal-950/30 shadow-[inset_0_0_40px_rgba(20,184,166,0.3)]"
-                : "scale-[0.99] border-cyan-400 bg-cyan-950/30 shadow-[inset_0_0_40px_rgba(6,182,212,0.3)]"
-              : "border-white/20 bg-black/10 shadow-[inset_0_0_20px_rgba(0,0,0,0.2)] hover:border-white/40 hover:bg-black/20 hover:shadow-[inset_0_0_30px_rgba(0,0,0,0.3)]"
-          }`}
+          className="relative z-10 flex min-h-[340px] sm:min-h-[380px] cursor-pointer flex-col items-center justify-center p-8 sm:p-12 text-center select-none"
         >
-          <div className="flex flex-col items-center space-y-3 text-center sm:space-y-4">
-            <div className="rounded-full border border-b-transparent border-l-white/20 border-r-transparent border-t-white/30 bg-gradient-to-br from-primary/30 to-primary/10 p-3.5 text-primary shadow-[inset_0_1px_1px_rgba(255,255,255,0.4),0_8px_16px_rgba(0,0,0,0.3)] backdrop-blur-md transition-transform duration-300 group-hover:scale-105">
-              {icon || (
-                <Upload className="h-7 w-7 sm:h-8 sm:w-8 text-cyan-300 drop-shadow-md" />
-              )}
-            </div>
-            <span className="text-on-surface text-lg sm:text-xl font-bold tracking-tight drop-shadow-sm">
-              {title}
-            </span>
-            <span className="text-on-surface/80 max-w-sm text-xs sm:text-sm font-medium drop-shadow-sm">
-              {description}
-            </span>
-
-            {/* Quick Demo Sample Action */}
-            {showSampleButton && (
-              <div className="pt-1">
-                <button
-                  type="button"
-                  onClick={handleTrySample}
-                  disabled={isLoadingSample}
-                  className={`inline-flex items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-xs font-semibold backdrop-blur-md transition-all hover:scale-105 active:scale-95 disabled:opacity-50 ${
-                    isTeal
-                      ? "border-teal-400/40 bg-teal-950/40 text-teal-200 shadow-[0_0_15px_rgba(20,184,166,0.2)] hover:bg-teal-900/60 hover:text-white"
-                      : "border-cyan-400/40 bg-cyan-950/40 text-cyan-200 shadow-[0_0_15px_rgba(6,182,212,0.2)] hover:bg-cyan-900/60 hover:text-white"
-                  }`}
-                >
-                  <Sparkles
-                    className={`h-3 w-3 animate-pulse ${
-                      isTeal ? "text-teal-400" : "text-cyan-400"
-                    }`}
-                  />
-                  <span>
-                    {isLoadingSample ? "Loading sample..." : sampleButtonText}
-                  </span>
-                </button>
-              </div>
+          {/* Glass Lens Icon */}
+          <div className="glass-lens mb-6 h-16 w-16 sm:h-[72px] sm:w-[72px]">
+            {icon || (
+              <ScanUploadIcon className="relative h-7 w-7 sm:h-8 sm:w-8 text-cyan-200 drop-shadow-[0_0_8px_rgba(34,211,238,0.55)]" />
             )}
           </div>
+
+          {/* Heading */}
+          <h3 className="mb-2 text-xl sm:text-2xl font-semibold tracking-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.45)]">
+            {isDragging ? "Release to upload" : title}
+          </h3>
+
+          {/* Multi-line Subtitles */}
+          <div className="mb-7 max-w-lg space-y-1 text-xs sm:text-sm leading-relaxed text-white/70 drop-shadow-[0_1px_3px_rgba(0,0,0,0.4)]">
+            <p>{description}</p>
+            {subDescription && <p className="text-white/50">{subDescription}</p>}
+          </div>
+
+          {/* Actions: the whole pane opens the picker; "Browse files" is its visible cue */}
+          <div className="relative z-20 flex flex-wrap items-center justify-center gap-2.5">
+            <span className="glass-btn glass-btn--primary">
+              <FolderOpen className="h-3.5 w-3.5" />
+              Browse files
+            </span>
+            {showSampleButton && (
+              <button
+                type="button"
+                onClick={handleTrySample}
+                disabled={isLoadingSample}
+                className="glass-btn"
+              >
+                <span className="inline-flex text-cyan-200 [&>svg]:h-3.5 [&>svg]:w-3.5">
+                  {sampleButtonIcon || <ImageIcon />}
+                </span>
+                <span>
+                  {isLoadingSample ? "Loading sample..." : sampleButtonText}
+                </span>
+              </button>
+            )}
+          </div>
+
           <input
             id={inputId}
             type="file"
             accept="image/*"
             multiple
-            className="hidden"
+            className="sr-only"
             onChange={handleChange}
             disabled={isScanning}
           />
