@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Upload } from "lucide-react";
+import { SUPPORTED_IMAGE_TYPES } from "@/lib/grid-detector/validation";
 
 interface UploadZoneProps {
   onFilesSelected: (files: FileList | File[]) => void;
@@ -30,18 +31,20 @@ export function UploadZone({
           Drag & drop screenshots here, or paste from clipboard (Ctrl+V)
         </p>
         <p className="mt-1 text-xs text-white/60">
-          The scanner will automatically inspect image gradients and detect any
-          grid dimensions
+          PNG, JPEG, WebP, BMP or GIF up to 40 MB. Cards, rows and columns are
+          detected automatically.
         </p>
         <label className="mt-3 cursor-pointer rounded-xl bg-primary/20 px-4 py-1.5 text-xs font-bold text-primary transition-all hover:bg-primary/30">
           <span>Browse Local Images</span>
           <input
             type="file"
             multiple
-            accept="image/*"
+            accept={SUPPORTED_IMAGE_TYPES.join(",")}
             className="hidden"
             onChange={(e) => {
-              if (e.target.files) onFilesSelected(e.target.files);
+              if (e.target.files) onFilesSelected(Array.from(e.target.files));
+              // Allow selecting the same file again later.
+              e.target.value = "";
             }}
           />
         </label>
