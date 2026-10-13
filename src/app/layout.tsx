@@ -20,7 +20,6 @@ export const metadata: Metadata = {
   applicationName: SITE.name,
   keywords: [...SITE.keywords],
   category: "games",
-  manifest: "/manifest.json",
   formatDetection: { telephone: false, email: false, address: false },
   openGraph: {
     type: "website",
