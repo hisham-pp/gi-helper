@@ -5,6 +5,7 @@ import { ScannerSettingsButton } from "@/components/scanner/ScannerSettingsButto
 import Link from "next/link";
 import { SITE } from "@/lib/site";
 import { pageMetadata } from "@/lib/seo";
+import { getLatestVersion } from "@/lib/versions";
 
 export const metadata: Metadata = pageMetadata({
   title: `${SITE.title} | ${SITE.name}`,
@@ -49,6 +50,8 @@ const jsonLd = {
 };
 
 export default function ScannerPage() {
+  const latestVersion = getLatestVersion();
+
   return (
     <div className="relative z-10 flex min-h-screen w-full flex-col bg-transparent px-4 py-4 sm:px-6 md:px-8">
       <script
@@ -65,6 +68,15 @@ export default function ScannerPage() {
           <span className="text-xs sm:text-sm font-bold tracking-tight text-white drop-shadow-sm">
             GI Helper
           </span>
+          {latestVersion && (
+            <Link
+              href="/versions"
+              title="Release notes"
+              className="glass-chip px-2 py-0.5 font-mono text-[10px] font-bold text-white/70"
+            >
+              v{latestVersion.version}
+            </Link>
+          )}
         </div>
 
         <div className="flex items-center gap-2 sm:gap-3">
