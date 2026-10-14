@@ -1,4 +1,5 @@
 import { DebugStudio } from "./DebugStudio";
+import { MotionPlayground } from "./MotionPlayground";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
@@ -39,6 +40,9 @@ export default function ScannerDebugPage() {
           <ThemeToggle />
         </div>
       </div>
+
+      {/* Toast & modal triggers */}
+      <MotionPlayground />
 
       {/* Grid & Material Studio */}
       <DebugStudio />

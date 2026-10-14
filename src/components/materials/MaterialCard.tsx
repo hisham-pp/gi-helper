@@ -14,7 +14,10 @@ interface MaterialCardProps {
   onSelect: (material: MaterialItem) => void;
 }
 
-export const MaterialCard = memo(function MaterialCard({ material, onSelect }: MaterialCardProps) {
+export const MaterialCard = memo(function MaterialCard({
+  material,
+  onSelect,
+}: MaterialCardProps) {
   const [copied, setCopied] = useState(false);
   const onClick = () => onSelect(material);
   const rarity = material.rarity || 1;
@@ -42,7 +45,7 @@ export const MaterialCard = memo(function MaterialCard({ material, onSelect }: M
       }}
       // Rarity colour tints the glass rim and edge glow
       style={{ "--glass-accent": styles.accent } as React.CSSProperties}
-      className="glass-card glass-card--hover group flex cursor-pointer flex-col items-center justify-between p-3.5 text-center"
+      className="glass-card glass-card--hover group flex cursor-pointer flex-col items-center justify-between p-3.5 text-center hover:transform-none motion-safe:hover:animate-squish"
     >
       {/* Top Bar: Order Badge & Copy Button */}
       <div className="relative z-10 flex w-full items-center justify-between">
@@ -56,7 +59,7 @@ export const MaterialCard = memo(function MaterialCard({ material, onSelect }: M
 
         <button
           onClick={handleCopyId}
-          className="glass-icon-btn h-6 w-6 rounded-lg opacity-60 group-hover:opacity-100 hover:opacity-100"
+          className="glass-icon-btn h-6 w-6 rounded-lg opacity-60 hover:opacity-100 group-hover:opacity-100"
           title="Copy Material ID"
           aria-label="Copy Material ID"
         >
@@ -69,7 +72,7 @@ export const MaterialCard = memo(function MaterialCard({ material, onSelect }: M
       </div>
 
       {/* Material Thumbnail with Rarity Glow Frame */}
-      <div className="glass-well glass-well--tinted relative my-2.5 flex h-20 w-20 items-center justify-center overflow-hidden rounded-2xl transition-transform duration-300 group-hover:scale-105">
+      <div className="glass-well glass-well--tinted relative my-2.5 flex h-20 w-20 items-center justify-center overflow-hidden rounded-2xl">
         <MaterialThumb
           id={material.id}
           alt={material.name}

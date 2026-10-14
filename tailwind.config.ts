@@ -101,10 +101,18 @@ const config: Config = {
           "0%": { transform: "translateX(-100%) rotate(-45deg)" },
           "100%": { transform: "translateX(200%) rotate(-45deg)" },
         },
+        /* The tab thumbs' squash-and-stretch, played once (e.g. on card hover).
+           Animates `scale`, not `transform`, so it stacks with hover lifts. */
+        squish: {
+          "0%, 100%": { scale: "1 1" },
+          "35%": { scale: "1.06 0.92" },
+          "70%": { scale: "0.98 1.03" },
+        },
       },
       animation: {
         "float-up": "float-up 20s linear infinite",
         sweep: "sweep 15s ease-in-out infinite",
+        squish: "squish 520ms ease-out",
       },
     },
   },

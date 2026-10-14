@@ -248,12 +248,15 @@ export function MaterialList() {
     sortBy !== "order-asc";
 
   // Small squash-and-stretch feedback, echoing the scanner drop zone when tabs
-  // switch: the filter card as the Reset button slides in or out, and the
-  // header card when a rarity chip is picked or cleared.
+  // switch: the filter card as the Reset button slides in or out, the header
+  // card when a rarity chip is picked or cleared, and the pagination bar when
+  // the page changes.
   const filterBarRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
+  const paginationRef = useRef<HTMLDivElement>(null);
   useWiggleOnChange(filterBarRef, isFiltered, reducedMotion);
   useWiggleOnChange(heroRef, selectedRarity, reducedMotion);
+  useWiggleOnChange(paginationRef, validCurrentPage, reducedMotion);
 
   return (
     <div className="flex w-full flex-1 flex-col items-center justify-start px-4 pb-4 pt-2 sm:px-6 sm:pt-4 md:px-8 md:pb-8">
@@ -517,7 +520,10 @@ export function MaterialList() {
 
         {/* Pagination Bar */}
         {totalPages > 1 && (
-          <div className="glass-card flex flex-col items-center justify-between gap-4 p-4 sm:flex-row">
+          <div
+            ref={paginationRef}
+            className="glass-card flex flex-col items-center justify-between gap-4 p-4 sm:flex-row"
+          >
             <span className="text-xs text-white/60">
               Showing{" "}
               <strong className="text-white">

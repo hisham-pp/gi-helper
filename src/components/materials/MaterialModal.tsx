@@ -16,6 +16,7 @@ import { MaterialItem } from "@/lib/types";
 import { getRarityStyles, getMaterialCategoryLabel } from "@/lib/materials";
 import { toast } from "sonner";
 import { usePauseBackground } from "@/lib/use-pause-background";
+import { useModalMotion } from "@/lib/use-modal-motion";
 
 interface MaterialModalProps {
   material: MaterialItem;
@@ -42,6 +43,7 @@ export function MaterialModal({
   const [imgError, setImgError] = useState(false);
 
   usePauseBackground();
+  const { dialogRef, backdropRef, close } = useModalMotion(onClose);
 
   useEffect(() => {
     setCopied(false);
@@ -52,7 +54,7 @@ export function MaterialModal({
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        onClose();
+        close();
       } else if (e.key === "ArrowRight" && hasNext && onNavigateNext) {
         onNavigateNext();
       } else if (e.key === "ArrowLeft" && hasPrev && onNavigatePrev) {
@@ -62,7 +64,7 @@ export function MaterialModal({
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [hasNext, hasPrev, onNavigateNext, onNavigatePrev, onClose]);
+  }, [hasNext, hasPrev, onNavigateNext, onNavigatePrev, close]);
 
   const rarity = material.rarity || 1;
   const styles = getRarityStyles(rarity);
@@ -76,14 +78,18 @@ export function MaterialModal({
   };
 
   return (
-    <div
-      className="animate-in fade-in fixed inset-0 z-50 flex items-center justify-center bg-black/55 p-4 backdrop-blur-sm duration-200"
-      onClick={onClose}
-    >
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+      {/* Backdrop: a sibling of the dialog, so its fade doesn't fade the dialog */}
       <div
+        ref={backdropRef}
+        className="fixed inset-0 bg-black/55 backdrop-blur-sm"
+        onClick={close}
+      />
+
+      <div
+        ref={dialogRef}
         style={{ "--glass-accent": styles.accent } as React.CSSProperties}
-        className="glass-card glass-card--lg glass-card--raised animate-in zoom-in-95 w-full max-w-lg overflow-hidden p-6 duration-200"
-        onClick={(e) => e.stopPropagation()}
+        className="glass-card glass-card--lg glass-card--raised relative z-10 w-full max-w-lg overflow-hidden p-6"
       >
         {/* Top Header Actions */}
         <div className="flex items-center justify-between pb-4">
@@ -121,7 +127,7 @@ export function MaterialModal({
               <ChevronRight className="h-4 w-4" />
             </button>
             <button
-              onClick={onClose}
+              onClick={close}
               className="glass-icon-btn ml-2 h-8 w-8 rounded-full"
               title="Close (Escape)"
               aria-label="Close modal"

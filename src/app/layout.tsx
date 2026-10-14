@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
-import { Toaster } from "sonner";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { GlassToaster } from "@/components/ui/GlassToaster";
 import { BackgroundEffects } from "@/components/BackgroundEffects";
 import { SITE } from "@/lib/site";
 import "./globals.css";
@@ -65,7 +65,7 @@ export default function RootLayout({
           <Analytics />
           <BackgroundEffects />
           {children}
-          <Toaster position="bottom-right" richColors />
+          <GlassToaster />
         </ThemeProvider>
       </body>
     </html>

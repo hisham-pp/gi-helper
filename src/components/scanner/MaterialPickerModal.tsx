@@ -11,6 +11,7 @@ import {
   getRarityStyles,
 } from "@/lib/materials";
 import { MaterialThumb } from "@/components/ui/MaterialThumb";
+import { useModalMotion } from "@/lib/use-modal-motion";
 
 /** Most options rendered at once; narrowing the search shows the rest. */
 const MAX_OPTIONS = 100;
@@ -57,18 +58,25 @@ export function MaterialPickerModal({ item, onSelect, onClose }: MaterialPickerM
     });
   }, [allMaterials, deferredSearch, pickerCategory, pickerRarity]);
 
+  const { dialogRef, backdropRef, close, closeThen } = useModalMotion(onClose);
+
+  // Picking closes the picker too, so assign once its exit has played
   const handleSelect = useCallback(
-    (material: MaterialItem) => onSelect(item.id, material),
-    [onSelect, item.id],
+    (material: MaterialItem) => closeThen(() => onSelect(item.id, material)),
+    [closeThen, onSelect, item.id],
   );
 
   return (
     <div className="fixed inset-0 z-[60] flex items-center justify-center p-3 sm:p-6">
       <div
+        ref={backdropRef}
         className="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
-        onClick={onClose}
+        onClick={close}
       />
-      <div className="glass-card glass-card--lg glass-card--raised relative z-10 flex max-h-[88vh] w-full max-w-2xl flex-col overflow-hidden text-white">
+      <div
+        ref={dialogRef}
+        className="glass-card glass-card--lg glass-card--raised relative z-10 flex max-h-[88vh] w-full max-w-2xl flex-col overflow-hidden text-white"
+      >
         {/* Header */}
         <div className="flex items-center justify-between border-b border-white/10 px-5 py-3.5">
           <div className="flex items-center gap-3">
@@ -96,7 +104,7 @@ export function MaterialPickerModal({ item, onSelect, onClose }: MaterialPickerM
             </div>
           </div>
           <button
-            onClick={onClose}
+            onClick={close}
             className="glass-icon-btn h-8 w-8 rounded-full"
             aria-label="Close picker"
           >

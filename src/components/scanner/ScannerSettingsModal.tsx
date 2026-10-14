@@ -28,6 +28,7 @@ import { toast } from "sonner";
 
 import { PillDropdown } from "@/components/ui/PillDropdown";
 import { usePauseBackground } from "@/lib/use-pause-background";
+import { useModalMotion } from "@/lib/use-modal-motion";
 
 interface ScannerSettingsModalProps {
   onClose: () => void;
@@ -50,6 +51,8 @@ export function ScannerSettingsModal({
   >({});
 
   usePauseBackground();
+  // Renders nothing until the saved settings load, so the entrance waits for them
+  const { dialogRef, backdropRef, close } = useModalMotion(onClose, mounted);
 
   useEffect(() => {
     if (serverEnvProp) {
@@ -238,12 +241,16 @@ export function ScannerSettingsModal({
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4">
       {/* Backdrop */}
       <div
+        ref={backdropRef}
         className="fixed inset-0 bg-black/55 backdrop-blur-sm transition-opacity duration-300"
-        onClick={onClose}
+        onClick={close}
       />
 
       {/* Modal Dialog */}
-      <div className="glass-card glass-card--lg glass-card--raised relative z-10 flex max-h-[92vh] w-full max-w-2xl flex-col overflow-hidden text-white">
+      <div
+        ref={dialogRef}
+        className="glass-card glass-card--lg glass-card--raised relative z-10 flex max-h-[92vh] w-full max-w-2xl flex-col overflow-hidden text-white"
+      >
         {/* Header */}
         <div className="flex items-center justify-between border-b border-white/10 px-6 py-5 sm:px-8">
           <div className="flex items-center gap-3">
@@ -260,7 +267,7 @@ export function ScannerSettingsModal({
             </div>
           </div>
           <button
-            onClick={onClose}
+            onClick={close}
             className="glass-icon-btn h-9 w-9 rounded-full"
             aria-label="Close settings"
           >
@@ -569,7 +576,7 @@ export function ScannerSettingsModal({
             Changes are saved instantly in your browser
           </span>
           <button
-            onClick={onClose}
+            onClick={close}
             className="glass-btn glass-btn--primary px-6 py-2.5 text-sm font-bold"
           >
             Done
