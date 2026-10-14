@@ -70,28 +70,31 @@ Usage so far: 17 screenshot scans, 1 video scan and 0 AI Vision scans
 
 Do this once, before the scanners, so each new scanner only adds recognition.
 
-- [ ] **Game data for every kind** (M)
+- [ ] **Game data for every kind** (M): weapons, artifact sets and character keys done in 0.0.20
       Extend the scrapers (`genshin-db` is already a dependency, and enka.network
       icons are already used for avatars):
-      - `weapons.json`: id, GOOD key, name, rarity, type, max level, icon.
-      - `artifact-sets.json`: GOOD `setKey`, rarities, and the five piece icons
-        per set (flower, plume, sands, goblet, circlet).
-      - The GOOD key per character in `characters.json`, plus constellation-boosted
-        talents per character (C3/C5 add +3, and GOOD stores the base level).
-      - Stat tables: GOOD stat keys (`hp_`, `critRate_`, `eleMas`, …), main-stat
-        values by rarity and level, and substat roll values by rarity.
-      - The **Materials** bag tab: local specialties, cooking ingredients, ores,
-        wood, fish and so on, with GOOD keys.
+      - [x] `weapons.json`: id, GOOD key, name, rarity, type, icon (awakened icons
+        still to add for the weapon atlas: weapons at ascension 2+ show them).
+      - [x] `artifact-sets.json`: GOOD `setKey`, rarities, piece names and the
+        piece icons per set.
+      - [x] The GOOD key and weapon type per character in `characters.json`.
+        Still to add: constellation-boosted talents per character (C3/C5 add +3,
+        and GOOD stores the base level).
+      - [x] GOOD stat keys and names (`src/lib/good/types.ts`). Still to add:
+        main-stat values by rarity and level, and substat roll values by rarity.
+      - [x] The **Materials** bag tab: local specialties, cooking ingredients, ores,
+        wood, fish and so on, with GOOD keys (`other-materials.json`, 285 items).
 - [ ] **One atlas builder for every kind** (M)
       Generalize `build-material-atlas.ts` so it builds an atlas per kind
       (materials, weapons, artifact pieces, character avatars) and the recognizer
       can load just the one it needs.
-- [ ] **Inventory per kind** (M)
-      Split `scanner-inventory.ts` into stores for materials, weapons, artifacts
-      and characters, migrating the existing `scanner_detected_items` key. Give
-      `/inventory` tabs for Materials, Weapons, Artifacts and Characters, each with
-      search, filters and edit.
-- [ ] **Full GOOD exporter and importer** (M)
+- [x] **Inventory per kind** (M): done in 0.0.20
+      Stores for characters, weapons, artifacts and imported extra materials
+      (`src/lib/good-inventory.ts`) beside the existing materials store, and
+      `/inventory` tabs for each with search, filters and remove. Editing
+      characters, weapons and artifacts by hand is still to do.
+- [x] **Full GOOD exporter and importer** (M): done in 0.0.20 (still to check by
+      importing an export into Genshin Optimizer itself)
       Export `characters`, `weapons`, `artifacts` and `materials`, with a choice of
       sections, and `location` (equipped by) and `lock`. Follow the current
       Genshin Optimizer GOOD spec, and use **importing into Genshin Optimizer** as
@@ -112,8 +115,8 @@ Do this once, before the scanners, so each new scanner only adds recognition.
 
 ### Other bag items: the Materials tab (M), the quickest win
 - [ ] Same cards, rarity frames and quantity digits as Character Development
-      Items, so this is mostly data plus an atlas: specialties, ingredients, ores,
-      wood, fish and bait.
+      Items, so this is mostly an atlas now: the data and icons are in
+      `other-materials.json` (0.0.20).
 - [ ] Test with screenshots and a recording of that tab, and add it to the
       sample sets.
 - [ ] Optional: read **Mora** from the bag header.
@@ -165,6 +168,12 @@ Do this once, before the scanners, so each new scanner only adds recognition.
       highlighted.
 
 ---
+
+## Done beside the plan
+
+- [x] **Database pages** (0.0.20): `/characters`, `/weapons` and `/artifacts`
+      beside `/materials`, behind one "Database" link in the top bar, marking what's
+      in the inventory.
 
 ## P3: Platform
 

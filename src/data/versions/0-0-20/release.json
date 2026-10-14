@@ -1,0 +1,47 @@
+{
+  "title": "Your whole account, and a game database",
+  "date": "2026-10-15",
+  "summary": "The inventory now holds characters, weapons and artifacts, GOOD files go both ways, and every character, weapon, artifact set and material has a page to browse.",
+  "changes": [
+    {
+      "type": "new",
+      "text": "Import a GOOD file from Genshin Optimizer, Inventory Kamera or any other tool. Choose which parts to bring in: characters, weapons, artifacts or materials."
+    },
+    {
+      "type": "new",
+      "text": "The Inventory page has a tab for each part of your account: Materials, Characters, Weapons and Artifacts. Each has its own search and filters, and a link can open a tab directly."
+    },
+    {
+      "type": "new",
+      "text": "Characters show their level, constellation and talents. Weapons show their level, refinement and who holds them. Artifacts show their set, main stat, substats and who wears them."
+    },
+    {
+      "type": "new",
+      "text": "Characters, Weapons and Artifact Sets pages: every playable character by element, weapon and region; every weapon with its max-level ATK, substat and passive; every artifact set with its pieces and set bonuses. The ones in your inventory are marked."
+    },
+    {
+      "type": "new",
+      "text": "The Materials page lists the bag's Materials tab too: local specialties, cooking ingredients, fish and bait, ores, wood and crafting materials, each with its own filter."
+    },
+    {
+      "type": "improved",
+      "text": "The top bar's Materials link is now Database, and the materials, characters, weapons and artifacts pages link to each other."
+    },
+    {
+      "type": "improved",
+      "text": "Export .GOOD saves everything in your inventory, so you can import your account, update materials with a scan and export one complete file."
+    },
+    {
+      "type": "improved",
+      "text": "Imported local specialties, ingredients and other Materials-tab items show in your inventory with their icons, and anything newer than our data is kept and exported."
+    },
+    {
+      "type": "improved",
+      "text": "Characters, weapons and sets released after our game data still import and export, shown by name without an icon."
+    },
+    {
+      "type": "fixed",
+      "text": "Filter rows that scroll sideways on phones no longer show a scrollbar under them."
+    }
+  ]
+}

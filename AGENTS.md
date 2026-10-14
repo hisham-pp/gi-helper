@@ -8,8 +8,9 @@ This is a Next.js 15 App Router project with React 19, TypeScript, and Tailwind 
   - `src/app/(site)/layout.tsx`: Shared layout for the public pages; renders the common top bar (`src/components/layout/SiteHeader.tsx`), which stays mounted across page switches. On phones the page links (`HeaderNav`) take their own full-width row under the logo. Add new public pages inside `(site)`.
   - `src/app/(site)/template.tsx`: Remounts on every navigation and wraps the page in `PageTransition` (`src/components/layout/`), which plays the squash-and-stretch page switch.
   - `src/app/(site)/page.tsx`: Landing page containing the Inventory Scanner (Scanner, Video and AI Vision tabs). Results go to `/inventory`, so it has no extra bottom space; the footer shows the scan counter (`ScanCounter`) here.
-  - `src/app/(site)/inventory/page.tsx`: Scanned inventory (`src/components/scanner/ScannedInventory.tsx`): quantity edits, Clear All and GOOD export (which offers the feedback form, throttled by `src/lib/feedback/prompt.ts`). The scanners add to the shared store (`src/lib/scanner-inventory.ts`) and switch here after a scan.
-  - `src/app/(site)/materials/page.tsx`: 475-material directory with category filtering and ordering.
+  - `src/app/(site)/inventory/page.tsx`: Inventory (`src/components/inventory/InventoryPage.tsx`) with Materials, Characters, Weapons and Artifacts tabs (the open tab is in `?tab=`), GOOD import (`ImportGOODModal`) and GOOD export of everything (which offers the feedback form, throttled by `src/lib/feedback/prompt.ts`). The Materials tab is `src/components/scanner/ScannedInventory.tsx` (quantity edits, Clear All, plus imported materials we don't catalog). The scanners add to the shared store (`src/lib/scanner-inventory.ts`) and switch here after a scan; characters, weapons and artifacts live in `src/lib/good-inventory.ts` (light stores, also used by the database pages; applying an import is `src/lib/good-import.ts`).
+  - `src/app/(site)/materials/page.tsx`: Material directory (both catalogs: Character Development Items and the Materials tab) with category filtering and ordering.
+  - `src/app/(site)/characters`, `weapons`, `artifacts`: Database pages (`src/components/database/`: `CharacterList`, `WeaponList`, `ArtifactSetList`) for every character, weapon and artifact set, marking what's in the inventory. `DatabaseNav` links the four database pages; the top bar's "Database" link (`HeaderNav`, `PillNavItem.match`) is current on all of them.
   - `src/app/(site)/versions/page.tsx`: Release notes page, built from `src/data/versions/` at build time. Shows the newest 10 (`RELEASES_PER_PAGE` in `src/lib/release-notes.ts`); `OlderReleases` loads 10 more at a time from `/api/versions/[page]` (static JSON generated at build), and follows `#v0-0-2` links to older releases.
   - `src/app/(site)/about/page.tsx`: About page (features, how it works, privacy, fan-project disclaimer), linked from the shared footer (`SiteFooter`).
   - `src/app/(site)/feedback/page.tsx`: Public feedback list with the Send feedback modal (feedback, bug, idea or other; a name that starts as a random character's, with their avatar; up to 3 screenshots). Only the "feedback" kind is listed; `feedback/inbox/page.tsx` is the private inbox for seeded accounts. Linked from the footer and About page. See `docs/feedback.md`.
@@ -22,6 +23,7 @@ This is a Next.js 15 App Router project with React 19, TypeScript, and Tailwind 
   - `src/components/grid-detector/`: Grid & Material Studio (`/debug`): sessions, card editor, detection settings.
   - `src/components/material-detector/`: Recognition panels used by the studio (per-card candidates, rarity and quantity readings).
   - `src/components/materials/`: Material directory cards, category filters, and detail modals.
+  - `src/components/inventory/`: The /inventory page and its Characters, Weapons and Artifacts tabs, and the GOOD import modal.
   - `src/components/layout/`: Navigation bar, theme toggles, and header controls. `PillNav` is the glass pill of page links with a sliding thumb, used by the top bar (`HeaderNav`) and the footer (`FooterNav`).
   - `src/components/ui/`: Reusable primitives and badges. Text fields use `GlassInput` (leading icon, `clearable`, built-in show/hide for `type="password"`, `shape`/`size`); `SearchField` wraps it. Don't hand-build inputs with absolutely positioned buttons. Squash-and-stretch on change comes from `useWiggleOnChange` / `playWiggle` (`src/lib/use-wiggle-on-change.ts`, sizes `card` and `control`); `PillDropdown` and `GlassInput` use it.
 - **Shared Logic & AI Engine (`src/lib/`):**
@@ -29,17 +31,19 @@ This is a Next.js 15 App Router project with React 19, TypeScript, and Tailwind 
   - `src/lib/ai/material-matcher.ts`: Exact and fuzzy Levenshtein resolver mapping raw OCR strings to canonical materials.
   - `src/lib/ai/prompts.ts`: In-prompt reference dictionary generator embedding canonical material IDs into AI system prompts.
   - `src/lib/scanner-settings.ts`: Local storage persistence and react hooks for scanner settings.
-  - `src/lib/good-format.ts`: Standard Genshin Open Object Description (GOOD) exporter.
+  - `src/lib/good/`: GOOD (Genshin Open Object Description) format: keys (`toGOODKey`, the same PascalCase rule for materials, characters, weapons and sets), types and stat names, lenient parsing (`document.ts`, matching Genshin Optimizer's schema, GOOD 3 fields kept), export (`export.ts`), GOOD material keys to our catalogs (`materials.ts`), and catalog lookups (`catalog.ts`: weapons, artifact sets, characters by GOOD key; unknown keys keep working). `src/lib/good-format.ts` has the download helpers.
+  - `src/lib/local-store.ts`: `createLocalStore`, the shared localStorage-backed store behind the inventory stores.
   - `src/lib/grid-detector/`: Card/grid detection engine (pure TS) with a Web Worker client. See `docs/grid-detector.md`.
   - `src/lib/material-detector/`: On-device material recognition (material, rarity, quantity) of detected cards, with a Web Worker scan client. See `docs/material-detector.md`.
   - `src/lib/video-scanner/`: Screen-recording scanner: picks the frames where scrolling settles, scans them with the material scan workers, fills coverage gaps and merges quantities by vote. See `docs/video-scanner.md`.
   - `src/lib/supabase-rpc.ts`: `callRpc` for the `public.*` Postgres functions (publishable key, server-only), shared by feedback and the scan counter; `src/lib/request-client.ts` has `clientIp`, `isSameOrigin` and the salted `hashClient`.
   - `src/lib/scan-stats.ts`: Scan counter. The scanners call `recordScan(scanner, files)` once a scan recognises materials; files from the "Try a sample" buttons (`markSampleFile` in `UploadZone`) don't count. Server side in `scan-stats-server.ts`. The database broadcasts every new total on the public Supabase Realtime channel `scan-stats`; `scan-stats-live.ts` listens (WebSocket, home page only, closed while the tab is hidden), using the URL and publishable key that `GET /api/stats/scans` returns.
-  - `src/lib/characters.ts`: Playable characters (`getCharacter`, `randomCharacter`, `characterAvatarUrl`), used for feedback names and avatars.
+  - `src/lib/characters.ts`: Playable characters (`getCharacter`, `randomCharacter`, `characterAvatarUrl`), used for feedback names and avatars and, by GOOD key, in the inventory.
   - `src/lib/feedback/`: Feedback server calls (`server.ts`, Supabase RPCs with the publishable key), shared types and limits, the `bad-words` filter (`profanity.ts`) and image checks. See `docs/feedback.md`.
 - **Database (`supabase/migrations/`):** Supabase project `gi-helper`. Feedback tables live in the unexposed `feedback_private` schema and are reached only through the `public.feedback_*` security-definer functions; the scan counter likewise uses `stats_private` via `public.scan_stats` / `public.scan_record` (20 counted scans per sender and 600 overall per 10 minutes). Inbox accounts are seeded with `pnpm feedback:admin <username>` (bcrypt hash, no Supabase Auth). Server env: `SUPABASE_URL`, `SUPABASE_PUBLISHABLE_KEY`, optional `FEEDBACK_HASH_SALT`, and `SUPABASE_RPC_SECRET`: the publishable key is public (Realtime), so the write functions (`feedback_submit`, `feedback_admin_login`, `scan_record`) check this server-only secret (`app_private.settings`) once `enforce_rpc_secret` is on.
 - **Data & Static Assets:**
-  - `src/data/materials.json`: Single canonical reference data containing all 475 Genshin Impact materials (served dynamically at `/data/materials.json`).
+  - `src/data/materials.json`: Canonical reference data for the 481 Character Development Items (served at `/api/materials`). The scanners, recognizer atlas and AI prompt use only this (`getAllMaterials()`).
+  - `src/data/other-materials.json`: The bag's Materials tab (local specialties, cooking ingredients, fish and bait, ores, wood, crafting materials; `category` and `region` fields, orders from 10001, `bagOrder()` shows their place in that tab). Built by `pnpm scrape:other-materials`, thumbnails in `material-thumbs`. The directory, inventory and GOOD import use both catalogs (`getDirectoryMaterials()`).
   - `src/data/versions/<major>-<minor>-<patch>/release.json`: Release notes per version (`{ title, date: "YYYY-MM-DD", summary?, changes: [{ type: "new" | "improved" | "fixed" | "removed", text }] }`). The folder name is the version; add a folder to publish a release. Loaded and validated by `src/lib/versions.ts`.
   - `public/images/materials/`: High-resolution icons for all 475 materials.
   - `public/samples/test-set-02/`: Sample inventory screen recording, used by the Video tab's "Try a sample recording" button.
@@ -47,7 +51,8 @@ This is a Next.js 15 App Router project with React 19, TypeScript, and Tailwind 
   - `public/images/material-thumbs/`: 128² WebP icons (~4 KB each) for lists, grids and pickers, via `materialThumbUrl()` / `MaterialThumb` (generated by `pnpm build:material-thumbs`, also run by `sync-data`).
   - `public/data/material-atlas.{png,json}`: Reference bank for the material recognizer (generated by `pnpm build:material-atlas`).
   - `src/data/digit-templates.json`: Quantity digit glyphs (generated by `pnpm build:digit-templates`).
-  - `src/data/characters.json` and `public/images/character-avatars/<id>.webp`: Playable characters (id, name, rarity, element) and their 128² WebP avatars (~8 KB each; only the WebP is stored). Generated from genshin-db and enka.network icons by `pnpm scrape:characters` (also run by `sync-data`).
+  - `src/data/characters.json` and `public/images/character-avatars/<id>.webp`: Playable characters (id, GOOD key, name, rarity, element, weapon type) and their 128² WebP avatars (~8 KB each; only the WebP is stored). Generated from genshin-db and enka.network icons by `pnpm scrape:characters` (also run by `sync-data`).
+  - `src/data/weapons.json` + `public/images/weapons/<id>.webp` and `src/data/artifact-sets.json` + `public/images/artifacts/<set-id>-<slot>.webp`: Weapons (GOOD key, rarity, type) and artifact sets (GOOD key, rarities, piece names) with 128² WebP icons, from `pnpm scrape:weapons` / `pnpm scrape:artifacts` (also run by `sync-data`). The scrapers share `scripts/lib/scrape-helpers.ts`.
 
 ---
 
@@ -61,7 +66,8 @@ Prefer `pnpm`; the repo pins `pnpm@10.17.1` and Node `22.x`.
 - `pnpm test`: Run unit tests using Node's built-in test runner (`tsx --test tests/**/*.test.ts`).
 - `pnpm test:material-detector` / `pnpm eval:material-detector`: Material recognizer tests and accuracy report.
 - `pnpm test:grid-detector` / `pnpm eval:grid-detector`: Grid detector tests and accuracy report.
-- `pnpm scrape:characters`: Rebuilds `src/data/characters.json` and the character avatars (update genshin-db first when new characters release).
+- `pnpm scrape:characters` / `scrape:weapons` / `scrape:artifacts` / `scrape:other-materials`: Rebuild the character, weapon, artifact-set and Materials-tab data and icons (update genshin-db first when new ones release). Icons come from enka.network, falling back to gi.yatta.moe.
+- `pnpm test:e2e`: Playwright smoke tests (`tests/e2e/`) against the production build on port 3100; run `pnpm build` first.
 - `pnpm feedback:admin <username> [--generate]`: Prints the SQL that seeds or resets a feedback inbox account (run it in the Supabase SQL editor).
 - `pnpm lint`: Run ESLint with Next.js core web vitals configuration.
 - `pnpm format`: Run Prettier across the repository.
@@ -87,5 +93,6 @@ Prefer `pnpm`; the repo pins `pnpm@10.17.1` and Node `22.x`.
 - When modifying the AI vision pipeline or material matcher, add or update tests in `tests/ai-vision.test.ts`.
 - When modifying the video scanner's frame selection or merging, update `tests/video-scanner.test.ts` and re-check the sample recording in the Video tab (expected numbers in `docs/video-scanner.md`).
 - When modifying the material recognizer, keep `pnpm test:material-detector` green and check `pnpm eval:material-detector` (also with `--impostors` and `--scale 0.5`); per-card ground truth is in `tests/material-detector/ground-truth.json`.
+- When modifying GOOD parsing or export, the GOOD keys or the weapon/artifact/character data, update `tests/good-document.test.ts` (and `tests/e2e/fixtures/account.good.json` for the import flow).
 - When modifying the feedback filter, image checks or error messages, update `tests/feedback.test.ts`; `tests/characters.test.ts` checks the character list and avatars, `tests/scan-stats.test.ts` the scan counter's sample skipping and scanner kinds. Schema changes go in a new file under `supabase/migrations/`.
 - Always verify changes with `pnpm build` and `npx tsx --test tests/ai-vision.test.ts`.

@@ -20,10 +20,15 @@ Next.js 15 (App Router), React 19, TypeScript and Tailwind CSS.
   endpoint, using your own API key. The key stays in your browser's localStorage
   and is only passed through the server for that request.
 - **Review, then inventory:** fix low-confidence cards in the review modal. Your
-  inventory lives on `/inventory` (in this browser), with search, filters,
-  quantity edits and GOOD export.
-- **Materials directory:** all 481 Character Development materials in in-game
-  order, with category and rarity filters.
+  inventory lives on `/inventory` (in this browser), with tabs for materials,
+  characters, weapons and artifacts, search, filters and quantity edits.
+- **GOOD import and export:** import a GOOD file from Genshin Optimizer,
+  Inventory Kamera or similar tools, update your materials with a scan, and
+  export everything as one GOOD file. Keys newer than our game data and GOOD 3
+  artifact fields are kept.
+- **Game database:** every material (Character Development Items and the bag's
+  Materials tab: local specialties, ingredients, fish, ores, wood), character,
+  weapon and artifact set, with search and filters, marking what you own.
 - **Feedback, release notes and About pages,** plus a live scan counter.
 
 What's next is in [docs/roadmap.md](docs/roadmap.md).
