@@ -15,7 +15,11 @@ export type MaterialCategory =
   | "BOSS"
   | "GEM"
   | "TALENT"
-  | "WEAPON";
+  | "WEAPON"
+  | "SPECIALTY"
+  | "INGREDIENT"
+  | "FISHING"
+  | "CRAFTING";
 
 export interface CategoryMeta {
   id: MaterialCategory;
@@ -92,12 +96,50 @@ export const MATERIAL_CATEGORIES: CategoryMeta[] = [
     sortRankRange: "15101 - 15124",
     accent: "96, 165, 250",
   },
+  // The Materials tab of the bag (other-materials.json)
+  {
+    id: "SPECIALTY",
+    label: "Local Specialty",
+    shortLabel: "Local Specialties",
+    description: "Plants and minerals found in each region",
+    sortRankRange: "Materials tab",
+    accent: "163, 230, 53",
+  },
+  {
+    id: "INGREDIENT",
+    label: "Cooking Ingredient",
+    shortLabel: "Ingredients",
+    description: "Ingredients for cooking",
+    sortRankRange: "Materials tab",
+    accent: "250, 204, 21",
+  },
+  {
+    id: "FISHING",
+    label: "Fish & Bait",
+    shortLabel: "Fish & Bait",
+    description: "Fish and fishing bait",
+    sortRankRange: "Materials tab",
+    accent: "45, 212, 191",
+  },
+  {
+    id: "CRAFTING",
+    label: "Ores, Wood & Crafting",
+    shortLabel: "Ores & Wood",
+    description: "Forging ores, wood and other crafting materials",
+    sortRankRange: "Materials tab",
+    accent: "148, 163, 184",
+  },
 ];
+
+const OTHER_CATEGORIES = new Set<string>(["SPECIALTY", "INGREDIENT", "FISHING", "CRAFTING"]);
 
 /**
  * Returns the category ID of a material based on its sortRank and in-game semantics.
  */
 export function getMaterialCategoryId(item: MaterialItem): MaterialCategory {
+  if (item.category && OTHER_CATEGORIES.has(item.category)) {
+    return item.category as MaterialCategory;
+  }
   if (
     item.type === "EXP_FRUIT" ||
     item.type === "WEAPON_EXP_STONE" ||
@@ -132,6 +174,19 @@ export function getMaterialCategoryId(item: MaterialItem): MaterialCategory {
     return "WEAPON";
   }
   return "ENHANCEMENT";
+}
+
+/** Materials-tab items (other-materials.json) are ordered after this. */
+const OTHER_ORDER_OFFSET = 10_000;
+
+/**
+ * A material's place in its bag tab: Character Development Items count from
+ * #1, and so do the Materials-tab items (stored after them, from 10001).
+ */
+export function bagOrder(item: MaterialItem): { position: number; tab: string } {
+  return item.order > OTHER_ORDER_OFFSET
+    ? { position: item.order - OTHER_ORDER_OFFSET, tab: "Materials" }
+    : { position: item.order, tab: "Character Development Items" };
 }
 
 /**

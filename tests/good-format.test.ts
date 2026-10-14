@@ -36,7 +36,7 @@ describe("GOOD export", () => {
     assert.deepEqual(data, {
       format: "GOOD",
       version: 2,
-      source: "GenshinMaterialScanner",
+      source: "GI Helper",
       materials: { HerosWit: 120, AscendedSampleKnight: 3 },
     });
   });
