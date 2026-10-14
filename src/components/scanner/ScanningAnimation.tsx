@@ -23,6 +23,12 @@ export interface ScanningAnimationProps {
   modelName?: string;
   scanningFiles?: ScanningFileItem[];
   onSelectThumbnail?: (index: number) => void;
+  /** Shown in the viewport until there is an image. */
+  emptyMessage?: string;
+  /** Drawn over the image in the viewport (e.g. boxes of the cards found). */
+  viewportOverlay?: React.ReactNode;
+  /** Shown between the viewport and the progress bar (e.g. a video timeline). */
+  footer?: React.ReactNode;
 }
 
 export function ScanningAnimation({
@@ -36,6 +42,9 @@ export function ScanningAnimation({
   modelName,
   scanningFiles = [],
   onSelectThumbnail,
+  emptyMessage = "Preparing screenshot buffer...",
+  viewportOverlay,
+  footer,
 }: ScanningAnimationProps) {
   return (
     <div className="animate-in fade-in flex w-full flex-col justify-between space-y-3.5 duration-300">
@@ -83,10 +92,12 @@ export function ScanningAnimation({
           <div className="flex h-full w-full flex-col items-center justify-center text-white/50">
             <Loader2 className="mb-2 h-8 w-8 animate-spin text-cyan-400" />
             <span className="text-sm font-medium">
-              Preparing screenshot buffer...
+              {emptyMessage}
             </span>
           </div>
         )}
+
+        {viewportOverlay}
 
         {/* Subtle Cyber Grid */}
         <div
@@ -163,6 +174,8 @@ export function ScanningAnimation({
           })}
         </div>
       )}
+
+      {footer}
 
       {/* Progress & Status Row */}
       <div className="space-y-2 pt-1">

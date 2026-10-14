@@ -17,7 +17,7 @@ import { getLatestVersion } from "@/lib/versions";
 export const metadata: Metadata = pageMetadata({
   title: "About GI Helper",
   description:
-    "GI Helper is a free, fan-made Genshin Impact inventory scanner: recognise materials from screenshots on your device or with AI Vision, review them, and export to GOOD format.",
+    "GI Helper is a free, fan-made Genshin Impact inventory scanner: recognise materials from screenshots or screen recordings on your device or with AI Vision, review them, and export to GOOD format.",
   path: "/about",
 });
 
@@ -25,7 +25,7 @@ const FEATURES: { icon: LucideIcon; title: string; text: string }[] = [
   {
     icon: Scan,
     title: "Scan on your device",
-    text: "Recognises every material, its rarity and quantity right in your browser. No API key, nothing uploaded.",
+    text: "Recognises every material, its rarity and quantity from screenshots or a screen recording, right in your browser. No API key, nothing uploaded.",
   },
   {
     icon: Sparkles,
@@ -45,14 +45,14 @@ const FEATURES: { icon: LucideIcon; title: string; text: string }[] = [
 ];
 
 const STEPS = [
-  "Open your inventory on the Character Development Items tab and take screenshots.",
-  "Drop them into the scanner, or try the sample screenshot first.",
+  "Open your inventory on the Character Development Items tab and take screenshots, or record your screen while you scroll through it.",
+  "Drop them into the scanner (recordings go in the Video tab), or try a sample first.",
   "Review the results. Slots the scanner wasn't sure about are listed first.",
   "Export to GOOD and import the file into your optimizer.",
 ];
 
 const PRIVACY = [
-  "The on-device scanner reads your screenshots in the browser; they never leave your device.",
+  "The on-device scanners read your screenshots and recordings in the browser; they never leave your device.",
   "AI Vision sends the screenshot and your API key through GI Helper's server to the provider you pick, only for that request. Nothing is saved.",
   "Your API keys, settings and scanned inventory are stored in your browser only.",
   "Anonymous page-view analytics (Vercel Analytics) show which features get used.",

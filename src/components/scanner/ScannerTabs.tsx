@@ -78,7 +78,7 @@ export function ScannerTabs({
   return (
     <div className="flex w-full justify-center">
       <div
-        className="glass-track flex w-full max-w-[420px] items-center gap-1 p-1.5"
+        className={`glass-track flex w-full items-center gap-1 p-1.5 ${tabs.length > 2 ? "max-w-[520px]" : "max-w-[420px]"}`}
         role="tablist"
         aria-label={ariaLabel}
         data-active={activeIndex}
@@ -88,11 +88,9 @@ export function ScannerTabs({
           ref={indicatorRef}
           className="glass-thumb"
           style={{
-            width: "calc((100% - 12px) / 2)",
-            transform:
-              activeIndex === 0
-                ? "translateX(0)"
-                : "translateX(100%)",
+            // Track padding is 6px per side and buttons are 4px apart (gap-1).
+            width: `calc((100% - 12px - ${(tabs.length - 1) * 4}px) / ${tabs.length})`,
+            transform: `translateX(calc(${activeIndex} * (100% + 4px)))`,
           }}
           aria-hidden="true"
         />
@@ -115,7 +113,7 @@ export function ScannerTabs({
               data-index={index}
               onClick={() => onTabChange(index)}
               onKeyDown={(e) => handleKeyDown(e, index)}
-              className={`relative z-10 flex flex-1 min-w-0 items-center justify-center gap-2 rounded-full py-2.5 px-5 text-sm font-semibold transition-all duration-200 select-none focus-visible:outline-2 focus-visible:outline-cyan-400 focus-visible:outline-offset-2 ${
+              className={`relative z-10 flex flex-1 min-w-0 items-center justify-center gap-1.5 rounded-full py-2.5 px-2 text-[13px] font-semibold sm:gap-2 sm:px-5 sm:text-sm transition-all duration-200 select-none focus-visible:outline-2 focus-visible:outline-cyan-400 focus-visible:outline-offset-2 ${
                 isActive
                   ? "text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]"
                   : "text-white/55 hover:text-white/85"

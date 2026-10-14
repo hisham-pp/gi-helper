@@ -1,10 +1,11 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { Scan, Sparkles } from "lucide-react";
+import { Film, Scan, Sparkles } from "lucide-react";
 import { BrandIcon } from "@/components/layout/BrandIcon";
 import { ScannerTabs, TabItem } from "./ScannerTabs";
 import { ClassicScannerView } from "./ClassicScannerView";
+import { VideoScannerView } from "./VideoScannerView";
 import { AiScannerView } from "./AiScannerView";
 import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion";
 
@@ -14,6 +15,12 @@ const SCANNER_TABS: TabItem[] = [
     label: "Scanner",
     icon: <Scan className="h-4 w-4" />,
     panelId: "scanner-panel",
+  },
+  {
+    id: "video",
+    label: "Video",
+    icon: <Film className="h-4 w-4" />,
+    panelId: "video-panel",
   },
   {
     id: "ai",
@@ -27,7 +34,8 @@ const SCANNER_TABS: TabItem[] = [
  * Main Scanner Page Orchestrator
  * Houses the single common title & description (no badges) and animated pill tabs with:
  * - Tab 0: Standard Scanner (default active)
- * - Tab 1: AI Vision Scanner
+ * - Tab 1: Video Scanner (screen recordings)
+ * - Tab 2: AI Vision Scanner
  */
 export function Scanner() {
   const [activeTab, setActiveTab] = useState<number>(0);
@@ -57,12 +65,8 @@ export function Scanner() {
   useEffect(() => {
     if (typeof window !== "undefined") {
       const params = new URLSearchParams(window.location.search);
-      const tabParam = params.get("tab");
-      if (tabParam === "ai") {
-        setActiveTab(1);
-      } else if (tabParam === "scanner") {
-        setActiveTab(0);
-      }
+      const index = SCANNER_TABS.findIndex((t) => t.id === params.get("tab"));
+      if (index >= 0) setActiveTab(index);
     }
   }, []);
 
@@ -71,14 +75,14 @@ export function Scanner() {
 
     if (typeof window !== "undefined") {
       const url = new URL(window.location.href);
-      url.searchParams.set("tab", index === 1 ? "ai" : "scanner");
+      url.searchParams.set("tab", SCANNER_TABS[index].id);
       window.history.replaceState({}, "", url.toString());
     }
   };
 
   return (
     <div className="mx-auto flex w-full max-w-4xl flex-col items-center space-y-6 pt-2 sm:pt-4">
-      {/* Header: mode-neutral Icon + Title & Description shared by both tabs */}
+      {/* Header: mode-neutral Icon + Title & Description shared by all tabs */}
       <div className="space-y-2 text-center">
         {/* Icon flows inline so it stays beside the first word when the title wraps */}
         <h1 className="text-balance text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-white drop-shadow-[0_4px_14px_rgba(0,0,0,0.7)]">
@@ -89,7 +93,7 @@ export function Scanner() {
           Extract Materials from Screenshots
         </h1>
         <p className="mx-auto max-w-xl text-xs sm:text-sm text-cyan-100/75 drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]">
-          Upload screenshots of your Genshin Impact inventory to instantly extract materials.
+          Upload screenshots or a screen recording of your Genshin Impact inventory to instantly extract materials.
         </p>
       </div>
 
@@ -104,14 +108,17 @@ export function Scanner() {
       </div>
 
       {/* Content Panels with Entry Animation.
-          Both stay mounted so switching tabs keeps each one's state (results,
-          last review, a scan in progress); the inactive one is just hidden,
+          All stay mounted so switching tabs keeps each one's state (results,
+          last review, a scan in progress); the inactive ones are just hidden,
           and its entry animation replays when it is shown again. */}
       <div ref={panelsRef} className="w-full">
         <div hidden={activeTab !== 0}>
           <ClassicScannerView id="scanner-panel" ariaLabelledBy="scanner-tab" />
         </div>
         <div hidden={activeTab !== 1}>
+          <VideoScannerView id="video-panel" ariaLabelledBy="video-tab" />
+        </div>
+        <div hidden={activeTab !== 2}>
           <AiScannerView id="ai-panel" ariaLabelledBy="ai-tab" />
         </div>
       </div>

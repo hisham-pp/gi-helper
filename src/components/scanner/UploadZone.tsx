@@ -27,8 +27,24 @@ export interface UploadZoneProps {
   /** Icon shown on the sample button; defaults to a neutral image icon. */
   sampleButtonIcon?: React.ReactNode;
   showSampleButton?: boolean;
+  /** File loaded by the sample button; defaults to a sample screenshot. */
+  sample?: { url: string; fileName: string; type: string };
+  /** `accept` of the file input; defaults to images. */
+  accept?: string;
+  /** Allow selecting several files at once. */
+  multiple?: boolean;
+  /** Passed to the scanning view (see ScanningAnimation). */
+  scanEmptyMessage?: string;
+  scanOverlay?: React.ReactNode;
+  scanFooter?: React.ReactNode;
   accent?: "teal" | "cyan";
 }
+
+const DEFAULT_SAMPLE = {
+  url: "/samples/test-set-01/GenshinImpact_20261009_220714.jpg",
+  fileName: "GenshinImpact_Sample_Inventory.jpg",
+  type: "image/jpeg",
+};
 
 export function UploadZone({
   isScanning = false,
@@ -51,6 +67,12 @@ export function UploadZone({
   sampleButtonText = "Try a sample",
   sampleButtonIcon,
   showSampleButton = true,
+  sample = DEFAULT_SAMPLE,
+  accept = "image/*",
+  multiple = true,
+  scanEmptyMessage,
+  scanOverlay,
+  scanFooter,
 }: UploadZoneProps) {
   const [isDragging, setIsDragging] = useState(false);
   const [isLoadingSample, setIsLoadingSample] = useState(false);
@@ -98,17 +120,15 @@ export function UploadZone({
 
     try {
       setIsLoadingSample(true);
-      const res = await fetch(
-        "/samples/test-set-01/GenshinImpact_20261009_220714.jpg",
-      );
+      const res = await fetch(sample.url);
       if (!res.ok) throw new Error("Sample file not found");
       const blob = await res.blob();
-      const file = new File([blob], "GenshinImpact_Sample_Inventory.jpg", {
-        type: "image/jpeg",
+      const file = new File([blob], sample.fileName, {
+        type: sample.type,
       });
       onFilesSelected([file]);
     } catch (err) {
-      console.error("Failed to load sample image:", err);
+      console.error("Failed to load sample file:", err);
     } finally {
       setIsLoadingSample(false);
     }
@@ -140,6 +160,9 @@ export function UploadZone({
             modelName={modelName}
             scanningFiles={scanningFiles}
             onSelectThumbnail={onSelectThumbnail}
+            emptyMessage={scanEmptyMessage}
+            viewportOverlay={scanOverlay}
+            footer={scanFooter}
           />
         </div>
       ) : (
@@ -191,8 +214,8 @@ export function UploadZone({
           <input
             id={inputId}
             type="file"
-            accept="image/*"
-            multiple
+            accept={accept}
+            multiple={multiple}
             className="sr-only"
             onChange={handleChange}
             disabled={isScanning}

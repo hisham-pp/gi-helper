@@ -6,7 +6,7 @@
  */
 import { loadReferenceBank } from "./browser";
 import { toMaterialDetectionError } from "./engine/errors";
-import { recognizeBlob, scanBlob } from "./run";
+import { recognizeBlob, scanBitmap, scanBlob } from "./run";
 import type { ScanWorkerRequest, ScanWorkerResponse } from "./worker-protocol";
 
 // The project compiles against the DOM lib; describe the worker scope minimally.
@@ -31,6 +31,12 @@ async function handle(req: ScanWorkerRequest) {
       result = null;
     } else if (req.kind === "scan") {
       result = await scanBlob(req.blob, req.name, req.settings, (p) => scope.postMessage({ id, type: "progress", ...p }));
+    } else if (req.kind === "scan-frame") {
+      try {
+        result = await scanBitmap(req.bitmap, req.settings, (p) => scope.postMessage({ id, type: "progress", ...p }));
+      } finally {
+        req.bitmap.close();
+      }
     } else {
       result = await recognizeBlob(req.blob, req.name, req.grids, req.settings, (p) =>
         scope.postMessage({ id, type: "progress", ...p }),
