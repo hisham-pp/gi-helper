@@ -1,6 +1,7 @@
 import { createHash } from "node:crypto";
 import { NextResponse, type NextRequest } from "next/server";
 import pkg from "../../../package.json";
+import { getCharacter } from "@/lib/characters";
 import { censorProfanity } from "./profanity";
 import {
   feedbackErrorMessage,
@@ -114,6 +115,7 @@ async function rpc<T>(fn: string, args: Record<string, unknown>): Promise<T> {
 interface RawFeedback {
   id: string;
   name: string | null;
+  avatar: string | null;
   message: string;
   created_at: string;
   images: string[];
@@ -131,6 +133,7 @@ function toPublicFeedback(row: RawFeedback): PublicFeedback {
   return {
     id: row.id,
     name: row.name,
+    avatar: row.avatar ?? null,
     message: row.message,
     createdAt: row.created_at,
     images: row.images ?? [],
@@ -161,6 +164,8 @@ export async function listPublicFeedback(page: number): Promise<PublicFeedbackPa
 export interface FeedbackSubmission {
   kind: FeedbackKind;
   name: string;
+  /** Character id picked in the form; anything not in the list is dropped. */
+  avatar: string | null;
   message: string;
   /** Validated PNG, JPEG or WebP files. */
   images: Uint8Array[];
@@ -184,6 +189,7 @@ export async function submitFeedback(input: FeedbackSubmission): Promise<{ id: s
     p_app_version: pkg.version,
     p_user_agent: input.userAgent?.slice(0, 300) ?? null,
     p_client_hash: hashClient(input.ip),
+    p_avatar: getCharacter(input.avatar)?.id ?? null,
   });
 }
 

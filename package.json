@@ -1,6 +1,6 @@
 {
   "name": "genshin-material-tracker",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "private": true,
   "packageManager": "pnpm@10.17.1",
   "engines": {
@@ -21,7 +21,8 @@
     "build:digit-templates": "tsx scripts/build-digit-templates.ts",
     "build:material-thumbs": "tsx scripts/build-material-thumbs.ts",
     "build:brand-icons": "tsx scripts/build-brand-icons.ts",
-    "sync-data": "tsx scripts/scrape-materials.ts && tsx scripts/update-families.ts && tsx scripts/build-material-atlas.ts && tsx scripts/build-material-thumbs.ts",
+    "scrape:characters": "tsx scripts/scrape-characters.ts",
+    "sync-data": "tsx scripts/scrape-materials.ts && tsx scripts/update-families.ts && tsx scripts/build-material-atlas.ts && tsx scripts/build-material-thumbs.ts && tsx scripts/scrape-characters.ts",
     "feedback:admin": "tsx scripts/feedback-admin.ts"
   },
   "pnpm": {

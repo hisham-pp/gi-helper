@@ -1,0 +1,734 @@
+[
+  {
+    "id": "aether",
+    "name": "Aether",
+    "rarity": 5,
+    "element": "None"
+  },
+  {
+    "id": "aino",
+    "name": "Aino",
+    "rarity": 4,
+    "element": "Hydro"
+  },
+  {
+    "id": "albedo",
+    "name": "Albedo",
+    "rarity": 5,
+    "element": "Geo"
+  },
+  {
+    "id": "alhaitham",
+    "name": "Alhaitham",
+    "rarity": 5,
+    "element": "Dendro"
+  },
+  {
+    "id": "aloy",
+    "name": "Aloy",
+    "rarity": 5,
+    "element": "Cryo"
+  },
+  {
+    "id": "alyosha",
+    "name": "Alyosha",
+    "rarity": 4,
+    "element": "Electro"
+  },
+  {
+    "id": "amber",
+    "name": "Amber",
+    "rarity": 4,
+    "element": "Pyro"
+  },
+  {
+    "id": "arataki-itto",
+    "name": "Arataki Itto",
+    "rarity": 5,
+    "element": "Geo"
+  },
+  {
+    "id": "arlecchino",
+    "name": "Arlecchino",
+    "rarity": 5,
+    "element": "Pyro"
+  },
+  {
+    "id": "baizhu",
+    "name": "Baizhu",
+    "rarity": 5,
+    "element": "Dendro"
+  },
+  {
+    "id": "barbara",
+    "name": "Barbara",
+    "rarity": 4,
+    "element": "Hydro"
+  },
+  {
+    "id": "beidou",
+    "name": "Beidou",
+    "rarity": 4,
+    "element": "Electro"
+  },
+  {
+    "id": "bennett",
+    "name": "Bennett",
+    "rarity": 4,
+    "element": "Pyro"
+  },
+  {
+    "id": "candace",
+    "name": "Candace",
+    "rarity": 4,
+    "element": "Hydro"
+  },
+  {
+    "id": "charlotte",
+    "name": "Charlotte",
+    "rarity": 4,
+    "element": "Cryo"
+  },
+  {
+    "id": "chasca",
+    "name": "Chasca",
+    "rarity": 5,
+    "element": "Anemo"
+  },
+  {
+    "id": "chevreuse",
+    "name": "Chevreuse",
+    "rarity": 4,
+    "element": "Pyro"
+  },
+  {
+    "id": "chiori",
+    "name": "Chiori",
+    "rarity": 5,
+    "element": "Geo"
+  },
+  {
+    "id": "chongyun",
+    "name": "Chongyun",
+    "rarity": 4,
+    "element": "Cryo"
+  },
+  {
+    "id": "citlali",
+    "name": "Citlali",
+    "rarity": 5,
+    "element": "Cryo"
+  },
+  {
+    "id": "clorinde",
+    "name": "Clorinde",
+    "rarity": 5,
+    "element": "Electro"
+  },
+  {
+    "id": "collei",
+    "name": "Collei",
+    "rarity": 4,
+    "element": "Dendro"
+  },
+  {
+    "id": "columbina",
+    "name": "Columbina",
+    "rarity": 5,
+    "element": "Hydro"
+  },
+  {
+    "id": "cyno",
+    "name": "Cyno",
+    "rarity": 5,
+    "element": "Electro"
+  },
+  {
+    "id": "dahlia",
+    "name": "Dahlia",
+    "rarity": 4,
+    "element": "Hydro"
+  },
+  {
+    "id": "dehya",
+    "name": "Dehya",
+    "rarity": 5,
+    "element": "Pyro"
+  },
+  {
+    "id": "diluc",
+    "name": "Diluc",
+    "rarity": 5,
+    "element": "Pyro"
+  },
+  {
+    "id": "diona",
+    "name": "Diona",
+    "rarity": 4,
+    "element": "Cryo"
+  },
+  {
+    "id": "dori",
+    "name": "Dori",
+    "rarity": 4,
+    "element": "Electro"
+  },
+  {
+    "id": "durin",
+    "name": "Durin",
+    "rarity": 5,
+    "element": "Pyro"
+  },
+  {
+    "id": "emilie",
+    "name": "Emilie",
+    "rarity": 5,
+    "element": "Dendro"
+  },
+  {
+    "id": "escoffier",
+    "name": "Escoffier",
+    "rarity": 5,
+    "element": "Cryo"
+  },
+  {
+    "id": "eula",
+    "name": "Eula",
+    "rarity": 5,
+    "element": "Cryo"
+  },
+  {
+    "id": "faruzan",
+    "name": "Faruzan",
+    "rarity": 4,
+    "element": "Anemo"
+  },
+  {
+    "id": "fischl",
+    "name": "Fischl",
+    "rarity": 4,
+    "element": "Electro"
+  },
+  {
+    "id": "flins",
+    "name": "Flins",
+    "rarity": 5,
+    "element": "Electro"
+  },
+  {
+    "id": "freminet",
+    "name": "Freminet",
+    "rarity": 4,
+    "element": "Cryo"
+  },
+  {
+    "id": "furina",
+    "name": "Furina",
+    "rarity": 5,
+    "element": "Hydro"
+  },
+  {
+    "id": "gaming",
+    "name": "Gaming",
+    "rarity": 4,
+    "element": "Pyro"
+  },
+  {
+    "id": "ganyu",
+    "name": "Ganyu",
+    "rarity": 5,
+    "element": "Cryo"
+  },
+  {
+    "id": "gorou",
+    "name": "Gorou",
+    "rarity": 4,
+    "element": "Geo"
+  },
+  {
+    "id": "hu-tao",
+    "name": "Hu Tao",
+    "rarity": 5,
+    "element": "Pyro"
+  },
+  {
+    "id": "iansan",
+    "name": "Iansan",
+    "rarity": 4,
+    "element": "Electro"
+  },
+  {
+    "id": "ifa",
+    "name": "Ifa",
+    "rarity": 4,
+    "element": "Anemo"
+  },
+  {
+    "id": "illuga",
+    "name": "Illuga",
+    "rarity": 4,
+    "element": "Geo"
+  },
+  {
+    "id": "ineffa",
+    "name": "Ineffa",
+    "rarity": 5,
+    "element": "Electro"
+  },
+  {
+    "id": "jahoda",
+    "name": "Jahoda",
+    "rarity": 4,
+    "element": "Anemo"
+  },
+  {
+    "id": "jean",
+    "name": "Jean",
+    "rarity": 5,
+    "element": "Anemo"
+  },
+  {
+    "id": "kachina",
+    "name": "Kachina",
+    "rarity": 4,
+    "element": "Geo"
+  },
+  {
+    "id": "kaedehara-kazuha",
+    "name": "Kaedehara Kazuha",
+    "rarity": 5,
+    "element": "Anemo"
+  },
+  {
+    "id": "kaeya",
+    "name": "Kaeya",
+    "rarity": 4,
+    "element": "Cryo"
+  },
+  {
+    "id": "kamisato-ayaka",
+    "name": "Kamisato Ayaka",
+    "rarity": 5,
+    "element": "Cryo"
+  },
+  {
+    "id": "kamisato-ayato",
+    "name": "Kamisato Ayato",
+    "rarity": 5,
+    "element": "Hydro"
+  },
+  {
+    "id": "kaveh",
+    "name": "Kaveh",
+    "rarity": 4,
+    "element": "Dendro"
+  },
+  {
+    "id": "keqing",
+    "name": "Keqing",
+    "rarity": 5,
+    "element": "Electro"
+  },
+  {
+    "id": "kinich",
+    "name": "Kinich",
+    "rarity": 5,
+    "element": "Dendro"
+  },
+  {
+    "id": "kirara",
+    "name": "Kirara",
+    "rarity": 4,
+    "element": "Dendro"
+  },
+  {
+    "id": "klee",
+    "name": "Klee",
+    "rarity": 5,
+    "element": "Pyro"
+  },
+  {
+    "id": "kujou-sara",
+    "name": "Kujou Sara",
+    "rarity": 4,
+    "element": "Electro"
+  },
+  {
+    "id": "kuki-shinobu",
+    "name": "Kuki Shinobu",
+    "rarity": 4,
+    "element": "Electro"
+  },
+  {
+    "id": "lan-yan",
+    "name": "Lan Yan",
+    "rarity": 4,
+    "element": "Anemo"
+  },
+  {
+    "id": "lauma",
+    "name": "Lauma",
+    "rarity": 5,
+    "element": "Dendro"
+  },
+  {
+    "id": "layla",
+    "name": "Layla",
+    "rarity": 4,
+    "element": "Cryo"
+  },
+  {
+    "id": "linnea",
+    "name": "Linnea",
+    "rarity": 5,
+    "element": "Geo"
+  },
+  {
+    "id": "lisa",
+    "name": "Lisa",
+    "rarity": 4,
+    "element": "Electro"
+  },
+  {
+    "id": "lohen",
+    "name": "Lohen",
+    "rarity": 5,
+    "element": "Cryo"
+  },
+  {
+    "id": "lumine",
+    "name": "Lumine",
+    "rarity": 5,
+    "element": "None"
+  },
+  {
+    "id": "lynette",
+    "name": "Lynette",
+    "rarity": 4,
+    "element": "Anemo"
+  },
+  {
+    "id": "lyney",
+    "name": "Lyney",
+    "rarity": 5,
+    "element": "Pyro"
+  },
+  {
+    "id": "mavuika",
+    "name": "Mavuika",
+    "rarity": 5,
+    "element": "Pyro"
+  },
+  {
+    "id": "mika",
+    "name": "Mika",
+    "rarity": 4,
+    "element": "Cryo"
+  },
+  {
+    "id": "mona",
+    "name": "Mona",
+    "rarity": 5,
+    "element": "Hydro"
+  },
+  {
+    "id": "mualani",
+    "name": "Mualani",
+    "rarity": 5,
+    "element": "Hydro"
+  },
+  {
+    "id": "nahida",
+    "name": "Nahida",
+    "rarity": 5,
+    "element": "Dendro"
+  },
+  {
+    "id": "navia",
+    "name": "Navia",
+    "rarity": 5,
+    "element": "Geo"
+  },
+  {
+    "id": "nefer",
+    "name": "Nefer",
+    "rarity": 5,
+    "element": "Dendro"
+  },
+  {
+    "id": "neuvillette",
+    "name": "Neuvillette",
+    "rarity": 5,
+    "element": "Hydro"
+  },
+  {
+    "id": "nicole",
+    "name": "Nicole",
+    "rarity": 5,
+    "element": "Pyro"
+  },
+  {
+    "id": "nilou",
+    "name": "Nilou",
+    "rarity": 5,
+    "element": "Hydro"
+  },
+  {
+    "id": "ningguang",
+    "name": "Ningguang",
+    "rarity": 4,
+    "element": "Geo"
+  },
+  {
+    "id": "noelle",
+    "name": "Noelle",
+    "rarity": 4,
+    "element": "Geo"
+  },
+  {
+    "id": "odette",
+    "name": "Odette",
+    "rarity": 5,
+    "element": "Cryo"
+  },
+  {
+    "id": "ororon",
+    "name": "Ororon",
+    "rarity": 4,
+    "element": "Electro"
+  },
+  {
+    "id": "prune",
+    "name": "Prune",
+    "rarity": 4,
+    "element": "Anemo"
+  },
+  {
+    "id": "qiqi",
+    "name": "Qiqi",
+    "rarity": 5,
+    "element": "Cryo"
+  },
+  {
+    "id": "raiden-shogun",
+    "name": "Raiden Shogun",
+    "rarity": 5,
+    "element": "Electro"
+  },
+  {
+    "id": "razor",
+    "name": "Razor",
+    "rarity": 4,
+    "element": "Electro"
+  },
+  {
+    "id": "rosaria",
+    "name": "Rosaria",
+    "rarity": 4,
+    "element": "Cryo"
+  },
+  {
+    "id": "sandrone",
+    "name": "Sandrone",
+    "rarity": 5,
+    "element": "Cryo"
+  },
+  {
+    "id": "sangonomiya-kokomi",
+    "name": "Sangonomiya Kokomi",
+    "rarity": 5,
+    "element": "Hydro"
+  },
+  {
+    "id": "sayu",
+    "name": "Sayu",
+    "rarity": 4,
+    "element": "Anemo"
+  },
+  {
+    "id": "sethos",
+    "name": "Sethos",
+    "rarity": 4,
+    "element": "Electro"
+  },
+  {
+    "id": "shenhe",
+    "name": "Shenhe",
+    "rarity": 5,
+    "element": "Cryo"
+  },
+  {
+    "id": "shikanoin-heizou",
+    "name": "Shikanoin Heizou",
+    "rarity": 4,
+    "element": "Anemo"
+  },
+  {
+    "id": "sigewinne",
+    "name": "Sigewinne",
+    "rarity": 5,
+    "element": "Hydro"
+  },
+  {
+    "id": "skirk",
+    "name": "Skirk",
+    "rarity": 5,
+    "element": "Cryo"
+  },
+  {
+    "id": "sucrose",
+    "name": "Sucrose",
+    "rarity": 4,
+    "element": "Anemo"
+  },
+  {
+    "id": "tartaglia",
+    "name": "Tartaglia",
+    "rarity": 5,
+    "element": "Hydro"
+  },
+  {
+    "id": "thoma",
+    "name": "Thoma",
+    "rarity": 4,
+    "element": "Pyro"
+  },
+  {
+    "id": "tighnari",
+    "name": "Tighnari",
+    "rarity": 5,
+    "element": "Dendro"
+  },
+  {
+    "id": "varesa",
+    "name": "Varesa",
+    "rarity": 5,
+    "element": "Electro"
+  },
+  {
+    "id": "varka",
+    "name": "Varka",
+    "rarity": 5,
+    "element": "Anemo"
+  },
+  {
+    "id": "venti",
+    "name": "Venti",
+    "rarity": 5,
+    "element": "Anemo"
+  },
+  {
+    "id": "vesna",
+    "name": "Vesna",
+    "rarity": 5,
+    "element": "Anemo"
+  },
+  {
+    "id": "vodyanitsa",
+    "name": "Vodyanitsa",
+    "rarity": 5,
+    "element": "Hydro"
+  },
+  {
+    "id": "wanderer",
+    "name": "Wanderer",
+    "rarity": 5,
+    "element": "Anemo"
+  },
+  {
+    "id": "wriothesley",
+    "name": "Wriothesley",
+    "rarity": 5,
+    "element": "Cryo"
+  },
+  {
+    "id": "xiangling",
+    "name": "Xiangling",
+    "rarity": 4,
+    "element": "Pyro"
+  },
+  {
+    "id": "xianyun",
+    "name": "Xianyun",
+    "rarity": 5,
+    "element": "Anemo"
+  },
+  {
+    "id": "xiao",
+    "name": "Xiao",
+    "rarity": 5,
+    "element": "Anemo"
+  },
+  {
+    "id": "xilonen",
+    "name": "Xilonen",
+    "rarity": 5,
+    "element": "Geo"
+  },
+  {
+    "id": "xingqiu",
+    "name": "Xingqiu",
+    "rarity": 4,
+    "element": "Hydro"
+  },
+  {
+    "id": "xinyan",
+    "name": "Xinyan",
+    "rarity": 4,
+    "element": "Pyro"
+  },
+  {
+    "id": "yae-miko",
+    "name": "Yae Miko",
+    "rarity": 5,
+    "element": "Electro"
+  },
+  {
+    "id": "yanfei",
+    "name": "Yanfei",
+    "rarity": 4,
+    "element": "Pyro"
+  },
+  {
+    "id": "yaoyao",
+    "name": "Yaoyao",
+    "rarity": 4,
+    "element": "Dendro"
+  },
+  {
+    "id": "yelan",
+    "name": "Yelan",
+    "rarity": 5,
+    "element": "Hydro"
+  },
+  {
+    "id": "yoimiya",
+    "name": "Yoimiya",
+    "rarity": 5,
+    "element": "Pyro"
+  },
+  {
+    "id": "yumemizuki-mizuki",
+    "name": "Yumemizuki Mizuki",
+    "rarity": 5,
+    "element": "Anemo"
+  },
+  {
+    "id": "yun-jin",
+    "name": "Yun Jin",
+    "rarity": 4,
+    "element": "Geo"
+  },
+  {
+    "id": "zhongli",
+    "name": "Zhongli",
+    "rarity": 5,
+    "element": "Geo"
+  },
+  {
+    "id": "zibai",
+    "name": "Zibai",
+    "rarity": 5,
+    "element": "Geo"
+  }
+]

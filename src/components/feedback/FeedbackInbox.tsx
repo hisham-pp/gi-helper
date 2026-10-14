@@ -58,7 +58,7 @@ function InboxCard({ entry, busy, onToggleResolved, onToggleHidden, onDelete }: 
   return (
     <article className={`glass-card p-5 transition-opacity ${resolved ? "opacity-75" : ""}`}>
       <div className="flex flex-wrap items-start justify-between gap-3">
-        <FeedbackAuthor name={entry.name} createdAt={entry.createdAt} />
+        <FeedbackAuthor name={entry.name} avatar={entry.avatar} createdAt={entry.createdAt} />
         <div className="flex flex-wrap items-center gap-1.5">
           <span className={`glass-chip gap-1 px-2.5 py-1 text-[11px] font-semibold ${meta.color}`}>
             <KindIcon className="h-3 w-3" />

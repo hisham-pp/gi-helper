@@ -34,7 +34,8 @@ const submissionSchema = z.object({
 });
 
 /**
- * POST /api/feedback (multipart): kind, name, message and up to 3 `images`.
+ * POST /api/feedback (multipart): kind, name, avatar (character id), message
+ * and up to 3 `images`.
  * Bad words are masked before saving; only "feedback" is listed publicly.
  */
 export async function POST(req: NextRequest) {
@@ -77,8 +78,10 @@ export async function POST(req: NextRequest) {
       images.push(bytes);
     }
 
+    const avatar = form.get("avatar");
     const { id } = await submitFeedback({
       ...parsed.data,
+      avatar: typeof avatar === "string" ? avatar : null,
       images,
       userAgent: req.headers.get("user-agent"),
       ip: clientIp(req),

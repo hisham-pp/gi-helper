@@ -1,0 +1,19 @@
+{
+  "title": "Character names and avatars",
+  "date": "2026-10-14",
+  "summary": "Feedback now comes with a Genshin character's name and avatar.",
+  "changes": [
+    {
+      "type": "new",
+      "text": "When you send feedback, your name starts as a random Genshin character's, with their avatar next to it. Roll the dice for another character, or type your own name and keep the avatar."
+    },
+    {
+      "type": "improved",
+      "text": "Feedback posts show the sender's character avatar."
+    },
+    {
+      "type": "improved",
+      "text": "All 122 playable characters are in the mix, up to the latest release, each with a small avatar that loads fast."
+    }
+  ]
+}
