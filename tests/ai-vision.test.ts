@@ -5,8 +5,10 @@ import {
   getAiAdapter,
   listSupportedAdapters,
   extractJsonFromResponse,
+  resolveAdapterModel,
 } from "../src/lib/ai/adapters";
 import { mapAiItemsToMaterials } from "../src/lib/ai/vision-scanner";
+import { DEFAULT_SCANNER_SETTINGS } from "../src/lib/scanner-settings";
 
 test("resolveMaterial matches canonical materials by ID", () => {
   const result = resolveMaterial("damaged-mask");
@@ -89,6 +91,38 @@ test("Adapter registry returns all 5 adapters", () => {
   const custom = getAiAdapter("custom");
   assert.equal(custom.providerId, "custom");
   assert.equal(custom.displayName, "OpenAI-Compatible / Custom");
+});
+
+test("each adapter's default model is in its list, and the settings defaults match", () => {
+  const settingsModel: Record<string, string> = {
+    gemini: DEFAULT_SCANNER_SETTINGS.geminiModel,
+    openai: DEFAULT_SCANNER_SETTINGS.openaiModel,
+    claude: DEFAULT_SCANNER_SETTINGS.claudeModel,
+    grok: DEFAULT_SCANNER_SETTINGS.grokModel,
+    custom: DEFAULT_SCANNER_SETTINGS.customModel,
+  };
+  for (const adapter of listSupportedAdapters()) {
+    assert.ok(
+      adapter.supportedModels.some((m) => m.id === adapter.defaultModel),
+      `${adapter.providerId}: ${adapter.defaultModel} is not in its model list`,
+    );
+    assert.equal(settingsModel[adapter.providerId], adapter.defaultModel, adapter.providerId);
+  }
+});
+
+test("resolveAdapterModel swaps retired or unknown models for the default", () => {
+  const claude = getAiAdapter("claude");
+  assert.equal(resolveAdapterModel(claude, "claude-3-5-sonnet-latest"), claude.defaultModel);
+  assert.equal(resolveAdapterModel(claude, "claude-haiku-5-5"), "claude-haiku-5-5");
+  assert.equal(resolveAdapterModel(claude, ""), claude.defaultModel);
+  assert.equal(resolveAdapterModel(claude, undefined), claude.defaultModel);
+
+  const gemini = getAiAdapter("gemini");
+  assert.equal(resolveAdapterModel(gemini, "gemini-2.0-flash"), "gemini-flash-latest");
+
+  // The custom endpoint takes any model id.
+  const custom = getAiAdapter("custom");
+  assert.equal(resolveAdapterModel(custom, "my/local-model"), "my/local-model");
 });
 
 test("extractJsonFromResponse strips markdown code blocks", () => {

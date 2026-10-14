@@ -45,6 +45,23 @@ export function getAiAdapter(providerId: string = "gemini"): AiVisionAdapter {
 }
 
 /**
+ * The model to call: the requested one if the adapter still lists it,
+ * otherwise its default, so a retired model saved in a browser's settings
+ * keeps working after the list is refreshed. The custom adapter takes any id.
+ */
+export function resolveAdapterModel(
+  adapter: AiVisionAdapter,
+  model?: string | null,
+): string {
+  const requested = model ? String(model).trim() : "";
+  if (!requested) return adapter.defaultModel;
+  if (adapter.providerId === "custom") return requested;
+  return adapter.supportedModels.some((m) => m.id === requested)
+    ? requested
+    : adapter.defaultModel;
+}
+
+/**
  * List all supported AI Vision Adapters
  */
 export function listSupportedAdapters(): AiVisionAdapter[] {

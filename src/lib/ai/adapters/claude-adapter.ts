@@ -12,26 +12,26 @@ import {
 export class ClaudeVisionAdapter implements AiVisionAdapter {
   readonly providerId: AiProviderId = "claude";
   readonly displayName = "Anthropic Claude";
-  readonly defaultModel = "claude-3-5-sonnet-latest";
+  readonly defaultModel = "claude-sonnet-5-5";
   readonly description =
-    "State-of-the-art visual reasoning using Claude 3.5 Sonnet or Haiku.";
+    "State-of-the-art visual reasoning using Claude Sonnet, Haiku or Opus.";
   readonly docsUrl = "https://console.anthropic.com/settings/keys";
 
   readonly supportedModels: SupportedModelMeta[] = [
     {
-      id: "claude-3-5-sonnet-latest",
-      label: "Claude 3.5 Sonnet (Recommended)",
+      id: "claude-sonnet-5-5",
+      label: "Claude Sonnet 5.5 (Recommended)",
       recommended: true,
       description: "Exceptional visual understanding and detailed recognition.",
     },
     {
-      id: "claude-3-5-haiku-latest",
-      label: "Claude 3.5 Haiku (Fast & Lightweight)",
+      id: "claude-haiku-5-5",
+      label: "Claude Haiku 5.5 (Fast & Lightweight)",
       description: "Lightning-fast visual analysis with low latency.",
     },
     {
-      id: "claude-3-opus-20240229",
-      label: "Claude 3 Opus",
+      id: "claude-opus-5-5",
+      label: "Claude Opus 5.5",
       description: "Deep analytical reasoning.",
     },
   ];

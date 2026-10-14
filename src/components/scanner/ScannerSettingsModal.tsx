@@ -21,7 +21,11 @@ import {
   getActiveProviderConfig,
   ServerEnvProviderInfo,
 } from "@/lib/scanner-settings";
-import { listSupportedAdapters, getAiAdapter } from "@/lib/ai/adapters";
+import {
+  listSupportedAdapters,
+  getAiAdapter,
+  resolveAdapterModel,
+} from "@/lib/ai/adapters";
 import { toast } from "sonner";
 
 import { GlassInput } from "@/components/ui/GlassInput";
@@ -230,7 +234,8 @@ export function ScannerSettingsModal({
   };
 
   const currentKey = getActiveKey();
-  const currentModel = getActiveModel();
+  // A retired model saved in this browser shows (and scans) as the default.
+  const currentModel = resolveAdapterModel(currentAdapter, getActiveModel());
   const currentBaseUrl = getActiveBaseUrl();
 
   // Portal to <body>: an ancestor's transform/filter (e.g. the tab panel's entry
@@ -408,7 +413,7 @@ export function ScannerSettingsModal({
                 <GlassInput
                   value={currentModel}
                   onValueChange={handleUpdateActiveModel}
-                  placeholder="e.g. qwen/qwen-2-vl-72b-instruct"
+                  placeholder="e.g. google/gemini-3.8-flash"
                   spellCheck={false}
                 />
               ) : (

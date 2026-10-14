@@ -61,18 +61,18 @@ export const DEFAULT_SCANNER_SETTINGS: ScannerSettings = {
   geminiModel: "gemini-flash-latest",
 
   openaiApiKey: "",
-  openaiModel: "gpt-4o-mini",
+  openaiModel: "gpt-6-luna",
   openaiBaseUrl: "",
 
   claudeApiKey: "",
-  claudeModel: "claude-3-5-sonnet-latest",
+  claudeModel: "claude-sonnet-5-5",
 
   grokApiKey: "",
-  grokModel: "grok-2-vision-1212",
+  grokModel: "grok-4.7",
   grokBaseUrl: "https://api.x.ai/v1",
 
   customApiKey: "",
-  customModel: "qwen/qwen-2-vl-72b-instruct",
+  customModel: "google/gemini-3.8-flash",
   customBaseUrl: "https://openrouter.ai/api/v1",
 };
 
