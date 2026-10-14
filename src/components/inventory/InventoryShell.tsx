@@ -161,7 +161,9 @@ export function InventoryShell({ children }: { children: React.ReactNode }) {
           <div ref={tabsRowRef} className="no-scrollbar -mx-4 -my-3 flex overflow-x-auto px-4 py-3">
             <PillNav
               ariaLabel="Inventory sections"
-              className="inline-grid"
+              // shrink-0: keep its width and let the row scroll, rather than squeeze the labels
+              className="inline-grid shrink-0"
+              iconClassName="hidden sm:block"
               items={TABS.map((t) => ({
                 ...TAB_ITEMS[t],
                 href: TAB_ITEMS[t].href as Route,
