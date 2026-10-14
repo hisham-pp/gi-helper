@@ -1,6 +1,7 @@
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { z } from "zod";
+import { CHANGE_TYPES, type VersionRelease } from "./release-notes";
 
 /**
  * Release notes live in `src/data/versions/<major>-<minor>-<patch>/release.json`.
@@ -12,8 +13,16 @@ export const RELEASE_FILE = "release.json";
 
 const VERSION_FOLDER = /^(\d+)-(\d+)-(\d+)$/;
 
-export const CHANGE_TYPES = ["new", "improved", "fixed", "removed"] as const;
-export type ChangeType = (typeof CHANGE_TYPES)[number];
+// Shapes and paging live in ./release-notes (no fs, so the browser can use them)
+export {
+  CHANGE_TYPES,
+  RELEASES_PER_PAGE,
+  releasePage,
+  type ChangeType,
+  type ReleaseChange,
+  type ReleasePage,
+  type VersionRelease,
+} from "./release-notes";
 
 const releaseSchema = z.object({
   title: z.string().min(1),
@@ -31,13 +40,6 @@ const releaseSchema = z.object({
 });
 
 export type ReleaseNotes = z.infer<typeof releaseSchema>;
-
-export interface VersionRelease extends ReleaseNotes {
-  /** Dotted version, e.g. "0.0.2". */
-  version: string;
-  /** Folder name, e.g. "0-0-2"; also used as the page anchor. */
-  slug: string;
-}
 
 function versionParts(slug: string): number[] {
   return slug.split("-").map(Number);
