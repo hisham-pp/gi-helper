@@ -213,7 +213,8 @@ export function ScannedInventory() {
 
   // The filter card squashes as the Reset button slides in or out, like on /materials
   const filterBarRef = useRef<HTMLDivElement>(null);
-  useWiggleOnChange(filterBarRef, isFiltered, reducedMotion);
+  // Also on every category tab change (one trigger, so it plays once)
+  useWiggleOnChange(filterBarRef, `${isFiltered}:${selectedCategory}`, reducedMotion);
 
   // Stable callbacks keep the memoized ResultGrid from re-rendering on unrelated state
   const handleClear = useCallback(async () => {

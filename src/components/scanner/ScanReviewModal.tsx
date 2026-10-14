@@ -24,6 +24,7 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { getRarityStyles } from "@/lib/material-ui";
+import { GlassInput } from "@/components/ui/GlassInput";
 import { MaterialThumb } from "@/components/ui/MaterialThumb";
 import { usePauseBackground } from "@/lib/use-pause-background";
 import { useModalMotion } from "@/lib/use-modal-motion";
@@ -205,16 +206,17 @@ export function ScanReviewModal({
 
         {/* Search & Stats Bar */}
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 px-6 py-3">
-          <div className="relative min-w-[200px] max-w-sm flex-1">
-            <Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-white/45" />
-            <input
-              type="text"
-              placeholder="Search detected items..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="glass-input w-full rounded-full py-2 pl-10 pr-3 text-xs"
-            />
-          </div>
+          <GlassInput
+            placeholder="Search detected items..."
+            value={searchQuery}
+            onValueChange={setSearchQuery}
+            enterKeyHint="search"
+            icon={Search}
+            clearable
+            shape="pill"
+            size="sm"
+            className="min-w-[200px] max-w-sm flex-1"
+          />
 
           <div className="flex items-center gap-3 text-xs">
             <span className="glass-chip px-3 py-1 font-semibold text-white/85">

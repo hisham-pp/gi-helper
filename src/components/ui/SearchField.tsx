@@ -1,7 +1,8 @@
 "use client";
 
 import React from "react";
-import { Search, X } from "lucide-react";
+import { Search } from "lucide-react";
+import { GlassInput } from "./GlassInput";
 
 interface SearchFieldProps {
   value: string;
@@ -16,24 +17,16 @@ export function SearchField({
   placeholder,
 }: SearchFieldProps) {
   return (
-    <div className="relative flex-1">
-      <Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-white/50" />
-      <input
-        type="text"
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        placeholder={placeholder}
-        className="glass-input w-full rounded-full py-2.5 pl-10 pr-9 text-sm"
-      />
-      {value && (
-        <button
-          onClick={() => onChange("")}
-          className="glass-icon-btn absolute right-2.5 top-1/2 h-6 w-6 -translate-y-1/2 rounded-full"
-          title="Clear search"
-        >
-          <X className="h-3.5 w-3.5" />
-        </button>
-      )}
-    </div>
+    <GlassInput
+      // Text, not type="search": that adds the browser's own clear button next to ours
+      enterKeyHint="search"
+      value={value}
+      onValueChange={onChange}
+      placeholder={placeholder}
+      icon={Search}
+      clearable
+      shape="pill"
+      className="flex-1"
+    />
   );
 }

@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { ChevronDown } from "lucide-react";
+import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion";
+import { useWiggleOnChange } from "@/lib/use-wiggle-on-change";
 
 export interface PillDropdownOption<T extends string = string> {
   value: T;
@@ -54,6 +56,9 @@ export function PillDropdown<T extends string = string>({
   const [panelStyle, setPanelStyle] = useState<React.CSSProperties>({});
   const triggerRef = useRef<HTMLButtonElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
+
+  // The pill squashes when its value changes (picked here or reset elsewhere)
+  useWiggleOnChange(triggerRef, value, usePrefersReducedMotion(), "control");
 
   // Position the portal panel below the trigger on open
   useEffect(() => {

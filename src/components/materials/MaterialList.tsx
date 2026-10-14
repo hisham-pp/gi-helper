@@ -29,6 +29,7 @@ import { GlassSegmentedControl } from "@/components/ui/GlassSegmentedControl";
 import { PaginationBar } from "@/components/ui/PaginationBar";
 import { ResetFiltersButton } from "@/components/ui/ResetFiltersButton";
 import { SearchField } from "@/components/ui/SearchField";
+import { PillTabs } from "@/components/ui/PillTabs";
 import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion";
 import { useWiggleOnChange } from "@/lib/use-wiggle-on-change";
 
@@ -213,7 +214,8 @@ export function MaterialList() {
   // wiggles on page changes by itself.)
   const filterBarRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
-  useWiggleOnChange(filterBarRef, isFiltered, reducedMotion);
+  // Also on every category tab change (one trigger, so it plays once)
+  useWiggleOnChange(filterBarRef, `${isFiltered}:${selectedCategory}`, reducedMotion);
   useWiggleOnChange(heroRef, selectedRarity, reducedMotion);
 
   return (
@@ -240,32 +242,32 @@ export function MaterialList() {
             </div>
 
             {/* Quick Stat Badges */}
-            <div className="flex flex-wrap items-center gap-2 sm:justify-end">
-              <span className="glass-chip px-3.5 py-1.5 font-mono text-xs font-bold text-white">
-                <span className="text-cyan-300">Total:</span> {stats.total}
-              </span>
-              {[5, 4, 3, 2, 1].map((r) => {
-                const rStyles = getRarityStyles(r);
-                const isSelected = selectedRarity === r;
-                return (
-                  <button
-                    key={r}
-                    onClick={() =>
-                      setSelectedRarity(isSelected ? "ALL" : r)
-                    }
-                    aria-pressed={isSelected}
-                    style={{ "--glass-accent": rStyles.accent } as React.CSSProperties}
-                    className="glass-chip glass-chip--fill gap-1 px-2.5 py-1 text-xs font-bold"
-                    title={`Filter by ${r}★ Materials`}
-                  >
-                    {/* White on the selected chip's rarity-coloured fill */}
-                    <span className={isSelected ? "text-white" : rStyles.starColor}>{r}★</span>
-                    <span className={`text-[10px] ${isSelected ? "text-white/85" : "text-white/50"}`}>
-                      ({stats.rarityCounts[r]})
-                    </span>
-                  </button>
-                );
-              })}
+            {/* Scrolls sideways on phones; the padding (cancelled by negative margins) leaves room for the glow */}
+            <div className="no-scrollbar -mx-4 -my-3 flex min-w-0 items-center overflow-x-auto px-4 py-3 sm:mx-0 sm:shrink-0 sm:justify-end sm:overflow-visible sm:px-0">
+              <PillTabs<number | "ALL">
+                ariaLabel="Rarity"
+                value={selectedRarity}
+                onChange={setSelectedRarity}
+                options={[
+                  {
+                    value: "ALL",
+                    label: <span className={selectedRarity === "ALL" ? "text-white" : "text-cyan-300"}>Total</span>,
+                    count: stats.total,
+                    title: "All rarities",
+                  },
+                  ...[5, 4, 3, 2, 1].map((r) => {
+                    const rStyles = getRarityStyles(r);
+                    return {
+                      value: r,
+                      // White on the selected tab's rarity-coloured fill
+                      label: <span className={selectedRarity === r ? "text-white" : rStyles.starColor}>{r}★</span>,
+                      count: stats.rarityCounts[r] || 0,
+                      accent: rStyles.accent,
+                      title: `Filter by ${r}★ Materials`,
+                    };
+                  }),
+                ]}
+              />
             </div>
           </div>
         </div>

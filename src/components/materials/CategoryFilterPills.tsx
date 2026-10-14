@@ -2,6 +2,7 @@
 
 import React from "react";
 import { MATERIAL_CATEGORIES, MaterialCategory } from "@/lib/material-ui";
+import { PillTabs } from "@/components/ui/PillTabs";
 
 interface CategoryFilterPillsProps {
   selected: MaterialCategory;
@@ -14,7 +15,7 @@ interface CategoryFilterPillsProps {
   hideEmpty?: boolean;
 }
 
-/** "Category:" row of glass pills with counts, scrolling sideways on narrow screens. */
+/** "Category:" row of glass tabs with counts, scrolling sideways on narrow screens. */
 export function CategoryFilterPills({
   selected,
   onSelect,
@@ -31,36 +32,25 @@ export function CategoryFilterPills({
         <span className="shrink-0 text-[11px] font-bold uppercase tracking-wider text-white/40">
           Category:
         </span>
-        {MATERIAL_CATEGORIES.map((cat) => {
-          const isSelected = selected === cat.id;
-          const count = cat.id === "ALL" ? total : counts[cat.id] || 0;
-          if (hideEmpty && count === 0 && !isSelected) return null;
-
-          return (
-            <button
-              key={cat.id}
-              onClick={() => onSelect(cat.id)}
-              aria-pressed={isSelected}
-              // Explicit accent: the card's pale cyan would make the fill read as white
-              style={
-                { "--glass-accent": "34, 211, 238" } as React.CSSProperties
-              }
-              className="glass-chip glass-chip--fill shrink-0 px-3 py-1.5 text-xs font-semibold"
-              title={`${cat.label} (sortRank: ${cat.sortRankRange})`}
-            >
-              <span>{cat.shortLabel}</span>
-              <span
-                className={`rounded-full px-1.5 text-[10px] ${
-                  isSelected
-                    ? "bg-white/20 text-white"
-                    : "bg-white/10 text-white/60"
-                }`}
-              >
-                {count}
-              </span>
-            </button>
-          );
-        })}
+        <PillTabs
+          ariaLabel="Category"
+          value={selected}
+          onChange={onSelect}
+          options={MATERIAL_CATEGORIES.flatMap((cat) => {
+            const count = cat.id === "ALL" ? total : counts[cat.id] || 0;
+            if (hideEmpty && count === 0 && selected !== cat.id) return [];
+            return [
+              {
+                value: cat.id,
+                label: cat.shortLabel,
+                count,
+                // Explicit accent: the card's pale cyan would make the fill read as white
+                accent: cat.accent,
+                title: `${cat.label} (sortRank: ${cat.sortRankRange})`,
+              },
+            ];
+          })}
+        />
       </div>
     </div>
   );

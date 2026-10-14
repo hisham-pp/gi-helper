@@ -10,6 +10,7 @@ import {
   getMaterialCategoryId,
   getRarityStyles,
 } from "@/lib/materials";
+import { GlassInput } from "@/components/ui/GlassInput";
 import { MaterialThumb } from "@/components/ui/MaterialThumb";
 import { useModalMotion } from "@/lib/use-modal-motion";
 
@@ -114,17 +115,17 @@ export function MaterialPickerModal({ item, onSelect, onClose }: MaterialPickerM
 
         {/* Search & Filter Bar */}
         <div className="space-y-2 border-b border-white/10 p-4">
-          <div className="relative">
-            <Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-white/45" />
-            <input
-              type="text"
-              placeholder="Search material by name, category, or type..."
-              value={pickerSearch}
-              onChange={(e) => setPickerSearch(e.target.value)}
-              autoFocus
-              className="glass-input w-full rounded-full py-2 pl-10 pr-3 text-xs"
-            />
-          </div>
+          <GlassInput
+            placeholder="Search material by name, category, or type..."
+            value={pickerSearch}
+            onValueChange={setPickerSearch}
+            autoFocus
+            enterKeyHint="search"
+            icon={Search}
+            clearable
+            shape="pill"
+            size="sm"
+          />
 
           {/* Category Pills & Rarity Stars Filter */}
           <div className="flex flex-wrap items-center justify-between gap-2 pt-1 text-xs">
