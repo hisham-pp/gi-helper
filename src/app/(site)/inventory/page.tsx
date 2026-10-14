@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import { ScannedInventory } from "@/components/scanner/ScannedInventory";
+import { InventoryPage } from "@/components/inventory/InventoryPage";
 
 export const metadata: Metadata = {
-  title: "Scanned Inventory",
+  title: "Inventory",
   description:
-    "Your scanned Genshin Impact materials, saved in this browser. Adjust quantities and export to GOOD.",
+    "Your Genshin Impact materials, characters, weapons and artifacts, saved in this browser. Import and export GOOD files.",
   // Each visitor's own list, kept in their browser: nothing to index
   robots: { index: false, follow: true },
 };
 
-export default function InventoryPage() {
-  return <ScannedInventory />;
+export default function Inventory() {
+  return <InventoryPage />;
 }
