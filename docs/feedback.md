@@ -1,7 +1,7 @@
 # Feedback
 
 Visitors send feedback, bug reports, ideas and other messages from
-`/feedback`, with an optional name and up to 3 screenshots. Only the
+`/feedback`, with a name, a character avatar and up to 3 screenshots. Only the
 **feedback** kind is listed on that page; everything is read in the private
 inbox at `/feedback/inbox`, which only seeded accounts can open.
 
@@ -9,7 +9,7 @@ inbox at `/feedback/inbox`, which only seeded accounts can open.
 - UI: `src/components/feedback/` (`FeedbackBoard`, `SendFeedbackModal`, `FeedbackInbox`, `InboxLogin`)
 - API: `src/app/api/feedback/` (list and send, images, session, inbox)
 - Server: `src/lib/feedback/server.ts`; shared types and limits in `types.ts`
-- Database: `supabase/migrations/*_feedback.sql` (Supabase project `gi-helper`)
+- Database: `supabase/migrations/*_feedback*.sql` (Supabase project `gi-helper`)
 - Tests: `tests/feedback.test.ts`
 
 ## How it fits together
@@ -19,10 +19,21 @@ inbox at `/feedback/inbox`, which only seeded accounts can open.
 | Tables | `feedback_private.entries`, `images`, `admins`, `sessions` | A schema the Supabase API doesn't expose; RLS on with no policies. |
 | API surface | `public.feedback_*` functions | `security definer`, `search_path = ''`. Each validates its input, so calling them directly with the key is no shortcut. Only `anon` may execute them. |
 | App access | `SUPABASE_URL` + `SUPABASE_PUBLISHABLE_KEY` | Server-only env vars; the route handlers call the functions over `/rest/v1/rpc`. No service-role key needed. |
+| Name and avatar | `src/lib/characters.ts`, `SendFeedbackModal` | The form starts with a random playable character's name and avatar; the dice picks another (a name the visitor typed stays, only the avatar changes). Clearing the name posts as "Anonymous Traveler". The avatar is stored as the character id (`entries.avatar`); the server drops ids that aren't in `src/data/characters.json`. |
 | Bad words | `src/lib/feedback/profanity.ts` | The `bad-words` package. The form warns while typing; the server masks names and messages (`****`) before saving. `ALLOWED` lists words it shouldn't mask (e.g. "god"). |
 | Images | `compress-image.ts`, `images.ts` | The browser shrinks each image to at most 1600 px and re-encodes it as WebP (JPEG on Safari), which strips EXIF. Server and database both check magic bytes: PNG, JPEG or WebP only, 1.5 MB each. Stored as `bytea`. |
 | Image access | `/api/feedback/images/[id]` | Images on visible feedback are public (10-minute cache); the rest need an inbox session. |
 | Spam | `feedback_submit` | 5 messages per sender per 10 minutes, 30 a minute overall. Senders are told apart by a salted hash of their IP (`FEEDBACK_HASH_SALT`); the IP itself isn't stored. A hidden `website` field catches simple bots. |
+
+## Characters
+
+`pnpm scrape:characters` (`scripts/scrape-characters.ts`) rebuilds
+`src/data/characters.json` from genshin-db and downloads each character's
+in-game icon (`UI_AvatarIcon_*`) from enka.network, falling back to
+HoYoLAB. Each icon is resized to 128² and stored only as WebP in
+`public/images/character-avatars/<id>.webp` (~8 KB, ~1 MB for all). Update
+genshin-db first when new characters release; avatars of characters that
+leave the list are removed, and their old posts fall back to an initial.
 
 ## Inbox accounts
 

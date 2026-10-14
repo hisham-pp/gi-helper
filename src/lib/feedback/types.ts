@@ -28,6 +28,8 @@ export const INBOX_PAGE_SIZE = 20;
 export interface PublicFeedback {
   id: string;
   name: string | null;
+  /** Character id for the avatar (src/data/characters.json), or null. */
+  avatar: string | null;
   message: string;
   /** ISO timestamp. */
   createdAt: string;

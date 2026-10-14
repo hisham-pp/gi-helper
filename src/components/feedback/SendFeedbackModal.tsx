@@ -4,6 +4,7 @@ import { createPortal } from "react-dom";
 import React, { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
 import {
   CircleAlert,
+  Dices,
   Globe,
   ImagePlus,
   Loader2,
@@ -15,6 +16,7 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { GlassSegmentedControl } from "@/components/ui/GlassSegmentedControl";
+import { randomCharacter, type Character } from "@/lib/characters";
 import { compressFeedbackImage } from "@/lib/feedback/compress-image";
 import { containsProfanity } from "@/lib/feedback/profanity";
 import {
@@ -26,7 +28,8 @@ import {
 } from "@/lib/feedback/types";
 import { useModalMotion } from "@/lib/use-modal-motion";
 import { usePauseBackground } from "@/lib/use-pause-background";
-import { ANONYMOUS_NAME } from "./FeedbackCard";
+import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion";
+import { ANONYMOUS_NAME, FeedbackAvatar } from "./FeedbackCard";
 import { KIND_META } from "./feedback-kinds";
 
 interface Attachment {
@@ -48,13 +51,16 @@ const KIND_OPTIONS = FEEDBACK_KINDS.map((kind) => {
 });
 
 /**
- * The send form: kind, optional name, message and up to 3 screenshots
- * (picked, dropped or pasted; shrunk in the browser before upload). Only
+ * The send form: kind, name, message and up to 3 screenshots (picked,
+ * dropped or pasted; shrunk in the browser before upload). The name starts as
+ * a random character's, with their avatar; the dice picks another. Only
  * "feedback" is posted publicly. FeedbackBoard mounts it only while open.
  */
 export function SendFeedbackModal({ onClose, onSent }: SendFeedbackModalProps) {
   const [kind, setKind] = useState<FeedbackKind>(PUBLIC_FEEDBACK_KIND);
-  const [name, setName] = useState("");
+  // Client-only (mounted after a click), so the random pick can't mismatch hydration
+  const [character, setCharacter] = useState<Character>(() => randomCharacter());
+  const [name, setName] = useState(character.name);
   const [message, setMessage] = useState("");
   // Honeypot: hidden from people, bots fill it in
   const [website, setWebsite] = useState("");
@@ -69,6 +75,8 @@ export function SendFeedbackModal({ onClose, onSent }: SendFeedbackModalProps) {
   attachmentsRef.current = attachments;
   const shrinkingRef = useRef(0);
   const nextIdRef = useRef(0);
+  const avatarRef = useRef<HTMLDivElement>(null);
+  const reducedMotion = usePrefersReducedMotion();
   const id = useId();
 
   usePauseBackground();
@@ -133,6 +141,19 @@ export function SendFeedbackModal({ onClose, onSent }: SendFeedbackModalProps) {
     return () => window.removeEventListener("paste", handlePaste);
   }, [addFiles]);
 
+  const handleRandomCharacter = () => {
+    const next = randomCharacter(character.id);
+    setCharacter(next);
+    // A name of their own stays; the character's name follows the avatar
+    if (!name.trim() || name === character.name) setName(next.name);
+    if (!reducedMotion) {
+      avatarRef.current?.animate(
+        [{ scale: "0.82" }, { scale: "1.1", offset: 0.55 }, { scale: "1" }],
+        { duration: 360, easing: "ease-out" },
+      );
+    }
+  };
+
   const removeAttachment = (attachmentId: number) => {
     setAttachments((prev) => {
       const removed = prev.find((attachment) => attachment.id === attachmentId);
@@ -166,6 +187,7 @@ export function SendFeedbackModal({ onClose, onSent }: SendFeedbackModalProps) {
     const form = new FormData();
     form.set("kind", kind);
     form.set("name", name.trim());
+    form.set("avatar", character.id);
     form.set("message", message.trim());
     form.set("website", website);
     attachments.forEach((attachment, index) => {
@@ -272,15 +294,33 @@ export function SendFeedbackModal({ onClose, onSent }: SendFeedbackModalProps) {
             <label htmlFor={`${id}-name`} className="text-xs font-semibold text-white/80">
               Name <span className="font-normal text-white/45">(optional)</span>
             </label>
-            <input
-              id={`${id}-name`}
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              maxLength={FEEDBACK_LIMITS.nameMax}
-              autoComplete="nickname"
-              placeholder={ANONYMOUS_NAME}
-              className="glass-input w-full rounded-xl px-3.5 py-2.5 text-sm"
-            />
+            <div className="flex items-center gap-2.5">
+              <div ref={avatarRef} className="shrink-0" title={character.name}>
+                <FeedbackAvatar
+                  avatar={character.id}
+                  name={name}
+                  className="h-11 w-11 text-base"
+                />
+              </div>
+              <input
+                id={`${id}-name`}
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                maxLength={FEEDBACK_LIMITS.nameMax}
+                autoComplete="off"
+                placeholder={ANONYMOUS_NAME}
+                className="glass-input min-w-0 flex-1 rounded-xl px-3.5 py-2.5 text-sm"
+              />
+              <button
+                type="button"
+                onClick={handleRandomCharacter}
+                className="glass-icon-btn h-10 w-10 shrink-0 rounded-xl"
+                title="Random character"
+                aria-label="Pick another random character"
+              >
+                <Dices className="h-4 w-4" />
+              </button>
+            </div>
           </div>
 
           {/* Message */}

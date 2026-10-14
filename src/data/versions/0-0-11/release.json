@@ -9,6 +9,10 @@
     },
     {
       "type": "new",
+      "text": "Your name starts as a random Genshin character's, with their avatar next to it. Roll the dice for another character, or type your own name and keep the avatar."
+    },
+    {
+      "type": "new",
       "text": "Send feedback, a bug report, an idea or anything else from one form, with up to 3 screenshots. Paste a screenshot straight in with Ctrl+V. Bug reports, ideas and other messages stay private; only feedback is posted on the page."
     },
     {
