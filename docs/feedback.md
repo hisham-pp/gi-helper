@@ -25,6 +25,20 @@ inbox at `/feedback/inbox`, which only seeded accounts can open.
 | Image access | `/api/feedback/images/[id]` | Images on visible feedback are public (10-minute cache); the rest need an inbox session. |
 | Spam | `feedback_submit` | 5 messages per sender per 10 minutes, 30 a minute overall. Senders are told apart by a salted hash of their IP (`FEEDBACK_HASH_SALT`); the IP itself isn't stored. A hidden `website` field catches simple bots. |
 
+## Caching
+
+| What | Where | Fresh again |
+|------|-------|-------------|
+| Public list pages | `unstable_cache` (tag `feedback-list`, 10 min backstop) | At once on a new public post, a hide/show or a delete |
+| Public image lookups | `unstable_cache` (tag `feedback-images`, 1 day backstop) | At once on a hide/show or a delete |
+| Image responses | `ETag` = image id (bytes never change), `max-age=300` + stale-while-revalidate | Browsers get a 304 when they already have it |
+| Inbox | Never cached | Always |
+
+Changes made straight in SQL don't drop the tags; the public page catches up
+within 10 minutes (or redeploy). The page number of `/feedback` is in the URL
+(`?page=2`), so reloads, links and Back keep it; a page past the end shows the
+last page.
+
 ## Asking after an export
 
 After a GOOD export on `/inventory`, the success toast asks how the scan went,

@@ -1,3 +1,4 @@
+import { revalidateTag, unstable_cache } from "next/cache";
 import { hashClient } from "./request-client";
 import { toScanStats, type RawScanStats, type ScannerKind, type ScanStats } from "./scan-stats";
 import { callRpc, rpcServerKey } from "./supabase-rpc";
@@ -9,8 +10,17 @@ import { callRpc, rpcServerKey } from "./supabase-rpc";
  * broadcasts every new total on Realtime (*_realtime_scan_stats.sql).
  */
 
-export async function getScanStats(): Promise<ScanStats> {
-  return toScanStats(await callRpc<RawScanStats>("scan_stats", {}));
+const SCAN_STATS_TAG = "scan-stats";
+
+// Shared by every server instance; a recorded scan drops it right away
+const cachedScanStats = unstable_cache(
+  async () => toScanStats(await callRpc<RawScanStats>("scan_stats", {})),
+  ["scan-stats"],
+  { tags: [SCAN_STATS_TAG], revalidate: 300 },
+);
+
+export function getScanStats(): Promise<ScanStats> {
+  return cachedScanStats();
 }
 
 /** Counts one scan and returns the new totals. */
@@ -20,5 +30,6 @@ export async function recordScanRun(scanner: ScannerKind, ip: string): Promise<S
     { p_scanner: scanner, p_client_hash: hashClient(ip), p_server_key: rpcServerKey() },
     { invalid_scanner: 400, forbidden: 403 },
   );
+  revalidateTag(SCAN_STATS_TAG);
   return toScanStats(raw);
 }

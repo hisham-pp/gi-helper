@@ -1,3 +1,4 @@
+import { revalidateTag, unstable_cache } from "next/cache";
 import { NextResponse } from "next/server";
 import pkg from "../../../package.json";
 import { getCharacter } from "@/lib/characters";
@@ -7,6 +8,7 @@ import { censorProfanity } from "./profanity";
 import {
   feedbackErrorMessage,
   INBOX_PAGE_SIZE,
+  PUBLIC_FEEDBACK_KIND,
   PUBLIC_FEEDBACK_PAGE_SIZE,
   type FeedbackKind,
   type FeedbackStatus,
@@ -101,14 +103,34 @@ function toInboxEntry(row: RawInboxEntry): InboxEntry {
   };
 }
 
-/** A page of public feedback, newest first. */
-export async function listPublicFeedback(page: number): Promise<PublicFeedbackPage> {
-  const pageSize = PUBLIC_FEEDBACK_PAGE_SIZE;
-  const data = await rpc<{ total: number; items: RawFeedback[] }>("feedback_list_public", {
-    p_limit: pageSize,
-    p_offset: (page - 1) * pageSize,
-  });
-  return { items: data.items.map(toPublicFeedback), total: data.total, page, pageSize };
+// ---------------------------------------------------------------------------
+// Cache: public reads are kept in Next's data cache (shared by every server
+// instance) and dropped by tag the moment a change could show: a new public
+// post, a hide or show, a delete. Inbox reads are never cached.
+// ---------------------------------------------------------------------------
+
+/** Pages of the public list. */
+const FEEDBACK_LIST_TAG = "feedback-list";
+/** Public image lookups (including "not public" answers). */
+const FEEDBACK_IMAGES_TAG = "feedback-images";
+
+const cachedPublicPage = unstable_cache(
+  async (page: number): Promise<PublicFeedbackPage> => {
+    const pageSize = PUBLIC_FEEDBACK_PAGE_SIZE;
+    const data = await rpc<{ total: number; items: RawFeedback[] }>("feedback_list_public", {
+      p_limit: pageSize,
+      p_offset: (page - 1) * pageSize,
+    });
+    return { items: data.items.map(toPublicFeedback), total: data.total, page, pageSize };
+  },
+  ["feedback-public-page"],
+  // The tags do the real work; the time limit is a backstop
+  { tags: [FEEDBACK_LIST_TAG], revalidate: 600 },
+);
+
+/** A page of public feedback, newest first (cached). */
+export function listPublicFeedback(page: number): Promise<PublicFeedbackPage> {
+  return cachedPublicPage(page);
 }
 
 export interface FeedbackSubmission {
@@ -126,7 +148,7 @@ export interface FeedbackSubmission {
 
 /** Masks bad words in the name and message, then stores the message. */
 export async function submitFeedback(input: FeedbackSubmission): Promise<{ id: string }> {
-  return rpc<{ id: string }>("feedback_submit", {
+  const result = await rpc<{ id: string }>("feedback_submit", {
     p_kind: input.kind,
     p_name: censorProfanity(input.name.trim()) || null,
     p_message: censorProfanity(input.message.trim()),
@@ -137,6 +159,9 @@ export async function submitFeedback(input: FeedbackSubmission): Promise<{ id: s
     p_avatar: getCharacter(input.avatar)?.id ?? null,
     p_server_key: rpcServerKey(),
   });
+  // Only the "feedback" kind shows on the public page
+  if (input.kind === PUBLIC_FEEDBACK_KIND) revalidateTag(FEEDBACK_LIST_TAG);
+  return result;
 }
 
 export interface FeedbackImage {
@@ -146,15 +171,28 @@ export interface FeedbackImage {
   isPublic: boolean;
 }
 
-/** An image of public feedback, or of any message with an inbox session. */
+type RawImage = { mime: string; data: string; public: boolean } | null;
+
+/** Image lookup without a session: only public images come back (cached). */
+const cachedPublicImage = unstable_cache(
+  (id: string) => rpc<RawImage>("feedback_image", { p_id: id, p_token: null }),
+  ["feedback-public-image"],
+  // An id's bytes never change; hiding or deleting drops the tag
+  { tags: [FEEDBACK_IMAGES_TAG], revalidate: 86400 },
+);
+
+/**
+ * An image of public feedback (from the cache), or of any message with an
+ * inbox session (always fresh, never cached).
+ */
 export async function getFeedbackImage(
   id: string,
   token: string | undefined,
 ): Promise<FeedbackImage | null> {
-  const data = await rpc<{ mime: string; data: string; public: boolean } | null>("feedback_image", {
-    p_id: id,
-    p_token: token ?? null,
-  });
+  let data = await cachedPublicImage(id);
+  if (!data && token) {
+    data = await rpc<RawImage>("feedback_image", { p_id: id, p_token: token });
+  }
   if (!data) return null;
   return {
     mime: data.mime,
@@ -229,16 +267,28 @@ export async function updateInboxEntry(
   id: string,
   patch: { status?: FeedbackStatus; hidden?: boolean },
 ): Promise<{ id: string; status: FeedbackStatus; hidden: boolean }> {
-  return rpc("feedback_admin_update", {
-    p_token: token,
-    p_id: id,
-    p_status: patch.status ?? null,
-    p_hidden: patch.hidden ?? null,
-  });
+  const result = await rpc<{ id: string; status: FeedbackStatus; hidden: boolean }>(
+    "feedback_admin_update",
+    {
+      p_token: token,
+      p_id: id,
+      p_status: patch.status ?? null,
+      p_hidden: patch.hidden ?? null,
+    },
+  );
+  // Status isn't public; hiding or showing changes the page and its images
+  if (patch.hidden !== undefined) dropPublicCache();
+  return result;
 }
 
 export async function deleteInboxEntry(token: string, id: string): Promise<void> {
   await rpc("feedback_admin_delete", { p_token: token, p_id: id });
+  dropPublicCache();
+}
+
+function dropPublicCache(): void {
+  revalidateTag(FEEDBACK_LIST_TAG);
+  revalidateTag(FEEDBACK_IMAGES_TAG);
 }
 
 // ---------------------------------------------------------------------------
