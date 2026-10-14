@@ -13,3 +13,5 @@ tmp
 tsconfig.tsbuildinfo
 .claude/*
 .kiro/*
+playwright-report
+test-results

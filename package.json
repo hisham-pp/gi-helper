@@ -1,6 +1,6 @@
 {
   "name": "genshin-material-tracker",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "private": true,
   "packageManager": "pnpm@10.17.1",
   "engines": {
@@ -13,6 +13,7 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "test": "npx tsx --test tests/**/*.test.ts",
+    "test:e2e": "playwright test",
     "test:grid-detector": "npx tsx --test tests/grid-detector.test.ts tests/grid-detector-samples.test.ts",
     "eval:grid-detector": "tsx scripts/evaluate-grid-detector.ts",
     "test:material-detector": "npx tsx --test tests/material-detector.test.ts tests/material-detector-samples.test.ts",
@@ -50,6 +51,7 @@
     "zod": "^3.25.76"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.7",
     "@playwright/test": "^1.64.0",
     "@types/node": "^22.20.5",
     "@types/react": "^19.3.0",
