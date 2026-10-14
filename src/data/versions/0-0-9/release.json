@@ -1,0 +1,23 @@
+{
+  "title": "Smoother motion",
+  "date": "2026-10-14",
+  "summary": "Pages, dialogs and notifications now move with the same springy squash as the scanner tabs.",
+  "changes": [
+    {
+      "type": "improved",
+      "text": "Switching pages slides the new page in from the direction you're going, with a squash-and-stretch like the scanner tabs."
+    },
+    {
+      "type": "improved",
+      "text": "Dialogs (material details, scanner settings, scan review and the material picker) squash open and shrink away when closed, instead of popping in and out."
+    },
+    {
+      "type": "improved",
+      "text": "Notifications are frosted glass like the rest of the app, tinted by type, and land with a little squash."
+    },
+    {
+      "type": "improved",
+      "text": "Material cards squash when you hover them instead of lifting, and the page bar on the Materials page wiggles when you change page."
+    }
+  ]
+}

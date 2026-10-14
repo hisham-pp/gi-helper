@@ -1,0 +1,27 @@
+{
+  "title": "Inventory page",
+  "date": "2026-10-14",
+  "summary": "Your scanned materials have their own page now, with search, filters and pages.",
+  "changes": [
+    {
+      "type": "new",
+      "text": "Inventory page: everything your scans have added, with Clear All and the GOOD export. After a scan, the app takes you straight there."
+    },
+    {
+      "type": "new",
+      "text": "Search your inventory, filter it by category and rarity, sort it by in-game order, quantity, rarity or name, and page through it."
+    },
+    {
+      "type": "improved",
+      "text": "An Inventory link in the top bar, between Home and Materials."
+    },
+    {
+      "type": "improved",
+      "text": "Inventory cards squash when you hover them, like the material cards."
+    },
+    {
+      "type": "removed",
+      "text": "The results list under the scanner; your scanned materials are on the Inventory page instead."
+    }
+  ]
+}
