@@ -1,10 +1,13 @@
 import React from "react";
 import {
   Backpack,
+  Flower2,
   History,
   Info,
   MessageSquareHeart,
   PackageCheck,
+  Swords,
+  Users,
   type LucideIcon,
 } from "lucide-react";
 
@@ -93,6 +96,11 @@ function CardGrid({ count }: { count: number }) {
   );
 }
 
+/** The database pages' sub-nav (materials, characters, weapons, artifacts). */
+function DatabaseTabs() {
+  return <div className="glass-track h-[42px] w-full sm:w-[440px]" />;
+}
+
 /** Text cards, like release notes or feedback posts. */
 function TextCards({ count, avatar = false }: { count: number; avatar?: boolean }) {
   return (
@@ -142,16 +150,44 @@ export const PAGE_SHELLS: Record<string, () => React.ReactElement> = {
   "/": HomeShell,
   "/inventory": () => (
     <ShellPage width="max-w-7xl">
-      <Hero icon={Backpack} title="Scanned Inventory" chips={3} />
+      <Hero icon={Backpack} title="Inventory" chips={2} />
+      <div className="glass-track h-[46px] w-full max-w-[560px]" />
       <FilterBar />
       <CardGrid count={12} />
     </ShellPage>
   ),
   "/materials": () => (
     <ShellPage width="max-w-7xl">
+      <DatabaseTabs />
       <Hero icon={PackageCheck} title="Materials Directory" chips={4} />
       <FilterBar />
       <CardGrid count={18} />
+    </ShellPage>
+  ),
+  "/characters": () => (
+    <ShellPage width="max-w-7xl">
+      <DatabaseTabs />
+      <Hero icon={Users} title="Characters" />
+      <FilterBar />
+      <CardGrid count={18} />
+    </ShellPage>
+  ),
+  "/weapons": () => (
+    <ShellPage width="max-w-7xl">
+      <DatabaseTabs />
+      <Hero icon={Swords} title="Weapons" />
+      <FilterBar />
+      <CardGrid count={18} />
+    </ShellPage>
+  ),
+  "/artifacts": () => (
+    <ShellPage width="max-w-7xl">
+      <DatabaseTabs />
+      <Hero icon={Flower2} title="Artifact Sets" />
+      <FilterBar />
+      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        <TextCards count={6} />
+      </div>
     </ShellPage>
   ),
   "/versions": () => (

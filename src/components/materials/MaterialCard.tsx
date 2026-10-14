@@ -4,7 +4,7 @@ import React, { memo, useState } from "react";
 import Image from "next/image";
 import { Copy, Check, Info } from "lucide-react";
 import { MaterialItem } from "@/lib/types";
-import { getRarityStyles, getMaterialCategoryLabel } from "@/lib/material-ui";
+import { bagOrder, getRarityStyles, getMaterialCategoryLabel } from "@/lib/material-ui";
 import { toast } from "sonner";
 import { MaterialThumb } from "@/components/ui/MaterialThumb";
 
@@ -51,10 +51,10 @@ export const MaterialCard = memo(function MaterialCard({
       <div className="relative z-10 flex w-full items-center justify-between">
         <span
           className="glass-chip gap-0.5 px-2 py-0.5 font-mono text-[11px] font-bold tracking-tight text-white/90"
-          title={`Canonical In-Game Bag Order: #${material.order}`}
+          title={`In-game bag order (${bagOrder(material).tab} tab): #${bagOrder(material).position}`}
         >
           <span className="text-white/50">#</span>
-          {material.order}
+          {bagOrder(material).position}
         </span>
 
         <button

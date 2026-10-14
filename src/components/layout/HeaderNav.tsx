@@ -3,13 +3,14 @@
 import React from "react";
 import { ShellLink } from "@/components/layout/ShellLink";
 import { usePathname } from "next/navigation";
-import { Backpack, House, PackageCheck } from "lucide-react";
+import { Backpack, House, Library } from "lucide-react";
 import { isCurrent, PillNav, type PillNavItem } from "./PillNav";
 
 const NAV_ITEMS: PillNavItem[] = [
   { href: "/", label: "Home", icon: House },
   { href: "/inventory", label: "Inventory", icon: Backpack },
-  { href: "/materials", label: "Materials", icon: PackageCheck },
+  // Materials, characters, weapons and artifacts (see DatabaseNav)
+  { href: "/materials", label: "Database", icon: Library, match: ["/characters", "/weapons", "/artifacts"] },
 ];
 
 /**

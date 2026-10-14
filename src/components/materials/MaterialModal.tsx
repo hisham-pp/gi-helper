@@ -13,7 +13,7 @@ import {
   Bookmark,
 } from "lucide-react";
 import { MaterialItem } from "@/lib/types";
-import { getRarityStyles, getMaterialCategoryLabel } from "@/lib/material-ui";
+import { bagOrder, getRarityStyles, getMaterialCategoryLabel } from "@/lib/material-ui";
 import { toast } from "sonner";
 import { usePauseBackground } from "@/lib/use-pause-background";
 import { useModalMotion } from "@/lib/use-modal-motion";
@@ -96,8 +96,8 @@ export function MaterialModal({
           <div className="flex items-center gap-2">
             <span className="glass-chip gap-1 px-3 py-1 font-mono text-xs font-bold text-white">
               <span className="font-bold text-cyan-300">#</span>
-              {material.order}
-              {total !== undefined && (
+              {bagOrder(material).position}
+              {total !== undefined && bagOrder(material).tab !== "Materials" && (
                 <span className="ml-0.5 text-[10px] text-white/40">/ {total}</span>
               )}
             </span>

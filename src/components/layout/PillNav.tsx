@@ -11,6 +11,8 @@ export interface PillNavItem {
   href: Route;
   label: string;
   icon: LucideIcon;
+  /** Other pages this link is current on, e.g. a section's sub-pages. */
+  match?: string[];
 }
 
 /** Track padding and gap between links, in px (matches p-1 / gap-1). */
@@ -43,7 +45,9 @@ export function PillNav({
   iconClassName = "",
 }: PillNavProps) {
   const pathname = usePathname();
-  const activeIndex = items.findIndex((item) => isCurrent(pathname, item.href));
+  const activeIndex = items.findIndex(
+    (item) => isCurrent(pathname, item.href) || item.match?.some((path) => isCurrent(pathname, path)),
+  );
   const count = items.length;
   const thumbRef = useRef<HTMLDivElement>(null);
   const prevIndexRef = useRef(activeIndex);

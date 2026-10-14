@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { MaterialItem } from "@/lib/types";
-import { getRarityStyles, getMaterialCategoryLabel } from "@/lib/material-ui";
+import { bagOrder, getRarityStyles, getMaterialCategoryLabel } from "@/lib/material-ui";
 import { Copy, Check, Eye } from "lucide-react";
 import { toast } from "sonner";
 import { MaterialThumb } from "@/components/ui/MaterialThumb";
@@ -83,7 +83,7 @@ export function MaterialTableView({
                   {/* Order */}
                   <td className="px-4 py-3 text-center">
                     <span className="glass-chip px-2.5 py-0.5 font-mono text-xs font-bold text-white">
-                      #{mat.order}
+                      #{bagOrder(mat).position}
                     </span>
                   </td>
 
