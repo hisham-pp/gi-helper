@@ -1,0 +1,27 @@
+{
+  "title": "Feedback page",
+  "date": "2026-10-14",
+  "summary": "Tell us what you think, report a bug or suggest an idea, right from the site.",
+  "changes": [
+    {
+      "type": "new",
+      "text": "Feedback page: read what other travelers think of GI Helper and post your own, with an optional name."
+    },
+    {
+      "type": "new",
+      "text": "Send feedback, a bug report, an idea or anything else from one form, with up to 3 screenshots. Paste a screenshot straight in with Ctrl+V. Bug reports, ideas and other messages stay private; only feedback is posted on the page."
+    },
+    {
+      "type": "improved",
+      "text": "Screenshots are shrunk in your browser before they're sent, which also strips location data from photos."
+    },
+    {
+      "type": "improved",
+      "text": "Bad words are masked in names and messages, and the form warns you before you send."
+    },
+    {
+      "type": "improved",
+      "text": "A Feedback link in the footer and on the About page, and a note on how feedback is stored under Your data."
+    }
+  ]
+}
