@@ -1,0 +1,12 @@
+version: 2
+updates:
+  # genshin-db carries the character list: new characters only reach
+  # `pnpm scrape:characters` (and the daily data sync) after it is bumped.
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    allow:
+      - dependency-name: "genshin-db"
+    commit-message:
+      prefix: "chore(deps)"

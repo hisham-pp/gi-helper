@@ -12,24 +12,24 @@ import {
 export class GrokVisionAdapter implements AiVisionAdapter {
   readonly providerId: AiProviderId = "grok";
   readonly displayName = "xAI Grok";
-  readonly defaultModel = "grok-2-vision-1212";
+  readonly defaultModel = "grok-4.7";
   readonly description =
-    "Next-gen multimodal reasoning with xAI Grok 2 Vision.";
+    "Next-gen multimodal reasoning with xAI Grok 4.7.";
   readonly docsUrl = "https://console.x.ai";
   readonly defaultBaseUrl = "https://api.x.ai/v1";
 
   readonly supportedModels: SupportedModelMeta[] = [
     {
-      id: "grok-2-vision-1212",
-      label: "Grok 2 Vision (Recommended)",
+      id: "grok-4.7",
+      label: "Grok 4.7 (Recommended)",
       recommended: true,
       description:
-        "Flagship xAI vision model for high-fidelity OCR and perception.",
+        "Flagship xAI model with image input, for high-fidelity OCR and perception.",
     },
     {
-      id: "grok-vision-beta",
-      label: "Grok Vision Beta",
-      description: "Experimental xAI vision model.",
+      id: "grok-4.6",
+      label: "Grok 4.6",
+      description: "Previous xAI flagship with image input.",
     },
   ];
 

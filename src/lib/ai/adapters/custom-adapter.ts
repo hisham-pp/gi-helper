@@ -12,7 +12,7 @@ import {
 export class CustomVisionAdapter implements AiVisionAdapter {
   readonly providerId: AiProviderId = "custom";
   readonly displayName = "OpenAI-Compatible / Custom";
-  readonly defaultModel = "qwen/qwen-2-vl-72b-instruct";
+  readonly defaultModel = "google/gemini-3.8-flash";
   readonly description =
     "Connect to any OpenAI-compatible Vision API (e.g., OpenRouter, Local Ollama, vLLM, DeepSeek).";
   readonly docsUrl = "https://openrouter.ai/docs";
@@ -20,14 +20,14 @@ export class CustomVisionAdapter implements AiVisionAdapter {
 
   readonly supportedModels: SupportedModelMeta[] = [
     {
-      id: "qwen/qwen-2-vl-72b-instruct",
-      label: "Qwen 2 VL 72B (OpenRouter)",
+      id: "google/gemini-3.8-flash",
+      label: "Gemini 3.8 Flash (OpenRouter)",
       recommended: true,
-      description: "Top-tier open vision model with remarkable OCR accuracy.",
+      description: "Fast multimodal model with strong OCR accuracy.",
     },
     {
-      id: "meta-llama/llama-3.2-11b-vision-instruct",
-      label: "Llama 3.2 11B Vision",
+      id: "qwen/qwen3.8-flash",
+      label: "Qwen 3.8 Flash (OpenRouter)",
       description: "Fast and lightweight open vision model.",
     },
     {

@@ -1,0 +1,27 @@
+{
+  "title": "Up-to-date AI models and cleaner exports",
+  "date": "2026-10-14",
+  "summary": "AI Vision offers today's models, and every material now exports to GOOD correctly.",
+  "changes": [
+    {
+      "type": "fixed",
+      "text": "The three Ascended Samples (Knight, Queen, Rook) and both Artificed Spare Clockwork Components now export to GOOD with valid names, so optimizers no longer skip them."
+    },
+    {
+      "type": "improved",
+      "text": "AI Vision lists current models: Gemini Flash (always the latest), GPT-6 Luna and Sol, Claude Sonnet, Haiku and Opus 5.5, Grok 4.7, and Gemini 3.8 Flash for OpenRouter."
+    },
+    {
+      "type": "fixed",
+      "text": "If you had picked a model that has since been retired, AI Vision switches to the provider's recommended model instead of failing."
+    },
+    {
+      "type": "fixed",
+      "text": "Testing an OpenAI connection works with the current GPT models."
+    },
+    {
+      "type": "improved",
+      "text": "When new materials join the directory, the on-device scanner learns to recognise them in the same daily update."
+    }
+  ]
+}

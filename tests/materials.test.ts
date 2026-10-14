@@ -1,6 +1,6 @@
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
-import { existsSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import {
   getAllMaterials,
@@ -108,5 +108,15 @@ describe("Materials Directory & Canonical Ordering Tests", () => {
       (m) => !existsSync(path.join(process.cwd(), "public", materialThumbUrl(m.id))),
     );
     assert.deepEqual(missing.map((m) => m.id), []);
+  });
+
+  it("the recognizer atlas has every material, in catalog order (run `pnpm build:material-atlas` if this fails)", () => {
+    const atlas = JSON.parse(
+      readFileSync(path.join(process.cwd(), "public", "data", "material-atlas.json"), "utf8"),
+    ) as { entries: { id: string }[] };
+    assert.deepEqual(
+      atlas.entries.map((e) => e.id),
+      getAllMaterials().map((m) => m.id),
+    );
   });
 });

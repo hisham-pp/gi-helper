@@ -10,7 +10,7 @@ import {
 
 function resolveGeminiModel(model?: string): string {
   if (!model) {
-    return "gemini-2.0-flash";
+    return "gemini-flash-latest";
   }
   return model.replace(/^models\//, "");
 }
@@ -18,32 +18,27 @@ function resolveGeminiModel(model?: string): string {
 export class GeminiVisionAdapter implements AiVisionAdapter {
   readonly providerId = "gemini";
   readonly displayName = "Google Gemini";
-  readonly defaultModel = "gemini-2.0-flash";
+  readonly defaultModel = "gemini-flash-latest";
   readonly description =
     "Fast, accurate multimodal vision with a free tier available (via Google AI Studio).";
   readonly docsUrl = "https://aistudio.google.com/app/apikey";
 
   readonly supportedModels: SupportedModelMeta[] = [
     {
-      id: "gemini-2.0-flash",
-      label: "Gemini 2.0 Flash (Fastest & Recommended)",
-      recommended: true,
-      description: "Ultra-fast multimodal vision with low latency (~10s).",
-    },
-    {
       id: "gemini-flash-latest",
-      label: "Gemini Flash (Latest)",
-      description: "Evergreen flash model with high accuracy.",
+      label: "Gemini Flash Latest (Recommended)",
+      recommended: true,
+      description: "Always the newest Flash model, so it never goes stale.",
     },
     {
-      id: "gemini-2.5-flash",
-      label: "Gemini 2.5 Flash",
-      description: "Next-generation multimodal reasoning.",
+      id: "gemini-3.8-flash",
+      label: "Gemini 3.8 Flash",
+      description: "Fast multimodal vision with high accuracy.",
     },
     {
-      id: "gemini-1.5-flash",
-      label: "Gemini 1.5 Flash",
-      description: "Standard multimodal model.",
+      id: "gemini-3.5-flash-lite",
+      label: "Gemini 3.5 Flash-Lite (Cheapest)",
+      description: "Lightweight, low-cost multimodal model.",
     },
   ];
 

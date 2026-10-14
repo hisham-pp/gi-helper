@@ -240,7 +240,7 @@ export function ScanReviewModal({
             </div>
           ) : filteredItems.length === 0 ? (
             <div className="py-12 text-center text-xs text-white/50">
-              No items matching "{searchQuery}"
+              No items matching &ldquo;{searchQuery}&rdquo;
             </div>
           ) : (
             <div className="space-y-3">

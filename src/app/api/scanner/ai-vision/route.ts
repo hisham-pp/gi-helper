@@ -3,37 +3,26 @@ import {
   executeAiVisionScan,
   testAiApiConnection,
 } from "@/lib/ai/vision-scanner";
-import { getAiAdapter } from "@/lib/ai/adapters";
+import {
+  getAiAdapter,
+  listSupportedAdapters,
+  resolveAdapterModel,
+} from "@/lib/ai/adapters";
 
 export const dynamic = "force-dynamic";
 
 export async function GET() {
   return NextResponse.json({
-    providers: {
-      gemini: {
-        hasKey: false,
-        defaultModel: "gemini-2.0-flash",
-      },
-      openai: {
-        hasKey: false,
-        defaultModel: "gpt-4o-mini",
-        defaultBaseUrl: "",
-      },
-      claude: {
-        hasKey: false,
-        defaultModel: "claude-3-5-sonnet-latest",
-      },
-      grok: {
-        hasKey: false,
-        defaultModel: "grok-2-vision-1212",
-        defaultBaseUrl: "https://api.x.ai/v1",
-      },
-      custom: {
-        hasKey: false,
-        defaultModel: "qwen/qwen-2-vl-72b-instruct",
-        defaultBaseUrl: "https://openrouter.ai/api/v1",
-      },
-    },
+    providers: Object.fromEntries(
+      listSupportedAdapters().map((adapter) => [
+        adapter.providerId,
+        {
+          hasKey: false,
+          defaultModel: adapter.defaultModel,
+          defaultBaseUrl: adapter.defaultBaseUrl ?? "",
+        },
+      ]),
+    ),
   });
 }
 
@@ -59,8 +48,7 @@ export async function POST(req: NextRequest) {
         ? String(requestApiKey).trim()
         : "";
 
-    const activeModel =
-      (model && String(model).trim()) || adapter.defaultModel;
+    const activeModel = resolveAdapterModel(adapter, model);
 
     const activeBaseUrl =
       (baseUrl && String(baseUrl).trim()) || adapter.defaultBaseUrl;
@@ -130,7 +118,7 @@ export async function POST(req: NextRequest) {
         .includes("timeout");
 
     const errorMessage = isTimeout
-      ? "AI Vision scan request timed out while waiting for model response. Please try scanning again or switch model to Gemini 2.0 Flash."
+      ? "AI Vision scan request timed out while waiting for model response. Please try scanning again or switch to a faster model such as Gemini Flash."
       : causeMsg
         ? `${error.message || "Scan failed"}: ${causeMsg}`
         : error.message || "An unexpected error occurred during AI scanning.";

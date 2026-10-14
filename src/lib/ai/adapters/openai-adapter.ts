@@ -11,22 +11,27 @@ import {
 export class OpenAiVisionAdapter implements AiVisionAdapter {
   readonly providerId = "openai";
   readonly displayName = "OpenAI";
-  readonly defaultModel = "gpt-4o-mini";
+  readonly defaultModel = "gpt-6-luna";
   readonly description =
-    "Powerful multimodal vision using GPT-4o-mini or GPT-4o (supports OpenAI-compatible custom endpoints).";
+    "Powerful multimodal vision using GPT-6 Luna or Sol (supports OpenAI-compatible custom endpoints).";
   readonly docsUrl = "https://platform.openai.com/api-keys";
 
   readonly supportedModels: SupportedModelMeta[] = [
     {
-      id: "gpt-4o-mini",
-      label: "GPT-4o Mini (Fast & Cost Efficient)",
+      id: "gpt-6-luna",
+      label: "GPT-6 Luna (Fast & Cost Efficient)",
       recommended: true,
       description: "Fast multimodal reasoning and OCR.",
     },
     {
-      id: "gpt-4o",
-      label: "GPT-4o (Omni Flagship)",
+      id: "gpt-6.1-sol",
+      label: "GPT-6.1 Sol (Balanced)",
       description: "High-precision multimodal reasoning.",
+    },
+    {
+      id: "gpt-6-astra",
+      label: "GPT-6 Astra (Flagship)",
+      description: "Most capable, and the most expensive.",
     },
   ];
 
@@ -64,8 +69,8 @@ export class OpenAiVisionAdapter implements AiVisionAdapter {
             ],
           },
         ],
+        // No `temperature`: current GPT models only accept the default.
         response_format: { type: "json_object" },
-        temperature: 0.1,
       }),
     });
 
@@ -116,7 +121,8 @@ export class OpenAiVisionAdapter implements AiVisionAdapter {
         body: JSON.stringify({
           model: activeModel,
           messages: [{ role: "user", content: "ping" }],
-          max_tokens: 5,
+          // Current GPT models reject `max_tokens`.
+          max_completion_tokens: 16,
         }),
       });
 
