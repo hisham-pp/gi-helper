@@ -1,0 +1,19 @@
+{
+  "title": "Video scanner",
+  "date": "2026-10-14",
+  "summary": "Scan a screen recording of your inventory instead of taking screenshots one by one.",
+  "changes": [
+    {
+      "type": "new",
+      "text": "Video tab in the scanner: drop a screen recording of your inventory (MP4, WebM or MOV) and every material in it is recognised on your device, or try the sample recording."
+    },
+    {
+      "type": "new",
+      "text": "The scanner picks the frames where scrolling settles, checks that consecutive frames overlap so no row is skipped, and reads each quantity in several frames to outvote a blurry one."
+    },
+    {
+      "type": "new",
+      "text": "While a recording is scanned you see a timeline of the frames picked and the cards found in the latest one."
+    }
+  ]
+}

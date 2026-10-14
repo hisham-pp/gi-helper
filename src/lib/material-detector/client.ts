@@ -4,6 +4,7 @@
  *   const client = new MaterialScanClient();
  *   const { detection, recognition } = await client.scan(file, {}, { signal, onProgress });
  *   const recognition = await client.recognize(file, editedGrids);
+ *   const frame = await client.scanFrame(await createImageBitmap(video));
  *
  * Work runs in a Web Worker when available (falling back to the main thread
  * otherwise) and the reference bank stays loaded between calls. The engines
@@ -42,6 +43,17 @@ export class MaterialScanClient {
     return this.request<ScanResult>({ kind: "scan", blob, name, settings }, options, async () => {
       const { scanBlob } = await import("./run");
       return scanBlob(blob, name, settings, options.onProgress);
+    });
+  }
+
+  /**
+   * Same as `scan`, for an already decoded image such as a video frame. The
+   * worker gets a copy, so the caller keeps (and must close) the bitmap.
+   */
+  scanFrame(bitmap: ImageBitmap, settings: Partial<ScanSettings> = {}, options: ScanOptions = {}): Promise<ScanResult> {
+    return this.request<ScanResult>({ kind: "scan-frame", bitmap, settings }, options, async () => {
+      const { scanBitmap } = await import("./run");
+      return scanBitmap(bitmap, settings, options.onProgress);
     });
   }
 

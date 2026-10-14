@@ -13,6 +13,8 @@ export interface ScanProgress {
 
 export type ScanWorkerRequest =
   | { id: number; kind: "scan"; blob: Blob; name?: string; settings: Partial<ScanSettings> }
+  /** An already decoded image (a video frame); the worker closes its copy when done. */
+  | { id: number; kind: "scan-frame"; bitmap: ImageBitmap; settings: Partial<ScanSettings> }
   | {
       id: number;
       kind: "recognize";

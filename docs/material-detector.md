@@ -7,7 +7,7 @@ no API key, nothing uploaded.
 
 - Engine: `src/lib/material-detector/engine/` (pure TypeScript, no dependencies)
 - Browser API: `src/lib/material-detector/client.ts` (Web Worker: decode → grids → recognition)
-- UI: the **Scanner** tab on `/`, and `/debug` → **Grid & Material Studio**
+- UI: the **Scanner** and **Video** tabs on `/` (see [video scanner](video-scanner.md)), and `/debug` → **Grid & Material Studio**
   (labels on the image, per-card candidates, live re-recognition after box edits)
 - Reference data: `public/data/material-atlas.{png,json}`, `src/data/digit-templates.json`
 - Tests: `tests/material-detector.test.ts`, `tests/material-detector-samples.test.ts`
@@ -102,6 +102,8 @@ try {
 } catch (err) {
   if (isMaterialDetectionError(err)) showToast(err.message); // safe for users
 }
+// An already decoded image, e.g. a video frame (the worker gets a copy; close yours):
+const frame = await client.scanFrame(await createImageBitmap(video), {}, { signal });
 // Re-recognise after editing boxes:
 const result = await client.recognize(file, editedGrids);
 client.dispose();

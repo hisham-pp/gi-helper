@@ -35,6 +35,7 @@ const jsonLd = {
       offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
       featureList: [
         "On-device scanning of inventory screenshots, no API key needed",
+        "On-device scanning of inventory screen recordings",
         "Optional AI Vision scanning with Gemini, OpenAI, Claude or Grok",
         "Review and correct detected materials and quantities",
         "Export to GOOD format for Genshin optimizers",

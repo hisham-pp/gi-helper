@@ -1,0 +1,418 @@
+/**
+ * Scanning a screen recording of the inventory, on-device.
+ *
+ *   1. Analyse: sample the video every ~0.2 s into tiny grayscale thumbnails
+ *      and pick the frames where scrolling settles (`KeyframePicker`).
+ *   2. Scan: each picked frame goes through the regular screenshot scanner
+ *      (grid detection + recognition in a Web Worker, several in parallel)
+ *      while the analysis continues on a second <video> element. Once a
+ *      frame shows a clear grid, later frames only search its columns.
+ *   3. Fill gaps: neighbouring scanned frames that share no material may have
+ *      skipped rows, so frames between them are scanned until they overlap.
+ *   4. Merge: one entry per material, quantities voted over all frames.
+ */
+import { cropToBlob } from "../grid-detector/browser";
+import type { DetectedGrid, PixelRect } from "../grid-detector/types";
+import type { MaterialScanClient } from "../material-detector/client";
+import { isMaterialDetectionError } from "../material-detector/engine/errors";
+import type { CardRecognition, CardRecognitionStatus, ScanResult, ScanSettings } from "../material-detector/types";
+import {
+  KeyframePicker,
+  planGapFills,
+  probeInterval,
+  probeTimes,
+  type CoverageFrame,
+  type KeyframeOptions,
+} from "./keyframes";
+import { SightingMerger, sightingKey, type MergedMaterial } from "./merge";
+import { encodePreview, validateVideoFile, VideoFrameSource, VideoScanError } from "./video";
+
+/** Upper bound on scanned frames, whatever the video does. */
+export const MAX_SCANNED_FRAMES = 400;
+
+export type VideoScanStage = "opening" | "scanning";
+
+export interface VideoScanProgress {
+  stage: VideoScanStage;
+  /** Overall progress, 0–1 (never decreases). */
+  fraction: number;
+  duration: number;
+  /** How far the motion analysis has got (s). */
+  analysedTo: number;
+  framesScanned: number;
+  /** Frames picked so far, scanned or not. */
+  framesPicked: number;
+}
+
+/** A frame picked for scanning, as it moves through the queue. */
+export interface VideoFrameEvent {
+  /** Stable id of the frame (its sample index). */
+  id: number;
+  time: number;
+  status: "queued" | "scanning" | "done" | "failed";
+  /** Downscaled JPEG of the frame (with "scanning"). */
+  preview?: Blob;
+  /** Cards found in the frame, in original video pixels (with "done"). */
+  cards?: { box: PixelRect; status: CardRecognitionStatus }[];
+}
+
+export interface VideoScanOptions {
+  signal?: AbortSignal;
+  onProgress?: (progress: VideoScanProgress) => void;
+  onFrame?: (event: VideoFrameEvent) => void;
+  /** Called once the video's metadata is known. */
+  onOpen?: (info: { duration: number; width: number; height: number }) => void;
+  keyframes?: Partial<KeyframeOptions>;
+  settings?: Partial<ScanSettings>;
+}
+
+export interface VideoMaterial extends MergedMaterial {
+  /** The card cut from the clearest frame that agrees with the quantity (WebP). */
+  crop: Blob | null;
+}
+
+export interface VideoScanResult {
+  duration: number;
+  width: number;
+  height: number;
+  /** Frames sampled for motion analysis. */
+  framesAnalysed: number;
+  framesScanned: number;
+  failedFrames: number;
+  /** Card readings over all frames (a card seen in three frames counts three times). */
+  cardsRead: number;
+  /** Card readings that matched nothing in the catalog. */
+  unknownCards: number;
+  materials: VideoMaterial[];
+  processingTimeMs: number;
+}
+
+interface GrabbedFrame {
+  index: number;
+  time: number;
+  bitmap: ImageBitmap;
+}
+
+const now = () => (typeof performance !== "undefined" ? performance.now() : Date.now());
+const cancelled = () => new VideoScanError("CANCELLED", "Scanning was cancelled.");
+/** Share of the progress bar given to the motion analysis. */
+const ANALYSIS_SHARE = 0.2;
+/** A grid this large is trusted to fix the columns searched in later frames. */
+const MIN_LOCK_CARDS = 6;
+
+/**
+ * Scans a recording with one or more scan clients (one worker each; frames
+ * are spread over them).
+ */
+export async function scanVideo(
+  file: Blob,
+  clients: MaterialScanClient | readonly MaterialScanClient[],
+  options: VideoScanOptions = {},
+): Promise<VideoScanResult> {
+  const t0 = now();
+  const { onProgress, onFrame, onOpen } = options;
+  const pool = Array.isArray(clients) ? clients : [clients as MaterialScanClient];
+  if (pool.length === 0) throw new Error("scanVideo needs at least one scan client.");
+  validateVideoFile({ type: file.type, size: file.size, name: file instanceof File ? file.name : undefined });
+
+  // One controller for every task: a fatal error in one stops the others.
+  const controller = new AbortController();
+  const outer = options.signal;
+  const onOuterAbort = () => controller.abort();
+  if (outer?.aborted) throw cancelled();
+  outer?.addEventListener("abort", onOuterAbort, { once: true });
+  const signal = controller.signal;
+
+  const url = URL.createObjectURL(file);
+  let probe: VideoFrameSource | null = null;
+  let reader: VideoFrameSource | null = null;
+  try {
+    onProgress?.({ stage: "opening", fraction: 0, duration: 0, analysedTo: 0, framesScanned: 0, framesPicked: 0 });
+    // The analysis and the scanners each seek their own element, so they run side by side.
+    probe = await VideoFrameSource.open(url, signal);
+    reader = await VideoFrameSource.open(url, signal);
+    const { duration, width, height } = probe;
+    onOpen?.({ duration, width, height });
+
+    const times = probeTimes(duration, probeInterval(duration));
+    const picker = new KeyframePicker(options.keyframes);
+    const merger = new SightingMerger();
+    const crops = new Map<string, Blob | null>();
+    /** Latest crop request per (material, quantity); older encodes that finish late are dropped. */
+    const cropVersions = new Map<string, number>();
+    const pendingCrops: Promise<void>[] = [];
+    const coverage: CoverageFrame[] = [];
+    /** Picked frames that left the queue (grabbed, scanning or scanned). */
+    const taken = new Set<number>();
+    const queue: number[] = [];
+    /** Grabbed frames waiting for a free scanner. */
+    const ready: GrabbedFrame[] = [];
+    let picked = 0;
+    let completed = 0;
+    let scanning = 0;
+    let frameNo = 0;
+    let analysedTo = 0;
+    let analysisDone = false;
+    /** No more frames will be grabbed. */
+    let grabbingDone = false;
+    let failedFrames = 0;
+    let cardsRead = 0;
+    let unknownCards = 0;
+    let fraction = 0;
+    let fatal: unknown = null;
+    /** Columns of the inventory, once a frame has shown them clearly. */
+    let gridRegion: PixelRect | null = null;
+
+    let waiters: (() => void)[] = [];
+    const notify = () => {
+      const w = waiters;
+      waiters = [];
+      w.forEach((resolve) => resolve());
+    };
+    const changed = () => new Promise<void>((resolve) => waiters.push(resolve));
+    // Wake every waiting task so it sees the abort and stops.
+    signal.addEventListener("abort", notify, { once: true });
+
+    const report = () => {
+      const analysed = analysisDone ? 1 : times.length > 1 ? analysedTo / times[times.length - 1] : 0;
+      // Until the analysis ends, extrapolate how many frames will be picked.
+      const expected = analysisDone ? picked : Math.max(picked, picked / Math.max(analysed, 0.05));
+      const scanShare = expected > 0 ? completed / expected : 0;
+      fraction = Math.max(fraction, Math.min(0.99, ANALYSIS_SHARE * analysed + (1 - ANALYSIS_SHARE) * scanShare));
+      onProgress?.({
+        stage: "scanning",
+        fraction,
+        duration,
+        analysedTo,
+        framesScanned: completed,
+        framesPicked: picked,
+      });
+    };
+    const enqueue = (index: number) => {
+      if (taken.has(index) || queue.includes(index)) return;
+      queue.push(index);
+      picked++;
+      onFrame?.({ id: index, time: picker.samples[index].time, status: "queued" });
+      notify();
+    };
+    const fail = (err: unknown) => {
+      fatal ??= err;
+      controller.abort();
+    };
+
+    const analyse = async () => {
+      try {
+        for (const t of times) {
+          if (signal.aborted) return;
+          await probe!.seek(t, signal);
+          const pick = picker.push(t, probe!.thumbnail());
+          analysedTo = t;
+          if (pick !== null) enqueue(pick);
+          report();
+        }
+        const last = picker.finish();
+        if (last !== null) enqueue(last);
+      } catch (err) {
+        if (!signal.aborted) fail(err);
+      } finally {
+        analysisDone = true;
+        notify();
+        report();
+      }
+    };
+
+    /**
+     * Decodes picked frames ahead of the scanners (one per scanner), so a
+     * worker never waits for a seek. Once everything is scanned, it queues
+     * the frames that close coverage gaps.
+     */
+    const grabber = async () => {
+      try {
+        while (!signal.aborted) {
+          if (ready.length >= pool.length) {
+            await changed();
+            continue;
+          }
+          const index = queue.shift();
+          if (index === undefined) {
+            // Gaps can only be judged once the analysis and every scan are done.
+            if (!analysisDone || scanning > 0 || ready.length > 0) {
+              await changed();
+              continue;
+            }
+            if (taken.size >= MAX_SCANNED_FRAMES) break;
+            const fills = planGapFills(coverage, picker.samples, taken);
+            if (fills.length === 0) break;
+            fills.forEach(enqueue);
+            continue;
+          }
+          if (taken.size >= MAX_SCANNED_FRAMES) break;
+          taken.add(index);
+          const time = picker.samples[index].time;
+          await reader!.seek(time, signal);
+          const bitmap = await reader!.frame();
+          if (signal.aborted) {
+            bitmap.close();
+            break;
+          }
+          ready.push({ index, time, bitmap });
+          notify();
+        }
+      } catch (err) {
+        if (!signal.aborted) fail(err);
+      } finally {
+        grabbingDone = true;
+        notify();
+      }
+    };
+
+    const detect = async (client: MaterialScanClient, bitmap: ImageBitmap): Promise<ScanResult> => {
+      const region = gridRegion;
+      const settings = options.settings ?? {};
+      if (region) {
+        const result = await client.scanFrame(bitmap, { ...settings, grid: { ...settings.grid, region } }, { signal });
+        if (result.detection.grids.length > 0) return result;
+        // Another screen, or the layout changed: look at the whole frame.
+      }
+      const result = await client.scanFrame(bitmap, settings, { signal });
+      gridRegion ??= lockRegion(result.detection.grids, width, height);
+      return result;
+    };
+
+    const scanOne = async (client: MaterialScanClient, { index, time, bitmap }: GrabbedFrame) => {
+      const frame = frameNo++;
+      try {
+        // The worker gets its copy right away; the preview is encoded meanwhile.
+        const result = detect(client, bitmap);
+        result.catch(() => undefined);
+        const preview = await encodePreview(bitmap).catch(() => undefined);
+        onFrame?.({ id: index, time, status: "scanning", preview });
+        let cards: CardRecognition[];
+        try {
+          cards = (await result).recognition.cards;
+        } catch (err) {
+          if (signal.aborted) throw cancelled();
+          // Without reference data no frame can be recognised.
+          if (isMaterialDetectionError(err) && err.code.startsWith("REFERENCES_")) throw err;
+          failedFrames++;
+          coverage.push({ time, materials: new Set() });
+          onFrame?.({ id: index, time, status: "failed" });
+          return;
+        }
+
+        cardsRead += cards.length;
+        unknownCards += cards.filter((c) => !c.material).length;
+        for (const s of merger.add(frame, time, cards)) {
+          const key = sightingKey(s.card.material!.id, s.card.quantity.value);
+          const version = (cropVersions.get(key) ?? 0) + 1;
+          cropVersions.set(key, version);
+          // The crop is drawn right away; only the encoding finishes later.
+          pendingCrops.push(
+            cropToBlob(bitmap, s.card.box, "image/webp").then(
+              (blob) => {
+                if (cropVersions.get(key) === version) crops.set(key, blob);
+              },
+              () => undefined,
+            ),
+          );
+        }
+        coverage.push({
+          time,
+          materials: new Set(cards.filter((c) => c.status === "matched" && c.material).map((c) => c.material!.id)),
+        });
+        onFrame?.({ id: index, time, status: "done", cards: cards.map((c) => ({ box: c.box, status: c.status })) });
+      } finally {
+        bitmap.close();
+      }
+    };
+
+    const scanner = async (client: MaterialScanClient) => {
+      try {
+        while (!signal.aborted) {
+          const frame = ready.shift();
+          if (!frame) {
+            if (grabbingDone) break;
+            await changed();
+            continue;
+          }
+          scanning++;
+          // A slot in `ready` is free: let the grabber decode the next frame.
+          notify();
+          try {
+            await scanOne(client, frame);
+          } finally {
+            scanning--;
+            completed++;
+            notify();
+          }
+          report();
+        }
+      } catch (err) {
+        if (!signal.aborted) fail(err);
+      }
+    };
+
+    try {
+      await Promise.all([analyse(), grabber(), ...pool.map(scanner)]);
+      await Promise.all(pendingCrops);
+    } finally {
+      // Frames grabbed but never scanned (after an abort).
+      ready.splice(0).forEach((f) => f.bitmap.close());
+    }
+    if (outer?.aborted) throw cancelled();
+    if (fatal) throw fatal;
+
+    const materials = merger.result().map((m) => ({
+      ...m,
+      crop: crops.get(sightingKey(m.materialId, m.quantity)) ?? null,
+    }));
+    onProgress?.({
+      stage: "scanning",
+      fraction: 1,
+      duration,
+      analysedTo: duration,
+      framesScanned: completed,
+      framesPicked: picked,
+    });
+    return {
+      duration,
+      width,
+      height,
+      framesAnalysed: picker.samples.length,
+      framesScanned: completed,
+      failedFrames,
+      cardsRead,
+      unknownCards,
+      materials,
+      processingTimeMs: Math.round(now() - t0),
+    };
+  } catch (err) {
+    if (outer?.aborted) throw cancelled();
+    throw err;
+  } finally {
+    outer?.removeEventListener("abort", onOuterAbort);
+    probe?.dispose();
+    reader?.dispose();
+    URL.revokeObjectURL(url);
+  }
+}
+
+/**
+ * The full-height band of columns holding the detected grids, with half a
+ * card of margin, or null when the frame shows no clear grid.
+ */
+export function lockRegion(grids: readonly DetectedGrid[], width: number, height: number): PixelRect | null {
+  const cards = grids.reduce((n, g) => n + g.cards.length, 0);
+  if (cards < MIN_LOCK_CARDS) return null;
+  let x0 = Infinity;
+  let x1 = -Infinity;
+  for (const g of grids) {
+    const margin = g.cardWidth / 2;
+    x0 = Math.min(x0, g.bounds.x - margin);
+    x1 = Math.max(x1, g.bounds.x + g.bounds.width + margin);
+  }
+  x0 = Math.max(0, Math.floor(x0));
+  x1 = Math.min(width, Math.ceil(x1));
+  if (x1 - x0 < width * 0.1) return null;
+  return { x: x0, y: 0, width: x1 - x0, height };
+}
