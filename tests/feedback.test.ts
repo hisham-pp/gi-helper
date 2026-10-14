@@ -57,3 +57,30 @@ test("feedbackErrorMessage explains known codes and falls back for unknown ones"
   assert.equal(feedbackErrorMessage("something_else"), feedbackErrorMessage("unavailable"));
   assert.equal(feedbackErrorMessage(undefined), feedbackErrorMessage("unavailable"));
 });
+
+test("the export asks for feedback at most every 3 days, and not soon after sending", async () => {
+  const store = new Map<string, string>();
+  (globalThis as { localStorage?: unknown }).localStorage = {
+    getItem: (key: string) => store.get(key) ?? null,
+    setItem: (key: string, value: string) => void store.set(key, value),
+  };
+  const { shouldAskForFeedback, markFeedbackAsked, markFeedbackSent } = await import(
+    "../src/lib/feedback/prompt"
+  );
+  const DAY = 24 * 60 * 60 * 1000;
+  const t0 = Date.UTC(2026, 9, 14);
+
+  assert.equal(shouldAskForFeedback(t0), true);
+  markFeedbackAsked(t0);
+  assert.equal(shouldAskForFeedback(t0 + DAY), false);
+  assert.equal(shouldAskForFeedback(t0 + 3 * DAY), true);
+
+  markFeedbackSent(t0 + 3 * DAY);
+  assert.equal(shouldAskForFeedback(t0 + 10 * DAY), false);
+  assert.equal(shouldAskForFeedback(t0 + 34 * DAY), true);
+
+  // Broken storage never blocks the prompt
+  store.set("gi-feedback-prompt", "not json");
+  assert.equal(shouldAskForFeedback(t0), true);
+  delete (globalThis as { localStorage?: unknown }).localStorage;
+});

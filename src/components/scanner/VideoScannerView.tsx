@@ -21,6 +21,7 @@ import { useScannerSettings } from "@/lib/scanner-settings";
 import { setScannerInventory } from "@/lib/scanner-inventory";
 import type { DetectedItem, ScannedReviewItem } from "@/lib/types";
 import { materialThumbUrl } from "@/lib/materials";
+import { recordScan } from "@/lib/scan-stats";
 
 interface VideoScannerViewProps {
   id?: string;
@@ -269,6 +270,7 @@ export function VideoScannerView({ id = "video-panel", ariaLabelledBy = "video-t
           }
           return;
         }
+        recordScan("video", [file]);
         if (settings.autoReviewResults) {
           setIsReviewOpen(true);
           toast.success(

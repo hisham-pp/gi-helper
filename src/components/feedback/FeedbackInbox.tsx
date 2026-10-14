@@ -20,6 +20,7 @@ import { toast } from "sonner";
 import { GlassSegmentedControl } from "@/components/ui/GlassSegmentedControl";
 import { PaginationBar } from "@/components/ui/PaginationBar";
 import { PillDropdown } from "@/components/ui/PillDropdown";
+import { useConfirm } from "@/components/ui/use-confirm";
 import {
   FEEDBACK_KINDS,
   feedbackErrorMessage,
@@ -139,6 +140,7 @@ function InboxCard({ entry, busy, onToggleResolved, onToggleHidden, onDelete }: 
  */
 export function FeedbackInbox({ username }: { username: string }) {
   const router = useRouter();
+  const { confirm, confirmModal } = useConfirm();
   const [kind, setKind] = useState<KindFilter>("all");
   const [status, setStatus] = useState<StatusFilter>("all");
   const [page, setPage] = useState(1);
@@ -241,7 +243,14 @@ export function FeedbackInbox({ username }: { username: string }) {
 
   const handleDelete = async (entry: InboxEntry) => {
     const label = KIND_META[entry.kind].label.toLowerCase();
-    if (!confirm(`Delete this ${label} for good? Its images are deleted too.`)) return;
+    const confirmed = await confirm({
+      title: `Delete this ${label}?`,
+      message: "It's removed for good, with its images. This can't be undone.",
+      confirmLabel: "Delete",
+      tone: "danger",
+      icon: Trash2,
+    });
+    if (!confirmed) return;
     if (!(await send(entry, "DELETE"))) return;
     toast.success("Deleted");
     // Step back when the last message on a later page goes
@@ -404,6 +413,8 @@ export function FeedbackInbox({ username }: { username: string }) {
           </>
         )}
       </main>
+
+      {confirmModal}
     </div>
   );
 }

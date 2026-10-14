@@ -14,6 +14,7 @@ import { useScannerSettings } from "@/lib/scanner-settings";
 import { setScannerInventory } from "@/lib/scanner-inventory";
 import type { DetectedItem, ScannedReviewItem } from "@/lib/types";
 import { materialThumbUrl } from "@/lib/materials";
+import { recordScan } from "@/lib/scan-stats";
 
 interface ClassicScannerViewProps {
   id?: string;
@@ -240,6 +241,7 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
           }
           return;
         }
+        recordScan("screenshot", files);
         if (settings.autoReviewResults) {
           setIsReviewOpen(true);
           toast.success(

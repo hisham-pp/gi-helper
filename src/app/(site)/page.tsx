@@ -48,14 +48,15 @@ const jsonLd = {
 
 export default function ScannerPage() {
   return (
-    <div className="flex w-full flex-1 flex-col px-4 pb-4 sm:px-6 md:px-8">
+    <div className="flex w-full flex-1 flex-col px-4 sm:px-6 md:px-8">
       <script
         type="application/ld+json"
         // Escape "<" so the JSON can never close the script tag
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
       />
-      {/* Main Scanner Container - Supports Natural Scrolling for Results */}
-      <main className="flex flex-1 w-full flex-col items-center justify-start pb-12">
+      {/* Main Scanner Container. Results live on /inventory, so only a small
+          gap above the footer (the old bottom padding made the page scroll) */}
+      <main className="flex flex-1 w-full flex-col items-center justify-start pb-4">
         <Scanner />
       </main>
     </div>

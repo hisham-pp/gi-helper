@@ -248,6 +248,8 @@ html {
 
 body {
   min-height: 100vh;
+  /* The visible height on phones (100vh counts the hidden browser bars) */
+  min-height: 100dvh;
   color: rgb(var(--md-sys-color-on-background) / 1);
   font-family:
     var(--font-plus-jakarta-sans), ui-sans-serif, system-ui, sans-serif;
