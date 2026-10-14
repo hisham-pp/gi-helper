@@ -322,7 +322,7 @@ export function ScannerSettingsModal({
                     }}
                     aria-pressed={isSelected}
                     data-active={isSelected}
-                    className={`glass-card glass-card--hover flex flex-col items-center justify-center gap-1 rounded-2xl p-2.5 text-center ${
+                    className={`glass-card glass-card--hover flex flex-col items-center justify-center gap-1 rounded-2xl p-2.5 text-center hover:transform-none motion-safe:hover:animate-squish ${
                       isSelected ? "text-white" : "text-white/70 hover:text-white"
                     }`}
                   >

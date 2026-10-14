@@ -56,6 +56,7 @@ const PRIVACY = [
   "AI Vision sends the screenshot and your API key through GI Helper's server to the provider you pick, only for that request. Nothing is saved.",
   "Your API keys, settings and scanned inventory are stored in your browser only.",
   "Messages you send from the Feedback page, with your optional name and screenshots, are stored in GI Helper's database. General feedback is shown publicly; bug reports, ideas and other messages are only read by the developer. Your IP address is only kept as a one-way hash, to stop spam.",
+  "Each scan that finds materials adds one to the scan counter on the home page. Only the scanner type is sent: no screenshots, recordings or results.",
   "Anonymous page-view analytics (Vercel Analytics) show which features get used.",
 ];
 

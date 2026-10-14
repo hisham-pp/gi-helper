@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { FolderOpen, ImageIcon } from "lucide-react";
+import { markSampleFile } from "@/lib/scan-stats";
 import { ScanningAnimation, ScanningFileItem } from "./ScanningAnimation";
 import { ScanUploadIcon } from "./ScanUploadIcon";
 
@@ -126,6 +127,8 @@ export function UploadZone({
       const file = new File([blob], sample.fileName, {
         type: sample.type,
       });
+      // Sample scans don't count towards the home page's scan counter
+      markSampleFile(file);
       onFilesSelected([file]);
     } catch (err) {
       console.error("Failed to load sample file:", err);

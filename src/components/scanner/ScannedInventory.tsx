@@ -20,11 +20,14 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { ResultGrid } from "./ResultGrid";
+import { LazySendFeedbackModal, preloadSendFeedbackModal } from "@/components/feedback/lazy-modals";
 import { CategoryFilterPills } from "@/components/materials/CategoryFilterPills";
 import { PaginationBar } from "@/components/ui/PaginationBar";
 import { PillDropdown } from "@/components/ui/PillDropdown";
 import { ResetFiltersButton } from "@/components/ui/ResetFiltersButton";
 import { SearchField } from "@/components/ui/SearchField";
+import { useConfirm } from "@/components/ui/use-confirm";
+import { markFeedbackAsked, shouldAskForFeedback } from "@/lib/feedback/prompt";
 import { exportToGOODFormat } from "@/lib/good-format";
 import {
   getAllMaterials,
@@ -83,6 +86,9 @@ const noopSubscribe = () => () => {};
  */
 export function ScannedInventory() {
   const [items, setItems] = useScannerInventory();
+  const { confirm, confirmModal } = useConfirm();
+  // Send feedback form, offered after an export
+  const [feedbackOpen, setFeedbackOpen] = useState(false);
   // False on the server and while hydrating, so a saved inventory doesn't flash the empty state first
   const hydrated = useSyncExternalStore(
     noopSubscribe,
@@ -210,12 +216,18 @@ export function ScannedInventory() {
   useWiggleOnChange(filterBarRef, isFiltered, reducedMotion);
 
   // Stable callbacks keep the memoized ResultGrid from re-rendering on unrelated state
-  const handleClear = useCallback(() => {
-    if (confirm("Are you sure you want to clear all scanned items?")) {
-      setItems([]);
-      toast.success("Items cleared");
-    }
-  }, [setItems]);
+  const handleClear = useCallback(async () => {
+    const confirmed = await confirm({
+      title: "Clear your inventory?",
+      message: "Every scanned material is removed from this browser. Export to GOOD first if you want to keep them.",
+      confirmLabel: "Clear All",
+      tone: "danger",
+      icon: Trash2,
+    });
+    if (!confirmed) return;
+    setItems([]);
+    toast.success("Items cleared");
+  }, [confirm, setItems]);
 
   const handleExport = useCallback(() => {
     if (items.length === 0) {
@@ -223,7 +235,18 @@ export function ScannedInventory() {
       return;
     }
     exportToGOODFormat(items);
-    toast.success("Exported to GOOD format!");
+    if (!shouldAskForFeedback()) {
+      toast.success("Exported to GOOD format!");
+      return;
+    }
+    // Right after an export is a good moment to ask how the scan went
+    markFeedbackAsked();
+    preloadSendFeedbackModal();
+    toast.success("Exported to GOOD format!", {
+      description: "How did the scan go? A quick note helps make GI Helper better.",
+      action: { label: "Give feedback", onClick: () => setFeedbackOpen(true) },
+      duration: 12000,
+    });
   }, [items]);
 
   const handleUpdateQuantity = useCallback(
@@ -433,6 +456,14 @@ export function ScannedInventory() {
           </div>
         )}
       </div>
+
+      {confirmModal}
+      {feedbackOpen && (
+        <LazySendFeedbackModal
+          onClose={() => setFeedbackOpen(false)}
+          onSent={() => setFeedbackOpen(false)}
+        />
+      )}
     </div>
   );
 }

@@ -11,7 +11,9 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
   const latestVersion = getLatestVersion();
 
   return (
-    <div className="relative z-10 flex min-h-screen w-full flex-col">
+    // dvh, not vh: on phones 100vh is taller than the visible area while the
+    // browser bars show, which made every page scroll a little
+    <div className="relative z-10 flex min-h-screen w-full flex-col supports-[min-height:100dvh]:min-h-dvh">
       <SiteHeader version={latestVersion?.version} />
       {children}
       <SiteFooter />

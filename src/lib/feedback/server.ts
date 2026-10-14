@@ -1,7 +1,8 @@
-import { createHash } from "node:crypto";
-import { NextResponse, type NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 import pkg from "../../../package.json";
 import { getCharacter } from "@/lib/characters";
+import { hashClient } from "@/lib/request-client";
+import { callRpc, isSupabaseConfigured, RpcError, rpcServerKey } from "@/lib/supabase-rpc";
 import { censorProfanity } from "./profanity";
 import {
   feedbackErrorMessage,
@@ -17,37 +18,22 @@ import {
 
 /**
  * Server side of the feedback page and inbox. Everything goes through the
- * `public.feedback_*` Postgres functions (supabase/migrations/*_feedback.sql)
- * over Supabase's REST API with the project's publishable key; the tables
- * themselves aren't reachable through the API. Server-only: the env vars
- * aren't NEXT_PUBLIC_, so the browser never sees them.
+ * `public.feedback_*` Postgres functions (supabase/migrations/*_feedback*.sql)
+ * via callRpc (src/lib/supabase-rpc.ts, publishable key, server-only); the
+ * tables themselves aren't reachable through the API.
  */
 
 /** httpOnly cookie holding the inbox session token. */
 export const FEEDBACK_SESSION_COOKIE = "gi_feedback_session";
 
-interface SupabaseConfig {
-  url: string;
-  key: string;
-}
-
-function getConfig(): SupabaseConfig | null {
-  const url = process.env.SUPABASE_URL?.trim().replace(/\/+$/, "");
-  const key = (process.env.SUPABASE_PUBLISHABLE_KEY || process.env.SUPABASE_ANON_KEY)?.trim();
-  return url && key ? { url, key } : null;
-}
-
 export function isFeedbackConfigured(): boolean {
-  return getConfig() !== null;
+  return isSupabaseConfigured();
 }
 
 /** A failure with an error code from types.ts and the HTTP status to answer with. */
-export class FeedbackError extends Error {
-  constructor(
-    readonly code: string,
-    readonly status: number,
-  ) {
-    super(code);
+export class FeedbackError extends RpcError {
+  constructor(code: string, status: number) {
+    super(code, status);
     this.name = "FeedbackError";
   }
 }
@@ -64,48 +50,12 @@ const DATABASE_ERRORS: Record<string, number> = {
   too_many_images: 400,
   invalid_image: 400,
   invalid_status: 400,
+  // Missing server secret (see supabase-rpc.ts rpcServerKey)
+  forbidden: 403,
 };
 
-async function rpc<T>(fn: string, args: Record<string, unknown>): Promise<T> {
-  const config = getConfig();
-  if (!config) throw new FeedbackError("not_configured", 503);
-
-  const headers: Record<string, string> = {
-    apikey: config.key,
-    "Content-Type": "application/json",
-  };
-  // Legacy anon keys are JWTs and also go in Authorization; sb_publishable_ keys must not
-  if (config.key.startsWith("eyJ")) headers.Authorization = `Bearer ${config.key}`;
-
-  let res: Response;
-  try {
-    res = await fetch(`${config.url}/rest/v1/rpc/${fn}`, {
-      method: "POST",
-      headers,
-      body: JSON.stringify(args),
-      cache: "no-store",
-    });
-  } catch (err) {
-    console.error(`[feedback] ${fn} request failed:`, err);
-    throw new FeedbackError("unavailable", 503);
-  }
-
-  const text = await res.text();
-  if (!res.ok) {
-    let message = "";
-    try {
-      message = (JSON.parse(text) as { message?: string }).message ?? "";
-    } catch {
-      // Not JSON (e.g. a gateway error page)
-    }
-    if (Object.hasOwn(DATABASE_ERRORS, message)) {
-      throw new FeedbackError(message, DATABASE_ERRORS[message]);
-    }
-    console.error(`[feedback] ${fn} failed with ${res.status}:`, text.slice(0, 500));
-    throw new FeedbackError("unavailable", 502);
-  }
-
-  return (text ? JSON.parse(text) : null) as T;
+function rpc<T>(fn: string, args: Record<string, unknown>): Promise<T> {
+  return callRpc<T>(fn, args, DATABASE_ERRORS);
 }
 
 // ---------------------------------------------------------------------------
@@ -174,11 +124,6 @@ export interface FeedbackSubmission {
   ip: string;
 }
 
-function hashClient(ip: string): string {
-  const salt = process.env.FEEDBACK_HASH_SALT || "gi-helper-feedback";
-  return createHash("sha256").update(`${salt}:${ip}`).digest("hex");
-}
-
 /** Masks bad words in the name and message, then stores the message. */
 export async function submitFeedback(input: FeedbackSubmission): Promise<{ id: string }> {
   return rpc<{ id: string }>("feedback_submit", {
@@ -190,6 +135,7 @@ export async function submitFeedback(input: FeedbackSubmission): Promise<{ id: s
     p_user_agent: input.userAgent?.slice(0, 300) ?? null,
     p_client_hash: hashClient(input.ip),
     p_avatar: getCharacter(input.avatar)?.id ?? null,
+    p_server_key: rpcServerKey(),
   });
 }
 
@@ -229,7 +175,11 @@ export type LoginResult =
 export async function loginInbox(username: string, password: string): Promise<LoginResult> {
   const data = await rpc<
     { token: string; username: string; expires_at: string } | { error: "invalid" | "locked" }
-  >("feedback_admin_login", { p_username: username, p_password: password });
+  >("feedback_admin_login", {
+    p_username: username,
+    p_password: password,
+    p_server_key: rpcServerKey(),
+  });
 
   if ("error" in data) {
     return { ok: false, error: data.error === "locked" ? "locked" : "invalid_login" };
@@ -303,28 +253,8 @@ export function parsePage(value: string | null): number {
   return Number.isInteger(page) && page >= 1 && page <= 10_000 ? page : 1;
 }
 
-export function clientIp(req: NextRequest): string {
-  return (
-    req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
-    req.headers.get("x-real-ip")?.trim() ||
-    "unknown"
-  );
-}
-
-/**
- * Inbox changes must come from this site. Browsers send Origin on every
- * POST/PATCH/DELETE, and the session cookie is SameSite=Lax on top.
- */
-export function isSameOrigin(req: NextRequest): boolean {
-  const origin = req.headers.get("origin");
-  if (!origin) return true;
-  const host = req.headers.get("x-forwarded-host") ?? req.headers.get("host");
-  try {
-    return new URL(origin).host === host;
-  } catch {
-    return false;
-  }
-}
+/** Inbox changes must come from this site (the session cookie is SameSite=Lax on top). */
+export { isSameOrigin } from "@/lib/request-client";
 
 export function sessionCookieOptions(expires: Date) {
   return {
@@ -338,7 +268,8 @@ export function sessionCookieOptions(expires: Date) {
 
 /** `{ error, message }` JSON for a failed request; unexpected errors become a 500. */
 export function feedbackErrorResponse(err: unknown): NextResponse {
-  if (err instanceof FeedbackError) {
+  // Also covers callRpc's own errors (not_configured, unavailable)
+  if (err instanceof RpcError) {
     return NextResponse.json(
       { error: err.code, message: feedbackErrorMessage(err.code) },
       { status: err.status, headers: { "Cache-Control": "no-store" } },

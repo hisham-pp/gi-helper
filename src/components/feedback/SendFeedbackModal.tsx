@@ -19,6 +19,7 @@ import { GlassSegmentedControl } from "@/components/ui/GlassSegmentedControl";
 import { randomCharacter, type Character } from "@/lib/characters";
 import { compressFeedbackImage } from "@/lib/feedback/compress-image";
 import { containsProfanity } from "@/lib/feedback/profanity";
+import { markFeedbackSent } from "@/lib/feedback/prompt";
 import {
   FEEDBACK_KINDS,
   FEEDBACK_LIMITS,
@@ -210,6 +211,7 @@ export function SendFeedbackModal({ onClose, onSent }: SendFeedbackModalProps) {
           ? "Thanks! Your feedback is posted."
           : "Thanks! Your message went privately to the developer.",
       );
+      markFeedbackSent();
       closeThen(() => onSent(kind));
     } catch {
       setError(feedbackErrorMessage("unavailable"));

@@ -25,6 +25,13 @@ inbox at `/feedback/inbox`, which only seeded accounts can open.
 | Image access | `/api/feedback/images/[id]` | Images on visible feedback are public (10-minute cache); the rest need an inbox session. |
 | Spam | `feedback_submit` | 5 messages per sender per 10 minutes, 30 a minute overall. Senders are told apart by a salted hash of their IP (`FEEDBACK_HASH_SALT`); the IP itself isn't stored. A hidden `website` field catches simple bots. |
 
+## Asking after an export
+
+After a GOOD export on `/inventory`, the success toast asks how the scan went,
+with a **Give feedback** button that opens the send form in place. To avoid
+nagging, `src/lib/feedback/prompt.ts` (localStorage) asks at most every 3
+days and not within 30 days of this browser sending feedback.
+
 ## Characters
 
 `pnpm scrape:characters` (`scripts/scrape-characters.ts`) rebuilds

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
   CircleAlert,
   Loader2,
@@ -20,11 +20,27 @@ import {
 import { FeedbackCard } from "./FeedbackCard";
 import { LazySendFeedbackModal, preloadSendFeedbackModal } from "./lazy-modals";
 
-interface FeedbackBoardProps {
-  /** First page, rendered on the server; null when it couldn't be loaded. */
-  initial: PublicFeedbackPage | null;
-  /** False when the server has no Supabase settings. */
-  available: boolean;
+/** Placeholder cards while the first page loads. */
+function FeedbackSkeleton() {
+  return (
+    <div className="space-y-4" aria-busy="true" aria-label="Loading feedback">
+      {[0, 1, 2].map((i) => (
+        <div key={i} className="glass-card p-5 motion-safe:animate-pulse">
+          <div className="flex items-center gap-2.5">
+            <div className="h-9 w-9 rounded-full bg-white/10" />
+            <div className="space-y-1.5">
+              <div className="h-3 w-28 rounded-full bg-white/10" />
+              <div className="h-2.5 w-16 rounded-full bg-white/[0.07]" />
+            </div>
+          </div>
+          <div className="mt-4 space-y-2">
+            <div className="h-3 w-full rounded-full bg-white/[0.07]" />
+            <div className={`h-3 rounded-full bg-white/[0.07] ${i === 1 ? "w-1/2" : "w-4/5"}`} />
+          </div>
+        </div>
+      ))}
+    </div>
+  );
 }
 
 function EmptyState({
@@ -53,15 +69,16 @@ function EmptyState({
 /**
  * The /feedback page: public feedback, newest first, with the Send feedback
  * button. Bug reports, ideas and other messages are sent from the same form
- * but only show up in the inbox.
+ * but only show up in the inbox. The page itself is static, so navigating
+ * here is instant; the posts load in the browser, behind skeleton cards.
  */
-export function FeedbackBoard({ initial, available }: FeedbackBoardProps) {
-  const [data, setData] = useState(initial);
-  const [page, setPage] = useState(initial?.page ?? 1);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(
-    available && !initial ? feedbackErrorMessage("unavailable") : null,
-  );
+export function FeedbackBoard() {
+  const [data, setData] = useState<PublicFeedbackPage | null>(null);
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  // The server has no Supabase settings
+  const [offline, setOffline] = useState(false);
   const [open, setOpen] = useState(false);
   const listRef = useRef<HTMLDivElement>(null);
   const requestRef = useRef(0);
@@ -73,7 +90,10 @@ export function FeedbackBoard({ initial, available }: FeedbackBoardProps) {
       const res = await fetch(`/api/feedback?page=${target}`, { cache: "no-store" });
       const json = await res.json().catch(() => null);
       if (request !== requestRef.current) return;
-      if (!res.ok) throw new Error(json?.message);
+      if (!res.ok) {
+        if (json?.error === "not_configured") setOffline(true);
+        throw new Error(json?.message);
+      }
       setData(json as PublicFeedbackPage);
       setPage(target);
       setError(null);
@@ -84,6 +104,10 @@ export function FeedbackBoard({ initial, available }: FeedbackBoardProps) {
       if (request === requestRef.current) setLoading(false);
     }
   }, []);
+
+  useEffect(() => {
+    void load(1);
+  }, [load]);
 
   const handlePageChange = (target: number) => {
     void load(target);
@@ -120,7 +144,7 @@ export function FeedbackBoard({ initial, available }: FeedbackBoardProps) {
               </p>
             </div>
 
-            {available && (
+            {!offline && (
               <button
                 onClick={openForm}
                 onPointerEnter={preloadSendFeedbackModal}
@@ -134,12 +158,14 @@ export function FeedbackBoard({ initial, available }: FeedbackBoardProps) {
         </div>
 
         <div ref={listRef} className="scroll-mt-4 space-y-4">
-          {!available ? (
+          {offline ? (
             <EmptyState
               icon={MessagesSquare}
               title="Feedback is offline"
               text="Feedback isn't set up on this server yet. Please check back later."
             />
+          ) : !data && loading ? (
+            <FeedbackSkeleton />
           ) : !data ? (
             <EmptyState
               icon={CircleAlert}

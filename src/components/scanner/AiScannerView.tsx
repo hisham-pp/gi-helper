@@ -11,6 +11,7 @@ import {
 } from "./lazy-modals";
 import { DetectedItem, ScannedReviewItem } from "@/lib/types";
 import { materialThumbUrl } from "@/lib/materials";
+import { recordScan } from "@/lib/scan-stats";
 import {
   useScannerSettings,
   getActiveProviderConfig,
@@ -311,6 +312,7 @@ export function AiScannerView({
           toast.info("No materials detected in the uploaded screenshot(s).");
           return;
         }
+        recordScan("ai", files);
 
         setLastReviewItems(allReview);
 

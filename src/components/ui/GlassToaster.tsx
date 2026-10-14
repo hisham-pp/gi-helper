@@ -27,6 +27,8 @@ export function GlassToaster() {
           title: "font-semibold leading-snug",
           description: "text-xs text-white/60",
           icon: "flex shrink-0 items-center justify-center",
+          actionButton: "glass-btn glass-btn--primary ml-auto shrink-0 px-3 py-1.5 text-xs font-bold",
+          cancelButton: "glass-btn ml-auto shrink-0 px-3 py-1.5 text-xs",
           success: "[--glass-accent:52,211,153]",
           error: "[--glass-accent:251,113,133]",
           info: "[--glass-accent:103,232,249]",

@@ -202,7 +202,7 @@ const PickerOption = memo(function PickerOption({ material, isSelected, onSelect
       aria-pressed={isSelected}
       data-active={isSelected}
       style={{ "--glass-accent": styles.accent } as React.CSSProperties}
-      className="glass-card glass-card--hover flex flex-col items-center gap-2 rounded-2xl p-2.5 text-center active:scale-95"
+      className="glass-card glass-card--hover flex flex-col items-center gap-2 rounded-2xl p-2.5 text-center hover:transform-none active:scale-95 motion-safe:hover:animate-squish"
     >
       <div className="glass-well glass-well--tinted relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-xl">
         <MaterialThumb id={material.id} alt={material.name} size={40} className="h-10 w-10" />

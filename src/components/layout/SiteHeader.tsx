@@ -12,12 +12,13 @@ interface SiteHeaderProps {
 /**
  * Top bar shared by every public page (rendered by app/(site)/layout.tsx).
  * It lives in the layout, so it stays mounted and in place when switching
- * pages; only the nav thumb moves to the current page.
+ * pages; only the nav thumb moves to the current page. On phones the page
+ * links get their own full-width row under the logo; from `sm` it's one row.
  */
 export function SiteHeader({ version }: SiteHeaderProps) {
   return (
-    <header className="flex w-full shrink-0 items-center justify-between px-4 pb-3 pt-4 sm:px-6 sm:pb-4 md:px-8">
-      <div className="flex items-center gap-2 sm:gap-2.5">
+    <header className="flex w-full shrink-0 flex-wrap items-center gap-x-2 gap-y-3 px-4 pb-3 pt-4 sm:flex-nowrap sm:gap-x-3 sm:px-6 sm:pb-4 md:px-8">
+      <div className="flex min-w-0 items-center gap-2 sm:gap-2.5">
         <Link href="/" className="flex items-center gap-2 sm:gap-2.5" aria-label="GI Helper home">
           <BrandIcon className="h-7 w-7 drop-shadow-[0_0_10px_rgba(45,212,191,0.35)] sm:h-8 sm:w-8" />
           <span className="whitespace-nowrap text-xs sm:text-sm font-bold tracking-tight text-white drop-shadow-sm">
@@ -27,8 +28,12 @@ export function SiteHeader({ version }: SiteHeaderProps) {
         {version && <VersionChip version={version} />}
       </div>
 
-      <div className="flex items-center gap-2 sm:gap-3">
+      {/* Phones: last, so it wraps to a row of its own; from sm: right, beside the buttons */}
+      <div className="order-last w-full sm:order-none sm:ml-auto sm:w-auto">
         <HeaderNav />
+      </div>
+
+      <div className="ml-auto flex items-center gap-2 sm:ml-0 sm:gap-3">
         <ScannerSettingsButton />
         <ThemeToggle />
       </div>

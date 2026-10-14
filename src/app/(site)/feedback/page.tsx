@@ -1,10 +1,5 @@
 import { FeedbackBoard } from "@/components/feedback/FeedbackBoard";
-import { isFeedbackConfigured, listPublicFeedback } from "@/lib/feedback/server";
-import type { PublicFeedbackPage } from "@/lib/feedback/types";
 import { pageMetadata } from "@/lib/seo";
-
-// New posts show up on the next visit
-export const dynamic = "force-dynamic";
 
 export const metadata = pageMetadata({
   title: "Feedback",
@@ -13,17 +8,10 @@ export const metadata = pageMetadata({
   path: "/feedback",
 });
 
-export default async function FeedbackPage() {
-  const available = isFeedbackConfigured();
-  let initial: PublicFeedbackPage | null = null;
-  if (available) {
-    try {
-      initial = await listPublicFeedback(1);
-    } catch (err) {
-      // The board shows a retry instead
-      console.error("[feedback] couldn't load the first page:", err);
-    }
-  }
-
-  return <FeedbackBoard initial={initial} available={available} />;
+/**
+ * Static shell, so navigating here is instant (no database round trip before
+ * the page shows); FeedbackBoard loads the posts in the browser.
+ */
+export default function FeedbackPage() {
+  return <FeedbackBoard />;
 }
