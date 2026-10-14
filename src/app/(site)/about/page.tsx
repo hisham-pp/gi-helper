@@ -48,7 +48,7 @@ const STEPS = [
   "Open your inventory on the Character Development Items tab and take screenshots, or record your screen while you scroll through it.",
   "Drop them into the scanner (recordings go in the Video tab), or try a sample first.",
   "Review the results. Slots the scanner wasn't sure about are listed first.",
-  "Export to GOOD and import the file into your optimizer.",
+  "Confirmed materials land on the Inventory page. Export them to GOOD there and import the file into your optimizer.",
 ];
 
 const PRIVACY = [

@@ -4,7 +4,7 @@ import React, { useLayoutEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 
 /** Left-to-right order of the pages (top-bar links, then the footer's About), for the slide direction. */
-const PAGE_ORDER = ["/", "/materials", "/versions", "/about"];
+const PAGE_ORDER = ["/", "/inventory", "/materials", "/versions", "/about"];
 
 /** Page shown before the current one; survives remounts because it lives outside React. */
 let lastPathname: string | null = null;

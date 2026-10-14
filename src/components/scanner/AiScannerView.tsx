@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState, useCallback, useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { UploadZone } from "./UploadZone";
-import { ResultGrid } from "./ResultGrid";
 import {
   LazyScanReviewModal,
   LazyScannerSettingsModal,
@@ -11,13 +11,12 @@ import {
 } from "./lazy-modals";
 import { DetectedItem, ScannedReviewItem } from "@/lib/types";
 import { materialThumbUrl } from "@/lib/materials";
-import { exportToGOODFormat } from "@/lib/good-format";
 import {
   useScannerSettings,
   getActiveProviderConfig,
 } from "@/lib/scanner-settings";
 import { getAiAdapter } from "@/lib/ai/adapters";
-import { useScannerInventory } from "@/lib/scanner-inventory";
+import { setScannerInventory } from "@/lib/scanner-inventory";
 import {
   Eye,
   Settings,
@@ -103,8 +102,9 @@ export function AiScannerView({
   const [isScanning, setIsScanning] = useState(false);
   const [progress, setProgress] = useState(0);
   const [statusMessage, setStatusMessage] = useState<string>("");
-  /** Shared with the Scanner tab: both scanners fill the same inventory. */
-  const [detectedItems, setDetectedItems] = useScannerInventory();
+  // Once a scan's materials are added, the app switches to the /inventory page.
+  // The inventory (lib/scanner-inventory) is shared: every scanner fills it.
+  const router = useRouter();
   const [scanError, setScanError] = useState<string | null>(null);
 
   // Scanning animation states
@@ -320,7 +320,7 @@ export function AiScannerView({
             `AI Vision Scan complete! Detected ${allDetected.length} items. Please review results.`,
           );
         } else {
-          setDetectedItems((prev) => {
+          setScannerInventory((prev) => {
             const merged = [...prev];
             for (const item of allDetected) {
               const idx = merged.findIndex((i) => i.id === item.id);
@@ -336,6 +336,7 @@ export function AiScannerView({
           toast.success(
             `AI Vision Scan complete! Added ${allDetected.length} materials.`,
           );
+          router.push("/inventory");
         }
       } catch (error: any) {
         console.error("AI Vision Scan Error:", error);
@@ -351,7 +352,7 @@ export function AiScannerView({
         setScanningFilesList([]);
       }
     },
-    [settings],
+    [router, settings],
   );
 
   const handleFiles = useCallback(
@@ -364,7 +365,7 @@ export function AiScannerView({
   );
 
   const handleConfirmReview = useCallback((confirmedItems: DetectedItem[]) => {
-    setDetectedItems((prev) => {
+    setScannerInventory((prev) => {
       const merged = [...prev];
       for (const item of confirmedItems) {
         const idx = merged.findIndex((i) => i.id === item.id);
@@ -378,38 +379,10 @@ export function AiScannerView({
       return merged;
     });
     setIsReviewModalOpen(false);
-  }, [setDetectedItems]);
+    router.push("/inventory");
+  }, [router]);
 
   const handleCloseReview = useCallback(() => setIsReviewModalOpen(false), []);
-
-  // Stable callbacks keep the memoized ResultGrid from re-rendering on unrelated state
-  const handleClear = useCallback(() => {
-    if (confirm("Are you sure you want to clear all scanned items?")) {
-      setDetectedItems([]);
-      toast.success("Items cleared");
-    }
-  }, [setDetectedItems]);
-
-  const handleExport = useCallback(() => {
-    if (detectedItems.length === 0) {
-      toast.error("No items to export");
-      return;
-    }
-    exportToGOODFormat(detectedItems);
-    toast.success("Exported to GOOD format!");
-  }, [detectedItems]);
-
-  const handleUpdateQuantity = useCallback((id: string, quantity: number) => {
-    setDetectedItems((prev) =>
-      prev.map((item) =>
-        item.id === id ? { ...item, quantity: Math.max(1, quantity) } : item,
-      ),
-    );
-  }, [setDetectedItems]);
-
-  const handleRemoveItem = useCallback((id: string) => {
-    setDetectedItems((prev) => prev.filter((item) => item.id !== id));
-  }, [setDetectedItems]);
 
   return (
     <div
@@ -477,19 +450,6 @@ export function AiScannerView({
           }
         }}
       />
-
-      {/* Scanned Results Grid - Naturally scrollable */}
-      {detectedItems.length > 0 && (
-        <div className="w-full pt-4">
-          <ResultGrid
-            items={detectedItems}
-            onClear={handleClear}
-            onExport={handleExport}
-            onUpdateQuantity={handleUpdateQuantity}
-            onRemoveItem={handleRemoveItem}
-          />
-        </div>
-      )}
 
       {/* Post-Scan Review Modal (loaded and mounted only while open) */}
       {isReviewModalOpen && (

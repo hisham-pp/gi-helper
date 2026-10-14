@@ -2,9 +2,9 @@
 
 import React, { memo, useCallback, useEffect, useRef, useState } from "react";
 import { AlertCircle, Eye, Film, Square, X } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { UploadZone } from "./UploadZone";
-import { ResultGrid } from "./ResultGrid";
 import { LazyScanReviewModal, preloadScanReviewModal } from "./lazy-modals";
 import { isMaterialDetectionError, type CardRecognitionStatus } from "@/lib/material-detector";
 import { useMaterialScanClient } from "@/lib/material-detector/react";
@@ -18,8 +18,7 @@ import {
 } from "@/lib/video-scanner";
 import type { PixelRect } from "@/lib/grid-detector";
 import { useScannerSettings } from "@/lib/scanner-settings";
-import { exportToGOODFormat } from "@/lib/good-format";
-import { useScannerInventory } from "@/lib/scanner-inventory";
+import { setScannerInventory } from "@/lib/scanner-inventory";
 import type { DetectedItem, ScannedReviewItem } from "@/lib/types";
 import { materialThumbUrl } from "@/lib/materials";
 
@@ -95,8 +94,8 @@ export function VideoScannerView({ id = "video-panel", ariaLabelledBy = "video-t
   const client2 = useMaterialScanClient();
   const { settings } = useScannerSettings();
 
-  /** Shared with the other tabs: every scanner fills the same inventory. */
-  const [items, setItems] = useScannerInventory();
+  // Once a scan's materials are added, the app switches to the /inventory page
+  const router = useRouter();
 
   const [isScanning, setIsScanning] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -141,17 +140,17 @@ export function VideoScannerView({ id = "video-panel", ariaLabelledBy = "video-t
     return url;
   };
 
-  /** Scanned quantities replace stored ones: a recording shows the current count. */
-  const mergeIntoInventory = useCallback(
-    (confirmed: DetectedItem[]) => {
-      setItems((prev) => {
-        const byId = new Map(prev.map((i) => [i.id, i]));
-        for (const item of confirmed) byId.set(item.id, { ...item });
-        return [...byId.values()];
-      });
-    },
-    [setItems],
-  );
+  /**
+   * Scanned quantities replace stored ones: a recording shows the current count.
+   * Shared with the other tabs: every scanner fills the same inventory.
+   */
+  const mergeIntoInventory = useCallback((confirmed: DetectedItem[]) => {
+    setScannerInventory((prev) => {
+      const byId = new Map(prev.map((i) => [i.id, i]));
+      for (const item of confirmed) byId.set(item.id, { ...item });
+      return [...byId.values()];
+    });
+  }, []);
 
   const handleFrame = useCallback((event: VideoFrameEvent) => {
     setTimeline((prev) => {
@@ -282,6 +281,7 @@ export function VideoScannerView({ id = "video-panel", ariaLabelledBy = "video-t
             review.map((r) => ({ id: r.materialId, name: r.name, quantity: r.quantity, rarity: r.rarity })),
           );
           toast.success(`Added ${review.length} material${review.length > 1 ? "s" : ""} to your inventory.`);
+          router.push("/inventory");
         }
       } catch (err) {
         if (controller.signal.aborted) {
@@ -303,46 +303,19 @@ export function VideoScannerView({ id = "video-panel", ariaLabelledBy = "video-t
     },
     // trackUrl and releasePreviews only touch refs.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [client1, client2, isScanning, handleFrame, mergeIntoInventory, settings.autoReviewResults],
+    [client1, client2, isScanning, handleFrame, mergeIntoInventory, router, settings.autoReviewResults],
   );
 
   const handleConfirmReview = useCallback(
     (confirmed: DetectedItem[]) => {
       mergeIntoInventory(confirmed);
       setIsReviewOpen(false);
+      router.push("/inventory");
     },
-    [mergeIntoInventory],
+    [mergeIntoInventory, router],
   );
 
   const handleCloseReview = useCallback(() => setIsReviewOpen(false), []);
-
-  // Stable callbacks keep the memoized ResultGrid from re-rendering on unrelated state
-  const handleClear = useCallback(() => {
-    if (confirm("Are you sure you want to clear all scanned items?")) {
-      setItems([]);
-      toast.success("Items cleared");
-    }
-  }, [setItems]);
-
-  const handleExport = useCallback(() => {
-    if (items.length === 0) {
-      toast.error("No items to export");
-      return;
-    }
-    exportToGOODFormat(items);
-    toast.success("Exported to GOOD format!");
-  }, [items]);
-
-  const handleUpdateQuantity = useCallback(
-    (itemId: string, quantity: number) =>
-      setItems((prev) => prev.map((i) => (i.id === itemId ? { ...i, quantity: Math.max(1, quantity) } : i))),
-    [setItems],
-  );
-
-  const handleRemoveItem = useCallback(
-    (itemId: string) => setItems((prev) => prev.filter((i) => i.id !== itemId)),
-    [setItems],
-  );
 
   const framesScanned = timeline.filter((f) => f.status === "done" || f.status === "failed").length;
 
@@ -441,18 +414,6 @@ export function VideoScannerView({ id = "video-panel", ariaLabelledBy = "video-t
             <Square className="h-3 w-3" />
             Stop scanning
           </button>
-        </div>
-      )}
-
-      {items.length > 0 && (
-        <div className="w-full pt-4">
-          <ResultGrid
-            items={items}
-            onClear={handleClear}
-            onExport={handleExport}
-            onUpdateQuantity={handleUpdateQuantity}
-            onRemoveItem={handleRemoveItem}
-          />
         </div>
       )}
 

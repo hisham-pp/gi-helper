@@ -4,7 +4,8 @@ import { useSyncExternalStore } from "react";
 import type { DetectedItem } from "./types";
 
 /**
- * The scanned inventory shared by both scanner tabs (Scanner and AI Vision).
+ * The scanned inventory: every scanner tab adds to it and the /inventory page
+ * shows and edits it.
  * One store backed by localStorage: every mounted view sees the same list, and
  * nothing can write a stale or empty copy over it while loading.
  */
@@ -66,7 +67,7 @@ export function setScannerInventory(update: InventoryUpdate) {
   emit();
 }
 
-/** `[items, setItems]`, used like `useState` but shared across both scanner tabs. */
+/** `[items, setItems]`, used like `useState` but shared across the scanners and /inventory. */
 export function useScannerInventory() {
   const items = useSyncExternalStore(subscribe, getSnapshot, () => EMPTY);
   return [items, setScannerInventory] as const;

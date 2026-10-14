@@ -1,59 +1,30 @@
 import React, { memo } from "react";
-import { CheckCircle2, Download, Trash2, Edit2 } from "lucide-react";
+import { Trash2 } from "lucide-react";
 import { DetectedItem } from "@/lib/types";
 import { getRarityStyles } from "@/lib/materials";
 import { MaterialThumb } from "@/components/ui/MaterialThumb";
 
 interface ResultGridProps {
   items: DetectedItem[];
-  onClear: () => void;
-  onExport: () => void;
   onUpdateQuantity: (id: string, newQuantity: number) => void;
   onRemoveItem: (id: string) => void;
 }
 
 /**
- * Memoized: pass stable callbacks so opening a modal or typing elsewhere on the
- * page doesn't re-render every card.
+ * The scanned inventory's cards (the /inventory page; its header holds the
+ * count, Clear All and export). Memoized: pass stable callbacks so typing
+ * elsewhere on the page doesn't re-render every card.
  */
 export const ResultGrid = memo(function ResultGrid({
   items,
-  onClear,
-  onExport,
   onUpdateQuantity,
   onRemoveItem,
 }: ResultGridProps) {
   if (items.length === 0) return null;
 
   return (
-    <div className="glass-card glass-card--lg animate-in fade-in space-y-5 overflow-hidden p-5 duration-500 sm:p-8">
-      <div className="relative z-10 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
-        <h2 className="flex items-center gap-2 text-xl font-bold text-white sm:text-2xl">
-          <CheckCircle2 className="h-6 w-6 text-emerald-400" />
-          Scanned Inventory
-          <span className="glass-chip ml-2 px-3 py-1 text-sm font-semibold text-cyan-200">
-            {items.length} items
-          </span>
-        </h2>
-        <div className="flex w-full items-center gap-3 sm:w-auto">
-          <button
-            onClick={onClear}
-            className="glass-btn glass-btn--danger flex-1 justify-center px-4 py-2 text-sm sm:flex-none"
-          >
-            <Trash2 className="h-4 w-4" /> Clear All
-          </button>
-          <button
-            onClick={onExport}
-            className="glass-btn glass-btn--primary flex-1 justify-center px-5 py-2 text-sm sm:flex-none"
-          >
-            <Download className="h-4 w-4" /> Export .GOOD
-          </button>
-        </div>
-      </div>
-
-      <div className="glass-divider" />
-
-      <div className="relative z-10 -m-2 grid max-h-[60vh] grid-cols-2 gap-4 overflow-y-auto p-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+    <div className="glass-card glass-card--lg p-5 sm:p-8">
+      <div className="relative z-10 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
         {items.map((item) => (
           <ResultCard
             key={item.id}
@@ -81,7 +52,8 @@ const ResultCard = memo(function ResultCard({ item, onUpdateQuantity, onRemoveIt
     <div
       // Rarity colour tints the glass rim and edge glow
       style={{ "--glass-accent": rarityStyles.accent } as React.CSSProperties}
-      className="glass-card glass-card--hover group flex flex-col items-center p-4 text-center"
+      // Squishes on hover like the material cards, instead of lifting
+      className="glass-card glass-card--hover group flex flex-col items-center p-4 text-center hover:transform-none motion-safe:hover:animate-squish"
     >
       <button
         onClick={() => onRemoveItem(item.id)}

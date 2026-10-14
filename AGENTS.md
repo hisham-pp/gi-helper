@@ -8,13 +8,14 @@ This is a Next.js 15 App Router project with React 19, TypeScript, and Tailwind 
   - `src/app/(site)/layout.tsx`: Shared layout for the public pages; renders the common top bar (`src/components/layout/SiteHeader.tsx`), which stays mounted across page switches. Add new public pages inside `(site)`.
   - `src/app/(site)/template.tsx`: Remounts on every navigation and wraps the page in `PageTransition` (`src/components/layout/`), which plays the squash-and-stretch page switch.
   - `src/app/(site)/page.tsx`: Landing page containing the Inventory Scanner (Scanner, Video and AI Vision tabs) and results grid.
+  - `src/app/(site)/inventory/page.tsx`: Scanned inventory (`src/components/scanner/ScannedInventory.tsx`): quantity edits, Clear All and GOOD export. The scanners add to the shared store (`src/lib/scanner-inventory.ts`) and switch here after a scan.
   - `src/app/(site)/materials/page.tsx`: 475-material directory with category filtering and ordering.
   - `src/app/(site)/versions/page.tsx`: Release notes page, built from `src/data/versions/` at build time.
   - `src/app/(site)/about/page.tsx`: About page (features, how it works, privacy, fan-project disclaimer), linked from the shared footer (`SiteFooter`).
   - `src/app/api/scanner/ai-vision/route.ts`: Server Route Handler for Vision AI calls (Gemini, OpenAI, Claude, Grok, Custom) and connection testing.
   - `src/app/debug/`: Testing utilities and debug exploration views.
 - **Components (`src/components/`):**
-  - `src/components/scanner/`: Inventory scanner UI: local on-device scanner (`ClassicScannerView.tsx`), screen-recording scanner (`VideoScannerView.tsx`), AI Vision scanner (`AiScannerView.tsx`), drag-and-drop zone (`UploadZone.tsx`), multi-provider settings (`ScannerSettingsModal.tsx`), review modal (`ScanReviewModal.tsx`), and exported GOOD table (`ResultGrid.tsx`).
+  - `src/components/scanner/`: Inventory scanner UI: local on-device scanner (`ClassicScannerView.tsx`), screen-recording scanner (`VideoScannerView.tsx`), AI Vision scanner (`AiScannerView.tsx`), drag-and-drop zone (`UploadZone.tsx`), multi-provider settings (`ScannerSettingsModal.tsx`), review modal (`ScanReviewModal.tsx`), and the scanned-inventory cards (`ResultGrid.tsx`, used by `ScannedInventory.tsx` on `/inventory`).
   - `src/components/grid-detector/`: Grid & Material Studio (`/debug`): sessions, card editor, detection settings.
   - `src/components/material-detector/`: Recognition panels used by the studio (per-card candidates, rarity and quantity readings).
   - `src/components/materials/`: Material directory cards, category filters, and detail modals.
