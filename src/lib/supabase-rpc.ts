@@ -21,6 +21,24 @@ export function isSupabaseConfigured(): boolean {
   return getConfig() !== null;
 }
 
+/**
+ * Project URL and publishable key for listening to Realtime in the browser.
+ * The publishable key is made to be public; the functions that write also
+ * check rpcServerKey(), which never leaves the server.
+ */
+export function getRealtimeConfig(): { url: string; key: string } | null {
+  return getConfig();
+}
+
+/**
+ * Shared secret the write functions (feedback_submit, feedback_admin_login,
+ * scan_record) check once app_private.settings 'enforce_rpc_secret' is on.
+ * Server-only (SUPABASE_RPC_SECRET); null until it's configured.
+ */
+export function rpcServerKey(): string | null {
+  return process.env.SUPABASE_RPC_SECRET?.trim() || null;
+}
+
 /** A failure with an error code and the HTTP status to answer with. */
 export class RpcError extends Error {
   constructor(

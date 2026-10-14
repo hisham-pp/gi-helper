@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { clientIp, isSameOrigin } from "@/lib/request-client";
-import { SCANNERS } from "@/lib/scan-stats";
+import { SCANNERS, type ScanStatsResponse } from "@/lib/scan-stats";
 import { getScanStats, recordScanRun } from "@/lib/scan-stats-server";
-import { RpcError } from "@/lib/supabase-rpc";
+import { getRealtimeConfig, RpcError } from "@/lib/supabase-rpc";
 
 export const dynamic = "force-dynamic";
 
@@ -14,10 +14,15 @@ function errorResponse(err: unknown): NextResponse {
   return NextResponse.json({ error: code }, { status, headers: { "Cache-Control": "no-store" } });
 }
 
-/** GET /api/stats/scans: { total, byScanner } for the home page counter. */
+/**
+ * GET /api/stats/scans: { total, byScanner, live } for the home page counter.
+ * `live` tells the browser where to listen for new totals (Realtime).
+ */
 export async function GET() {
   try {
-    return NextResponse.json(await getScanStats(), {
+    const live = getRealtimeConfig() ?? undefined;
+    const body: ScanStatsResponse = { ...(await getScanStats()), live };
+    return NextResponse.json(body, {
       // A minute old is fine; the CDN answers most visits
       headers: { "Cache-Control": "public, max-age=0, s-maxage=60, stale-while-revalidate=300" },
     });

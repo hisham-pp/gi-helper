@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import pkg from "../../../package.json";
 import { getCharacter } from "@/lib/characters";
 import { hashClient } from "@/lib/request-client";
-import { callRpc, isSupabaseConfigured, RpcError } from "@/lib/supabase-rpc";
+import { callRpc, isSupabaseConfigured, RpcError, rpcServerKey } from "@/lib/supabase-rpc";
 import { censorProfanity } from "./profanity";
 import {
   feedbackErrorMessage,
@@ -50,6 +50,8 @@ const DATABASE_ERRORS: Record<string, number> = {
   too_many_images: 400,
   invalid_image: 400,
   invalid_status: 400,
+  // Missing server secret (see supabase-rpc.ts rpcServerKey)
+  forbidden: 403,
 };
 
 function rpc<T>(fn: string, args: Record<string, unknown>): Promise<T> {
@@ -133,6 +135,7 @@ export async function submitFeedback(input: FeedbackSubmission): Promise<{ id: s
     p_user_agent: input.userAgent?.slice(0, 300) ?? null,
     p_client_hash: hashClient(input.ip),
     p_avatar: getCharacter(input.avatar)?.id ?? null,
+    p_server_key: rpcServerKey(),
   });
 }
 
@@ -172,7 +175,11 @@ export type LoginResult =
 export async function loginInbox(username: string, password: string): Promise<LoginResult> {
   const data = await rpc<
     { token: string; username: string; expires_at: string } | { error: "invalid" | "locked" }
-  >("feedback_admin_login", { p_username: username, p_password: password });
+  >("feedback_admin_login", {
+    p_username: username,
+    p_password: password,
+    p_server_key: rpcServerKey(),
+  });
 
   if ("error" in data) {
     return { ok: false, error: data.error === "locked" ? "locked" : "invalid_login" };

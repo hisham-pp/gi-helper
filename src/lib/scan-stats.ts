@@ -14,8 +14,38 @@ export interface ScanStats {
   byScanner: Record<ScannerKind, number>;
 }
 
+/** Where the browser listens for live totals (see scan-stats-live.ts). */
+export interface ScanStatsLive {
+  /** Supabase project URL. */
+  url: string;
+  /** Publishable key: made to be public, and only allowed to listen here. */
+  key: string;
+}
+
+/** GET /api/stats/scans: the totals, plus how to listen for new ones. */
+export interface ScanStatsResponse extends ScanStats {
+  live?: ScanStatsLive;
+}
+
+/** Realtime channel and event the database broadcasts new totals on. */
+export const SCAN_STATS_CHANNEL = "scan-stats";
+export const SCAN_STATS_BROADCAST_EVENT = "update";
+
 /** Window event carrying the new ScanStats after this browser records a scan. */
 export const SCAN_STATS_EVENT = "gi:scan-stats";
+
+/** Totals as public.scan_stats returns them (and Realtime broadcasts them). */
+export interface RawScanStats {
+  total: number;
+  by_scanner: Partial<Record<ScannerKind, number>>;
+}
+
+export function toScanStats(raw: RawScanStats): ScanStats {
+  const byScanner = Object.fromEntries(
+    SCANNERS.map((scanner) => [scanner, Number(raw.by_scanner?.[scanner]) || 0]),
+  ) as Record<ScannerKind, number>;
+  return { total: Number(raw.total) || 0, byScanner };
+}
 
 /** Files the "Try a sample" buttons created (see UploadZone). */
 const sampleFiles = new WeakSet<File>();
