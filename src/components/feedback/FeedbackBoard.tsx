@@ -20,11 +20,28 @@ import {
 import { FeedbackCard } from "./FeedbackCard";
 import { LazySendFeedbackModal, preloadSendFeedbackModal } from "./lazy-modals";
 
+/** The ?page= of the address bar; 1 when missing or odd. */
+function pageFromUrl(): number {
+  const page = Number(new URLSearchParams(window.location.search).get("page"));
+  return Number.isInteger(page) && page >= 1 ? page : 1;
+}
+
+/** Puts the page in the address bar (page 1 keeps it clean). */
+function setUrlPage(page: number, mode: "push" | "replace"): void {
+  const url = new URL(window.location.href);
+  if (page > 1) url.searchParams.set("page", String(page));
+  else url.searchParams.delete("page");
+  if (url.href === window.location.href) return;
+  // Next.js picks up native history updates (and restores them on Back)
+  if (mode === "push") window.history.pushState(null, "", url);
+  else window.history.replaceState(null, "", url);
+}
+
 /** Placeholder cards while the first page loads. */
 function FeedbackSkeleton() {
   return (
     <div className="space-y-4" aria-busy="true" aria-label="Loading feedback">
-      {[0, 1, 2].map((i) => (
+      {[0, 1].map((i) => (
         <div key={i} className="glass-card p-5 motion-safe:animate-pulse">
           <div className="flex items-center gap-2.5">
             <div className="h-9 w-9 rounded-full bg-white/10" />
@@ -83,7 +100,7 @@ export function FeedbackBoard() {
   const listRef = useRef<HTMLDivElement>(null);
   const requestRef = useRef(0);
 
-  const load = useCallback(async (target: number) => {
+  const load = useCallback(async (target: number): Promise<void> => {
     const request = ++requestRef.current;
     setLoading(true);
     try {
@@ -94,7 +111,14 @@ export function FeedbackBoard() {
         if (json?.error === "not_configured") setOffline(true);
         throw new Error(json?.message);
       }
-      setData(json as PublicFeedbackPage);
+      const body = json as PublicFeedbackPage;
+      // Past the end (an old link, or posts were removed): show the last page
+      const lastPage = Math.max(1, Math.ceil(body.total / body.pageSize));
+      if (target > lastPage) {
+        setUrlPage(lastPage, "replace");
+        return load(lastPage);
+      }
+      setData(body);
       setPage(target);
       setError(null);
     } catch (err) {
@@ -105,11 +129,16 @@ export function FeedbackBoard() {
     }
   }, []);
 
+  // The page lives in the URL (?page=2), so reloads, links and Back keep it
   useEffect(() => {
-    void load(1);
+    void load(pageFromUrl());
+    const handlePopState = () => void load(pageFromUrl());
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
   }, [load]);
 
   const handlePageChange = (target: number) => {
+    setUrlPage(target, "push");
     void load(target);
     listRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
@@ -117,7 +146,10 @@ export function FeedbackBoard() {
   const handleSent = (kind: FeedbackKind) => {
     setOpen(false);
     // New public feedback goes to the top of the first page
-    if (kind === PUBLIC_FEEDBACK_KIND) void load(1);
+    if (kind === PUBLIC_FEEDBACK_KIND) {
+      setUrlPage(1, "push");
+      void load(1);
+    }
   };
 
   const openForm = () => setOpen(true);

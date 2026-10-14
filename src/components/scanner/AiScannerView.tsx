@@ -10,7 +10,7 @@ import {
   preloadScanReviewModal,
 } from "./lazy-modals";
 import { DetectedItem, ScannedReviewItem } from "@/lib/types";
-import { materialThumbUrl } from "@/lib/materials";
+import { materialThumbUrl } from "@/lib/material-ui";
 import { recordScan } from "@/lib/scan-stats";
 import {
   useScannerSettings,

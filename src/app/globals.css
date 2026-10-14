@@ -119,15 +119,16 @@ html {
   scrollbar-gutter: stable;
 }
 
+/* Moves the layer rather than its background-position: a transform is done by
+   the compositor, so the blurred image is drawn once instead of being
+   repainted and re-blurred every frame. Stays within the layer's 10% overhang. */
 @keyframes pan-bg {
-  0% {
-    background-position: 0% 50%;
+  0%,
+  100% {
+    transform: translate3d(-6%, 0, 0);
   }
   50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
+    transform: translate3d(6%, 0, 0);
   }
 }
 
@@ -270,13 +271,28 @@ body::before {
   width: 120%;
   height: 120%;
   z-index: -2;
-  background-image: url("/images/bg.png");
+  /* WebP copy of bg.png (29 KB instead of 516 KB; it's blurred anyway) */
+  background-image: url("/images/bg.webp");
   background-size: cover;
   background-position: center;
   animation: pan-bg 60s ease-in-out infinite;
+  will-change: transform;
   /* Blur the edges, scale it slightly to avoid white borders */
   filter: blur(8px) saturate(1.2);
   opacity: 0.6;
+}
+
+/* Hidden under a modal's blur, or while scrolling (see BackgroundEffects), or
+   motion turned off: keep it still */
+html[data-modal-open] body::before,
+html[data-scrolling] body::before {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::before {
+    animation: none;
+  }
 }
 
 .dark body::before {

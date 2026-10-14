@@ -3,7 +3,7 @@ import {
   VisionScanOptions,
   RawExtractedItem,
   SupportedModelMeta,
-  INVENTORY_VISION_PROMPT,
+  inventoryVisionPrompt,
   parseImageBase64,
   extractJsonFromResponse,
 } from "./types";
@@ -70,7 +70,7 @@ export class GeminiVisionAdapter implements AiVisionAdapter {
                 },
               },
               {
-                text: INVENTORY_VISION_PROMPT,
+                text: await inventoryVisionPrompt(),
               },
             ],
           },

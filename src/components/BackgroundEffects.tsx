@@ -13,11 +13,16 @@ export function BackgroundEffects() {
       color: string;
       swayDuration: number;
       swayType: string;
-      blur: number;
     }>
   >([]);
 
   useEffect(() => {
+    // No floating motes for people who turned motion off
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    // Every mote moves behind the glass, which re-blurs whatever moves under
+    // it each frame: fewer motes, and fewer still on phones
+    const count = window.matchMedia("(max-width: 640px)").matches ? 14 : 28;
+
     // Generate magical, ethereal floating motes
     const newParticles = [];
     const colors = [
@@ -31,7 +36,7 @@ export function BackgroundEffects() {
       "153, 255, 255", // Cryo Ice
     ];
 
-    for (let i = 0; i < 60; i++) {
+    for (let i = 0; i < count; i++) {
       newParticles.push({
         id: i,
         size: Math.random() * 25 + 10, // 10px to 35px
@@ -41,10 +46,31 @@ export function BackgroundEffects() {
         color: colors[Math.floor(Math.random() * colors.length)],
         swayDuration: Math.random() * 4 + 3, // 3s to 7s
         swayType: Math.random() > 0.5 ? "anim-sway-left" : "anim-sway-right",
-        blur: Math.random() * 3 + 1, // 1px to 4px blur for depth
       });
     }
     setParticles(newParticles);
+  }, []);
+
+  // While the page scrolls, the glass already has to re-blur what passes under
+  // it: freezing the background (motes and pan) until scrolling stops keeps
+  // scrolling smooth
+  useEffect(() => {
+    const root = document.documentElement;
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    const handleScroll = () => {
+      if (timer === undefined) root.setAttribute("data-scrolling", "");
+      else clearTimeout(timer);
+      timer = setTimeout(() => {
+        root.removeAttribute("data-scrolling");
+        timer = undefined;
+      }, 150);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (timer !== undefined) clearTimeout(timer);
+      root.removeAttribute("data-scrolling");
+    };
   }, []);
 
   return (
@@ -64,10 +90,6 @@ export function BackgroundEffects() {
           0%, 100% { transform: translateX(40px); }
           50% { transform: translateX(-40px); }
         }
-        @keyframes sweep {
-          0% { transform: translateX(-100%) rotate(-45deg); }
-          100% { transform: translateX(200%) rotate(-45deg); }
-        }
         .anim-float-up {
           animation-name: float-up;
           animation-timing-function: linear;
@@ -83,15 +105,15 @@ export function BackgroundEffects() {
           animation-timing-function: ease-in-out;
           animation-iteration-count: infinite;
         }
-        .anim-sweep {
-          animation: sweep 15s ease-in-out infinite;
-        }
         /* Hidden behind an open modal's blurred backdrop: freezing the motes
-           spares the GPU re-blurring the whole screen every frame. */
+           spares the GPU re-blurring the whole screen every frame. Same while
+           scrolling (data-scrolling, set above). */
         html[data-modal-open] .anim-float-up,
         html[data-modal-open] .anim-sway-left,
         html[data-modal-open] .anim-sway-right,
-        html[data-modal-open] .anim-sweep {
+        html[data-scrolling] .anim-float-up,
+        html[data-scrolling] .anim-sway-left,
+        html[data-scrolling] .anim-sway-right {
           animation-play-state: paused;
         }
       `}</style>
@@ -116,8 +138,9 @@ export function BackgroundEffects() {
               style={{
                 width: `${p.size}px`,
                 height: `${p.size}px`,
+                // The gradient's fade gives the soft edge; a blur() filter on
+                // each moving mote cost far more than it showed
                 background: `radial-gradient(circle, rgba(${p.color}, 0.6) 0%, rgba(${p.color}, 0.2) 40%, rgba(${p.color}, 0) 70%)`,
-                filter: `blur(${p.blur as number}px)`,
                 animationDuration: `${p.swayDuration}s`,
                 animationDelay: `${p.delay}s`,
               }}
@@ -125,8 +148,9 @@ export function BackgroundEffects() {
           </div>
         ))}
 
-        {/* Subtle sweeping light rays */}
-        <div className="anim-sweep absolute inset-0 h-full w-[200%] -rotate-45 transform bg-gradient-to-tr from-snow/0 via-snow/5 to-snow/0 opacity-30" />
+        {/* The full-screen light sweep that was here is gone: at ~1.5%
+            brightness it barely showed, but moving under every glass card it
+            made each one re-blur on every frame. */}
       </div>
     </>
   );

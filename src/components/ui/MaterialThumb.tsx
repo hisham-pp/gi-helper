@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { materialThumbUrl } from "@/lib/materials";
+import { materialThumbUrl } from "@/lib/material-ui";
 
 interface MaterialThumbProps {
   /** Material id; the 128² thumbnail is sharp up to 64 px on 2x screens. */

@@ -1,0 +1,19 @@
+{
+  "title": "Faster pages",
+  "date": "2026-10-14",
+  "summary": "Pages and feedback load faster, especially when you come back.",
+  "changes": [
+    {
+      "type": "improved",
+      "text": "Material icons, character avatars, the scanner's reference data and the sample files are kept by your browser instead of being checked again on every visit, so pages like Materials open much faster the second time."
+    },
+    {
+      "type": "improved",
+      "text": "Feedback posts and their screenshots load from a server cache, and stay up to date the moment something is posted, hidden or removed."
+    },
+    {
+      "type": "improved",
+      "text": "The Feedback page number is in the address bar (?page=2), so reloading, sharing a link or going Back keeps your page."
+    }
+  ]
+}

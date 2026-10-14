@@ -39,6 +39,31 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ["lucide-react"],
   },
+  // Files in public/ default to "max-age=0, must-revalidate", so browsers
+  // re-check every icon on every visit. These rarely or never change.
+  async headers() {
+    return [
+      {
+        // Fetched as ?v=<content hash> (lib/material-detector/browser.ts): never changes
+        source: "/data/material-atlas.png",
+        has: [{ type: "query", key: "v" }],
+        headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
+      },
+      {
+        // The manifest is how a new atlas is found, so it stays fairly fresh
+        source: "/data/material-atlas.json",
+        headers: [{ key: "Cache-Control", value: "public, max-age=3600, stale-while-revalidate=86400" }],
+      },
+      {
+        // Icons, avatars, background and samples keep their names when rebuilt:
+        // a week, then refreshed in the background
+        source: "/:dir(images|samples)/:path*",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=604800, stale-while-revalidate=2592000" },
+        ],
+      },
+    ];
+  },
   async rewrites() {
     return [
       {
