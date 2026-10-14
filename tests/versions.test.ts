@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { mkdtempSync, mkdirSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
-import { getLatestVersion, getVersions, RELEASE_FILE } from "../src/lib/versions";
+import { getLatestVersion, getVersions, RELEASE_FILE, RELEASES_PER_PAGE, releasePage } from "../src/lib/versions";
 
 function writeRelease(dir: string, folder: string, contents: unknown) {
   mkdirSync(path.join(dir, folder), { recursive: true });
@@ -82,5 +82,34 @@ describe("Release notes (src/data/versions)", () => {
       writeRelease(root2, "0-0-3", { ...release("x"), changes: [{ type: "misc", text: "x" }] });
       assert.throws(() => getVersions(root2), /changes\.0\.type/);
     });
+  });
+});
+
+describe("Release paging (/versions shows 10, older load on request)", () => {
+  const fake = (n: number) =>
+    Array.from({ length: n }, (_, i) => ({
+      title: `Release ${i}`,
+      date: "2026-10-14",
+      changes: [{ type: "new" as const, text: "x" }],
+      version: `0.0.${n - i}`,
+      slug: `0-0-${n - i}`,
+    }));
+
+  it("splits releases into pages of RELEASES_PER_PAGE, newest first", () => {
+    const all = fake(23);
+    assert.equal(RELEASES_PER_PAGE, 10);
+    const p1 = releasePage(all, 1);
+    const p3 = releasePage(all, 3);
+    assert.equal(p1.items.length, 10);
+    assert.equal(p1.items[0].slug, "0-0-23");
+    assert.equal(p3.items.length, 3);
+    assert.equal(p3.items.at(-1)?.slug, "0-0-1");
+    assert.deepEqual([p1.totalPages, p1.total], [3, 23]);
+  });
+
+  it("has one page when everything fits, and none past the end", () => {
+    assert.equal(releasePage(fake(4), 1).totalPages, 1);
+    assert.equal(releasePage(fake(4), 2).items.length, 0);
+    assert.equal(releasePage([], 1).totalPages, 1);
   });
 });
