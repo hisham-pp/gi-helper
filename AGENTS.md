@@ -6,6 +6,7 @@ This is a Next.js 15 App Router project with React 19, TypeScript, and Tailwind 
 
 - **Application Routes (`src/app/`):**
   - `src/app/(site)/layout.tsx`: Shared layout for the public pages; renders the common top bar (`src/components/layout/SiteHeader.tsx`), which stays mounted across page switches. Add new public pages inside `(site)`.
+  - `src/app/(site)/template.tsx`: Remounts on every navigation and wraps the page in `PageTransition` (`src/components/layout/`), which plays the squash-and-stretch page switch.
   - `src/app/(site)/page.tsx`: Landing page containing the Inventory Scanner (Scanner, Video and AI Vision tabs) and results grid.
   - `src/app/(site)/materials/page.tsx`: 475-material directory with category filtering and ordering.
   - `src/app/(site)/versions/page.tsx`: Release notes page, built from `src/data/versions/` at build time.
@@ -63,7 +64,7 @@ Prefer `pnpm`; the repo pins `pnpm@10.17.1` and Node `22.x`.
 - **Components:** Functional React 19 components in `PascalCase`. Route segments and helper modules use `kebab-case`.
 - **Icons & Styling:** Use `lucide-react` for icons and Tailwind CSS with glassmorphic, theme-aware classes.
 - **Light/Dark Theme:** Tailwind's `white` is the theme ink (`--ink`: white in dark, slate in light), so `text-white`, `bg-white/10` and `border-white/10` adapt automatically; use `snow` for anything that must stay white. Wrap intentionally dark surfaces (scan chamber, dark banners) in `on-dark` to keep white ink and pale accents there. Light versions of the glass classes live in `src/styles/glass-light.css`; pale accent text (`text-cyan-300`, ...) is remapped to deep shades in light mode in `globals.css`.
-- **Modals:** Load modals with `next/dynamic` (`ssr: false`) and mount them only while open (see `src/components/scanner/lazy-modals.ts`); call `usePauseBackground()` inside so the animated background stops under the blur.
+- **Modals:** Load modals with `next/dynamic` (`ssr: false`) and mount them only while open (see `src/components/scanner/lazy-modals.ts`); call `usePauseBackground()` inside so the animated background stops under the blur. Use `useModalMotion(onClose)` (`src/lib/use-modal-motion.ts`) for the open/close squash-and-stretch: attach its `dialogRef`/`backdropRef` and close through its `close`/`closeThen` instead of calling `onClose` directly. Toasts are styled by `GlassToaster` (`src/components/ui/`); test toasts and modals from the Motion Playground on `/debug`.
 - **Preserve Documentation:** Keep existing comments intact.
 
 ---

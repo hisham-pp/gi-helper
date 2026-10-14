@@ -695,6 +695,42 @@ button.glass-chip:disabled {
 }
 
 /* ------------------------------------------------------------------------------
+   Toasts — sonner runs unstyled and wears .glass-card.glass-card--raised
+   (components/ui/GlassToaster); sonner keeps the stacking and the slide.
+   ------------------------------------------------------------------------------ */
+/* Sonner positions toasts absolutely; .glass-card alone would make them relative */
+[data-sonner-toast].glass-card {
+  position: absolute;
+}
+
+/* Collapsed toasts behind the front one show only their edge (sonner does
+   this itself only for its own styled toasts) */
+[data-sonner-toast][data-expanded="false"][data-front="false"] > * {
+  opacity: 0;
+}
+
+/* Lands with the tab thumbs' squash-and-stretch as the slide-in settles.
+   Animates `scale`, not `transform`, so it doesn't fight sonner's slide. */
+@keyframes toast-squish {
+  0%,
+  100% {
+    scale: 1 1;
+  }
+  35% {
+    scale: 1.06 0.92;
+  }
+  70% {
+    scale: 0.98 1.03;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  [data-sonner-toast][data-mounted="true"] {
+    animation: toast-squish 520ms ease-out 200ms;
+  }
+}
+
+/* ------------------------------------------------------------------------------
    Reduced Motion
    ------------------------------------------------------------------------------ */
 @media (prefers-reduced-motion: reduce) {

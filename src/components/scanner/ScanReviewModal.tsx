@@ -26,6 +26,7 @@ import { toast } from "sonner";
 import { getRarityStyles } from "@/lib/materials";
 import { MaterialThumb } from "@/components/ui/MaterialThumb";
 import { usePauseBackground } from "@/lib/use-pause-background";
+import { useModalMotion } from "@/lib/use-modal-motion";
 
 const loadMaterialPicker = () => import("./MaterialPickerModal");
 
@@ -57,6 +58,7 @@ export function ScanReviewModal({
   const [editingSlotId, setEditingSlotId] = useState<string | null>(null);
 
   usePauseBackground();
+  const { dialogRef, backdropRef, close, closeThen } = useModalMotion(onClose);
 
   // Fetch the picker's chunk while the user reads the list, so "Change" opens instantly
   useEffect(() => {
@@ -114,7 +116,7 @@ export function ScanReviewModal({
   const handleConfirm = () => {
     if (items.length === 0) {
       toast.info("No items to add.");
-      onClose();
+      close();
       return;
     }
 
@@ -135,7 +137,8 @@ export function ScanReviewModal({
     }
 
     const finalItems = Array.from(aggregatedMap.values());
-    onConfirm(finalItems);
+    // The parent unmounts the modal on confirm, so hand the items over once it has closed
+    closeThen(() => onConfirm(finalItems));
     toast.success(`Successfully confirmed ${finalItems.length} materials!`);
   };
 
@@ -165,12 +168,16 @@ export function ScanReviewModal({
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6">
       {/* Backdrop */}
       <div
+        ref={backdropRef}
         className="fixed inset-0 bg-black/55 backdrop-blur-sm transition-opacity duration-300"
-        onClick={onClose}
+        onClick={close}
       />
 
       {/* Modal Dialog */}
-      <div className="glass-card glass-card--lg glass-card--raised relative z-10 flex max-h-[92vh] w-full max-w-4xl flex-col overflow-hidden text-white">
+      <div
+        ref={dialogRef}
+        className="glass-card glass-card--lg glass-card--raised relative z-10 flex max-h-[92vh] w-full max-w-4xl flex-col overflow-hidden text-white"
+      >
         {/* Header */}
         <div className="flex flex-shrink-0 items-center justify-between border-b border-white/10 px-6 py-4">
           <div className="flex items-center gap-3">
@@ -188,7 +195,7 @@ export function ScanReviewModal({
             </div>
           </div>
           <button
-            onClick={onClose}
+            onClick={close}
             className="glass-icon-btn h-9 w-9 rounded-full"
             aria-label="Close modal"
           >
@@ -253,7 +260,7 @@ export function ScanReviewModal({
         {/* Footer */}
         <div className="flex flex-shrink-0 items-center justify-between border-t border-white/10 px-6 py-4">
           <button
-            onClick={onClose}
+            onClick={close}
             className="glass-btn px-5 py-2 text-sm"
           >
             Discard
