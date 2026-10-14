@@ -1,0 +1,47 @@
+{
+  "title": "Scan counter, feedback prompts and a tidier layout",
+  "date": "2026-10-14",
+  "summary": "See how many scans travelers have run, tell us how an export went, and a home page that fits your screen.",
+  "changes": [
+    {
+      "type": "new",
+      "text": "Scan counter at the bottom of the home page: how many scans travelers have run with GI Helper. Hover it for screenshots, video and AI Vision separately."
+    },
+    {
+      "type": "new",
+      "text": "After you export to GOOD, GI Helper asks how the scan went, with a button that opens the feedback form right there. It won't ask more than every few days, or soon after you've sent feedback."
+    },
+    {
+      "type": "fixed",
+      "text": "The home page no longer scrolls into empty space below the scanner."
+    },
+    {
+      "type": "fixed",
+      "text": "On phones, pages no longer scroll a little extra behind the browser's address bar."
+    },
+    {
+      "type": "improved",
+      "text": "On phones, the Home, Inventory and Materials links have their own row under the logo, with their names shown."
+    },
+    {
+      "type": "improved",
+      "text": "The Feedback page opens right away and loads the posts after, with placeholders while they arrive."
+    },
+    {
+      "type": "improved",
+      "text": "Your data on the About page now mentions the scan counter: only the scanner type is sent, never your screenshots or results."
+    },
+    {
+      "type": "improved",
+      "text": "The footer links are a pill like the top bar's, and show which page you're on."
+    },
+    {
+      "type": "improved",
+      "text": "Clearing your inventory and deleting messages ask for confirmation in the app's own glass dialog instead of the browser's pop-up."
+    },
+    {
+      "type": "improved",
+      "text": "Pages show glass placeholders in the site's style while they load."
+    }
+  ]
+}
