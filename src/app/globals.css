@@ -390,16 +390,15 @@ input[type="number"] {
 /* ==============================================================================
    Animated Pill Tabs & Panels
    ============================================================================== */
+/* Transform only: opacity or filter on the panel would cut the drop zone's
+   backdrop blur off from the page while it runs, so the glass visibly jumped
+   to a lighter, blurrier look the moment the animation ended. */
 @keyframes content-enter {
   from {
-    opacity: 0;
     transform: translateY(12px);
-    filter: blur(3px);
   }
   to {
-    opacity: 1;
     transform: translateY(0);
-    filter: blur(0);
   }
 }
 

@@ -1,0 +1,15 @@
+{
+  "title": "Clearer glass",
+  "date": "2026-10-14",
+  "summary": "The scanner's drop zone is now clear liquid glass and no longer flickers when it appears.",
+  "changes": [
+    {
+      "type": "improved",
+      "text": "The drop zone on the scanner page is now clear liquid glass: the background shows through it, and light catches along its curved edges."
+    },
+    {
+      "type": "fixed",
+      "text": "The drop zone no longer suddenly changes its look a moment after you open the scanner page or switch between the Scanner, Video and AI Vision tabs."
+    }
+  ]
+}
