@@ -108,8 +108,8 @@ export function Scanner() {
       </div>
 
       {/* Content Panels with Entry Animation.
-          All stay mounted so switching tabs keeps each one's state (results,
-          last review, a scan in progress); the inactive ones are just hidden,
+          All stay mounted so switching tabs keeps each one's state (last
+          review, a scan in progress; results live on /inventory); the inactive ones are just hidden,
           and its entry animation replays when it is shown again. */}
       <div ref={panelsRef} className="w-full">
         <div hidden={activeTab !== 0}>

@@ -3,17 +3,18 @@
 import React, { useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { House, PackageCheck, type LucideIcon } from "lucide-react";
+import { Backpack, House, PackageCheck, type LucideIcon } from "lucide-react";
 import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion";
 
 interface NavItem {
-  href: "/" | "/materials";
+  href: "/" | "/inventory" | "/materials";
   label: string;
   icon: LucideIcon;
 }
 
 const NAV_ITEMS: NavItem[] = [
   { href: "/", label: "Home", icon: House },
+  { href: "/inventory", label: "Inventory", icon: Backpack },
   { href: "/materials", label: "Materials", icon: PackageCheck },
 ];
 

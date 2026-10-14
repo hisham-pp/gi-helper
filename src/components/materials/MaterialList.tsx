@@ -5,32 +5,32 @@ import dynamic from "next/dynamic";
 import {
   ArrowUpDown,
   Search,
-  X,
   LayoutGrid,
   List,
   Filter,
   Bug,
   Sparkles,
   PackageCheck,
-  ChevronLeft,
-  ChevronRight,
   SlidersHorizontal,
-  RotateCcw,
 } from "lucide-react";
 import { MaterialItem } from "@/lib/types";
 import {
   getAllMaterials,
   getMaterialCategoryId,
   getMaterialCategoryLabel,
-  MATERIAL_CATEGORIES,
   MaterialCategory,
   getRarityStyles,
 } from "@/lib/materials";
 import { MaterialCard } from "./MaterialCard";
+import { CategoryFilterPills } from "./CategoryFilterPills";
 import { MaterialTableView } from "./MaterialTableView";
 import { PillDropdown } from "@/components/ui/PillDropdown";
 import { GlassSegmentedControl } from "@/components/ui/GlassSegmentedControl";
+import { PaginationBar } from "@/components/ui/PaginationBar";
+import { ResetFiltersButton } from "@/components/ui/ResetFiltersButton";
+import { SearchField } from "@/components/ui/SearchField";
 import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion";
+import { useWiggleOnChange } from "@/lib/use-wiggle-on-change";
 
 type SortOption =
   | "order-asc"
@@ -45,46 +45,6 @@ const MaterialModal = dynamic(
   () => import("./MaterialModal").then((m) => m.MaterialModal),
   { ssr: false },
 );
-
-/**
- * Reset button entrance/exit: the width eases open (so the search box slides
- * aside instead of jumping) while the button pops in with the same springy
- * overshoot as the tab thumbs. Hover transitions of .glass-btn are kept.
- */
-const RESET_TRANSITION = [
-  "max-width 380ms cubic-bezier(0.22, 1, 0.36, 1)",
-  "padding 380ms cubic-bezier(0.22, 1, 0.36, 1)",
-  "margin 380ms cubic-bezier(0.22, 1, 0.36, 1)",
-  "opacity 220ms ease",
-  "transform 520ms cubic-bezier(0.34, 1.56, 0.64, 1)",
-  "background 200ms ease",
-  "color 200ms ease",
-  "box-shadow 200ms ease",
-].join(", ");
-
-/** Plays a small squash-and-stretch on `ref` whenever `trigger` changes (not on mount). */
-function useWiggleOnChange(
-  ref: React.RefObject<HTMLElement | null>,
-  trigger: unknown,
-  reducedMotion: boolean,
-) {
-  const prevRef = useRef(trigger);
-  useEffect(() => {
-    const prev = prevRef.current;
-    prevRef.current = trigger;
-    if (prev === trigger || reducedMotion) return;
-
-    ref.current?.animate(
-      [
-        { scale: "1 1" },
-        { scale: "1.006 0.985", offset: 0.35 },
-        { scale: "0.998 1.006", offset: 0.7 },
-        { scale: "1 1" },
-      ],
-      { duration: 520, easing: "ease-out" },
-    );
-  }, [ref, trigger, reducedMotion]);
-}
 
 const PAGE_SIZE_OPTIONS = [36, 72, 144];
 /** Page size that shows every material on one page. */
@@ -248,15 +208,13 @@ export function MaterialList() {
     sortBy !== "order-asc";
 
   // Small squash-and-stretch feedback, echoing the scanner drop zone when tabs
-  // switch: the filter card as the Reset button slides in or out, the header
-  // card when a rarity chip is picked or cleared, and the pagination bar when
-  // the page changes.
+  // switch: the filter card as the Reset button slides in or out, and the
+  // header card when a rarity chip is picked or cleared. (The pagination bar
+  // wiggles on page changes by itself.)
   const filterBarRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
-  const paginationRef = useRef<HTMLDivElement>(null);
   useWiggleOnChange(filterBarRef, isFiltered, reducedMotion);
   useWiggleOnChange(heroRef, selectedRarity, reducedMotion);
-  useWiggleOnChange(paginationRef, validCurrentPage, reducedMotion);
 
   return (
     <div className="flex w-full flex-1 flex-col items-center justify-start px-4 pb-4 pt-2 sm:px-6 sm:pt-4 md:px-8 md:pb-8">
@@ -317,25 +275,11 @@ export function MaterialList() {
           {/* Search, Sort, and View Controls */}
           <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
             {/* Search Input */}
-            <div className="relative flex-1">
-              <Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-white/50" />
-              <input
-                type="text"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                placeholder="Search materials by name, ID, or description..."
-                className="glass-input w-full rounded-full py-2.5 pl-10 pr-9 text-sm"
-              />
-              {search && (
-                <button
-                  onClick={() => setSearch("")}
-                  className="glass-icon-btn absolute right-2.5 top-1/2 h-6 w-6 -translate-y-1/2 rounded-full"
-                  title="Clear search"
-                >
-                  <X className="h-3.5 w-3.5" />
-                </button>
-              )}
-            </div>
+            <SearchField
+              value={search}
+              onChange={setSearch}
+              placeholder="Search materials by name, ID, or description..."
+            />
 
             {/* Sort & View Mode Controls */}
             <div className="flex flex-wrap items-center gap-2.5">
@@ -384,71 +328,17 @@ export function MaterialList() {
                 ]}
               />
 
-              {/* Reset Filters: always mounted so it can animate in and out
-                  (collapsed to zero width, and inert, while nothing is filtered) */}
-              <button
-                onClick={handleResetFilters}
-                inert={!isFiltered}
-                aria-hidden={!isFiltered}
-                style={{
-                  transition: reducedMotion ? "none" : RESET_TRANSITION,
-                  // Cancels the row's gap-2.5 while collapsed
-                  marginLeft: isFiltered ? 0 : "-0.625rem",
-                }}
-                className={`glass-btn glass-btn--danger shrink-0 gap-1 overflow-hidden whitespace-nowrap py-2 text-xs ${
-                  isFiltered
-                    ? "max-w-[7rem] scale-100 px-3 opacity-100"
-                    : "pointer-events-none max-w-0 scale-75 px-0 opacity-0"
-                }`}
-                title="Reset all filters"
-              >
-                <RotateCcw className="h-3.5 w-3.5 shrink-0" />
-                <span>Reset</span>
-              </button>
+              <ResetFiltersButton visible={isFiltered} onReset={handleResetFilters} />
             </div>
           </div>
 
           {/* Category Filter Pills */}
-          {/* A horizontal scroller also clips vertically: its padding (cancelled by
-              negative margins) leaves room for the selected chip's glow. The
-              wrapper takes the card's space-y margin, so those can collapse. */}
-          <div>
-            <div className="no-scrollbar -mx-4 -my-3 flex items-center gap-2 overflow-x-auto px-4 py-5">
-              <span className="shrink-0 text-[11px] font-bold uppercase tracking-wider text-white/40">
-                Category:
-              </span>
-              {MATERIAL_CATEGORIES.map((cat) => {
-                const isSelected = selectedCategory === cat.id;
-                const count =
-                  cat.id === "ALL"
-                    ? stats.total
-                    : stats.categoryCounts[cat.id] || 0;
-
-                return (
-                  <button
-                    key={cat.id}
-                    onClick={() => setSelectedCategory(cat.id)}
-                    aria-pressed={isSelected}
-                    // Explicit accent: the card's pale cyan would make the fill read as white
-                    style={{ "--glass-accent": "34, 211, 238" } as React.CSSProperties}
-                    className="glass-chip glass-chip--fill shrink-0 px-3 py-1.5 text-xs font-semibold"
-                    title={`${cat.label} (sortRank: ${cat.sortRankRange})`}
-                  >
-                    <span>{cat.shortLabel}</span>
-                    <span
-                      className={`rounded-full px-1.5 text-[10px] ${
-                        isSelected
-                          ? "bg-white/20 text-white"
-                          : "bg-white/10 text-white/60"
-                      }`}
-                    >
-                      {count}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
+          <CategoryFilterPills
+            selected={selectedCategory}
+            onSelect={setSelectedCategory}
+            total={stats.total}
+            counts={stats.categoryCounts}
+          />
         </div>
 
         {/* Results Counter & Active Filter Pills */}
@@ -519,78 +409,13 @@ export function MaterialList() {
         )}
 
         {/* Pagination Bar */}
-        {totalPages > 1 && (
-          <div
-            ref={paginationRef}
-            className="glass-card flex flex-col items-center justify-between gap-4 p-4 sm:flex-row"
-          >
-            <span className="text-xs text-white/60">
-              Showing{" "}
-              <strong className="text-white">
-                {(validCurrentPage - 1) * pageSize + 1}
-              </strong>{" "}
-              -{" "}
-              <strong className="text-white">
-                {Math.min(validCurrentPage * pageSize, totalItems)}
-              </strong>{" "}
-              of <strong className="text-white">{totalItems}</strong>
-            </span>
-
-            <div className="flex flex-wrap items-center justify-center gap-1.5">
-              <button
-                onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
-                disabled={validCurrentPage <= 1}
-                className="glass-chip h-8 gap-1 px-3 text-xs font-semibold"
-              >
-                <ChevronLeft className="h-3.5 w-3.5" />
-                <span>Prev</span>
-              </button>
-
-              {/* Page Numbers */}
-              <div className="flex items-center gap-1 px-1">
-                {Array.from({ length: totalPages }, (_, i) => i + 1)
-                  .filter((p) => {
-                    if (totalPages <= 7) return true;
-                    if (p === 1 || p === totalPages) return true;
-                    return Math.abs(p - validCurrentPage) <= 2;
-                  })
-                  .map((p, idx, arr) => {
-                    const prev = arr[idx - 1];
-                    const showEllipsis = prev && p - prev > 1;
-
-                    return (
-                      <React.Fragment key={p}>
-                        {showEllipsis && (
-                          <span className="px-1 text-xs text-white/40">
-                            ...
-                          </span>
-                        )}
-                        <button
-                          onClick={() => setCurrentPage(p)}
-                          aria-current={validCurrentPage === p ? "page" : undefined}
-                          data-active={validCurrentPage === p}
-                          className="glass-chip h-8 w-8 justify-center text-xs font-bold"
-                        >
-                          {p}
-                        </button>
-                      </React.Fragment>
-                    );
-                  })}
-              </div>
-
-              <button
-                onClick={() =>
-                  setCurrentPage((p) => Math.min(totalPages, p + 1))
-                }
-                disabled={validCurrentPage >= totalPages}
-                className="glass-chip h-8 gap-1 px-3 text-xs font-semibold"
-              >
-                <span>Next</span>
-                <ChevronRight className="h-3.5 w-3.5" />
-              </button>
-            </div>
-          </div>
-        )}
+        <PaginationBar
+          page={validCurrentPage}
+          totalPages={totalPages}
+          pageSize={pageSize}
+          totalItems={totalItems}
+          onPageChange={setCurrentPage}
+        />
       </div>
 
       {/* Material Detail Modal (mounted only while a material is selected) */}
