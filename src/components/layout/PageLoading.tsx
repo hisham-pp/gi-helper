@@ -14,7 +14,7 @@ function Line({ className }: { className: string }) {
  * header, then a few content cards. Shown below the shared top bar
  * (app/(site)/layout.tsx), which stays in place while a page loads.
  */
-export default function Loading() {
+export function PageLoading() {
   return (
     <div
       className="flex w-full flex-1 flex-col items-center justify-start px-4 pb-4 pt-2 sm:px-6 sm:pt-4 md:px-8 md:pb-8"

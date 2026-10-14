@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef } from "react";
 import type { Route } from "next";
-import Link from "next/link";
+import { ShellLink } from "@/components/layout/ShellLink";
 import { usePathname } from "next/navigation";
 import type { LucideIcon } from "lucide-react";
 import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion";
@@ -88,7 +88,7 @@ export function PillNav({
         const isActive = index === activeIndex;
         const Icon = item.icon;
         return (
-          <Link
+          <ShellLink
             key={item.href}
             href={item.href}
             title={item.label}
@@ -103,7 +103,7 @@ export function PillNav({
               className={`h-3.5 w-3.5 shrink-0 transition-colors ${isActive ? "text-cyan-200" : "text-white/45"} ${iconClassName}`}
             />
             <span className="whitespace-nowrap">{item.label}</span>
-          </Link>
+          </ShellLink>
         );
       })}
     </nav>
