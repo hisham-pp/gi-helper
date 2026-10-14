@@ -1,0 +1,15 @@
+{
+  "title": "Lighter release notes",
+  "date": "2026-10-14",
+  "summary": "The release notes page loads the latest 10 releases; older ones load when you ask.",
+  "changes": [
+    {
+      "type": "improved",
+      "text": "Release notes show the 10 newest releases first. A Load older releases button below brings in 10 more at a time."
+    },
+    {
+      "type": "improved",
+      "text": "A link to an older release still takes you straight to it, loading the older releases on the way."
+    }
+  ]
+}
