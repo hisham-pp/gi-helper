@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
-import Link from "next/link";
+import { ShellLink } from "@/components/layout/ShellLink";
 import { MessagesSquare } from "lucide-react";
 import { FeedbackInbox } from "@/components/feedback/FeedbackInbox";
 import { InboxLogin } from "@/components/feedback/InboxLogin";
@@ -34,9 +34,9 @@ export default async function FeedbackInboxPage() {
           <p className="mt-1 text-xs text-white/60">
             Set SUPABASE_URL and SUPABASE_PUBLISHABLE_KEY on the server to use the inbox.
           </p>
-          <Link href="/feedback" className="glass-btn mt-5 px-5 py-2 text-xs">
+          <ShellLink href="/feedback" className="glass-btn mt-5 px-5 py-2 text-xs">
             Back to Feedback
-          </Link>
+          </ShellLink>
         </div>
       </div>
     );

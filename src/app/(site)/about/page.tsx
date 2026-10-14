@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { ShellLink } from "@/components/layout/ShellLink";
 import {
   Download,
   Heart,
@@ -120,10 +120,10 @@ export default function AboutPage() {
               </li>
             ))}
           </ol>
-          <Link href="/" className="glass-btn glass-btn--primary mt-6 px-5 py-2 text-sm">
+          <ShellLink href="/" className="glass-btn glass-btn--primary mt-6 px-5 py-2 text-sm">
             <Scan className="h-4 w-4" />
             Start scanning
-          </Link>
+          </ShellLink>
         </section>
 
         {/* Privacy */}
@@ -161,17 +161,17 @@ export default function AboutPage() {
           </p>
           <p className="mt-3 max-w-3xl text-sm leading-relaxed text-white/80">
             Found a bug or have an idea? Tell us on the{" "}
-            <Link href="/feedback" className="font-semibold text-cyan-300 hover:underline">
+            <ShellLink href="/feedback" className="font-semibold text-cyan-300 hover:underline">
               Feedback page
-            </Link>
+            </ShellLink>
             .
           </p>
           {latest && (
             <p className="mt-4 text-xs text-white/60">
               Version{" "}
-              <Link href="/versions" className="font-mono font-semibold text-cyan-300 hover:underline">
+              <ShellLink href="/versions" className="font-mono font-semibold text-cyan-300 hover:underline">
                 v{latest.version}
-              </Link>
+              </ShellLink>
               . See the release notes for what changed.
             </p>
           )}

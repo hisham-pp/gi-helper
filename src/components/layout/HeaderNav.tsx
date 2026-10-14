@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
+import { ShellLink } from "@/components/layout/ShellLink";
 import { usePathname } from "next/navigation";
 import { Backpack, House, PackageCheck } from "lucide-react";
 import { isCurrent, PillNav, type PillNavItem } from "./PillNav";
@@ -28,7 +28,7 @@ export function VersionChip({ version }: { version: string }) {
   const isActive = isCurrent(pathname, "/versions");
 
   return (
-    <Link
+    <ShellLink
       href="/versions"
       title="Release notes"
       aria-current={isActive ? "page" : undefined}
@@ -36,6 +36,6 @@ export function VersionChip({ version }: { version: string }) {
       className="glass-chip px-2 py-0.5 font-mono text-[10px] font-bold text-white/70"
     >
       v{version}
-    </Link>
+    </ShellLink>
   );
 }

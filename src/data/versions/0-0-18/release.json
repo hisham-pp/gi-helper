@@ -1,0 +1,19 @@
+{
+  "title": "Instant pages",
+  "date": "2026-10-14",
+  "summary": "Pages open straight away, and each page has its own loading preview for the rare times it has to wait.",
+  "changes": [
+    {
+      "type": "fixed",
+      "text": "Opening the site no longer flashes a loading placeholder before the page appears."
+    },
+    {
+      "type": "improved",
+      "text": "All pages are loaded in the background while you browse, so switching between them is instant."
+    },
+    {
+      "type": "new",
+      "text": "When a page does have to load, you see a preview shaped like that page instead of a generic placeholder."
+    }
+  ]
+}

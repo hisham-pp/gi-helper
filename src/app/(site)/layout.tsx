@@ -1,4 +1,5 @@
 import { SiteFooter } from "@/components/layout/SiteFooter";
+import { PageShellSlot } from "@/components/layout/PageShellSlot";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { getLatestVersion } from "@/lib/versions";
 
@@ -15,7 +16,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
     // browser bars show, which made every page scroll a little
     <div className="relative z-10 flex min-h-screen w-full flex-col supports-[min-height:100dvh]:min-h-dvh">
       <SiteHeader version={latestVersion?.version} />
-      {children}
+      <PageShellSlot>{children}</PageShellSlot>
       <SiteFooter />
     </div>
   );

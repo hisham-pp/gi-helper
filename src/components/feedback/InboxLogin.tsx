@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useId, useState } from "react";
-import Link from "next/link";
+import { ShellLink } from "@/components/layout/ShellLink";
 import { useRouter } from "next/navigation";
 import { CircleAlert, Loader2, Lock, LogIn } from "lucide-react";
 import { GlassInput } from "@/components/ui/GlassInput";
@@ -109,12 +109,12 @@ export function InboxLogin() {
           {submitting ? "Signing in..." : "Sign in"}
         </button>
 
-        <Link
+        <ShellLink
           href="/feedback"
           className="block text-center text-xs text-white/55 transition-colors hover:text-white/85"
         >
           Back to the Feedback page
-        </Link>
+        </ShellLink>
       </form>
     </div>
   );

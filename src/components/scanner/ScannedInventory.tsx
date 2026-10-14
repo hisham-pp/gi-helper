@@ -8,7 +8,7 @@ import React, {
   useState,
   useSyncExternalStore,
 } from "react";
-import Link from "next/link";
+import { ShellLink } from "@/components/layout/ShellLink";
 import {
   ArrowUpDown,
   Backpack,
@@ -448,12 +448,12 @@ export function ScannedInventory() {
               Scan your inventory screenshots or a screen recording; the
               materials you add show up here.
             </p>
-            <Link
+            <ShellLink
               href="/"
               className="glass-btn glass-btn--primary mt-5 px-5 py-2 text-xs"
             >
               <Scan className="h-4 w-4" /> Go to the scanner
-            </Link>
+            </ShellLink>
           </div>
         )}
       </div>
