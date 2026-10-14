@@ -11,6 +11,9 @@ importers:
       '@vercel/analytics':
         specifier: ^2.0.1
         version: 2.0.1(next@15.5.27(@playwright/test@1.64.0)(@types/node@22.20.5)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react@19.3.0)
+      bad-words:
+        specifier: ^4.1.5
+        version: 4.1.5
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -63,6 +66,9 @@ importers:
       autoprefixer:
         specifier: ^10.6.1
         version: 10.6.1(postcss@8.5.30)
+      bcryptjs:
+        specifier: ^3.0.3
+        version: 3.0.3
       eslint:
         specifier: ^9.39.5
         version: 9.39.5(jiti@1.21.7)
@@ -1155,6 +1161,13 @@ packages:
     resolution: {integrity: sha512-Cg7TFGpIr01vOQNODXOOaGz2NpCU5gl8x1qJFbb6hbZxR7XrcE2vtbAsTAbJ7/xwJtUuJEw8K8Zr/AE0LHlesg==}
     engines: {node: '>=10', npm: '>=6'}
 
+  bad-words@4.1.5:
+    resolution: {integrity: sha512-2brqSXEk99CL6vi67cEg8ArEeoFPJBsdfDXon1Ed5XWIgRKn8ZNYA9Gwo8YB3zLlChQXztTTtzwUV3dAyjELfw==}
+    engines: {node: '>=8.0.0'}
+
+  badwords-list@2.0.1-4:
+    resolution: {integrity: sha512-FxfZUp7B9yCnesNtFQS9v6PvZdxTYa14Q60JR6vhjdQdWI4naTjJIyx22JzoER8ooeT8SAAKoHLjKfCV7XgYUQ==}
+
   bail@2.0.2:
     resolution: {integrity: sha512-0xO6mYd7JB2YesxDKplafRpsiOzPt9V02ddPCLbY1xYGPOX24NTyN50qnUxgCPcSoYMhKpAuBTjQoRZCAkUDRw==}
 
@@ -1168,6 +1181,10 @@ packages:
   baseline-browser-mapping@2.11.28:
     resolution: {integrity: sha512-br0LOmjJqr6Rt4AEkadbcNf67Zpo7EPwKsWbjnRrJIa1QYFHQBqM4C7F2WTbV8ahTEcg1Eo+Y0aWjjORInYFyA==}
     engines: {node: '>=6.0.0'}
+    hasBin: true
+
+  bcryptjs@3.0.3:
+    resolution: {integrity: sha512-GlF5wPWnSa/X5LKM1o0wz0suXIINz1iHRLvTS+sLyi7XPbe5ycmYI3DlZqVGZZtDgl4DmasFg7gOB3JYbphV5g==}
     hasBin: true
 
   binary-extensions@2.3.0:
@@ -3980,6 +3997,12 @@ snapshots:
       cosmiconfig: 7.1.0
       resolve: 1.22.13
 
+  bad-words@4.1.5:
+    dependencies:
+      badwords-list: 2.0.1-4
+
+  badwords-list@2.0.1-4: {}
+
   bail@2.0.2: {}
 
   balanced-match@1.0.2: {}
@@ -3987,6 +4010,8 @@ snapshots:
   balanced-match@4.0.4: {}
 
   baseline-browser-mapping@2.11.28: {}
+
+  bcryptjs@3.0.3: {}
 
   binary-extensions@2.3.0: {}
 

@@ -12,6 +12,8 @@ This is a Next.js 15 App Router project with React 19, TypeScript, and Tailwind 
   - `src/app/(site)/materials/page.tsx`: 475-material directory with category filtering and ordering.
   - `src/app/(site)/versions/page.tsx`: Release notes page, built from `src/data/versions/` at build time.
   - `src/app/(site)/about/page.tsx`: About page (features, how it works, privacy, fan-project disclaimer), linked from the shared footer (`SiteFooter`).
+  - `src/app/(site)/feedback/page.tsx`: Public feedback list with the Send feedback modal (feedback, bug, idea or other; optional name and up to 3 screenshots). Only the "feedback" kind is listed; `feedback/inbox/page.tsx` is the private inbox for seeded accounts. Linked from the footer and About page. See `docs/feedback.md`.
+  - `src/app/api/feedback/`: Feedback route handlers (list and send, images, inbox session, inbox list/update/delete).
   - `src/app/api/scanner/ai-vision/route.ts`: Server Route Handler for Vision AI calls (Gemini, OpenAI, Claude, Grok, Custom) and connection testing.
   - `src/app/debug/`: Testing utilities and debug exploration views.
 - **Components (`src/components/`):**
@@ -30,6 +32,8 @@ This is a Next.js 15 App Router project with React 19, TypeScript, and Tailwind 
   - `src/lib/grid-detector/`: Card/grid detection engine (pure TS) with a Web Worker client. See `docs/grid-detector.md`.
   - `src/lib/material-detector/`: On-device material recognition (material, rarity, quantity) of detected cards, with a Web Worker scan client. See `docs/material-detector.md`.
   - `src/lib/video-scanner/`: Screen-recording scanner: picks the frames where scrolling settles, scans them with the material scan workers, fills coverage gaps and merges quantities by vote. See `docs/video-scanner.md`.
+  - `src/lib/feedback/`: Feedback server calls (`server.ts`, Supabase RPCs with the publishable key), shared types and limits, the `bad-words` filter (`profanity.ts`) and image checks. See `docs/feedback.md`.
+- **Database (`supabase/migrations/`):** Supabase project `gi-helper`. Feedback tables live in the unexposed `feedback_private` schema and are reached only through the `public.feedback_*` security-definer functions. Inbox accounts are seeded with `pnpm feedback:admin <username>` (bcrypt hash, no Supabase Auth). Server env: `SUPABASE_URL`, `SUPABASE_PUBLISHABLE_KEY`, optional `FEEDBACK_HASH_SALT`.
 - **Data & Static Assets:**
   - `src/data/materials.json`: Single canonical reference data containing all 475 Genshin Impact materials (served dynamically at `/data/materials.json`).
   - `src/data/versions/<major>-<minor>-<patch>/release.json`: Release notes per version (`{ title, date: "YYYY-MM-DD", summary?, changes: [{ type: "new" | "improved" | "fixed" | "removed", text }] }`). The folder name is the version; add a folder to publish a release. Loaded and validated by `src/lib/versions.ts`.
@@ -52,6 +56,7 @@ Prefer `pnpm`; the repo pins `pnpm@10.17.1` and Node `22.x`.
 - `pnpm test`: Run unit tests using Node's built-in test runner (`tsx --test tests/**/*.test.ts`).
 - `pnpm test:material-detector` / `pnpm eval:material-detector`: Material recognizer tests and accuracy report.
 - `pnpm test:grid-detector` / `pnpm eval:grid-detector`: Grid detector tests and accuracy report.
+- `pnpm feedback:admin <username> [--generate]`: Prints the SQL that seeds or resets a feedback inbox account (run it in the Supabase SQL editor).
 - `pnpm lint`: Run ESLint with Next.js core web vitals configuration.
 - `pnpm format`: Run Prettier across the repository.
 
@@ -75,4 +80,5 @@ Prefer `pnpm`; the repo pins `pnpm@10.17.1` and Node `22.x`.
 - When modifying the AI vision pipeline or material matcher, add or update tests in `tests/ai-vision.test.ts`.
 - When modifying the video scanner's frame selection or merging, update `tests/video-scanner.test.ts` and re-check the sample recording in the Video tab (expected numbers in `docs/video-scanner.md`).
 - When modifying the material recognizer, keep `pnpm test:material-detector` green and check `pnpm eval:material-detector` (also with `--impostors` and `--scale 0.5`); per-card ground truth is in `tests/material-detector/ground-truth.json`.
+- When modifying the feedback filter, image checks or error messages, update `tests/feedback.test.ts`. Schema changes go in a new file under `supabase/migrations/`.
 - Always verify changes with `pnpm build` and `npx tsx --test tests/ai-vision.test.ts`.
