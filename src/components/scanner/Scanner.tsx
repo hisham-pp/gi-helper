@@ -123,10 +123,6 @@ export function Scanner() {
       <div className="space-y-2 text-center">
         {/* Icon flows inline so it stays beside the first word when the title wraps */}
         <h1 className="text-balance text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-white drop-shadow-[0_4px_14px_rgba(0,0,0,0.7)]">
-          <BrandIcon
-            size={36}
-            className="mr-2.5 inline-block h-7 w-7 -translate-y-0.5 align-middle drop-shadow-[0_0_12px_rgba(34,211,238,0.45)] sm:h-8 sm:w-8 md:h-9 md:w-9"
-          />
           Extract Materials from Screenshots
         </h1>
         <p className="mx-auto max-w-xl text-xs sm:text-sm text-cyan-100/75 drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]">
