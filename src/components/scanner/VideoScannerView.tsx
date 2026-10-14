@@ -20,7 +20,7 @@ import type { PixelRect } from "@/lib/grid-detector";
 import { useScannerSettings } from "@/lib/scanner-settings";
 import { setScannerInventory } from "@/lib/scanner-inventory";
 import type { DetectedItem, ScannedReviewItem } from "@/lib/types";
-import { materialThumbUrl } from "@/lib/materials";
+import { materialThumbUrl } from "@/lib/material-ui";
 import { recordScan } from "@/lib/scan-stats";
 
 interface VideoScannerViewProps {

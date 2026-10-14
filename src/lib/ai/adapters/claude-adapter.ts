@@ -4,7 +4,7 @@ import {
   VisionScanOptions,
   RawExtractedItem,
   SupportedModelMeta,
-  INVENTORY_VISION_PROMPT,
+  inventoryVisionPrompt,
   parseImageBase64,
   extractJsonFromResponse,
 } from "./types";
@@ -81,7 +81,7 @@ export class ClaudeVisionAdapter implements AiVisionAdapter {
               },
               {
                 type: "text",
-                text: INVENTORY_VISION_PROMPT,
+                text: await inventoryVisionPrompt(),
               },
             ],
           },

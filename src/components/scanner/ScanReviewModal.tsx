@@ -23,7 +23,7 @@ import {
   AlertTriangle,
 } from "lucide-react";
 import { toast } from "sonner";
-import { getRarityStyles } from "@/lib/materials";
+import { getRarityStyles } from "@/lib/material-ui";
 import { MaterialThumb } from "@/components/ui/MaterialThumb";
 import { usePauseBackground } from "@/lib/use-pause-background";
 import { useModalMotion } from "@/lib/use-modal-motion";

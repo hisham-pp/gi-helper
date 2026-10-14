@@ -13,7 +13,7 @@ import { useMaterialScanClient } from "@/lib/material-detector/react";
 import { useScannerSettings } from "@/lib/scanner-settings";
 import { setScannerInventory } from "@/lib/scanner-inventory";
 import type { DetectedItem, ScannedReviewItem } from "@/lib/types";
-import { materialThumbUrl } from "@/lib/materials";
+import { materialThumbUrl } from "@/lib/material-ui";
 import { recordScan } from "@/lib/scan-stats";
 
 interface ClassicScannerViewProps {
@@ -65,7 +65,8 @@ function reviewReason(card: CardRecognition): string | undefined {
  * the AI Vision tab.
  */
 export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "scanner-tab" }: ClassicScannerViewProps) {
-  const client = useMaterialScanClient({ preload: true });
+  // The atlas loads once the page is idle, not during the first render
+  const client = useMaterialScanClient({ preload: "idle" });
   const { settings } = useScannerSettings();
 
   // Once a scan's materials are added, the app switches to the /inventory page

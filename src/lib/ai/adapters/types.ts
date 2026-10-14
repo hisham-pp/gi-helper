@@ -1,5 +1,3 @@
-import { getVisionSystemPrompt } from "../prompts";
-
 export type AiProviderId = "gemini" | "openai" | "claude" | "grok" | "custom";
 
 export interface VisionScanOptions {
@@ -40,7 +38,17 @@ export interface AiVisionAdapter {
   ): Promise<{ success: boolean; message: string }>;
 }
 
-export const INVENTORY_VISION_PROMPT = getVisionSystemPrompt();
+let visionPrompt: Promise<string> | null = null;
+
+/**
+ * The vision system prompt, with the material reference list built from the
+ * 300 KB catalog. Loaded on first use (a scan, on the server), so code that
+ * only reads adapter names and defaults (the browser) doesn't bundle it.
+ */
+export function inventoryVisionPrompt(): Promise<string> {
+  visionPrompt ??= import("../prompts").then((m) => m.getVisionSystemPrompt());
+  return visionPrompt;
+}
 
 export function extractJsonFromResponse(rawText: string): any {
   let cleaned = rawText.trim();

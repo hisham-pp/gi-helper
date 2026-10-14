@@ -427,13 +427,24 @@
 
 /* Lifts with a spring and brightens its rim and glow on hover */
 .glass-card--hover {
-  transition:
-    transform 350ms cubic-bezier(0.34, 1.4, 0.5, 1),
-    box-shadow 300ms ease;
+  transition: transform 350ms cubic-bezier(0.34, 1.4, 0.5, 1);
 }
 
 .glass-card--hover:hover {
   transform: translateY(-4px);
+}
+
+/* The brighter rim and glow sit on a layer of their own that fades in.
+   Transitioning box-shadow itself repainted these large shadows on every
+   frame of the hover, card after card as the pointer crossed a grid; an
+   opacity fade is done by the compositor. */
+.glass-card--hover::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.6),
     inset 0 0 0 1px rgba(var(--glass-accent), 0.22),
@@ -441,6 +452,12 @@
     inset 0 0 30px -6px rgba(var(--glass-accent), 0.5),
     0 0 30px -4px rgba(var(--glass-accent), 0.5),
     0 20px 40px -16px rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+
+.glass-card--hover:hover::after {
+  opacity: 1;
 }
 
 .glass-card--hover:focus-visible {
@@ -736,6 +753,7 @@ button.glass-chip:disabled {
 @media (prefers-reduced-motion: reduce) {
   .glass-pane,
   .glass-card--hover,
+  .glass-card--hover::after,
   .glass-chip,
   .glass-icon-btn,
   .glass-lens,

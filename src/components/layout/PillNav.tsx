@@ -93,7 +93,7 @@ export function PillNav({
             href={item.href}
             title={item.label}
             aria-current={isActive ? "page" : undefined}
-            className={`relative z-10 flex items-center justify-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-400 ${
+            className={`relative select-none z-10 flex items-center justify-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-400 ${
               isActive
                 ? "text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]"
                 : "text-white/55 hover:text-white/85"

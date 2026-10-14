@@ -13,7 +13,7 @@ import {
   Bookmark,
 } from "lucide-react";
 import { MaterialItem } from "@/lib/types";
-import { getRarityStyles, getMaterialCategoryLabel } from "@/lib/materials";
+import { getRarityStyles, getMaterialCategoryLabel } from "@/lib/material-ui";
 import { toast } from "sonner";
 import { usePauseBackground } from "@/lib/use-pause-background";
 import { useModalMotion } from "@/lib/use-modal-motion";

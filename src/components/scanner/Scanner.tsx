@@ -1,12 +1,29 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import dynamic from "next/dynamic";
 import { Film, Scan, Sparkles } from "lucide-react";
 import { BrandIcon } from "@/components/layout/BrandIcon";
 import { ScannerTabs, TabItem } from "./ScannerTabs";
 import { ClassicScannerView } from "./ClassicScannerView";
-import { VideoScannerView } from "./VideoScannerView";
-import { AiScannerView } from "./AiScannerView";
+
+/** Same footprint as a tab's drop zone, so nothing jumps while a tab's code loads. */
+function PanelPlaceholder() {
+  return <div className="glass-pane min-h-[360px] w-full motion-safe:animate-pulse" aria-busy="true" />;
+}
+
+// The Video and AI Vision tabs load on demand: most visits only use the
+// screenshot scanner, so their code and setup stay out of the first load.
+const loadVideoScanner = () => import("./VideoScannerView");
+const loadAiScanner = () => import("./AiScannerView");
+const VideoScannerView = dynamic(() => loadVideoScanner().then((m) => m.VideoScannerView), {
+  ssr: false,
+  loading: PanelPlaceholder,
+});
+const AiScannerView = dynamic(() => loadAiScanner().then((m) => m.AiScannerView), {
+  ssr: false,
+  loading: PanelPlaceholder,
+});
 import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion";
 
 const SCANNER_TABS: TabItem[] = [
@@ -39,6 +56,8 @@ const SCANNER_TABS: TabItem[] = [
  */
 export function Scanner() {
   const [activeTab, setActiveTab] = useState<number>(0);
+  // Tabs opened so far: each mounts on first visit and then stays mounted
+  const [visited, setVisited] = useState<ReadonlySet<number>>(() => new Set([0]));
   const panelsRef = useRef<HTMLDivElement>(null);
   const prevTabRef = useRef(activeTab);
   const reducedMotion = usePrefersReducedMotion();
@@ -61,6 +80,24 @@ export function Scanner() {
       { duration: 600, easing: "ease-out" },
     );
   }, [activeTab, reducedMotion]);
+
+  useEffect(() => {
+    setVisited((prev) => (prev.has(activeTab) ? prev : new Set(prev).add(activeTab)));
+  }, [activeTab]);
+
+  // Fetch the other tabs' code once the page is idle, so switching is instant
+  useEffect(() => {
+    const prefetch = () => {
+      loadVideoScanner().catch(() => {});
+      loadAiScanner().catch(() => {});
+    };
+    if ("requestIdleCallback" in window) {
+      const id = window.requestIdleCallback(prefetch, { timeout: 5000 });
+      return () => window.cancelIdleCallback(id);
+    }
+    const timer = setTimeout(prefetch, 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -108,18 +145,19 @@ export function Scanner() {
       </div>
 
       {/* Content Panels with Entry Animation.
-          All stay mounted so switching tabs keeps each one's state (last
-          review, a scan in progress; results live on /inventory); the inactive ones are just hidden,
-          and its entry animation replays when it is shown again. */}
+          Each mounts the first time its tab opens and then stays mounted, so
+          switching tabs keeps each one's state (last review, a scan in
+          progress; results live on /inventory); the inactive ones are just
+          hidden, and its entry animation replays when it is shown again. */}
       <div ref={panelsRef} className="w-full">
         <div hidden={activeTab !== 0}>
           <ClassicScannerView id="scanner-panel" ariaLabelledBy="scanner-tab" />
         </div>
         <div hidden={activeTab !== 1}>
-          <VideoScannerView id="video-panel" ariaLabelledBy="video-tab" />
+          {visited.has(1) && <VideoScannerView id="video-panel" ariaLabelledBy="video-tab" />}
         </div>
         <div hidden={activeTab !== 2}>
-          <AiScannerView id="ai-panel" ariaLabelledBy="ai-tab" />
+          {visited.has(2) && <AiScannerView id="ai-panel" ariaLabelledBy="ai-tab" />}
         </div>
       </div>
     </div>

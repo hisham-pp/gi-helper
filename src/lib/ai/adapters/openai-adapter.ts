@@ -3,7 +3,7 @@ import {
   VisionScanOptions,
   RawExtractedItem,
   SupportedModelMeta,
-  INVENTORY_VISION_PROMPT,
+  inventoryVisionPrompt,
   parseImageBase64,
   extractJsonFromResponse,
 } from "./types";
@@ -54,7 +54,7 @@ export class OpenAiVisionAdapter implements AiVisionAdapter {
           {
             role: "user",
             content: [
-              { type: "text", text: INVENTORY_VISION_PROMPT },
+              { type: "text", text: await inventoryVisionPrompt() },
               {
                 type: "image_url",
                 image_url: {
