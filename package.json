@@ -1,6 +1,6 @@
 {
   "name": "genshin-material-tracker",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "private": true,
   "packageManager": "pnpm@10.17.1",
   "engines": {
@@ -23,7 +23,10 @@
     "build:material-thumbs": "tsx scripts/build-material-thumbs.ts",
     "build:brand-icons": "tsx scripts/build-brand-icons.ts",
     "scrape:characters": "tsx scripts/scrape-characters.ts",
-    "sync-data": "tsx scripts/scrape-materials.ts && tsx scripts/update-families.ts && tsx scripts/build-material-atlas.ts && tsx scripts/build-material-thumbs.ts && tsx scripts/scrape-characters.ts",
+    "scrape:weapons": "tsx scripts/scrape-weapons.ts",
+    "scrape:artifacts": "tsx scripts/scrape-artifacts.ts",
+    "scrape:other-materials": "tsx scripts/scrape-other-materials.ts",
+    "sync-data": "tsx scripts/scrape-materials.ts && tsx scripts/update-families.ts && tsx scripts/build-material-atlas.ts && tsx scripts/build-material-thumbs.ts && tsx scripts/scrape-characters.ts && tsx scripts/scrape-weapons.ts && tsx scripts/scrape-artifacts.ts && tsx scripts/scrape-other-materials.ts",
     "feedback:admin": "tsx scripts/feedback-admin.ts"
   },
   "pnpm": {

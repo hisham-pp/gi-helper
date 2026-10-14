@@ -18,6 +18,7 @@ import fs from "node:fs";
 import { createRequire } from "node:module";
 import path from "node:path";
 import materials from "../src/data/materials.json";
+import otherMaterials from "../src/data/other-materials.json";
 
 const THUMB_SIZE = 128;
 const ROOT = process.cwd();
@@ -57,6 +58,10 @@ async function main() {
     sourceBytes += fs.statSync(file).size;
     thumbBytes += thumb.length;
   }
+
+  // The Materials-tab items (pnpm scrape:other-materials) write their own
+  // thumbnails here; keep them
+  for (const m of otherMaterials) expected.add(`${m.id}.webp`);
 
   // Drop thumbnails of materials that left the catalog
   for (const name of fs.readdirSync(OUT_DIR)) {

@@ -1,734 +1,1209 @@
 [
   {
     "id": "aether",
+    "key": "Traveler",
     "name": "Aether",
     "rarity": 5,
-    "element": "None"
+    "element": "None",
+    "weaponType": "sword"
   },
   {
     "id": "aino",
+    "key": "Aino",
     "name": "Aino",
+    "title": "Clinky-Clank Gadgets-A-Gogo",
     "rarity": 4,
-    "element": "Hydro"
+    "element": "Hydro",
+    "weaponType": "claymore",
+    "region": "Nod-Krai"
   },
   {
     "id": "albedo",
+    "key": "Albedo",
     "name": "Albedo",
+    "title": "Kreideprinz",
     "rarity": 5,
-    "element": "Geo"
+    "element": "Geo",
+    "weaponType": "sword",
+    "region": "Mondstadt"
   },
   {
     "id": "alhaitham",
+    "key": "Alhaitham",
     "name": "Alhaitham",
+    "title": "Admonishing Instruction",
     "rarity": 5,
-    "element": "Dendro"
+    "element": "Dendro",
+    "weaponType": "sword",
+    "region": "Sumeru"
   },
   {
     "id": "aloy",
+    "key": "Aloy",
     "name": "Aloy",
+    "title": "Savior From Another World",
     "rarity": 5,
-    "element": "Cryo"
+    "element": "Cryo",
+    "weaponType": "bow"
   },
   {
     "id": "alyosha",
+    "key": "Alyosha",
     "name": "Alyosha",
+    "title": "Swift-Striding Hound",
     "rarity": 4,
-    "element": "Electro"
+    "element": "Electro",
+    "weaponType": "polearm"
   },
   {
     "id": "amber",
+    "key": "Amber",
     "name": "Amber",
+    "title": "Gliding Champion",
     "rarity": 4,
-    "element": "Pyro"
+    "element": "Pyro",
+    "weaponType": "bow",
+    "region": "Mondstadt"
   },
   {
     "id": "arataki-itto",
+    "key": "AratakiItto",
     "name": "Arataki Itto",
+    "title": "Hanamizaka Heroics",
     "rarity": 5,
-    "element": "Geo"
+    "element": "Geo",
+    "weaponType": "claymore",
+    "region": "Inazuma"
   },
   {
     "id": "arlecchino",
+    "key": "Arlecchino",
     "name": "Arlecchino",
+    "title": "Dire Balemoon",
     "rarity": 5,
-    "element": "Pyro"
+    "element": "Pyro",
+    "weaponType": "polearm",
+    "region": "Snezhnaya"
   },
   {
     "id": "baizhu",
+    "key": "Baizhu",
     "name": "Baizhu",
+    "title": "Beyond Mortality",
     "rarity": 5,
-    "element": "Dendro"
+    "element": "Dendro",
+    "weaponType": "catalyst",
+    "region": "Liyue"
   },
   {
     "id": "barbara",
+    "key": "Barbara",
     "name": "Barbara",
+    "title": "Shining Idol",
     "rarity": 4,
-    "element": "Hydro"
+    "element": "Hydro",
+    "weaponType": "catalyst",
+    "region": "Mondstadt"
   },
   {
     "id": "beidou",
+    "key": "Beidou",
     "name": "Beidou",
+    "title": "Uncrowned Lord of the Ocean",
     "rarity": 4,
-    "element": "Electro"
+    "element": "Electro",
+    "weaponType": "claymore",
+    "region": "Liyue"
   },
   {
     "id": "bennett",
+    "key": "Bennett",
     "name": "Bennett",
+    "title": "Trial by Fire",
     "rarity": 4,
-    "element": "Pyro"
+    "element": "Pyro",
+    "weaponType": "sword",
+    "region": "Mondstadt"
   },
   {
     "id": "candace",
+    "key": "Candace",
     "name": "Candace",
+    "title": "Golden Vow",
     "rarity": 4,
-    "element": "Hydro"
+    "element": "Hydro",
+    "weaponType": "polearm",
+    "region": "Sumeru"
   },
   {
     "id": "charlotte",
+    "key": "Charlotte",
     "name": "Charlotte",
+    "title": "Lens of Verity",
     "rarity": 4,
-    "element": "Cryo"
+    "element": "Cryo",
+    "weaponType": "catalyst",
+    "region": "Fontaine"
   },
   {
     "id": "chasca",
+    "key": "Chasca",
     "name": "Chasca",
+    "title": "Skyborne Arbiter",
     "rarity": 5,
-    "element": "Anemo"
+    "element": "Anemo",
+    "weaponType": "bow",
+    "region": "Natlan"
   },
   {
     "id": "chevreuse",
+    "key": "Chevreuse",
     "name": "Chevreuse",
+    "title": "Executor of Justice",
     "rarity": 4,
-    "element": "Pyro"
+    "element": "Pyro",
+    "weaponType": "polearm",
+    "region": "Fontaine"
   },
   {
     "id": "chiori",
+    "key": "Chiori",
     "name": "Chiori",
+    "title": "The Thundering Seamstress",
     "rarity": 5,
-    "element": "Geo"
+    "element": "Geo",
+    "weaponType": "sword",
+    "region": "Inazuma"
   },
   {
     "id": "chongyun",
+    "key": "Chongyun",
     "name": "Chongyun",
+    "title": "Frozen Ardor",
     "rarity": 4,
-    "element": "Cryo"
+    "element": "Cryo",
+    "weaponType": "claymore",
+    "region": "Liyue"
   },
   {
     "id": "citlali",
+    "key": "Citlali",
     "name": "Citlali",
+    "title": "Obsidian Opalstar",
     "rarity": 5,
-    "element": "Cryo"
+    "element": "Cryo",
+    "weaponType": "catalyst",
+    "region": "Natlan"
   },
   {
     "id": "clorinde",
+    "key": "Clorinde",
     "name": "Clorinde",
+    "title": "Candlebearer, Shadowhunter",
     "rarity": 5,
-    "element": "Electro"
+    "element": "Electro",
+    "weaponType": "sword",
+    "region": "Fontaine"
   },
   {
     "id": "collei",
+    "key": "Collei",
     "name": "Collei",
+    "title": "Sprout of Rebirth",
     "rarity": 4,
-    "element": "Dendro"
+    "element": "Dendro",
+    "weaponType": "bow",
+    "region": "Sumeru"
   },
   {
     "id": "columbina",
+    "key": "Columbina",
     "name": "Columbina",
+    "title": "Welkin Moon's Homecoming",
     "rarity": 5,
-    "element": "Hydro"
+    "element": "Hydro",
+    "weaponType": "catalyst",
+    "region": "Nod-Krai"
   },
   {
     "id": "cyno",
+    "key": "Cyno",
     "name": "Cyno",
+    "title": "Judicator of Secrets",
     "rarity": 5,
-    "element": "Electro"
+    "element": "Electro",
+    "weaponType": "polearm",
+    "region": "Sumeru"
   },
   {
     "id": "dahlia",
+    "key": "Dahlia",
     "name": "Dahlia",
+    "title": "Ode and Oblation",
     "rarity": 4,
-    "element": "Hydro"
+    "element": "Hydro",
+    "weaponType": "sword",
+    "region": "Mondstadt"
   },
   {
     "id": "dehya",
+    "key": "Dehya",
     "name": "Dehya",
+    "title": "Flame-Mane",
     "rarity": 5,
-    "element": "Pyro"
+    "element": "Pyro",
+    "weaponType": "claymore",
+    "region": "Sumeru"
   },
   {
     "id": "diluc",
+    "key": "Diluc",
     "name": "Diluc",
+    "title": "Dark Side of Dawn",
     "rarity": 5,
-    "element": "Pyro"
+    "element": "Pyro",
+    "weaponType": "claymore",
+    "region": "Mondstadt"
   },
   {
     "id": "diona",
+    "key": "Diona",
     "name": "Diona",
+    "title": "Kätzlein Cocktail",
     "rarity": 4,
-    "element": "Cryo"
+    "element": "Cryo",
+    "weaponType": "bow",
+    "region": "Mondstadt"
   },
   {
     "id": "dori",
+    "key": "Dori",
     "name": "Dori",
+    "title": "Treasure of Dream Garden",
     "rarity": 4,
-    "element": "Electro"
+    "element": "Electro",
+    "weaponType": "claymore",
+    "region": "Sumeru"
   },
   {
     "id": "durin",
+    "key": "Durin",
     "name": "Durin",
+    "title": "\"The Undying Fire\"",
     "rarity": 5,
-    "element": "Pyro"
+    "element": "Pyro",
+    "weaponType": "sword",
+    "region": "Mondstadt"
   },
   {
     "id": "emilie",
+    "key": "Emilie",
     "name": "Emilie",
+    "title": "A Thousand Scents Traced",
     "rarity": 5,
-    "element": "Dendro"
+    "element": "Dendro",
+    "weaponType": "polearm",
+    "region": "Fontaine"
   },
   {
     "id": "escoffier",
+    "key": "Escoffier",
     "name": "Escoffier",
+    "title": "Tasteful Excellence",
     "rarity": 5,
-    "element": "Cryo"
+    "element": "Cryo",
+    "weaponType": "polearm",
+    "region": "Fontaine"
   },
   {
     "id": "eula",
+    "key": "Eula",
     "name": "Eula",
+    "title": "Dance of the Shimmering Wave",
     "rarity": 5,
-    "element": "Cryo"
+    "element": "Cryo",
+    "weaponType": "claymore",
+    "region": "Mondstadt"
   },
   {
     "id": "faruzan",
+    "key": "Faruzan",
     "name": "Faruzan",
+    "title": "Enigmatic Machinist",
     "rarity": 4,
-    "element": "Anemo"
+    "element": "Anemo",
+    "weaponType": "bow",
+    "region": "Sumeru"
   },
   {
     "id": "fischl",
+    "key": "Fischl",
     "name": "Fischl",
+    "title": "Prinzessin der Verurteilung!",
     "rarity": 4,
-    "element": "Electro"
+    "element": "Electro",
+    "weaponType": "bow",
+    "region": "Mondstadt"
   },
   {
     "id": "flins",
+    "key": "Flins",
     "name": "Flins",
+    "title": "Shadowy Lights, Stranger Wights",
     "rarity": 5,
-    "element": "Electro"
+    "element": "Electro",
+    "weaponType": "polearm",
+    "region": "Nod-Krai"
   },
   {
     "id": "freminet",
+    "key": "Freminet",
     "name": "Freminet",
+    "title": "Yearning for Unseen Depths",
     "rarity": 4,
-    "element": "Cryo"
+    "element": "Cryo",
+    "weaponType": "claymore",
+    "region": "Fontaine"
   },
   {
     "id": "furina",
+    "key": "Furina",
     "name": "Furina",
+    "title": "Endless Solo of Solitude",
     "rarity": 5,
-    "element": "Hydro"
+    "element": "Hydro",
+    "weaponType": "sword",
+    "region": "Fontaine"
   },
   {
     "id": "gaming",
+    "key": "Gaming",
     "name": "Gaming",
+    "title": "Leonine Vanguard",
     "rarity": 4,
-    "element": "Pyro"
+    "element": "Pyro",
+    "weaponType": "claymore",
+    "region": "Liyue"
   },
   {
     "id": "ganyu",
+    "key": "Ganyu",
     "name": "Ganyu",
+    "title": "Plenilune Gaze",
     "rarity": 5,
-    "element": "Cryo"
+    "element": "Cryo",
+    "weaponType": "bow",
+    "region": "Liyue"
   },
   {
     "id": "gorou",
+    "key": "Gorou",
     "name": "Gorou",
+    "title": "Canine Warrior",
     "rarity": 4,
-    "element": "Geo"
+    "element": "Geo",
+    "weaponType": "bow",
+    "region": "Inazuma"
   },
   {
     "id": "hu-tao",
+    "key": "HuTao",
     "name": "Hu Tao",
+    "title": "Fragrance in Thaw",
     "rarity": 5,
-    "element": "Pyro"
+    "element": "Pyro",
+    "weaponType": "polearm",
+    "region": "Liyue"
   },
   {
     "id": "iansan",
+    "key": "Iansan",
     "name": "Iansan",
+    "title": "Tempered in Molten Stone",
     "rarity": 4,
-    "element": "Electro"
+    "element": "Electro",
+    "weaponType": "polearm",
+    "region": "Natlan"
   },
   {
     "id": "ifa",
+    "key": "Ifa",
     "name": "Ifa",
+    "title": "In the Wake of Wandering Winds",
     "rarity": 4,
-    "element": "Anemo"
+    "element": "Anemo",
+    "weaponType": "catalyst",
+    "region": "Natlan"
   },
   {
     "id": "illuga",
+    "key": "Illuga",
     "name": "Illuga",
+    "title": "Nightmare's Burning Heart",
     "rarity": 4,
-    "element": "Geo"
+    "element": "Geo",
+    "weaponType": "polearm",
+    "region": "Nod-Krai"
   },
   {
     "id": "ineffa",
+    "key": "Ineffa",
     "name": "Ineffa",
+    "title": "Boom Boom Thunderwave",
     "rarity": 5,
-    "element": "Electro"
+    "element": "Electro",
+    "weaponType": "polearm",
+    "region": "Nod-Krai"
   },
   {
     "id": "jahoda",
+    "key": "Jahoda",
     "name": "Jahoda",
+    "title": "Windthreading Shadow",
     "rarity": 4,
-    "element": "Anemo"
+    "element": "Anemo",
+    "weaponType": "bow",
+    "region": "Nod-Krai"
   },
   {
     "id": "jean",
+    "key": "Jean",
     "name": "Jean",
+    "title": "Dandelion Knight",
     "rarity": 5,
-    "element": "Anemo"
+    "element": "Anemo",
+    "weaponType": "sword",
+    "region": "Mondstadt"
   },
   {
     "id": "kachina",
+    "key": "Kachina",
     "name": "Kachina",
+    "title": "Mottled Gold Yet Unsmelted",
     "rarity": 4,
-    "element": "Geo"
+    "element": "Geo",
+    "weaponType": "polearm",
+    "region": "Natlan"
   },
   {
     "id": "kaedehara-kazuha",
+    "key": "KaedeharaKazuha",
     "name": "Kaedehara Kazuha",
+    "title": "Scarlet Leaves Pursue Wild Waves",
     "rarity": 5,
-    "element": "Anemo"
+    "element": "Anemo",
+    "weaponType": "sword",
+    "region": "Inazuma"
   },
   {
     "id": "kaeya",
+    "key": "Kaeya",
     "name": "Kaeya",
+    "title": "Frostwind Swordsman",
     "rarity": 4,
-    "element": "Cryo"
+    "element": "Cryo",
+    "weaponType": "sword",
+    "region": "Mondstadt"
   },
   {
     "id": "kamisato-ayaka",
+    "key": "KamisatoAyaka",
     "name": "Kamisato Ayaka",
+    "title": "Frostflake Heron",
     "rarity": 5,
-    "element": "Cryo"
+    "element": "Cryo",
+    "weaponType": "sword",
+    "region": "Inazuma"
   },
   {
     "id": "kamisato-ayato",
+    "key": "KamisatoAyato",
     "name": "Kamisato Ayato",
+    "title": "Pillar of Fortitude",
     "rarity": 5,
-    "element": "Hydro"
+    "element": "Hydro",
+    "weaponType": "sword",
+    "region": "Inazuma"
   },
   {
     "id": "kaveh",
+    "key": "Kaveh",
     "name": "Kaveh",
+    "title": "Empyrean Reflection",
     "rarity": 4,
-    "element": "Dendro"
+    "element": "Dendro",
+    "weaponType": "claymore",
+    "region": "Sumeru"
   },
   {
     "id": "keqing",
+    "key": "Keqing",
     "name": "Keqing",
+    "title": "Driving Thunder",
     "rarity": 5,
-    "element": "Electro"
+    "element": "Electro",
+    "weaponType": "sword",
+    "region": "Liyue"
   },
   {
     "id": "kinich",
+    "key": "Kinich",
     "name": "Kinich",
+    "title": "Turnfire Hunt",
     "rarity": 5,
-    "element": "Dendro"
+    "element": "Dendro",
+    "weaponType": "claymore",
+    "region": "Natlan"
   },
   {
     "id": "kirara",
+    "key": "Kirara",
     "name": "Kirara",
+    "title": "Cat Upon the Eaves",
     "rarity": 4,
-    "element": "Dendro"
+    "element": "Dendro",
+    "weaponType": "sword",
+    "region": "Inazuma"
   },
   {
     "id": "klee",
+    "key": "Klee",
     "name": "Klee",
+    "title": "Fleeing Sunlight",
     "rarity": 5,
-    "element": "Pyro"
+    "element": "Pyro",
+    "weaponType": "catalyst",
+    "region": "Mondstadt"
   },
   {
     "id": "kujou-sara",
+    "key": "KujouSara",
     "name": "Kujou Sara",
+    "title": "Crowfeather Kaburaya",
     "rarity": 4,
-    "element": "Electro"
+    "element": "Electro",
+    "weaponType": "bow",
+    "region": "Inazuma"
   },
   {
     "id": "kuki-shinobu",
+    "key": "KukiShinobu",
     "name": "Kuki Shinobu",
+    "title": "Mender of Tribulations",
     "rarity": 4,
-    "element": "Electro"
+    "element": "Electro",
+    "weaponType": "sword",
+    "region": "Inazuma"
   },
   {
     "id": "lan-yan",
+    "key": "LanYan",
     "name": "Lan Yan",
+    "title": "Spring Woven From Jade",
     "rarity": 4,
-    "element": "Anemo"
+    "element": "Anemo",
+    "weaponType": "catalyst",
+    "region": "Liyue"
   },
   {
     "id": "lauma",
+    "key": "Lauma",
     "name": "Lauma",
+    "title": "Evermoon's Sacrament Song",
     "rarity": 5,
-    "element": "Dendro"
+    "element": "Dendro",
+    "weaponType": "catalyst",
+    "region": "Nod-Krai"
   },
   {
     "id": "layla",
+    "key": "Layla",
     "name": "Layla",
+    "title": "Fantastical Evening Star",
     "rarity": 4,
-    "element": "Cryo"
+    "element": "Cryo",
+    "weaponType": "sword",
+    "region": "Sumeru"
   },
   {
     "id": "linnea",
+    "key": "Linnea",
     "name": "Linnea",
+    "title": "Augur of Wonders",
     "rarity": 5,
-    "element": "Geo"
+    "element": "Geo",
+    "weaponType": "bow",
+    "region": "Nod-Krai"
   },
   {
     "id": "lisa",
+    "key": "Lisa",
     "name": "Lisa",
+    "title": "Witch of Purple Rose",
     "rarity": 4,
-    "element": "Electro"
+    "element": "Electro",
+    "weaponType": "catalyst",
+    "region": "Mondstadt"
   },
   {
     "id": "lohen",
+    "key": "Lohen",
     "name": "Lohen",
+    "title": "Sharpened Arrowhead",
     "rarity": 5,
-    "element": "Cryo"
+    "element": "Cryo",
+    "weaponType": "polearm",
+    "region": "Mondstadt"
   },
   {
     "id": "lumine",
+    "key": "Traveler",
     "name": "Lumine",
     "rarity": 5,
-    "element": "None"
+    "element": "None",
+    "weaponType": "sword"
   },
   {
     "id": "lynette",
+    "key": "Lynette",
     "name": "Lynette",
+    "title": "Elegance in the Shadows",
     "rarity": 4,
-    "element": "Anemo"
+    "element": "Anemo",
+    "weaponType": "sword",
+    "region": "Fontaine"
   },
   {
     "id": "lyney",
+    "key": "Lyney",
     "name": "Lyney",
+    "title": "Spectacle of Phantasmagoria",
     "rarity": 5,
-    "element": "Pyro"
+    "element": "Pyro",
+    "weaponType": "bow",
+    "region": "Fontaine"
   },
   {
     "id": "mavuika",
+    "key": "Mavuika",
     "name": "Mavuika",
+    "title": "Night-Igniting Flame",
     "rarity": 5,
-    "element": "Pyro"
+    "element": "Pyro",
+    "weaponType": "claymore",
+    "region": "Natlan"
   },
   {
     "id": "mika",
+    "key": "Mika",
     "name": "Mika",
+    "title": "Coordinates of Clear Frost",
     "rarity": 4,
-    "element": "Cryo"
+    "element": "Cryo",
+    "weaponType": "polearm",
+    "region": "Mondstadt"
   },
   {
     "id": "mona",
+    "key": "Mona",
     "name": "Mona",
+    "title": "Astral Reflection",
     "rarity": 5,
-    "element": "Hydro"
+    "element": "Hydro",
+    "weaponType": "catalyst",
+    "region": "Mondstadt"
   },
   {
     "id": "mualani",
+    "key": "Mualani",
     "name": "Mualani",
+    "title": "Splish-Splash Wavechaser",
     "rarity": 5,
-    "element": "Hydro"
+    "element": "Hydro",
+    "weaponType": "catalyst",
+    "region": "Natlan"
   },
   {
     "id": "nahida",
+    "key": "Nahida",
     "name": "Nahida",
+    "title": "Physic of Purity",
     "rarity": 5,
-    "element": "Dendro"
+    "element": "Dendro",
+    "weaponType": "catalyst",
+    "region": "Sumeru"
   },
   {
     "id": "navia",
+    "key": "Navia",
     "name": "Navia",
+    "title": "Helm of the Radiant Rose",
     "rarity": 5,
-    "element": "Geo"
+    "element": "Geo",
+    "weaponType": "claymore",
+    "region": "Fontaine"
   },
   {
     "id": "nefer",
+    "key": "Nefer",
     "name": "Nefer",
+    "title": "Secret Beneath the Sands",
     "rarity": 5,
-    "element": "Dendro"
+    "element": "Dendro",
+    "weaponType": "catalyst",
+    "region": "Nod-Krai"
   },
   {
     "id": "neuvillette",
+    "key": "Neuvillette",
     "name": "Neuvillette",
+    "title": "Ordainer of Inexorable Judgment",
     "rarity": 5,
-    "element": "Hydro"
+    "element": "Hydro",
+    "weaponType": "catalyst",
+    "region": "Fontaine"
   },
   {
     "id": "nicole",
+    "key": "Nicole",
     "name": "Nicole",
+    "title": "Clamor Within",
     "rarity": 5,
-    "element": "Pyro"
+    "element": "Pyro",
+    "weaponType": "catalyst"
   },
   {
     "id": "nilou",
+    "key": "Nilou",
     "name": "Nilou",
+    "title": "Dance of Lotuslight",
     "rarity": 5,
-    "element": "Hydro"
+    "element": "Hydro",
+    "weaponType": "sword",
+    "region": "Sumeru"
   },
   {
     "id": "ningguang",
+    "key": "Ningguang",
     "name": "Ningguang",
+    "title": "Eclipsing Star",
     "rarity": 4,
-    "element": "Geo"
+    "element": "Geo",
+    "weaponType": "catalyst",
+    "region": "Liyue"
   },
   {
     "id": "noelle",
+    "key": "Noelle",
     "name": "Noelle",
+    "title": "Chivalric Blossom",
     "rarity": 4,
-    "element": "Geo"
+    "element": "Geo",
+    "weaponType": "claymore",
+    "region": "Mondstadt"
   },
   {
     "id": "odette",
+    "key": "Odette",
     "name": "Odette",
+    "title": "Swirling Snow",
     "rarity": 5,
-    "element": "Cryo"
+    "element": "Cryo",
+    "weaponType": "sword"
   },
   {
     "id": "ororon",
+    "key": "Ororon",
     "name": "Ororon",
+    "title": "Shadow of the Night-Wind",
     "rarity": 4,
-    "element": "Electro"
+    "element": "Electro",
+    "weaponType": "bow",
+    "region": "Natlan"
   },
   {
     "id": "prune",
+    "key": "Prune",
     "name": "Prune",
+    "title": "Childlike Dreams Cherished",
     "rarity": 4,
-    "element": "Anemo"
+    "element": "Anemo",
+    "weaponType": "catalyst",
+    "region": "Mondstadt"
   },
   {
     "id": "qiqi",
+    "key": "Qiqi",
     "name": "Qiqi",
+    "title": "Icy Resurrection",
     "rarity": 5,
-    "element": "Cryo"
+    "element": "Cryo",
+    "weaponType": "sword",
+    "region": "Liyue"
   },
   {
     "id": "raiden-shogun",
+    "key": "RaidenShogun",
     "name": "Raiden Shogun",
+    "title": "Plane of Euthymia",
     "rarity": 5,
-    "element": "Electro"
+    "element": "Electro",
+    "weaponType": "polearm",
+    "region": "Inazuma"
   },
   {
     "id": "razor",
+    "key": "Razor",
     "name": "Razor",
+    "title": "Wolf Boy",
     "rarity": 4,
-    "element": "Electro"
+    "element": "Electro",
+    "weaponType": "claymore",
+    "region": "Mondstadt"
   },
   {
     "id": "rosaria",
+    "key": "Rosaria",
     "name": "Rosaria",
+    "title": "Thorny Benevolence",
     "rarity": 4,
-    "element": "Cryo"
+    "element": "Cryo",
+    "weaponType": "polearm",
+    "region": "Mondstadt"
   },
   {
     "id": "sandrone",
+    "key": "Sandrone",
     "name": "Sandrone",
+    "title": "Mirrored Analysis",
     "rarity": 5,
-    "element": "Cryo"
+    "element": "Cryo",
+    "weaponType": "claymore"
   },
   {
     "id": "sangonomiya-kokomi",
+    "key": "SangonomiyaKokomi",
     "name": "Sangonomiya Kokomi",
+    "title": "Pearl of Wisdom",
     "rarity": 5,
-    "element": "Hydro"
+    "element": "Hydro",
+    "weaponType": "catalyst",
+    "region": "Inazuma"
   },
   {
     "id": "sayu",
+    "key": "Sayu",
     "name": "Sayu",
+    "title": "Mujina Ninja",
     "rarity": 4,
-    "element": "Anemo"
+    "element": "Anemo",
+    "weaponType": "claymore",
+    "region": "Inazuma"
   },
   {
     "id": "sethos",
+    "key": "Sethos",
     "name": "Sethos",
+    "title": "Wisdom's Measure",
     "rarity": 4,
-    "element": "Electro"
+    "element": "Electro",
+    "weaponType": "bow",
+    "region": "Sumeru"
   },
   {
     "id": "shenhe",
+    "key": "Shenhe",
     "name": "Shenhe",
+    "title": "Lonesome Transcendence",
     "rarity": 5,
-    "element": "Cryo"
+    "element": "Cryo",
+    "weaponType": "polearm",
+    "region": "Liyue"
   },
   {
     "id": "shikanoin-heizou",
+    "key": "ShikanoinHeizou",
     "name": "Shikanoin Heizou",
+    "title": "Analytical Harmony",
     "rarity": 4,
-    "element": "Anemo"
+    "element": "Anemo",
+    "weaponType": "catalyst",
+    "region": "Inazuma"
   },
   {
     "id": "sigewinne",
+    "key": "Sigewinne",
     "name": "Sigewinne",
+    "title": "Wondrous Dragonheir",
     "rarity": 5,
-    "element": "Hydro"
+    "element": "Hydro",
+    "weaponType": "bow",
+    "region": "Fontaine"
   },
   {
     "id": "skirk",
+    "key": "Skirk",
     "name": "Skirk",
+    "title": "Void Star",
     "rarity": 5,
-    "element": "Cryo"
+    "element": "Cryo",
+    "weaponType": "sword"
   },
   {
     "id": "sucrose",
+    "key": "Sucrose",
     "name": "Sucrose",
+    "title": "Harmless Sweetie",
     "rarity": 4,
-    "element": "Anemo"
+    "element": "Anemo",
+    "weaponType": "catalyst",
+    "region": "Mondstadt"
   },
   {
     "id": "tartaglia",
+    "key": "Tartaglia",
     "name": "Tartaglia",
+    "title": "Childe",
     "rarity": 5,
-    "element": "Hydro"
+    "element": "Hydro",
+    "weaponType": "bow",
+    "region": "Snezhnaya"
   },
   {
     "id": "thoma",
+    "key": "Thoma",
     "name": "Thoma",
+    "title": "Protector From Afar",
     "rarity": 4,
-    "element": "Pyro"
+    "element": "Pyro",
+    "weaponType": "polearm",
+    "region": "Inazuma"
   },
   {
     "id": "tighnari",
+    "key": "Tighnari",
     "name": "Tighnari",
+    "title": "Verdant Strider",
     "rarity": 5,
-    "element": "Dendro"
+    "element": "Dendro",
+    "weaponType": "bow",
+    "region": "Sumeru"
   },
   {
     "id": "varesa",
+    "key": "Varesa",
     "name": "Varesa",
+    "title": "Strength in Serenity",
     "rarity": 5,
-    "element": "Electro"
+    "element": "Electro",
+    "weaponType": "catalyst",
+    "region": "Natlan"
   },
   {
     "id": "varka",
+    "key": "Varka",
     "name": "Varka",
+    "title": "Knight of Boreas",
     "rarity": 5,
-    "element": "Anemo"
+    "element": "Anemo",
+    "weaponType": "claymore",
+    "region": "Mondstadt"
   },
   {
     "id": "venti",
+    "key": "Venti",
     "name": "Venti",
+    "title": "Windborne Bard",
     "rarity": 5,
-    "element": "Anemo"
+    "element": "Anemo",
+    "weaponType": "bow",
+    "region": "Mondstadt"
   },
   {
     "id": "vesna",
+    "key": "Vesna",
     "name": "Vesna",
+    "title": "Snowy Banquet's Sharp Blade",
     "rarity": 5,
-    "element": "Anemo"
+    "element": "Anemo",
+    "weaponType": "sword"
   },
   {
     "id": "vodyanitsa",
+    "key": "Vodyanitsa",
     "name": "Vodyanitsa",
+    "title": "Lingering Siren-Song",
     "rarity": 5,
-    "element": "Hydro"
+    "element": "Hydro",
+    "weaponType": "catalyst"
   },
   {
     "id": "wanderer",
+    "key": "Wanderer",
     "name": "Wanderer",
+    "title": "Eons Adrift",
     "rarity": 5,
-    "element": "Anemo"
+    "element": "Anemo",
+    "weaponType": "catalyst",
+    "region": "Sumeru"
   },
   {
     "id": "wriothesley",
+    "key": "Wriothesley",
     "name": "Wriothesley",
+    "title": "Emissary of Solitary Iniquity",
     "rarity": 5,
-    "element": "Cryo"
+    "element": "Cryo",
+    "weaponType": "catalyst",
+    "region": "Fontaine"
   },
   {
     "id": "xiangling",
+    "key": "Xiangling",
     "name": "Xiangling",
+    "title": "Exquisite Delicacy",
     "rarity": 4,
-    "element": "Pyro"
+    "element": "Pyro",
+    "weaponType": "polearm",
+    "region": "Liyue"
   },
   {
     "id": "xianyun",
+    "key": "Xianyun",
     "name": "Xianyun",
+    "title": "Passerine Herald",
     "rarity": 5,
-    "element": "Anemo"
+    "element": "Anemo",
+    "weaponType": "catalyst",
+    "region": "Liyue"
   },
   {
     "id": "xiao",
+    "key": "Xiao",
     "name": "Xiao",
+    "title": "Vigilant Yaksha",
     "rarity": 5,
-    "element": "Anemo"
+    "element": "Anemo",
+    "weaponType": "polearm",
+    "region": "Liyue"
   },
   {
     "id": "xilonen",
+    "key": "Xilonen",
     "name": "Xilonen",
+    "title": "Ardent Flames Forge the Soul",
     "rarity": 5,
-    "element": "Geo"
+    "element": "Geo",
+    "weaponType": "sword",
+    "region": "Natlan"
   },
   {
     "id": "xingqiu",
+    "key": "Xingqiu",
     "name": "Xingqiu",
+    "title": "Juvenile Galant",
     "rarity": 4,
-    "element": "Hydro"
+    "element": "Hydro",
+    "weaponType": "sword",
+    "region": "Liyue"
   },
   {
     "id": "xinyan",
+    "key": "Xinyan",
     "name": "Xinyan",
+    "title": "Blazing Riff",
     "rarity": 4,
-    "element": "Pyro"
+    "element": "Pyro",
+    "weaponType": "claymore",
+    "region": "Liyue"
   },
   {
     "id": "yae-miko",
+    "key": "YaeMiko",
     "name": "Yae Miko",
+    "title": "Astute Amusement",
     "rarity": 5,
-    "element": "Electro"
+    "element": "Electro",
+    "weaponType": "catalyst",
+    "region": "Inazuma"
   },
   {
     "id": "yanfei",
+    "key": "Yanfei",
     "name": "Yanfei",
+    "title": "Wise Innocence",
     "rarity": 4,
-    "element": "Pyro"
+    "element": "Pyro",
+    "weaponType": "catalyst",
+    "region": "Liyue"
   },
   {
     "id": "yaoyao",
+    "key": "Yaoyao",
     "name": "Yaoyao",
+    "title": "Burgeoning Grace",
     "rarity": 4,
-    "element": "Dendro"
+    "element": "Dendro",
+    "weaponType": "polearm",
+    "region": "Liyue"
   },
   {
     "id": "yelan",
+    "key": "Yelan",
     "name": "Yelan",
+    "title": "Valley Orchid",
     "rarity": 5,
-    "element": "Hydro"
+    "element": "Hydro",
+    "weaponType": "bow",
+    "region": "Liyue"
   },
   {
     "id": "yoimiya",
+    "key": "Yoimiya",
     "name": "Yoimiya",
+    "title": "Frolicking Flames",
     "rarity": 5,
-    "element": "Pyro"
+    "element": "Pyro",
+    "weaponType": "bow",
+    "region": "Inazuma"
   },
   {
     "id": "yumemizuki-mizuki",
+    "key": "YumemizukiMizuki",
     "name": "Yumemizuki Mizuki",
+    "title": "Embrace of Enchanting Dreams",
     "rarity": 5,
-    "element": "Anemo"
+    "element": "Anemo",
+    "weaponType": "catalyst",
+    "region": "Inazuma"
   },
   {
     "id": "yun-jin",
+    "key": "YunJin",
     "name": "Yun Jin",
+    "title": "Stage Lucida",
     "rarity": 4,
-    "element": "Geo"
+    "element": "Geo",
+    "weaponType": "polearm",
+    "region": "Liyue"
   },
   {
     "id": "zhongli",
+    "key": "Zhongli",
     "name": "Zhongli",
+    "title": "Vago Mundo",
     "rarity": 5,
-    "element": "Geo"
+    "element": "Geo",
+    "weaponType": "polearm",
+    "region": "Liyue"
   },
   {
     "id": "zibai",
+    "key": "Zibai",
     "name": "Zibai",
+    "title": "White Horse's Fleeting Spring",
     "rarity": 5,
-    "element": "Geo"
+    "element": "Geo",
+    "weaponType": "sword"
   }
 ]
