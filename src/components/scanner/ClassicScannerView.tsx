@@ -255,7 +255,7 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
             review.map((r) => ({ id: r.materialId, name: r.name, quantity: r.quantity, rarity: r.rarity })),
           );
           toast.success(`Added ${review.length} material${review.length > 1 ? "s" : ""} to your inventory.`);
-          router.push("/inventory");
+          router.push("/inventory/materials");
         }
       } catch (err) {
         if (controller.signal.aborted) {
@@ -280,7 +280,7 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
     (confirmed: DetectedItem[]) => {
       mergeIntoInventory(confirmed);
       setIsReviewOpen(false);
-      router.push("/inventory");
+      router.push("/inventory/materials");
     },
     [mergeIntoInventory, router],
   );

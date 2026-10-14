@@ -26,7 +26,7 @@ export default function ScannerDebugPage() {
 
         <div className="flex items-center gap-3">
           <Link
-            href="/materials"
+            href="/db/materials"
             className="text-on-surface flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-4 py-2 text-xs font-bold shadow-sm backdrop-blur-md transition-all hover:scale-105 hover:bg-white/20 active:scale-95 sm:text-sm"
           >
             <span>Materials</span>

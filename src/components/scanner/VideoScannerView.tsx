@@ -283,7 +283,7 @@ export function VideoScannerView({ id = "video-panel", ariaLabelledBy = "video-t
             review.map((r) => ({ id: r.materialId, name: r.name, quantity: r.quantity, rarity: r.rarity })),
           );
           toast.success(`Added ${review.length} material${review.length > 1 ? "s" : ""} to your inventory.`);
-          router.push("/inventory");
+          router.push("/inventory/materials");
         }
       } catch (err) {
         if (controller.signal.aborted) {
@@ -312,7 +312,7 @@ export function VideoScannerView({ id = "video-panel", ariaLabelledBy = "video-t
     (confirmed: DetectedItem[]) => {
       mergeIntoInventory(confirmed);
       setIsReviewOpen(false);
-      router.push("/inventory");
+      router.push("/inventory/materials");
     },
     [mergeIntoInventory, router],
   );

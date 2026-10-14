@@ -5,10 +5,10 @@ import { Flower2, PackageCheck, Swords, Users } from "lucide-react";
 import { PillNav, type PillNavItem } from "@/components/layout/PillNav";
 
 const DATABASE_ITEMS: PillNavItem[] = [
-  { href: "/materials", label: "Materials", icon: PackageCheck },
-  { href: "/characters", label: "Characters", icon: Users },
-  { href: "/weapons", label: "Weapons", icon: Swords },
-  { href: "/artifacts", label: "Artifacts", icon: Flower2 },
+  { href: "/db/materials", label: "Materials", icon: PackageCheck },
+  { href: "/db/characters", label: "Characters", icon: Users },
+  { href: "/db/weapons", label: "Weapons", icon: Swords },
+  { href: "/db/artifacts", label: "Artifacts", icon: Flower2 },
 ];
 
 /**
@@ -21,7 +21,8 @@ export function DatabaseNav() {
     <PillNav
       items={DATABASE_ITEMS}
       ariaLabel="Database"
-      className="grid w-full sm:inline-grid sm:w-auto"
+      // self-start: the db layout is a flex column, which would stretch it
+      className="grid w-full sm:inline-grid sm:w-auto sm:self-start"
       iconClassName="hidden sm:block"
     />
   );
@@ -39,14 +40,26 @@ export const ELEMENT_ACCENTS: Record<string, string> = {
   None: "148, 163, 184",
 };
 
-export const ELEMENTS = ["Pyro", "Hydro", "Anemo", "Electro", "Dendro", "Cryo", "Geo"] as const;
+export const ELEMENTS = [
+  "Pyro",
+  "Hydro",
+  "Anemo",
+  "Electro",
+  "Dendro",
+  "Cryo",
+  "Geo",
+] as const;
 
 /** A small coloured dot and the element's name. */
 export function ElementTag({ element }: { element: string }) {
   const accent = ELEMENT_ACCENTS[element] ?? ELEMENT_ACCENTS.None;
   return (
     <span className="inline-flex items-center gap-1 text-[11px] text-white/75">
-      <span className="h-2 w-2 shrink-0 rounded-full" style={{ background: `rgb(${accent})` }} aria-hidden="true" />
+      <span
+        className="h-2 w-2 shrink-0 rounded-full"
+        style={{ background: `rgb(${accent})` }}
+        aria-hidden="true"
+      />
       {element === "None" ? "Any element" : element}
     </span>
   );

@@ -15,3 +15,5 @@ tsconfig.tsbuildinfo
 .kiro/*
 playwright-report
 test-results
+
+.next-prod

@@ -13,6 +13,8 @@ export interface PillNavItem {
   icon: LucideIcon;
   /** Other pages this link is current on, e.g. a section's sub-pages. */
   match?: string[];
+  /** Count badge after the label (e.g. items in an inventory tab). */
+  count?: number;
 }
 
 /** Track padding and gap between links, in px (matches p-1 / gap-1). */
@@ -107,6 +109,15 @@ export function PillNav({
               className={`h-3.5 w-3.5 shrink-0 transition-colors ${isActive ? "text-cyan-200" : "text-white/45"} ${iconClassName}`}
             />
             <span className="whitespace-nowrap">{item.label}</span>
+            {item.count !== undefined && (
+              <span
+                className={`rounded-full px-1.5 text-[10px] transition-colors ${
+                  isActive ? "bg-white/20 text-white" : "bg-white/10 text-white/60"
+                }`}
+              >
+                {item.count}
+              </span>
+            )}
           </ShellLink>
         );
       })}

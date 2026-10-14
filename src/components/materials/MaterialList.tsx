@@ -16,13 +16,12 @@ import {
 import { MaterialItem } from "@/lib/types";
 import {
   bagOrder,
-  getDirectoryMaterials,
   getMaterialCategoryId,
   getMaterialCategoryLabel,
   MaterialCategory,
   getRarityStyles,
-} from "@/lib/materials";
-import { DatabaseNav } from "@/components/database/DatabaseNav";
+} from "@/lib/material-ui";
+import { useMaterialDescriptions } from "@/lib/material-descriptions";
 import { MaterialCard } from "./MaterialCard";
 import { CategoryFilterPills } from "./CategoryFilterPills";
 import { MaterialTableView } from "./MaterialTableView";
@@ -53,9 +52,12 @@ const PAGE_SIZE_OPTIONS = [36, 72, 144];
 /** Page size that shows every material on one page. */
 const SHOW_ALL = Number.MAX_SAFE_INTEGER;
 
-export function MaterialList() {
-  const allMaterials = useMemo(() => getDirectoryMaterials(), []);
-
+/**
+ * The /db/materials page. `materials` comes from the server page without
+ * descriptions (most of the catalogs' bytes); they load once the page is idle,
+ * or right away for a search or the detail modal.
+ */
+export function MaterialList({ materials }: { materials: MaterialItem[] }) {
   const reducedMotion = usePrefersReducedMotion();
 
   // UI state
@@ -69,6 +71,15 @@ export function MaterialList() {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [selectedMaterial, setSelectedMaterial] = useState<MaterialItem | null>(
     null,
+  );
+
+  const descriptions = useMaterialDescriptions(search.trim() !== "" || selectedMaterial !== null);
+  const allMaterials = useMemo(
+    () =>
+      descriptions
+        ? materials.map((m) => ({ ...m, description: descriptions[m.id] ?? "" }))
+        : materials,
+    [materials, descriptions],
   );
 
   // Fetch the detail modal's code once the page is idle, so the first click opens it instantly
@@ -223,11 +234,9 @@ export function MaterialList() {
   useWiggleOnChange(heroRef, selectedRarity, reducedMotion);
 
   return (
-    <div className="flex w-full flex-1 flex-col items-center justify-start px-4 pb-4 pt-2 sm:px-6 sm:pt-4 md:px-8 md:pb-8">
-      {/* Main Container */}
-      <div className="w-full max-w-7xl space-y-6">
-        <DatabaseNav />
-
+    <>
+      {/* Main Container (db/layout.tsx holds the page padding and DatabaseNav) */}
+      <div className="w-full space-y-6">
         {/* Hero Header */}
         <div ref={heroRef} className="glass-card glass-card--lg p-6 sm:p-8">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -429,7 +438,12 @@ export function MaterialList() {
       {/* Material Detail Modal (mounted only while a material is selected) */}
       {selectedMaterial && (
         <MaterialModal
-          material={selectedMaterial}
+          material={
+            descriptions
+              ? { ...selectedMaterial, description: descriptions[selectedMaterial.id] ?? "" }
+              : selectedMaterial
+          }
+          descriptionPending={!descriptions}
           onClose={() => setSelectedMaterial(null)}
           onNavigateNext={handleNextModal}
           onNavigatePrev={handlePrevModal}
@@ -438,6 +452,6 @@ export function MaterialList() {
           total={stats.developmentTotal}
         />
       )}
-    </div>
+    </>
   );
 }

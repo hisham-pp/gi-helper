@@ -27,6 +27,8 @@ interface MaterialModalProps {
   hasPrev?: boolean;
   /** Number of materials in the dataset, shown as "#order / total". */
   total?: number;
+  /** The description is still loading (see useMaterialDescriptions). */
+  descriptionPending?: boolean;
 }
 
 /** Material details. MaterialList loads it on demand and mounts it only while a material is selected. */
@@ -38,6 +40,7 @@ export function MaterialModal({
   hasNext,
   hasPrev,
   total,
+  descriptionPending = false,
 }: MaterialModalProps) {
   const [copied, setCopied] = useState(false);
   const [imgError, setImgError] = useState(false);
@@ -229,7 +232,7 @@ export function MaterialModal({
               ))
             ) : (
               <span className="italic text-white/40">
-                No description available.
+                {descriptionPending ? "Loading description…" : "No description available."}
               </span>
             )}
           </div>

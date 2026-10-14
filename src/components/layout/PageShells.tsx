@@ -148,15 +148,21 @@ function HomeShell() {
  */
 export const PAGE_SHELLS: Record<string, () => React.ReactElement> = {
   "/": HomeShell,
-  "/inventory": () => (
-    <ShellPage width="max-w-7xl">
-      <Hero icon={Backpack} title="Inventory" chips={2} />
-      <div className="glass-track h-[46px] w-full max-w-[560px]" />
-      <FilterBar />
-      <CardGrid count={12} />
-    </ShellPage>
+  // One shell per inventory page: the header and links are the same on all four
+  ...Object.fromEntries(
+    ["materials", "characters", "weapons", "artifacts"].map((tab) => [
+      `/inventory/${tab}`,
+      () => (
+        <ShellPage width="max-w-7xl">
+          <Hero icon={Backpack} title="Inventory" chips={2} />
+          <div className="glass-track h-[42px] w-full max-w-[520px]" />
+          <FilterBar />
+          <CardGrid count={12} />
+        </ShellPage>
+      ),
+    ]),
   ),
-  "/materials": () => (
+  "/db/materials": () => (
     <ShellPage width="max-w-7xl">
       <DatabaseTabs />
       <Hero icon={PackageCheck} title="Materials Directory" chips={4} />
@@ -164,7 +170,7 @@ export const PAGE_SHELLS: Record<string, () => React.ReactElement> = {
       <CardGrid count={18} />
     </ShellPage>
   ),
-  "/characters": () => (
+  "/db/characters": () => (
     <ShellPage width="max-w-7xl">
       <DatabaseTabs />
       <Hero icon={Users} title="Characters" />
@@ -172,7 +178,7 @@ export const PAGE_SHELLS: Record<string, () => React.ReactElement> = {
       <CardGrid count={18} />
     </ShellPage>
   ),
-  "/weapons": () => (
+  "/db/weapons": () => (
     <ShellPage width="max-w-7xl">
       <DatabaseTabs />
       <Hero icon={Swords} title="Weapons" />
@@ -180,7 +186,7 @@ export const PAGE_SHELLS: Record<string, () => React.ReactElement> = {
       <CardGrid count={18} />
     </ShellPage>
   ),
-  "/artifacts": () => (
+  "/db/artifacts": () => (
     <ShellPage width="max-w-7xl">
       <DatabaseTabs />
       <Hero icon={Flower2} title="Artifact Sets" />

@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // NEXT_DIST_DIR=.next-prod lets a production build (and `next start` for the
+  // E2E tests) run beside `pnpm dev`, which would otherwise overwrite .next.
+  distDir: process.env.NEXT_DIST_DIR || ".next",
   typedRoutes: true,
   env: {
     NEXT_PUBLIC_BUILD_ID: process.env.NEXT_BUILD_ID ?? `dev-${Date.now()}`,
@@ -28,16 +31,30 @@ const nextConfig: NextConfig = {
       ".next/cache/**/*",
       "public/images/artifacts/**/*",
       "public/images/boss/**/*",
+      "public/images/character-avatars/**/*",
       "public/images/characters/**/*",
       "public/images/consumables/**/*",
       "public/images/enemies/**/*",
       "public/images/map/**/*",
+      "public/images/material-thumbs/**/*",
       "public/images/materials/**/*",
       "public/images/weapons/**/*",
     ],
   },
   experimental: {
     optimizePackageImports: ["lucide-react"],
+  },
+  // The database and inventory moved to sub-pages (/db/*, /inventory/*) in 0.0.20
+  async redirects() {
+    return [
+      { source: "/db", destination: "/db/materials", permanent: false },
+      { source: "/inventory", destination: "/inventory/materials", permanent: false },
+      // Old URLs, still linked from outside
+      { source: "/materials", destination: "/db/materials", permanent: true },
+      { source: "/characters", destination: "/db/characters", permanent: true },
+      { source: "/weapons", destination: "/db/weapons", permanent: true },
+      { source: "/artifacts", destination: "/db/artifacts", permanent: true },
+    ];
   },
   // Files in public/ default to "max-age=0, must-revalidate", so browsers
   // re-check every icon on every visit. These rarely or never change.

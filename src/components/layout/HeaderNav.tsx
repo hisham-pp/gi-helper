@@ -8,9 +8,10 @@ import { isCurrent, PillNav, type PillNavItem } from "./PillNav";
 
 const NAV_ITEMS: PillNavItem[] = [
   { href: "/", label: "Home", icon: House },
-  { href: "/inventory", label: "Inventory", icon: Backpack },
+  // Materials, characters, weapons and artifacts you own (see InventoryNav)
+  { href: "/inventory/materials", label: "Inventory", icon: Backpack, match: ["/inventory"] },
   // Materials, characters, weapons and artifacts (see DatabaseNav)
-  { href: "/materials", label: "Database", icon: Library, match: ["/characters", "/weapons", "/artifacts"] },
+  { href: "/db/materials", label: "Database", icon: Library, match: ["/db"] },
 ];
 
 /**

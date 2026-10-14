@@ -12,7 +12,8 @@ import { describeCharacter, type CharacterInfo } from "@/lib/good/catalog";
 import { formatLevel, type GoodCharacter } from "@/lib/good/types";
 import { useOwnedCharacters } from "@/lib/good-inventory";
 import { getRarityStyles } from "@/lib/material-ui";
-import { RarityStars, ResultsCounter, TabEmptyState } from "./shared";
+import { RarityStars, ResultsCounter, TabEmptyState, useHydrated } from "./shared";
+import { useInventoryActions } from "./InventoryShell";
 
 type SortOption = "level" | "constellation" | "rarity" | "name";
 
@@ -29,7 +30,9 @@ interface Entry {
 }
 
 /** The Characters tab of /inventory: owned characters with level, constellation and talents. */
-export function CharactersInventory({ onImport }: { onImport: () => void }) {
+export function CharactersInventory() {
+  const { openImport: onImport } = useInventoryActions();
+  const hydrated = useHydrated();
   const [characters, setCharacters] = useOwnedCharacters();
   const { confirm, confirmModal } = useConfirm();
   const [search, setSearch] = useState("");
@@ -75,6 +78,9 @@ export function CharactersInventory({ onImport }: { onImport: () => void }) {
     setCharacters([]);
     toast.success("Characters removed");
   }, [confirm, setCharacters]);
+
+  // Nothing until the browser's copy is read, so the empty state doesn't flash
+  if (!hydrated) return null;
 
   if (characters.length === 0) {
     return (

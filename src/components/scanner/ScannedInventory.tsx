@@ -30,10 +30,10 @@ import { useConfirm } from "@/components/ui/use-confirm";
 import { nameFromKey } from "@/lib/good/catalog";
 import { useExtraMaterials } from "@/lib/good-inventory";
 import {
-  getDirectoryMaterials,
   getMaterialCategoryId,
   MaterialCategory,
-} from "@/lib/materials";
+} from "@/lib/material-ui";
+import { useInventoryActions } from "@/components/inventory/InventoryShell";
 import { useScannerInventory } from "@/lib/scanner-inventory";
 import type { DetectedItem, MaterialItem } from "@/lib/types";
 import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion";
@@ -83,10 +83,12 @@ const noopSubscribe = () => () => {};
  * shared localStorage store), with search, category/rarity filters, sorting
  * and pagination, quantity edits and Clear All, plus the materials a GOOD
  * import brought that we don't catalog. The scanners switch here once a
- * scan's materials are added; the page header (InventoryPage) holds import
- * and export.
+ * scan's materials are added; the section's layout (InventoryShell) holds
+ * import and export. `catalog` (both catalogs, without descriptions) comes
+ * from the server page, so the materials data isn't in the page's JS.
  */
-export function ScannedInventory({ onImport }: { onImport: () => void }) {
+export function ScannedInventory({ catalog }: { catalog: MaterialItem[] }) {
+  const { openImport: onImport } = useInventoryActions();
   const [items, setItems] = useScannerInventory();
   const [extraMaterials, setExtraMaterials] = useExtraMaterials();
   const extraCount = Object.keys(extraMaterials).length;
@@ -114,8 +116,8 @@ export function ScannedInventory({ onImport }: { onImport: () => void }) {
   }, [search, selectedCategory, selectedRarity, sortBy, pageSize]);
 
   const materialsById = useMemo(
-    () => new Map(getDirectoryMaterials().map((m) => [m.id, m])),
-    [],
+    () => new Map(catalog.map((m) => [m.id, m])),
+    [catalog],
   );
 
   const entries = useMemo<InventoryEntry[]>(

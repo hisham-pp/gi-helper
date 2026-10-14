@@ -6,7 +6,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata: Metadata = pageMetadata({
   title: "All Genshin Impact Weapons",
   description: `Browse all ${weapons.length} Genshin Impact weapons with their base ATK and substat at max level and their passive, by type and rarity.`,
-  path: "/weapons",
+  path: "/db/weapons",
 });
 
 export default function WeaponsPage() {

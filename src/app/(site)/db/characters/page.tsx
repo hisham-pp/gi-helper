@@ -6,7 +6,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata: Metadata = pageMetadata({
   title: "All Genshin Impact Characters",
   description: `Browse all ${characters.length} playable Genshin Impact characters by element, weapon, region and rarity.`,
-  path: "/characters",
+  path: "/db/characters",
 });
 
 export default function CharactersPage() {

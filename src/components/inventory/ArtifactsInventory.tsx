@@ -25,7 +25,8 @@ import {
 } from "@/lib/good/types";
 import { useOwnedArtifacts } from "@/lib/good-inventory";
 import { getRarityStyles } from "@/lib/material-ui";
-import { EquippedBy, LockBadge, paginate, RarityStars, ResultsCounter, TabEmptyState } from "./shared";
+import { EquippedBy, LockBadge, paginate, RarityStars, ResultsCounter, TabEmptyState, useHydrated } from "./shared";
+import { useInventoryActions } from "./InventoryShell";
 
 type SortOption = "level" | "rarity" | "set";
 
@@ -45,7 +46,9 @@ interface Entry {
 }
 
 /** The Artifacts tab of /inventory: every piece with its stats and who wears it. */
-export function ArtifactsInventory({ onImport }: { onImport: () => void }) {
+export function ArtifactsInventory() {
+  const { openImport: onImport } = useInventoryActions();
+  const hydrated = useHydrated();
   const [artifacts, setArtifacts] = useOwnedArtifacts();
   const { confirm, confirmModal } = useConfirm();
   const [search, setSearch] = useState("");
@@ -128,6 +131,9 @@ export function ArtifactsInventory({ onImport }: { onImport: () => void }) {
     setArtifacts([]);
     toast.success("Artifacts removed");
   }, [confirm, setArtifacts]);
+
+  // Nothing until the browser's copy is read, so the empty state doesn't flash
+  if (!hydrated) return null;
 
   if (artifacts.length === 0) {
     return (

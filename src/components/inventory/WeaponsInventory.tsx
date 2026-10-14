@@ -20,7 +20,8 @@ import {
 import { formatLevel, type OwnedWeapon } from "@/lib/good/types";
 import { useOwnedWeapons } from "@/lib/good-inventory";
 import { getRarityStyles } from "@/lib/material-ui";
-import { EquippedBy, LockBadge, paginate, RarityStars, ResultsCounter, TabEmptyState } from "./shared";
+import { EquippedBy, LockBadge, paginate, RarityStars, ResultsCounter, TabEmptyState, useHydrated } from "./shared";
+import { useInventoryActions } from "./InventoryShell";
 
 type SortOption = "rarity" | "level" | "refinement" | "name";
 
@@ -41,7 +42,9 @@ interface Entry {
 }
 
 /** The Weapons tab of /inventory: owned weapons with level, refinement and who holds them. */
-export function WeaponsInventory({ onImport }: { onImport: () => void }) {
+export function WeaponsInventory() {
+  const { openImport: onImport } = useInventoryActions();
+  const hydrated = useHydrated();
   const [weapons, setWeapons] = useOwnedWeapons();
   const { confirm, confirmModal } = useConfirm();
   const [search, setSearch] = useState("");
@@ -104,6 +107,9 @@ export function WeaponsInventory({ onImport }: { onImport: () => void }) {
     setWeapons([]);
     toast.success("Weapons removed");
   }, [confirm, setWeapons]);
+
+  // Nothing until the browser's copy is read, so the empty state doesn't flash
+  if (!hydrated) return null;
 
   if (weapons.length === 0) {
     return (
