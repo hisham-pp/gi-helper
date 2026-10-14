@@ -10,6 +10,10 @@
     {
       "type": "improved",
       "text": "Feedback posts show the sender's character avatar."
+    },
+    {
+      "type": "improved",
+      "text": "All 122 playable characters are in the mix, up to the latest release, each with a small avatar that loads fast."
     }
   ]
 }
