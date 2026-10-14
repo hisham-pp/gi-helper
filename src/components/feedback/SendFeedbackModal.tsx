@@ -15,6 +15,7 @@ import {
   X,
 } from "lucide-react";
 import { toast } from "sonner";
+import { GlassInput } from "@/components/ui/GlassInput";
 import { GlassSegmentedControl } from "@/components/ui/GlassSegmentedControl";
 import { randomCharacter, type Character } from "@/lib/characters";
 import { compressFeedbackImage } from "@/lib/feedback/compress-image";
@@ -304,14 +305,15 @@ export function SendFeedbackModal({ onClose, onSent }: SendFeedbackModalProps) {
                   className="h-11 w-11 text-base"
                 />
               </div>
-              <input
+              <GlassInput
                 id={`${id}-name`}
                 value={name}
-                onChange={(e) => setName(e.target.value)}
+                onValueChange={setName}
                 maxLength={FEEDBACK_LIMITS.nameMax}
                 autoComplete="off"
                 placeholder={ANONYMOUS_NAME}
-                className="glass-input min-w-0 flex-1 rounded-xl px-3.5 py-2.5 text-sm"
+                clearable
+                className="min-w-0 flex-1"
               />
               <button
                 type="button"

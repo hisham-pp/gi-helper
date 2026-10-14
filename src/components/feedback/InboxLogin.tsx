@@ -3,7 +3,8 @@
 import React, { useId, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { CircleAlert, Eye, EyeOff, Loader2, Lock, LogIn } from "lucide-react";
+import { CircleAlert, Loader2, Lock, LogIn } from "lucide-react";
+import { GlassInput } from "@/components/ui/GlassInput";
 import { feedbackErrorMessage } from "@/lib/feedback/types";
 
 /**
@@ -15,7 +16,6 @@ export function InboxLogin() {
   const router = useRouter();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const id = useId();
@@ -65,15 +65,14 @@ export function InboxLogin() {
           <label htmlFor={`${id}-username`} className="text-xs font-semibold text-white/80">
             Username
           </label>
-          <input
+          <GlassInput
             id={`${id}-username`}
             value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            onValueChange={setUsername}
             required
             autoComplete="username"
             autoCapitalize="none"
             spellCheck={false}
-            className="glass-input w-full rounded-xl px-3.5 py-2.5 text-sm"
           />
         </div>
 
@@ -81,25 +80,14 @@ export function InboxLogin() {
           <label htmlFor={`${id}-password`} className="text-xs font-semibold text-white/80">
             Password
           </label>
-          <div className="relative">
-            <input
-              id={`${id}-password`}
-              type={showPassword ? "text" : "password"}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              autoComplete="current-password"
-              className="glass-input w-full rounded-xl px-3.5 py-2.5 pr-11 text-sm"
-            />
-            <button
-              type="button"
-              onClick={() => setShowPassword((show) => !show)}
-              className="glass-icon-btn absolute right-1.5 top-1/2 h-8 w-8 -translate-y-1/2 rounded-lg bg-transparent shadow-none"
-              aria-label={showPassword ? "Hide password" : "Show password"}
-            >
-              {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-            </button>
-          </div>
+          <GlassInput
+            id={`${id}-password`}
+            type="password"
+            value={password}
+            onValueChange={setPassword}
+            required
+            autoComplete="current-password"
+          />
         </div>
 
         {error && (

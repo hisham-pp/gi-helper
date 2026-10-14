@@ -1,0 +1,27 @@
+{
+  "title": "Fields that respond",
+  "date": "2026-10-14",
+  "summary": "Clear buttons and show-password buttons work on every click, with a little bounce.",
+  "changes": [
+    {
+      "type": "fixed",
+      "text": "The clear (×) button in search boxes now always clears them. Clicks on its upper half were sometimes lost."
+    },
+    {
+      "type": "fixed",
+      "text": "The show/hide password and API key buttons now work on every click."
+    },
+    {
+      "type": "improved",
+      "text": "All text fields share one look and behaviour: search boxes in the material picker and scan review can be cleared too, and the feedback form's name field has a clear button."
+    },
+    {
+      "type": "improved",
+      "text": "Fields give a small squash when you clear them or show/hide a password, and dropdowns do the same when their value changes."
+    },
+    {
+      "type": "improved",
+      "text": "Category and rarity filters are now sliding tab bars, with each count in a small badge. Rarity tabs keep their star colours, and each category has its own colour. The filter card gives a small squash when you switch category."
+    }
+  ]
+}

@@ -10,8 +10,6 @@ import {
   Cpu,
   Globe,
   ExternalLink,
-  Eye,
-  EyeOff,
   Sparkles,
   Loader2,
   AlertCircle,
@@ -26,6 +24,7 @@ import {
 import { listSupportedAdapters, getAiAdapter } from "@/lib/ai/adapters";
 import { toast } from "sonner";
 
+import { GlassInput } from "@/components/ui/GlassInput";
 import { PillDropdown } from "@/components/ui/PillDropdown";
 import { usePauseBackground } from "@/lib/use-pause-background";
 import { useModalMotion } from "@/lib/use-modal-motion";
@@ -45,7 +44,6 @@ export function ScannerSettingsModal({
   serverEnv: serverEnvProp,
 }: ScannerSettingsModalProps) {
   const { settings, updateSetting, mounted } = useScannerSettings();
-  const [showKey, setShowKey] = useState(false);
   const [internalServerEnv, setInternalServerEnv] = useState<
     Record<string, ServerEnvProviderInfo>
   >({});
@@ -386,30 +384,18 @@ export function ScannerSettingsModal({
                   </span>
                 )}
               </div>
-              <div className="relative">
-                <input
-                  type={showKey ? "text" : "password"}
-                  value={currentKey}
-                  onChange={(e) => handleUpdateActiveKey(e.target.value)}
-                  placeholder={
-                    Boolean(serverEnv[settings.aiProvider]?.hasKey)
-                      ? "Pre-configured on server (enter to override)"
-                      : `Enter your ${currentAdapter.displayName} API key...`
-                  }
-                  className="glass-input w-full rounded-xl px-3.5 py-2.5 pr-11 text-sm"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowKey(!showKey)}
-                  className="glass-icon-btn absolute right-1.5 top-1/2 h-8 w-8 -translate-y-1/2 rounded-lg bg-transparent shadow-none"
-                >
-                  {showKey ? (
-                    <EyeOff className="h-4 w-4" />
-                  ) : (
-                    <Eye className="h-4 w-4" />
-                  )}
-                </button>
-              </div>
+              <GlassInput
+                type="password"
+                value={currentKey}
+                onValueChange={handleUpdateActiveKey}
+                placeholder={
+                  Boolean(serverEnv[settings.aiProvider]?.hasKey)
+                    ? "Pre-configured on server (enter to override)"
+                    : `Enter your ${currentAdapter.displayName} API key...`
+                }
+                autoComplete="off"
+                spellCheck={false}
+              />
             </div>
 
             {/* Model Selection */}
@@ -419,12 +405,11 @@ export function ScannerSettingsModal({
                 <span>Model</span>
               </label>
               {currentAdapter.providerId === "custom" ? (
-                <input
-                  type="text"
+                <GlassInput
                   value={currentModel}
-                  onChange={(e) => handleUpdateActiveModel(e.target.value)}
+                  onValueChange={handleUpdateActiveModel}
                   placeholder="e.g. qwen/qwen-2-vl-72b-instruct"
-                  className="glass-input w-full rounded-xl px-3.5 py-2.5 text-sm"
+                  spellCheck={false}
                 />
               ) : (
                 <PillDropdown
@@ -464,14 +449,14 @@ export function ScannerSettingsModal({
                     </button>
                   )}
                 </div>
-                <input
-                  type="text"
+                <GlassInput
+                  type="url"
                   value={currentBaseUrl}
-                  onChange={(e) => handleUpdateActiveBaseUrl(e.target.value)}
+                  onValueChange={handleUpdateActiveBaseUrl}
                   placeholder={
                     currentAdapter.defaultBaseUrl || "https://api.openai.com/v1"
                   }
-                  className="glass-input w-full rounded-xl px-3.5 py-2.5 text-sm"
+                  spellCheck={false}
                 />
               </div>
             )}

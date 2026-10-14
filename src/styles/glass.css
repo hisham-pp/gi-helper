@@ -324,7 +324,8 @@
     background 200ms ease,
     color 200ms ease,
     box-shadow 200ms ease,
-    transform 200ms ease;
+    transform 200ms ease,
+    scale 200ms ease;
 }
 
 .glass-icon-btn:hover {
@@ -337,8 +338,11 @@
     0 0 16px -5px rgba(var(--glass-accent, 165, 243, 252), 0.5);
 }
 
+/* `scale`, not `transform`: a transform here replaced any positioning
+   transform (e.g. -translate-y-1/2), so a pressed button jumped away from the
+   pointer and the click was lost. `scale` stacks with it. */
 .glass-icon-btn:active {
-  transform: scale(0.94);
+  scale: 0.94;
 }
 
 .glass-icon-btn:disabled {
@@ -552,7 +556,8 @@
     background 200ms ease,
     color 200ms ease,
     box-shadow 200ms ease,
-    transform 200ms ease;
+    transform 200ms ease,
+    scale 200ms ease;
 }
 
 /* Ghost chips only show glass once selected (segmented controls) */
@@ -572,8 +577,9 @@ a.glass-chip:hover {
     0 0 16px -5px rgba(var(--glass-accent, 165, 243, 252), 0.48);
 }
 
+/* `scale` stacks with positioning transforms (see .glass-icon-btn:active) */
 button.glass-chip:active {
-  transform: scale(0.96);
+  scale: 0.96;
 }
 
 button.glass-chip:disabled {

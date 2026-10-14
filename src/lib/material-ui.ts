@@ -23,6 +23,8 @@ export interface CategoryMeta {
   shortLabel: string;
   description: string;
   sortRankRange: string;
+  /** RGB triplet for the category's filter tab (fill and glow when selected). */
+  accent: string;
 }
 
 export const MATERIAL_CATEGORIES: CategoryMeta[] = [
@@ -32,6 +34,7 @@ export const MATERIAL_CATEGORIES: CategoryMeta[] = [
     shortLabel: "All",
     description: "Every material available in the game",
     sortRankRange: "1 - 15124",
+    accent: "34, 211, 238",
   },
   {
     id: "EXP",
@@ -39,6 +42,7 @@ export const MATERIAL_CATEGORIES: CategoryMeta[] = [
     shortLabel: "EXP Materials",
     description: "Hero's Wit, Adventurer's Experience, and Enhancement Ores",
     sortRankRange: "5 - 100",
+    accent: "167, 139, 250",
   },
   {
     id: "REFINEMENT",
@@ -46,6 +50,7 @@ export const MATERIAL_CATEGORIES: CategoryMeta[] = [
     shortLabel: "Refinement",
     description: "Specialized event weapon refinement items",
     sortRankRange: "90",
+    accent: "251, 191, 36",
   },
   {
     id: "ENHANCEMENT",
@@ -53,6 +58,7 @@ export const MATERIAL_CATEGORIES: CategoryMeta[] = [
     shortLabel: "Common / Mob",
     description: "Enemy drops and common enhancement materials",
     sortRankRange: "10105 - 10640",
+    accent: "52, 211, 153",
   },
   {
     id: "BOSS",
@@ -60,6 +66,7 @@ export const MATERIAL_CATEGORIES: CategoryMeta[] = [
     shortLabel: "Boss Drops",
     description: "Normal boss and weekly trounce domain materials",
     sortRankRange: "11101",
+    accent: "251, 113, 133",
   },
   {
     id: "GEM",
@@ -67,6 +74,7 @@ export const MATERIAL_CATEGORIES: CategoryMeta[] = [
     shortLabel: "Gems",
     description: "Elemental slivers, fragments, chunks, and gemstones",
     sortRankRange: "12101 - 12108",
+    accent: "232, 121, 249",
   },
   {
     id: "TALENT",
@@ -74,6 +82,7 @@ export const MATERIAL_CATEGORIES: CategoryMeta[] = [
     shortLabel: "Talent Books",
     description: "Teachings, guides, philosophies, and crowns",
     sortRankRange: "13101 - 14101",
+    accent: "251, 146, 60",
   },
   {
     id: "WEAPON",
@@ -81,6 +90,7 @@ export const MATERIAL_CATEGORIES: CategoryMeta[] = [
     shortLabel: "Weapon Mats",
     description: "Domain-forged weapon ascension materials",
     sortRankRange: "15101 - 15124",
+    accent: "96, 165, 250",
   },
 ];
 
