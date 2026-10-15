@@ -1,0 +1,43 @@
+{
+  "title": "Scan weapons, artifacts and characters",
+  "date": "2026-10-15",
+  "summary": "The scanner now reads every part of your bag it can see: the Materials tab, weapons, artifacts and the character list, from screenshots or a screen recording, still on your device.",
+  "changes": [
+    {
+      "type": "new",
+      "text": "Drop screenshots of the Weapons tab: each weapon is recognised with its level, refinement and lock, and its ascension is worked out from the level and its icon (weapons change look at the second ascension)."
+    },
+    {
+      "type": "new",
+      "text": "Drop screenshots of the Artifacts tab: each piece's set, slot, rarity, level and lock. Flowers and plumes get their main stat; pick it for sands, goblets and circlets in the review or on the Artifacts page. Substats aren't read yet."
+    },
+    {
+      "type": "new",
+      "text": "Drop screenshots of the party setup's character list: everyone you own with their level. A character already in your inventory keeps their constellation and talents."
+    },
+    {
+      "type": "new",
+      "text": "The bag's Materials tab is scanned too: local specialties, cooking ingredients, fish, ores, wood and the rest, with their counts."
+    },
+    {
+      "type": "new",
+      "text": "One drop zone for everything: the scanner tells which tab each screenshot shows, and only downloads what that tab needs."
+    },
+    {
+      "type": "new",
+      "text": "Screen recordings work for every tab as well. Weapons and artifacts you own several of are kept apart, and rows seen in more than one frame are counted once."
+    },
+    {
+      "type": "improved",
+      "text": "The review has a tab per kind, with the card from your screenshot next to what it matched, suggestions, and quick fixes for level, refinement, lock, main stat and the Traveler's element. Weapons and artifacts can replace or add to what you already have."
+    },
+    {
+      "type": "improved",
+      "text": "GOOD export leaves out scanned artifacts until their main stat is set, and says how many."
+    },
+    {
+      "type": "improved",
+      "text": "The scanner's reference images are a third smaller."
+    }
+  ]
+}

@@ -57,12 +57,13 @@ interface ScanReviewModalProps {
   onConfirm: (confirmedItems: DetectedItem[], equipment?: EquipmentConfirm) => void;
 }
 
-type ReviewView = "materials" | "weapon" | "artifact";
+type ReviewView = "materials" | "weapon" | "artifact" | "character";
 
 const VIEW_LABELS: Record<ReviewView, string> = {
   materials: "Materials",
   weapon: "Weapons",
   artifact: "Artifacts",
+  character: "Characters",
 };
 
 /**
@@ -79,7 +80,7 @@ export function ScanReviewModal({
   const [equip, setEquip] = useState<EquipmentReviewItem[]>(equipment);
   const [searchQuery, setSearchQuery] = useState("");
   // A scan of the Weapons or Artifacts tab is a snapshot of it, like a GOOD file
-  const [replace, setReplace] = useState<EquipmentConfirm["replace"]>({ weapon: true, artifact: true });
+  const [replace, setReplace] = useState<EquipmentConfirm["replace"]>({ weapon: true, artifact: true, character: false });
   const [ownedWeapons] = useOwnedWeapons();
   const [ownedArtifacts] = useOwnedArtifacts();
 
@@ -88,6 +89,7 @@ export function ScanReviewModal({
     if (reviewItems.length > 0 || equipment.length === 0) list.push("materials");
     if (equipment.some((e) => e.kind === "weapon")) list.push("weapon");
     if (equipment.some((e) => e.kind === "artifact")) list.push("artifact");
+    if (equipment.some((e) => e.kind === "character")) list.push("character");
     return list;
   }, [reviewItems, equipment]);
   const [view, setView] = useState<ReviewView>(views[0]);
@@ -214,7 +216,7 @@ export function ScanReviewModal({
     closeThen(() => onConfirm(finalItems, confirmed));
     const parts = [
       finalItems.length > 0 && `${finalItems.length} material${finalItems.length === 1 ? "" : "s"}`,
-      ...(["weapon", "artifact"] as const).map((k) => {
+      ...(["weapon", "artifact", "character"] as const).map((k) => {
         const n = equip.filter((e) => e.kind === k && e.item).length;
         return n > 0 && `${n} ${k}${n === 1 ? "" : "s"}`;
       }),
@@ -306,12 +308,10 @@ export function ScanReviewModal({
           />
 
           {views.length > 1 && (
-            <div className="flex items-center gap-1" role="tablist" aria-label="Kind of item">
+            <div className="flex items-center gap-1" role="group" aria-label="Kind of item">
               {views.map((v) => (
                 <button
                   key={v}
-                  role="tab"
-                  aria-selected={view === v}
                   aria-pressed={view === v}
                   onClick={() => setView(v)}
                   className="glass-chip px-3 py-1 text-xs font-semibold"

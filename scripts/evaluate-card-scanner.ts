@@ -1,6 +1,7 @@
 /**
  * Measures the card scanner on screenshots of every bag tab it reads
- * (weapons, artifacts and the Materials tab) posted by other players:
+ * (weapons, artifacts and the Materials tab) and of the party setup's
+ * character list, posted by other players:
  * tests/online-samples, labelled in tests/online-samples/ground-truth.json.
  * Run `pnpm fetch:online-samples` first.
  *
@@ -42,6 +43,7 @@ async function main() {
     material: await loadBank("material"),
     weapon: await loadBank("weapon"),
     artifact: await loadBank("artifact"),
+    character: await loadBank("character"),
   };
   const byKind = new Map<CardKind, { item: Tally; matched: Tally; level: Tally; extra: Tally; locked: Tally; unknown: Tally; wrongButMatched: number; missing: number }>();
   const failures: string[] = [];
@@ -104,13 +106,13 @@ async function main() {
         else failures.push(`${where}: ${s.kind === "material" ? "quantity" : "level"} ${value}, expected ${a}`);
       }
       // Refinement (weapons) or rarity (artifacts).
-      if (s.kind !== "material" && b !== null && b !== undefined) {
+      if ((s.kind === "weapon" || s.kind === "artifact") && b !== null && b !== undefined) {
         const got = s.kind === "weapon" ? (card.refinement?.value ?? null) : card.rarity.value;
         k.extra.checked++;
         if (got === b) k.extra.ok++;
         else failures.push(`${where}: ${s.kind === "weapon" ? "refinement" : "rarity"} ${got}, expected ${b}`);
       }
-      if (s.kind !== "material" && typeof locked === "boolean") {
+      if ((s.kind === "weapon" || s.kind === "artifact") && typeof locked === "boolean") {
         k.locked.checked++;
         if (card.locked === locked) k.locked.ok++;
         else failures.push(`${where}: locked ${card.locked}, expected ${locked}`);
@@ -125,7 +127,7 @@ async function main() {
     console.log(`  item       ${pct(k.item)} · wrong-but-matched ${k.wrongButMatched} · cards not found ${k.missing}`);
     console.log(`  matched    ${pct(k.matched)} (the rest is flagged for review)`);
     console.log(`  ${kind === "material" ? "quantity" : "level   "}   ${pct(k.level)}`);
-    if (kind !== "material") {
+    if (kind === "weapon" || kind === "artifact") {
       console.log(`  ${kind === "weapon" ? "refinement" : "rarity    "} ${pct(k.extra)}`);
       console.log(`  lock       ${pct(k.locked)}`);
     }

@@ -3,12 +3,13 @@
 import React, { memo } from "react";
 import { AlertTriangle, ArrowRight, Lock, LockOpen, Pencil, Trash2 } from "lucide-react";
 import { GameIcon } from "@/components/ui/GameIcon";
+import { characterAvatarUrl } from "@/lib/characters";
 import { artifactIconUrl, weaponIconUrl } from "@/lib/good/catalog";
 import { MAIN_STATS_BY_SLOT, STAT_NAMES, type SlotKey } from "@/lib/good/types";
 import { getRarityStyles } from "@/lib/material-ui";
 import { splitArtifactItem } from "@/lib/scan-equipment";
 import type { EquipmentReviewItem, ReviewCandidate } from "@/lib/types";
-import { artifactPieceDetail } from "./equipment-review";
+import { artifactPieceDetail, isTraveler, TRAVELER_ELEMENTS } from "./equipment-review";
 
 interface EquipmentReviewRowProps {
   item: EquipmentReviewItem;
@@ -18,7 +19,7 @@ interface EquipmentReviewRowProps {
   onRemove: (rowId: string) => void;
 }
 
-const MAX_LEVEL = { weapon: 90, artifact: 20 } as const;
+const MAX_LEVEL = { weapon: 90, artifact: 20, character: 100 } as const;
 
 /** One weapon or artifact of the scan review. Memoized: editing one row re-renders only that row. */
 export const EquipmentReviewRow = memo(function EquipmentReviewRow({
@@ -34,8 +35,11 @@ export const EquipmentReviewRow = memo(function EquipmentReviewRow({
     ? null
     : item.kind === "weapon"
       ? weaponIconUrl(item.item)
-      : artifactIconUrl(splitArtifactItem(item.item).setId, slot!);
-  const suggestions = item.candidates?.filter((c) => c.id !== item.item).slice(0, 3) ?? [];
+      : item.kind === "character"
+        ? characterAvatarUrl(item.item)
+        : artifactIconUrl(splitArtifactItem(item.item).setId, slot!);
+  // Alternatives the scanner gave no chance (0%) are noise next to a clear match
+  const suggestions = item.candidates?.filter((c) => c.id !== item.item && c.confidence > 0).slice(0, 3) ?? [];
   const mainStats = slot ? MAIN_STATS_BY_SLOT[slot] : [];
 
   return (
@@ -75,7 +79,7 @@ export const EquipmentReviewRow = memo(function EquipmentReviewRow({
               <button
                 onClick={() => onEdit(item.id)}
                 className="glass-chip gap-1 px-2.5 py-0.5 text-[11px] font-medium"
-                title={`Choose another ${item.kind === "weapon" ? "weapon" : "piece"}`}
+                title={`Choose another ${item.kind === "artifact" ? "piece" : item.kind}`}
               >
                 <Pencil className="h-3 w-3" />
                 <span>Change</span>
@@ -113,10 +117,10 @@ export const EquipmentReviewRow = memo(function EquipmentReviewRow({
 
       <div className="flex w-full flex-wrap items-center justify-end gap-2 sm:w-auto">
         <label className="glass-well flex items-center gap-1 rounded-full px-3 py-1 text-[11px] text-white/60">
-          {item.kind === "weapon" ? "Lv." : "+"}
+          {item.kind === "artifact" ? "+" : "Lv."}
           <input
             type="number"
-            min={item.kind === "weapon" ? 1 : 0}
+            min={item.kind === "artifact" ? 0 : 1}
             max={MAX_LEVEL[item.kind]}
             value={item.level}
             onChange={(e) => {
@@ -141,6 +145,21 @@ export const EquipmentReviewRow = memo(function EquipmentReviewRow({
             ))}
           </select>
         )}
+        {item.kind === "character" && isTraveler(item.item) && (
+          <select
+            value={item.element ?? "Anemo"}
+            onChange={(e) => onChange(item.id, { element: e.target.value })}
+            aria-label="Traveler's element"
+            title="GOOD keeps one Traveler per element: choose the one you play"
+            className="glass-well rounded-full px-3 py-1.5 text-[11px] font-bold text-white outline-none"
+          >
+            {TRAVELER_ELEMENTS.map((el) => (
+              <option key={el} value={el} className="bg-slate-900">
+                {el}
+              </option>
+            ))}
+          </select>
+        )}
         {mainStats.length > 1 && (
           <select
             value={item.mainStatKey}
@@ -158,14 +177,16 @@ export const EquipmentReviewRow = memo(function EquipmentReviewRow({
             ))}
           </select>
         )}
-        <button
-          onClick={() => onChange(item.id, { locked: !item.locked })}
-          aria-pressed={item.locked}
-          className="glass-icon-btn h-9 w-9 rounded-xl"
-          title={item.locked ? "Locked (click to unlock)" : "Not locked (click to lock)"}
-        >
-          {item.locked ? <Lock className="h-4 w-4 text-rose-300" /> : <LockOpen className="h-4 w-4 text-white/40" />}
-        </button>
+        {item.kind !== "character" && (
+          <button
+            onClick={() => onChange(item.id, { locked: !item.locked })}
+            aria-pressed={item.locked}
+            className="glass-icon-btn h-9 w-9 rounded-xl"
+            title={item.locked ? "Locked (click to unlock)" : "Not locked (click to lock)"}
+          >
+            {item.locked ? <Lock className="h-4 w-4 text-rose-300" /> : <LockOpen className="h-4 w-4 text-white/40" />}
+          </button>
+        )}
         <button
           onClick={() => onRemove(item.id)}
           className="glass-icon-btn h-9 w-9 rounded-xl text-white/50 hover:bg-rose-500/20 hover:text-rose-300"

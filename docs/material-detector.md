@@ -2,16 +2,18 @@
 
 Identifies every card found by the [grid detector](grid-detector.md): which
 catalog material it shows, its rarity and the quantity printed under it, with
-a confidence that says when a human should check. Everything runs on-device;
-no API key, nothing uploaded.
+a confidence that says when a human should check. The same engine reads the
+bag's other tabs and the party setup's character list (see
+[Other kinds](#other-kinds-weapons-artifacts-characters)). Everything runs
+on-device; no API key, nothing uploaded.
 
 - Engine: `src/lib/material-detector/engine/` (pure TypeScript, no dependencies)
-- Browser API: `src/lib/material-detector/client.ts` (Web Worker: decode → grids → recognition)
+- Browser API: `src/lib/material-detector/client.ts` (Web Worker: decode → grids → kinds → recognition)
 - UI: the **Scanner** and **Video** tabs on `/` (see [video scanner](video-scanner.md)), and `/debug` → **Grid & Material Studio**
   (labels on the image, per-card candidates, live re-recognition after box edits)
-- Reference data: `public/data/material-atlas.{png,json}`, `src/data/digit-templates.json`
-- Tests: `tests/material-detector.test.ts`, `tests/material-detector-samples.test.ts`
-- Evaluation: `pnpm eval:material-detector`
+- Reference data: `public/data/<kind>-atlas.{webp,json}` (material, weapon, artifact, character), `src/data/digit-templates.json`
+- Tests: `tests/material-detector.test.ts`, `tests/material-detector-samples.test.ts`, `tests/card-scanner.test.ts`
+- Evaluation: `pnpm eval:material-detector`, `pnpm eval:card-scanner` (players' screenshots, `pnpm fetch:online-samples` first)
 
 ## Card anatomy
 
@@ -146,10 +148,75 @@ interface CardRecognition {
 | `readQuantity` | true | Read the quantity. |
 | `minConfidence` | 0.5 | Below this a match is `uncertain`. |
 
+## Other kinds: weapons, artifacts, characters
+
+The bag's Weapons and Artifacts tabs and the party setup's character list use
+the same card as materials (an icon over the rarity background in the top
+W × W square, a cream footer), so the pipeline is the same with another
+reference bank. What differs:
+
+| Kind | Bank (atlas) | Footer | Overlays (masked while matching, then read) |
+|---|---|---|---|
+| `material` | Character Development Items + the Materials tab (766) | count | "New" badge |
+| `weapon` | every weapon: base, awakened (shown from ascension 2) and HoYoLAB's framing where it differs from enka.network's (668) | `Lv. 90` | refinement badge and lock (top-left), equipped avatar (top-right) |
+| `artifact` | every set × slot (299); one tile serves every rarity of a piece | `+20` | lock (top-left), equipped avatar |
+| `character` | every playable character's avatar (122) | `Lv. 90`, no star row | element icon (top-left), favourite star |
+
+- **Which kind** (`engine/kind.ts`): a few cards' footers are read without any
+  bank. "Lv." with a star row is a weapon, "Lv." without one a character,
+  "+" an artifact, a bare number a material. So the browser downloads only
+  the atlas a screenshot needs. When the text can't tell, every bank is loaded
+  and the one whose icons fit best decides (`source: "icons"`).
+  `settings.kind` forces one.
+- **Footer** (`readFooter`): the "L", "v" and "+" glyphs have templates of their own
+  (`symbols` in `digit-templates.json`, learned from players' screenshots by
+  `pnpm build:digit-templates`; "v" and "+" are also told apart by height and
+  baseline). The level is read on the icon-aligned box, the box itself and the
+  box found from the cream footer, and the most confident reading with the
+  expected prefix wins. A card in an equipment grid whose footer is a plain
+  count (enhancement ores, artifact EXP items) is reported `unknown`.
+- **Refinement and lock** (`engine/equipment.ts`): the badge is a light digit
+  on a dark box (yellow on brown for R5), compared with the digit templates
+  restricted to 1–5. The lock is a salmon padlock in either corner slot.
+- **Variants**: a weapon's tiles are one item; the matched `variant`
+  ("awakened"…) tells the ascension is at least 2. Candidates are reported
+  per item, so a weapon's own variants are never each other's runner-up.
+- **No inventory order** for weapons, artifacts or characters (they repeat or
+  are sorted by level), so the order context and the per-material
+  aggregation (`items`) only apply to materials.
+- **Wider alignment** for equipment (±9% vertically, footer snapping from
+  error 0.15): some weapons are drawn slightly zoomed or shifted.
+
+Not read yet: an artifact's main stat (only flowers' and plumes' is known
+from the slot) and substats, who has a weapon or artifact equipped, and a
+character's constellation and talents. They need the detail panel or the
+character screen.
+
+### Accuracy on players' screenshots
+
+`pnpm eval:card-scanner` on `tests/online-samples` (16 screenshots from PC
+and phones, 1080p to 2532 × 1170, labels checked by eye):
+
+| Kind | Cards | Item | Confidently matched | Level / count | Refinement · rarity | Lock |
+|---|---|---|---|---|---|---|
+| Weapons | 276 | 100% | 97.5% | 100% | 100% | 100% |
+| Artifacts | 86 | 100% | 100% | 100% | 100% | 100% |
+| Materials tab | 37 | 100% | 100% | 100% | | |
+| Characters | 28 | 100% | 100% | 100% | | |
+
+No card is wrong and `matched`; a few weapons whose in-game icon matches
+neither icon source are `uncertain` and go to review. The grid detector misses
+the selected card (white highlight) and some screenshots altogether (four of
+the downloaded ones), and at half resolution 1080p PC screenshots (cards ~55 px)
+lose rows.
+
 ## Reference data
 
-- **Atlas** — `pnpm build:material-atlas` renders every icon of
-  `src/data/materials.json` to a 64² tile (it is also part of `pnpm sync-data`).
+- **Atlases** — `pnpm build:atlases [kind…]` renders every icon of each kind
+  to a 64² tile, stored as lossless WebP: `materials.json` (256² icons) and
+  `other-materials.json` (thumbnails), `weapons.json` (`public/images/weapons`,
+  `weapons-awakened`, `weapons-alt`), `artifact-sets.json` and
+  `characters.json` (avatars). It is also the last step of `pnpm sync-data`.
   It needs sharp for the WebP icons and uses the copy installed with Next.js.
 - **Digit templates** — `pnpm build:digit-templates` averages the glyphs of
   the labelled cards and drops samples that contradict their label.
@@ -166,8 +233,9 @@ interface CardRecognition {
 
 ## Limits
 
-- The catalog is the Character Development Items tab (481 materials). Cards
-  from other tabs are reported as `unknown` or `uncertain`, not guessed.
+- The material catalog is the Character Development Items and Materials tabs
+  (766 materials). Cards from other tabs (food, gadgets, quest items) are
+  reported as `unknown` or `uncertain`, not guessed.
 - New game materials need `pnpm sync-data` (catalog, icons, atlas) before
   they can be recognised; until then they are flagged for review.
 - Very small screenshots (cards under ~60 px) are limited by grid detection

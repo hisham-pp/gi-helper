@@ -4,6 +4,7 @@ import React, { useCallback, useDeferredValue, useMemo, useState } from "react";
 import { Search, X } from "lucide-react";
 import { GlassInput } from "@/components/ui/GlassInput";
 import { GameIcon } from "@/components/ui/GameIcon";
+import { characterAvatarUrl, getAllCharacters } from "@/lib/characters";
 import { artifactIconUrl, getAllArtifactSets, getAllWeapons, weaponIconUrl } from "@/lib/good/catalog";
 import { SLOT_KEYS, SLOT_NAMES } from "@/lib/good/types";
 import { getRarityStyles } from "@/lib/material-ui";
@@ -25,8 +26,21 @@ export interface EquipmentOption {
 
 let weaponOptions: EquipmentOption[] | null = null;
 let artifactOptions: EquipmentOption[] | null = null;
+let characterOptions: EquipmentOption[] | null = null;
 
 function optionsFor(kind: EquipmentReviewItem["kind"]): EquipmentOption[] {
+  if (kind === "character") {
+    characterOptions ??= getAllCharacters().map((c) => ({
+      id: c.id,
+      name: c.name,
+      detail: [c.element !== "None" ? c.element : "", c.weaponType[0].toUpperCase() + c.weaponType.slice(1)]
+        .filter(Boolean)
+        .join(" · "),
+      rarity: c.rarity,
+      icon: characterAvatarUrl(c.id),
+    }));
+    return characterOptions;
+  }
   if (kind === "weapon") {
     weaponOptions ??= getAllWeapons().map((w) => ({
       id: w.id,
@@ -76,7 +90,7 @@ export function EquipmentPickerModal({ item, onSelect, onClose }: EquipmentPicke
     (option: EquipmentOption) => closeThen(() => onSelect(item.id, option)),
     [closeThen, onSelect, item.id],
   );
-  const noun = item.kind === "weapon" ? "weapon" : "artifact piece";
+  const noun = item.kind === "artifact" ? "artifact piece" : item.kind;
 
   return (
     <div className="fixed inset-0 z-[60] flex items-center justify-center p-3 sm:p-6">
@@ -108,7 +122,13 @@ export function EquipmentPickerModal({ item, onSelect, onClose }: EquipmentPicke
 
         <div className="space-y-2 border-b border-white/10 p-4">
           <GlassInput
-            placeholder={item.kind === "weapon" ? "Search weapons by name or type..." : "Search pieces by name, set or slot..."}
+            placeholder={
+              item.kind === "weapon"
+                ? "Search weapons by name or type..."
+                : item.kind === "character"
+                  ? "Search characters by name or element..."
+                  : "Search pieces by name, set or slot..."
+            }
             value={search}
             onValueChange={setSearch}
             autoFocus

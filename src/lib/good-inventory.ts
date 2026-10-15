@@ -35,6 +35,8 @@ export const useOwnedArtifacts = () => artifactsStore.useValue();
 export const useExtraMaterials = () => extraMaterialsStore.useValue();
 
 export const setOwnedCharacters = charactersStore.set;
+/** The stored characters, read outside React (e.g. when a scan finishes). */
+export const getOwnedCharacters = (): GoodCharacter[] => charactersStore.get();
 export const setOwnedWeapons = weaponsStore.set;
 export const setOwnedArtifacts = artifactsStore.set;
 export const setExtraMaterials = extraMaterialsStore.set;

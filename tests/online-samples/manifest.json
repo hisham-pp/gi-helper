@@ -24,7 +24,6 @@
     { "file": "characters-mobile-a.jpg", "kind": "character", "url": "https://upload-os-bbs.hoyolab.com/upload/2024/06/10/395038791/fdce763ad788a6e4f3966a47e4cb1eae_5296926565905490686.jpg", "source": "HoYoLAB" },
     { "file": "characters-mobile-b.jpg", "kind": "character", "url": "https://upload-os-bbs.hoyolab.com/upload/2024/09/11/239148154/a35273eb36e781442040173c6950ec2a_1204890989641687686.jpg", "source": "HoYoLAB" },
     { "file": "characters-mobile-c.jpg", "kind": "character", "url": "https://upload-os-bbs.hoyolab.com/upload/2024/06/28/184973587/2c341324e559ebfb89d081cc2ad6a7e1_6165730948702968534.jpg", "source": "HoYoLAB" },
-    { "file": "characters-wide-d.jpg", "kind": "character", "url": "https://upload-os-bbs.hoyolab.com/upload/2022/11/09/14307062/efc004f74a919d9c58bbd3cb322cb5c5_4118332994101716533.jpg", "source": "HoYoLAB" },
     { "file": "artifact-detail-go-a.png", "kind": "artifact-detail", "url": "https://raw.githubusercontent.com/frzyc/genshin-optimizer/HEAD/apps/frontend-e2e/assets/def_p_8_7.png", "source": "Genshin Optimizer (MIT)" },
     { "file": "artifact-detail-go-b.png", "kind": "artifact-detail", "url": "https://raw.githubusercontent.com/frzyc/genshin-optimizer/HEAD/apps/frontend-e2e/assets/em_155.png", "source": "Genshin Optimizer (MIT)" },
     { "file": "artifact-detail-adepti.png", "kind": "artifact-detail", "url": "https://raw.githubusercontent.com/D1firehail/AdeptiScanner-GI/HEAD/Capture-example.png", "source": "AdeptiScanner-GI (Apache-2.0)" },

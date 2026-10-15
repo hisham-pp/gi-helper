@@ -39,7 +39,8 @@ jobs:
       - name: Commit and Push Changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "chore: update game data (materials, characters, weapons, artifact sets) and the recognizer atlas"
-          # Everything sync-data writes: without the atlas, new materials would show in
-          # the directory but the on-device scanner couldn't recognise them.
-          file_pattern: "src/data/materials.json src/data/characters.json src/data/weapons.json src/data/artifact-sets.json public/images/materials/ public/images/material-thumbs/ public/images/character-avatars/ public/images/weapons/ public/images/artifacts/ public/data/material-atlas.json public/data/material-atlas.png"
+          commit_message: "chore: update game data (materials, characters, weapons, artifact sets) and the scanner atlases"
+          # Everything sync-data writes: without the atlases, new materials, weapons,
+          # artifact sets or characters would show in the database but the on-device
+          # scanner couldn't recognise them.
+          file_pattern: "src/data/materials.json src/data/other-materials.json src/data/characters.json src/data/weapons.json src/data/artifact-sets.json public/images/materials/ public/images/material-thumbs/ public/images/character-avatars/ public/images/weapons/ public/images/weapons-awakened/ public/images/weapons-alt/ public/images/artifacts/ public/data/"

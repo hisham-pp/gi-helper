@@ -20,12 +20,14 @@ export const SITE = {
   url: resolveSiteUrl(),
   title: "Genshin Impact Inventory Scanner",
   description:
-    "Scan Genshin Impact inventory screenshots to extract every material and quantity. Runs in your browser or with AI Vision, then export to GOOD format.",
+    "Scan Genshin Impact inventory screenshots to read your materials, weapons, artifacts and characters. Runs in your browser or with AI Vision, then export to GOOD format.",
   keywords: [
     "Genshin Impact",
     "Genshin inventory scanner",
     "Genshin material tracker",
     "Genshin materials list",
+    "Genshin weapon scanner",
+    "Genshin artifact scanner",
     "screenshot scanner",
     "GOOD format export",
     "Genshin optimizer import",
@@ -35,5 +37,5 @@ export const SITE = {
   locale: "en_US",
   themeColor: "#020e13",
   ogImageAlt:
-    "GI Helper: Genshin Impact Inventory Scanner. Extract materials from inventory screenshots.",
+    "GI Helper: Genshin Impact Inventory Scanner. Read materials, weapons, artifacts and characters from screenshots.",
 } as const;

@@ -28,7 +28,14 @@ import {
   type KeyframeOptions,
 } from "./keyframes";
 import { SightingMerger, sightingKey, type MergedMaterial } from "./merge";
-import { EquipmentStitcher, equipmentRows, type EquipmentKind, type EquipmentSighting } from "../scan-equipment";
+import {
+  EQUIPMENT_KINDS,
+  EquipmentStitcher,
+  equipmentRows,
+  uniqueByItem,
+  type EquipmentKind,
+  type EquipmentSighting,
+} from "../scan-equipment";
 import { encodePreview, validateVideoFile, VideoFrameSource, VideoScanError } from "./video";
 
 /** Upper bound on scanned frames, whatever the video does. */
@@ -75,7 +82,7 @@ export interface VideoMaterial extends MergedMaterial {
   crop: Blob | null;
 }
 
-/** A weapon or artifact of the recording, after stitching. */
+/** A weapon, artifact or character of the recording, after stitching. */
 export interface VideoEquipment extends EquipmentSighting {
   /** Time (s) of the frame its reading comes from. */
   time: number;
@@ -96,7 +103,7 @@ export interface VideoScanResult {
   /** Card readings that matched nothing in the catalog. */
   unknownCards: number;
   materials: VideoMaterial[];
-  /** Weapons and artifacts, in bag order. */
+  /** Weapons, artifacts and characters, in list order. */
   equipment: VideoEquipment[];
   processingTimeMs: number;
 }
@@ -333,7 +340,7 @@ export async function scanVideo(
           );
         }
         const rows = equipmentRows(cards, index);
-        if (rows.weapon.length > 0 || rows.artifact.length > 0) equipmentFrames.push({ time, rows });
+        if (EQUIPMENT_KINDS.some((k) => rows[k].length > 0)) equipmentFrames.push({ time, rows });
         // Coverage by what the frame shows: materials by id, equipment by item and level
         // (neighbouring frames that share none of these may have skipped rows).
         coverage.push({
@@ -436,10 +443,10 @@ async function stitchEquipment(
 ): Promise<VideoEquipment[]> {
   const ordered = [...frames].sort((a, b) => a.time - b.time);
   const cards: EquipmentSighting[] = [];
-  for (const kind of ["weapon", "artifact"] as const) {
+  for (const kind of EQUIPMENT_KINDS) {
     const stitcher = new EquipmentStitcher();
     for (const f of ordered) stitcher.add(f.rows[kind]);
-    cards.push(...stitcher.result());
+    cards.push(...(kind === "character" ? uniqueByItem(stitcher.result()) : stitcher.result()));
   }
   const crops = new Map<EquipmentSighting, Blob | null>();
   const bySource = new Map<number, EquipmentSighting[]>();

@@ -1,10 +1,11 @@
 # Video Scanner
 
-Recognises the materials in a screen recording of the inventory: the user
-scrolls through the Character Development Items tab while recording, drops the
-video into the **Video** tab on `/`, and gets one entry per material with its
-quantity. Everything runs on-device with the
-[material recognizer](material-detector.md); no API key, nothing uploaded.
+Recognises the items in a screen recording of the bag: the user scrolls
+through a tab (Character Development Items, Materials, Weapons or Artifacts) or
+the party setup's character list while recording, drops the video into the
+**Video** tab on `/`, and gets one entry per material with its quantity, or
+the list of weapons, artifacts or characters. Everything runs on-device with
+the [material recognizer](material-detector.md); no API key, nothing uploaded.
 
 - Library: `src/lib/video-scanner/` (`scanVideo`, pure frame selection and merging)
 - UI: `src/components/scanner/VideoScannerView.tsx`
@@ -18,12 +19,16 @@ quantity. Everything runs on-device with the
 | 1 | Open | `video.ts` | Validates the file and opens it in two hidden `<video>` elements (one for the analysis, one for grabbing frames), so both seek independently. |
 | 2 | Analyse | `keyframes.ts` | Seeks every 0.2 s (coarser for videos over 4 minutes) and reduces each frame to a 128-px grayscale thumbnail. `KeyframePicker` picks the frames where scrolling settles: local minima of the difference to the previous sample, and still stretches. A frame that looks like the previous pick is skipped, so a pause is scanned once. |
 | 3 | Scan | `scan-video.ts` | Picked frames are grabbed at full resolution (one ahead per worker) and scanned by two `MaterialScanClient` workers (`scanFrame`) while the analysis continues. Once a frame shows a clear grid (6+ cards), later frames only run grid detection on its columns (`lockRegion`), falling back to the full frame when nothing is found there. |
-| 4 | Fill gaps | `keyframes.ts` | Two neighbouring scanned frames that both show inventory but share no `matched` material may have skipped rows: the calmest sample near the middle of the gap is scanned, until every pair overlaps or no sample is left in between. |
+| 4 | Fill gaps | `keyframes.ts` | Two neighbouring scanned frames that both show inventory but share no `matched` material (or weapon, artifact or character at the same level) may have skipped rows: the calmest sample near the middle of the gap is scanned, until every pair overlaps or no sample is left in between. |
 | 5 | Merge | `merge.ts` | `SightingMerger` keeps one entry per material. Each sighting votes for the quantity it read, weighted by its confidence (uncertain cards count less), so a frame where a touch marker or compression smeared the digits is outvoted. A runner-up with a third or more of the vote is flagged. |
+
+| 6 | Stitch | `../scan-equipment.ts` | Weapons and artifacts repeat, so they can't be merged by id. Each frame's rows are stitched in time order instead (`EquipmentStitcher`): a frame's first rows are matched against the rows read so far (same items, levels and refinements per column; unread values match anything), and only the rows past the overlap are added. Overlapping cards keep the clearer reading. Characters are stitched the same way, then kept once each. |
 
 Card crops for the review modal are cut from the clearest sighting of each
 (material, quantity) pair as frames are scanned; their encoding finishes in
-the background.
+the background. For weapons, artifacts and characters, the frames that gave
+the final readings are decoded once more after stitching to crop just those
+cards.
 
 ## Review reasons
 
@@ -52,9 +57,9 @@ screenshots of `test-set-01`. Measured 2026-10-14 in the production build
 
 ## Recording tips (shown in the UI)
 
-- Record the Character Development Items tab, scrolling at a steady pace and
-  pausing briefly between flicks. Fast flings still work (gaps are filled),
-  but settled frames read best.
+- Record one tab (or the party setup's character list), scrolling at a steady
+  pace and pausing briefly between flicks. Fast flings still work (gaps are
+  filled), but settled frames read best.
 - MP4 (H.264), WebM and MOV work wherever the browser can play them. HEVC
   recordings may not play in every browser.
 
@@ -66,3 +71,6 @@ screenshots of `test-set-01`. Measured 2026-10-14 in the production build
 - A material is identified per frame; the merge does not track cards between
   frames, so a card misidentified in one frame shows up as an extra entry
   (flagged when the recognizer was unsure).
+- Weapon and artifact rows are stitched by content: two different but
+  identical-looking rows (seven Lv. 1 Dull Blades) right where two frames meet
+  are taken as one. Frames that don't overlap at all are kept whole.

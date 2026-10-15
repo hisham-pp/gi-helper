@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useCallback, useMemo, useState } from "react";
-import { ArrowUpDown, FileUp, Trash2, Users } from "lucide-react";
+import { ArrowUpDown, FileUp, ScanLine, Trash2, Users } from "lucide-react";
+import { ShellLink } from "@/components/layout/ShellLink";
 import { toast } from "sonner";
 import { GameIcon } from "@/components/ui/GameIcon";
 import { PillDropdown } from "@/components/ui/PillDropdown";
@@ -87,9 +88,12 @@ export function CharactersInventory() {
       <TabEmptyState
         icon={Users}
         title="No characters yet"
-        text="Import a GOOD file from Genshin Optimizer or another scanner to bring in your characters. Scanning them is coming next."
+        text="Scan screenshots or a recording of the party setup's character list (their levels), or import a GOOD file from Genshin Optimizer or another scanner for constellations and talents too."
       >
-        <button onClick={onImport} className="glass-btn glass-btn--primary px-5 py-2 text-xs">
+        <ShellLink href="/" className="glass-btn glass-btn--primary px-5 py-2 text-xs">
+          <ScanLine className="h-4 w-4" /> Scan screenshots
+        </ShellLink>
+        <button onClick={onImport} className="glass-btn px-5 py-2 text-xs">
           <FileUp className="h-4 w-4" /> Import .GOOD
         </button>
       </TabEmptyState>

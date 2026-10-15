@@ -27,13 +27,13 @@ export interface ScannedReviewItem {
   reviewReason?: string;
 }
 
-/** A weapon or artifact in the post-scan review (see lib/scan-equipment.ts). */
+/** A weapon, artifact or character in the post-scan review (see lib/scan-equipment.ts). */
 export interface EquipmentReviewItem {
   id: string;
-  kind: "weapon" | "artifact";
-  /** A weapon id or "<set id>:<slot>"; null when the scanner couldn't tell. */
+  kind: "weapon" | "artifact" | "character";
+  /** A weapon id, "<set id>:<slot>" or a character id; null when the scanner couldn't tell. */
   item: string | null;
-  /** The weapon's or piece's name ("Unidentified" without an item). */
+  /** The weapon's, piece's or character's name ("Unidentified" without an item). */
   name: string;
   rarity?: number;
   /** "awakened" when the weapon showed its awakened icon (ascension 2+). */
@@ -44,6 +44,8 @@ export interface EquipmentReviewItem {
   locked: boolean;
   /** Artifacts: the GOOD main stat key ("" until chosen for sands, goblets and circlets). */
   mainStatKey: string;
+  /** The Traveler's element ("Anemo", "Geo"…): GOOD keeps one Traveler per element. */
+  element?: string;
   imageSnippet: string;
   sourceImageName: string;
   candidates?: ReviewCandidate[];

@@ -15,11 +15,13 @@ import { setScannerInventory } from "@/lib/scanner-inventory";
 import type { DetectedItem, EquipmentReviewItem, ScannedReviewItem } from "@/lib/types";
 import { materialThumbUrl } from "@/lib/material-ui";
 import { recordScan } from "@/lib/scan-stats";
-import { EquipmentStitcher, equipmentRows, type EquipmentSighting } from "@/lib/scan-equipment";
+import { EQUIPMENT_KINDS, EquipmentStitcher, equipmentRows, uniqueByItem, type EquipmentSighting } from "@/lib/scan-equipment";
+import { getOwnedCharacters } from "@/lib/good-inventory";
 import {
   equipmentIcon,
   equipmentReviewItem,
   inventoryPageFor,
+  ownedTravelerElement,
   saveScannedEquipment,
   type EquipmentConfirm,
 } from "./equipment-review";
@@ -36,6 +38,7 @@ interface ScanSummary {
   materials: number;
   weapons: number;
   artifacts: number;
+  characters: number;
   flagged: number;
   unknown: number;
 }
@@ -159,7 +162,11 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
       // One review slot per material; overlapping screenshots keep the clearest reading.
       const picks = new Map<string, { item: ScannedReviewItem; confidence: number }>();
       // Weapons and artifacts repeat: overlapping screenshots are stitched by rows instead.
-      const stitchers = { weapon: new EquipmentStitcher(), artifact: new EquipmentStitcher() };
+      const stitchers = {
+        weapon: new EquipmentStitcher(),
+        artifact: new EquipmentStitcher(),
+        character: new EquipmentStitcher(),
+      };
       const equipmentCrops = new Map<EquipmentSighting["card"], string>();
       const totals: ScanSummary = {
         files: files.length,
@@ -168,6 +175,7 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
         materials: 0,
         weapons: 0,
         artifacts: 0,
+        characters: 0,
         flagged: 0,
         unknown: 0,
       };
@@ -229,7 +237,7 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
                 });
               }
               const rows = equipmentRows(recognition.cards, i);
-              for (const kind of ["weapon", "artifact"] as const) {
+              for (const kind of EQUIPMENT_KINDS) {
                 for (const s of rows[kind].flat()) {
                   const crop = bitmap ? await cropToBlob(bitmap, s.card.box, "image/webp").catch(() => null) : null;
                   if (crop) equipmentCrops.set(s.card, trackUrl(crop));
@@ -261,16 +269,23 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
         const review = [...picks.values()].map((p) => p.item);
         // Slots that need a second look first, then reading order.
         review.sort((a, b) => Number(!!b.reviewReason) - Number(!!a.reviewReason));
-        const equipment = (["weapon", "artifact"] as const).flatMap((kind) =>
-          stitchers[kind]
-            .result()
-            .map((s, k) =>
-              equipmentReviewItem(s, `${kind}-${k}`, equipmentCrops.get(s.card) ?? equipmentIcon(s), files[s.source].name),
+        const travelerElement = ownedTravelerElement(getOwnedCharacters());
+        const equipment = EQUIPMENT_KINDS.flatMap((kind) => {
+          const cards = stitchers[kind].result();
+          return (kind === "character" ? uniqueByItem(cards) : cards).map((s, k) =>
+            equipmentReviewItem(
+              s,
+              `${kind}-${k}`,
+              equipmentCrops.get(s.card) ?? equipmentIcon(s),
+              files[s.source].name,
+              travelerElement,
             ),
-        );
+          );
+        });
         totals.materials = review.length;
         totals.weapons = equipment.filter((e) => e.kind === "weapon").length;
         totals.artifacts = equipment.filter((e) => e.kind === "artifact").length;
+        totals.characters = equipment.filter((e) => e.kind === "character").length;
         totals.flagged = review.filter((r) => r.reviewReason).length + equipment.filter((e) => e.reviewReason).length;
         setSummary(totals);
         setReviewItems(review);
@@ -295,6 +310,7 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
             review.length > 0 && `${review.length} material${review.length > 1 ? "s" : ""}`,
             totals.weapons > 0 && `${totals.weapons} weapon${totals.weapons > 1 ? "s" : ""}`,
             totals.artifacts > 0 && `${totals.artifacts} artifact${totals.artifacts > 1 ? "s" : ""}`,
+            totals.characters > 0 && `${totals.characters} character${totals.characters > 1 ? "s" : ""}`,
           ].filter(Boolean);
           toast.success(
             `Recognised ${parts.join(", ")}` +
@@ -330,10 +346,10 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
   const handleConfirmReview = useCallback(
     (confirmed: DetectedItem[], equipment?: EquipmentConfirm) => {
       if (confirmed.length > 0) mergeIntoInventory(confirmed);
-      const saved = equipment ? saveScannedEquipment(equipment) : { weapons: 0, artifacts: 0, skipped: 0 };
+      const saved = equipment ? saveScannedEquipment(equipment) : { weapons: 0, artifacts: 0, characters: 0, skipped: 0 };
       if (saved.skipped > 0) toast.info(`${saved.skipped} unidentified card${saved.skipped > 1 ? "s were" : " was"} left out.`);
       setIsReviewOpen(false);
-      router.push(inventoryPageFor(confirmed.length, saved.weapons, saved.artifacts));
+      router.push(inventoryPageFor({ materials: confirmed.length, ...saved }));
     },
     [mergeIntoInventory, router],
   );
@@ -376,9 +392,12 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
             {summary.files} screenshot{summary.files > 1 ? "s" : ""} · {summary.cards} cards ·{" "}
             <span className="font-semibold text-white">
               {[
-                summary.materials > 0 || (summary.weapons === 0 && summary.artifacts === 0) ? `${summary.materials} materials` : null,
+                summary.materials > 0 || summary.weapons + summary.artifacts + summary.characters === 0
+                  ? `${summary.materials} materials`
+                  : null,
                 summary.weapons > 0 ? `${summary.weapons} weapons` : null,
                 summary.artifacts > 0 ? `${summary.artifacts} artifacts` : null,
+                summary.characters > 0 ? `${summary.characters} characters` : null,
               ]
                 .filter(Boolean)
                 .join(" · ")}

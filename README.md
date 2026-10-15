@@ -1,8 +1,8 @@
 # GI Helper
 
-A free, fan-made Genshin Impact inventory scanner: recognise your materials from
-screenshots or a screen recording, review them, and export a **GOOD** file for
-Genshin Optimizer and other tools.
+A free, fan-made Genshin Impact inventory scanner: recognise your materials,
+weapons, artifacts and characters from screenshots or a screen recording,
+review them, and export a **GOOD** file for Genshin Optimizer and other tools.
 
 Live at [gi-helper.vercel.app](https://gi-helper.vercel.app). Built with
 Next.js 15 (App Router), React 19, TypeScript and Tailwind CSS.
@@ -11,11 +11,17 @@ Next.js 15 (App Router), React 19, TypeScript and Tailwind CSS.
 
 ## Features
 
-- **On-device scanner:** drop inventory screenshots (Character Development Items
-  tab). Cards, materials, rarity and quantities are recognised in your browser in
-  Web Workers. No API key, nothing uploaded.
-- **Video scanner:** drop a screen recording while you scroll the inventory. The
-  frames where scrolling settles are scanned, and quantities are merged by vote.
+- **On-device scanner:** drop screenshots of a bag tab. It tells which one it is
+  and reads, in your browser (Web Workers, no API key, nothing uploaded):
+  - **Character Development Items** and **Materials**: each material and its count;
+  - **Weapons**: weapon, level, refinement and lock (ascension from the level and
+    the awakened icon);
+  - **Artifacts**: set, slot, rarity, level and lock (the main stat of flowers and
+    plumes; the others are picked in review, substats aren't read yet);
+  - the party setup's **character list**: each character and their level.
+- **Video scanner:** drop a screen recording while you scroll any of those. The
+  frames where scrolling settles are scanned; material counts are merged by vote,
+  weapon, artifact and character rows are stitched across frames.
 - **AI Vision (optional):** Gemini, OpenAI, Claude, Grok or any OpenAI-compatible
   endpoint, using your own API key. The key stays in your browser's localStorage
   and is only passed through the server for that request.
@@ -71,8 +77,10 @@ from the server: each visitor enters their own in Scanner Settings.
 | `pnpm test`                                             | All unit tests (`node:test` via `tsx`), including the detector suites |
 | `pnpm test:e2e`                                         | Playwright smoke tests against the production build (build first)    |
 | `pnpm test:material-detector` / `pnpm eval:material-detector` | Material recognizer tests / accuracy report                     |
+| `pnpm fetch:online-samples` / `pnpm eval:card-scanner`  | Download players' weapon, artifact, Materials-tab and character screenshots / accuracy report on them |
 | `pnpm test:grid-detector` / `pnpm eval:grid-detector`   | Grid detector tests / accuracy report                                |
-| `pnpm sync-data`                                        | Re-scrape materials and characters, rebuild the atlas and thumbnails |
+| `pnpm sync-data`                                        | Re-scrape the game data and icons, rebuild the thumbnails and the scanner atlases |
+| `pnpm build:atlases`                                    | Rebuild the scanner's reference atlases (materials, weapons, artifacts, characters) |
 | `pnpm format`                                           | Prettier                                                             |
 
 CI (`.github/workflows/ci.yml`) runs lint, unit tests, the build and the E2E

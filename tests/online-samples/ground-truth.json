@@ -1,5 +1,5 @@
 {
- "description": "Labels for tests/online-samples (pnpm fetch:online-samples): every card checked by eye against the screenshot. Cards are [row, column, item, ...] with rows and columns as the grid detector reports them. Weapons: [r, c, weapon id, level, refinement, locked]; artifacts: [r, c, \"<set id>:<slot>\", level, rarity, locked]; materials: [r, c, material id, quantity]. Item null: the card must not be identified (enhancement ores and artifact EXP items in those tabs); \"?\": a weapon we could not identify (skipped). A null level, refinement or quantity is not checked (footer cut off by the screen edge).",
+ "description": "Labels for tests/online-samples (pnpm fetch:online-samples): every card checked by eye against the screenshot. Cards are [row, column, item, ...] with rows and columns as the grid detector reports them. Weapons: [r, c, weapon id, level, refinement, locked]; artifacts: [r, c, \"<set id>:<slot>\", level, rarity, locked]; materials: [r, c, material id, quantity]; characters (party setup list): [r, c, character id, level]. Item null: the card must not be identified (enhancement ores and artifact EXP items in those tabs); \"?\": a weapon we could not identify (skipped). A null level, refinement or quantity is not checked (footer cut off by the screen edge).",
  "samples": [
   {
    "file": "weapons-pc-a.jpg",
@@ -496,6 +496,46 @@
     [2, 5, "raw-meat", 7270],
     [2, 6, "bird-egg", 5187],
     [2, 7, "matsutake", 2372]
+   ]
+  },
+  {
+   "file": "characters-mobile-a.jpg",
+   "kind": "character",
+   "cards": [
+    [0, 0, "alhaitham", 50],
+    [0, 1, "qiqi", 70],
+    [0, 2, "aether", 70],
+    [0, 3, "layla", 60],
+    [1, 0, "lynette", 40],
+    [1, 1, "kaeya", 40],
+    [1, 2, "lisa", 25],
+    [1, 3, "barbara", 25],
+    [2, 0, "amber", 25],
+    [2, 1, "gorou", 20],
+    [2, 2, "faruzan", 20],
+    [2, 3, "sethos", 20]
+   ]
+  },
+  {
+   "file": "characters-mobile-b.jpg",
+   "kind": "character",
+   "cards": [
+    [0, 0, "lumine", 60],
+    [0, 1, "tighnari", 50],
+    [0, 2, "noelle", 40],
+    [0, 3, "ningguang", 40],
+    [1, 0, "kaeya", 40],
+    [1, 1, "lisa", 40],
+    [1, 2, "barbara", 40],
+    [1, 3, "lynette", 26],
+    [2, 0, "gorou", 20],
+    [2, 1, "kujou-sara", 20],
+    [2, 2, "thoma", 20],
+    [2, 3, "chongyun", 19],
+    [3, 0, "kachina", 1],
+    [3, 1, "shikanoin-heizou", 1],
+    [3, 2, "xinyan", 1],
+    [3, 3, "bennett", 1]
    ]
   }
  ]

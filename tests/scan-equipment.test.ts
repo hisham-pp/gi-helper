@@ -4,9 +4,12 @@ import { getArtifactSet, getWeapon } from "../src/lib/good/catalog";
 import type { CardRecognition } from "../src/lib/material-detector/types";
 import {
   EquipmentStitcher,
+  characterAscension,
   equipmentRows,
   toGoodArtifact,
+  toGoodCharacter,
   toGoodWeapon,
+  uniqueByItem,
   weaponAscension,
   type EquipmentSighting,
 } from "../src/lib/scan-equipment";
@@ -124,5 +127,38 @@ describe("weapons and artifacts as GOOD entries", () => {
     assert.equal(toGoodArtifact({ rarity: 5, level: 20, locked: false }, set, "goblet", "pyro_dmg_").mainStatKey, "pyro_dmg_");
     // A 4★ piece stops at +16.
     assert.equal(toGoodArtifact({ rarity: 4, level: 20, locked: false }, set, "sands").level, 16);
+  });
+});
+
+describe("characters", () => {
+  test("each character once, the best reading kept", () => {
+    const rows = frame(0, [["hu-tao", "bennett"], ["hu-tao", "xiangling"]]);
+    rows[1][0] = { ...rows[1][0], level: null, confidence: 0.4 };
+    const unique = uniqueByItem(rows.flat());
+    assert.deepEqual(unique.map((c) => c.item), ["hu-tao", "bennett", "xiangling"]);
+    assert.equal(unique[0].level, 90);
+  });
+
+  test("ascension from the level; past 90 is ascension 6", () => {
+    assert.equal(characterAscension(1), 0);
+    assert.equal(characterAscension(40), 1);
+    assert.equal(characterAscension(80), 5);
+    assert.equal(characterAscension(90), 6);
+    assert.equal(characterAscension(95), 6);
+  });
+
+  test("a rescan keeps constellations and talents, and an ascension that still fits", () => {
+    assert.deepEqual(toGoodCharacter("HuTao", 80), {
+      key: "HuTao",
+      level: 80,
+      constellation: 0,
+      ascension: 5,
+      talent: { auto: 1, skill: 1, burst: 1 },
+    });
+    const owned = { key: "HuTao", level: 80, constellation: 1, ascension: 6, talent: { auto: 6, skill: 9, burst: 8 } };
+    assert.deepEqual(toGoodCharacter("HuTao", 80, owned), { ...owned, level: 80 });
+    assert.deepEqual(toGoodCharacter("HuTao", 90, owned), { ...owned, level: 90 });
+    // 50 doesn't fit ascension 6 any more: recomputed.
+    assert.equal(toGoodCharacter("HuTao", 50, owned).ascension, 2);
   });
 });

@@ -1,7 +1,8 @@
 /**
  * The card scanner beyond Character Development Items: which bag tab a grid
- * shows, weapons ("Lv. 90", refinement, lock, awakened icons) and artifacts
- * ("+20", set and slot, rarity), on synthetic cards and, when downloaded
+ * shows, weapons ("Lv. 90", refinement, lock, awakened icons), artifacts
+ * ("+20", set and slot, rarity) and the party setup's characters ("Lv. 90",
+ * no stars), on synthetic cards and, when downloaded
  * (`pnpm fetch:online-samples`), on players' screenshots labelled in
  * tests/online-samples/ground-truth.json.
  */
@@ -22,6 +23,7 @@ const allBanks = async () => ({
   material: await loadBank("material"),
   weapon: await loadBank("weapon"),
   artifact: await loadBank("artifact"),
+  character: await loadBank("character"),
 });
 
 describe("footer text", () => {
@@ -141,6 +143,30 @@ describe("weapons", () => {
   });
 });
 
+describe("characters", () => {
+  test("the party setup's list: \"Lv.\" without a star row; character and level", async () => {
+    const banks = await allBanks();
+    const specs = [
+      { materialId: "hu-tao", quantity: 0, footer: "Lv. 90", stars: 0 },
+      { materialId: "bennett", quantity: 0, footer: "Lv. 80", stars: 0 },
+      { materialId: "lumine", quantity: 0, footer: "Lv. 1", stars: 0 },
+    ];
+    const scene = renderCards(banks.character, specs);
+    const [reading] = decideGridKinds({ image: scene.image, grids: [scene.grid] }, {}, { kind: "auto" });
+    assert.deepEqual([reading.kind, reading.source], ["character", "text"]);
+    const result = recognizeCards({ image: scene.image, grids: [scene.grid] }, banks);
+    assert.deepEqual(
+      result.cards.map((c) => [c.material?.id, c.level?.value, c.status]),
+      [
+        ["hu-tao", 90, "matched"],
+        ["bennett", 80, "matched"],
+        ["lumine", 1, "matched"],
+      ],
+    );
+    assert.ok(result.cards.every((c) => c.locked === null && c.refinement === null));
+  });
+});
+
 describe("artifacts", () => {
   test("set and slot from the piece's icon; the rarity may be any the set has", async () => {
     const banks = await allBanks();
@@ -200,7 +226,7 @@ describe("players' screenshots (pnpm fetch:online-samples)", () => {
         if (a !== null && a !== undefined) assert.equal(value, a, `${at} level/quantity`);
         if (sample.kind === "weapon" && b !== null && b !== undefined) assert.equal(card.refinement?.value, b, `${at} refinement`);
         if (sample.kind === "artifact" && b !== null && b !== undefined) assert.equal(card.rarity.value, b, `${at} rarity`);
-        if (typeof locked === "boolean") assert.equal(card.locked, locked, `${at} lock`);
+        if (sample.kind !== "character" && typeof locked === "boolean") assert.equal(card.locked, locked, `${at} lock`);
       }
     });
   }

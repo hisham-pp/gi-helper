@@ -76,7 +76,8 @@ function drawCard(cv: Canvas, bank: ReferenceBank, spec: CardSpec, ox: number, o
   if (index === undefined) throw new Error(`unknown material ${spec.materialId}`);
   const entry = bank.entries[index];
   const H = Math.round((W * 222) / 182);
-  const rarity = (spec.stars ?? entry.rarity) as Rarity;
+  // "stars: 0" draws no star row (the party setup's characters) over the entry's own background
+  const rarity = (spec.stars || entry.rarity) as Rarity;
   const bg = RARITY_BG[rarity];
   // Background with a gentle vertical gradient, cream footer below the artwork.
   for (let y = 0; y < H; y++) {

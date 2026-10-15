@@ -1,23 +1,33 @@
 /**
- * Weapons and artifacts read by the scanners, on their way to the inventory.
+ * Weapons, artifacts and characters read by the scanners, on their way to
+ * the inventory.
  *
  * Materials are merged by id (each shows once in the bag), but the same
  * weapon or artifact can be owned many times. Overlapping screenshots and
  * the frames of a recording are therefore stitched by rows: a new frame's
  * first rows are matched against the rows read so far (same items, levels
  * and refinements in the same columns), and only the rows past the overlap
- * are added. Then each card becomes a GOOD weapon or artifact.
+ * are added. Characters (the party setup's list) are stitched the same way
+ * and then kept once each. Then each card becomes a GOOD entry.
  */
 import type { ArtifactSetInfo, WeaponInfo } from "./good/catalog";
-import { ASCENSION_MAX_LEVEL, type GoodArtifact, type GoodWeapon, type SlotKey } from "./good/types";
+import {
+  ASCENSION_MAX_LEVEL,
+  type GoodArtifact,
+  type GoodCharacter,
+  type GoodWeapon,
+  type SlotKey,
+} from "./good/types";
 import type { CardRecognition, CardRecognitionStatus, MaterialCandidate } from "./material-detector/types";
 
-export type EquipmentKind = "weapon" | "artifact";
+export type EquipmentKind = "weapon" | "artifact" | "character";
 
-/** One weapon or artifact card, as read in one screenshot or frame. */
+export const EQUIPMENT_KINDS: readonly EquipmentKind[] = ["weapon", "artifact", "character"];
+
+/** One weapon, artifact or character card, as read in one screenshot or frame. */
 export interface EquipmentSighting {
   kind: EquipmentKind;
-  /** The catalog item: a weapon id or "<set id>:<slot>"; null when unidentified. */
+  /** The catalog item: a weapon id, "<set id>:<slot>" or a character id; null when unidentified. */
   item: string | null;
   /** "awakened" (or "awakened-alt") when the weapon showed its awakened icon. */
   variant?: string;
@@ -37,11 +47,11 @@ export interface EquipmentSighting {
   card: CardRecognition;
 }
 
-/** The weapon or artifact cards of one scan result, row by row (one list per kind). */
+/** The weapon, artifact or character cards of one scan result, row by row (one list per kind). */
 export function equipmentRows(cards: readonly CardRecognition[], source: number): Record<EquipmentKind, EquipmentSighting[][]> {
-  const out: Record<EquipmentKind, EquipmentSighting[][]> = { weapon: [], artifact: [] };
+  const out: Record<EquipmentKind, EquipmentSighting[][]> = { weapon: [], artifact: [], character: [] };
   // Only the biggest grid of each kind: the bag shows one.
-  for (const kind of ["weapon", "artifact"] as const) {
+  for (const kind of EQUIPMENT_KINDS) {
     const own = cards.filter((c) => c.kind === kind && c.row !== null && c.column !== null);
     if (own.length === 0) continue;
     const byGrid = new Map<string, CardRecognition[]>();
@@ -138,6 +148,31 @@ export class EquipmentStitcher {
 }
 
 /**
+ * Each character once: owned characters are unique, so readings of the same
+ * one (overlapping screenshots that didn't stitch) collapse into the best.
+ * Unidentified cards are kept.
+ */
+export function uniqueByItem(cards: readonly EquipmentSighting[]): EquipmentSighting[] {
+  const best = new Map<string, EquipmentSighting>();
+  const out: EquipmentSighting[] = [];
+  for (const c of cards) {
+    if (c.item === null) {
+      out.push(c);
+      continue;
+    }
+    const prev = best.get(c.item);
+    if (!prev) {
+      best.set(c.item, c);
+      out.push(c);
+    } else if (better(prev, c) === c) {
+      best.set(c.item, c);
+      out[out.indexOf(prev)] = c;
+    }
+  }
+  return out;
+}
+
+/**
  * A weapon's ascension from its level: the lowest whose cap reaches the
  * level (a weapon at 80 is taken as 80/80, not 80/90), and at least 2 when
  * the bag showed the awakened icon (which only appears from ascension 2).
@@ -149,6 +184,30 @@ export function weaponAscension(level: number, awakened: boolean, rarity: number
   if (ascension < 0) ascension = maxAscension;
   if (awakened && ascension < 2 && level >= 40) ascension = 2;
   return Math.min(ascension, maxAscension);
+}
+
+/** A character's ascension from its level: the lowest whose cap reaches it (past 90: 6). */
+export function characterAscension(level: number): number {
+  const ascension = ASCENSION_MAX_LEVEL.findIndex((cap) => level <= cap);
+  return ascension < 0 ? 6 : ascension;
+}
+
+/**
+ * A scanned character as a GOOD character. The party setup only shows the
+ * level: one already in the inventory keeps its constellation and talents
+ * (and its ascension when it still fits the level); a new one starts at C0
+ * with level-1 talents.
+ */
+export function toGoodCharacter(key: string, level: number, existing?: GoodCharacter): GoodCharacter {
+  const cap = (a: number) => ASCENSION_MAX_LEVEL[a] ?? Infinity;
+  const fits = existing && level <= cap(existing.ascension) && (existing.ascension === 0 || level >= cap(existing.ascension - 1));
+  return {
+    key,
+    level,
+    constellation: existing?.constellation ?? 0,
+    ascension: fits ? existing!.ascension : characterAscension(level),
+    talent: existing?.talent ?? { auto: 1, skill: 1, burst: 1 },
+  };
 }
 
 /** The main stat a slot always has (flower: HP, plume: ATK); null for sands, goblet and circlet. */

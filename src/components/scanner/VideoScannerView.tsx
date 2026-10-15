@@ -20,10 +20,12 @@ import type { PixelRect } from "@/lib/grid-detector";
 import { useScannerSettings } from "@/lib/scanner-settings";
 import { setScannerInventory } from "@/lib/scanner-inventory";
 import type { DetectedItem, EquipmentReviewItem, ScannedReviewItem } from "@/lib/types";
+import { getOwnedCharacters } from "@/lib/good-inventory";
 import {
   equipmentIcon,
   equipmentReviewItem,
   inventoryPageFor,
+  ownedTravelerElement,
   saveScannedEquipment,
   type EquipmentConfirm,
 } from "./equipment-review";
@@ -42,6 +44,7 @@ interface VideoSummary {
   materials: number;
   weapons: number;
   artifacts: number;
+  characters: number;
   flagged: number;
   seconds: number;
 }
@@ -259,16 +262,19 @@ export function VideoScannerView({ id = "video-panel", ariaLabelledBy = "video-t
         }));
         // Slots that need a second look first, then the order they scrolled by.
         review.sort((a, b) => Number(!!b.reviewReason) - Number(!!a.reviewReason));
+        const travelerElement = ownedTravelerElement(getOwnedCharacters());
         const equipment = result.equipment.map((e, k) =>
           equipmentReviewItem(
             e,
             `video-${e.kind}-${k}`,
             e.crop ? trackUrl(e.crop) : equipmentIcon(e),
             `Frame at ${formatVideoTime(e.time)}`,
+            travelerElement,
           ),
         );
         const weapons = equipment.filter((e) => e.kind === "weapon").length;
-        const artifacts = equipment.length - weapons;
+        const artifacts = equipment.filter((e) => e.kind === "artifact").length;
+        const characters = equipment.filter((e) => e.kind === "character").length;
         const flagged = review.filter((r) => r.reviewReason).length + equipment.filter((e) => e.reviewReason).length;
         setSummary({
           duration: result.duration,
@@ -277,6 +283,7 @@ export function VideoScannerView({ id = "video-panel", ariaLabelledBy = "video-t
           materials: review.length,
           weapons,
           artifacts,
+          characters,
           flagged,
           seconds: result.processingTimeMs / 1000,
         });
@@ -301,6 +308,7 @@ export function VideoScannerView({ id = "video-panel", ariaLabelledBy = "video-t
             review.length > 0 && `${review.length} material${review.length > 1 ? "s" : ""}`,
             weapons > 0 && `${weapons} weapon${weapons > 1 ? "s" : ""}`,
             artifacts > 0 && `${artifacts} artifact${artifacts > 1 ? "s" : ""}`,
+            characters > 0 && `${characters} character${characters > 1 ? "s" : ""}`,
           ].filter(Boolean);
           toast.success(
             `Recognised ${parts.join(", ")}` + (flagged ? ` · ${flagged} to check` : "") + ". Please review the results.",
@@ -338,10 +346,10 @@ export function VideoScannerView({ id = "video-panel", ariaLabelledBy = "video-t
   const handleConfirmReview = useCallback(
     (confirmed: DetectedItem[], equipment?: EquipmentConfirm) => {
       if (confirmed.length > 0) mergeIntoInventory(confirmed);
-      const saved = equipment ? saveScannedEquipment(equipment) : { weapons: 0, artifacts: 0, skipped: 0 };
+      const saved = equipment ? saveScannedEquipment(equipment) : { weapons: 0, artifacts: 0, characters: 0, skipped: 0 };
       if (saved.skipped > 0) toast.info(`${saved.skipped} unidentified card${saved.skipped > 1 ? "s were" : " was"} left out.`);
       setIsReviewOpen(false);
-      router.push(inventoryPageFor(confirmed.length, saved.weapons, saved.artifacts));
+      router.push(inventoryPageFor({ materials: confirmed.length, ...saved }));
     },
     [mergeIntoInventory, router],
   );
@@ -385,9 +393,12 @@ export function VideoScannerView({ id = "video-panel", ariaLabelledBy = "video-t
             {summary.framesScanned === 1 ? "" : "s"} scanned ·{" "}
             <span className="font-semibold text-white">
               {[
-                summary.materials > 0 || (summary.weapons === 0 && summary.artifacts === 0) ? `${summary.materials} materials` : null,
+                summary.materials > 0 || summary.weapons + summary.artifacts + summary.characters === 0
+                  ? `${summary.materials} materials`
+                  : null,
                 summary.weapons > 0 ? `${summary.weapons} weapons` : null,
                 summary.artifacts > 0 ? `${summary.artifacts} artifacts` : null,
+                summary.characters > 0 ? `${summary.characters} characters` : null,
               ]
                 .filter(Boolean)
                 .join(" · ")}
