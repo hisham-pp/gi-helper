@@ -13,6 +13,8 @@ import {
   MATERIAL_CATEGORIES,
 } from "../src/lib/materials";
 import { toGOODKey } from "../src/lib/good/keys";
+import { getAllArtifactSets, getAllWeapons } from "../src/lib/good/catalog";
+import { SLOT_KEYS } from "../src/lib/good/types";
 
 describe("Materials Directory & Canonical Ordering Tests", () => {
   it("returns exactly 481 materials from the application dataset", () => {
@@ -138,13 +140,41 @@ describe("Materials Directory & Canonical Ordering Tests", () => {
     assert.equal(bagOrder(others[0]).position, 1);
   });
 
-  it("the recognizer atlas has every material, in catalog order (run `pnpm build:material-atlas` if this fails)", () => {
-    const atlas = JSON.parse(
-      readFileSync(path.join(process.cwd(), "public", "data", "material-atlas.json"), "utf8"),
-    ) as { entries: { id: string }[] };
+  const readAtlas = (kind: string) =>
+    JSON.parse(readFileSync(path.join(process.cwd(), "public", "data", `${kind}-atlas.json`), "utf8")) as {
+      kind?: string;
+      entries: { id: string; item?: string; variant?: string; rarities?: number[] }[];
+    };
+
+  it("the material atlas has both bag tabs, in catalog order (run `pnpm build:atlases` if this fails)", () => {
+    const atlas = readAtlas("material");
+    assert.equal(atlas.kind, "material");
     assert.deepEqual(
       atlas.entries.map((e) => e.id),
-      getAllMaterials().map((m) => m.id),
+      getDirectoryMaterials().map((m) => m.id),
     );
+  });
+
+  it("the weapon atlas has every weapon, with its awakened icon (run `pnpm build:atlases` if this fails)", () => {
+    const atlas = readAtlas("weapon");
+    assert.equal(atlas.kind, "weapon");
+    const base = atlas.entries.filter((e) => !e.variant).map((e) => e.id);
+    assert.deepEqual(base, getAllWeapons().map((w) => w.id));
+    const awakened = atlas.entries.filter((e) => e.variant === "awakened");
+    assert.ok(awakened.length >= base.length * 0.95, `only ${awakened.length} awakened icons`);
+    for (const e of awakened) assert.ok(base.includes(e.item!), e.id);
+  });
+
+  it("the artifact atlas has every piece of every set (run `pnpm build:atlases` if this fails)", () => {
+    const atlas = readAtlas("artifact");
+    assert.equal(atlas.kind, "artifact");
+    const expected = getAllArtifactSets().flatMap((set) =>
+      SLOT_KEYS.filter((slot) => set.pieces[slot]).map((slot) => `${set.id}:${slot}`),
+    );
+    assert.deepEqual(
+      atlas.entries.map((e) => e.id),
+      expected,
+    );
+    for (const e of atlas.entries) assert.ok(e.rarities && e.rarities.length > 0, e.id);
   });
 });

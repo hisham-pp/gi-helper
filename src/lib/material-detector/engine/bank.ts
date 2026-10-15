@@ -1,9 +1,10 @@
 /**
  * Reference bank: every catalog icon pre-rendered exactly where it appears
- * on a card, at two resolutions.
+ * on a card, at two resolutions. There is one bank per card kind
+ * (materials, weapons, artifacts).
  *
- * The atlas (`public/data/material-atlas.png`, built by
- * `scripts/build-material-atlas.ts`) holds each 256² catalog icon area-
+ * The atlas (`public/data/<kind>-atlas.webp`, lossless, built by
+ * `scripts/build-atlases.ts`) holds each 256² catalog icon area-
  * averaged to a 64² tile with straight alpha. Because the icon fills the
  * card's top W × W square, a tile *is* the expected artwork of a 64 px wide
  * card frame; no per-icon placement search is needed.
@@ -13,7 +14,7 @@
  * and pixels the icon does not cover say "this should be plain background".
  */
 import type { RgbaImage } from "../../grid-detector/engine/image";
-import type { Rarity, ReferenceEntry } from "../types";
+import { CARD_KINDS, type CardKind, type Rarity, type ReferenceEntry } from "../types";
 import { artRows } from "./card";
 import { MaterialDetectionError } from "./errors";
 
@@ -25,9 +26,19 @@ export const COARSE_SIZE = FINE_SIZE / 2;
 export const ATLAS_FORMAT = "gi-material-atlas";
 export const ATLAS_VERSION = 1;
 
+/** Site paths of each kind's atlas (under public/). */
+export const ATLAS_FILES: Record<CardKind, { manifest: string; image: string }> = {
+  material: { manifest: "/data/material-atlas.json", image: "/data/material-atlas.webp" },
+  weapon: { manifest: "/data/weapon-atlas.json", image: "/data/weapon-atlas.webp" },
+  artifact: { manifest: "/data/artifact-atlas.json", image: "/data/artifact-atlas.webp" },
+  character: { manifest: "/data/character-atlas.json", image: "/data/character-atlas.webp" },
+};
+
 export interface AtlasManifest {
   format: typeof ATLAS_FORMAT;
   version: number;
+  /** The card kind the atlas is for; "material" when absent. */
+  kind?: CardKind;
   /** Content hash of the atlas image; used for cache busting. */
   hash: string;
   tileSize: number;
@@ -50,6 +61,7 @@ export interface Template {
 }
 
 export interface ReferenceBank {
+  kind: CardKind;
   version: string;
   entries: ReferenceEntry[];
   indexById: Map<string, number>;
@@ -73,6 +85,8 @@ function makeTemplate(size: number, rows: number): Template {
 
 const isRarity = (v: unknown): v is Rarity => v === 1 || v === 2 || v === 3 || v === 4 || v === 5;
 
+const optional = (v: unknown, check: (v: unknown) => boolean) => v === undefined || check(v);
+
 export function validateManifest(value: unknown): AtlasManifest {
   const m = value as Partial<AtlasManifest> | null;
   const ok =
@@ -85,14 +99,22 @@ export function validateManifest(value: unknown): AtlasManifest {
     typeof m.hash === "string" &&
     Array.isArray(m.entries) &&
     m.entries.length > 0 &&
+    optional(m.kind, (k) => (CARD_KINDS as readonly unknown[]).includes(k)) &&
     m.entries.every(
       (e) =>
-        e && typeof e.id === "string" && typeof e.name === "string" && isRarity(e.rarity) && typeof e.order === "number",
+        e &&
+        typeof e.id === "string" &&
+        typeof e.name === "string" &&
+        isRarity(e.rarity) &&
+        typeof e.order === "number" &&
+        optional(e.item, (v) => typeof v === "string") &&
+        optional(e.variant, (v) => typeof v === "string") &&
+        optional(e.rarities, (v) => Array.isArray(v) && v.length > 0 && v.every(isRarity)),
     );
   if (!ok) {
     throw new MaterialDetectionError(
       "REFERENCES_INVALID",
-      "The material reference data is invalid or outdated. Please reload the page.",
+      "The scanner's reference data is invalid or outdated. Please reload the page.",
     );
   }
   return m as AtlasManifest;
@@ -106,7 +128,7 @@ export function createReferenceBank(manifestJson: unknown, atlas: RgbaImage): Re
   if (atlas.width < manifest.columns * T || atlas.height < rowsOfTiles * T || atlas.data.length < atlas.width * atlas.height * 4) {
     throw new MaterialDetectionError(
       "REFERENCES_INVALID",
-      "The material reference image does not match its manifest. Please reload the page.",
+      "The scanner's reference image does not match its manifest. Please reload the page.",
     );
   }
 
@@ -171,6 +193,7 @@ export function createReferenceBank(manifestJson: unknown, atlas: RgbaImage): Re
 
   const fineCache: (Template | undefined)[] = new Array(manifest.entries.length);
   return {
+    kind: manifest.kind ?? "material",
     version: manifest.hash,
     entries: manifest.entries,
     indexById: new Map(manifest.entries.map((e, i) => [e.id, i])),

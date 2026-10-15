@@ -6,6 +6,7 @@ import React, { memo, useCallback, useDeferredValue, useEffect, useMemo, useStat
 import {
   ScannedReviewItem,
   DetectedItem,
+  EquipmentReviewItem,
   ReviewCandidate,
   MaterialItem,
 } from "@/lib/types";
@@ -28,20 +29,42 @@ import { GlassInput } from "@/components/ui/GlassInput";
 import { MaterialThumb } from "@/components/ui/MaterialThumb";
 import { usePauseBackground } from "@/lib/use-pause-background";
 import { useModalMotion } from "@/lib/use-modal-motion";
+import { useOwnedArtifacts, useOwnedWeapons } from "@/lib/good-inventory";
+import { fixedMainStat, splitArtifactItem } from "@/lib/scan-equipment";
+import { MAIN_STATS_BY_SLOT } from "@/lib/good/types";
+import { EquipmentReviewRow } from "./EquipmentReviewRow";
+import { equipmentName, type EquipmentConfirm } from "./equipment-review";
+import type { EquipmentOption } from "./EquipmentPickerModal";
 
 const loadMaterialPicker = () => import("./MaterialPickerModal");
+const loadEquipmentPicker = () => import("./EquipmentPickerModal");
 
 /** Loaded on demand: most reviews are confirmed without opening it. */
 const MaterialPickerModal = dynamic(
   () => import("./MaterialPickerModal").then((m) => m.MaterialPickerModal),
   { ssr: false },
 );
+const EquipmentPickerModal = dynamic(
+  () => import("./EquipmentPickerModal").then((m) => m.EquipmentPickerModal),
+  { ssr: false },
+);
 
 interface ScanReviewModalProps {
   reviewItems: ScannedReviewItem[];
+  /** Weapons and artifacts read in the same scan. */
+  equipment?: EquipmentReviewItem[];
   onClose: () => void;
-  onConfirm: (confirmedItems: DetectedItem[]) => void;
+  onConfirm: (confirmedItems: DetectedItem[], equipment?: EquipmentConfirm) => void;
 }
+
+type ReviewView = "materials" | "weapon" | "artifact" | "character";
+
+const VIEW_LABELS: Record<ReviewView, string> = {
+  materials: "Materials",
+  weapon: "Weapons",
+  artifact: "Artifacts",
+  character: "Characters",
+};
 
 /**
  * Post-scan review. The parent mounts it only while open (via
@@ -49,21 +72,71 @@ interface ScanReviewModalProps {
  */
 export function ScanReviewModal({
   reviewItems,
+  equipment = [],
   onClose,
   onConfirm,
 }: ScanReviewModalProps) {
   const [items, setItems] = useState<ScannedReviewItem[]>(reviewItems);
+  const [equip, setEquip] = useState<EquipmentReviewItem[]>(equipment);
   const [searchQuery, setSearchQuery] = useState("");
+  // A scan of the Weapons or Artifacts tab is a snapshot of it, like a GOOD file
+  const [replace, setReplace] = useState<EquipmentConfirm["replace"]>({ weapon: true, artifact: true, character: false });
+  const [ownedWeapons] = useOwnedWeapons();
+  const [ownedArtifacts] = useOwnedArtifacts();
+
+  const views = useMemo(() => {
+    const list: ReviewView[] = [];
+    if (reviewItems.length > 0 || equipment.length === 0) list.push("materials");
+    if (equipment.some((e) => e.kind === "weapon")) list.push("weapon");
+    if (equipment.some((e) => e.kind === "artifact")) list.push("artifact");
+    if (equipment.some((e) => e.kind === "character")) list.push("character");
+    return list;
+  }, [reviewItems, equipment]);
+  const [view, setView] = useState<ReviewView>(views[0]);
 
   // Material Picker Sub-modal state
   const [editingSlotId, setEditingSlotId] = useState<string | null>(null);
+  const [editingEquipId, setEditingEquipId] = useState<string | null>(null);
 
   usePauseBackground();
   const { dialogRef, backdropRef, close, closeThen } = useModalMotion(onClose);
 
   // Fetch the picker's chunk while the user reads the list, so "Change" opens instantly
   useEffect(() => {
-    loadMaterialPicker().catch(() => {});
+    if (reviewItems.length > 0) loadMaterialPicker().catch(() => {});
+    if (equipment.length > 0) loadEquipmentPicker().catch(() => {});
+  }, [reviewItems.length, equipment.length]);
+
+  const handleEquipChange = useCallback((id: string, patch: Partial<EquipmentReviewItem>) => {
+    setEquip((prev) => prev.map((e) => (e.id === id ? { ...e, ...patch } : e)));
+  }, []);
+
+  const handleEquipRemove = useCallback((id: string) => {
+    setEquip((prev) => prev.filter((e) => e.id !== id));
+  }, []);
+
+  /** Reassigns a row to another weapon or piece; an artifact keeps its main stat if the new slot allows it. */
+  const handleEquipSelect = useCallback((id: string, choice: ReviewCandidate | EquipmentOption) => {
+    setEquip((prev) =>
+      prev.map((e) => {
+        if (e.id !== id) return e;
+        const next: EquipmentReviewItem = {
+          ...e,
+          item: choice.id,
+          name: equipmentName(e.kind, choice.id),
+          rarity: e.rarity ?? choice.rarity,
+          variant: undefined,
+          reviewReason: undefined,
+        };
+        if (e.kind === "artifact") {
+          const slot = splitArtifactItem(choice.id).slot;
+          const allowed = MAIN_STATS_BY_SLOT[slot] as readonly string[];
+          next.mainStatKey = fixedMainStat(slot) ?? (allowed.includes(e.mainStatKey) ? e.mainStatKey : "");
+        }
+        return next;
+      }),
+    );
+    setEditingEquipId(null);
   }, []);
 
   const handleUpdateQuantity = useCallback((id: string, delta: number) => {
@@ -115,7 +188,7 @@ export function ScanReviewModal({
   const handleClosePicker = useCallback(() => setEditingSlotId(null), []);
 
   const handleConfirm = () => {
-    if (items.length === 0) {
+    if (items.length === 0 && equip.length === 0) {
       toast.info("No items to add.");
       close();
       return;
@@ -138,9 +211,17 @@ export function ScanReviewModal({
     }
 
     const finalItems = Array.from(aggregatedMap.values());
+    const confirmed = equip.length > 0 ? { items: equip, replace } : undefined;
     // The parent unmounts the modal on confirm, so hand the items over once it has closed
-    closeThen(() => onConfirm(finalItems));
-    toast.success(`Successfully confirmed ${finalItems.length} materials!`);
+    closeThen(() => onConfirm(finalItems, confirmed));
+    const parts = [
+      finalItems.length > 0 && `${finalItems.length} material${finalItems.length === 1 ? "" : "s"}`,
+      ...(["weapon", "artifact", "character"] as const).map((k) => {
+        const n = equip.filter((e) => e.kind === k && e.item).length;
+        return n > 0 && `${n} ${k}${n === 1 ? "" : "s"}`;
+      }),
+    ].filter(Boolean);
+    toast.success(`Confirmed ${parts.join(", ")}.`);
   };
 
   // Typing in the search box stays responsive; the list catches up in a background render
@@ -154,6 +235,12 @@ export function ScanReviewModal({
     [items, deferredQuery],
   );
 
+  const viewEquip = useMemo(
+    () => equip.filter((e) => e.kind === view && e.name.toLowerCase().includes(deferredQuery.toLowerCase())),
+    [equip, view, deferredQuery],
+  );
+  const countOf = (v: ReviewView) => (v === "materials" ? items.length : equip.filter((e) => e.kind === v).length);
+
   const totalQuantity = useMemo(
     () => items.reduce((sum, item) => sum + item.quantity, 0),
     [items],
@@ -162,6 +249,8 @@ export function ScanReviewModal({
   const editingItem = editingSlotId
     ? items.find((it) => it.id === editingSlotId)
     : undefined;
+  const editingEquip = editingEquipId ? equip.find((e) => e.id === editingEquipId) : undefined;
+  const ownedCount = { weapon: ownedWeapons.length, artifact: ownedArtifacts.length };
 
   // Portal to <body>: an ancestor's transform/filter (e.g. the tab panel's entry
   // animation) would otherwise trap the fixed overlay and the glass blur inside it.
@@ -190,8 +279,8 @@ export function ScanReviewModal({
                 Review Scan Results
               </h2>
               <p className="text-xs text-white/60">
-                Compare screenshot snippets against matched items, select
-                correct materials, and adjust quantities.
+                Compare each card from your screenshots with what it was
+                matched to, fix any mistakes, and adjust the numbers.
               </p>
             </div>
           </div>
@@ -218,19 +307,61 @@ export function ScanReviewModal({
             className="min-w-[200px] max-w-sm flex-1"
           />
 
+          {views.length > 1 && (
+            <div className="flex items-center gap-1" role="group" aria-label="Kind of item">
+              {views.map((v) => (
+                <button
+                  key={v}
+                  aria-pressed={view === v}
+                  onClick={() => setView(v)}
+                  className="glass-chip px-3 py-1 text-xs font-semibold"
+                >
+                  {VIEW_LABELS[v]} ({countOf(v)})
+                </button>
+              ))}
+            </div>
+          )}
+
           <div className="flex items-center gap-3 text-xs">
             <span className="glass-chip px-3 py-1 font-semibold text-white/85">
-              {items.length} detected slots
+              {countOf(view)} detected slots
             </span>
-            <span className="glass-chip px-3 py-1 font-semibold text-cyan-200">
-              Total Qty: {totalQuantity}
-            </span>
+            {view === "materials" && (
+              <span className="glass-chip px-3 py-1 font-semibold text-cyan-200">
+                Total Qty: {totalQuantity}
+              </span>
+            )}
           </div>
         </div>
 
         {/* Items List Area */}
         <div className="flex-1 overflow-y-auto p-4 sm:p-6">
-          {items.length === 0 ? (
+          {view !== "materials" ? (
+            viewEquip.length === 0 ? (
+              <div className="py-12 text-center text-xs text-white/50">
+                {countOf(view) === 0 ? "All items were removed" : <>No items matching &ldquo;{searchQuery}&rdquo;</>}
+              </div>
+            ) : (
+              <div className="space-y-3">
+                {view === "artifact" && viewEquip.some((e) => e.mainStatKey === "") && (
+                  <p className="glass-chip w-full justify-center bg-amber-400/10 px-3 py-1.5 text-center text-[11px] text-amber-100">
+                    The bag only shows the main stat of flowers and plumes. Pick it for the others, or leave it for
+                    later: substats aren&apos;t read yet.
+                  </p>
+                )}
+                {viewEquip.map((e) => (
+                  <EquipmentReviewRow
+                    key={e.id}
+                    item={e}
+                    onEdit={setEditingEquipId}
+                    onSelect={handleEquipSelect}
+                    onChange={handleEquipChange}
+                    onRemove={handleEquipRemove}
+                  />
+                ))}
+              </div>
+            )
+          ) : items.length === 0 ? (
             <div className="flex h-48 flex-col items-center justify-center text-center text-white/60">
               <Sparkles className="mb-2 h-8 w-8 text-white/30" />
               <p className="text-sm font-semibold">All items were removed</p>
@@ -260,16 +391,29 @@ export function ScanReviewModal({
         </div>
 
         {/* Footer */}
-        <div className="flex flex-shrink-0 items-center justify-between border-t border-white/10 px-6 py-4">
+        <div className="flex flex-shrink-0 flex-wrap items-center justify-between gap-3 border-t border-white/10 px-6 py-4">
           <button
             onClick={close}
             className="glass-btn px-5 py-2 text-sm"
           >
             Discard
           </button>
+          {(["weapon", "artifact"] as const)
+            .filter((k) => ownedCount[k] > 0 && equip.some((e) => e.kind === k))
+            .map((k) => (
+              <label key={k} className="flex items-center gap-2 text-[11px] text-white/70">
+                <input
+                  type="checkbox"
+                  checked={replace[k]}
+                  onChange={(ev) => setReplace((prev) => ({ ...prev, [k]: ev.target.checked }))}
+                  className="h-3.5 w-3.5 accent-teal-400"
+                />
+                Replace the {ownedCount[k]} {k}s in my inventory
+              </label>
+            ))}
           <button
             onClick={handleConfirm}
-            disabled={items.length === 0}
+            disabled={items.length === 0 && equip.length === 0}
             className="glass-btn glass-btn--primary px-6 py-2.5 text-sm font-bold"
           >
             <Check className="h-4 w-4 stroke-[3]" />
@@ -284,6 +428,13 @@ export function ScanReviewModal({
           item={editingItem}
           onSelect={handleSelectMaterial}
           onClose={handleClosePicker}
+        />
+      )}
+      {editingEquip && (
+        <EquipmentPickerModal
+          item={editingEquip}
+          onSelect={handleEquipSelect}
+          onClose={() => setEditingEquipId(null)}
         />
       )}
     </div>,

@@ -13,7 +13,7 @@
  */
 import type { DetectedGrid } from "../grid-detector/types";
 import { isMaterialDetectionError, MaterialDetectionError, toMaterialDetectionError } from "./engine/errors";
-import type { MaterialRecognitionResult, RecognitionSettings, ScanResult, ScanSettings } from "./types";
+import type { CardKind, MaterialRecognitionResult, RecognitionSettings, ScanResult, ScanSettings } from "./types";
 import type { ScanProgress, ScanWorkerRequest, ScanWorkerResponse } from "./worker-protocol";
 
 export interface ScanOptions {
@@ -71,11 +71,11 @@ export class MaterialScanClient {
     });
   }
 
-  /** Starts loading the reference bank ahead of the first scan. Never rejects. */
-  preload(): void {
-    this.request<null>({ kind: "preload" }, {}, async () => {
+  /** Starts loading a reference bank (materials by default) ahead of the first scan. Never rejects. */
+  preload(bank: CardKind = "material"): void {
+    this.request<null>({ kind: "preload", bank }, {}, async () => {
       const { loadReferenceBank } = await import("./browser");
-      await loadReferenceBank();
+      await loadReferenceBank(bank);
       return null;
     }).catch(() => undefined);
   }

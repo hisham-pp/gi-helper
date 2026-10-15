@@ -101,19 +101,24 @@ export function InventoryShell({ children }: { children: React.ReactNode }) {
       return;
     }
     downloadGOOD(buildDocument());
+    const skipped = counts.artifactsWithoutMainStat;
+    const note =
+      skipped > 0
+        ? `${skipped} scanned artifact${skipped > 1 ? "s" : ""} without a main stat ${skipped > 1 ? "were" : "was"} left out.`
+        : undefined;
     if (!shouldAskForFeedback()) {
-      toast.success("Exported to GOOD format!");
+      toast.success("Exported to GOOD format!", note ? { description: note } : undefined);
       return;
     }
     // Right after an export is a good moment to ask how the scan went
     markFeedbackAsked();
     preloadSendFeedbackModal();
     toast.success("Exported to GOOD format!", {
-      description: "How did the scan go? A quick note helps make GI Helper better.",
+      description: [note, "How did the scan go? A quick note helps make GI Helper better."].filter(Boolean).join(" "),
       action: { label: "Give feedback", onClick: () => setFeedbackOpen(true) },
       duration: 12000,
     });
-  }, [total, buildDocument]);
+  }, [total, buildDocument, counts.artifactsWithoutMainStat]);
 
   return (
     <InventoryActionsContext.Provider value={actions}>

@@ -2,7 +2,7 @@
 
 import { createLocalStore, readArray } from "./local-store";
 import { useScannerInventory } from "./scanner-inventory";
-import { buildGOODDocument } from "./good/export";
+import { buildGOODDocument, hasMainStat } from "./good/export";
 import type { GoodCharacter, GoodDocument, OwnedArtifact, OwnedWeapon } from "./good/types";
 
 /**
@@ -35,6 +35,8 @@ export const useOwnedArtifacts = () => artifactsStore.useValue();
 export const useExtraMaterials = () => extraMaterialsStore.useValue();
 
 export const setOwnedCharacters = charactersStore.set;
+/** The stored characters, read outside React (e.g. when a scan finishes). */
+export const getOwnedCharacters = (): GoodCharacter[] => charactersStore.get();
 export const setOwnedWeapons = weaponsStore.set;
 export const setOwnedArtifacts = artifactsStore.set;
 export const setExtraMaterials = extraMaterialsStore.set;
@@ -58,6 +60,8 @@ export function useGOODInventory() {
     characters: characters.length,
     weapons: weapons.length,
     artifacts: artifacts.length,
+    /** Scanned artifacts left out of exports until their main stat is set. */
+    artifactsWithoutMainStat: artifacts.filter((a) => !hasMainStat(a)).length,
   };
   const buildDocument = (): GoodDocument =>
     buildGOODDocument({ materials, extraMaterials, characters, weapons, artifacts });

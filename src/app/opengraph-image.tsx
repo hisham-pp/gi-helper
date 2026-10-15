@@ -8,8 +8,8 @@ export const alt = SITE.ogImageAlt;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-const HEADLINE = "Extract Materials from Screenshots";
-const SUBTITLE = "Scan your Genshin Impact inventory and export to GOOD format.";
+const HEADLINE = "Scan Your Genshin Inventory";
+const SUBTITLE = "Materials, weapons and artifacts from screenshots, exported to GOOD.";
 const FEATURES = ["On-device scanner", "AI Vision", "GOOD export"];
 const FONT_FAMILY = "Plus Jakarta Sans";
 

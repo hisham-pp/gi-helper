@@ -62,13 +62,13 @@ const nextConfig: NextConfig = {
     return [
       {
         // Fetched as ?v=<content hash> (lib/material-detector/browser.ts): never changes
-        source: "/data/material-atlas.png",
+        source: "/data/:kind(material|weapon|artifact|character)-atlas.webp",
         has: [{ type: "query", key: "v" }],
         headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
       },
       {
         // The manifest is how a new atlas is found, so it stays fairly fresh
-        source: "/data/material-atlas.json",
+        source: "/data/:kind(material|weapon|artifact|character)-atlas.json",
         headers: [{ key: "Cache-Control", value: "public, max-age=3600, stale-while-revalidate=86400" }],
       },
       {

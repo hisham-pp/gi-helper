@@ -4,7 +4,7 @@ import React, { memo, useCallback, useDeferredValue, useMemo, useState } from "r
 import { Search, X } from "lucide-react";
 import { MaterialItem, ScannedReviewItem } from "@/lib/types";
 import {
-  getAllMaterials,
+  getDirectoryMaterials,
   MATERIAL_CATEGORIES,
   MaterialCategory,
   getMaterialCategoryId,
@@ -34,7 +34,8 @@ export function MaterialPickerModal({ item, onSelect, onClose }: MaterialPickerM
   const [pickerCategory, setPickerCategory] = useState<MaterialCategory>("ALL");
   const [pickerRarity, setPickerRarity] = useState<number | null>(item.rarity ?? null);
 
-  const allMaterials = useMemo(() => getAllMaterials(), []);
+  // Both bag tabs the scanner reads: Character Development Items and Materials
+  const allMaterials = useMemo(() => getDirectoryMaterials(), []);
 
   // Typing stays responsive; the grid catches up in a background render
   const deferredSearch = useDeferredValue(pickerSearch);

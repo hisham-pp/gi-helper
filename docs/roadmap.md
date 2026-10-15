@@ -84,10 +84,10 @@ Do this once, before the scanners, so each new scanner only adds recognition.
         main-stat values by rarity and level, and substat roll values by rarity.
       - [x] The **Materials** bag tab: local specialties, cooking ingredients, ores,
         wood, fish and so on, with GOOD keys (`other-materials.json`, 285 items).
-- [ ] **One atlas builder for every kind** (M)
-      Generalize `build-material-atlas.ts` so it builds an atlas per kind
-      (materials, weapons, artifact pieces, character avatars) and the recognizer
-      can load just the one it needs.
+- [x] **One atlas builder for every kind** (M): done in 0.0.22
+      `build-atlases.ts` builds a lossless-WebP atlas per kind (materials of both
+      tabs, weapons with awakened and HoYoLAB-framed icons, artifact pieces,
+      character avatars); the recognizer loads only the one a screenshot needs.
 - [x] **Inventory per kind** (M): done in 0.0.20
       Stores for characters, weapons, artifacts and imported extra materials
       (`src/lib/good-inventory.ts`) beside the existing materials store, and
@@ -100,31 +100,34 @@ Do this once, before the scanners, so each new scanner only adds recognition.
       Genshin Optimizer GOOD spec, and use **importing into Genshin Optimizer** as
       the acceptance test. Also add a GOOD importer, so people can load an existing
       file and re-scan only what changed.
-- [ ] **Auto-detect what's being scanned** (M)
-      Drop any screenshot or recording and work out which bag tab or screen it
-      shows, from the active tab icon in the bag header or the card shapes, with a
-      manual override. One drop zone instead of a mode per kind.
-- [ ] **Sample sets and ground truth per kind** (ongoing)
+- [x] **Auto-detect what's being scanned** (M): done in 0.0.22
+      Each grid's kind comes from the text under its cards ("Lv." with or
+      without a star row, "+", a count), falling back to the icons;
+      `settings.kind` overrides it. One drop zone for every kind.
+- [ ] **Sample sets and ground truth per kind** (ongoing): started in 0.0.22
       Same pattern as `public/samples/test-set-0x` +
       `tests/material-detector/ground-truth.json` + `pnpm eval:*`, so every scanner
-      has an accuracy number from day one.
+      has an accuracy number from day one. `tests/online-samples` labels 16
+      players' screenshots (weapons, artifacts, Materials tab, characters) for
+      `pnpm eval:card-scanner`; still to add: our own recordings of each tab.
 
 ---
 
 ## P2: Scanners, in order of effort
 
 ### Other bag items: the Materials tab (M), the quickest win
-- [ ] Same cards, rarity frames and quantity digits as Character Development
-      Items, so this is mostly an atlas now: the data and icons are in
-      `other-materials.json` (0.0.20).
-- [ ] Test with screenshots and a recording of that tab, and add it to the
-      sample sets.
+- [x] Same cards, rarity frames and quantity digits as Character Development
+      Items: the material atlas holds both tabs (0.0.22).
+- [x] Tested on two players' phone screenshots (37/37 cards); still to add a
+      recording of that tab to the sample sets.
 - [ ] Optional: read **Mora** from the bag header.
 
 ### Weapons (M grid, then M detail)
-- [ ] **From the grid:** match the icon against the weapon atlas, and read rarity,
+- [x] **From the grid:** match the icon against the weapon atlas, and read rarity,
       level ("Lv. 90", the same digit approach as quantities) and the lock icon.
-      Fast, and it works with the existing screenshot and video flow.
+      Fast, and it works with the existing screenshot and video flow. Done in
+      0.0.22, with the refinement badge too (newer game versions) and the
+      ascension from the level and the awakened icon.
 - [ ] **From the detail panel:** refinement rank, the level cap (to settle the
       ascension where level alone is ambiguous, e.g. 80/80 vs 80/90) and
       **equipped by**. Match the small character avatar against the avatar atlas,
@@ -139,14 +142,18 @@ Do this once, before the scanners, so each new scanner only adds recognition.
       keys.
 - [ ] **Quick manual roster:** pick owned characters from the avatar grid and set
       level, constellation and talents. Many players own 50+ characters, and this
-      plus Enka covers most of it.
+      plus Enka covers most of it. (0.0.22 scans the party setup's character list
+      for who you own and their levels; constellations and talents still need
+      editing by hand or the Enka import.)
 - [ ] **Scan from screenshots or recordings** of the character screen (Attributes,
       Constellation and Talents tabs). Subtract constellation talent boosts to store
       base levels.
 
 ### Artifacts (L+, the biggest value for optimizer users)
-- [ ] **Set, slot, rarity and level from the grid:** each piece icon is unique per
+- [x] **Set, slot, rarity and level from the grid:** each piece icon is unique per
       set and slot, so the artifact atlas identifies both without reading any text.
+      Done in 0.0.22, with the lock; flowers and plumes get their fixed main stat,
+      the others are picked in review until the detail panel is read.
 - [ ] **Main stat and substats from the detail panel:** this needs on-device text
       reading.
       - Option A: Tesseract.js in a worker. Snap results to the closed vocabulary

@@ -27,7 +27,7 @@ async function handle(req: ScanWorkerRequest) {
   try {
     let result;
     if (req.kind === "preload") {
-      await loadReferenceBank();
+      await loadReferenceBank(req.bank ?? "material");
       result = null;
     } else if (req.kind === "scan") {
       result = await scanBlob(req.blob, req.name, req.settings, (p) => scope.postMessage({ id, type: "progress", ...p }));

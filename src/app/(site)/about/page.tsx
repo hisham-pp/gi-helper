@@ -18,7 +18,7 @@ import { getLatestVersion } from "@/lib/versions";
 export const metadata: Metadata = pageMetadata({
   title: "About GI Helper",
   description:
-    "GI Helper is a free, fan-made Genshin Impact inventory scanner: recognise materials from screenshots or screen recordings on your device or with AI Vision, review them, and export to GOOD format.",
+    "GI Helper is a free, fan-made Genshin Impact inventory scanner: recognise materials, weapons, artifacts and characters from screenshots or screen recordings on your device or with AI Vision, review them, and export to GOOD format.",
   path: "/about",
 });
 
@@ -26,7 +26,7 @@ const FEATURES: { icon: LucideIcon; title: string; text: string }[] = [
   {
     icon: Scan,
     title: "Scan on your device",
-    text: "Recognises every material, its rarity and quantity from screenshots or a screen recording, right in your browser. No API key, nothing uploaded.",
+    text: "Recognises materials and their counts, weapons with level and refinement, artifacts with set, slot and level, and your characters' levels, from screenshots or a screen recording, right in your browser. No API key, nothing uploaded.",
   },
   {
     icon: Sparkles,
@@ -46,10 +46,10 @@ const FEATURES: { icon: LucideIcon; title: string; text: string }[] = [
 ];
 
 const STEPS = [
-  "Open your inventory on the Character Development Items tab and take screenshots, or record your screen while you scroll through it.",
+  "Open a bag tab (Character Development Items, Materials, Weapons or Artifacts) or the party setup's character list, and take screenshots, or record your screen while you scroll through it.",
   "Drop them into the scanner (recordings go in the Video tab), or try a sample first.",
   "Review the results. Slots the scanner wasn't sure about are listed first.",
-  "Confirmed materials land on the Inventory page. Export them to GOOD there and import the file into your optimizer.",
+  "Confirmed items land on the Inventory page. Export them to GOOD there and import the file into your optimizer.",
 ];
 
 const PRIVACY = [
@@ -57,7 +57,7 @@ const PRIVACY = [
   "AI Vision sends the screenshot and your API key through GI Helper's server to the provider you pick, only for that request. Nothing is saved.",
   "Your API keys, settings and scanned inventory are stored in your browser only.",
   "Messages you send from the Feedback page, with your optional name and screenshots, are stored in GI Helper's database. General feedback is shown publicly; bug reports, ideas and other messages are only read by the developer. Your IP address is only kept as a one-way hash, to stop spam.",
-  "Each scan that finds materials adds one to the scan counter on the home page. Only the scanner type is sent: no screenshots, recordings or results.",
+  "Each scan that finds something adds one to the scan counter on the home page. Only the scanner type is sent: no screenshots, recordings or results.",
   "Anonymous page-view analytics (Vercel Analytics) show which features get used.",
 ];
 
@@ -77,8 +77,8 @@ export default function AboutPage() {
               </h1>
               <p className="max-w-2xl text-sm leading-relaxed text-white/80">
                 A free, fan-made helper for Genshin Impact players: scan your inventory
-                screenshots, check every material, and export them to your favourite
-                optimizer, without typing a single number.
+                screenshots, check every material, weapon, artifact and character, and
+                export them to your favourite optimizer, without typing a single number.
               </p>
             </div>
           </div>

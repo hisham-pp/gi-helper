@@ -1,6 +1,6 @@
 {
   "name": "genshin-material-tracker",
-  "version": "0.0.21",
+  "version": "0.0.22",
   "private": true,
   "packageManager": "pnpm@10.17.1",
   "engines": {
@@ -19,7 +19,9 @@
     "eval:grid-detector": "tsx scripts/evaluate-grid-detector.ts",
     "test:material-detector": "npx tsx --test tests/material-detector.test.ts tests/material-detector-samples.test.ts",
     "eval:material-detector": "tsx scripts/evaluate-material-detector.ts",
-    "build:material-atlas": "tsx scripts/build-material-atlas.ts",
+    "eval:card-scanner": "tsx scripts/evaluate-card-scanner.ts",
+    "fetch:online-samples": "tsx scripts/fetch-online-samples.ts",
+    "build:atlases": "tsx scripts/build-atlases.ts",
     "build:digit-templates": "tsx scripts/build-digit-templates.ts",
     "build:material-thumbs": "tsx scripts/build-material-thumbs.ts",
     "build:brand-icons": "tsx scripts/build-brand-icons.ts",
@@ -27,7 +29,7 @@
     "scrape:weapons": "tsx scripts/scrape-weapons.ts",
     "scrape:artifacts": "tsx scripts/scrape-artifacts.ts",
     "scrape:other-materials": "tsx scripts/scrape-other-materials.ts",
-    "sync-data": "tsx scripts/scrape-materials.ts && tsx scripts/update-families.ts && tsx scripts/build-material-atlas.ts && tsx scripts/build-material-thumbs.ts && tsx scripts/scrape-characters.ts && tsx scripts/scrape-weapons.ts && tsx scripts/scrape-artifacts.ts && tsx scripts/scrape-other-materials.ts",
+    "sync-data": "tsx scripts/scrape-materials.ts && tsx scripts/update-families.ts && tsx scripts/build-material-thumbs.ts && tsx scripts/scrape-characters.ts && tsx scripts/scrape-weapons.ts && tsx scripts/scrape-artifacts.ts && tsx scripts/scrape-other-materials.ts && tsx scripts/build-atlases.ts",
     "feedback:admin": "tsx scripts/feedback-admin.ts"
   },
   "pnpm": {

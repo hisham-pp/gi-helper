@@ -1,9 +1,10 @@
 "use client";
 
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { ArrowUpDown, FileUp, Star, Swords, Trash2 } from "lucide-react";
+import { ArrowUpDown, FileUp, ScanLine, Star, Swords, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import { GameIcon } from "@/components/ui/GameIcon";
+import { ShellLink } from "@/components/layout/ShellLink";
 import { PaginationBar } from "@/components/ui/PaginationBar";
 import { PillDropdown } from "@/components/ui/PillDropdown";
 import { ResetFiltersButton } from "@/components/ui/ResetFiltersButton";
@@ -116,9 +117,12 @@ export function WeaponsInventory() {
       <TabEmptyState
         icon={Swords}
         title="No weapons yet"
-        text="Import a GOOD file from Genshin Optimizer or another scanner to bring in your weapons. Scanning the Weapons tab is coming next."
+        text="Scan screenshots or a recording of the bag's Weapons tab, or import a GOOD file from Genshin Optimizer or another scanner."
       >
-        <button onClick={onImport} className="glass-btn glass-btn--primary px-5 py-2 text-xs">
+        <ShellLink href="/" className="glass-btn glass-btn--primary px-5 py-2 text-xs">
+          <ScanLine className="h-4 w-4" /> Scan screenshots
+        </ShellLink>
+        <button onClick={onImport} className="glass-btn px-5 py-2 text-xs">
           <FileUp className="h-4 w-4" /> Import .GOOD
         </button>
       </TabEmptyState>

@@ -5,19 +5,43 @@ import type { DetectionSettings, GridDetectionResult, PixelRect } from "../grid-
 
 export type Rarity = 1 | 2 | 3 | 4 | 5;
 
-/** One catalog material that the reference bank can recognise. */
+/**
+ * The kinds of card the recognizer knows, each with its own reference bank:
+ * materials (Character Development Items and the Materials tab, with a count
+ * under the icon), weapons ("Lv. 90" and a star row), artifacts ("+20") and
+ * characters (the party setup's character list: "Lv. 90", no stars).
+ */
+export const CARD_KINDS = ["material", "weapon", "artifact", "character"] as const;
+export type CardKind = (typeof CARD_KINDS)[number];
+
+/** One catalog item (material, weapon or artifact piece) that a reference bank can recognise. */
 export interface ReferenceEntry {
+  /** Unique per bank: the item id, plus a suffix for a variant ("amos-bow~awakened"). */
   id: string;
   name: string;
+  /** The rarity (for artifacts, the highest one the piece comes in). */
   rarity: Rarity;
-  /** Position in Genshin's fixed inventory order (ascending on screen). */
+  /** Position in Genshin's fixed inventory order (ascending on screen; materials only). */
   order: number;
+  /** The item this tile shows, when `id` is a variant of it. */
+  item?: string;
+  /**
+   * Another icon of the same item: "awakened" (a weapon from its second
+   * ascension on), "alt" / "awakened-alt" (HoYoLAB's framing of the icon).
+   */
+  variant?: string;
+  /** Every rarity the item comes in, when more than one (artifact pieces). */
+  rarities?: Rarity[];
 }
 
+/** A catalog item a card may show (a material, a weapon or an artifact piece, by the card's kind). */
 export interface MaterialCandidate {
+  /** The item's id: a material id, a weapon id or "<set id>:<slot>". */
   id: string;
   name: string;
   rarity: Rarity;
+  /** The icon variant that matched ("awakened", "alt", "awakened-alt"). */
+  variant?: string;
   /**
    * Mean per-pixel colour error of the reference icon composited over the
    * card's own background (0 = identical; ~0.03–0.12 for a true match).
@@ -47,6 +71,28 @@ export interface QuantityReading {
   confidence: number;
 }
 
+/** A number read from a card: a weapon's level ("Lv. 90"), an artifact's ("+20"), a refinement rank. */
+export interface NumberReading {
+  /** null when it could not be read. */
+  value: number | null;
+  /** 0–1 */
+  confidence: number;
+}
+
+/** Which bag tab a grid shows, and how that was decided. */
+export interface GridKindReading {
+  gridId: string;
+  kind: CardKind;
+  /**
+   * - `setting`: chosen by the caller
+   * - `text`: the text under the cards ("Lv. 90", "+20" or a count)
+   * - `icons`: the reference bank whose icons fit the cards best
+   */
+  source: "setting" | "text" | "icons";
+  /** 0–1 */
+  confidence: number;
+}
+
 /**
  * - `matched`   – a clear best reference.
  * - `uncertain` – a plausible match that should be reviewed (close runner-up or weak fit).
@@ -57,6 +103,8 @@ export type CardRecognitionStatus = "matched" | "uncertain" | "unknown";
 export interface CardRecognition {
   cardId: string;
   gridId: string;
+  /** The bag tab the card's grid shows; `material` holds an item of this kind. */
+  kind: CardKind;
   row: number | null;
   column: number | null;
   /** The card box that was analysed (as detected or edited). */
@@ -67,12 +115,19 @@ export interface CardRecognition {
    */
   matchedBox: PixelRect;
   status: CardRecognitionStatus;
-  /** Best candidate; null when `status` is "unknown". */
+  /** Best candidate (a material, weapon or artifact piece, by `kind`); null when `status` is "unknown". */
   material: MaterialCandidate | null;
   /** Best first; includes `material`. */
   candidates: MaterialCandidate[];
   rarity: RarityReading;
+  /** The count under a material (empty for weapons and artifacts). */
   quantity: QuantityReading;
+  /** Weapons: the level after "Lv."; artifacts: the enhancement level after "+". Null for materials. */
+  level: NumberReading | null;
+  /** Weapons: the refinement badge in the top-left corner. Null for other kinds. */
+  refinement: NumberReading | null;
+  /** Weapons and artifacts: whether the lock icon shows. Null for materials. */
+  locked: boolean | null;
   /** A "New" badge covered part of the artwork and was ignored while matching. */
   hasNewBadge: boolean;
   /**
@@ -80,7 +135,7 @@ export interface CardRecognition {
    * visually best one (only ever between near-identical candidates).
    */
   orderAdjusted: boolean;
-  /** 0–1 overall confidence (material, then quantity). */
+  /** 0–1 overall confidence (item, then quantity or level). */
   confidence: number;
 }
 
@@ -107,8 +162,11 @@ export interface RecognitionDiagnostics {
 export interface MaterialRecognitionResult {
   imageWidth: number;
   imageHeight: number;
+  /** The kind of each grid that was recognised. */
+  grids: GridKindReading[];
   /** Reading order: grid by grid, row-major. Clipped cards are skipped. */
   cards: CardRecognition[];
+  /** Material cards aggregated per material (weapons and artifacts repeat, so they aren't). */
   items: RecognizedItem[];
   processingTimeMs: number;
   /** Non-fatal notes, e.g. "3 cards need review". */
@@ -118,6 +176,8 @@ export interface MaterialRecognitionResult {
 }
 
 export interface RecognitionSettings {
+  /** The bag tab the screenshot shows, or "auto" to tell from each grid. */
+  kind: "auto" | CardKind;
   /** References kept from the coarse pass for full-resolution re-ranking. */
   shortlistSize: number;
   /** Alternatives reported per card (including the best). */
@@ -131,7 +191,7 @@ export interface RecognitionSettings {
   useInventoryOrder: boolean;
   /** Search a small shift/scale around each card box to compensate for loose boxes. */
   refineAlignment: boolean;
-  /** Read the quantity printed under each card. */
+  /** Read the quantity (or level) printed under each card. */
   readQuantity: boolean;
   /** Matches below this confidence (0–1) are reported as "uncertain". */
   minConfidence: number;

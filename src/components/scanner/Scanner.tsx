@@ -123,10 +123,10 @@ export function Scanner() {
       <div className="space-y-2 text-center">
         {/* Icon flows inline so it stays beside the first word when the title wraps */}
         <h1 className="text-balance text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-white drop-shadow-[0_4px_14px_rgba(0,0,0,0.7)]">
-          Extract Materials from Screenshots
+          Scan Your Inventory
         </h1>
         <p className="mx-auto max-w-xl text-xs sm:text-sm text-cyan-100/75 drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]">
-          Upload screenshots or a screen recording of your Genshin Impact inventory to instantly extract materials.
+          Upload screenshots or a screen recording of your Genshin Impact bag to read its materials, weapons and artifacts.
         </p>
       </div>
 

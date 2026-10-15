@@ -1,6 +1,6 @@
 import type { DetectedGrid } from "../grid-detector/types";
 import type { MaterialDetectionErrorCode } from "./engine/errors";
-import type { MaterialRecognitionResult, RecognitionSettings, ScanResult, ScanSettings } from "./types";
+import type { CardKind, MaterialRecognitionResult, RecognitionSettings, ScanResult, ScanSettings } from "./types";
 
 /** What the worker is doing; `done/total` count cards while recognising. */
 export type ScanStage = "loading-references" | "decoding" | "detecting" | "recognizing";
@@ -23,7 +23,8 @@ export type ScanWorkerRequest =
       grids: DetectedGrid[];
       settings: Partial<RecognitionSettings>;
     }
-  | { id: number; kind: "preload" };
+  /** Loads a reference bank ahead of the first scan (the material one by default). */
+  | { id: number; kind: "preload"; bank?: CardKind };
 
 export type ScanWorkerResponse =
   | ({ id: number; type: "progress" } & ScanProgress)
