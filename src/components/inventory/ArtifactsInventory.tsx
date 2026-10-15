@@ -1,9 +1,10 @@
 "use client";
 
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { ArrowUpDown, FileUp, Flower2, Layers, Star, Trash2 } from "lucide-react";
+import { ArrowUpDown, FileUp, Flower2, Layers, ScanLine, Star, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import { GameIcon } from "@/components/ui/GameIcon";
+import { ShellLink } from "@/components/layout/ShellLink";
 import { PaginationBar } from "@/components/ui/PaginationBar";
 import { PillDropdown } from "@/components/ui/PillDropdown";
 import { ResetFiltersButton } from "@/components/ui/ResetFiltersButton";
@@ -22,6 +23,7 @@ import {
   STAT_NAMES,
   type OwnedArtifact,
   type StatKey,
+  MAIN_STATS_BY_SLOT,
 } from "@/lib/good/types";
 import { useOwnedArtifacts } from "@/lib/good-inventory";
 import { getRarityStyles } from "@/lib/material-ui";
@@ -119,6 +121,12 @@ export function ArtifactsInventory() {
     [setArtifacts],
   );
 
+  const handleSetMainStat = useCallback(
+    (id: string, mainStatKey: string) =>
+      setArtifacts((prev) => prev.map((a) => (a.id === id ? { ...a, mainStatKey } : a))),
+    [setArtifacts],
+  );
+
   const handleClear = useCallback(async () => {
     const confirmed = await confirm({
       title: "Remove all artifacts?",
@@ -140,9 +148,12 @@ export function ArtifactsInventory() {
       <TabEmptyState
         icon={Flower2}
         title="No artifacts yet"
-        text="Import a GOOD file from Genshin Optimizer or another scanner to bring in your artifacts. Scanning them is on the roadmap."
+        text="Scan screenshots or a recording of the bag's Artifacts tab for each piece's set, slot, level and lock, or import a GOOD file from Genshin Optimizer or another scanner."
       >
-        <button onClick={onImport} className="glass-btn glass-btn--primary px-5 py-2 text-xs">
+        <ShellLink href="/" className="glass-btn glass-btn--primary px-5 py-2 text-xs">
+          <ScanLine className="h-4 w-4" /> Scan screenshots
+        </ShellLink>
+        <button onClick={onImport} className="glass-btn px-5 py-2 text-xs">
           <FileUp className="h-4 w-4" /> Import .GOOD
         </button>
       </TabEmptyState>
@@ -224,7 +235,7 @@ export function ArtifactsInventory() {
       {pageItems.length > 0 && (
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {pageItems.map((entry) => (
-            <ArtifactCard key={entry.artifact.id} entry={entry} onRemove={handleRemove} />
+            <ArtifactCard key={entry.artifact.id} entry={entry} onRemove={handleRemove} onSetMainStat={handleSetMainStat} />
           ))}
         </div>
       )}
@@ -244,9 +255,11 @@ export function ArtifactsInventory() {
 const ArtifactCard = React.memo(function ArtifactCard({
   entry: { artifact, set, setName },
   onRemove,
+  onSetMainStat,
 }: {
   entry: Entry;
   onRemove: (id: string) => void;
+  onSetMainStat: (id: string, mainStatKey: string) => void;
 }) {
   const pieceName = set?.pieces[artifact.slotKey] ?? SLOT_NAMES[artifact.slotKey];
   return (
@@ -288,7 +301,27 @@ const ArtifactCard = React.memo(function ArtifactCard({
 
       <div className="space-y-1">
         <p className="flex items-center justify-between gap-2 text-xs font-bold text-white">
-          <span className="truncate">{STAT_NAMES[artifact.mainStatKey as StatKey] ?? artifact.mainStatKey}</span>
+          {artifact.mainStatKey ? (
+            <span className="truncate">{STAT_NAMES[artifact.mainStatKey as StatKey] ?? artifact.mainStatKey}</span>
+          ) : (
+            // Scanned from the bag, which doesn't show it: choose it here (needed for GOOD exports)
+            <select
+              value=""
+              onChange={(e) => onSetMainStat(artifact.id, e.target.value)}
+              aria-label="Main stat"
+              title="Not read by the scanner: needed before this artifact can be exported"
+              className="glass-well min-w-0 truncate rounded-full px-2 py-0.5 text-[11px] font-bold text-amber-200 outline-none"
+            >
+              <option value="" className="bg-slate-900">
+                Main stat?
+              </option>
+              {MAIN_STATS_BY_SLOT[artifact.slotKey].map((k) => (
+                <option key={k} value={k} className="bg-slate-900">
+                  {STAT_NAMES[k]}
+                </option>
+              ))}
+            </select>
+          )}
           <LockBadge locked={artifact.lock} />
         </p>
         <ul className="space-y-0.5 text-[11px] text-white/75">

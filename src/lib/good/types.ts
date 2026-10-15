@@ -61,6 +61,17 @@ export const STAT_NAMES: Record<StatKey, string> = {
   dendro_dmg_: "Dendro DMG Bonus",
 };
 
+const ELEMENT_DMG = ["physical_dmg_", "anemo_dmg_", "geo_dmg_", "electro_dmg_", "hydro_dmg_", "pyro_dmg_", "cryo_dmg_", "dendro_dmg_"] as const;
+
+/** The main stats each slot can roll. */
+export const MAIN_STATS_BY_SLOT: Record<SlotKey, readonly StatKey[]> = {
+  flower: ["hp"],
+  plume: ["atk"],
+  sands: ["hp_", "atk_", "def_", "eleMas", "enerRech_"],
+  goblet: ["hp_", "atk_", "def_", "eleMas", ...ELEMENT_DMG],
+  circlet: ["hp_", "atk_", "def_", "eleMas", "critRate_", "critDMG_", "heal_"],
+};
+
 /** Stats whose value is a percentage (keys ending in "_"). */
 export function isPercentStat(key: string): boolean {
   return key.endsWith("_");

@@ -1,15 +1,17 @@
 /**
- * Loads the reference bank in the browser (Web Worker or main thread): the
- * manifest and the icon atlas from /data, decoded without colour management
- * so templates match the Node tests. The bank is built once per context.
+ * Loads reference banks in the browser (Web Worker or main thread): each
+ * kind's manifest and icon atlas from /data, decoded without colour
+ * management so templates match the Node tests. Each bank is built once per
+ * context, when a screenshot first needs it.
  */
-import { createReferenceBank, type ReferenceBank, validateManifest } from "./engine/bank";
+import { ATLAS_FILES, createReferenceBank, type ReferenceBank, validateManifest } from "./engine/bank";
 import { MaterialDetectionError, isMaterialDetectionError } from "./engine/errors";
+import type { CardKind } from "./types";
 
-export const ATLAS_MANIFEST_URL = "/data/material-atlas.json";
-export const ATLAS_IMAGE_URL = "/data/material-atlas.png";
+export const ATLAS_MANIFEST_URL = ATLAS_FILES.material.manifest;
+export const ATLAS_IMAGE_URL = ATLAS_FILES.material.image;
 
-let pending: Promise<ReferenceBank> | null = null;
+const pending = new Map<CardKind, Promise<ReferenceBank>>();
 
 /**
  * An absolute URL on this site. In a worker a root-relative path resolves
@@ -25,7 +27,7 @@ function siteUrl(path: string): string {
 const unavailable = (cause?: unknown) =>
   new MaterialDetectionError(
     "REFERENCES_UNAVAILABLE",
-    "The material reference data could not be loaded. Check your connection and try again.",
+    "The scanner's reference data could not be loaded. Check your connection and try again.",
     cause,
   );
 
@@ -52,10 +54,11 @@ async function readPixels(blob: Blob) {
   }
 }
 
-async function load(): Promise<ReferenceBank> {
+async function load(kind: CardKind): Promise<ReferenceBank> {
+  const files = ATLAS_FILES[kind];
   let manifestJson: unknown;
   try {
-    const res = await fetch(siteUrl(ATLAS_MANIFEST_URL));
+    const res = await fetch(siteUrl(files.manifest));
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     manifestJson = await res.json();
   } catch (err) {
@@ -65,7 +68,7 @@ async function load(): Promise<ReferenceBank> {
   let pixels: ImageData;
   try {
     // The hash makes the (immutable) atlas cacheable across deployments.
-    const res = await fetch(siteUrl(`${ATLAS_IMAGE_URL}?v=${encodeURIComponent(manifest.hash)}`));
+    const res = await fetch(siteUrl(`${files.image}?v=${encodeURIComponent(manifest.hash)}`));
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     pixels = await readPixels(await res.blob());
   } catch (err) {
@@ -74,11 +77,22 @@ async function load(): Promise<ReferenceBank> {
   return createReferenceBank(manifest, pixels);
 }
 
-/** The reference bank for this context; retried on the next call after a failure. */
-export function loadReferenceBank(): Promise<ReferenceBank> {
-  pending ??= load().catch((err) => {
-    pending = null;
-    throw isMaterialDetectionError(err) ? err : unavailable(err);
-  });
-  return pending;
+/** A kind's reference bank for this context; retried on the next call after a failure. */
+export function loadReferenceBank(kind: CardKind = "material"): Promise<ReferenceBank> {
+  let bank = pending.get(kind);
+  if (!bank) {
+    bank = load(kind).catch((err) => {
+      pending.delete(kind);
+      throw isMaterialDetectionError(err) ? err : unavailable(err);
+    });
+    pending.set(kind, bank);
+  }
+  return bank;
+}
+
+/** The banks for some kinds, by kind. */
+export async function loadReferenceBanks(kinds: Iterable<CardKind>): Promise<Partial<Record<CardKind, ReferenceBank>>> {
+  const unique = [...new Set(kinds)];
+  const banks = await Promise.all(unique.map((k) => loadReferenceBank(k)));
+  return Object.fromEntries(unique.map((k, i) => [k, banks[i]]));
 }

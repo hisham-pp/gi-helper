@@ -19,7 +19,14 @@ import {
 import type { PixelRect } from "@/lib/grid-detector";
 import { useScannerSettings } from "@/lib/scanner-settings";
 import { setScannerInventory } from "@/lib/scanner-inventory";
-import type { DetectedItem, ScannedReviewItem } from "@/lib/types";
+import type { DetectedItem, EquipmentReviewItem, ScannedReviewItem } from "@/lib/types";
+import {
+  equipmentIcon,
+  equipmentReviewItem,
+  inventoryPageFor,
+  saveScannedEquipment,
+  type EquipmentConfirm,
+} from "./equipment-review";
 import { materialThumbUrl } from "@/lib/material-ui";
 import { recordScan } from "@/lib/scan-stats";
 
@@ -33,6 +40,8 @@ interface VideoSummary {
   framesScanned: number;
   failedFrames: number;
   materials: number;
+  weapons: number;
+  artifacts: number;
   flagged: number;
   seconds: number;
 }
@@ -110,6 +119,7 @@ export function VideoScannerView({ id = "video-panel", ariaLabelledBy = "video-t
   const [summary, setSummary] = useState<VideoSummary | null>(null);
 
   const [reviewItems, setReviewItems] = useState<ScannedReviewItem[]>([]);
+  const [reviewEquipment, setReviewEquipment] = useState<EquipmentReviewItem[]>([]);
   const [isReviewOpen, setIsReviewOpen] = useState(false);
 
   const controllerRef = useRef<AbortController | null>(null);
@@ -249,34 +259,51 @@ export function VideoScannerView({ id = "video-panel", ariaLabelledBy = "video-t
         }));
         // Slots that need a second look first, then the order they scrolled by.
         review.sort((a, b) => Number(!!b.reviewReason) - Number(!!a.reviewReason));
-        const flagged = review.filter((r) => r.reviewReason).length;
+        const equipment = result.equipment.map((e, k) =>
+          equipmentReviewItem(
+            e,
+            `video-${e.kind}-${k}`,
+            e.crop ? trackUrl(e.crop) : equipmentIcon(e),
+            `Frame at ${formatVideoTime(e.time)}`,
+          ),
+        );
+        const weapons = equipment.filter((e) => e.kind === "weapon").length;
+        const artifacts = equipment.length - weapons;
+        const flagged = review.filter((r) => r.reviewReason).length + equipment.filter((e) => e.reviewReason).length;
         setSummary({
           duration: result.duration,
           framesScanned: result.framesScanned,
           failedFrames: result.failedFrames,
           materials: review.length,
+          weapons,
+          artifacts,
           flagged,
           seconds: result.processingTimeMs / 1000,
         });
         setReviewItems(review);
+        setReviewEquipment(equipment);
 
-        if (review.length === 0) {
+        if (review.length + equipment.length === 0) {
           if (result.failedFrames < result.framesScanned) {
             toast.info(
               result.cardsRead === 0
-                ? "No inventory cards were found. Record the Character Development Items tab while scrolling through it."
-                : "No catalog materials were recognised in this recording.",
+                ? "No inventory cards were found. Record a bag tab (materials, weapons or artifacts) while scrolling through it."
+                : "Nothing in this recording matched our game data.",
             );
           }
           return;
         }
         recordScan("video", [file]);
-        if (settings.autoReviewResults) {
+        // Weapons and artifacts always get a review: their main stats and replace-or-add need a look.
+        if (settings.autoReviewResults || equipment.length > 0) {
           setIsReviewOpen(true);
+          const parts = [
+            review.length > 0 && `${review.length} material${review.length > 1 ? "s" : ""}`,
+            weapons > 0 && `${weapons} weapon${weapons > 1 ? "s" : ""}`,
+            artifacts > 0 && `${artifacts} artifact${artifacts > 1 ? "s" : ""}`,
+          ].filter(Boolean);
           toast.success(
-            `Recognised ${review.length} material${review.length > 1 ? "s" : ""}` +
-              (flagged ? ` · ${flagged} to check` : "") +
-              ". Please review the results.",
+            `Recognised ${parts.join(", ")}` + (flagged ? ` · ${flagged} to check` : "") + ". Please review the results.",
           );
         } else {
           mergeIntoInventory(
@@ -309,10 +336,12 @@ export function VideoScannerView({ id = "video-panel", ariaLabelledBy = "video-t
   );
 
   const handleConfirmReview = useCallback(
-    (confirmed: DetectedItem[]) => {
-      mergeIntoInventory(confirmed);
+    (confirmed: DetectedItem[], equipment?: EquipmentConfirm) => {
+      if (confirmed.length > 0) mergeIntoInventory(confirmed);
+      const saved = equipment ? saveScannedEquipment(equipment) : { weapons: 0, artifacts: 0, skipped: 0 };
+      if (saved.skipped > 0) toast.info(`${saved.skipped} unidentified card${saved.skipped > 1 ? "s were" : " was"} left out.`);
       setIsReviewOpen(false);
-      router.push("/inventory/materials");
+      router.push(inventoryPageFor(confirmed.length, saved.weapons, saved.artifacts));
     },
     [mergeIntoInventory, router],
   );
@@ -354,18 +383,26 @@ export function VideoScannerView({ id = "video-panel", ariaLabelledBy = "video-t
           <p className="text-[11px] text-white/70 drop-shadow">
             {formatVideoTime(summary.duration)} recording · {summary.framesScanned} frame
             {summary.framesScanned === 1 ? "" : "s"} scanned ·{" "}
-            <span className="font-semibold text-white">{summary.materials} materials</span>
+            <span className="font-semibold text-white">
+              {[
+                summary.materials > 0 || (summary.weapons === 0 && summary.artifacts === 0) ? `${summary.materials} materials` : null,
+                summary.weapons > 0 ? `${summary.weapons} weapons` : null,
+                summary.artifacts > 0 ? `${summary.artifacts} artifacts` : null,
+              ]
+                .filter(Boolean)
+                .join(" · ")}
+            </span>
             {summary.flagged > 0 && <span className="text-amber-200"> · {summary.flagged} to check</span>}
             {summary.failedFrames > 0 && <span className="text-rose-300"> · {summary.failedFrames} frames failed</span>}
             <span className="text-white/50"> · {summary.seconds.toFixed(1)} s</span>
           </p>
-          {reviewItems.length > 0 && (
+          {reviewItems.length + reviewEquipment.length > 0 && (
             <button
               onClick={() => setIsReviewOpen(true)}
               className="flex items-center gap-1.5 rounded-full border border-teal-400/30 bg-teal-500/20 px-3.5 py-1 text-xs font-bold text-teal-200 backdrop-blur-md transition-all hover:scale-105 hover:bg-teal-500/30 active:scale-95"
             >
               <Eye className="h-3.5 w-3.5" />
-              <span>Review Last Scan ({reviewItems.length})</span>
+              <span>Review Last Scan ({reviewItems.length + reviewEquipment.length})</span>
             </button>
           )}
         </div>
@@ -386,7 +423,7 @@ export function VideoScannerView({ id = "video-panel", ariaLabelledBy = "video-t
         multiple={false}
         icon={<Film className="h-7 w-7 text-teal-300 drop-shadow-md sm:h-8 sm:w-8" />}
         title="Click to upload or drag & drop"
-        description="Select a screen recording of your inventory, scrolling through the Character Development Items tab."
+        description="Select a screen recording of your bag, scrolling through a tab: materials, weapons or artifacts."
         subDescription="Scroll at a steady pace, pausing briefly between flicks. Runs on your device: nothing uploaded."
         sample={SAMPLE_RECORDING}
         sampleButtonText="Try a sample recording"
@@ -420,7 +457,12 @@ export function VideoScannerView({ id = "video-panel", ariaLabelledBy = "video-t
       )}
 
       {isReviewOpen && (
-        <LazyScanReviewModal reviewItems={reviewItems} onClose={handleCloseReview} onConfirm={handleConfirmReview} />
+        <LazyScanReviewModal
+          reviewItems={reviewItems}
+          equipment={reviewEquipment}
+          onClose={handleCloseReview}
+          onConfirm={handleConfirmReview}
+        />
       )}
     </div>
   );

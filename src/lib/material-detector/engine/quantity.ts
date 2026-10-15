@@ -46,6 +46,11 @@ export interface DigitTemplates {
   height: number;
   /** "0"–"9" → GLYPH_W × GLYPH_H ink values (0–1), row-major. */
   digits: Record<string, number[]>;
+  /**
+   * The non-digit glyphs of weapon and artifact footers ("Lv. 90", "+20"):
+   * "L", "v" and "+", same layout as `digits`.
+   */
+  symbols?: Record<string, number[]>;
 }
 
 export interface Glyph {
@@ -77,7 +82,7 @@ export interface FooterText {
   contrast: number;
 }
 
-function otsu(values: Float32Array): number {
+export function otsu(values: Float32Array): number {
   const bins = 64;
   const hist = new Float64Array(bins);
   for (const v of values) hist[Math.min(bins - 1, Math.max(0, Math.floor(v * bins)))]++;
@@ -309,7 +314,7 @@ export function extractGlyphs(image: RgbaImage, box: PixelRect, alignment: Align
     .map((b) => ({ ...b, ink: normalizeGlyph(text, b) }));
 }
 
-function correlation(a: Float32Array, b: number[]): number {
+export function correlation(a: Float32Array, b: number[]): number {
   const n = a.length;
   let ma = 0, mb = 0;
   for (let i = 0; i < n; i++) {
@@ -422,4 +427,125 @@ export function readQuantity(
   }
   const value = /^\d+$/.test(str) && !(str.length > 1 && str[0] === "0") ? parseInt(str, 10) : null;
   return { value, text: str, confidence: value === null ? 0 : Math.round(confidence * 1000) / 1000 };
+}
+
+// ── Weapon and artifact footers ─────────────────────────────────────────────
+
+/** What precedes the number: nothing (a material's count), "Lv" (weapons) or "+" (artifacts). */
+export type FooterPrefix = "" | "Lv" | "+";
+
+export interface FooterReading extends QuantityReading {
+  /** The prefix read before the digits; null when the footer holds no number. */
+  prefix: FooterPrefix | null;
+}
+
+/** One text component of a footer with its normalised glyph, for symbol templates. */
+export interface FooterGlyph {
+  x0: number;
+  x1: number;
+  y0: number;
+  y1: number;
+  ink: Float32Array;
+}
+
+/**
+ * The text components of a footer, each normalised like a glyph (touching
+ * digits stay one component). Used to learn the "L", "v" and "+" templates.
+ */
+export function footerComponents(image: RgbaImage, box: PixelRect, alignment: Alignment): FooterGlyph[] {
+  const text = readFooterText(image, box, alignment);
+  return text.components
+    .map((c) => tighten(text, c))
+    .filter((b): b is Box => b !== null)
+    .map((b) => ({ ...b, ink: normalizeGlyph(text, b) }));
+}
+
+/**
+ * Height and baseline of the glyphs before the digits, relative to the
+ * tallest component: "L" is as tall as a digit; "v" (x-height) and "+" are
+ * about two thirds of it, "v" sitting on the baseline and "+" centred.
+ */
+const SHORT_GLYPH = 0.82;
+const BASELINE_SLACK = 0.14;
+
+/** Correlation of a glyph with one symbol template (-1 when there is none). */
+function symbolScore(ink: Float32Array, templates: DigitTemplates, symbol: string): number {
+  const t = templates.symbols?.[symbol];
+  return t ? correlation(ink, t) : -1;
+}
+
+/** A symbol is accepted when its template fits at least this well (or, without templates, by shape alone). */
+const SYMBOL_MIN = 0.6;
+
+/**
+ * Reads a card footer that may start with "Lv." (weapons) or "+"
+ * (artifacts): the prefix from the leading glyphs' shape and symbol
+ * templates, then the number with the digit reader. The "." of "Lv." is
+ * too small to survive as a component.
+ */
+export function readFooter(
+  image: RgbaImage,
+  box: PixelRect,
+  alignment: Alignment,
+  templates: DigitTemplates,
+): FooterReading {
+  const text = readFooterText(image, box, alignment);
+  const comps = text.components;
+  const none: FooterReading = { value: null, text: "", confidence: 0, prefix: null };
+  if (comps.length === 0) return none;
+  const height = (c: Box) => c.y1 - c.y0 + 1;
+  const tallest = Math.max(...comps.map(height));
+  const bottom = Math.max(...comps.map((c) => c.y1));
+  const middle = (Math.min(...comps.map((c) => c.y0)) + bottom) / 2;
+  const glyph = (c: Box) => {
+    const b = tighten(text, c);
+    return b ? normalizeGlyph(text, b) : null;
+  };
+  const isShort = (c: Box) => height(c) <= SHORT_GLYPH * tallest;
+  const onBaseline = (c: Box) => Math.abs(c.y1 - bottom) <= BASELINE_SLACK * tallest;
+  const centred = (c: Box) => Math.abs((c.y0 + c.y1) / 2 - middle) <= BASELINE_SLACK * tallest;
+  const hasTemplates = !!templates.symbols;
+  /** With templates, the glyph must fit its symbol better than any digit; without, its shape decides. */
+  const looksLike = (c: Box, symbol: string) => {
+    const ink = glyph(c);
+    if (!ink) return false;
+    const score = symbolScore(ink, templates, symbol);
+    if (score < 0) return true;
+    return score >= SYMBOL_MIN && score > classifyGlyph(ink, templates).score;
+  };
+
+  let prefix: FooterPrefix = "";
+  let start = 0;
+  const [first, second] = comps;
+  // "+" and "v" are both short; "+" floats mid-height, "v" sits on the baseline.
+  if (comps.length >= 2 && isShort(first) && centred(first) && (hasTemplates || !onBaseline(first)) && looksLike(first, "+")) {
+    prefix = "+";
+    start = 1;
+  } else if (
+    comps.length >= 3 &&
+    !isShort(first) &&
+    isShort(second) &&
+    onBaseline(second) &&
+    looksLike(first, "L") &&
+    looksLike(second, "v")
+  ) {
+    prefix = "Lv";
+    start = 2;
+  }
+
+  const digits = comps.slice(start).flatMap((c) => segmentComponent(text, c, templates));
+  if (digits.length === 0 || digits.length > 5) return { ...none, prefix: start > 0 ? prefix : null };
+  let str = "";
+  let confidence = 1;
+  for (const d of digits) {
+    str += d.score >= 0.45 ? d.digit : "?";
+    confidence = Math.min(confidence, digitConfidence(d));
+  }
+  const value = /^\d+$/.test(str) && !(str.length > 1 && str[0] === "0") ? parseInt(str, 10) : null;
+  return {
+    value,
+    text: (prefix === "Lv" ? "Lv. " : prefix) + str,
+    confidence: value === null ? 0 : Math.round(confidence * 1000) / 1000,
+    prefix,
+  };
 }

@@ -50,6 +50,8 @@ const WEAPONS = weapons as unknown as WeaponInfo[];
 const SETS = artifactSets as unknown as ArtifactSetInfo[];
 const WEAPON_BY_KEY = new Map(WEAPONS.map((w) => [w.key, w]));
 const SET_BY_KEY = new Map(SETS.map((s) => [s.key, s]));
+const WEAPON_BY_ID = new Map(WEAPONS.map((w) => [w.id, w]));
+const SET_BY_ID = new Map(SETS.map((s) => [s.id, s]));
 const CHARACTER_BY_KEY = new Map(
   getAllCharacters()
     .filter((c) => c.key !== "Traveler")
@@ -72,6 +74,16 @@ export function getWeapon(key: string): WeaponInfo | undefined {
 
 export function getArtifactSet(key: string): ArtifactSetInfo | undefined {
   return SET_BY_KEY.get(key);
+}
+
+/** By our id (the icon's file name), as the scanner reports weapons. */
+export function getWeaponById(id: string): WeaponInfo | undefined {
+  return WEAPON_BY_ID.get(id);
+}
+
+/** By our id, as the scanner reports artifact pieces ("<set id>:<slot>"). */
+export function getArtifactSetById(id: string): ArtifactSetInfo | undefined {
+  return SET_BY_ID.get(id);
 }
 
 /** 128² WebP in public/images/weapons. */

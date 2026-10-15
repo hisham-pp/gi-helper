@@ -1,15 +1,25 @@
 /**
- * Material recognition: identifies the catalog material, rarity and
- * quantity of every card found by the grid detector.
+ * Card recognition: identifies the catalog item, rarity and quantity (or
+ * level, refinement and lock) of every card found by the grid detector, in
+ * the bag's material, weapon and artifact tabs.
  *
  * - `MaterialScanClient` — browser API (Web Worker: decode → grids → recognition).
- * - `recognizeMaterials` — the pure engine (any RGBA buffer; used by tests).
- * - `createReferenceBank` — builds the reference templates from the atlas.
+ * - `recognizeCards` — the pure engine with a bank per kind (any RGBA buffer; used by tests);
+ *   `recognizeMaterials` with a single bank.
+ * - `createReferenceBank` — builds the reference templates from an atlas.
  */
 export * from "./types";
 export { DEFAULT_RECOGNITION_SETTINGS, resolveRecognitionSettings } from "./settings";
-export { recognizeMaterials, aggregate, matchConfidence, type RecognitionInput } from "./engine/recognize";
 export {
+  recognizeCards,
+  recognizeMaterials,
+  decideGridKinds,
+  aggregate,
+  matchConfidence,
+  type RecognitionInput,
+} from "./engine/recognize";
+export {
+  ATLAS_FILES,
   createReferenceBank,
   validateManifest,
   FINE_SIZE,
@@ -25,5 +35,5 @@ export {
 } from "./engine/errors";
 export type { DigitTemplates } from "./engine/quantity";
 export { MaterialScanClient, type ScanOptions } from "./client";
-export { loadReferenceBank, ATLAS_IMAGE_URL, ATLAS_MANIFEST_URL } from "./browser";
+export { loadReferenceBank, loadReferenceBanks, ATLAS_IMAGE_URL, ATLAS_MANIFEST_URL } from "./browser";
 export type { ScanProgress, ScanStage } from "./worker-protocol";

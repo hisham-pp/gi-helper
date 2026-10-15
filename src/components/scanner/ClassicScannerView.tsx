@@ -12,9 +12,17 @@ import { isMaterialDetectionError, type CardRecognition, type ScanProgress } fro
 import { useMaterialScanClient } from "@/lib/material-detector/react";
 import { useScannerSettings } from "@/lib/scanner-settings";
 import { setScannerInventory } from "@/lib/scanner-inventory";
-import type { DetectedItem, ScannedReviewItem } from "@/lib/types";
+import type { DetectedItem, EquipmentReviewItem, ScannedReviewItem } from "@/lib/types";
 import { materialThumbUrl } from "@/lib/material-ui";
 import { recordScan } from "@/lib/scan-stats";
+import { EquipmentStitcher, equipmentRows, type EquipmentSighting } from "@/lib/scan-equipment";
+import {
+  equipmentIcon,
+  equipmentReviewItem,
+  inventoryPageFor,
+  saveScannedEquipment,
+  type EquipmentConfirm,
+} from "./equipment-review";
 
 interface ClassicScannerViewProps {
   id?: string;
@@ -26,9 +34,13 @@ interface ScanSummary {
   failedFiles: number;
   cards: number;
   materials: number;
+  weapons: number;
+  artifacts: number;
   flagged: number;
   unknown: number;
 }
+
+
 
 /** Share of a file's progress bar reached when each stage starts. */
 const STAGE_START: Record<ScanProgress["stage"], number> = {
@@ -45,7 +57,7 @@ function stageMessage(p: ScanProgress, fileName: string): string {
     case "detecting":
       return `Finding the inventory grid in ${fileName}…`;
     case "loading-references":
-      return "Loading material references…";
+      return "Loading the scanner's references…";
     case "recognizing":
       return p.total > 0 ? `Identifying card ${p.done} of ${p.total}…` : "Identifying cards…";
   }
@@ -81,6 +93,7 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
   const [summary, setSummary] = useState<ScanSummary | null>(null);
 
   const [reviewItems, setReviewItems] = useState<ScannedReviewItem[]>([]);
+  const [reviewEquipment, setReviewEquipment] = useState<EquipmentReviewItem[]>([]);
   const [isReviewOpen, setIsReviewOpen] = useState(false);
 
   const controllerRef = useRef<AbortController | null>(null);
@@ -145,7 +158,19 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
 
       // One review slot per material; overlapping screenshots keep the clearest reading.
       const picks = new Map<string, { item: ScannedReviewItem; confidence: number }>();
-      const totals: ScanSummary = { files: files.length, failedFiles: 0, cards: 0, materials: 0, flagged: 0, unknown: 0 };
+      // Weapons and artifacts repeat: overlapping screenshots are stitched by rows instead.
+      const stitchers = { weapon: new EquipmentStitcher(), artifact: new EquipmentStitcher() };
+      const equipmentCrops = new Map<EquipmentSighting["card"], string>();
+      const totals: ScanSummary = {
+        files: files.length,
+        failedFiles: 0,
+        cards: 0,
+        materials: 0,
+        weapons: 0,
+        artifacts: 0,
+        flagged: 0,
+        unknown: 0,
+      };
 
       try {
         for (let i = 0; i < files.length; i++) {
@@ -177,6 +202,7 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
                   totals.unknown++;
                   continue;
                 }
+                if (card.kind !== "material") continue;
                 const existing = picks.get(card.material.id);
                 if (existing && existing.confidence >= card.confidence) continue;
                 const crop = bitmap ? await cropToBlob(bitmap, card.box, "image/webp").catch(() => null) : null;
@@ -201,6 +227,14 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
                     reviewReason: reviewReason(card),
                   },
                 });
+              }
+              const rows = equipmentRows(recognition.cards, i);
+              for (const kind of ["weapon", "artifact"] as const) {
+                for (const s of rows[kind].flat()) {
+                  const crop = bitmap ? await cropToBlob(bitmap, s.card.box, "image/webp").catch(() => null) : null;
+                  if (crop) equipmentCrops.set(s.card, trackUrl(crop));
+                }
+                stitchers[kind].add(rows[kind]);
               }
             } finally {
               bitmap?.close();
@@ -227,26 +261,43 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
         const review = [...picks.values()].map((p) => p.item);
         // Slots that need a second look first, then reading order.
         review.sort((a, b) => Number(!!b.reviewReason) - Number(!!a.reviewReason));
+        const equipment = (["weapon", "artifact"] as const).flatMap((kind) =>
+          stitchers[kind]
+            .result()
+            .map((s, k) =>
+              equipmentReviewItem(s, `${kind}-${k}`, equipmentCrops.get(s.card) ?? equipmentIcon(s), files[s.source].name),
+            ),
+        );
         totals.materials = review.length;
-        totals.flagged = review.filter((r) => r.reviewReason).length;
+        totals.weapons = equipment.filter((e) => e.kind === "weapon").length;
+        totals.artifacts = equipment.filter((e) => e.kind === "artifact").length;
+        totals.flagged = review.filter((r) => r.reviewReason).length + equipment.filter((e) => e.reviewReason).length;
         setSummary(totals);
         setReviewItems(review);
+        setReviewEquipment(equipment);
 
-        if (review.length === 0) {
+        const found = review.length + equipment.length;
+        if (found === 0) {
           if (totals.failedFiles < files.length) {
             toast.info(
               totals.cards === 0
-                ? "No inventory cards were found. Try a screenshot of the Character Development Items tab."
-                : "No catalog materials were recognised in these screenshots.",
+                ? "No inventory cards were found. Try a screenshot of a bag tab: Character Development Items, Materials, Weapons or Artifacts."
+                : "Nothing in these screenshots matched our game data.",
             );
           }
           return;
         }
         recordScan("screenshot", files);
-        if (settings.autoReviewResults) {
+        // Weapons and artifacts always get a review: their main stats and replace-or-add need a look.
+        if (settings.autoReviewResults || equipment.length > 0) {
           setIsReviewOpen(true);
+          const parts = [
+            review.length > 0 && `${review.length} material${review.length > 1 ? "s" : ""}`,
+            totals.weapons > 0 && `${totals.weapons} weapon${totals.weapons > 1 ? "s" : ""}`,
+            totals.artifacts > 0 && `${totals.artifacts} artifact${totals.artifacts > 1 ? "s" : ""}`,
+          ].filter(Boolean);
           toast.success(
-            `Recognised ${review.length} material${review.length > 1 ? "s" : ""}` +
+            `Recognised ${parts.join(", ")}` +
               (totals.flagged ? ` · ${totals.flagged} to check` : "") +
               ". Please review the results.",
           );
@@ -277,10 +328,12 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
   );
 
   const handleConfirmReview = useCallback(
-    (confirmed: DetectedItem[]) => {
-      mergeIntoInventory(confirmed);
+    (confirmed: DetectedItem[], equipment?: EquipmentConfirm) => {
+      if (confirmed.length > 0) mergeIntoInventory(confirmed);
+      const saved = equipment ? saveScannedEquipment(equipment) : { weapons: 0, artifacts: 0, skipped: 0 };
+      if (saved.skipped > 0) toast.info(`${saved.skipped} unidentified card${saved.skipped > 1 ? "s were" : " was"} left out.`);
       setIsReviewOpen(false);
-      router.push("/inventory/materials");
+      router.push(inventoryPageFor(confirmed.length, saved.weapons, saved.artifacts));
     },
     [mergeIntoInventory, router],
   );
@@ -321,18 +374,26 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
         <div className="flex flex-wrap items-center justify-between gap-2 pb-1">
           <p className="text-[11px] text-white/70 drop-shadow">
             {summary.files} screenshot{summary.files > 1 ? "s" : ""} · {summary.cards} cards ·{" "}
-            <span className="font-semibold text-white">{summary.materials} materials</span>
+            <span className="font-semibold text-white">
+              {[
+                summary.materials > 0 || (summary.weapons === 0 && summary.artifacts === 0) ? `${summary.materials} materials` : null,
+                summary.weapons > 0 ? `${summary.weapons} weapons` : null,
+                summary.artifacts > 0 ? `${summary.artifacts} artifacts` : null,
+              ]
+                .filter(Boolean)
+                .join(" · ")}
+            </span>
             {summary.flagged > 0 && <span className="text-amber-200"> · {summary.flagged} to check</span>}
             {summary.unknown > 0 && <span className="text-white/50"> · {summary.unknown} not in catalog</span>}
             {summary.failedFiles > 0 && <span className="text-rose-300"> · {summary.failedFiles} failed</span>}
           </p>
-          {reviewItems.length > 0 && (
+          {reviewItems.length + reviewEquipment.length > 0 && (
             <button
               onClick={() => setIsReviewOpen(true)}
               className="flex items-center gap-1.5 rounded-full border border-teal-400/30 bg-teal-500/20 px-3.5 py-1 text-xs font-bold text-teal-200 backdrop-blur-md transition-all hover:scale-105 hover:bg-teal-500/30 active:scale-95"
             >
               <Eye className="h-3.5 w-3.5" />
-              <span>Review Last Scan ({reviewItems.length})</span>
+              <span>Review Last Scan ({reviewItems.length + reviewEquipment.length})</span>
             </button>
           )}
         </div>
@@ -354,7 +415,7 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
         inputId="classic-screenshot-upload"
         icon={<Scan className="h-7 w-7 text-teal-300 drop-shadow-md sm:h-8 sm:w-8" />}
         title="Click to upload or drag & drop"
-        description="Select inventory screenshots to recognise materials, rarity and quantities."
+        description="Select screenshots of your bag: materials, weapons or artifacts, with their counts and levels."
         subDescription="Runs on your device: no API key, nothing uploaded."
         sampleButtonIcon={<Scan />}
         accent="teal"
@@ -376,6 +437,7 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
       {isReviewOpen && (
         <LazyScanReviewModal
           reviewItems={reviewItems}
+          equipment={reviewEquipment}
           onClose={handleCloseReview}
           onConfirm={handleConfirmReview}
         />

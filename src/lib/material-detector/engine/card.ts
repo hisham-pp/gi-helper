@@ -308,6 +308,32 @@ export function badgeMask(width: number, rows: number, badge: { x0: number; y1: 
   return mask;
 }
 
+/**
+ * Corners of a weapon or artifact card that hold overlays rather than the
+ * icon, as fractions of the card width: the refinement badge (weapons, newer
+ * game versions) and the lock in the top-left corner, and the round avatar
+ * of the character who has it equipped in the top-right corner, which
+ * overhangs the card's top edge. Measured on PC and phone screenshots.
+ */
+export const EQUIPMENT_OVERLAYS = {
+  topLeft: { right: 0.22, bottom: 0.42 },
+  topRight: { left: 0.7, bottom: 0.27 },
+} as const;
+
+/** Marks the overlay corners of a weapon or artifact card as ignored (in place). */
+export function addEquipmentOverlays(mask: IgnoreMask, width: number, rows: number): IgnoreMask {
+  const { topLeft, topRight } = EQUIPMENT_OVERLAYS;
+  const leftX = Math.ceil(topLeft.right * width);
+  const leftY = Math.min(rows, Math.ceil(topLeft.bottom * width));
+  const rightX = Math.floor(topRight.left * width);
+  const rightY = Math.min(rows, Math.ceil(topRight.bottom * width));
+  for (let y = 0; y < Math.max(leftY, rightY); y++) {
+    if (y < leftY) mask.fill(1, y * width, y * width + leftX);
+    if (y < rightY) mask.fill(1, y * width + rightX, (y + 1) * width);
+  }
+  return mask;
+}
+
 /** Scales a badge region found on a `fromW`-wide frame to a `toW`-wide frame. */
 export function scaleBadge(badge: { x0: number; y1: number } | null, fromW: number, toW: number) {
   if (!badge) return null;

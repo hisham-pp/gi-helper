@@ -10,6 +10,9 @@
  *   3. Fill gaps: neighbouring scanned frames that share no material may have
  *      skipped rows, so frames between them are scanned until they overlap.
  *   4. Merge: one entry per material, quantities voted over all frames.
+ *      Weapons and artifacts repeat, so their rows are stitched in time
+ *      order instead (lib/scan-equipment.ts), and the frames that gave the
+ *      final readings are decoded once more to crop those cards.
  */
 import { cropToBlob } from "../grid-detector/browser";
 import type { DetectedGrid, PixelRect } from "../grid-detector/types";
@@ -25,6 +28,7 @@ import {
   type KeyframeOptions,
 } from "./keyframes";
 import { SightingMerger, sightingKey, type MergedMaterial } from "./merge";
+import { EquipmentStitcher, equipmentRows, type EquipmentKind, type EquipmentSighting } from "../scan-equipment";
 import { encodePreview, validateVideoFile, VideoFrameSource, VideoScanError } from "./video";
 
 /** Upper bound on scanned frames, whatever the video does. */
@@ -71,6 +75,14 @@ export interface VideoMaterial extends MergedMaterial {
   crop: Blob | null;
 }
 
+/** A weapon or artifact of the recording, after stitching. */
+export interface VideoEquipment extends EquipmentSighting {
+  /** Time (s) of the frame its reading comes from. */
+  time: number;
+  /** The card cut from that frame (WebP). */
+  crop: Blob | null;
+}
+
 export interface VideoScanResult {
   duration: number;
   width: number;
@@ -84,6 +96,8 @@ export interface VideoScanResult {
   /** Card readings that matched nothing in the catalog. */
   unknownCards: number;
   materials: VideoMaterial[];
+  /** Weapons and artifacts, in bag order. */
+  equipment: VideoEquipment[];
   processingTimeMs: number;
 }
 
@@ -142,6 +156,8 @@ export async function scanVideo(
     const cropVersions = new Map<string, number>();
     const pendingCrops: Promise<void>[] = [];
     const coverage: CoverageFrame[] = [];
+    /** Weapon and artifact rows per scanned frame, stitched once every frame is in. */
+    const equipmentFrames: { time: number; rows: Record<EquipmentKind, EquipmentSighting[][]> }[] = [];
     /** Picked frames that left the queue (grabbed, scanning or scanned). */
     const taken = new Set<number>();
     const queue: number[] = [];
@@ -316,9 +332,17 @@ export async function scanVideo(
             ),
           );
         }
+        const rows = equipmentRows(cards, index);
+        if (rows.weapon.length > 0 || rows.artifact.length > 0) equipmentFrames.push({ time, rows });
+        // Coverage by what the frame shows: materials by id, equipment by item and level
+        // (neighbouring frames that share none of these may have skipped rows).
         coverage.push({
           time,
-          materials: new Set(cards.filter((c) => c.status === "matched" && c.material).map((c) => c.material!.id)),
+          materials: new Set(
+            cards
+              .filter((c) => c.status === "matched" && c.material)
+              .map((c) => (c.kind === "material" ? c.material!.id : `${c.kind}:${c.material!.id}:${c.level?.value ?? "?"}`)),
+          ),
         });
         onFrame?.({ id: index, time, status: "done", cards: cards.map((c) => ({ box: c.box, status: c.status })) });
       } finally {
@@ -366,6 +390,7 @@ export async function scanVideo(
       ...m,
       crop: crops.get(sightingKey(m.materialId, m.quantity)) ?? null,
     }));
+    const equipment = await stitchEquipment(equipmentFrames, reader, picker.samples, signal);
     onProgress?.({
       stage: "scanning",
       fraction: 1,
@@ -384,6 +409,7 @@ export async function scanVideo(
       cardsRead,
       unknownCards,
       materials,
+      equipment,
       processingTimeMs: Math.round(now() - t0),
     };
   } catch (err) {
@@ -395,6 +421,40 @@ export async function scanVideo(
     reader?.dispose();
     URL.revokeObjectURL(url);
   }
+}
+
+/**
+ * Stitches the weapon and artifact rows of every scanned frame in time
+ * order, then decodes each frame that supplied a final reading once more to
+ * crop its cards (crops of every card of every frame would be thousands).
+ */
+async function stitchEquipment(
+  frames: { time: number; rows: Record<EquipmentKind, EquipmentSighting[][]> }[],
+  reader: VideoFrameSource,
+  samples: readonly { time: number }[],
+  signal: AbortSignal,
+): Promise<VideoEquipment[]> {
+  const ordered = [...frames].sort((a, b) => a.time - b.time);
+  const cards: EquipmentSighting[] = [];
+  for (const kind of ["weapon", "artifact"] as const) {
+    const stitcher = new EquipmentStitcher();
+    for (const f of ordered) stitcher.add(f.rows[kind]);
+    cards.push(...stitcher.result());
+  }
+  const crops = new Map<EquipmentSighting, Blob | null>();
+  const bySource = new Map<number, EquipmentSighting[]>();
+  for (const c of cards) bySource.set(c.source, [...(bySource.get(c.source) ?? []), c]);
+  for (const [source, list] of bySource) {
+    if (signal.aborted) throw cancelled();
+    await reader.seek(samples[source].time, signal);
+    const bitmap = await reader.frame();
+    try {
+      for (const c of list) crops.set(c, await cropToBlob(bitmap, c.card.box, "image/webp").catch(() => null));
+    } finally {
+      bitmap.close();
+    }
+  }
+  return cards.map((c) => ({ ...c, time: samples[c.source].time, crop: crops.get(c) ?? null }));
 }
 
 /**

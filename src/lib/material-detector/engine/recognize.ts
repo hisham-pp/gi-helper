@@ -1,16 +1,21 @@
 /**
- * Material recognition pipeline (runs after grid detection):
+ * Card recognition pipeline (runs after grid detection):
  *
- *   per card
+ *   per grid
+ *     0. kind: materials, weapons or artifacts, from the text under the
+ *        cards or else the reference bank that fits best                    (kind.ts)
+ *   per card, against that kind's bank
  *     1. sample the card into a canonical 64 px frame; find a "New" badge   (card.ts)
  *     2. coarse pass: composite error of all references at 32 px            (match.ts)
  *     3. rarity: star-row width + background colour                         (rarity.ts)
  *     4. shortlist (coarse error + rarity penalty) → fine pass at 64 px
  *     5. alignment: pattern search over shift/scale of the card box
- *     6. quantity: digit segmentation + template correlation                 (quantity.ts)
+ *     6. footer: a material's quantity or the level ("Lv. 90", "+20")       (quantity.ts)
+ *        and a weapon's refinement and lock                                 (equipment.ts)
  *   per grid
- *     7. inventory-order decoding among near-identical candidates           (context.ts)
- *   8. confidence, status and aggregation into items
+ *     7. inventory-order decoding among near-identical candidates
+ *        (materials only)                                                   (context.ts)
+ *   8. confidence, status and aggregation of materials into items
  *
  * Pure TypeScript over typed arrays: runs in a Web Worker and in Node (tests).
  * Deterministic for a given input, bank and settings.
@@ -20,17 +25,24 @@ import type { RgbaImage } from "../../grid-detector/engine/image";
 import { validateRgbaImage } from "../../grid-detector/engine/image";
 import defaultDigitTemplates from "../../../data/digit-templates.json";
 import { resolveRecognitionSettings } from "../settings";
-import type {
-  CardRecognition,
-  MaterialCandidate,
-  MaterialRecognitionResult,
-  QuantityReading,
-  RarityReading,
-  RecognitionSettings,
-  RecognizedItem,
+import {
+  CARD_KINDS,
+  type CardKind,
+  type CardRecognition,
+  type GridKindReading,
+  type MaterialCandidate,
+  type MaterialRecognitionResult,
+  type NumberReading,
+  type QuantityReading,
+  type Rarity,
+  type RarityReading,
+  type RecognitionSettings,
+  type RecognizedItem,
+  type ReferenceEntry,
 } from "../types";
 import { COARSE_SIZE, FINE_SIZE, type ReferenceBank } from "./bank";
 import {
+  addEquipmentOverlays,
   type Alignment,
   artRows,
   badgeMask,
@@ -46,9 +58,11 @@ import {
   snapToFooter,
 } from "./card";
 import { decodeInventoryOrder } from "./context";
+import { readLock, readRefinement } from "./equipment";
 import { MaterialDetectionError, toMaterialDetectionError } from "./errors";
+import { guessGridKind, spreadCards } from "./kind";
 import { backgroundColor, compositeError, patternSearch, peakBlockError } from "./match";
-import { type DigitTemplates, readQuantity } from "./quantity";
+import { type DigitTemplates, readFooter, readQuantity } from "./quantity";
 import { classifyBackground, combineRarity, readStars } from "./rarity";
 
 export interface RecognitionInput {
@@ -61,6 +75,8 @@ export interface RecognitionInput {
   source?: { width: number; height: number };
   /** Grids from `detectInventoryGrids` (possibly edited). */
   grids: DetectedGrid[];
+  /** Kinds already decided per grid id (e.g. while choosing which banks to load). */
+  kinds?: Record<string, GridKindReading>;
   /** Called after each card (e.g. to drive a progress bar). */
   onProgress?: (done: number, total: number) => void;
 }
@@ -102,6 +118,25 @@ const RESCORE_WINDOW = 0.06;
 const SNAP_TRIGGER = 0.09;
 /** …and only when the snapped box moves an edge by more than this (× card width). */
 const SNAP_MIN_SHIFT = 0.03;
+/**
+ * Weapon and artifact cards fit less tightly (their overlays are masked,
+ * icons are drawn ~1% smaller), so snapping starts at a higher error.
+ */
+const EQUIPMENT_SNAP_TRIGGER = 0.15;
+/** How far the alignment search may move a box (fractions of its size). */
+const ALIGN_LIMIT = { dx: 0.06, dy: 0.05, scale: 0.08 };
+/** Weapon and artifact boxes are often stretched by the avatar or a highlight: search further vertically. */
+const EQUIPMENT_ALIGN_LIMIT = { dx: 0.06, dy: 0.09, scale: 0.08 };
+/** Levels a weapon, an artifact or a character can show, and the prefix before them. */
+const LEVELS = {
+  weapon: { min: 1, max: 90, prefix: "Lv" },
+  artifact: { min: 0, max: 20, prefix: "+" },
+  character: { min: 1, max: 100, prefix: "Lv" },
+} as const;
+/** Cards compared with every bank when the text can't tell a grid's kind. */
+const KIND_PROBE_CARDS = 6;
+
+const EMPTY_QUANTITY: QuantityReading = { value: null, text: "", confidence: 0 };
 
 const now = () => (typeof performance !== "undefined" ? performance.now() : Date.now());
 
@@ -119,11 +154,17 @@ interface Scored {
 interface CardAnalysis {
   card: DetectedCard;
   grid: DetectedGrid;
+  bank: ReferenceBank;
   /** Card box in analysed-image pixels after aspect correction. */
   box: PixelRect;
   ranked: Scored[];
   rarity: RarityReading;
   quantity: QuantityReading;
+  level: NumberReading | null;
+  refinement: NumberReading | null;
+  locked: boolean | null;
+  /** An equipment card whose footer shows a plain count: not a weapon or artifact. */
+  plainCount: boolean;
   hasNewBadge: boolean;
   evaluations: number;
 }
@@ -140,6 +181,16 @@ class Timer {
   }
 }
 
+/**
+ * Pixels to ignore while matching: a "New" badge, and on weapon and artifact
+ * cards the corners that hold the refinement badge, the lock and the
+ * equipped character's avatar.
+ */
+function ignoreMask(bank: ReferenceBank, size: number, rows: number, badge: { x0: number; y1: number } | null) {
+  const mask = badgeMask(size, rows, badge);
+  return bank.kind === "material" ? mask : addEquipmentOverlays(mask, size, rows);
+}
+
 /** Canonical frames of one candidate card box and the coarse pass over the whole catalog. */
 function prepareBox(image: RgbaImage, box: PixelRect, bank: ReferenceBank, timer: Timer) {
   const fineRows = artRows(FINE_SIZE);
@@ -150,8 +201,8 @@ function prepareBox(image: RgbaImage, box: PixelRect, bank: ReferenceBank, timer
     return {
       fine0,
       badge,
-      fineMask: badgeMask(FINE_SIZE, fineRows, badge),
-      coarseMask: badgeMask(COARSE_SIZE, coarseRows, scaleBadge(badge, FINE_SIZE, COARSE_SIZE)),
+      fineMask: ignoreMask(bank, FINE_SIZE, fineRows, badge),
+      coarseMask: ignoreMask(bank, COARSE_SIZE, coarseRows, scaleBadge(badge, FINE_SIZE, COARSE_SIZE)),
       coarse: halve(fine0),
     };
   });
@@ -180,14 +231,17 @@ function analyseCard(
   settings: RecognitionSettings,
   digits: DigitTemplates,
   timer: Timer,
-): Omit<CardAnalysis, "card" | "grid"> {
+): Omit<CardAnalysis, "card" | "grid" | "bank"> {
   const fineRows = artRows(FINE_SIZE);
+  const equipment = bank.kind !== "material";
+  const limit = equipment ? EQUIPMENT_ALIGN_LIMIT : ALIGN_LIMIT;
 
   // 1–2. Frames and coarse pass. A box that is off by more than the alignment
   //      search can fix (e.g. hand-drawn) is re-located from the card's
   //      footer; the snapped box is kept only if the catalog fits it better.
   let prepared = prepareBox(image, givenBox, bank, timer);
-  if (settings.refineAlignment && prepared.coarseErrors[prepared.bestCoarse] > SNAP_TRIGGER) {
+  const snapTrigger = equipment ? EQUIPMENT_SNAP_TRIGGER : SNAP_TRIGGER;
+  if (settings.refineAlignment && prepared.coarseErrors[prepared.bestCoarse] > snapTrigger) {
     const snapped = timer.time("sample", () => snapToFooter(image, givenBox));
     if (snapped && boxesDiffer(givenBox, snapped, SNAP_MIN_SHIFT)) {
       const alt = prepareBox(image, snapped, bank, timer);
@@ -203,7 +257,7 @@ function analyseCard(
     return combineRarity(stars, bg);
   });
   const penalty = (index: number) =>
-    settings.useRarity && rarity.value !== null && bank.entries[index].rarity !== rarity.value
+    settings.useRarity && rarity.value !== null && !hasRarity(bank.entries[index], rarity.value)
       ? RARITY_PENALTY * rarity.confidence
       : 0;
 
@@ -250,7 +304,7 @@ function analyseCard(
         step: { dx: fx, dy: fy, scale: 0.025 },
         minStep: fx / 4,
         maxEvaluations: 24,
-        limit: { dx: 0.06, dy: 0.05, scale: 0.08 },
+        limit,
       });
       // Only candidates that could still overtake the leader are worth re-scoring.
       const realigned = ranked.map((s) => {
@@ -267,7 +321,7 @@ function analyseCard(
           step: { dx: fx / 2, dy: fy / 2, scale: 0.0125 },
           minStep: fx / 4,
           maxEvaluations: 10,
-          limit: { dx: 0.06, dy: 0.05, scale: 0.08 },
+          limit,
         });
         s.error = local.error;
         s.rank = local.error + penalty(s.index);
@@ -276,6 +330,9 @@ function analyseCard(
       return realigned.sort((a, b) => a.rank - b.rank);
     });
   }
+
+  // One entry per item: a weapon's base and awakened icons aren't rivals.
+  ranked = collapseVariants(ranked, bank);
 
   // Local disagreement of the leading candidates (see matchConfidence).
   timer.time("fine", () => {
@@ -286,15 +343,91 @@ function analyseCard(
     }
   });
 
-  // 6. Quantity, read at the leader's alignment.
-  const quantity = settings.readQuantity
-    ? timer.time("quantity", () => readQuantity(image, box, ranked[0].alignment, digits))
-    : { value: null, text: "", confidence: 0 };
+  // 6. The footer, read at the leader's alignment: a material's count or an
+  //    equipment level; then a weapon's refinement badge and the lock.
+  const at = ranked[0].alignment;
+  let quantity = EMPTY_QUANTITY;
+  let level: LevelReading | null = null;
+  if (bank.kind === "material") {
+    if (settings.readQuantity) quantity = timer.time("quantity", () => readQuantity(image, box, at, digits));
+  } else {
+    const kind = bank.kind;
+    // Some weapons are drawn zoomed in or shifted, which can pull the icon's
+    // alignment off the card: also try the box itself and the box found
+    // from the cream footer, which is what is being read.
+    level = settings.readQuantity
+      ? timer.time("quantity", () => {
+          const boxes = [alignedRect(box, at), box, snapToFooter(image, box)].filter((b): b is PixelRect => !!b);
+          return readLevel(image, boxes, digits, kind);
+        })
+      : { value: null, confidence: 0, plainCount: false };
+  }
+  // The badge and lock sit in the card's corner: read them on the card box,
+  // then at the icon's alignment if that finds nothing.
+  const refinement =
+    bank.kind === "weapon"
+      ? timer.time("overlays", () => {
+          const r = readRefinement(image, box, IDENTITY_ALIGNMENT, digits);
+          return r.value !== null ? r : readRefinement(image, box, at, digits);
+        })
+      : null;
+  const locked =
+    bank.kind === "weapon" || bank.kind === "artifact"
+      ? timer.time("overlays", () => readLock(image, box, IDENTITY_ALIGNMENT).locked || readLock(image, box, at).locked)
+      : null;
 
-  return { box, ranked, rarity, quantity, hasNewBadge: badge !== null, evaluations };
+  const plainCount = level?.plainCount ?? false;
+  if (level) level = { value: level.value, confidence: level.confidence, plainCount: false };
+  return { box, ranked, rarity, quantity, level, refinement, locked, plainCount, hasNewBadge: badge !== null, evaluations };
+}
+
+/**
+ * A weapon's "Lv. 90" or an artifact's "+20", if in range: the most
+ * confident reading over a few candidate boxes of the card.
+ */
+function readLevel(image: RgbaImage, boxes: PixelRect[], digits: DigitTemplates, kind: keyof typeof LEVELS): LevelReading {
+  const range = LEVELS[kind];
+  let best: LevelReading = { value: null, confidence: 0, plainCount: false };
+  let prefixed = false;
+  let plainCount = false;
+  for (const b of boxes) {
+    const footer = readFooter(image, b, IDENTITY_ALIGNMENT, digits);
+    if (footer.prefix === range.prefix) prefixed = true;
+    if (footer.prefix === "" && footer.value !== null && footer.confidence >= 0.6) plainCount = true;
+    if (footer.value === null || footer.value < range.min || footer.value > range.max) continue;
+    // Without the expected prefix the footer was only partly read.
+    const confidence = Math.round(footer.confidence * (footer.prefix === range.prefix ? 1 : 0.5) * 1000) / 1000;
+    if (confidence > best.confidence || best.value === null) best = { value: footer.value, confidence, plainCount: false };
+    if (footer.prefix === range.prefix && confidence >= 0.9) break;
+  }
+  // A clear count with no "Lv."/"+" anywhere: a material in this tab (the
+  // weapons tab ends with enhancement ores), not a weapon, artifact or character.
+  return { ...best, plainCount: plainCount && !prefixed };
+}
+
+interface LevelReading extends NumberReading {
+  /** The footer shows a plain count instead of a level. */
+  plainCount: boolean;
 }
 
 const key = (a: Alignment) => `${a.dx.toFixed(5)},${a.dy.toFixed(5)},${a.scale.toFixed(5)}`;
+
+/** The catalog item an entry shows (a variant's item, else the entry itself). */
+const itemOf = (e: ReferenceEntry) => e.item ?? e.id;
+
+/** Whether an item comes in a rarity (artifact pieces come in several). */
+export const hasRarity = (e: ReferenceEntry, rarity: Rarity) => (e.rarities ? e.rarities.includes(rarity) : e.rarity === rarity);
+
+/** Keeps the best-ranked variant of each item (`ranked` is sorted best first). */
+function collapseVariants(ranked: Scored[], bank: ReferenceBank): Scored[] {
+  const seen = new Set<string>();
+  return ranked.filter((s) => {
+    const item = itemOf(bank.entries[s.index]);
+    if (seen.has(item)) return false;
+    seen.add(item);
+    return true;
+  });
+}
 
 /**
  * 0–1 confidence of the material decision.
@@ -315,7 +448,14 @@ export function matchConfidence(best: number, runnerUp: number | undefined, peak
 
 function toCandidate(bank: ReferenceBank, s: Scored, confidence: number): MaterialCandidate {
   const e = bank.entries[s.index];
-  return { id: e.id, name: e.name, rarity: e.rarity, error: Math.round(s.error * 10000) / 10000, confidence };
+  return {
+    id: itemOf(e),
+    name: e.name,
+    rarity: e.rarity,
+    ...(e.variant ? { variant: e.variant } : {}),
+    error: Math.round(s.error * 10000) / 10000,
+    confidence,
+  };
 }
 
 function mapBox(card: DetectedCard, sx: number, sy: number): PixelRect {
@@ -336,9 +476,89 @@ const roundRect = (r: PixelRect): PixelRect => ({
   height: Math.round(r.height * 10) / 10,
 });
 
+/**
+ * The bank whose icons fit a grid's cards best (median of the best coarse
+ * error over a few cards), for grids whose text didn't tell their kind.
+ */
+function kindFromIcons(
+  image: RgbaImage,
+  grid: DetectedGrid,
+  sx: number,
+  sy: number,
+  banks: Partial<Record<CardKind, ReferenceBank>>,
+  available: CardKind[],
+  timer: Timer,
+): GridKindReading {
+  const cards = spreadCards(grid, KIND_PROBE_CARDS);
+  const scores = available.map((kind) => {
+    const bank = banks[kind]!;
+    const errors = cards
+      .map((card) => {
+        const p = prepareBox(image, normalizeCardBox(mapBox(card, sx, sy)), bank, timer);
+        return p.coarseErrors[p.bestCoarse];
+      })
+      .sort((a, b) => a - b);
+    return { kind, error: errors.length ? errors[errors.length >> 1] : Infinity };
+  });
+  scores.sort((a, b) => a.error - b.error);
+  const gap = scores.length > 1 ? scores[1].error - scores[0].error : 0.05;
+  return {
+    gridId: grid.id,
+    kind: scores[0].kind,
+    source: "icons",
+    confidence: Math.round(Math.min(1, Math.max(0, gap / 0.05)) * 1000) / 1000,
+  };
+}
+
+/**
+ * The kind of each grid: the setting, else a kind decided earlier
+ * (`input.kinds`), else the text under the cards, else the bank whose icons
+ * fit best. With no banks at all, the text alone decides (used to choose
+ * which banks to load).
+ */
+export function decideGridKinds(
+  input: RecognitionInput,
+  banks: Partial<Record<CardKind, ReferenceBank>>,
+  settings: Pick<RecognitionSettings, "kind">,
+  digits: DigitTemplates = defaultDigitTemplates as DigitTemplates,
+): GridKindReading[] {
+  const sourceW = input.source?.width ?? input.image.width;
+  const sourceH = input.source?.height ?? input.image.height;
+  const sx = input.image.width / sourceW;
+  const sy = input.image.height / sourceH;
+  const available = CARD_KINDS.filter((k) => banks[k]);
+  const timer = new Timer();
+  return input.grids.map((grid): GridKindReading => {
+    if (settings.kind !== "auto") return { gridId: grid.id, kind: settings.kind, source: "setting", confidence: 1 };
+    const preset = input.kinds?.[grid.id];
+    if (preset) return preset;
+    const guess = guessGridKind(input.image, grid, digits, { x: sx, y: sy });
+    if (guess.kind && (available.length === 0 || banks[guess.kind])) {
+      return { gridId: grid.id, kind: guess.kind, source: "text", confidence: guess.confidence };
+    }
+    if (available.length === 0) return { gridId: grid.id, kind: "material", source: "text", confidence: 0 };
+    if (available.length === 1) return { gridId: grid.id, kind: available[0], source: "icons", confidence: 0 };
+    return kindFromIcons(input.image, grid, sx, sy, banks, available, timer);
+  });
+}
+
+/** Recognises the cards of every grid with one bank (no kind detection). */
 export function recognizeMaterials(
   input: RecognitionInput,
   bank: ReferenceBank,
+  partialSettings: Partial<RecognitionSettings> = {},
+  digits: DigitTemplates = defaultDigitTemplates as DigitTemplates,
+): MaterialRecognitionResult {
+  return recognizeCards(input, { [bank.kind]: bank }, { ...partialSettings, kind: bank.kind }, digits);
+}
+
+/**
+ * Recognises every card of every grid with the bank of the grid's kind
+ * (see `decideGridKinds`). Grids whose kind has no bank are skipped.
+ */
+export function recognizeCards(
+  input: RecognitionInput,
+  banks: Partial<Record<CardKind, ReferenceBank>>,
   partialSettings: Partial<RecognitionSettings> = {},
   digits: DigitTemplates = defaultDigitTemplates as DigitTemplates,
 ): MaterialRecognitionResult {
@@ -350,42 +570,57 @@ export function recognizeMaterials(
   } catch (err) {
     throw toMaterialDetectionError(err);
   }
-  if (!bank || bank.coarse.length === 0) {
+  const loaded = CARD_KINDS.filter((k) => banks[k]);
+  if (loaded.length === 0 || loaded.some((k) => banks[k]!.coarse.length === 0)) {
     throw new MaterialDetectionError("REFERENCES_INVALID", "No material references are loaded.");
+  }
+  if (settings.kind !== "auto" && !banks[settings.kind]) {
+    throw new MaterialDetectionError(
+      "REFERENCES_UNAVAILABLE",
+      "The reference data for this inventory tab is not loaded. Please try again.",
+    );
   }
   const sourceW = input.source?.width ?? input.image.width;
   const sourceH = input.source?.height ?? input.image.height;
   const sx = input.image.width / sourceW;
   const sy = input.image.height / sourceH;
 
+  const gridKinds = timer.time("kind", () => decideGridKinds(input, banks, settings, digits));
+  const kindOf = new Map(gridKinds.map((g) => [g.gridId, g.kind]));
+
   // Per card analysis.
   const analyses: CardAnalysis[] = [];
-  const work = input.grids.flatMap((grid) =>
-    [...grid.cards]
+  const work = input.grids.flatMap((grid) => {
+    const bank = banks[kindOf.get(grid.id)!];
+    if (!bank) return [];
+    return [...grid.cards]
       .filter((c) => !c.clipped && c.width >= 8 && c.height >= 8)
       .sort((a, b) => (a.row ?? 0) - (b.row ?? 0) || (a.column ?? 0) - (b.column ?? 0) || a.y - b.y || a.x - b.x)
-      .map((card) => ({ grid, card })),
-  );
+      .map((card) => ({ grid, card, bank }));
+  });
   try {
-    for (const { grid, card } of work) {
+    for (const { grid, card, bank } of work) {
       const box = normalizeCardBox(mapBox(card, sx, sy));
-      analyses.push({ card, grid, ...analyseCard(input.image, box, bank, settings, digits, timer) });
+      analyses.push({ card, grid, bank, ...analyseCard(input.image, box, bank, settings, digits, timer) });
       input.onProgress?.(analyses.length, work.length);
     }
   } catch (err) {
     throw toMaterialDetectionError(err, "Material recognition failed unexpectedly.");
   }
 
-  // Inventory-order context, grid by grid.
+  // Inventory-order context, grid by grid. Only materials have a fixed order:
+  // weapons and artifacts repeat and are sorted by level or rarity.
   const chosen = analyses.map(() => 0);
   if (settings.useInventoryOrder) {
     timer.time("context", () => {
       for (const grid of input.grids) {
-        const members = analyses.map((a, i) => ({ a, i })).filter(({ a }) => a.grid === grid);
+        const members = analyses
+          .map((a, i) => ({ a, i }))
+          .filter(({ a }) => a.grid === grid && a.bank.kind === "material");
         const seq = members.map(({ a }) =>
           a.ranked[0].error > UNKNOWN_ERROR
             ? []
-            : a.ranked.map((s) => ({ order: bank.entries[s.index].order, error: s.rank })),
+            : a.ranked.map((s) => ({ order: a.bank.entries[s.index].order, error: s.rank })),
         );
         decodeInventoryOrder(seq, { penalty: ORDER_PENALTY, window: ORDER_WINDOW }).forEach((k, j) => {
           chosen[members[j].i] = k;
@@ -396,6 +631,7 @@ export function recognizeMaterials(
 
   // Confidence, status, serialisation.
   const cards: CardRecognition[] = analyses.map((a, i) => {
+    const { bank } = a;
     const pick = chosen[i];
     const ordered = pick === 0 ? a.ranked : [a.ranked[pick], ...a.ranked.filter((_, k) => k !== pick)];
     const best = ordered[0];
@@ -404,14 +640,14 @@ export function recognizeMaterials(
     // A material whose tier contradicts the stars and background is likely
     // a sibling of the real one (e.g. a material missing from the catalog).
     const rarityClash =
-      settings.useRarity && a.rarity.value !== null && bank.entries[best.index].rarity !== a.rarity.value
+      settings.useRarity && a.rarity.value !== null && !hasRarity(bank.entries[best.index], a.rarity.value)
         ? 1 - RARITY_CLASH * a.rarity.confidence
         : 1;
     const confidence =
       matchConfidence(best.rank, runnerUp ? Math.max(runnerUp.rank, best.rank) : undefined, best.peak) *
       (pick === 0 ? 1 : 0.8) *
       rarityClash;
-    const unknown = best.error > UNKNOWN_ERROR;
+    const unknown = best.error > UNKNOWN_ERROR || a.plainCount;
     const candidates = ordered.slice(0, settings.candidateCount).map((s, k) =>
       toCandidate(
         bank,
@@ -419,10 +655,12 @@ export function recognizeMaterials(
         k === 0 ? confidence : Math.round(confidence * Math.exp(-(s.rank - best.rank) / ALTERNATIVE_DECAY) * 1000) / 1000,
       ),
     );
-    const quantityFactor = settings.readQuantity ? 0.6 + 0.4 * a.quantity.confidence : 1;
+    const footerConfidence = bank.kind === "material" ? a.quantity.confidence : (a.level?.confidence ?? 0);
+    const footerFactor = settings.readQuantity ? 0.6 + 0.4 * footerConfidence : 1;
     return {
       cardId: a.card.id,
       gridId: a.grid.id,
+      kind: bank.kind,
       row: a.card.row,
       column: a.card.column,
       box: { x: a.card.x, y: a.card.y, width: a.card.width, height: a.card.height },
@@ -432,32 +670,40 @@ export function recognizeMaterials(
       candidates,
       rarity: a.rarity,
       quantity: a.quantity,
+      level: a.level,
+      refinement: a.refinement,
+      locked: a.locked,
       hasNewBadge: a.hasNewBadge,
       orderAdjusted: pick !== 0,
-      confidence: unknown ? 0 : Math.round(confidence * quantityFactor * 1000) / 1000,
+      confidence: unknown ? 0 : Math.round(confidence * footerFactor * 1000) / 1000,
     };
   });
 
-  const items = aggregate(cards);
+  const items = aggregate(cards.filter((c) => c.kind === "material"));
   const review = cards.filter((c) => c.status !== "matched").length;
   const warnings: string[] = [];
   if (analyses.length === 0) warnings.push("No complete cards to recognise.");
   if (review > 0) warnings.push(`${review} card${review > 1 ? "s" : ""} could not be identified with confidence.`);
-  const unreadable = cards.filter((c) => c.status !== "unknown" && settings.readQuantity && c.quantity.value === null).length;
+  const known = settings.readQuantity ? cards.filter((c) => c.status !== "unknown") : [];
+  const unreadable = known.filter((c) => c.kind === "material" && c.quantity.value === null).length;
   if (unreadable > 0) warnings.push(`${unreadable} quantit${unreadable > 1 ? "ies" : "y"} could not be read.`);
+  const noLevel = known.filter((c) => c.kind !== "material" && c.level?.value == null).length;
+  if (noLevel > 0) warnings.push(`${noLevel} level${noLevel > 1 ? "s" : ""} could not be read.`);
 
   const round1 = (v: number) => Math.round(v * 10) / 10;
+  const used = loaded.map((k) => banks[k]!).filter((b) => gridKinds.some((g) => g.kind === b.kind));
   return {
     imageWidth: sourceW,
     imageHeight: sourceH,
+    grids: gridKinds,
     cards,
     items,
     processingTimeMs: round1(now() - started),
     warnings,
     settings,
     diagnostics: {
-      referenceCount: bank.entries.length,
-      bankVersion: bank.version,
+      referenceCount: used.reduce((n, b) => n + b.entries.length, 0),
+      bankVersion: used.map((b) => b.version).join("+"),
       alignmentEvaluations: analyses.length
         ? Math.round((analyses.reduce((s, a) => s + a.evaluations, 0) / analyses.length) * 10) / 10
         : 0,

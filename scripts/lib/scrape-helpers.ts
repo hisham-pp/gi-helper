@@ -72,6 +72,24 @@ export function encodeIcon(sharp: Sharp, source: Buffer, size: number): Promise<
     .toBuffer();
 }
 
+/**
+ * How different two icons look: mean absolute difference (0–1) of their
+ * premultiplied RGBA at 32². Two downloads of the same icon score ~0.
+ */
+export async function iconDifference(sharp: Sharp, a: Buffer, b: Buffer): Promise<number> {
+  const small = (img: Buffer) =>
+    sharp(img).ensureAlpha().resize(32, 32, { fit: "fill" }).raw().toBuffer();
+  const [pa, pb] = await Promise.all([small(a), small(b)]);
+  let sum = 0;
+  for (let i = 0; i < pa.length; i += 4) {
+    const aa = pa[i + 3] / 255;
+    const ab = pb[i + 3] / 255;
+    for (let c = 0; c < 3; c++) sum += Math.abs((pa[i + c] * aa - pb[i + c] * ab) / 255);
+    sum += Math.abs(aa - ab);
+  }
+  return sum / (pa.length);
+}
+
 /** Deletes files in `dir` whose name (without extension) isn't in `keep`. */
 export function pruneDir(dir: string, keep: Set<string>): void {
   for (const file of fs.readdirSync(dir)) {
