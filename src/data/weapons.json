@@ -1,0 +1,3228 @@
+[
+  {
+    "id": "a-teaspoon-of-transcendence",
+    "key": "ATeaspoonOfTranscendence",
+    "name": "A Teaspoon of Transcendence",
+    "rarity": 5,
+    "type": "claymore",
+    "atk": 674,
+    "substat": {
+      "name": "CRIT DMG",
+      "value": "44.1%"
+    },
+    "passive": "White Fairy's Queening"
+  },
+  {
+    "id": "a-thousand-blazing-suns",
+    "key": "AThousandBlazingSuns",
+    "name": "A Thousand Blazing Suns",
+    "rarity": 5,
+    "type": "claymore",
+    "atk": 741,
+    "substat": {
+      "name": "CRIT Rate",
+      "value": "11.0%"
+    },
+    "passive": "Sunset Reignites the Dawn"
+  },
+  {
+    "id": "a-thousand-floating-dreams",
+    "key": "AThousandFloatingDreams",
+    "name": "A Thousand Floating Dreams",
+    "rarity": 5,
+    "type": "catalyst",
+    "atk": 542,
+    "substat": {
+      "name": "Elemental Mastery",
+      "value": "265"
+    },
+    "passive": "A Thousand Nights' Dawnsong"
+  },
+  {
+    "id": "absolution",
+    "key": "Absolution",
+    "name": "Absolution",
+    "rarity": 5,
+    "type": "sword",
+    "atk": 674,
+    "substat": {
+      "name": "CRIT DMG",
+      "value": "44.1%"
+    },
+    "passive": "Deathly Pact"
+  },
+  {
+    "id": "amos-bow",
+    "key": "AmosBow",
+    "name": "Amos' Bow",
+    "rarity": 5,
+    "type": "bow",
+    "atk": 608,
+    "substat": {
+      "name": "ATK",
+      "value": "49.6%"
+    },
+    "passive": "Strong-Willed"
+  },
+  {
+    "id": "angelos-heptades",
+    "key": "AngelosHeptades",
+    "name": "Angelos' Heptades",
+    "rarity": 5,
+    "type": "catalyst",
+    "atk": 741,
+    "substat": {
+      "name": "ATK",
+      "value": "16.5%"
+    },
+    "passive": "Crown of the Final Scion"
+  },
+  {
+    "id": "aqua-simulacra",
+    "key": "AquaSimulacra",
+    "name": "Aqua Simulacra",
+    "rarity": 5,
+    "type": "bow",
+    "atk": 542,
+    "substat": {
+      "name": "CRIT DMG",
+      "value": "88.2%"
+    },
+    "passive": "The Cleansing Form"
+  },
+  {
+    "id": "aquila-favonia",
+    "key": "AquilaFavonia",
+    "name": "Aquila Favonia",
+    "rarity": 5,
+    "type": "sword",
+    "atk": 674,
+    "substat": {
+      "name": "Physical DMG Bonus",
+      "value": "41.3%"
+    },
+    "passive": "Falcon's Defiance"
+  },
+  {
+    "id": "astral-vulture-s-crimson-plumage",
+    "key": "AstralVulturesCrimsonPlumage",
+    "name": "Astral Vulture's Crimson Plumage",
+    "rarity": 5,
+    "type": "bow",
+    "atk": 608,
+    "substat": {
+      "name": "CRIT DMG",
+      "value": "66.2%"
+    },
+    "passive": "The Moonring Sighted"
+  },
+  {
+    "id": "athame-artis",
+    "key": "AthameArtis",
+    "name": "Athame Artis",
+    "rarity": 5,
+    "type": "sword",
+    "atk": 608,
+    "substat": {
+      "name": "CRIT Rate",
+      "value": "33.1%"
+    },
+    "passive": "Day King's Splendor Solis"
+  },
+  {
+    "id": "azurelight",
+    "key": "Azurelight",
+    "name": "Azurelight",
+    "rarity": 5,
+    "type": "sword",
+    "atk": 674,
+    "substat": {
+      "name": "CRIT Rate",
+      "value": "22.1%"
+    },
+    "passive": "Whitehill's Bestowal"
+  },
+  {
+    "id": "beacon-of-the-reed-sea",
+    "key": "BeaconOfTheReedSea",
+    "name": "Beacon of the Reed Sea",
+    "rarity": 5,
+    "type": "claymore",
+    "atk": 608,
+    "substat": {
+      "name": "CRIT Rate",
+      "value": "33.1%"
+    },
+    "passive": "Desert Watch"
+  },
+  {
+    "id": "beyond-the-chrysalis",
+    "key": "BeyondTheChrysalis",
+    "name": "Beyond the Chrysalis",
+    "rarity": 5,
+    "type": "sword",
+    "atk": 674,
+    "substat": {
+      "name": "CRIT DMG",
+      "value": "44.1%"
+    },
+    "passive": "Dance of Wings Unbound"
+  },
+  {
+    "id": "bloodsoaked-ruins",
+    "key": "BloodsoakedRuins",
+    "name": "Bloodsoaked Ruins",
+    "rarity": 5,
+    "type": "polearm",
+    "atk": 674,
+    "substat": {
+      "name": "CRIT Rate",
+      "value": "22.1%"
+    },
+    "passive": "Mournful Tribute"
+  },
+  {
+    "id": "calamity-queller",
+    "key": "CalamityQueller",
+    "name": "Calamity Queller",
+    "rarity": 5,
+    "type": "polearm",
+    "atk": 741,
+    "substat": {
+      "name": "ATK",
+      "value": "16.5%"
+    },
+    "passive": "Extinguishing Precept"
+  },
+  {
+    "id": "cashflow-supervision",
+    "key": "CashflowSupervision",
+    "name": "Cashflow Supervision",
+    "rarity": 5,
+    "type": "catalyst",
+    "atk": 674,
+    "substat": {
+      "name": "CRIT Rate",
+      "value": "22.1%"
+    },
+    "passive": "Golden Blood-Tide"
+  },
+  {
+    "id": "crane-s-echoing-call",
+    "key": "CranesEchoingCall",
+    "name": "Crane's Echoing Call",
+    "rarity": 5,
+    "type": "catalyst",
+    "atk": 741,
+    "substat": {
+      "name": "ATK",
+      "value": "16.5%"
+    },
+    "passive": "Cloudfall Axiom"
+  },
+  {
+    "id": "crimson-moon-s-semblance",
+    "key": "CrimsonMoonsSemblance",
+    "name": "Crimson Moon's Semblance",
+    "rarity": 5,
+    "type": "polearm",
+    "atk": 674,
+    "substat": {
+      "name": "CRIT Rate",
+      "value": "22.1%"
+    },
+    "passive": "Ashen Sun's Shadow"
+  },
+  {
+    "id": "disaster-and-remorse",
+    "key": "DisasterAndRemorse",
+    "name": "Disaster and Remorse",
+    "rarity": 5,
+    "type": "polearm",
+    "atk": 674,
+    "substat": {
+      "name": "CRIT Rate",
+      "value": "22.1%"
+    },
+    "passive": "Dolorous Stroke"
+  },
+  {
+    "id": "elegy-for-the-end",
+    "key": "ElegyForTheEnd",
+    "name": "Elegy for the End",
+    "rarity": 5,
+    "type": "bow",
+    "atk": 608,
+    "substat": {
+      "name": "Energy Recharge",
+      "value": "55.1%"
+    },
+    "passive": "The Parting Refrain"
+  },
+  {
+    "id": "engulfing-lightning",
+    "key": "EngulfingLightning",
+    "name": "Engulfing Lightning",
+    "rarity": 5,
+    "type": "polearm",
+    "atk": 608,
+    "substat": {
+      "name": "Energy Recharge",
+      "value": "55.1%"
+    },
+    "passive": "Timeless Dream: Eternal Stove"
+  },
+  {
+    "id": "everlasting-moonglow",
+    "key": "EverlastingMoonglow",
+    "name": "Everlasting Moonglow",
+    "rarity": 5,
+    "type": "catalyst",
+    "atk": 608,
+    "substat": {
+      "name": "HP",
+      "value": "49.6%"
+    },
+    "passive": "Byakuya Kougetsu"
+  },
+  {
+    "id": "exaiphanes-blade",
+    "key": "ExaiphanesBlade",
+    "name": "Exaiphanes Blade",
+    "rarity": 5,
+    "type": "sword",
+    "atk": 608,
+    "substat": {
+      "name": "CRIT Rate",
+      "value": "33.1%"
+    },
+    "passive": "Traveler's Path"
+  },
+  {
+    "id": "fang-of-the-mountain-king",
+    "key": "FangOfTheMountainKing",
+    "name": "Fang of the Mountain King",
+    "rarity": 5,
+    "type": "claymore",
+    "atk": 741,
+    "substat": {
+      "name": "CRIT Rate",
+      "value": "11.0%"
+    },
+    "passive": "Turquoise Hunt"
+  },
+  {
+    "id": "fractured-halo",
+    "key": "FracturedHalo",
+    "name": "Fractured Halo",
+    "rarity": 5,
+    "type": "polearm",
+    "atk": 608,
+    "substat": {
+      "name": "CRIT DMG",
+      "value": "66.2%"
+    },
+    "passive": "Purifying Crown"
+  },
+  {
+    "id": "freedom-sworn",
+    "key": "FreedomSworn",
+    "name": "Freedom-Sworn",
+    "rarity": 5,
+    "type": "sword",
+    "atk": 608,
+    "substat": {
+      "name": "Elemental Mastery",
+      "value": "198"
+    },
+    "passive": "Revolutionary Chorale"
+  },
+  {
+    "id": "gest-of-the-mighty-wolf",
+    "key": "GestOfTheMightyWolf",
+    "name": "Gest of the Mighty Wolf",
+    "rarity": 5,
+    "type": "claymore",
+    "atk": 608,
+    "substat": {
+      "name": "CRIT Rate",
+      "value": "33.1%"
+    },
+    "passive": "Indomitable Chivalry"
+  },
+  {
+    "id": "golden-frostbound-oath",
+    "key": "GoldenFrostboundOath",
+    "name": "Golden Frostbound Oath",
+    "rarity": 5,
+    "type": "bow",
+    "atk": 542,
+    "substat": {
+      "name": "CRIT DMG",
+      "value": "88.2%"
+    },
+    "passive": "Dawn's Salutation Returned"
+  },
+  {
+    "id": "haran-geppaku-futsu",
+    "key": "HaranGeppakuFutsu",
+    "name": "Haran Geppaku Futsu",
+    "rarity": 5,
+    "type": "sword",
+    "atk": 608,
+    "substat": {
+      "name": "CRIT Rate",
+      "value": "33.1%"
+    },
+    "passive": "Honed Flow"
+  },
+  {
+    "id": "hunter-s-path",
+    "key": "HuntersPath",
+    "name": "Hunter's Path",
+    "rarity": 5,
+    "type": "bow",
+    "atk": 542,
+    "substat": {
+      "name": "CRIT Rate",
+      "value": "44.1%"
+    },
+    "passive": "At the End of the Beast-Paths"
+  },
+  {
+    "id": "hymn-of-the-maelstrom",
+    "key": "HymnOfTheMaelstrom",
+    "name": "Hymn of the Maelstrom",
+    "rarity": 5,
+    "type": "catalyst",
+    "atk": 542,
+    "substat": {
+      "name": "HP",
+      "value": "66.2%"
+    },
+    "passive": "Rondo of Slumber"
+  },
+  {
+    "id": "jadefall-s-splendor",
+    "key": "JadefallsSplendor",
+    "name": "Jadefall's Splendor",
+    "rarity": 5,
+    "type": "catalyst",
+    "atk": 608,
+    "substat": {
+      "name": "HP",
+      "value": "49.6%"
+    },
+    "passive": "Primordial Jade Regalia"
+  },
+  {
+    "id": "kagura-s-verity",
+    "key": "KagurasVerity",
+    "name": "Kagura's Verity",
+    "rarity": 5,
+    "type": "catalyst",
+    "atk": 608,
+    "substat": {
+      "name": "CRIT DMG",
+      "value": "66.2%"
+    },
+    "passive": "Kagura Dance of the Sacred Sakura"
+  },
+  {
+    "id": "key-of-khaj-nisut",
+    "key": "KeyOfKhajNisut",
+    "name": "Key of Khaj-Nisut",
+    "rarity": 5,
+    "type": "sword",
+    "atk": 542,
+    "substat": {
+      "name": "HP",
+      "value": "66.2%"
+    },
+    "passive": "Sunken Song of the Sands"
+  },
+  {
+    "id": "light-of-foliar-incision",
+    "key": "LightOfFoliarIncision",
+    "name": "Light of Foliar Incision",
+    "rarity": 5,
+    "type": "sword",
+    "atk": 542,
+    "substat": {
+      "name": "CRIT DMG",
+      "value": "88.2%"
+    },
+    "passive": "Whitemoon Bristle"
+  },
+  {
+    "id": "lightbearing-moonshard",
+    "key": "LightbearingMoonshard",
+    "name": "Lightbearing Moonshard",
+    "rarity": 5,
+    "type": "sword",
+    "atk": 542,
+    "substat": {
+      "name": "CRIT DMG",
+      "value": "88.2%"
+    },
+    "passive": "Legacy of Lang-Gan"
+  },
+  {
+    "id": "lost-prayer-to-the-sacred-winds",
+    "key": "LostPrayerToTheSacredWinds",
+    "name": "Lost Prayer to the Sacred Winds",
+    "rarity": 5,
+    "type": "catalyst",
+    "atk": 608,
+    "substat": {
+      "name": "CRIT Rate",
+      "value": "33.1%"
+    },
+    "passive": "Boundless Blessing"
+  },
+  {
+    "id": "lumidouce-elegy",
+    "key": "LumidouceElegy",
+    "name": "Lumidouce Elegy",
+    "rarity": 5,
+    "type": "polearm",
+    "atk": 608,
+    "substat": {
+      "name": "CRIT Rate",
+      "value": "33.1%"
+    },
+    "passive": "Bright Dawn Overture"
+  },
+  {
+    "id": "memory-of-dust",
+    "key": "MemoryOfDust",
+    "name": "Memory of Dust",
+    "rarity": 5,
+    "type": "catalyst",
+    "atk": 608,
+    "substat": {
+      "name": "ATK",
+      "value": "49.6%"
+    },
+    "passive": "Golden Majesty"
+  },
+  {
+    "id": "mistsplitter-reforged",
+    "key": "MistsplitterReforged",
+    "name": "Mistsplitter Reforged",
+    "rarity": 5,
+    "type": "sword",
+    "atk": 674,
+    "substat": {
+      "name": "CRIT DMG",
+      "value": "44.1%"
+    },
+    "passive": "Mistsplitter's Edge"
+  },
+  {
+    "id": "nightweaver-s-looking-glass",
+    "key": "NightweaversLookingGlass",
+    "name": "Nightweaver's Looking Glass",
+    "rarity": 5,
+    "type": "catalyst",
+    "atk": 542,
+    "substat": {
+      "name": "Elemental Mastery",
+      "value": "265"
+    },
+    "passive": "Millennial Hymn"
+  },
+  {
+    "id": "nocturne-s-curtain-call",
+    "key": "NocturnesCurtainCall",
+    "name": "Nocturne's Curtain Call",
+    "rarity": 5,
+    "type": "catalyst",
+    "atk": 542,
+    "substat": {
+      "name": "CRIT DMG",
+      "value": "88.2%"
+    },
+    "passive": "Ballad of the Crossroads"
+  },
+  {
+    "id": "peak-patrol-song",
+    "key": "PeakPatrolSong",
+    "name": "Peak Patrol Song",
+    "rarity": 5,
+    "type": "sword",
+    "atk": 542,
+    "substat": {
+      "name": "DEF",
+      "value": "82.7%"
+    },
+    "passive": "Halcyon Years Unending"
+  },
+  {
+    "id": "polar-star",
+    "key": "PolarStar",
+    "name": "Polar Star",
+    "rarity": 5,
+    "type": "bow",
+    "atk": 608,
+    "substat": {
+      "name": "CRIT Rate",
+      "value": "33.1%"
+    },
+    "passive": "Daylight's Augury"
+  },
+  {
+    "id": "primordial-jade-cutter",
+    "key": "PrimordialJadeCutter",
+    "name": "Primordial Jade Cutter",
+    "rarity": 5,
+    "type": "sword",
+    "atk": 542,
+    "substat": {
+      "name": "CRIT Rate",
+      "value": "44.1%"
+    },
+    "passive": "Protector's Virtue"
+  },
+  {
+    "id": "primordial-jade-winged-spear",
+    "key": "PrimordialJadeWingedSpear",
+    "name": "Primordial Jade Winged-Spear",
+    "rarity": 5,
+    "type": "polearm",
+    "atk": 674,
+    "substat": {
+      "name": "CRIT Rate",
+      "value": "22.1%"
+    },
+    "passive": "Eagle Spear of Justice"
+  },
+  {
+    "id": "redhorn-stonethresher",
+    "key": "RedhornStonethresher",
+    "name": "Redhorn Stonethresher",
+    "rarity": 5,
+    "type": "claymore",
+    "atk": 542,
+    "substat": {
+      "name": "CRIT DMG",
+      "value": "88.2%"
+    },
+    "passive": "Gokadaiou Otogibanashi"
+  },
+  {
+    "id": "reliquary-of-truth",
+    "key": "ReliquaryOfTruth",
+    "name": "Reliquary of Truth",
+    "rarity": 5,
+    "type": "catalyst",
+    "atk": 542,
+    "substat": {
+      "name": "CRIT DMG",
+      "value": "88.2%"
+    },
+    "passive": "Essence of Falsity"
+  },
+  {
+    "id": "silvershower-heartstrings",
+    "key": "SilvershowerHeartstrings",
+    "name": "Silvershower Heartstrings",
+    "rarity": 5,
+    "type": "bow",
+    "atk": 542,
+    "substat": {
+      "name": "HP",
+      "value": "66.2%"
+    },
+    "passive": "Dryas's Nocturne"
+  },
+  {
+    "id": "skyward-atlas",
+    "key": "SkywardAtlas",
+    "name": "Skyward Atlas",
+    "rarity": 5,
+    "type": "catalyst",
+    "atk": 674,
+    "substat": {
+      "name": "ATK",
+      "value": "33.1%"
+    },
+    "passive": "Wandering Clouds"
+  },
+  {
+    "id": "skyward-blade",
+    "key": "SkywardBlade",
+    "name": "Skyward Blade",
+    "rarity": 5,
+    "type": "sword",
+    "atk": 608,
+    "substat": {
+      "name": "Energy Recharge",
+      "value": "55.1%"
+    },
+    "passive": "Sky-Piercing Fang"
+  },
+  {
+    "id": "skyward-harp",
+    "key": "SkywardHarp",
+    "name": "Skyward Harp",
+    "rarity": 5,
+    "type": "bow",
+    "atk": 674,
+    "substat": {
+      "name": "CRIT Rate",
+      "value": "22.1%"
+    },
+    "passive": "Echoing Ballad"
+  },
+  {
+    "id": "skyward-pride",
+    "key": "SkywardPride",
+    "name": "Skyward Pride",
+    "rarity": 5,
+    "type": "claymore",
+    "atk": 674,
+    "substat": {
+      "name": "Energy Recharge",
+      "value": "36.8%"
+    },
+    "passive": "Sky-ripping Dragon Spine"
+  },
+  {
+    "id": "skyward-spine",
+    "key": "SkywardSpine",
+    "name": "Skyward Spine",
+    "rarity": 5,
+    "type": "polearm",
+    "atk": 674,
+    "substat": {
+      "name": "Energy Recharge",
+      "value": "36.8%"
+    },
+    "passive": "Black Wing"
+  },
+  {
+    "id": "song-of-broken-pines",
+    "key": "SongOfBrokenPines",
+    "name": "Song of Broken Pines",
+    "rarity": 5,
+    "type": "claymore",
+    "atk": 741,
+    "substat": {
+      "name": "Physical DMG Bonus",
+      "value": "20.7%"
+    },
+    "passive": "Rebel's Banner-Hymn"
+  },
+  {
+    "id": "splendor-of-tranquil-waters",
+    "key": "SplendorOfTranquilWaters",
+    "name": "Splendor of Tranquil Waters",
+    "rarity": 5,
+    "type": "sword",
+    "atk": 542,
+    "substat": {
+      "name": "CRIT DMG",
+      "value": "88.2%"
+    },
+    "passive": "Dawn and Dusk by the Lake"
+  },
+  {
+    "id": "staff-of-homa",
+    "key": "StaffOfHoma",
+    "name": "Staff of Homa",
+    "rarity": 5,
+    "type": "polearm",
+    "atk": 608,
+    "substat": {
+      "name": "CRIT DMG",
+      "value": "66.2%"
+    },
+    "passive": "Reckless Cinnabar"
+  },
+  {
+    "id": "staff-of-the-scarlet-sands",
+    "key": "StaffOfTheScarletSands",
+    "name": "Staff of the Scarlet Sands",
+    "rarity": 5,
+    "type": "polearm",
+    "atk": 542,
+    "substat": {
+      "name": "CRIT Rate",
+      "value": "44.1%"
+    },
+    "passive": "Heat Haze at Horizon's End"
+  },
+  {
+    "id": "starcaller-s-watch",
+    "key": "StarcallersWatch",
+    "name": "Starcaller's Watch",
+    "rarity": 5,
+    "type": "catalyst",
+    "atk": 542,
+    "substat": {
+      "name": "Elemental Mastery",
+      "value": "265"
+    },
+    "passive": "Offering Unto Wind and Sun"
+  },
+  {
+    "id": "summit-shaper",
+    "key": "SummitShaper",
+    "name": "Summit Shaper",
+    "rarity": 5,
+    "type": "sword",
+    "atk": 608,
+    "substat": {
+      "name": "ATK",
+      "value": "49.6%"
+    },
+    "passive": "Golden Majesty"
+  },
+  {
+    "id": "sunny-morning-sleep-in",
+    "key": "SunnyMorningSleepIn",
+    "name": "Sunny Morning Sleep-In",
+    "rarity": 5,
+    "type": "catalyst",
+    "atk": 542,
+    "substat": {
+      "name": "Elemental Mastery",
+      "value": "265"
+    },
+    "passive": "Bathhouses, Hawks, and Narukami"
+  },
+  {
+    "id": "surf-s-up",
+    "key": "SurfsUp",
+    "name": "Surf's Up",
+    "rarity": 5,
+    "type": "catalyst",
+    "atk": 542,
+    "substat": {
+      "name": "CRIT DMG",
+      "value": "88.2%"
+    },
+    "passive": "Aqua Remembrance"
+  },
+  {
+    "id": "symphonist-of-scents",
+    "key": "SymphonistOfScents",
+    "name": "Symphonist of Scents",
+    "rarity": 5,
+    "type": "polearm",
+    "atk": 608,
+    "substat": {
+      "name": "CRIT DMG",
+      "value": "66.2%"
+    },
+    "passive": "Seasoned Symphony"
+  },
+  {
+    "id": "the-daybreak-chronicles",
+    "key": "TheDaybreakChronicles",
+    "name": "The Daybreak Chronicles",
+    "rarity": 5,
+    "type": "bow",
+    "atk": 674,
+    "substat": {
+      "name": "CRIT DMG",
+      "value": "44.1%"
+    },
+    "passive": "Ode Beyond Time"
+  },
+  {
+    "id": "the-first-great-magic",
+    "key": "TheFirstGreatMagic",
+    "name": "The First Great Magic",
+    "rarity": 5,
+    "type": "bow",
+    "atk": 608,
+    "substat": {
+      "name": "CRIT DMG",
+      "value": "66.2%"
+    },
+    "passive": "Parsifal the Great"
+  },
+  {
+    "id": "the-unforged",
+    "key": "TheUnforged",
+    "name": "The Unforged",
+    "rarity": 5,
+    "type": "claymore",
+    "atk": 608,
+    "substat": {
+      "name": "ATK",
+      "value": "49.6%"
+    },
+    "passive": "Golden Majesty"
+  },
+  {
+    "id": "thundering-pulse",
+    "key": "ThunderingPulse",
+    "name": "Thundering Pulse",
+    "rarity": 5,
+    "type": "bow",
+    "atk": 608,
+    "substat": {
+      "name": "CRIT DMG",
+      "value": "66.2%"
+    },
+    "passive": "Rule by Thunder"
+  },
+  {
+    "id": "tome-of-the-eternal-flow",
+    "key": "TomeOfTheEternalFlow",
+    "name": "Tome of the Eternal Flow",
+    "rarity": 5,
+    "type": "catalyst",
+    "atk": 542,
+    "substat": {
+      "name": "CRIT DMG",
+      "value": "88.2%"
+    },
+    "passive": "Aeon Wave"
+  },
+  {
+    "id": "tulaytullah-s-remembrance",
+    "key": "TulaytullahsRemembrance",
+    "name": "Tulaytullah's Remembrance",
+    "rarity": 5,
+    "type": "catalyst",
+    "atk": 674,
+    "substat": {
+      "name": "CRIT DMG",
+      "value": "44.1%"
+    },
+    "passive": "Bygone Azure Teardrop"
+  },
+  {
+    "id": "uraku-misugiri",
+    "key": "UrakuMisugiri",
+    "name": "Uraku Misugiri",
+    "rarity": 5,
+    "type": "sword",
+    "atk": 542,
+    "substat": {
+      "name": "CRIT DMG",
+      "value": "88.2%"
+    },
+    "passive": "Brocade Bloom, Shrine Sword"
+  },
+  {
+    "id": "verdict",
+    "key": "Verdict",
+    "name": "Verdict",
+    "rarity": 5,
+    "type": "claymore",
+    "atk": 674,
+    "substat": {
+      "name": "CRIT Rate",
+      "value": "22.1%"
+    },
+    "passive": "Many Oaths of Dawn and Dusk"
+  },
+  {
+    "id": "vivid-notions",
+    "key": "VividNotions",
+    "name": "Vivid Notions",
+    "rarity": 5,
+    "type": "catalyst",
+    "atk": 674,
+    "substat": {
+      "name": "CRIT DMG",
+      "value": "44.1%"
+    },
+    "passive": "Falling Rainbow's Wish"
+  },
+  {
+    "id": "vortex-vanquisher",
+    "key": "VortexVanquisher",
+    "name": "Vortex Vanquisher",
+    "rarity": 5,
+    "type": "polearm",
+    "atk": 608,
+    "substat": {
+      "name": "ATK",
+      "value": "49.6%"
+    },
+    "passive": "Golden Majesty"
+  },
+  {
+    "id": "whitelake-frostfeather",
+    "key": "WhitelakeFrostfeather",
+    "name": "Whitelake Frostfeather",
+    "rarity": 5,
+    "type": "sword",
+    "atk": 674,
+    "substat": {
+      "name": "CRIT Rate",
+      "value": "22.1%"
+    },
+    "passive": "Snow Swan's Finale"
+  },
+  {
+    "id": "wolf-s-gravestone",
+    "key": "WolfsGravestone",
+    "name": "Wolf's Gravestone",
+    "rarity": 5,
+    "type": "claymore",
+    "atk": 608,
+    "substat": {
+      "name": "ATK",
+      "value": "49.6%"
+    },
+    "passive": "Wolfish Tracker"
+  },
+  {
+    "id": "the-catch",
+    "key": "TheCatch",
+    "name": "\"The Catch\"",
+    "rarity": 4,
+    "type": "polearm",
+    "atk": 510,
+    "substat": {
+      "name": "Energy Recharge",
+      "value": "45.9%"
+    },
+    "passive": "Shanty"
+  },
+  {
+    "id": "ultimate-overlord-s-mega-magic-sword",
+    "key": "UltimateOverlordsMegaMagicSword",
+    "name": "\"Ultimate Overlord's Mega Magic Sword\"",
+    "rarity": 4,
+    "type": "claymore",
+    "atk": 565,
+    "substat": {
+      "name": "Energy Recharge",
+      "value": "30.6%"
+    },
+    "passive": "Melussistance!"
+  },
+  {
+    "id": "akuoumaru",
+    "key": "Akuoumaru",
+    "name": "Akuoumaru",
+    "rarity": 4,
+    "type": "claymore",
+    "atk": 510,
+    "substat": {
+      "name": "ATK",
+      "value": "41.3%"
+    },
+    "passive": "Watatsumi Wavewalker"
+  },
+  {
+    "id": "alley-hunter",
+    "key": "AlleyHunter",
+    "name": "Alley Hunter",
+    "rarity": 4,
+    "type": "bow",
+    "atk": 565,
+    "substat": {
+      "name": "ATK",
+      "value": "27.6%"
+    },
+    "passive": "Oppidan Ambush"
+  },
+  {
+    "id": "amenoma-kageuchi",
+    "key": "AmenomaKageuchi",
+    "name": "Amenoma Kageuchi",
+    "rarity": 4,
+    "type": "sword",
+    "atk": 454,
+    "substat": {
+      "name": "ATK",
+      "value": "55.1%"
+    },
+    "passive": "Iwakura Succession"
+  },
+  {
+    "id": "ash-graven-drinking-horn",
+    "key": "AshGravenDrinkingHorn",
+    "name": "Ash-Graven Drinking Horn",
+    "rarity": 4,
+    "type": "catalyst",
+    "atk": 510,
+    "substat": {
+      "name": "HP",
+      "value": "41.3%"
+    },
+    "passive": "Tupac's Grip"
+  },
+  {
+    "id": "ballad-of-the-boundless-blue",
+    "key": "BalladOfTheBoundlessBlue",
+    "name": "Ballad of the Boundless Blue",
+    "rarity": 4,
+    "type": "catalyst",
+    "atk": 565,
+    "substat": {
+      "name": "Energy Recharge",
+      "value": "30.6%"
+    },
+    "passive": "Azure Skies"
+  },
+  {
+    "id": "ballad-of-the-fjords",
+    "key": "BalladOfTheFjords",
+    "name": "Ballad of the Fjords",
+    "rarity": 4,
+    "type": "polearm",
+    "atk": 510,
+    "substat": {
+      "name": "CRIT Rate",
+      "value": "27.6%"
+    },
+    "passive": "Tales of the Tundra"
+  },
+  {
+    "id": "blackcliff-agate",
+    "key": "BlackcliffAgate",
+    "name": "Blackcliff Agate",
+    "rarity": 4,
+    "type": "catalyst",
+    "atk": 510,
+    "substat": {
+      "name": "CRIT DMG",
+      "value": "55.1%"
+    },
+    "passive": "Press the Advantage"
+  },
+  {
+    "id": "blackcliff-longsword",
+    "key": "BlackcliffLongsword",
+    "name": "Blackcliff Longsword",
+    "rarity": 4,
+    "type": "sword",
+    "atk": 565,
+    "substat": {
+      "name": "CRIT DMG",
+      "value": "36.8%"
+    },
+    "passive": "Press the Advantage"
+  },
+  {
+    "id": "blackcliff-pole",
+    "key": "BlackcliffPole",
+    "name": "Blackcliff Pole",
+    "rarity": 4,
+    "type": "polearm",
+    "atk": 510,
+    "substat": {
+      "name": "CRIT DMG",
+      "value": "55.1%"
+    },
+    "passive": "Press the Advantage"
+  },
+  {
+    "id": "blackcliff-slasher",
+    "key": "BlackcliffSlasher",
+    "name": "Blackcliff Slasher",
+    "rarity": 4,
+    "type": "claymore",
+    "atk": 510,
+    "substat": {
+      "name": "CRIT DMG",
+      "value": "55.1%"
+    },
+    "passive": "Press the Advantage"
+  },
+  {
+    "id": "blackcliff-warbow",
+    "key": "BlackcliffWarbow",
+    "name": "Blackcliff Warbow",
+    "rarity": 4,
+    "type": "bow",
+    "atk": 565,
+    "substat": {
+      "name": "CRIT DMG",
+      "value": "36.8%"
+    },
+    "passive": "Press the Advantage"
+  },
+  {
+    "id": "blackmarrow-lantern",
+    "key": "BlackmarrowLantern",
+    "name": "Blackmarrow Lantern",
+    "rarity": 4,
+    "type": "catalyst",
+    "atk": 454,
+    "substat": {
+      "name": "Elemental Mastery",
+      "value": "221"
+    },
+    "passive": "Token of Covenant"
+  },
+  {
+    "id": "blade-of-atonement",
+    "key": "BladeOfAtonement",
+    "name": "Blade of Atonement",
+    "rarity": 4,
+    "type": "claymore",
+    "atk": 565,
+    "substat": {
+      "name": "ATK",
+      "value": "27.6%"
+    },
+    "passive": "Repentance and Redemption"
+  },
+  {
+    "id": "breezeborne-refrain",
+    "key": "BreezeborneRefrain",
+    "name": "Breezeborne Refrain",
+    "rarity": 4,
+    "type": "bow",
+    "atk": 510,
+    "substat": {
+      "name": "CRIT Rate",
+      "value": "27.6%"
+    },
+    "passive": "Viper's Ballad"
+  },
+  {
+    "id": "calamity-of-eshu",
+    "key": "CalamityOfEshu",
+    "name": "Calamity of Eshu",
+    "rarity": 4,
+    "type": "sword",
+    "atk": 565,
+    "substat": {
+      "name": "ATK",
+      "value": "27.6%"
+    },
+    "passive": "Diffusing Boundary"
+  },
+  {
+    "id": "chain-breaker",
+    "key": "ChainBreaker",
+    "name": "Chain Breaker",
+    "rarity": 4,
+    "type": "bow",
+    "atk": 565,
+    "substat": {
+      "name": "ATK",
+      "value": "27.6%"
+    },
+    "passive": "Flower-Feather Song"
+  },
+  {
+    "id": "cinnabar-spindle",
+    "key": "CinnabarSpindle",
+    "name": "Cinnabar Spindle",
+    "rarity": 4,
+    "type": "sword",
+    "atk": 454,
+    "substat": {
+      "name": "DEF",
+      "value": "69.0%"
+    },
+    "passive": "Spotless Heart"
+  },
+  {
+    "id": "clash-of-kings",
+    "key": "ClashOfKings",
+    "name": "Clash of Kings",
+    "rarity": 4,
+    "type": "catalyst",
+    "atk": 510,
+    "substat": {
+      "name": "CRIT Rate",
+      "value": "27.6%"
+    },
+    "passive": "Without Heed for Day nor Night"
+  },
+  {
+    "id": "cloudforged",
+    "key": "Cloudforged",
+    "name": "Cloudforged",
+    "rarity": 4,
+    "type": "bow",
+    "atk": 510,
+    "substat": {
+      "name": "Elemental Mastery",
+      "value": "165"
+    },
+    "passive": "Crag-Chiseled Forge"
+  },
+  {
+    "id": "compound-bow",
+    "key": "CompoundBow",
+    "name": "Compound Bow",
+    "rarity": 4,
+    "type": "bow",
+    "atk": 454,
+    "substat": {
+      "name": "Physical DMG Bonus",
+      "value": "69.0%"
+    },
+    "passive": "Infusion Arrow"
+  },
+  {
+    "id": "covenant-of-frost-and-snow",
+    "key": "CovenantOfFrostAndSnow",
+    "name": "Covenant of Frost and Snow",
+    "rarity": 4,
+    "type": "bow",
+    "atk": 510,
+    "substat": {
+      "name": "DEF",
+      "value": "51.7%"
+    },
+    "passive": "The Law's Equilibrium"
+  },
+  {
+    "id": "crescent-pike",
+    "key": "CrescentPike",
+    "name": "Crescent Pike",
+    "rarity": 4,
+    "type": "polearm",
+    "atk": 565,
+    "substat": {
+      "name": "Physical DMG Bonus",
+      "value": "34.5%"
+    },
+    "passive": "Infusion Needle"
+  },
+  {
+    "id": "dawning-frost",
+    "key": "DawningFrost",
+    "name": "Dawning Frost",
+    "rarity": 4,
+    "type": "catalyst",
+    "atk": 510,
+    "substat": {
+      "name": "CRIT DMG",
+      "value": "55.1%"
+    },
+    "passive": "Nocturnal Dreams"
+  },
+  {
+    "id": "deathmatch",
+    "key": "Deathmatch",
+    "name": "Deathmatch",
+    "rarity": 4,
+    "type": "polearm",
+    "atk": 454,
+    "substat": {
+      "name": "CRIT Rate",
+      "value": "36.8%"
+    },
+    "passive": "Gladiator"
+  },
+  {
+    "id": "dialogues-of-the-desert-sages",
+    "key": "DialoguesOfTheDesertSages",
+    "name": "Dialogues of the Desert Sages",
+    "rarity": 4,
+    "type": "polearm",
+    "atk": 510,
+    "substat": {
+      "name": "HP",
+      "value": "41.3%"
+    },
+    "passive": "Principle of Equilibrium"
+  },
+  {
+    "id": "dodoco-tales",
+    "key": "DodocoTales",
+    "name": "Dodoco Tales",
+    "rarity": 4,
+    "type": "catalyst",
+    "atk": 454,
+    "substat": {
+      "name": "ATK",
+      "value": "55.1%"
+    },
+    "passive": "Dodoventure!"
+  },
+  {
+    "id": "dragon-s-bane",
+    "key": "DragonsBane",
+    "name": "Dragon's Bane",
+    "rarity": 4,
+    "type": "polearm",
+    "atk": 454,
+    "substat": {
+      "name": "Elemental Mastery",
+      "value": "221"
+    },
+    "passive": "Bane of Flame and Water"
+  },
+  {
+    "id": "dragonspine-spear",
+    "key": "DragonspineSpear",
+    "name": "Dragonspine Spear",
+    "rarity": 4,
+    "type": "polearm",
+    "atk": 454,
+    "substat": {
+      "name": "Physical DMG Bonus",
+      "value": "69.0%"
+    },
+    "passive": "Frost Burial"
+  },
+  {
+    "id": "earth-shaker",
+    "key": "EarthShaker",
+    "name": "Earth Shaker",
+    "rarity": 4,
+    "type": "claymore",
+    "atk": 565,
+    "substat": {
+      "name": "ATK",
+      "value": "27.6%"
+    },
+    "passive": "Oath of Qhapaq Nan"
+  },
+  {
+    "id": "echoes-of-the-heart",
+    "key": "EchoesOfTheHeart",
+    "name": "Echoes of the Heart",
+    "rarity": 4,
+    "type": "catalyst",
+    "atk": 565,
+    "substat": {
+      "name": "ATK",
+      "value": "27.6%"
+    },
+    "passive": "Echo of a Vow"
+  },
+  {
+    "id": "emberwell",
+    "key": "Emberwell",
+    "name": "Emberwell",
+    "rarity": 4,
+    "type": "sword",
+    "atk": 510,
+    "substat": {
+      "name": "Elemental Mastery",
+      "value": "165"
+    },
+    "passive": "Starfire Upon the Snowplains"
+  },
+  {
+    "id": "end-of-the-line",
+    "key": "EndOfTheLine",
+    "name": "End of the Line",
+    "rarity": 4,
+    "type": "bow",
+    "atk": 510,
+    "substat": {
+      "name": "Energy Recharge",
+      "value": "45.9%"
+    },
+    "passive": "Net Snapper"
+  },
+  {
+    "id": "etherlight-spindlelute",
+    "key": "EtherlightSpindlelute",
+    "name": "Etherlight Spindlelute",
+    "rarity": 4,
+    "type": "catalyst",
+    "atk": 510,
+    "substat": {
+      "name": "Energy Recharge",
+      "value": "45.9%"
+    },
+    "passive": "Last Singer"
+  },
+  {
+    "id": "eye-of-perception",
+    "key": "EyeOfPerception",
+    "name": "Eye of Perception",
+    "rarity": 4,
+    "type": "catalyst",
+    "atk": 454,
+    "substat": {
+      "name": "ATK",
+      "value": "55.1%"
+    },
+    "passive": "Echo"
+  },
+  {
+    "id": "fading-twilight",
+    "key": "FadingTwilight",
+    "name": "Fading Twilight",
+    "rarity": 4,
+    "type": "bow",
+    "atk": 565,
+    "substat": {
+      "name": "Energy Recharge",
+      "value": "30.6%"
+    },
+    "passive": "Radiance of the Deeps"
+  },
+  {
+    "id": "favonius-codex",
+    "key": "FavoniusCodex",
+    "name": "Favonius Codex",
+    "rarity": 4,
+    "type": "catalyst",
+    "atk": 510,
+    "substat": {
+      "name": "Energy Recharge",
+      "value": "45.9%"
+    },
+    "passive": "Windfall"
+  },
+  {
+    "id": "favonius-greatsword",
+    "key": "FavoniusGreatsword",
+    "name": "Favonius Greatsword",
+    "rarity": 4,
+    "type": "claymore",
+    "atk": 454,
+    "substat": {
+      "name": "Energy Recharge",
+      "value": "61.3%"
+    },
+    "passive": "Windfall"
+  },
+  {
+    "id": "favonius-lance",
+    "key": "FavoniusLance",
+    "name": "Favonius Lance",
+    "rarity": 4,
+    "type": "polearm",
+    "atk": 565,
+    "substat": {
+      "name": "Energy Recharge",
+      "value": "30.6%"
+    },
+    "passive": "Windfall"
+  },
+  {
+    "id": "favonius-sword",
+    "key": "FavoniusSword",
+    "name": "Favonius Sword",
+    "rarity": 4,
+    "type": "sword",
+    "atk": 454,
+    "substat": {
+      "name": "Energy Recharge",
+      "value": "61.3%"
+    },
+    "passive": "Windfall"
+  },
+  {
+    "id": "favonius-warbow",
+    "key": "FavoniusWarbow",
+    "name": "Favonius Warbow",
+    "rarity": 4,
+    "type": "bow",
+    "atk": 454,
+    "substat": {
+      "name": "Energy Recharge",
+      "value": "61.3%"
+    },
+    "passive": "Windfall"
+  },
+  {
+    "id": "festering-desire",
+    "key": "FesteringDesire",
+    "name": "Festering Desire",
+    "rarity": 4,
+    "type": "sword",
+    "atk": 510,
+    "substat": {
+      "name": "Energy Recharge",
+      "value": "45.9%"
+    },
+    "passive": "Undying Admiration"
+  },
+  {
+    "id": "finale-of-the-deep",
+    "key": "FinaleOfTheDeep",
+    "name": "Finale of the Deep",
+    "rarity": 4,
+    "type": "sword",
+    "atk": 565,
+    "substat": {
+      "name": "ATK",
+      "value": "27.6%"
+    },
+    "passive": "An End Sublime"
+  },
+  {
+    "id": "flame-forged-insight",
+    "key": "FlameForgedInsight",
+    "name": "Flame-Forged Insight",
+    "rarity": 4,
+    "type": "claymore",
+    "atk": 510,
+    "substat": {
+      "name": "Elemental Mastery",
+      "value": "165"
+    },
+    "passive": "Mind in Bloom"
+  },
+  {
+    "id": "fleuve-cendre-ferryman",
+    "key": "FleuveCendreFerryman",
+    "name": "Fleuve Cendre Ferryman",
+    "rarity": 4,
+    "type": "sword",
+    "atk": 510,
+    "substat": {
+      "name": "Energy Recharge",
+      "value": "45.9%"
+    },
+    "passive": "Ironbone"
+  },
+  {
+    "id": "flower-wreathed-feathers",
+    "key": "FlowerWreathedFeathers",
+    "name": "Flower-Wreathed Feathers",
+    "rarity": 4,
+    "type": "bow",
+    "atk": 510,
+    "substat": {
+      "name": "ATK",
+      "value": "41.3%"
+    },
+    "passive": "Inflorescence Unattainable"
+  },
+  {
+    "id": "flowing-purity",
+    "key": "FlowingPurity",
+    "name": "Flowing Purity",
+    "rarity": 4,
+    "type": "catalyst",
+    "atk": 565,
+    "substat": {
+      "name": "ATK",
+      "value": "27.6%"
+    },
+    "passive": "Unfinished Masterpiece"
+  },
+  {
+    "id": "flute-of-ezpitzal",
+    "key": "FluteOfEzpitzal",
+    "name": "Flute of Ezpitzal",
+    "rarity": 4,
+    "type": "sword",
+    "atk": 454,
+    "substat": {
+      "name": "DEF",
+      "value": "69.0%"
+    },
+    "passive": "Smoke-and-Mirror Mystery"
+  },
+  {
+    "id": "footprint-of-the-rainbow",
+    "key": "FootprintOfTheRainbow",
+    "name": "Footprint of the Rainbow",
+    "rarity": 4,
+    "type": "polearm",
+    "atk": 510,
+    "substat": {
+      "name": "DEF",
+      "value": "51.7%"
+    },
+    "passive": "Pact of Flowing Springs"
+  },
+  {
+    "id": "forest-regalia",
+    "key": "ForestRegalia",
+    "name": "Forest Regalia",
+    "rarity": 4,
+    "type": "claymore",
+    "atk": 565,
+    "substat": {
+      "name": "Energy Recharge",
+      "value": "30.6%"
+    },
+    "passive": "Forest Sanctuary"
+  },
+  {
+    "id": "forged-by-the-golden-melody",
+    "key": "ForgedByTheGoldenMelody",
+    "name": "Forged by the Golden Melody",
+    "rarity": 4,
+    "type": "claymore",
+    "atk": 510,
+    "substat": {
+      "name": "CRIT Rate",
+      "value": "27.6%"
+    },
+    "passive": "Day and Night in Counterpoint"
+  },
+  {
+    "id": "frostbearer",
+    "key": "Frostbearer",
+    "name": "Frostbearer",
+    "rarity": 4,
+    "type": "catalyst",
+    "atk": 510,
+    "substat": {
+      "name": "ATK",
+      "value": "41.3%"
+    },
+    "passive": "Frost Burial"
+  },
+  {
+    "id": "frostbreath",
+    "key": "Frostbreath",
+    "name": "Frostbreath",
+    "rarity": 4,
+    "type": "polearm",
+    "atk": 510,
+    "substat": {
+      "name": "Energy Recharge",
+      "value": "45.9%"
+    },
+    "passive": "A Cast Real Far"
+  },
+  {
+    "id": "fruit-of-fulfillment",
+    "key": "FruitOfFulfillment",
+    "name": "Fruit of Fulfillment",
+    "rarity": 4,
+    "type": "catalyst",
+    "atk": 510,
+    "substat": {
+      "name": "Energy Recharge",
+      "value": "45.9%"
+    },
+    "passive": "Full Circle"
+  },
+  {
+    "id": "fruitful-hook",
+    "key": "FruitfulHook",
+    "name": "Fruitful Hook",
+    "rarity": 4,
+    "type": "claymore",
+    "atk": 565,
+    "substat": {
+      "name": "ATK",
+      "value": "27.6%"
+    },
+    "passive": "The Weight of Falling Branches"
+  },
+  {
+    "id": "hakushin-ring",
+    "key": "HakushinRing",
+    "name": "Hakushin Ring",
+    "rarity": 4,
+    "type": "catalyst",
+    "atk": 565,
+    "substat": {
+      "name": "Energy Recharge",
+      "value": "30.6%"
+    },
+    "passive": "Sakura Saiguu"
+  },
+  {
+    "id": "hamayumi",
+    "key": "Hamayumi",
+    "name": "Hamayumi",
+    "rarity": 4,
+    "type": "bow",
+    "atk": 454,
+    "substat": {
+      "name": "ATK",
+      "value": "55.1%"
+    },
+    "passive": "Full Draw"
+  },
+  {
+    "id": "heretic-s-molten-blade",
+    "key": "HereticsMoltenBlade",
+    "name": "Heretic's Molten Blade",
+    "rarity": 4,
+    "type": "sword",
+    "atk": 510,
+    "substat": {
+      "name": "CRIT Rate",
+      "value": "27.6%"
+    },
+    "passive": "Lone Light's Blessing"
+  },
+  {
+    "id": "ibis-piercer",
+    "key": "IbisPiercer",
+    "name": "Ibis Piercer",
+    "rarity": 4,
+    "type": "bow",
+    "atk": 565,
+    "substat": {
+      "name": "ATK",
+      "value": "27.6%"
+    },
+    "passive": "Secret Wisdom's Favor"
+  },
+  {
+    "id": "iron-sting",
+    "key": "IronSting",
+    "name": "Iron Sting",
+    "rarity": 4,
+    "type": "sword",
+    "atk": 510,
+    "substat": {
+      "name": "Elemental Mastery",
+      "value": "165"
+    },
+    "passive": "Infusion Stinger"
+  },
+  {
+    "id": "jade-vista",
+    "key": "JadeVista",
+    "name": "Jade Vista",
+    "rarity": 4,
+    "type": "bow",
+    "atk": 510,
+    "substat": {
+      "name": "CRIT Rate",
+      "value": "27.6%"
+    },
+    "passive": "A Candle Woven From the Night"
+  },
+  {
+    "id": "kagotsurube-isshin",
+    "key": "KagotsurubeIsshin",
+    "name": "Kagotsurube Isshin",
+    "rarity": 4,
+    "type": "sword",
+    "atk": 510,
+    "substat": {
+      "name": "ATK",
+      "value": "41.3%"
+    },
+    "passive": "Isshin Art Clarity"
+  },
+  {
+    "id": "katsuragikiri-nagamasa",
+    "key": "KatsuragikiriNagamasa",
+    "name": "Katsuragikiri Nagamasa",
+    "rarity": 4,
+    "type": "claymore",
+    "atk": 510,
+    "substat": {
+      "name": "Energy Recharge",
+      "value": "45.9%"
+    },
+    "passive": "Samurai Conduct"
+  },
+  {
+    "id": "king-s-squire",
+    "key": "KingsSquire",
+    "name": "King's Squire",
+    "rarity": 4,
+    "type": "bow",
+    "atk": 454,
+    "substat": {
+      "name": "ATK",
+      "value": "55.1%"
+    },
+    "passive": "Labyrinth Lord's Instruction"
+  },
+  {
+    "id": "kitain-cross-spear",
+    "key": "KitainCrossSpear",
+    "name": "Kitain Cross Spear",
+    "rarity": 4,
+    "type": "polearm",
+    "atk": 565,
+    "substat": {
+      "name": "Elemental Mastery",
+      "value": "110"
+    },
+    "passive": "Samurai Conduct"
+  },
+  {
+    "id": "lion-s-roar",
+    "key": "LionsRoar",
+    "name": "Lion's Roar",
+    "rarity": 4,
+    "type": "sword",
+    "atk": 510,
+    "substat": {
+      "name": "ATK",
+      "value": "41.3%"
+    },
+    "passive": "Bane of Fire and Thunder"
+  },
+  {
+    "id": "lithic-blade",
+    "key": "LithicBlade",
+    "name": "Lithic Blade",
+    "rarity": 4,
+    "type": "claymore",
+    "atk": 510,
+    "substat": {
+      "name": "ATK",
+      "value": "41.3%"
+    },
+    "passive": "Lithic Axiom: Unity"
+  },
+  {
+    "id": "lithic-spear",
+    "key": "LithicSpear",
+    "name": "Lithic Spear",
+    "rarity": 4,
+    "type": "polearm",
+    "atk": 565,
+    "substat": {
+      "name": "ATK",
+      "value": "27.6%"
+    },
+    "passive": "Lithic Axiom: Unity"
+  },
+  {
+    "id": "luxurious-sea-lord",
+    "key": "LuxuriousSeaLord",
+    "name": "Luxurious Sea-Lord",
+    "rarity": 4,
+    "type": "claymore",
+    "atk": 454,
+    "substat": {
+      "name": "ATK",
+      "value": "55.1%"
+    },
+    "passive": "Oceanic Victory"
+  },
+  {
+    "id": "mailed-flower",
+    "key": "MailedFlower",
+    "name": "Mailed Flower",
+    "rarity": 4,
+    "type": "claymore",
+    "atk": 565,
+    "substat": {
+      "name": "Elemental Mastery",
+      "value": "110"
+    },
+    "passive": "Whispers of Wind and Flower"
+  },
+  {
+    "id": "makhaira-aquamarine",
+    "key": "MakhairaAquamarine",
+    "name": "Makhaira Aquamarine",
+    "rarity": 4,
+    "type": "claymore",
+    "atk": 510,
+    "substat": {
+      "name": "Elemental Mastery",
+      "value": "165"
+    },
+    "passive": "Desert Pavilion"
+  },
+  {
+    "id": "mappa-mare",
+    "key": "MappaMare",
+    "name": "Mappa Mare",
+    "rarity": 4,
+    "type": "catalyst",
+    "atk": 565,
+    "substat": {
+      "name": "Elemental Mastery",
+      "value": "110"
+    },
+    "passive": "Infusion Scroll"
+  },
+  {
+    "id": "master-key",
+    "key": "MasterKey",
+    "name": "Master Key",
+    "rarity": 4,
+    "type": "claymore",
+    "atk": 454,
+    "substat": {
+      "name": "Energy Recharge",
+      "value": "61.3%"
+    },
+    "passive": "Fall Into Place"
+  },
+  {
+    "id": "missive-windspear",
+    "key": "MissiveWindspear",
+    "name": "Missive Windspear",
+    "rarity": 4,
+    "type": "polearm",
+    "atk": 510,
+    "substat": {
+      "name": "ATK",
+      "value": "41.3%"
+    },
+    "passive": "The Wind Unattained"
+  },
+  {
+    "id": "mitternachts-waltz",
+    "key": "MitternachtsWaltz",
+    "name": "Mitternachts Waltz",
+    "rarity": 4,
+    "type": "bow",
+    "atk": 510,
+    "substat": {
+      "name": "Physical DMG Bonus",
+      "value": "51.7%"
+    },
+    "passive": "Evernight Duet"
+  },
+  {
+    "id": "moonpiercer",
+    "key": "Moonpiercer",
+    "name": "Moonpiercer",
+    "rarity": 4,
+    "type": "polearm",
+    "atk": 565,
+    "substat": {
+      "name": "Elemental Mastery",
+      "value": "110"
+    },
+    "passive": "Stillwood Moonshadow"
+  },
+  {
+    "id": "moonweaver-s-dawn",
+    "key": "MoonweaversDawn",
+    "name": "Moonweaver's Dawn",
+    "rarity": 4,
+    "type": "sword",
+    "atk": 565,
+    "substat": {
+      "name": "ATK",
+      "value": "27.6%"
+    },
+    "passive": "Secret Silver's Testament"
+  },
+  {
+    "id": "mountain-bracing-bolt",
+    "key": "MountainBracingBolt",
+    "name": "Mountain-Bracing Bolt",
+    "rarity": 4,
+    "type": "polearm",
+    "atk": 565,
+    "substat": {
+      "name": "Energy Recharge",
+      "value": "30.6%"
+    },
+    "passive": "Hope Beyond the Peaks"
+  },
+  {
+    "id": "mouun-s-moon",
+    "key": "MouunsMoon",
+    "name": "Mouun's Moon",
+    "rarity": 4,
+    "type": "bow",
+    "atk": 565,
+    "substat": {
+      "name": "ATK",
+      "value": "27.6%"
+    },
+    "passive": "Watatsumi Wavewalker"
+  },
+  {
+    "id": "new-bough",
+    "key": "NewBough",
+    "name": "New Bough",
+    "rarity": 4,
+    "type": "sword",
+    "atk": 510,
+    "substat": {
+      "name": "CRIT DMG",
+      "value": "55.1%"
+    },
+    "passive": "Wildgrowth"
+  },
+  {
+    "id": "oathsworn-eye",
+    "key": "OathswornEye",
+    "name": "Oathsworn Eye",
+    "rarity": 4,
+    "type": "catalyst",
+    "atk": 565,
+    "substat": {
+      "name": "ATK",
+      "value": "27.6%"
+    },
+    "passive": "People of the Faltering Light"
+  },
+  {
+    "id": "portable-power-saw",
+    "key": "PortablePowerSaw",
+    "name": "Portable Power Saw",
+    "rarity": 4,
+    "type": "claymore",
+    "atk": 454,
+    "substat": {
+      "name": "HP",
+      "value": "55.1%"
+    },
+    "passive": "Sea Shanty"
+  },
+  {
+    "id": "predator",
+    "key": "Predator",
+    "name": "Predator",
+    "rarity": 4,
+    "type": "bow",
+    "atk": 510,
+    "substat": {
+      "name": "ATK",
+      "value": "41.3%"
+    },
+    "passive": "Strong Strike"
+  },
+  {
+    "id": "prospector-s-drill",
+    "key": "ProspectorsDrill",
+    "name": "Prospector's Drill",
+    "rarity": 4,
+    "type": "polearm",
+    "atk": 565,
+    "substat": {
+      "name": "ATK",
+      "value": "27.6%"
+    },
+    "passive": "Masons' Ditty"
+  },
+  {
+    "id": "prospector-s-shovel",
+    "key": "ProspectorsShovel",
+    "name": "Prospector's Shovel",
+    "rarity": 4,
+    "type": "polearm",
+    "atk": 510,
+    "substat": {
+      "name": "ATK",
+      "value": "41.3%"
+    },
+    "passive": "Swift and Sure"
+  },
+  {
+    "id": "prototype-amber",
+    "key": "PrototypeAmber",
+    "name": "Prototype Amber",
+    "rarity": 4,
+    "type": "catalyst",
+    "atk": 510,
+    "substat": {
+      "name": "HP",
+      "value": "41.3%"
+    },
+    "passive": "Gilding"
+  },
+  {
+    "id": "prototype-archaic",
+    "key": "PrototypeArchaic",
+    "name": "Prototype Archaic",
+    "rarity": 4,
+    "type": "claymore",
+    "atk": 565,
+    "substat": {
+      "name": "ATK",
+      "value": "27.6%"
+    },
+    "passive": "Crush"
+  },
+  {
+    "id": "prototype-crescent",
+    "key": "PrototypeCrescent",
+    "name": "Prototype Crescent",
+    "rarity": 4,
+    "type": "bow",
+    "atk": 510,
+    "substat": {
+      "name": "ATK",
+      "value": "41.3%"
+    },
+    "passive": "Unreturning"
+  },
+  {
+    "id": "prototype-rancour",
+    "key": "PrototypeRancour",
+    "name": "Prototype Rancour",
+    "rarity": 4,
+    "type": "sword",
+    "atk": 565,
+    "substat": {
+      "name": "Physical DMG Bonus",
+      "value": "34.5%"
+    },
+    "passive": "Smashed Stone"
+  },
+  {
+    "id": "prototype-starglitter",
+    "key": "PrototypeStarglitter",
+    "name": "Prototype Starglitter",
+    "rarity": 4,
+    "type": "polearm",
+    "atk": 510,
+    "substat": {
+      "name": "Energy Recharge",
+      "value": "45.9%"
+    },
+    "passive": "Magic Affinity"
+  },
+  {
+    "id": "rainbow-serpent-s-rain-bow",
+    "key": "RainbowSerpentsRainBow",
+    "name": "Rainbow Serpent's Rain Bow",
+    "rarity": 4,
+    "type": "bow",
+    "atk": 510,
+    "substat": {
+      "name": "Energy Recharge",
+      "value": "45.9%"
+    },
+    "passive": "Astral Whispers Beyond the Sacred Throne"
+  },
+  {
+    "id": "rainslasher",
+    "key": "Rainslasher",
+    "name": "Rainslasher",
+    "rarity": 4,
+    "type": "claymore",
+    "atk": 510,
+    "substat": {
+      "name": "Elemental Mastery",
+      "value": "165"
+    },
+    "passive": "Bane of Storm and Tide"
+  },
+  {
+    "id": "range-gauge",
+    "key": "RangeGauge",
+    "name": "Range Gauge",
+    "rarity": 4,
+    "type": "bow",
+    "atk": 565,
+    "substat": {
+      "name": "ATK",
+      "value": "27.6%"
+    },
+    "passive": "Masons' Ditty"
+  },
+  {
+    "id": "rightful-reward",
+    "key": "RightfulReward",
+    "name": "Rightful Reward",
+    "rarity": 4,
+    "type": "polearm",
+    "atk": 565,
+    "substat": {
+      "name": "HP",
+      "value": "27.6%"
+    },
+    "passive": "Tip of the Spear"
+  },
+  {
+    "id": "ring-of-yaxche",
+    "key": "RingOfYaxche",
+    "name": "Ring of Yaxche",
+    "rarity": 4,
+    "type": "catalyst",
+    "atk": 510,
+    "substat": {
+      "name": "HP",
+      "value": "41.3%"
+    },
+    "passive": "Echoes of the Plentiful Land"
+  },
+  {
+    "id": "royal-bow",
+    "key": "RoyalBow",
+    "name": "Royal Bow",
+    "rarity": 4,
+    "type": "bow",
+    "atk": 510,
+    "substat": {
+      "name": "ATK",
+      "value": "41.3%"
+    },
+    "passive": "Focus"
+  },
+  {
+    "id": "royal-greatsword",
+    "key": "RoyalGreatsword",
+    "name": "Royal Greatsword",
+    "rarity": 4,
+    "type": "claymore",
+    "atk": 565,
+    "substat": {
+      "name": "ATK",
+      "value": "27.6%"
+    },
+    "passive": "Focus"
+  },
+  {
+    "id": "royal-grimoire",
+    "key": "RoyalGrimoire",
+    "name": "Royal Grimoire",
+    "rarity": 4,
+    "type": "catalyst",
+    "atk": 565,
+    "substat": {
+      "name": "ATK",
+      "value": "27.6%"
+    },
+    "passive": "Focus"
+  },
+  {
+    "id": "royal-longsword",
+    "key": "RoyalLongsword",
+    "name": "Royal Longsword",
+    "rarity": 4,
+    "type": "sword",
+    "atk": 510,
+    "substat": {
+      "name": "ATK",
+      "value": "41.3%"
+    },
+    "passive": "Focus"
+  },
+  {
+    "id": "royal-spear",
+    "key": "RoyalSpear",
+    "name": "Royal Spear",
+    "rarity": 4,
+    "type": "polearm",
+    "atk": 565,
+    "substat": {
+      "name": "ATK",
+      "value": "27.6%"
+    },
+    "passive": "Focus"
+  },
+  {
+    "id": "rust",
+    "key": "Rust",
+    "name": "Rust",
+    "rarity": 4,
+    "type": "bow",
+    "atk": 510,
+    "substat": {
+      "name": "ATK",
+      "value": "41.3%"
+    },
+    "passive": "Rapid Firing"
+  },
+  {
+    "id": "sacrificer-s-staff",
+    "key": "SacrificersStaff",
+    "name": "Sacrificer's Staff",
+    "rarity": 4,
+    "type": "polearm",
+    "atk": 620,
+    "substat": {
+      "name": "CRIT Rate",
+      "value": "9.2%"
+    },
+    "passive": "Untainted Desire"
+  },
+  {
+    "id": "sacrificial-bow",
+    "key": "SacrificialBow",
+    "name": "Sacrificial Bow",
+    "rarity": 4,
+    "type": "bow",
+    "atk": 565,
+    "substat": {
+      "name": "Energy Recharge",
+      "value": "30.6%"
+    },
+    "passive": "Composed"
+  },
+  {
+    "id": "sacrificial-fragments",
+    "key": "SacrificialFragments",
+    "name": "Sacrificial Fragments",
+    "rarity": 4,
+    "type": "catalyst",
+    "atk": 454,
+    "substat": {
+      "name": "Elemental Mastery",
+      "value": "221"
+    },
+    "passive": "Composed"
+  },
+  {
+    "id": "sacrificial-greatsword",
+    "key": "SacrificialGreatsword",
+    "name": "Sacrificial Greatsword",
+    "rarity": 4,
+    "type": "claymore",
+    "atk": 565,
+    "substat": {
+      "name": "Energy Recharge",
+      "value": "30.6%"
+    },
+    "passive": "Composed"
+  },
+  {
+    "id": "sacrificial-jade",
+    "key": "SacrificialJade",
+    "name": "Sacrificial Jade",
+    "rarity": 4,
+    "type": "catalyst",
+    "atk": 454,
+    "substat": {
+      "name": "CRIT Rate",
+      "value": "36.8%"
+    },
+    "passive": "Jade Circulation"
+  },
+  {
+    "id": "sacrificial-sword",
+    "key": "SacrificialSword",
+    "name": "Sacrificial Sword",
+    "rarity": 4,
+    "type": "sword",
+    "atk": 454,
+    "substat": {
+      "name": "Energy Recharge",
+      "value": "61.3%"
+    },
+    "passive": "Composed"
+  },
+  {
+    "id": "sapwood-blade",
+    "key": "SapwoodBlade",
+    "name": "Sapwood Blade",
+    "rarity": 4,
+    "type": "sword",
+    "atk": 565,
+    "substat": {
+      "name": "Energy Recharge",
+      "value": "30.6%"
+    },
+    "passive": "Forest Sanctuary"
+  },
+  {
+    "id": "scion-of-the-blazing-sun",
+    "key": "ScionOfTheBlazingSun",
+    "name": "Scion of the Blazing Sun",
+    "rarity": 4,
+    "type": "bow",
+    "atk": 565,
+    "substat": {
+      "name": "CRIT Rate",
+      "value": "18.4%"
+    },
+    "passive": "The Way of Sunfire"
+  },
+  {
+    "id": "sequence-of-solitude",
+    "key": "SequenceOfSolitude",
+    "name": "Sequence of Solitude",
+    "rarity": 4,
+    "type": "bow",
+    "atk": 510,
+    "substat": {
+      "name": "HP",
+      "value": "41.3%"
+    },
+    "passive": "Silent Trigger"
+  },
+  {
+    "id": "serenity-s-call",
+    "key": "SerenitysCall",
+    "name": "Serenity's Call",
+    "rarity": 4,
+    "type": "sword",
+    "atk": 454,
+    "substat": {
+      "name": "Energy Recharge",
+      "value": "61.3%"
+    },
+    "passive": "Solemn Silence"
+  },
+  {
+    "id": "serpent-spine",
+    "key": "SerpentSpine",
+    "name": "Serpent Spine",
+    "rarity": 4,
+    "type": "claymore",
+    "atk": 510,
+    "substat": {
+      "name": "CRIT Rate",
+      "value": "27.6%"
+    },
+    "passive": "Wavesplitter"
+  },
+  {
+    "id": "silver-light",
+    "key": "SilverLight",
+    "name": "Silver Light",
+    "rarity": 4,
+    "type": "sword",
+    "atk": 510,
+    "substat": {
+      "name": "ATK",
+      "value": "41.3%"
+    },
+    "passive": "Radiance on the Water"
+  },
+  {
+    "id": "snare-hook",
+    "key": "SnareHook",
+    "name": "Snare Hook",
+    "rarity": 4,
+    "type": "bow",
+    "atk": 454,
+    "substat": {
+      "name": "Energy Recharge",
+      "value": "61.3%"
+    },
+    "passive": "Phantom Flash"
+  },
+  {
+    "id": "snow-tombed-starsilver",
+    "key": "SnowTombedStarsilver",
+    "name": "Snow-Tombed Starsilver",
+    "rarity": 4,
+    "type": "claymore",
+    "atk": 565,
+    "substat": {
+      "name": "Physical DMG Bonus",
+      "value": "34.5%"
+    },
+    "passive": "Frost Burial"
+  },
+  {
+    "id": "solar-pearl",
+    "key": "SolarPearl",
+    "name": "Solar Pearl",
+    "rarity": 4,
+    "type": "catalyst",
+    "atk": 510,
+    "substat": {
+      "name": "CRIT Rate",
+      "value": "27.6%"
+    },
+    "passive": "Solar Shine"
+  },
+  {
+    "id": "song-of-stillness",
+    "key": "SongOfStillness",
+    "name": "Song of Stillness",
+    "rarity": 4,
+    "type": "bow",
+    "atk": 510,
+    "substat": {
+      "name": "ATK",
+      "value": "41.3%"
+    },
+    "passive": "Benthic Pulse"
+  },
+  {
+    "id": "song-of-the-vigil",
+    "key": "SongOfTheVigil",
+    "name": "Song of the Vigil",
+    "rarity": 4,
+    "type": "polearm",
+    "atk": 565,
+    "substat": {
+      "name": "Elemental Mastery",
+      "value": "110"
+    },
+    "passive": "Cadence of Days Gone By"
+  },
+  {
+    "id": "sturdy-bone",
+    "key": "SturdyBone",
+    "name": "Sturdy Bone",
+    "rarity": 4,
+    "type": "sword",
+    "atk": 565,
+    "substat": {
+      "name": "ATK",
+      "value": "27.6%"
+    },
+    "passive": "Trapper's Pride"
+  },
+  {
+    "id": "sword-of-descension",
+    "key": "SwordOfDescension",
+    "name": "Sword of Descension",
+    "rarity": 4,
+    "type": "sword",
+    "atk": 440,
+    "substat": {
+      "name": "ATK",
+      "value": "35.2%"
+    },
+    "passive": "Descension"
+  },
+  {
+    "id": "sword-of-narzissenkreuz",
+    "key": "SwordOfNarzissenkreuz",
+    "name": "Sword of Narzissenkreuz",
+    "rarity": 4,
+    "type": "sword",
+    "atk": 510,
+    "substat": {
+      "name": "ATK",
+      "value": "41.3%"
+    },
+    "passive": "Hero's Blade"
+  },
+  {
+    "id": "talking-stick",
+    "key": "TalkingStick",
+    "name": "Talking Stick",
+    "rarity": 4,
+    "type": "claymore",
+    "atk": 565,
+    "substat": {
+      "name": "CRIT Rate",
+      "value": "18.4%"
+    },
+    "passive": "\"The Silver Tongue\""
+  },
+  {
+    "id": "tamayuratei-no-ohanashi",
+    "key": "TamayurateiNoOhanashi",
+    "name": "Tamayuratei no Ohanashi",
+    "rarity": 4,
+    "type": "polearm",
+    "atk": 565,
+    "substat": {
+      "name": "Energy Recharge",
+      "value": "30.6%"
+    },
+    "passive": "Busybody's Running Light"
+  },
+  {
+    "id": "the-alley-flash",
+    "key": "TheAlleyFlash",
+    "name": "The Alley Flash",
+    "rarity": 4,
+    "type": "sword",
+    "atk": 620,
+    "substat": {
+      "name": "Elemental Mastery",
+      "value": "55"
+    },
+    "passive": "Itinerant Hero"
+  },
+  {
+    "id": "the-bell",
+    "key": "TheBell",
+    "name": "The Bell",
+    "rarity": 4,
+    "type": "claymore",
+    "atk": 510,
+    "substat": {
+      "name": "HP",
+      "value": "41.3%"
+    },
+    "passive": "Rebellious Guardian"
+  },
+  {
+    "id": "the-black-sword",
+    "key": "TheBlackSword",
+    "name": "The Black Sword",
+    "rarity": 4,
+    "type": "sword",
+    "atk": 510,
+    "substat": {
+      "name": "CRIT Rate",
+      "value": "27.6%"
+    },
+    "passive": "Justice"
+  },
+  {
+    "id": "the-dockhand-s-assistant",
+    "key": "TheDockhandsAssistant",
+    "name": "The Dockhand's Assistant",
+    "rarity": 4,
+    "type": "sword",
+    "atk": 510,
+    "substat": {
+      "name": "HP",
+      "value": "41.3%"
+    },
+    "passive": "Sea Shanty"
+  },
+  {
+    "id": "the-flute",
+    "key": "TheFlute",
+    "name": "The Flute",
+    "rarity": 4,
+    "type": "sword",
+    "atk": 510,
+    "substat": {
+      "name": "ATK",
+      "value": "41.3%"
+    },
+    "passive": "Chord"
+  },
+  {
+    "id": "the-stringless",
+    "key": "TheStringless",
+    "name": "The Stringless",
+    "rarity": 4,
+    "type": "bow",
+    "atk": 510,
+    "substat": {
+      "name": "Elemental Mastery",
+      "value": "165"
+    },
+    "passive": "Arrowless Song"
+  },
+  {
+    "id": "the-viridescent-hunt",
+    "key": "TheViridescentHunt",
+    "name": "The Viridescent Hunt",
+    "rarity": 4,
+    "type": "bow",
+    "atk": 510,
+    "substat": {
+      "name": "CRIT Rate",
+      "value": "27.6%"
+    },
+    "passive": "Verdant Wind"
+  },
+  {
+    "id": "the-widsith",
+    "key": "TheWidsith",
+    "name": "The Widsith",
+    "rarity": 4,
+    "type": "catalyst",
+    "atk": 510,
+    "substat": {
+      "name": "CRIT DMG",
+      "value": "55.1%"
+    },
+    "passive": "Debut"
+  },
+  {
+    "id": "tidal-shadow",
+    "key": "TidalShadow",
+    "name": "Tidal Shadow",
+    "rarity": 4,
+    "type": "claymore",
+    "atk": 510,
+    "substat": {
+      "name": "ATK",
+      "value": "41.3%"
+    },
+    "passive": "White Cruising Wave"
+  },
+  {
+    "id": "toukabou-shigure",
+    "key": "ToukabouShigure",
+    "name": "Toukabou Shigure",
+    "rarity": 4,
+    "type": "sword",
+    "atk": 510,
+    "substat": {
+      "name": "Elemental Mastery",
+      "value": "165"
+    },
+    "passive": "Kaidan: Rainfall Earthbinder"
+  },
+  {
+    "id": "wandering-evenstar",
+    "key": "WanderingEvenstar",
+    "name": "Wandering Evenstar",
+    "rarity": 4,
+    "type": "catalyst",
+    "atk": 510,
+    "substat": {
+      "name": "Elemental Mastery",
+      "value": "165"
+    },
+    "passive": "Wildling Nightstar"
+  },
+  {
+    "id": "wavebreaker-s-fin",
+    "key": "WavebreakersFin",
+    "name": "Wavebreaker's Fin",
+    "rarity": 4,
+    "type": "polearm",
+    "atk": 620,
+    "substat": {
+      "name": "ATK",
+      "value": "13.8%"
+    },
+    "passive": "Watatsumi Wavewalker"
+  },
+  {
+    "id": "waveriding-whirl",
+    "key": "WaveridingWhirl",
+    "name": "Waveriding Whirl",
+    "rarity": 4,
+    "type": "catalyst",
+    "atk": 454,
+    "substat": {
+      "name": "Energy Recharge",
+      "value": "61.3%"
+    },
+    "passive": "Fangs Flying To and Fro"
+  },
+  {
+    "id": "whiteblind",
+    "key": "Whiteblind",
+    "name": "Whiteblind",
+    "rarity": 4,
+    "type": "claymore",
+    "atk": 510,
+    "substat": {
+      "name": "DEF",
+      "value": "51.7%"
+    },
+    "passive": "Infusion Blade"
+  },
+  {
+    "id": "windblume-ode",
+    "key": "WindblumeOde",
+    "name": "Windblume Ode",
+    "rarity": 4,
+    "type": "bow",
+    "atk": 510,
+    "substat": {
+      "name": "Elemental Mastery",
+      "value": "165"
+    },
+    "passive": "Windblume Wish"
+  },
+  {
+    "id": "wine-and-song",
+    "key": "WineAndSong",
+    "name": "Wine and Song",
+    "rarity": 4,
+    "type": "catalyst",
+    "atk": 565,
+    "substat": {
+      "name": "Energy Recharge",
+      "value": "30.6%"
+    },
+    "passive": "Ever-Changing"
+  },
+  {
+    "id": "winter-s-heavy-heart",
+    "key": "WintersHeavyHeart",
+    "name": "Winter's Heavy Heart",
+    "rarity": 4,
+    "type": "catalyst",
+    "atk": 510,
+    "substat": {
+      "name": "CRIT DMG",
+      "value": "55.1%"
+    },
+    "passive": "Secrets of Frost"
+  },
+  {
+    "id": "wolf-fang",
+    "key": "WolfFang",
+    "name": "Wolf-Fang",
+    "rarity": 4,
+    "type": "sword",
+    "atk": 510,
+    "substat": {
+      "name": "CRIT Rate",
+      "value": "27.6%"
+    },
+    "passive": "Northwind Wolf"
+  },
+  {
+    "id": "xiphos-moonlight",
+    "key": "XiphosMoonlight",
+    "name": "Xiphos' Moonlight",
+    "rarity": 4,
+    "type": "sword",
+    "atk": 510,
+    "substat": {
+      "name": "Elemental Mastery",
+      "value": "165"
+    },
+    "passive": "Jinni's Whisper"
+  },
+  {
+    "id": "black-tassel",
+    "key": "BlackTassel",
+    "name": "Black Tassel",
+    "rarity": 3,
+    "type": "polearm",
+    "atk": 354,
+    "substat": {
+      "name": "HP",
+      "value": "46.9%"
+    },
+    "passive": "Bane of the Soft"
+  },
+  {
+    "id": "bloodtainted-greatsword",
+    "key": "BloodtaintedGreatsword",
+    "name": "Bloodtainted Greatsword",
+    "rarity": 3,
+    "type": "claymore",
+    "atk": 354,
+    "substat": {
+      "name": "Elemental Mastery",
+      "value": "187"
+    },
+    "passive": "Bane of Fire and Thunder"
+  },
+  {
+    "id": "cool-steel",
+    "key": "CoolSteel",
+    "name": "Cool Steel",
+    "rarity": 3,
+    "type": "sword",
+    "atk": 401,
+    "substat": {
+      "name": "ATK",
+      "value": "35.2%"
+    },
+    "passive": "Bane of Water and Ice"
+  },
+  {
+    "id": "dark-iron-sword",
+    "key": "DarkIronSword",
+    "name": "Dark Iron Sword",
+    "rarity": 3,
+    "type": "sword",
+    "atk": 401,
+    "substat": {
+      "name": "Elemental Mastery",
+      "value": "141"
+    },
+    "passive": "Overloaded"
+  },
+  {
+    "id": "debate-club",
+    "key": "DebateClub",
+    "name": "Debate Club",
+    "rarity": 3,
+    "type": "claymore",
+    "atk": 401,
+    "substat": {
+      "name": "ATK",
+      "value": "35.2%"
+    },
+    "passive": "Blunt Conclusion"
+  },
+  {
+    "id": "emerald-orb",
+    "key": "EmeraldOrb",
+    "name": "Emerald Orb",
+    "rarity": 3,
+    "type": "catalyst",
+    "atk": 448,
+    "substat": {
+      "name": "Elemental Mastery",
+      "value": "94"
+    },
+    "passive": "Rapids"
+  },
+  {
+    "id": "ferrous-shadow",
+    "key": "FerrousShadow",
+    "name": "Ferrous Shadow",
+    "rarity": 3,
+    "type": "claymore",
+    "atk": 401,
+    "substat": {
+      "name": "HP",
+      "value": "35.2%"
+    },
+    "passive": "Unbending"
+  },
+  {
+    "id": "fillet-blade",
+    "key": "FilletBlade",
+    "name": "Fillet Blade",
+    "rarity": 3,
+    "type": "sword",
+    "atk": 401,
+    "substat": {
+      "name": "ATK",
+      "value": "35.2%"
+    },
+    "passive": "Gash"
+  },
+  {
+    "id": "halberd",
+    "key": "Halberd",
+    "name": "Halberd",
+    "rarity": 3,
+    "type": "polearm",
+    "atk": 448,
+    "substat": {
+      "name": "ATK",
+      "value": "23.5%"
+    },
+    "passive": "Heavy"
+  },
+  {
+    "id": "harbinger-of-dawn",
+    "key": "HarbingerOfDawn",
+    "name": "Harbinger of Dawn",
+    "rarity": 3,
+    "type": "sword",
+    "atk": 401,
+    "substat": {
+      "name": "CRIT DMG",
+      "value": "46.9%"
+    },
+    "passive": "Vigorous"
+  },
+  {
+    "id": "magic-guide",
+    "key": "MagicGuide",
+    "name": "Magic Guide",
+    "rarity": 3,
+    "type": "catalyst",
+    "atk": 354,
+    "substat": {
+      "name": "Elemental Mastery",
+      "value": "187"
+    },
+    "passive": "Bane of Storm and Tide"
+  },
+  {
+    "id": "messenger",
+    "key": "Messenger",
+    "name": "Messenger",
+    "rarity": 3,
+    "type": "bow",
+    "atk": 448,
+    "substat": {
+      "name": "CRIT DMG",
+      "value": "31.2%"
+    },
+    "passive": "Archer's Message"
+  },
+  {
+    "id": "otherworldly-story",
+    "key": "OtherworldlyStory",
+    "name": "Otherworldly Story",
+    "rarity": 3,
+    "type": "catalyst",
+    "atk": 401,
+    "substat": {
+      "name": "Energy Recharge",
+      "value": "39.0%"
+    },
+    "passive": "Energy Shower"
+  },
+  {
+    "id": "raven-bow",
+    "key": "RavenBow",
+    "name": "Raven Bow",
+    "rarity": 3,
+    "type": "bow",
+    "atk": 448,
+    "substat": {
+      "name": "Elemental Mastery",
+      "value": "94"
+    },
+    "passive": "Bane of Flame and Water"
+  },
+  {
+    "id": "recurve-bow",
+    "key": "RecurveBow",
+    "name": "Recurve Bow",
+    "rarity": 3,
+    "type": "bow",
+    "atk": 354,
+    "substat": {
+      "name": "HP",
+      "value": "46.9%"
+    },
+    "passive": "Cull the Weak"
+  },
+  {
+    "id": "sharpshooter-s-oath",
+    "key": "SharpshootersOath",
+    "name": "Sharpshooter's Oath",
+    "rarity": 3,
+    "type": "bow",
+    "atk": 401,
+    "substat": {
+      "name": "CRIT DMG",
+      "value": "46.9%"
+    },
+    "passive": "Precise"
+  },
+  {
+    "id": "skyrider-greatsword",
+    "key": "SkyriderGreatsword",
+    "name": "Skyrider Greatsword",
+    "rarity": 3,
+    "type": "claymore",
+    "atk": 401,
+    "substat": {
+      "name": "Physical DMG Bonus",
+      "value": "43.9%"
+    },
+    "passive": "Courage"
+  },
+  {
+    "id": "skyrider-sword",
+    "key": "SkyriderSword",
+    "name": "Skyrider Sword",
+    "rarity": 3,
+    "type": "sword",
+    "atk": 354,
+    "substat": {
+      "name": "Energy Recharge",
+      "value": "52.1%"
+    },
+    "passive": "Determination"
+  },
+  {
+    "id": "slingshot",
+    "key": "Slingshot",
+    "name": "Slingshot",
+    "rarity": 3,
+    "type": "bow",
+    "atk": 354,
+    "substat": {
+      "name": "CRIT Rate",
+      "value": "31.2%"
+    },
+    "passive": "Slingshot"
+  },
+  {
+    "id": "thrilling-tales-of-dragon-slayers",
+    "key": "ThrillingTalesOfDragonSlayers",
+    "name": "Thrilling Tales of Dragon Slayers",
+    "rarity": 3,
+    "type": "catalyst",
+    "atk": 401,
+    "substat": {
+      "name": "HP",
+      "value": "35.2%"
+    },
+    "passive": "Heritage"
+  },
+  {
+    "id": "traveler-s-handy-sword",
+    "key": "TravelersHandySword",
+    "name": "Traveler's Handy Sword",
+    "rarity": 3,
+    "type": "sword",
+    "atk": 448,
+    "substat": {
+      "name": "DEF",
+      "value": "29.3%"
+    },
+    "passive": "Journey"
+  },
+  {
+    "id": "twin-nephrite",
+    "key": "TwinNephrite",
+    "name": "Twin Nephrite",
+    "rarity": 3,
+    "type": "catalyst",
+    "atk": 448,
+    "substat": {
+      "name": "CRIT Rate",
+      "value": "15.6%"
+    },
+    "passive": "Guerilla Tactics"
+  },
+  {
+    "id": "white-iron-greatsword",
+    "key": "WhiteIronGreatsword",
+    "name": "White Iron Greatsword",
+    "rarity": 3,
+    "type": "claymore",
+    "atk": 401,
+    "substat": {
+      "name": "DEF",
+      "value": "43.9%"
+    },
+    "passive": "Cull the Weak"
+  },
+  {
+    "id": "white-tassel",
+    "key": "WhiteTassel",
+    "name": "White Tassel",
+    "rarity": 3,
+    "type": "polearm",
+    "atk": 401,
+    "substat": {
+      "name": "CRIT Rate",
+      "value": "23.4%"
+    },
+    "passive": "Sharp"
+  },
+  {
+    "id": "iron-point",
+    "key": "IronPoint",
+    "name": "Iron Point",
+    "rarity": 2,
+    "type": "polearm",
+    "atk": 243
+  },
+  {
+    "id": "old-merc-s-pal",
+    "key": "OldMercsPal",
+    "name": "Old Merc's Pal",
+    "rarity": 2,
+    "type": "claymore",
+    "atk": 243
+  },
+  {
+    "id": "pocket-grimoire",
+    "key": "PocketGrimoire",
+    "name": "Pocket Grimoire",
+    "rarity": 2,
+    "type": "catalyst",
+    "atk": 243
+  },
+  {
+    "id": "seasoned-hunter-s-bow",
+    "key": "SeasonedHuntersBow",
+    "name": "Seasoned Hunter's Bow",
+    "rarity": 2,
+    "type": "bow",
+    "atk": 243
+  },
+  {
+    "id": "silver-sword",
+    "key": "SilverSword",
+    "name": "Silver Sword",
+    "rarity": 2,
+    "type": "sword",
+    "atk": 243
+  },
+  {
+    "id": "apprentice-s-notes",
+    "key": "ApprenticesNotes",
+    "name": "Apprentice's Notes",
+    "rarity": 1,
+    "type": "catalyst",
+    "atk": 185
+  },
+  {
+    "id": "beginner-s-protector",
+    "key": "BeginnersProtector",
+    "name": "Beginner's Protector",
+    "rarity": 1,
+    "type": "polearm",
+    "atk": 185
+  },
+  {
+    "id": "dull-blade",
+    "key": "DullBlade",
+    "name": "Dull Blade",
+    "rarity": 1,
+    "type": "sword",
+    "atk": 185
+  },
+  {
+    "id": "hunter-s-bow",
+    "key": "HuntersBow",
+    "name": "Hunter's Bow",
+    "rarity": 1,
+    "type": "bow",
+    "atk": 185
+  },
+  {
+    "id": "waster-greatsword",
+    "key": "WasterGreatsword",
+    "name": "Waster Greatsword",
+    "rarity": 1,
+    "type": "claymore",
+    "atk": 185
+  }
+]

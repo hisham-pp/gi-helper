@@ -42,4 +42,8 @@ export interface MaterialItem {
   sortRank?: number;
   order: number;
   family?: string;
+  /** Materials-tab items (other-materials.json) carry their category. */
+  category?: string;
+  /** Region of a local specialty. */
+  region?: string;
 }

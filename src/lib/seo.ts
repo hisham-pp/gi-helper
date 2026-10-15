@@ -13,7 +13,7 @@ interface PageSeo {
   /** Page title without the site name; the layout template appends it. */
   title: string;
   description: string;
-  /** Canonical path, e.g. "/materials". */
+  /** Canonical path, e.g. "/db/materials". */
   path: string;
   /** Use the title exactly as given (skip the "| GI Helper" template). */
   absoluteTitle?: boolean;

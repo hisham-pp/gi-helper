@@ -3,12 +3,16 @@ import assert from "node:assert/strict";
 import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import {
+  bagOrder,
   getAllMaterials,
+  getDirectoryMaterials,
+  getOtherMaterials,
   materialThumbUrl,
   getMaterialCategoryId,
   getMaterialCategoryLabel,
   MATERIAL_CATEGORIES,
 } from "../src/lib/materials";
+import { toGOODKey } from "../src/lib/good/keys";
 
 describe("Materials Directory & Canonical Ordering Tests", () => {
   it("returns exactly 481 materials from the application dataset", () => {
@@ -95,7 +99,8 @@ describe("Materials Directory & Canonical Ordering Tests", () => {
   });
 
   it("all categories defined in MATERIAL_CATEGORIES have valid metadata", () => {
-    assert.equal(MATERIAL_CATEGORIES.length, 8);
+    // All, the 7 Character Development groups and the 4 Materials-tab groups
+    assert.equal(MATERIAL_CATEGORIES.length, 12);
     for (const cat of MATERIAL_CATEGORIES) {
       assert.ok(cat.id, "Category must have id");
       assert.ok(cat.label, "Category must have label");
@@ -108,6 +113,29 @@ describe("Materials Directory & Canonical Ordering Tests", () => {
       (m) => !existsSync(path.join(process.cwd(), "public", materialThumbUrl(m.id))),
     );
     assert.deepEqual(missing.map((m) => m.id), []);
+  });
+
+  it("Materials-tab items (other-materials.json) are their own catalog after the scanner's", () => {
+    const catalog = getAllMaterials();
+    const others = getOtherMaterials();
+    assert.ok(others.length > 200, `only ${others.length} other materials`);
+    const catalogIds = new Set(catalog.map((m) => m.id));
+    const catalogKeys = new Set(catalog.map((m) => toGOODKey(m.name)));
+    const categories = new Set(["SPECIALTY", "INGREDIENT", "FISHING", "CRAFTING"]);
+    for (const m of others) {
+      assert.ok(!catalogIds.has(m.id), `${m.id} is in both catalogs`);
+      assert.ok(!catalogKeys.has(toGOODKey(m.name)), `${m.name} shares a GOOD key with the catalog`);
+      assert.ok(categories.has(getMaterialCategoryId(m)), `${m.name}: ${m.category}`);
+      assert.equal(bagOrder(m).tab, "Materials", m.name);
+      assert.ok(existsSync(path.join(process.cwd(), "public", materialThumbUrl(m.id))), `missing thumb for ${m.id}`);
+    }
+    assert.equal(new Set(others.map((m) => m.id)).size, others.length);
+    assert.deepEqual(
+      getDirectoryMaterials().map((m) => m.id),
+      [...catalog, ...others].map((m) => m.id),
+    );
+    assert.equal(bagOrder(catalog[0]).position, 1);
+    assert.equal(bagOrder(others[0]).position, 1);
   });
 
   it("the recognizer atlas has every material, in catalog order (run `pnpm build:material-atlas` if this fails)", () => {

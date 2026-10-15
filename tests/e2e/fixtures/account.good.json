@@ -1,0 +1,41 @@
+{
+  "format": "GOOD",
+  "version": 3,
+  "source": "Test fixture",
+  "characters": [
+    { "key": "Furina", "level": 90, "constellation": 1, "ascension": 6, "talent": { "auto": 6, "skill": 10, "burst": 10 } },
+    { "key": "RaidenShogun", "level": 80, "constellation": 0, "ascension": 5, "talent": { "auto": 1, "skill": 8, "burst": 9 } },
+    { "key": "TravelerAnemo", "level": 70, "constellation": 6, "ascension": 4, "talent": { "auto": 6, "skill": 6, "burst": 6 } }
+  ],
+  "weapons": [
+    { "key": "SplendorOfTranquilWaters", "level": 90, "ascension": 6, "refinement": 1, "location": "Furina", "lock": true },
+    { "key": "EngulfingLightning", "level": 80, "ascension": 6, "refinement": 1, "location": "RaidenShogun", "lock": true },
+    { "key": "MistsplitterReforged", "level": 1, "ascension": 0, "refinement": 1, "location": "", "lock": false },
+    { "key": "QuantumCatalyst", "level": 20, "ascension": 0, "refinement": 1, "location": "", "lock": false }
+  ],
+  "artifacts": [
+    {
+      "setKey": "GoldenTroupe", "slotKey": "flower", "level": 20, "rarity": 5, "mainStatKey": "hp",
+      "location": "Furina", "lock": true,
+      "substats": [
+        { "key": "critRate_", "value": 10.5 }, { "key": "critDMG_", "value": 14.8 },
+        { "key": "enerRech_", "value": 5.2 }, { "key": "hp_", "value": 9.9 }
+      ],
+      "totalRolls": 9, "astralMark": true
+    },
+    {
+      "setKey": "EmblemOfSeveredFate", "slotKey": "sands", "level": 16, "rarity": 5, "mainStatKey": "enerRech_",
+      "location": "RaidenShogun", "lock": true,
+      "substats": [
+        { "key": "atk_", "value": 11.1 }, { "key": "critRate_", "value": 6.6 }, { "key": "critDMG_", "value": 21.0 }
+      ],
+      "unactivatedSubstats": [{ "key": "def", "value": 19 }]
+    },
+    {
+      "setKey": "GladiatorsFinale", "slotKey": "plume", "level": 0, "rarity": 4, "mainStatKey": "atk",
+      "location": "", "lock": false,
+      "substats": [{ "key": "eleMas", "value": 16 }]
+    }
+  ],
+  "materials": { "HerosWit": 286, "MysticEnhancementOre": 120, "Qingxin": 40, "Mora": 1500000 }
+}

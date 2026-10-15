@@ -387,6 +387,16 @@ input[type="number"] {
   background: rgba(15, 23, 42, 0.35);
 }
 
+/* Rows that scroll sideways on narrow screens (tab and filter bars): touch and
+   trackpad scrolling still work, without a bar under the row */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 /* ==============================================================================
    Animated Pill Tabs & Panels
    ============================================================================== */

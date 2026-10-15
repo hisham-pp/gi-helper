@@ -3,14 +3,22 @@ import characters from "@/data/characters.json";
 /**
  * Playable characters (src/data/characters.json, built by
  * `pnpm scrape:characters`). The feedback form uses them for a random name
- * and avatar.
+ * and avatar, and GOOD files name them by key.
  */
 export interface Character {
   /** Slug of the name, e.g. "hu-tao"; also the avatar file name. */
   id: string;
+  /** GOOD key, e.g. "HuTao" ("Traveler" for Aether and Lumine). */
+  key: string;
   name: string;
+  /** In-game title, e.g. "Endless Solo of Solitude" (none for the Travelers). */
+  title?: string;
   rarity: number;
   element: string;
+  /** "sword", "claymore", "polearm", "bow" or "catalyst". */
+  weaponType: string;
+  /** Home region, e.g. "Fontaine" (none for the Travelers). */
+  region?: string;
 }
 
 const ALL = characters as Character[];

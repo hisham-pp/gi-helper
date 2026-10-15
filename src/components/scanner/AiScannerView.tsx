@@ -338,7 +338,7 @@ export function AiScannerView({
           toast.success(
             `AI Vision Scan complete! Added ${allDetected.length} materials.`,
           );
-          router.push("/inventory");
+          router.push("/inventory/materials");
         }
       } catch (error: any) {
         console.error("AI Vision Scan Error:", error);
@@ -381,7 +381,7 @@ export function AiScannerView({
       return merged;
     });
     setIsReviewModalOpen(false);
-    router.push("/inventory");
+    router.push("/inventory/materials");
   }, [router]);
 
   const handleCloseReview = useCallback(() => setIsReviewModalOpen(false), []);

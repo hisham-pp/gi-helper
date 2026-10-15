@@ -41,7 +41,7 @@ last page.
 
 ## Asking after an export
 
-After a GOOD export on `/inventory`, the success toast asks how the scan went,
+After a GOOD export on `/inventory/*`, the success toast asks how the scan went,
 with a **Give feedback** button that opens the send form in place. To avoid
 nagging, `src/lib/feedback/prompt.ts` (localStorage) asks at most every 3
 days and not within 30 days of this browser sending feedback.

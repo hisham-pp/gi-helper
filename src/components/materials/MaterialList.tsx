@@ -15,12 +15,13 @@ import {
 } from "lucide-react";
 import { MaterialItem } from "@/lib/types";
 import {
-  getAllMaterials,
+  bagOrder,
   getMaterialCategoryId,
   getMaterialCategoryLabel,
   MaterialCategory,
   getRarityStyles,
-} from "@/lib/materials";
+} from "@/lib/material-ui";
+import { useMaterialDescriptions } from "@/lib/material-descriptions";
 import { MaterialCard } from "./MaterialCard";
 import { CategoryFilterPills } from "./CategoryFilterPills";
 import { MaterialTableView } from "./MaterialTableView";
@@ -51,9 +52,12 @@ const PAGE_SIZE_OPTIONS = [36, 72, 144];
 /** Page size that shows every material on one page. */
 const SHOW_ALL = Number.MAX_SAFE_INTEGER;
 
-export function MaterialList() {
-  const allMaterials = useMemo(() => getAllMaterials(), []);
-
+/**
+ * The /db/materials page. `materials` comes from the server page without
+ * descriptions (most of the catalogs' bytes); they load the first time a
+ * search or the detail modal needs them.
+ */
+export function MaterialList({ materials }: { materials: MaterialItem[] }) {
   const reducedMotion = usePrefersReducedMotion();
 
   // UI state
@@ -67,6 +71,15 @@ export function MaterialList() {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [selectedMaterial, setSelectedMaterial] = useState<MaterialItem | null>(
     null,
+  );
+
+  const descriptions = useMaterialDescriptions(search.trim() !== "" || selectedMaterial !== null);
+  const allMaterials = useMemo(
+    () =>
+      descriptions
+        ? materials.map((m) => ({ ...m, description: descriptions[m.id] ?? "" }))
+        : materials,
+    [materials, descriptions],
   );
 
   // Fetch the detail modal's code once the page is idle, so the first click opens it instantly
@@ -90,6 +103,8 @@ export function MaterialList() {
   // Overall counts for category tabs and rarity pills
   const stats = useMemo(() => {
     const total = allMaterials.length;
+    // Character Development Items; the modal shows "#order / this" for them
+    const developmentTotal = allMaterials.filter((m) => bagOrder(m).tab !== "Materials").length;
     const rarityCounts: Record<number, number> = {
       1: 0,
       2: 0,
@@ -107,7 +122,7 @@ export function MaterialList() {
       categoryCounts[cat] = (categoryCounts[cat] || 0) + 1;
     }
 
-    return { total, rarityCounts, categoryCounts };
+    return { total, developmentTotal, rarityCounts, categoryCounts };
   }, [allMaterials]);
 
   // Filtered & Sorted Materials
@@ -219,9 +234,9 @@ export function MaterialList() {
   useWiggleOnChange(heroRef, selectedRarity, reducedMotion);
 
   return (
-    <div className="flex w-full flex-1 flex-col items-center justify-start px-4 pb-4 pt-2 sm:px-6 sm:pt-4 md:px-8 md:pb-8">
-      {/* Main Container */}
-      <div className="w-full max-w-7xl space-y-6">
+    <>
+      {/* Main Container (db/layout.tsx holds the page padding and DatabaseNav) */}
+      <div className="w-full space-y-6">
         {/* Hero Header */}
         <div ref={heroRef} className="glass-card glass-card--lg p-6 sm:p-8">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -235,9 +250,9 @@ export function MaterialList() {
                 </h1>
               </div>
               <p className="max-w-2xl text-xs text-white/80 sm:text-sm">
-                Canonical in-game inventory list of all {stats.total} materials
-                in our application, strictly ordered from #1 to #{stats.total}{" "}
-                according to Genshin Impact&apos;s inventory algorithm.
+                All {stats.total} materials in in-game inventory order: the
+                Character Development Items, then the Materials tab (local
+                specialties, cooking ingredients, fish, ores and wood).
               </p>
             </div>
 
@@ -294,11 +309,11 @@ export function MaterialList() {
                 options={[
                   {
                     value: "order-asc",
-                    label: `In-Game Order (#1 → #${stats.total})`,
+                    label: "In-Game Order",
                   },
                   {
                     value: "order-desc",
-                    label: `In-Game Order (#${stats.total} → #1)`,
+                    label: "In-Game Order (reversed)",
                   },
                   { value: "rarity-desc", label: "Rarity (5★ → 1★)" },
                   { value: "rarity-asc", label: "Rarity (1★ → 5★)" },
@@ -423,15 +438,20 @@ export function MaterialList() {
       {/* Material Detail Modal (mounted only while a material is selected) */}
       {selectedMaterial && (
         <MaterialModal
-          material={selectedMaterial}
+          material={
+            descriptions
+              ? { ...selectedMaterial, description: descriptions[selectedMaterial.id] ?? "" }
+              : selectedMaterial
+          }
+          descriptionPending={!descriptions}
           onClose={() => setSelectedMaterial(null)}
           onNavigateNext={handleNextModal}
           onNavigatePrev={handlePrevModal}
           hasNext={hasNextModal}
           hasPrev={hasPrevModal}
-          total={stats.total}
+          total={stats.developmentTotal}
         />
       )}
-    </div>
+    </>
   );
 }

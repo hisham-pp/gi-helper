@@ -13,7 +13,7 @@ import {
   Bookmark,
 } from "lucide-react";
 import { MaterialItem } from "@/lib/types";
-import { getRarityStyles, getMaterialCategoryLabel } from "@/lib/material-ui";
+import { bagOrder, getRarityStyles, getMaterialCategoryLabel } from "@/lib/material-ui";
 import { toast } from "sonner";
 import { usePauseBackground } from "@/lib/use-pause-background";
 import { useModalMotion } from "@/lib/use-modal-motion";
@@ -27,6 +27,8 @@ interface MaterialModalProps {
   hasPrev?: boolean;
   /** Number of materials in the dataset, shown as "#order / total". */
   total?: number;
+  /** The description is still loading (see useMaterialDescriptions). */
+  descriptionPending?: boolean;
 }
 
 /** Material details. MaterialList loads it on demand and mounts it only while a material is selected. */
@@ -38,6 +40,7 @@ export function MaterialModal({
   hasNext,
   hasPrev,
   total,
+  descriptionPending = false,
 }: MaterialModalProps) {
   const [copied, setCopied] = useState(false);
   const [imgError, setImgError] = useState(false);
@@ -96,8 +99,8 @@ export function MaterialModal({
           <div className="flex items-center gap-2">
             <span className="glass-chip gap-1 px-3 py-1 font-mono text-xs font-bold text-white">
               <span className="font-bold text-cyan-300">#</span>
-              {material.order}
-              {total !== undefined && (
+              {bagOrder(material).position}
+              {total !== undefined && bagOrder(material).tab !== "Materials" && (
                 <span className="ml-0.5 text-[10px] text-white/40">/ {total}</span>
               )}
             </span>
@@ -229,7 +232,7 @@ export function MaterialModal({
               ))
             ) : (
               <span className="italic text-white/40">
-                No description available.
+                {descriptionPending ? "Loading description…" : "No description available."}
               </span>
             )}
           </div>

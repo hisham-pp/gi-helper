@@ -11,6 +11,17 @@ export const ATLAS_IMAGE_URL = "/data/material-atlas.png";
 
 let pending: Promise<ReferenceBank> | null = null;
 
+/**
+ * An absolute URL on this site. In a worker a root-relative path resolves
+ * against the worker script's URL, which is a blob: URL under Turbopack
+ * (next dev --turbopack), so resolve against the page's origin instead.
+ */
+function siteUrl(path: string): string {
+  return typeof location !== "undefined" && location.origin && location.origin !== "null"
+    ? new URL(path, location.origin).href
+    : path;
+}
+
 const unavailable = (cause?: unknown) =>
   new MaterialDetectionError(
     "REFERENCES_UNAVAILABLE",
@@ -44,7 +55,7 @@ async function readPixels(blob: Blob) {
 async function load(): Promise<ReferenceBank> {
   let manifestJson: unknown;
   try {
-    const res = await fetch(ATLAS_MANIFEST_URL);
+    const res = await fetch(siteUrl(ATLAS_MANIFEST_URL));
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     manifestJson = await res.json();
   } catch (err) {
@@ -54,7 +65,7 @@ async function load(): Promise<ReferenceBank> {
   let pixels: ImageData;
   try {
     // The hash makes the (immutable) atlas cacheable across deployments.
-    const res = await fetch(`${ATLAS_IMAGE_URL}?v=${encodeURIComponent(manifest.hash)}`);
+    const res = await fetch(siteUrl(`${ATLAS_IMAGE_URL}?v=${encodeURIComponent(manifest.hash)}`));
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     pixels = await readPixels(await res.blob());
   } catch (err) {

@@ -19,6 +19,7 @@ const config = [
   {
     ignores: [
       ".next/**",
+      ".next-prod/**",
       "node_modules/**",
       "dist/**",
       "coverage/**",

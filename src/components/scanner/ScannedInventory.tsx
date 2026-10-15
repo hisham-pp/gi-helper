@@ -12,7 +12,8 @@ import { ShellLink } from "@/components/layout/ShellLink";
 import {
   ArrowUpDown,
   Backpack,
-  Download,
+  FileUp,
+  PackagePlus,
   Scan,
   Search,
   Star,
@@ -20,20 +21,19 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { ResultGrid } from "./ResultGrid";
-import { LazySendFeedbackModal, preloadSendFeedbackModal } from "@/components/feedback/lazy-modals";
 import { CategoryFilterPills } from "@/components/materials/CategoryFilterPills";
 import { PaginationBar } from "@/components/ui/PaginationBar";
 import { PillDropdown } from "@/components/ui/PillDropdown";
 import { ResetFiltersButton } from "@/components/ui/ResetFiltersButton";
 import { SearchField } from "@/components/ui/SearchField";
 import { useConfirm } from "@/components/ui/use-confirm";
-import { markFeedbackAsked, shouldAskForFeedback } from "@/lib/feedback/prompt";
-import { exportToGOODFormat } from "@/lib/good-format";
+import { nameFromKey } from "@/lib/good/catalog";
+import { useExtraMaterials } from "@/lib/good-inventory";
 import {
-  getAllMaterials,
   getMaterialCategoryId,
   MaterialCategory,
-} from "@/lib/materials";
+} from "@/lib/material-ui";
+import { useInventoryActions } from "@/components/inventory/InventoryShell";
 import { useScannerInventory } from "@/lib/scanner-inventory";
 import type { DetectedItem, MaterialItem } from "@/lib/types";
 import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion";
@@ -79,16 +79,20 @@ const orderOf = (e: InventoryEntry) =>
 const noopSubscribe = () => () => {};
 
 /**
- * The /inventory page: everything the scanners have added (the shared
- * localStorage store), with search, category/rarity filters, sorting and
- * pagination, quantity edits, Clear All and the GOOD export. The scanners
- * switch here once a scan's materials are added.
+ * The Materials tab of /inventory: everything the scanners have added (the
+ * shared localStorage store), with search, category/rarity filters, sorting
+ * and pagination, quantity edits and Clear All, plus the materials a GOOD
+ * import brought that we don't catalog. The scanners switch here once a
+ * scan's materials are added; the section's layout (InventoryShell) holds
+ * import and export. `catalog` (both catalogs, without descriptions) comes
+ * from the server page, so the materials data isn't in the page's JS.
  */
-export function ScannedInventory() {
+export function ScannedInventory({ catalog }: { catalog: MaterialItem[] }) {
+  const { openImport: onImport } = useInventoryActions();
   const [items, setItems] = useScannerInventory();
+  const [extraMaterials, setExtraMaterials] = useExtraMaterials();
+  const extraCount = Object.keys(extraMaterials).length;
   const { confirm, confirmModal } = useConfirm();
-  // Send feedback form, offered after an export
-  const [feedbackOpen, setFeedbackOpen] = useState(false);
   // False on the server and while hydrating, so a saved inventory doesn't flash the empty state first
   const hydrated = useSyncExternalStore(
     noopSubscribe,
@@ -112,8 +116,8 @@ export function ScannedInventory() {
   }, [search, selectedCategory, selectedRarity, sortBy, pageSize]);
 
   const materialsById = useMemo(
-    () => new Map(getAllMaterials().map((m) => [m.id, m])),
-    [],
+    () => new Map(catalog.map((m) => [m.id, m])),
+    [catalog],
   );
 
   const entries = useMemo<InventoryEntry[]>(
@@ -219,36 +223,17 @@ export function ScannedInventory() {
   // Stable callbacks keep the memoized ResultGrid from re-rendering on unrelated state
   const handleClear = useCallback(async () => {
     const confirmed = await confirm({
-      title: "Clear your inventory?",
-      message: "Every scanned material is removed from this browser. Export to GOOD first if you want to keep them.",
+      title: "Clear your materials?",
+      message: "Every material is removed from this browser. Export to GOOD first if you want to keep them.",
       confirmLabel: "Clear All",
       tone: "danger",
       icon: Trash2,
     });
     if (!confirmed) return;
     setItems([]);
-    toast.success("Items cleared");
-  }, [confirm, setItems]);
-
-  const handleExport = useCallback(() => {
-    if (items.length === 0) {
-      toast.error("No items to export");
-      return;
-    }
-    exportToGOODFormat(items);
-    if (!shouldAskForFeedback()) {
-      toast.success("Exported to GOOD format!");
-      return;
-    }
-    // Right after an export is a good moment to ask how the scan went
-    markFeedbackAsked();
-    preloadSendFeedbackModal();
-    toast.success("Exported to GOOD format!", {
-      description: "How did the scan go? A quick note helps make GI Helper better.",
-      action: { label: "Give feedback", onClick: () => setFeedbackOpen(true) },
-      duration: 12000,
-    });
-  }, [items]);
+    setExtraMaterials({});
+    toast.success("Materials cleared");
+  }, [confirm, setItems, setExtraMaterials]);
 
   const handleUpdateQuantity = useCallback(
     (itemId: string, quantity: number) =>
@@ -268,47 +253,33 @@ export function ScannedInventory() {
   const hasItems = hydrated && items.length > 0;
 
   return (
-    <div className="flex w-full flex-1 flex-col items-center justify-start px-4 pb-4 pt-2 sm:px-6 sm:pt-4 md:px-8 md:pb-8">
-      <div className="w-full max-w-7xl space-y-6">
-        {/* Hero Header */}
-        <div className="glass-card glass-card--lg p-6 sm:p-8">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <div className="space-y-1.5">
-              <div className="flex items-center gap-2">
-                <span className="glass-chip h-9 w-9 justify-center rounded-xl text-cyan-300">
-                  <Backpack className="h-5 w-5" />
+    <>
+        {hydrated && extraCount > 0 && (
+          <details className="glass-card glass-card--lg group p-5">
+            <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-xs text-white/80">
+              <span className="flex items-center gap-2">
+                <PackagePlus className="h-4 w-4 shrink-0 text-cyan-300" />
+                <span>
+                  <strong className="font-mono text-white">{extraCount}</strong> more{" "}
+                  {extraCount === 1 ? "material" : "materials"} from your GOOD import that our
+                  database doesn&apos;t list yet {extraCount === 1 ? "is" : "are"} kept and exported.
                 </span>
-                <h1 className="text-2xl font-extrabold tracking-tight text-white drop-shadow-md sm:text-3xl md:text-4xl">
-                  Scanned Inventory
-                </h1>
-              </div>
-              <p className="max-w-2xl text-xs text-white/80 sm:text-sm">
-                Everything your scans have added, saved in this browser. Fix any
-                quantities, then export to GOOD for your optimizer.
-              </p>
-            </div>
-
-            {hasItems && (
-              <div className="flex w-full flex-wrap items-center gap-3 sm:w-auto sm:justify-end">
-                <span className="glass-chip px-3.5 py-1.5 font-mono text-xs font-bold text-white">
-                  <span className="text-cyan-300">Items:</span> {items.length}
-                </span>
-                <button
-                  onClick={handleClear}
-                  className="glass-btn glass-btn--danger flex-1 justify-center px-4 py-2 text-sm sm:flex-none"
-                >
-                  <Trash2 className="h-4 w-4" /> Clear All
-                </button>
-                <button
-                  onClick={handleExport}
-                  className="glass-btn glass-btn--primary flex-1 justify-center px-5 py-2 text-sm sm:flex-none"
-                >
-                  <Download className="h-4 w-4" /> Export .GOOD
-                </button>
-              </div>
-            )}
-          </div>
-        </div>
+              </span>
+              <span className="shrink-0 text-white/50 group-open:hidden">Show</span>
+              <span className="hidden shrink-0 text-white/50 group-open:inline">Hide</span>
+            </summary>
+            <ul className="mt-4 grid grid-cols-1 gap-x-6 gap-y-1 text-[11px] text-white/75 sm:grid-cols-2 lg:grid-cols-4">
+              {Object.entries(extraMaterials)
+                .sort(([a], [b]) => a.localeCompare(b))
+                .map(([key, quantity]) => (
+                  <li key={key} className="flex justify-between gap-3">
+                    <span className="truncate">{nameFromKey(key)}</span>
+                    <span className="font-mono text-white">{quantity}</span>
+                  </li>
+                ))}
+            </ul>
+          </details>
+        )}
 
         {hasItems && (
           <>
@@ -390,13 +361,21 @@ export function ScannedInventory() {
                 <strong className="font-mono text-white">{stats.total}</strong>{" "}
                 materials
               </span>
-              {totalPages > 1 && (
-                <span className="text-white/60">
-                  Page{" "}
-                  <strong className="text-white">{validCurrentPage}</strong> of{" "}
-                  <strong className="text-white">{totalPages}</strong>
-                </span>
-              )}
+              <div className="flex flex-wrap items-center gap-3">
+                {totalPages > 1 && (
+                  <span className="text-white/60">
+                    Page{" "}
+                    <strong className="text-white">{validCurrentPage}</strong> of{" "}
+                    <strong className="text-white">{totalPages}</strong>
+                  </span>
+                )}
+                <button
+                  onClick={handleClear}
+                  className="glass-btn glass-btn--danger px-3 py-1.5 text-xs"
+                >
+                  <Trash2 className="h-3.5 w-3.5" /> Clear All
+                </button>
+              </div>
             </div>
 
             {totalItems > 0 ? (
@@ -445,26 +424,32 @@ export function ScannedInventory() {
               No scanned materials yet
             </h2>
             <p className="mt-1 max-w-md text-xs text-white/60">
-              Scan your inventory screenshots or a screen recording; the
-              materials you add show up here.
+              Scan your inventory screenshots or a screen recording, or import
+              a GOOD file; the materials you add show up here.
             </p>
-            <ShellLink
-              href="/"
-              className="glass-btn glass-btn--primary mt-5 px-5 py-2 text-xs"
-            >
-              <Scan className="h-4 w-4" /> Go to the scanner
-            </ShellLink>
+            <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
+              <ShellLink
+                href="/"
+                className="glass-btn glass-btn--primary px-5 py-2 text-xs"
+              >
+                <Scan className="h-4 w-4" /> Go to the scanner
+              </ShellLink>
+              <button onClick={onImport} className="glass-btn px-5 py-2 text-xs">
+                <FileUp className="h-4 w-4" /> Import .GOOD
+              </button>
+            </div>
+            {extraCount > 0 && (
+              <button
+                onClick={handleClear}
+                className="glass-btn glass-btn--danger mt-3 px-3 py-1.5 text-xs"
+              >
+                <Trash2 className="h-3.5 w-3.5" /> Clear imported materials
+              </button>
+            )}
           </div>
         )}
-      </div>
 
       {confirmModal}
-      {feedbackOpen && (
-        <LazySendFeedbackModal
-          onClose={() => setFeedbackOpen(false)}
-          onSent={() => setFeedbackOpen(false)}
-        />
-      )}
-    </div>
+    </>
   );
 }

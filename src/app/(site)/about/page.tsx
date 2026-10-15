@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { BrandIcon } from "@/components/layout/BrandIcon";
 import materials from "@/data/materials.json";
+import otherMaterials from "@/data/other-materials.json";
 import { pageMetadata } from "@/lib/seo";
 import { getLatestVersion } from "@/lib/versions";
 
@@ -40,7 +41,7 @@ const FEATURES: { icon: LucideIcon; title: string; text: string }[] = [
   {
     icon: PackageCheck,
     title: "Materials directory",
-    text: `Browse all ${materials.length} materials in in-game inventory order, with search and filters.`,
+    text: `Browse all ${materials.length + otherMaterials.length} materials in in-game inventory order, plus every character, weapon and artifact set, with search and filters.`,
   },
 ];
 

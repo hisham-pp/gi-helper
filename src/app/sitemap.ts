@@ -12,11 +12,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
-      url: `${SITE.url}/materials`,
+      url: `${SITE.url}/db/materials`,
       lastModified,
       changeFrequency: "monthly",
       priority: 0.8,
     },
+    ...["/db/characters", "/db/weapons", "/db/artifacts"].map((path) => ({
+      url: `${SITE.url}${path}`,
+      lastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
     {
       url: `${SITE.url}/feedback`,
       lastModified,
