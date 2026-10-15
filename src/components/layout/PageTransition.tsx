@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useLayoutEffect, useRef } from "react";
+import React, { createContext, useContext, useLayoutEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 
 /** Left-to-right order of the pages (top-bar links, then the footer's), for the slide direction. */
@@ -22,25 +22,42 @@ const PAGE_ORDER = [
 /** Page shown before the current one; survives remounts because it lives outside React. */
 let lastPathname: string | null = null;
 
+/** True inside another PageTransition (a section's own template, e.g. db/ or inventory/). */
+const NestedContext = createContext(false);
+
+/** First path segment: the (site) template stays mounted while it doesn't change. */
+function sectionOf(pathname: string): string {
+  return pathname.split("/")[1] ?? "";
+}
+
 /**
  * Wraps each page (mounted by app/(site)/template.tsx, which remounts on every
  * navigation) and plays the scanner tabs' squash-and-stretch on page switches,
  * nudged in the direction of travel. Skipped on the first load and under
- * reduced motion.
+ * reduced motion. A section's own template (db/, inventory/) nests a second
+ * one around just the page: switches inside the section animate only that,
+ * so the section's sub-nav stays put; entering the section animates it all.
  */
 export function PageTransition({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const nested = useContext(NestedContext);
   const ref = useRef<HTMLDivElement>(null);
-  // Read once per mount, so Strict Mode's effect re-run still sees the previous page
-  const fromRef = useRef<string | null | undefined>(undefined);
+  // Read once per page, so Strict Mode's effect re-run still sees the previous page
+  const fromRef = useRef<{ to: string; from: string | null } | null>(null);
 
   // Layout effect, so the first frame of the new page is already animating
   useLayoutEffect(() => {
-    if (fromRef.current === undefined) {
-      fromRef.current = lastPathname;
-      lastPathname = pathname;
+    if (fromRef.current?.to !== pathname) {
+      const previous = lastPathname;
+      // The nested one runs first (child effects before parent) and claims a
+      // switch inside its section by moving lastPathname on, so the outer one,
+      // which stays mounted then, sees no change and skips it.
+      const mine =
+        !nested || (previous !== null && sectionOf(previous) === sectionOf(pathname));
+      if (mine) lastPathname = pathname;
+      fromRef.current = { to: pathname, from: mine ? previous : null };
     }
-    const from = fromRef.current;
+    const { from } = fromRef.current;
     if (!from || from === pathname) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
@@ -64,7 +81,7 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
       { duration: 600, easing: "ease-out" },
     );
     return () => animation?.cancel();
-  }, [pathname]);
+  }, [pathname, nested]);
 
   return (
     // Squash around the middle of the screen, not the middle of a long page
@@ -73,7 +90,7 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
       className="flex w-full flex-1 flex-col"
       style={{ transformOrigin: "50% 40vh" }}
     >
-      {children}
+      <NestedContext.Provider value={true}>{children}</NestedContext.Provider>
     </div>
   );
 }
