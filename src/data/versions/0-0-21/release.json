@@ -1,0 +1,15 @@
+{
+  "title": "Steadier tabs",
+  "date": "2026-10-15",
+  "summary": "Switching between Database or Inventory pages no longer bounces the tabs, and the feedback form reacts when you pick what kind of message it is.",
+  "changes": [
+    {
+      "type": "fixed",
+      "text": "Switching between the Materials, Characters, Weapons and Artifacts pages of the Database or Inventory now animates only the page. The tabs above it stay still."
+    },
+    {
+      "type": "improved",
+      "text": "The Send feedback form gives a small bounce when you switch between Feedback, Bug, Idea and Other."
+    }
+  ]
+}

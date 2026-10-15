@@ -31,6 +31,7 @@ import {
 import { useModalMotion } from "@/lib/use-modal-motion";
 import { usePauseBackground } from "@/lib/use-pause-background";
 import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion";
+import { useWiggleOnChange } from "@/lib/use-wiggle-on-change";
 import { ANONYMOUS_NAME, FeedbackAvatar } from "./FeedbackCard";
 import { KIND_META } from "./feedback-kinds";
 
@@ -83,6 +84,8 @@ export function SendFeedbackModal({ onClose, onSent }: SendFeedbackModalProps) {
 
   usePauseBackground();
   const { dialogRef, backdropRef, close, closeThen } = useModalMotion(onClose);
+  // The whole dialog squashes when the kind changes (public/private note, placeholder)
+  useWiggleOnChange(dialogRef, kind, reducedMotion);
   const safeClose = useCallback(() => {
     if (!submitting) close();
   }, [close, submitting]);
