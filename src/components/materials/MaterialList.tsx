@@ -54,8 +54,8 @@ const SHOW_ALL = Number.MAX_SAFE_INTEGER;
 
 /**
  * The /db/materials page. `materials` comes from the server page without
- * descriptions (most of the catalogs' bytes); they load once the page is idle,
- * or right away for a search or the detail modal.
+ * descriptions (most of the catalogs' bytes); they load the first time a
+ * search or the detail modal needs them.
  */
 export function MaterialList({ materials }: { materials: MaterialItem[] }) {
   const reducedMotion = usePrefersReducedMotion();

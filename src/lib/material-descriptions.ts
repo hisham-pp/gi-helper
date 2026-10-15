@@ -29,32 +29,21 @@ export function loadMaterialDescriptions(): Promise<Descriptions> {
 }
 
 /**
- * The descriptions once loaded (null until then). Loads when `when` is true,
- * or anyway once the browser is idle, so search and the modal rarely wait.
+ * The descriptions once loaded (null until then). They load the first time
+ * `when` is true (a search, the detail modal), not before: most visits never
+ * need them, and they're most of the catalogs' bytes.
  */
-export function useMaterialDescriptions(when = false): Descriptions | null {
+export function useMaterialDescriptions(when: boolean): Descriptions | null {
   const [descriptions, setDescriptions] = useState<Descriptions | null>(cache);
 
   useEffect(() => {
-    if (descriptions) return;
+    if (descriptions || !when) return;
     let cancelled = false;
-    const load = () => {
-      loadMaterialDescriptions()
-        .then((data) => !cancelled && setDescriptions(data))
-        .catch(() => {});
-    };
-    if (when) {
-      load();
-      return () => {
-        cancelled = true;
-      };
-    }
-    const idle = "requestIdleCallback" in window;
-    const id = idle ? window.requestIdleCallback(load, { timeout: 4000 }) : window.setTimeout(load, 2000);
+    loadMaterialDescriptions()
+      .then((data) => !cancelled && setDescriptions(data))
+      .catch(() => {});
     return () => {
       cancelled = true;
-      if (idle) window.cancelIdleCallback(id);
-      else window.clearTimeout(id);
     };
   }, [when, descriptions]);
 
