@@ -9,7 +9,7 @@
     },
     {
       "type": "new",
-      "text": "The Inventory page has a tab for each part of your account: Materials, Characters, Weapons and Artifacts. Each has its own search and filters, and a link can open a tab directly."
+      "text": "The inventory has a page for each part of your account: Materials, Characters, Weapons and Artifacts (/inventory/weapons and so on), each with its own search and filters. The header and the links between them stay put while you switch."
     },
     {
       "type": "new",
@@ -25,7 +25,7 @@
     },
     {
       "type": "improved",
-      "text": "The top bar's Materials link is now Database, and the materials, characters, weapons and artifacts pages link to each other."
+      "text": "The game database lives under /db: Materials, Characters, Weapons and Artifacts, linked to each other and from the top bar's new Database link. Old /materials links still work."
     },
     {
       "type": "improved",
@@ -38,6 +38,10 @@
     {
       "type": "improved",
       "text": "Characters, weapons and sets released after our game data still import and export, shown by name without an icon."
+    },
+    {
+      "type": "improved",
+      "text": "The Materials and Inventory pages download about a third less: material descriptions now load only when you search or open a material, and each inventory page only loads what it shows."
     },
     {
       "type": "fixed",

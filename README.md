@@ -20,8 +20,8 @@ Next.js 15 (App Router), React 19, TypeScript and Tailwind CSS.
   endpoint, using your own API key. The key stays in your browser's localStorage
   and is only passed through the server for that request.
 - **Review, then inventory:** fix low-confidence cards in the review modal. Your
-  inventory lives on `/inventory` (in this browser), with tabs for materials,
-  characters, weapons and artifacts, search, filters and quantity edits.
+  inventory lives on `/inventory` (in this browser), with a page each for
+  materials, characters, weapons and artifacts, search, filters and quantity edits.
 - **GOOD import and export:** import a GOOD file from Genshin Optimizer,
   Inventory Kamera or similar tools, update your materials with a scan, and
   export everything as one GOOD file. Keys newer than our game data and GOOD 3
@@ -65,7 +65,7 @@ from the server: each visitor enters their own in Scanner Settings.
 
 | Command                                                 | Description                                                          |
 | :------------------------------------------------------ | :------------------------------------------------------------------- |
-| `pnpm dev`                                              | Development server at `localhost:3000`                               |
+| `pnpm dev`                                              | Development server at `localhost:3000` (Turbopack)                   |
 | `pnpm build` / `pnpm start`                             | Production build (type-checks) / serve it                            |
 | `pnpm lint`                                             | ESLint (Next.js core web vitals + TypeScript rules)                  |
 | `pnpm test`                                             | All unit tests (`node:test` via `tsx`), including the detector suites |

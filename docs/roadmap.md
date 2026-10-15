@@ -171,9 +171,13 @@ Do this once, before the scanners, so each new scanner only adds recognition.
 
 ## Done beside the plan
 
-- [x] **Database pages** (0.0.20): `/characters`, `/weapons` and `/artifacts`
-      beside `/materials`, behind one "Database" link in the top bar, marking what's
-      in the inventory.
+- [x] **Database pages** (0.0.20): `/db/materials`, `/db/characters`,
+      `/db/weapons` and `/db/artifacts`, behind one "Database" link in the top bar,
+      marking what's in the inventory.
+- [x] **Sub-pages and lighter pages** (0.0.20): the inventory's tabs became
+      `/inventory/*` pages; the materials catalogs reach the pages without their
+      descriptions (loaded on demand), about half the JS on Materials and Inventory;
+      `pnpm dev` runs on Turbopack.
 
 ## P3: Platform
 
