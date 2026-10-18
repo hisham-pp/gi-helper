@@ -14,8 +14,8 @@ import {
   type Character,
 } from "@/lib/characters";
 import { WEAPON_TYPE_NAMES, WEAPON_TYPES } from "@/lib/good/catalog";
-import { useOwnedCharacters } from "@/lib/good-inventory";
-import { getRarityStyles } from "@/lib/material-ui";
+import { useOwnedCharacters } from "@/lib/good/inventory";
+import { getRarityStyles } from "@/lib/materials/ui";
 import { ELEMENT_ACCENTS, ELEMENTS, ElementTag } from "./DatabaseNav";
 
 type SortOption = "name" | "rarity";

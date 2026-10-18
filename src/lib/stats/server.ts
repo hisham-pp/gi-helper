@@ -1,7 +1,7 @@
 import { revalidateTag, unstable_cache } from "next/cache";
-import { hashClient } from "./request-client";
-import { toScanStats, type RawScanStats, type ScannerKind, type ScanStats } from "./scan-stats";
-import { callRpc, rpcServerKey } from "./supabase-rpc";
+import { hashClient } from "@/lib/server/request-client";
+import { toScanStats, type RawScanStats, type ScannerKind, type ScanStats } from "./stats";
+import { callRpc, rpcServerKey } from "@/lib/server/supabase-rpc";
 
 /**
  * Server side of the home page's scan counter: `public.scan_stats` and

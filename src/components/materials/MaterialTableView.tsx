@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { MaterialItem } from "@/lib/types";
-import { bagOrder, getRarityStyles, getMaterialCategoryLabel } from "@/lib/material-ui";
+import { bagOrder, getRarityStyles, getMaterialCategoryLabel } from "@/lib/materials/ui";
 import { Copy, Check, Eye } from "lucide-react";
 import { toast } from "sonner";
 import { MaterialThumb } from "@/components/ui/MaterialThumb";

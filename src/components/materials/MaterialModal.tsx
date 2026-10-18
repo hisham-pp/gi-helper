@@ -13,10 +13,9 @@ import {
   Bookmark,
 } from "lucide-react";
 import { MaterialItem } from "@/lib/types";
-import { bagOrder, getRarityStyles, getMaterialCategoryLabel } from "@/lib/material-ui";
+import { bagOrder, getRarityStyles, getMaterialCategoryLabel } from "@/lib/materials/ui";
 import { toast } from "sonner";
-import { usePauseBackground } from "@/lib/use-pause-background";
-import { useModalMotion } from "@/lib/use-modal-motion";
+import { useModalMotion, usePauseBackground } from "@/lib/hooks";
 
 interface MaterialModalProps {
   material: MaterialItem;

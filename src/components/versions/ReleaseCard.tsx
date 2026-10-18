@@ -1,5 +1,5 @@
 import { Bug, Minus, Sparkles, TrendingUp, type LucideIcon } from "lucide-react";
-import { CHANGE_TYPES, type ChangeType, type VersionRelease } from "@/lib/release-notes";
+import { CHANGE_TYPES, type ChangeType, type VersionRelease } from "@/lib/versions/notes";
 
 /*
  * One release on /versions. Plain markup, so the server-rendered page and the

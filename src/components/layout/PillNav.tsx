@@ -5,7 +5,7 @@ import type { Route } from "next";
 import { ShellLink } from "@/components/layout/ShellLink";
 import { usePathname } from "next/navigation";
 import type { LucideIcon } from "lucide-react";
-import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion";
+import { usePrefersReducedMotion } from "@/lib/hooks";
 import { haptics } from "@/lib/haptics";
 
 export interface PillNavItem {

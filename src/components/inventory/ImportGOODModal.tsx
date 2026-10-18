@@ -4,9 +4,8 @@ import { createPortal } from "react-dom";
 import React, { useCallback, useEffect, useId, useRef, useState } from "react";
 import { FileJson, FileUp, TriangleAlert, X } from "lucide-react";
 import { parseGOOD, type ParsedGOOD } from "@/lib/good/document";
-import { applyGOODImport, type ImportSection, type ImportSummary } from "@/lib/good-import";
-import { useModalMotion } from "@/lib/use-modal-motion";
-import { usePauseBackground } from "@/lib/use-pause-background";
+import { applyGOODImport, type ImportSection, type ImportSummary } from "@/lib/good/import";
+import { useModalMotion, usePauseBackground } from "@/lib/hooks";
 
 /** Big enough for any real account (a few MB with 2,000 artifacts). */
 const MAX_FILE_BYTES = 20 * 1024 * 1024;

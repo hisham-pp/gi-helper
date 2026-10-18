@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { MATERIAL_CATEGORIES, MaterialCategory } from "@/lib/material-ui";
+import { MATERIAL_CATEGORIES, MaterialCategory } from "@/lib/materials/ui";
 import { PillTabs } from "@/components/ui/PillTabs";
 
 interface CategoryFilterPillsProps {

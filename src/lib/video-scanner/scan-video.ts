@@ -47,7 +47,7 @@ import {
   uniquePanels,
   type EquipmentKind,
   type EquipmentSighting,
-} from "../scan-equipment";
+} from "@/lib/scanner/equipment";
 import { encodePreview, validateVideoFile, VideoFrameSource, VideoScanError } from "./video";
 
 /** Upper bound on scanned frames, whatever the video does. */

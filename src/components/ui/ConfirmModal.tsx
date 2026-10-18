@@ -3,8 +3,7 @@
 import { createPortal } from "react-dom";
 import React, { useEffect, useId } from "react";
 import { CircleHelp, TriangleAlert, type LucideIcon } from "lucide-react";
-import { useModalMotion } from "@/lib/use-modal-motion";
-import { usePauseBackground } from "@/lib/use-pause-background";
+import { useModalMotion, usePauseBackground } from "@/lib/hooks";
 
 export interface ConfirmOptions {
   title: string;

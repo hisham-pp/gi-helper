@@ -2,8 +2,8 @@ import { revalidateTag, unstable_cache } from "next/cache";
 import { NextResponse } from "next/server";
 import pkg from "../../../package.json";
 import { getCharacter } from "@/lib/characters";
-import { hashClient } from "@/lib/request-client";
-import { callRpc, isSupabaseConfigured, RpcError, rpcServerKey } from "@/lib/supabase-rpc";
+import { hashClient } from "@/lib/server/request-client";
+import { callRpc, isSupabaseConfigured, RpcError, rpcServerKey } from "@/lib/server/supabase-rpc";
 import { censorProfanity } from "./profanity";
 import {
   feedbackErrorMessage,
@@ -304,7 +304,7 @@ export function parsePage(value: string | null): number {
 }
 
 /** Inbox changes must come from this site (the session cookie is SameSite=Lax on top). */
-export { isSameOrigin } from "@/lib/request-client";
+export { isSameOrigin } from "@/lib/server/request-client";
 
 export function sessionCookieOptions(expires: Date) {
   return {

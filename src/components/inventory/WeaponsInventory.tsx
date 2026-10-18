@@ -19,8 +19,8 @@ import {
   type WeaponInfo,
 } from "@/lib/good/catalog";
 import { formatLevel, type OwnedWeapon } from "@/lib/good/types";
-import { useOwnedWeapons } from "@/lib/good-inventory";
-import { getRarityStyles } from "@/lib/material-ui";
+import { useOwnedWeapons } from "@/lib/good/inventory";
+import { getRarityStyles } from "@/lib/materials/ui";
 import { EquippedBy, LockBadge, paginate, RarityStars, ResultsCounter, TabEmptyState, useHydrated } from "./shared";
 import { useInventoryActions } from "./InventoryShell";
 

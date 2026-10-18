@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Scanner } from "@/components/scanner/Scanner";
-import { SITE } from "@/lib/site";
-import { pageMetadata } from "@/lib/seo";
+import { pageMetadata, SITE } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
   title: `${SITE.title} | ${SITE.name}`,

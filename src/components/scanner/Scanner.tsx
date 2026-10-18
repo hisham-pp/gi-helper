@@ -24,7 +24,7 @@ const AiScannerView = dynamic(() => loadAiScanner().then((m) => m.AiScannerView)
   ssr: false,
   loading: PanelPlaceholder,
 });
-import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion";
+import { usePrefersReducedMotion } from "@/lib/hooks";
 
 const SCANNER_TABS: TabItem[] = [
   {

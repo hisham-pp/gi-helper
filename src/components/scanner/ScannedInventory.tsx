@@ -28,16 +28,15 @@ import { ResetFiltersButton } from "@/components/ui/ResetFiltersButton";
 import { SearchField } from "@/components/ui/SearchField";
 import { useConfirm } from "@/components/ui/use-confirm";
 import { nameFromKey } from "@/lib/good/catalog";
-import { useExtraMaterials } from "@/lib/good-inventory";
+import { useExtraMaterials } from "@/lib/good/inventory";
 import {
   getMaterialCategoryId,
   MaterialCategory,
-} from "@/lib/material-ui";
+} from "@/lib/materials/ui";
 import { useInventoryActions } from "@/components/inventory/InventoryShell";
-import { useScannerInventory } from "@/lib/scanner-inventory";
+import { useScannerInventory } from "@/lib/scanner/inventory";
 import type { DetectedItem, MaterialItem } from "@/lib/types";
-import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion";
-import { useWiggleOnChange } from "@/lib/use-wiggle-on-change";
+import { usePrefersReducedMotion, useWiggleOnChange } from "@/lib/hooks";
 
 type SortOption =
   | "order-asc"

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useLayoutEffect, useRef, useState } from "react";
-import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion";
+import { usePrefersReducedMotion } from "@/lib/hooks";
 import { haptics } from "@/lib/haptics";
 
 export interface PillTabOption<T extends string | number> {

@@ -25,8 +25,8 @@ import {
   type StatKey,
   MAIN_STATS_BY_SLOT,
 } from "@/lib/good/types";
-import { useOwnedArtifacts } from "@/lib/good-inventory";
-import { getRarityStyles } from "@/lib/material-ui";
+import { useOwnedArtifacts } from "@/lib/good/inventory";
+import { getRarityStyles } from "@/lib/materials/ui";
 import { EquippedBy, LockBadge, paginate, RarityStars, ResultsCounter, TabEmptyState, useHydrated } from "./shared";
 import { useInventoryActions } from "./InventoryShell";
 

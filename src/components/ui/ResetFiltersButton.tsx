@@ -2,7 +2,7 @@
 
 import React from "react";
 import { RotateCcw } from "lucide-react";
-import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion";
+import { usePrefersReducedMotion } from "@/lib/hooks";
 
 /**
  * Reset button entrance/exit: the width eases open (so the search box slides

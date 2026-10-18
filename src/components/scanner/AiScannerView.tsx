@@ -10,14 +10,14 @@ import {
   preloadScanReviewModal,
 } from "./lazy-modals";
 import { DetectedItem, ScannedReviewItem } from "@/lib/types";
-import { materialThumbUrl } from "@/lib/material-ui";
-import { recordScan } from "@/lib/scan-stats";
+import { materialThumbUrl } from "@/lib/materials/ui";
+import { recordScan } from "@/lib/stats";
 import {
   useScannerSettings,
   getActiveProviderConfig,
-} from "@/lib/scanner-settings";
+} from "@/lib/scanner/settings";
 import { getAiAdapter } from "@/lib/ai/adapters";
-import { setScannerInventory } from "@/lib/scanner-inventory";
+import { setScannerInventory } from "@/lib/scanner/inventory";
 import {
   Eye,
   Settings,

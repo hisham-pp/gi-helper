@@ -6,7 +6,7 @@ import {
   RELEASES_PER_PAGE,
   type ReleasePage,
   type VersionRelease,
-} from "@/lib/release-notes";
+} from "@/lib/versions/notes";
 import { ReleaseCard } from "./ReleaseCard";
 
 /** id of a release card, e.g. "v0-0-2" for /versions#v0-0-2. */

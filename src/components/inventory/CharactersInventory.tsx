@@ -11,8 +11,8 @@ import { useConfirm } from "@/components/ui/use-confirm";
 import { characterAvatarUrl } from "@/lib/characters";
 import { describeCharacter, type CharacterInfo } from "@/lib/good/catalog";
 import { formatLevel, type GoodCharacter } from "@/lib/good/types";
-import { useOwnedCharacters } from "@/lib/good-inventory";
-import { getRarityStyles } from "@/lib/material-ui";
+import { useOwnedCharacters } from "@/lib/good/inventory";
+import { getRarityStyles } from "@/lib/materials/ui";
 import { RarityStars, ResultsCounter, TabEmptyState, useHydrated } from "./shared";
 import { useInventoryActions } from "./InventoryShell";
 

@@ -3,7 +3,7 @@
 import { characterAvatarUrl, getCharacter } from "@/lib/characters";
 import { artifactIconUrl, getArtifactSetById, getWeaponById, weaponIconUrl } from "@/lib/good/catalog";
 import { SLOT_NAMES, type GoodCharacter, type OwnedArtifact, type OwnedWeapon } from "@/lib/good/types";
-import { newEntryId, setOwnedArtifacts, setOwnedCharacters, setOwnedWeapons } from "@/lib/good-inventory";
+import { newEntryId, setOwnedArtifacts, setOwnedCharacters, setOwnedWeapons } from "@/lib/good/inventory";
 import type { ArtifactPanelReading } from "@/lib/artifact-panel/read";
 import type { ArtifactPanelScan } from "@/lib/artifact-panel/types";
 import {
@@ -16,7 +16,7 @@ import {
   toGoodWeapon,
   type EquipmentKind,
   type EquipmentSighting,
-} from "@/lib/scan-equipment";
+} from "@/lib/scanner/equipment";
 import type { EquipmentReviewItem } from "@/lib/types";
 
 /**

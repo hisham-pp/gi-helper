@@ -13,9 +13,9 @@
  * stitching, so it travels with that card. Then each card becomes a GOOD
  * entry.
  */
-import type { ArtifactPanelReading } from "./artifact-panel/read";
-import type { SlotHighlight } from "./artifact-panel/engine/selection";
-import { getArtifactSetById, type ArtifactSetInfo, type WeaponInfo } from "./good/catalog";
+import type { ArtifactPanelReading } from "@/lib/artifact-panel/read";
+import type { SlotHighlight } from "@/lib/artifact-panel/engine/selection";
+import { getArtifactSetById, type ArtifactSetInfo, type WeaponInfo } from "@/lib/good/catalog";
 import {
   ASCENSION_MAX_LEVEL,
   SLOT_NAMES,
@@ -24,9 +24,9 @@ import {
   type GoodSubstat,
   type GoodWeapon,
   type SlotKey,
-} from "./good/types";
-import type { PixelRect } from "./grid-detector/types";
-import type { CardRecognition, CardRecognitionStatus, MaterialCandidate, Rarity } from "./material-detector/types";
+} from "@/lib/good/types";
+import type { PixelRect } from "@/lib/grid-detector/types";
+import type { CardRecognition, CardRecognitionStatus, MaterialCandidate, Rarity } from "@/lib/material-detector/types";
 
 export type EquipmentKind = "weapon" | "artifact" | "character";
 

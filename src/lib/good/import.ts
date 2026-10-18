@@ -1,16 +1,16 @@
 "use client";
 
-import type { ParsedGOOD } from "./good/document";
-import { splitGOODMaterials } from "./good/materials";
+import type { ParsedGOOD } from "./document";
+import { splitGOODMaterials } from "./materials";
 import {
   newEntryId,
   setExtraMaterials,
   setOwnedArtifacts,
   setOwnedCharacters,
   setOwnedWeapons,
-} from "./good-inventory";
-import { setScannerInventory } from "./scanner-inventory";
-import type { DetectedItem } from "./types";
+} from "./inventory";
+import { setScannerInventory } from "@/lib/scanner/inventory";
+import type { DetectedItem } from "@/lib/types";
 
 export type ImportSection = "characters" | "weapons" | "artifacts" | "materials";
 

@@ -1,4 +1,4 @@
-import type { MaterialItem } from "./types";
+import type { MaterialItem } from "@/lib/types";
 
 /**
  * Material categories, labels, icon URLs and rarity styles. No catalog data

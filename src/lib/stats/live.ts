@@ -7,7 +7,7 @@ import {
   type RawScanStats,
   type ScanStats,
   type ScanStatsLive,
-} from "./scan-stats";
+} from "./stats";
 
 /**
  * Live scan totals over Supabase Realtime (a WebSocket): the database

@@ -8,9 +8,9 @@ import {
   type ScanStats,
   type ScanStatsLive,
   type ScanStatsResponse,
-} from "@/lib/scan-stats";
-import { subscribeToScanStats } from "@/lib/scan-stats-live";
-import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion";
+} from "@/lib/stats";
+import { subscribeToScanStats } from "@/lib/stats/live";
+import { usePrefersReducedMotion } from "@/lib/hooks";
 
 const NUMBER = new Intl.NumberFormat("en-US");
 

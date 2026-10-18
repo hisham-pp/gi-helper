@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import { Trash2 } from "lucide-react";
 import { DetectedItem } from "@/lib/types";
-import { getRarityStyles } from "@/lib/material-ui";
+import { getRarityStyles } from "@/lib/materials/ui";
 import { MaterialThumb } from "@/components/ui/MaterialThumb";
 
 interface ResultGridProps {

@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { SITE } from "@/lib/site";
+import { SITE } from "@/lib/seo";
 
 /**
  * Web app manifest (served at /manifest.webmanifest and linked automatically).
