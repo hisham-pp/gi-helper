@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef } from "react";
 import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion";
+import { haptics } from "@/lib/haptics";
 
 export interface GlassSegmentOption<T extends string = string> {
   value: T;
@@ -63,6 +64,9 @@ export function GlassSegmentedControl<T extends string = string>({
   }, [activeIndex, reducedMotion]);
 
   const select = (index: number) => {
+    if (index !== activeIndex) {
+      haptics.selection();
+    }
     onChange(options[index].value);
     buttonRefs.current[index]?.focus();
   };

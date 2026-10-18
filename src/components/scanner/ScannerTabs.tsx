@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef } from "react";
 import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion";
+import { haptics } from "@/lib/haptics";
 
 export interface TabItem {
   id: string;
@@ -71,6 +72,9 @@ export function ScannerTabs({
       return;
     }
 
+    if (nextIndex !== index) {
+      haptics.selection();
+    }
     onTabChange(nextIndex);
     tabButtonRefs.current[nextIndex]?.focus();
   };
@@ -111,9 +115,14 @@ export function ScannerTabs({
               aria-controls={tab.panelId}
               tabIndex={isActive ? 0 : -1}
               data-index={index}
-              onClick={() => onTabChange(index)}
+              onClick={() => {
+                if (index !== activeIndex) {
+                  haptics.selection();
+                }
+                onTabChange(index);
+              }}
               onKeyDown={(e) => handleKeyDown(e, index)}
-              className={`relative z-10 flex flex-1 min-w-0 items-center justify-center gap-1.5 rounded-full py-2.5 px-2 text-[13px] font-semibold sm:gap-2 sm:px-5 sm:text-sm transition-all duration-200 select-none focus-visible:outline-2 focus-visible:outline-cyan-400 focus-visible:outline-offset-2 ${
+              className={`relative z-10 flex min-w-0 flex-1 select-none items-center justify-center gap-1.5 rounded-full px-2 py-2.5 text-[13px] font-semibold transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-400 sm:gap-2 sm:px-5 sm:text-sm ${
                 isActive
                   ? "text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]"
                   : "text-white/55 hover:text-white/85"
@@ -130,7 +139,9 @@ export function ScannerTabs({
                   {tab.icon}
                 </span>
               )}
-              <span className="whitespace-nowrap tracking-wide">{tab.label}</span>
+              <span className="whitespace-nowrap tracking-wide">
+                {tab.label}
+              </span>
             </button>
           );
         })}

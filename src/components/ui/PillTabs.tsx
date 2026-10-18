@@ -2,6 +2,7 @@
 
 import React, { useLayoutEffect, useRef, useState } from "react";
 import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion";
+import { haptics } from "@/lib/haptics";
 
 export interface PillTabOption<T extends string | number> {
   value: T;
@@ -39,7 +40,9 @@ export function PillTabs<T extends string | number>({
 }: PillTabsProps<T>) {
   const trackRef = useRef<HTMLDivElement>(null);
   const thumbRef = useRef<HTMLDivElement>(null);
-  const [thumb, setThumb] = useState<{ left: number; width: number } | null>(null);
+  const [thumb, setThumb] = useState<{ left: number; width: number } | null>(
+    null,
+  );
   const reducedMotion = usePrefersReducedMotion();
   const activeIndex = options.findIndex((o) => o.value === value);
   const accent = options[activeIndex]?.accent ?? DEFAULT_ACCENT;
@@ -50,8 +53,11 @@ export function PillTabs<T extends string | number>({
     const track = trackRef.current;
     if (!track) return;
     const measure = () => {
-      const button = track.querySelectorAll<HTMLElement>("[data-tab]")[activeIndex];
-      setThumb(button ? { left: button.offsetLeft, width: button.offsetWidth } : null);
+      const button =
+        track.querySelectorAll<HTMLElement>("[data-tab]")[activeIndex];
+      setThumb(
+        button ? { left: button.offsetLeft, width: button.offsetWidth } : null,
+      );
     };
     measure();
     const observer = new ResizeObserver(measure);
@@ -107,7 +113,12 @@ export function PillTabs<T extends string | number>({
             key={option.value}
             type="button"
             data-tab
-            onClick={() => onChange(option.value)}
+            onClick={() => {
+              if (option.value !== value) {
+                haptics.selection();
+              }
+              onChange(option.value);
+            }}
             aria-pressed={isActive}
             title={option.title}
             className={`relative z-10 flex shrink-0 select-none items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-400 ${
@@ -117,7 +128,9 @@ export function PillTabs<T extends string | number>({
             <span className="whitespace-nowrap">{option.label}</span>
             <span
               className={`rounded-full px-1.5 text-[10px] transition-colors ${
-                isActive ? "bg-white/20 text-white" : "bg-white/10 text-white/60"
+                isActive
+                  ? "bg-white/20 text-white"
+                  : "bg-white/10 text-white/60"
               }`}
             >
               {option.count}
