@@ -345,8 +345,9 @@ export function ScanReviewModal({
               <div className="space-y-3">
                 {view === "artifact" && viewEquip.some((e) => e.mainStatKey === "") && (
                   <p className="glass-chip w-full justify-center bg-amber-400/10 px-3 py-1.5 text-center text-[11px] text-amber-100">
-                    The bag only shows the main stat of flowers and plumes. Pick it for the others, or leave it for
-                    later: substats aren&apos;t read yet.
+                    The bag only shows the main stat of flowers and plumes; the rest comes from the detail panel of
+                    the selected artifact. Pick it here, or record yourself tapping through your artifacts to read
+                    every panel.
                   </p>
                 )}
                 {viewEquip.map((e) => (

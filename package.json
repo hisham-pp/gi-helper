@@ -22,6 +22,8 @@
     "eval:card-scanner": "tsx scripts/evaluate-card-scanner.ts",
     "fetch:online-samples": "tsx scripts/fetch-online-samples.ts",
     "build:atlases": "tsx scripts/build-atlases.ts",
+    "build:artifact-stats": "tsx scripts/build-artifact-stats.ts",
+    "build:panel-names": "tsx scripts/build-panel-names.ts",
     "build:digit-templates": "tsx scripts/build-digit-templates.ts",
     "build:material-thumbs": "tsx scripts/build-material-thumbs.ts",
     "build:brand-icons": "tsx scripts/build-brand-icons.ts",
@@ -29,8 +31,9 @@
     "scrape:weapons": "tsx scripts/scrape-weapons.ts",
     "scrape:artifacts": "tsx scripts/scrape-artifacts.ts",
     "scrape:other-materials": "tsx scripts/scrape-other-materials.ts",
-    "sync-data": "tsx scripts/scrape-materials.ts && tsx scripts/update-families.ts && tsx scripts/build-material-thumbs.ts && tsx scripts/scrape-characters.ts && tsx scripts/scrape-weapons.ts && tsx scripts/scrape-artifacts.ts && tsx scripts/scrape-other-materials.ts && tsx scripts/build-atlases.ts",
-    "feedback:admin": "tsx scripts/feedback-admin.ts"
+    "sync-data": "tsx scripts/scrape-materials.ts && tsx scripts/update-families.ts && tsx scripts/build-material-thumbs.ts && tsx scripts/scrape-characters.ts && tsx scripts/scrape-weapons.ts && tsx scripts/scrape-artifacts.ts && tsx scripts/build-panel-names.ts && tsx scripts/scrape-other-materials.ts && tsx scripts/build-atlases.ts",
+    "feedback:admin": "tsx scripts/feedback-admin.ts",
+    "postinstall": "node scripts/copy-ocr-assets.mjs"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
@@ -41,6 +44,8 @@
   },
   "dependencies": {
     "@supabase/realtime-js": "^2.117.3",
+    "@tesseract.js-data/chi_sim": "1.0.0",
+    "@tesseract.js-data/eng": "1.0.0",
     "@vercel/analytics": "^2.0.1",
     "bad-words": "^4.1.5",
     "clsx": "^2.1.1",
@@ -54,6 +59,7 @@
     "react-select": "^5.10.2",
     "remark-gfm": "^4.0.1",
     "sonner": "^2.0.8",
+    "tesseract.js": "7.0.0",
     "zod": "^3.25.76"
   },
   "devDependencies": {

@@ -72,9 +72,10 @@ const nextConfig: NextConfig = {
         headers: [{ key: "Cache-Control", value: "public, max-age=3600, stale-while-revalidate=86400" }],
       },
       {
-        // Icons, avatars, background and samples keep their names when rebuilt:
-        // a week, then refreshed in the background
-        source: "/:dir(images|samples)/:path*",
+        // Icons, avatars, background, samples and the OCR engine (artifact
+        // panels) keep their names when rebuilt: a week, then refreshed in the
+        // background
+        source: "/:dir(images|samples|ocr)/:path*",
         headers: [
           { key: "Cache-Control", value: "public, max-age=604800, stale-while-revalidate=2592000" },
         ],

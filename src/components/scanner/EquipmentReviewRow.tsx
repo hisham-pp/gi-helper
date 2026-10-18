@@ -3,12 +3,14 @@
 import React, { memo } from "react";
 import { AlertTriangle, ArrowRight, Lock, LockOpen, Pencil, Trash2 } from "lucide-react";
 import { GameIcon } from "@/components/ui/GameIcon";
+import { mainStatValue } from "@/lib/artifact-panel/engine/stats";
 import { characterAvatarUrl } from "@/lib/characters";
-import { artifactIconUrl, weaponIconUrl } from "@/lib/good/catalog";
-import { MAIN_STATS_BY_SLOT, STAT_NAMES, type SlotKey } from "@/lib/good/types";
+import { artifactIconUrl, describeCharacter, weaponIconUrl } from "@/lib/good/catalog";
+import { isPercentStat, MAIN_STATS_BY_SLOT, STAT_NAMES, type SlotKey, type StatKey } from "@/lib/good/types";
 import { getRarityStyles } from "@/lib/material-ui";
 import { splitArtifactItem } from "@/lib/scan-equipment";
 import type { EquipmentReviewItem, ReviewCandidate } from "@/lib/types";
+import { ArtifactStatsEditor } from "./ArtifactStatsEditor";
 import { artifactPieceDetail, isTraveler, TRAVELER_ELEMENTS } from "./equipment-review";
 
 interface EquipmentReviewRowProps {
@@ -41,6 +43,8 @@ export const EquipmentReviewRow = memo(function EquipmentReviewRow({
   // Alternatives the scanner gave no chance (0%) are noise next to a clear match
   const suggestions = item.candidates?.filter((c) => c.id !== item.item && c.confidence > 0).slice(0, 3) ?? [];
   const mainStats = slot ? MAIN_STATS_BY_SLOT[slot] : [];
+  // GOOD keeps only the key: the value follows from rarity and level.
+  const mainValue = slot && item.mainStatKey && item.rarity ? mainStatValue(item.rarity, item.mainStatKey, item.level) : null;
 
   return (
     <div
@@ -94,6 +98,7 @@ export const EquipmentReviewRow = memo(function EquipmentReviewRow({
             <span className="block text-[11px] text-white/55">
               {item.rarity ? <span className={`font-bold ${styles.starColor}`}>{item.rarity}★</span> : null}
               {item.kind === "artifact" && item.item ? ` · ${artifactPieceDetail(item.item)}` : ""}
+              {item.location ? ` · on ${describeCharacter(item.location).name}` : ""}
             </span>
           </div>
         </div>
@@ -112,6 +117,16 @@ export const EquipmentReviewRow = memo(function EquipmentReviewRow({
               </button>
             ))}
           </div>
+        )}
+        {item.kind === "artifact" && item.item && (
+          <ArtifactStatsEditor
+            substats={item.substats ?? []}
+            unactivated={item.unactivatedSubstats}
+            mainStatKey={item.mainStatKey}
+            rarity={item.rarity}
+            level={item.level}
+            onChange={(substats) => onChange(item.id, { substats })}
+          />
         )}
       </div>
 
@@ -160,6 +175,12 @@ export const EquipmentReviewRow = memo(function EquipmentReviewRow({
             ))}
           </select>
         )}
+        {mainStats.length === 1 && item.mainStatKey && (
+          <span className="glass-well rounded-full px-3 py-1.5 text-[11px] font-bold text-white">
+            {STAT_NAMES[item.mainStatKey as StatKey]}
+            {mainValue !== null ? ` ${mainValue.toLocaleString("en-US")}` : ""}
+          </span>
+        )}
         {mainStats.length > 1 && (
           <select
             value={item.mainStatKey}
@@ -173,6 +194,9 @@ export const EquipmentReviewRow = memo(function EquipmentReviewRow({
             {mainStats.map((k) => (
               <option key={k} value={k} className="bg-slate-900">
                 {STAT_NAMES[k]}
+                {item.rarity && mainStatValue(item.rarity, k, item.level) !== null
+                  ? ` ${mainStatValue(item.rarity, k, item.level)}${isPercentStat(k) ? "%" : ""}`
+                  : ""}
               </option>
             ))}
           </select>

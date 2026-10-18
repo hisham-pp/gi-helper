@@ -2,6 +2,7 @@
 // Material recognition result types (all coordinates are ORIGINAL-image pixels)
 // ---------------------------------------------------------------------------
 import type { DetectionSettings, GridDetectionResult, PixelRect } from "../grid-detector/types";
+import type { ArtifactPanelScan } from "../artifact-panel/types";
 
 export type Rarity = 1 | 2 | 3 | 4 | 5;
 
@@ -201,9 +202,16 @@ export interface RecognitionSettings {
 export interface ScanResult {
   detection: GridDetectionResult;
   recognition: MaterialRecognitionResult;
+  /**
+   * The artifact detail panel beside the grid (or filling the screen), ready
+   * to be read by src/lib/artifact-panel; null when there is none.
+   */
+  panel?: ArtifactPanelScan | null;
 }
 
 export interface ScanSettings {
   grid: Partial<DetectionSettings>;
   recognition: Partial<RecognitionSettings>;
+  /** Look for an artifact detail panel (default true). */
+  panel?: boolean;
 }
