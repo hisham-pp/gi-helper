@@ -22,3 +22,6 @@ next-env.d.ts
 
 # Screenshots by other players (pnpm fetch:online-samples); see tests/online-samples/manifest.json
 tests/online-samples/files/
+
+# OCR engine for artifact panels, copied from node_modules on install (scripts/copy-ocr-assets.mjs)
+public/ocr/

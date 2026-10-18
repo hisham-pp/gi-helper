@@ -53,6 +53,7 @@ async function main() {
 
   for (const s of truth.samples) {
     if (filter && !s.file.includes(filter)) continue;
+    if (!s.cards) continue;
     const file = path.join(DIR, "files", s.file);
     if (!fs.existsSync(file)) {
       console.warn(`missing ${s.file}: run pnpm fetch:online-samples`);

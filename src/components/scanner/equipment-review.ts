@@ -4,8 +4,12 @@ import { characterAvatarUrl, getCharacter } from "@/lib/characters";
 import { artifactIconUrl, getArtifactSetById, getWeaponById, weaponIconUrl } from "@/lib/good/catalog";
 import { SLOT_NAMES, type GoodCharacter, type OwnedArtifact, type OwnedWeapon } from "@/lib/good/types";
 import { newEntryId, setOwnedArtifacts, setOwnedCharacters, setOwnedWeapons } from "@/lib/good-inventory";
+import type { ArtifactPanelReading } from "@/lib/artifact-panel/read";
+import type { ArtifactPanelScan } from "@/lib/artifact-panel/types";
 import {
+  attachPanel,
   fixedMainStat,
+  panelArtBox,
   splitArtifactItem,
   toGoodArtifact,
   toGoodCharacter,
@@ -17,9 +21,25 @@ import type { EquipmentReviewItem } from "@/lib/types";
 
 /**
  * Between the scanners and the inventory for weapons, artifacts and
- * characters: review rows from stitched cards, and saving what the review
- * confirms.
+ * characters: review rows from stitched cards (with what an artifact's
+ * detail panel adds), and saving what the review confirms.
  */
+
+/**
+ * Reads the artifact detail panel a scan found (the OCR is downloaded on
+ * first use) and attaches it to the card it describes among that frame's
+ * artifact rows. `standalone` is an artifact seen only in its panel.
+ */
+export async function readAndAttachPanel(
+  panel: ArtifactPanelScan,
+  rows: EquipmentSighting[][],
+  source: number,
+  read?: (scan: ArtifactPanelScan) => Promise<ArtifactPanelReading | null>,
+): Promise<{ rows: EquipmentSighting[][]; standalone: EquipmentSighting | null; reading: ArtifactPanelReading | null }> {
+  const reading = await (read ?? (async (scan) => (await import("@/lib/artifact-panel/browser")).readPanel(scan)))(panel);
+  if (!reading) return { rows, standalone: null, reading: null };
+  return { ...attachPanel(rows, reading, panel.highlights, source, panelArtBox(panel.bounds)), reading };
+}
 
 /** The Traveler's elements, as in GOOD keys ("TravelerAnemo"). */
 export const TRAVELER_ELEMENTS = ["Anemo", "Geo", "Electro", "Dendro", "Hydro", "Pyro", "Cryo"] as const;
@@ -67,6 +87,8 @@ export function artifactPieceDetail(item: string): string {
 
 function reviewReason(s: EquipmentSighting): string | undefined {
   if (!s.item) return "Not identified";
+  // What the detail panel couldn't read or check comes first: it's the part a glance at the card can't fix.
+  if (s.panel?.issues.length) return s.panel.issues.length > 1 ? `${s.panel.issues[0]} (+${s.panel.issues.length - 1})` : s.panel.issues[0];
   if (s.status !== "matched") return "Low confidence";
   if (s.level === null) return "Level unreadable";
   return undefined;
@@ -85,6 +107,7 @@ export function equipmentReviewItem(
   travelerElement = "Anemo",
 ): EquipmentReviewItem {
   const fixed = s.kind === "artifact" && s.item ? fixedMainStat(splitArtifactItem(s.item).slot) : null;
+  const panel = s.kind === "artifact" ? s.panel : undefined;
   return {
     id,
     kind: s.kind,
@@ -95,7 +118,16 @@ export function equipmentReviewItem(
     level: s.level ?? (s.kind === "weapon" ? 1 : 0),
     refinement: s.refinement ?? 1,
     locked: s.locked,
-    mainStatKey: fixed ?? "",
+    mainStatKey: fixed ?? panel?.mainStatKey ?? "",
+    ...(panel
+      ? {
+          fromPanel: true,
+          ...(panel.mainStatValue !== null ? { mainStatValue: panel.mainStatValue } : {}),
+          substats: panel.substats.map((x) => ({ ...x })),
+          unactivatedSubstats: panel.unactivatedSubstats.map((x) => ({ ...x })),
+          location: panel.location,
+        }
+      : {}),
     ...(s.kind === "character" && isTraveler(s.item) ? { element: travelerElement } : {}),
     imageSnippet,
     sourceImageName,
@@ -117,8 +149,9 @@ export interface EquipmentConfirm {
 
 /**
  * Saves confirmed weapons, artifacts and characters to the inventory. Rows
- * still unidentified are skipped. Who holds an item isn't read, so
- * `location` is empty; artifacts carry no substats yet. Characters are
+ * still unidentified are skipped. Artifacts whose detail panel was read
+ * carry its substats and who wears them; otherwise (and for weapons)
+ * `location` is empty and there are no substats. Characters are
  * merged by key (see toGoodCharacter); weapons and artifacts replace or add
  * to what's stored, per `replace`.
  */
@@ -155,7 +188,8 @@ export function saveScannedEquipment({ items, replace }: EquipmentConfirm) {
         continue;
       }
       const piece = { rarity: it.rarity ?? null, level: it.level, locked: it.locked };
-      artifacts.push({ ...toGoodArtifact(piece, set, slot, it.mainStatKey || null), id: newEntryId("a") });
+      const details = { substats: it.substats, unactivatedSubstats: it.unactivatedSubstats, location: it.location };
+      artifacts.push({ ...toGoodArtifact(piece, set, slot, it.mainStatKey || null, details), id: newEntryId("a") });
     }
   }
   if (items.some((i) => i.kind === "weapon")) {

@@ -5,6 +5,7 @@
  * main-thread fallback so both report the same timings and the same
  * client-safe errors.
  */
+import { capturePanelScan } from "../artifact-panel/engine/scan";
 import { decodeImage, rasterizeForDetection } from "../grid-detector/browser";
 import { detectInventoryGrids } from "../grid-detector/engine/detect";
 import { resolveDetectionSettings } from "../grid-detector/settings";
@@ -134,7 +135,11 @@ async function scanDecoded(
     settings.recognition,
     onProgress,
   );
-  return { detection, recognition };
+  const panel =
+    settings.panel === false
+      ? null
+      : capturePanelScan(full.image, bitmap.width / full.image.width, detection.grids, recognition.grids);
+  return { detection, recognition, panel };
 }
 
 /** Recognition only, for grids that were already detected (and possibly edited). */

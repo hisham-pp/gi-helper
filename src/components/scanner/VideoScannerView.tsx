@@ -275,6 +275,8 @@ export function VideoScannerView({ id = "video-panel", ariaLabelledBy = "video-t
         const weapons = equipment.filter((e) => e.kind === "weapon").length;
         const artifacts = equipment.filter((e) => e.kind === "artifact").length;
         const characters = equipment.filter((e) => e.kind === "character").length;
+        /** Artifacts whose detail panel was read: main stat and substats included. */
+        const withStats = equipment.filter((e) => e.fromPanel).length;
         const flagged = review.filter((r) => r.reviewReason).length + equipment.filter((e) => e.reviewReason).length;
         setSummary({
           duration: result.duration,
@@ -307,7 +309,7 @@ export function VideoScannerView({ id = "video-panel", ariaLabelledBy = "video-t
           const parts = [
             review.length > 0 && `${review.length} material${review.length > 1 ? "s" : ""}`,
             weapons > 0 && `${weapons} weapon${weapons > 1 ? "s" : ""}`,
-            artifacts > 0 && `${artifacts} artifact${artifacts > 1 ? "s" : ""}`,
+            artifacts > 0 && `${artifacts} artifact${artifacts > 1 ? "s" : ""}${withStats ? ` (${withStats} with stats)` : ""}`,
             characters > 0 && `${characters} character${characters > 1 ? "s" : ""}`,
           ].filter(Boolean);
           toast.success(

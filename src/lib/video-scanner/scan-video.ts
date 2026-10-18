@@ -13,7 +13,16 @@
  *      Weapons and artifacts repeat, so their rows are stitched in time
  *      order instead (lib/scan-equipment.ts), and the frames that gave the
  *      final readings are decoded once more to crop those cards.
+ *
+ * A frame that shows an artifact's detail panel (tapping through artifacts)
+ * has it read too (lib/artifact-panel): the reading is attached to the card
+ * it describes before stitching. A panel that looks like one already read
+ * isn't read again, so a recording that dwells on an artifact costs one
+ * read, and an artifact seen only in its panel is kept once.
  */
+import type { ArtifactPanelReading } from "../artifact-panel/read";
+import type { ArtifactPanelScan } from "../artifact-panel/types";
+import { signatureDifference } from "../artifact-panel/engine/capture";
 import { cropToBlob } from "../grid-detector/browser";
 import type { DetectedGrid, PixelRect } from "../grid-detector/types";
 import type { MaterialScanClient } from "../material-detector/client";
@@ -31,8 +40,11 @@ import { SightingMerger, sightingKey, type MergedMaterial } from "./merge";
 import {
   EQUIPMENT_KINDS,
   EquipmentStitcher,
+  attachPanel,
   equipmentRows,
+  panelArtBox,
   uniqueByItem,
+  uniquePanels,
   type EquipmentKind,
   type EquipmentSighting,
 } from "../scan-equipment";
@@ -75,6 +87,11 @@ export interface VideoScanOptions {
   onOpen?: (info: { duration: number; width: number; height: number }) => void;
   keyframes?: Partial<KeyframeOptions>;
   settings?: Partial<ScanSettings>;
+  /**
+   * Reads an artifact detail panel (default: the browser OCR of
+   * lib/artifact-panel/browser.ts, loaded the first time a frame shows one).
+   */
+  readPanel?: (scan: ArtifactPanelScan) => Promise<ArtifactPanelReading | null>;
 }
 
 export interface VideoMaterial extends MergedMaterial {
@@ -102,6 +119,8 @@ export interface VideoScanResult {
   cardsRead: number;
   /** Card readings that matched nothing in the catalog. */
   unknownCards: number;
+  /** Artifact detail panels read (identical panels in several frames count once). */
+  panelsRead: number;
   materials: VideoMaterial[];
   /** Weapons, artifacts and characters, in list order. */
   equipment: VideoEquipment[];
@@ -120,6 +139,9 @@ const cancelled = () => new VideoScanError("CANCELLED", "Scanning was cancelled.
 const ANALYSIS_SHARE = 0.2;
 /** A grid this large is trusted to fix the columns searched in later frames. */
 const MIN_LOCK_CARDS = 6;
+/** Panels whose thumbnails differ less than this (0-255) are the same panel: read once. */
+const SAME_PANEL = 0.8;
+
 
 /**
  * Scans a recording with one or more scan clients (one worker each; frames
@@ -165,6 +187,20 @@ export async function scanVideo(
     const coverage: CoverageFrame[] = [];
     /** Weapon and artifact rows per scanned frame, stitched once every frame is in. */
     const equipmentFrames: { time: number; rows: Record<EquipmentKind, EquipmentSighting[][]> }[] = [];
+    /** Artifacts seen only in a panel, with the time of their frame. */
+    const panelOnly: { time: number; sighting: EquipmentSighting }[] = [];
+    /** Panels read so far, by thumbnail: a frame showing the same panel reuses the reading. */
+    const panelReads: { signature: Uint8Array; reading: Promise<ArtifactPanelReading | null> }[] = [];
+    let panelFailure: unknown = null;
+    const readPanel =
+      options.readPanel ?? (async (scan: ArtifactPanelScan) => (await import("../artifact-panel/browser")).readPanel(scan));
+    const panelReading = (scan: ArtifactPanelScan) => {
+      const known = panelReads.find((p) => signatureDifference(p.signature, scan.signature) < SAME_PANEL);
+      if (known) return known.reading;
+      const reading = readPanel(scan);
+      panelReads.push({ signature: scan.signature, reading });
+      return reading;
+    };
     /** Picked frames that left the queue (grabbed, scanning or scanned). */
     const taken = new Set<number>();
     const queue: number[] = [];
@@ -311,8 +347,11 @@ export async function scanVideo(
         const preview = await encodePreview(bitmap).catch(() => undefined);
         onFrame?.({ id: index, time, status: "scanning", preview });
         let cards: CardRecognition[];
+        let panel: ArtifactPanelScan | null = null;
         try {
-          cards = (await result).recognition.cards;
+          const scanned = await result;
+          cards = scanned.recognition.cards;
+          panel = scanned.panel ?? null;
         } catch (err) {
           if (signal.aborted) throw cancelled();
           // Without reference data no frame can be recognised.
@@ -340,6 +379,20 @@ export async function scanVideo(
           );
         }
         const rows = equipmentRows(cards, index);
+        if (panel && !panelFailure) {
+          try {
+            const reading = await panelReading(panel);
+            if (reading) {
+              const attached = attachPanel(rows.artifact, reading, panel.highlights, index, panelArtBox(panel.bounds));
+              rows.artifact = attached.rows;
+              if (attached.standalone) panelOnly.push({ time, sighting: attached.standalone });
+            }
+          } catch (err) {
+            if (signal.aborted) throw cancelled();
+            // The OCR couldn't start (offline?): keep scanning cards without panels.
+            panelFailure = err;
+          }
+        }
         if (EQUIPMENT_KINDS.some((k) => rows[k].length > 0)) equipmentFrames.push({ time, rows });
         // Coverage by what the frame shows: materials by id, equipment by item and level
         // (neighbouring frames that share none of these may have skipped rows).
@@ -397,7 +450,7 @@ export async function scanVideo(
       ...m,
       crop: crops.get(sightingKey(m.materialId, m.quantity)) ?? null,
     }));
-    const equipment = await stitchEquipment(equipmentFrames, reader, picker.samples, signal);
+    const equipment = await stitchEquipment(equipmentFrames, panelOnly, reader, picker.samples, signal);
     onProgress?.({
       stage: "scanning",
       fraction: 1,
@@ -415,6 +468,7 @@ export async function scanVideo(
       failedFrames,
       cardsRead,
       unknownCards,
+      panelsRead: panelReads.length,
       materials,
       equipment,
       processingTimeMs: Math.round(now() - t0),
@@ -432,11 +486,13 @@ export async function scanVideo(
 
 /**
  * Stitches the weapon and artifact rows of every scanned frame in time
- * order, then decodes each frame that supplied a final reading once more to
- * crop its cards (crops of every card of every frame would be thousands).
+ * order (artifacts seen only in their panel follow, once each), then
+ * decodes each frame that supplied a final reading once more to crop its
+ * cards (crops of every card of every frame would be thousands).
  */
 async function stitchEquipment(
   frames: { time: number; rows: Record<EquipmentKind, EquipmentSighting[][]> }[],
+  panelOnly: { time: number; sighting: EquipmentSighting }[],
   reader: VideoFrameSource,
   samples: readonly { time: number }[],
   signal: AbortSignal,
@@ -446,7 +502,15 @@ async function stitchEquipment(
   for (const kind of EQUIPMENT_KINDS) {
     const stitcher = new EquipmentStitcher();
     for (const f of ordered) stitcher.add(f.rows[kind]);
-    cards.push(...(kind === "character" ? uniqueByItem(stitcher.result()) : stitcher.result()));
+    const stitched = stitcher.result();
+    if (kind === "character") {
+      cards.push(...uniqueByItem(stitched));
+    } else if (kind === "artifact") {
+      const alone = [...panelOnly].sort((a, b) => a.time - b.time).map((p) => p.sighting);
+      cards.push(...stitched, ...uniquePanels(alone, stitched));
+    } else {
+      cards.push(...stitched);
+    }
   }
   const crops = new Map<EquipmentSighting, Blob | null>();
   const bySource = new Map<number, EquipmentSighting[]>();

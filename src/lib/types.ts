@@ -44,6 +44,16 @@ export interface EquipmentReviewItem {
   locked: boolean;
   /** Artifacts: the GOOD main stat key ("" until chosen for sands, goblets and circlets). */
   mainStatKey: string;
+  /** Artifacts: the main stat value the detail panel showed (46.6 for 46.6%). */
+  mainStatValue?: number;
+  /** Artifacts: substats from the detail panel, or entered in the review. */
+  substats?: { key: string; value: number }[];
+  /** Artifacts: a +0 artifact's 4th substat, shown but not active yet. */
+  unactivatedSubstats?: { key: string; value: number }[];
+  /** Artifacts: GOOD location key of the character wearing it, from the detail panel ("" when not read). */
+  location?: string;
+  /** Artifacts: the detail panel was read for this card. */
+  fromPanel?: boolean;
   /** The Traveler's element ("Anemo", "Geo"…): GOOD keeps one Traveler per element. */
   element?: string;
   imageSnippet: string;

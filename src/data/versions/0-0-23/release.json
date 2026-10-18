@@ -1,0 +1,35 @@
+{
+  "title": "Artifact detail panels, substats and roll validation",
+  "date": "2026-10-18",
+  "summary": "The scanner now reads artifact detail panels, parsing main stats and substats on your device, checking rolls against the game's numbers, and letting you review and edit them before saving or exporting.",
+  "changes": [
+    {
+      "type": "new",
+      "text": "Read artifact detail panels: screenshots showing an artifact's detail panel (or recordings where you tap through them) now capture main stat, main value, level, lock status, substats and who is wearing the piece."
+    },
+    {
+      "type": "new",
+      "text": "Substat roll verification: substat values are checked against possible roll combinations for the rarity and level, catching OCR errors before they reach your inventory."
+    },
+    {
+      "type": "new",
+      "text": "Artifact stats review editor: inspect and fine-tune parsed main stats, active substats, and +0 unactivated 4th substats right in the review modal before confirming."
+    },
+    {
+      "type": "new",
+      "text": "Tap-through screen recording: record yourself tapping through artifacts; each unique panel is read once, stitched with grid cards, and attached with full stats."
+    },
+    {
+      "type": "new",
+      "text": "Panel evaluation benchmark: added 'pnpm eval:artifact-panel' to evaluate OCR reading accuracy against labeled player screenshots."
+    },
+    {
+      "type": "improved",
+      "text": "GOOD export now includes full substats, unactivated substats, and equipped character locations for scanned artifacts."
+    },
+    {
+      "type": "improved",
+      "text": "Zero CDN dependency for OCR: Tesseract WebAssembly engine and language models are served locally and lazy-loaded only when an artifact panel is detected."
+    }
+  ]
+}

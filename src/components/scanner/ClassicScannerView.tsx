@@ -15,11 +15,19 @@ import { setScannerInventory } from "@/lib/scanner-inventory";
 import type { DetectedItem, EquipmentReviewItem, ScannedReviewItem } from "@/lib/types";
 import { materialThumbUrl } from "@/lib/material-ui";
 import { recordScan } from "@/lib/scan-stats";
-import { EQUIPMENT_KINDS, EquipmentStitcher, equipmentRows, uniqueByItem, type EquipmentSighting } from "@/lib/scan-equipment";
+import {
+  EQUIPMENT_KINDS,
+  EquipmentStitcher,
+  equipmentRows,
+  uniqueByItem,
+  uniquePanels,
+  type EquipmentSighting,
+} from "@/lib/scan-equipment";
 import { getOwnedCharacters } from "@/lib/good-inventory";
 import {
   equipmentIcon,
   equipmentReviewItem,
+  readAndAttachPanel,
   inventoryPageFor,
   ownedTravelerElement,
   saveScannedEquipment,
@@ -168,6 +176,9 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
         character: new EquipmentStitcher(),
       };
       const equipmentCrops = new Map<EquipmentSighting["card"], string>();
+      /** Artifacts seen only in their detail panel (no card for them in the grid). */
+      const panelOnly: EquipmentSighting[] = [];
+      let panelFailed = false;
       const totals: ScanSummary = {
         files: files.length,
         failedFiles: 0,
@@ -188,7 +199,7 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
             prev.map((f, k) => ({ ...f, status: k === i ? "scanning" : k < i ? "completed" : "pending" })),
           );
           try {
-            const { recognition } = await client.scan(
+            const { recognition, panel } = await client.scan(
               file,
               {},
               {
@@ -237,6 +248,24 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
                 });
               }
               const rows = equipmentRows(recognition.cards, i);
+              if (panel && !panelFailed) {
+                setStatusMessage(`Reading the artifact details in ${file.name}…`);
+                try {
+                  const attached = await readAndAttachPanel(panel, rows.artifact, i);
+                  rows.artifact = attached.rows;
+                  if (attached.standalone) {
+                    const crop = bitmap ? await cropToBlob(bitmap, attached.standalone.card.box, "image/webp").catch(() => null) : null;
+                    if (crop) equipmentCrops.set(attached.standalone.card, trackUrl(crop));
+                    panelOnly.push(attached.standalone);
+                  }
+                } catch (err) {
+                  if (controller.signal.aborted) throw err;
+                  // Most likely the OCR couldn't be downloaded: the cards are still read.
+                  console.error("Reading the artifact panel failed:", err);
+                  panelFailed = true;
+                  toast.warning("Couldn't read the artifact details panel; the cards were still scanned.");
+                }
+              }
               for (const kind of EQUIPMENT_KINDS) {
                 for (const s of rows[kind].flat()) {
                   const crop = bitmap ? await cropToBlob(bitmap, s.card.box, "image/webp").catch(() => null) : null;
@@ -271,8 +300,14 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
         review.sort((a, b) => Number(!!b.reviewReason) - Number(!!a.reviewReason));
         const travelerElement = ownedTravelerElement(getOwnedCharacters());
         const equipment = EQUIPMENT_KINDS.flatMap((kind) => {
-          const cards = stitchers[kind].result();
-          return (kind === "character" ? uniqueByItem(cards) : cards).map((s, k) =>
+          const stitched = stitchers[kind].result();
+          const cards =
+            kind === "character"
+              ? uniqueByItem(stitched)
+              : kind === "artifact"
+                ? [...stitched, ...uniquePanels(panelOnly, stitched)]
+                : stitched;
+          return cards.map((s, k) =>
             equipmentReviewItem(
               s,
               `${kind}-${k}`,
@@ -286,6 +321,8 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
         totals.weapons = equipment.filter((e) => e.kind === "weapon").length;
         totals.artifacts = equipment.filter((e) => e.kind === "artifact").length;
         totals.characters = equipment.filter((e) => e.kind === "character").length;
+        /** Artifacts whose detail panel was read: main stat and substats included. */
+        const withStats = equipment.filter((e) => e.fromPanel).length;
         totals.flagged = review.filter((r) => r.reviewReason).length + equipment.filter((e) => e.reviewReason).length;
         setSummary(totals);
         setReviewItems(review);
@@ -309,7 +346,8 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
           const parts = [
             review.length > 0 && `${review.length} material${review.length > 1 ? "s" : ""}`,
             totals.weapons > 0 && `${totals.weapons} weapon${totals.weapons > 1 ? "s" : ""}`,
-            totals.artifacts > 0 && `${totals.artifacts} artifact${totals.artifacts > 1 ? "s" : ""}`,
+            totals.artifacts > 0 &&
+              `${totals.artifacts} artifact${totals.artifacts > 1 ? "s" : ""}${withStats ? ` (${withStats} with stats)` : ""}`,
             totals.characters > 0 && `${totals.characters} character${totals.characters > 1 ? "s" : ""}`,
           ].filter(Boolean);
           toast.success(

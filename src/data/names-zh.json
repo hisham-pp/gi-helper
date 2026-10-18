@@ -1,0 +1,619 @@
+{
+ "description": "Simplified Chinese names of artifact sets, pieces and characters, from genshin-db. Built by scripts/build-panel-names.ts.",
+ "sets": {
+  "a-day-carved-from-rising-winds": "风起之日",
+  "archaic-petra": "悠古的磐岩",
+  "aubade-of-morningstar-and-moon": "晨星与月的晓歌",
+  "blizzard-strayer": "冰风迷途的勇士",
+  "bloodstained-chivalry": "染血的骑士道",
+  "celestial-gift": "天之美赐",
+  "crimson-witch-of-flames": "炽烈的炎之魔女",
+  "deepwood-memories": "深林的记忆",
+  "desert-pavilion-chronicle": "沙上楼阁史话",
+  "disenchantment-in-deep-shadow": "影中沉凝的幻灭",
+  "echoes-of-an-offering": "来歆余响",
+  "emblem-of-severed-fate": "绝缘之旗印",
+  "finale-of-the-deep-galleries": "深廊终曲",
+  "flower-of-paradise-lost": "乐园遗落之花",
+  "fragment-of-harmonic-whimsy": "谐律异想断章",
+  "gilded-dreams": "饰金之梦",
+  "gladiator-s-finale": "角斗士的终幕礼",
+  "golden-troupe": "黄金剧团",
+  "heart-of-depth": "沉沦之心",
+  "heart-of-the-furnace": "炉火融炼之心",
+  "husk-of-opulent-dreams": "华馆梦醒形骸记",
+  "lavawalker": "渡过烈火的贤人",
+  "long-night-s-oath": "长夜之誓",
+  "maiden-beloved": "被怜爱的少女",
+  "marechaussee-hunter": "逐影猎人",
+  "night-of-the-sky-s-unveiling": "穹境示现之夜",
+  "nighttime-whispers-in-the-echoing-woods": "回声之林夜话",
+  "noblesse-oblige": "昔日宗室之仪",
+  "nymph-s-dream": "水仙之梦",
+  "obsidian-codex": "黑曜秘典",
+  "ocean-hued-clam": "海染砗磲",
+  "pale-flame": "苍白之火",
+  "retracing-bolide": "逆飞的流星",
+  "scarlet-proof": "血红之证",
+  "scroll-of-the-hero-of-cinder-city": "烬城勇者绘卷",
+  "shimenawa-s-reminiscence": "追忆之注连",
+  "silken-moon-s-serenade": "纺月的夜歌",
+  "song-of-days-past": "昔时之歌",
+  "tenacity-of-the-millelith": "千岩牢固",
+  "thundering-fury": "如雷的盛怒",
+  "thundersoother": "平息鸣雷的尊者",
+  "unfinished-reverie": "未竟的遐思",
+  "vermillion-hereafter": "辰砂往生录",
+  "viridescent-venerer": "翠绿之影",
+  "vourukasha-s-glow": "花海甘露之光",
+  "wanderer-s-troupe": "流浪大地的乐团",
+  "berserker": "战狂",
+  "brave-heart": "勇士之心",
+  "defender-s-will": "守护之心",
+  "gambler": "赌徒",
+  "instructor": "教官",
+  "martial-artist": "武人",
+  "prayers-for-destiny": "祭水之人",
+  "prayers-for-illumination": "祭火之人",
+  "prayers-for-wisdom": "祭雷之人",
+  "prayers-to-springtime": "祭冰之人",
+  "resolution-of-sojourner": "行者之心",
+  "scholar": "学士",
+  "the-exile": "流放者",
+  "tiny-miracle": "奇迹",
+  "adventurer": "冒险家",
+  "lucky-dog": "幸运儿",
+  "traveling-doctor": "游医"
+ },
+ "pieces": {
+  "a-day-carved-from-rising-winds": {
+   "flower": "风花的箴铭",
+   "plume": "晨光的明誓",
+   "sands": "春律的片刻",
+   "goblet": "未言的宴话",
+   "circlet": "哀慕的恋歌"
+  },
+  "archaic-petra": {
+   "flower": "磐陀裂生之花",
+   "plume": "嵯峨群峰之翼",
+   "sands": "星罗圭璧之晷",
+   "goblet": "巉岩琢塑之樽",
+   "circlet": "不动玄石之相"
+  },
+  "aubade-of-morningstar-and-moon": {
+   "flower": "献与月的华梦",
+   "plume": "献与月的离光",
+   "sands": "献与月的终时",
+   "goblet": "献与月的酹祭",
+   "circlet": "献与月的银冕"
+  },
+  "blizzard-strayer": {
+   "flower": "历经风雪的思念",
+   "plume": "摧冰而行的执望",
+   "sands": "冰雪故园的终期",
+   "goblet": "遍结寒霜的傲骨",
+   "circlet": "破冰踏雪的回音"
+  },
+  "bloodstained-chivalry": {
+   "flower": "染血的铁之心",
+   "plume": "染血的黑之羽",
+   "sands": "骑士染血之时",
+   "goblet": "染血骑士之杯",
+   "circlet": "染血的铁假面"
+  },
+  "celestial-gift": {
+   "flower": "天授之馨",
+   "plume": "天授之殁",
+   "sands": "天授之令",
+   "goblet": "天授之禄",
+   "circlet": "天授之冕"
+  },
+  "crimson-witch-of-flames": {
+   "flower": "魔女的炎之花",
+   "plume": "魔女常燃之羽",
+   "sands": "魔女破灭之时",
+   "goblet": "魔女的心之火",
+   "circlet": "焦灼的魔女帽"
+  },
+  "deepwood-memories": {
+   "flower": "迷宫的游人",
+   "plume": "翠蔓的智者",
+   "sands": "贤智的定期",
+   "goblet": "迷误者之灯",
+   "circlet": "月桂的宝冠"
+  },
+  "desert-pavilion-chronicle": {
+   "flower": "众王之都的开端",
+   "plume": "黄金邦国的结末",
+   "sands": "失落迷途的机芯",
+   "goblet": "迷醉长梦的守护",
+   "circlet": "流沙贵嗣的遗宝"
+  },
+  "disenchantment-in-deep-shadow": {
+   "flower": "止于荣礼的缎彩",
+   "plume": "止于妙想成型的锋毫",
+   "sands": "止于宏伟梦醒的时刻",
+   "goblet": "止于祝庆的喝礼",
+   "circlet": "止于阔步跌坠的灵摆"
+  },
+  "echoes-of-an-offering": {
+   "flower": "魂香之花",
+   "plume": "垂玉之叶",
+   "sands": "祝祀之凭",
+   "goblet": "涌泉之盏",
+   "circlet": "浮溯之珏"
+  },
+  "emblem-of-severed-fate": {
+   "flower": "明威之镡",
+   "plume": "切落之羽",
+   "sands": "雷云之笼",
+   "goblet": "绯花之壶",
+   "circlet": "华饰之兜"
+  },
+  "finale-of-the-deep-galleries": {
+   "flower": "深廊的回奏之歌",
+   "plume": "深廊的漫远之约",
+   "sands": "深廊的湮落之刻",
+   "goblet": "深廊的饫赐之宴",
+   "circlet": "深廊的遂失之冕"
+  },
+  "flower-of-paradise-lost": {
+   "flower": "月女的华彩",
+   "plume": "谢落的筵席",
+   "sands": "凝结的时刻",
+   "goblet": "守秘的魔瓶",
+   "circlet": "紫晶的花冠"
+  },
+  "fragment-of-harmonic-whimsy": {
+   "flower": "谐律交响的前奏",
+   "plume": "古海玄幽的夜想",
+   "sands": "命途轮转的谐谑",
+   "goblet": "灵露倾洒的狂诗",
+   "circlet": "异想零落的圆舞"
+  },
+  "gilded-dreams": {
+   "flower": "梦中的铁花",
+   "plume": "裁断的翎羽",
+   "sands": "沉金的岁月",
+   "goblet": "如蜜的终宴",
+   "circlet": "沙王的投影"
+  },
+  "gladiator-s-finale": {
+   "flower": "角斗士的留恋",
+   "plume": "角斗士的归宿",
+   "sands": "角斗士的希冀",
+   "goblet": "角斗士的酣醉",
+   "circlet": "角斗士的凯旋"
+  },
+  "golden-troupe": {
+   "flower": "黄金乐曲的变奏",
+   "plume": "黄金飞鸟的落羽",
+   "sands": "黄金时代的先声",
+   "goblet": "黄金之夜的喧嚣",
+   "circlet": "黄金剧团的奖赏"
+  },
+  "heart-of-depth": {
+   "flower": "饰金胸花",
+   "plume": "追忆之风",
+   "sands": "坚铜罗盘",
+   "goblet": "沉波之盏",
+   "circlet": "酒渍船帽"
+  },
+  "heart-of-the-furnace": {
+   "flower": "熔铸者的揣度",
+   "plume": "熔铸者的观测",
+   "sands": "熔铸者的计算",
+   "goblet": "熔铸者的雅量",
+   "circlet": "熔铸者的继志"
+  },
+  "husk-of-opulent-dreams": {
+   "flower": "荣花之期",
+   "plume": "华馆之羽",
+   "sands": "众生之谣",
+   "goblet": "梦醒之瓢",
+   "circlet": "形骸之笠"
+  },
+  "lavawalker": {
+   "flower": "渡火者的决绝",
+   "plume": "渡火者的解脱",
+   "sands": "渡火者的煎熬",
+   "goblet": "渡火者的醒悟",
+   "circlet": "渡火者的智慧"
+  },
+  "long-night-s-oath": {
+   "flower": "执灯人的誓词",
+   "plume": "夜鸣莺的尾羽",
+   "sands": "不死者的哀铃",
+   "goblet": "未吹响的号角",
+   "circlet": "被浸染的缨盔"
+  },
+  "maiden-beloved": {
+   "flower": "远方的少女之心",
+   "plume": "少女飘摇的思念",
+   "sands": "少女苦短的良辰",
+   "goblet": "少女片刻的闲暇",
+   "circlet": "少女易逝的芳颜"
+  },
+  "marechaussee-hunter": {
+   "flower": "猎人的胸花",
+   "plume": "杰作的序曲",
+   "sands": "裁判的时刻",
+   "goblet": "遗忘的容器",
+   "circlet": "老兵的容颜"
+  },
+  "night-of-the-sky-s-unveiling": {
+   "flower": "渴真之花",
+   "plume": "深罪之羽",
+   "sands": "谕告之钟",
+   "goblet": "满溢之壶",
+   "circlet": "永劫之冕"
+  },
+  "nighttime-whispers-in-the-echoing-woods": {
+   "flower": "无私的妆饰花",
+   "plume": "诚恳的蘸水笔",
+   "sands": "忠实的砂时计",
+   "goblet": "慷慨的墨水瓶",
+   "circlet": "慈爱的淑女帽"
+  },
+  "noblesse-oblige": {
+   "flower": "宗室之花",
+   "plume": "宗室之翎",
+   "sands": "宗室时计",
+   "goblet": "宗室银瓮",
+   "circlet": "宗室面具"
+  },
+  "nymph-s-dream": {
+   "flower": "旅途中的鲜花",
+   "plume": "坏巫师的羽杖",
+   "sands": "水仙的时时刻刻",
+   "goblet": "勇者们的茶会",
+   "circlet": "恶龙的单片镜"
+  },
+  "obsidian-codex": {
+   "flower": "异种的期许",
+   "plume": "灵髓的根脉",
+   "sands": "夜域的迷思",
+   "goblet": "纷争的前宴",
+   "circlet": "诸圣的礼冠"
+  },
+  "ocean-hued-clam": {
+   "flower": "海染之花",
+   "plume": "渊宫之羽",
+   "sands": "离别之贝",
+   "goblet": "真珠之笼",
+   "circlet": "海祇之冠"
+  },
+  "pale-flame": {
+   "flower": "无垢之花",
+   "plume": "贤医之羽",
+   "sands": "停摆之刻",
+   "goblet": "超越之盏",
+   "circlet": "嗤笑之面"
+  },
+  "retracing-bolide": {
+   "flower": "夏祭之花",
+   "plume": "夏祭终末",
+   "sands": "夏祭之刻",
+   "goblet": "夏祭水玉",
+   "circlet": "夏祭之面"
+  },
+  "scarlet-proof": {
+   "flower": "感谢你的奉献",
+   "plume": "铭记你的功勋",
+   "sands": "授予你的年华",
+   "goblet": "饮尽你的血泪",
+   "circlet": "缅怀你的信仰"
+  },
+  "scroll-of-the-hero-of-cinder-city": {
+   "flower": "驯兽师的护符",
+   "plume": "巡山客的信标",
+   "sands": "秘术家的金盘",
+   "goblet": "游学者的爪杯",
+   "circlet": "魔战士的羽面"
+  },
+  "shimenawa-s-reminiscence": {
+   "flower": "羁缠之花",
+   "plume": "思忆之矢",
+   "sands": "朝露之时",
+   "goblet": "祈望之心",
+   "circlet": "无常之面"
+  },
+  "silken-moon-s-serenade": {
+   "flower": "流离者的晶泪",
+   "plume": "受福者的白羽",
+   "sands": "祭霜者的迷狂",
+   "goblet": "至纯者的欢荣",
+   "circlet": "司信者的圣冕"
+  },
+  "song-of-days-past": {
+   "flower": "昔时遗落之誓",
+   "plume": "昔时浮想之思",
+   "sands": "昔时回映之音",
+   "goblet": "昔时应许之梦",
+   "circlet": "昔时传奏之诗"
+  },
+  "tenacity-of-the-millelith": {
+   "flower": "勋绩之花",
+   "plume": "昭武翎羽",
+   "sands": "金铜时晷",
+   "goblet": "盟誓金爵",
+   "circlet": "将帅兜鍪"
+  },
+  "thundering-fury": {
+   "flower": "雷鸟的怜悯",
+   "plume": "雷灾的孑遗",
+   "sands": "雷霆的时计",
+   "goblet": "降雷的凶兆",
+   "circlet": "唤雷的头冠"
+  },
+  "thundersoother": {
+   "flower": "平雷之心",
+   "plume": "平雷之羽",
+   "sands": "平雷之刻",
+   "goblet": "平雷之器",
+   "circlet": "平雷之冠"
+  },
+  "unfinished-reverie": {
+   "flower": "暗结的明花",
+   "plume": "褪光的翠尾",
+   "sands": "举业的识刻",
+   "goblet": "筹谋的共樽",
+   "circlet": "失冕的宝冠"
+  },
+  "vermillion-hereafter": {
+   "flower": "生灵之华",
+   "plume": "潜光片羽",
+   "sands": "阳辔之遗",
+   "goblet": "结契之刻",
+   "circlet": "虺雷之姿"
+  },
+  "viridescent-venerer": {
+   "flower": "野花记忆的绿野",
+   "plume": "猎人青翠的箭羽",
+   "sands": "翠绿猎人的笃定",
+   "goblet": "翠绿猎人的容器",
+   "circlet": "翠绿的猎人之冠"
+  },
+  "vourukasha-s-glow": {
+   "flower": "灵光源起之蕊",
+   "plume": "琦色灵彩之羽",
+   "sands": "久远花落之时",
+   "goblet": "无边酣乐之筵",
+   "circlet": "灵光明烁之心"
+  },
+  "wanderer-s-troupe": {
+   "flower": "乐团的晨光",
+   "plume": "琴师的箭羽",
+   "sands": "终幕的时计",
+   "goblet": "吟游者之壶",
+   "circlet": "指挥的礼帽"
+  },
+  "berserker": {
+   "flower": "战狂的蔷薇",
+   "plume": "战狂的翎羽",
+   "sands": "战狂的时计",
+   "goblet": "战狂的骨杯",
+   "circlet": "战狂的鬼面"
+  },
+  "brave-heart": {
+   "flower": "勇士的勋章",
+   "plume": "勇士的期许",
+   "sands": "勇士的坚毅",
+   "goblet": "勇士的壮行",
+   "circlet": "勇士的冠冕"
+  },
+  "defender-s-will": {
+   "flower": "守护之花",
+   "plume": "守护徽印",
+   "sands": "守护座钟",
+   "goblet": "守护之皿",
+   "circlet": "守护束带"
+  },
+  "gambler": {
+   "flower": "赌徒的胸花",
+   "plume": "赌徒的羽饰",
+   "sands": "赌徒的怀表",
+   "goblet": "赌徒的骰盅",
+   "circlet": "赌徒的耳环"
+  },
+  "instructor": {
+   "flower": "教官的胸花",
+   "plume": "教官的羽饰",
+   "sands": "教官的怀表",
+   "goblet": "教官的茶杯",
+   "circlet": "教官的帽子"
+  },
+  "martial-artist": {
+   "flower": "武人的红花",
+   "plume": "武人的羽饰",
+   "sands": "武人的水漏",
+   "goblet": "武人的酒杯",
+   "circlet": "武人的头巾"
+  },
+  "prayers-for-destiny": {
+   "circlet": "祭水礼冠"
+  },
+  "prayers-for-illumination": {
+   "circlet": "祭火礼冠"
+  },
+  "prayers-for-wisdom": {
+   "circlet": "祭雷礼冠"
+  },
+  "prayers-to-springtime": {
+   "circlet": "祭冰礼冠"
+  },
+  "resolution-of-sojourner": {
+   "flower": "故人之心",
+   "plume": "归乡之羽",
+   "sands": "逐光之石",
+   "goblet": "异国之盏",
+   "circlet": "感别之冠"
+  },
+  "scholar": {
+   "flower": "学士的书签",
+   "plume": "学士的羽笔",
+   "sands": "学士的时钟",
+   "goblet": "学士的墨杯",
+   "circlet": "学士的镜片"
+  },
+  "the-exile": {
+   "flower": "流放者之花",
+   "plume": "流放者之羽",
+   "sands": "流放者怀表",
+   "goblet": "流放者之杯",
+   "circlet": "流放者头冠"
+  },
+  "tiny-miracle": {
+   "flower": "奇迹之花",
+   "plume": "奇迹之羽",
+   "sands": "奇迹之沙",
+   "goblet": "奇迹之杯",
+   "circlet": "奇迹耳坠"
+  },
+  "adventurer": {
+   "flower": "冒险家之花",
+   "plume": "冒险家尾羽",
+   "sands": "冒险家怀表",
+   "goblet": "冒险家金杯",
+   "circlet": "冒险家头带"
+  },
+  "lucky-dog": {
+   "flower": "幸运儿绿花",
+   "plume": "幸运儿鹰羽",
+   "sands": "幸运儿沙漏",
+   "goblet": "幸运儿之杯",
+   "circlet": "幸运儿银冠"
+  },
+  "traveling-doctor": {
+   "flower": "游医的银莲",
+   "plume": "游医的枭羽",
+   "sands": "游医的怀钟",
+   "goblet": "游医的药壶",
+   "circlet": "游医的方巾"
+  }
+ },
+ "characters": {
+  "aether": "空",
+  "aino": "爱诺",
+  "albedo": "阿贝多",
+  "alhaitham": "艾尔海森",
+  "aloy": "埃洛伊",
+  "alyosha": "阿罗夏",
+  "amber": "安柏",
+  "arataki-itto": "荒泷一斗",
+  "arlecchino": "阿蕾奇诺",
+  "baizhu": "白术",
+  "barbara": "芭芭拉",
+  "beidou": "北斗",
+  "bennett": "班尼特",
+  "candace": "坎蒂丝",
+  "charlotte": "夏洛蒂",
+  "chasca": "恰斯卡",
+  "chevreuse": "夏沃蕾",
+  "chiori": "千织",
+  "chongyun": "重云",
+  "citlali": "茜特菈莉",
+  "clorinde": "克洛琳德",
+  "collei": "柯莱",
+  "columbina": "哥伦比娅",
+  "cyno": "赛诺",
+  "dahlia": "塔利雅",
+  "dehya": "迪希雅",
+  "diluc": "迪卢克",
+  "diona": "迪奥娜",
+  "dori": "多莉",
+  "durin": "杜林",
+  "emilie": "艾梅莉埃",
+  "escoffier": "爱可菲",
+  "eula": "优菈",
+  "faruzan": "珐露珊",
+  "fischl": "菲谢尔",
+  "flins": "菲林斯",
+  "freminet": "菲米尼",
+  "furina": "芙宁娜",
+  "gaming": "嘉明",
+  "ganyu": "甘雨",
+  "gorou": "五郎",
+  "hu-tao": "胡桃",
+  "iansan": "伊安珊",
+  "ifa": "伊法",
+  "illuga": "叶洛亚",
+  "ineffa": "伊涅芙",
+  "jahoda": "雅珂达",
+  "jean": "琴",
+  "kachina": "卡齐娜",
+  "kaedehara-kazuha": "枫原万叶",
+  "kaeya": "凯亚",
+  "kamisato-ayaka": "神里绫华",
+  "kamisato-ayato": "神里绫人",
+  "kaveh": "卡维",
+  "keqing": "刻晴",
+  "kinich": "基尼奇",
+  "kirara": "绮良良",
+  "klee": "可莉",
+  "kujou-sara": "九条裟罗",
+  "kuki-shinobu": "久岐忍",
+  "lan-yan": "蓝砚",
+  "lauma": "菈乌玛",
+  "layla": "莱依拉",
+  "linnea": "莉奈娅",
+  "lisa": "丽莎",
+  "lohen": "洛恩",
+  "lumine": "荧",
+  "lynette": "琳妮特",
+  "lyney": "林尼",
+  "mavuika": "玛薇卡",
+  "mika": "米卡",
+  "mona": "莫娜",
+  "mualani": "玛拉妮",
+  "nahida": "纳西妲",
+  "navia": "娜维娅",
+  "nefer": "奈芙尔",
+  "neuvillette": "那维莱特",
+  "nicole": "尼可",
+  "nilou": "妮露",
+  "ningguang": "凝光",
+  "noelle": "诺艾尔",
+  "odette": "奥黛塔",
+  "ororon": "欧洛伦",
+  "prune": "布伦妮",
+  "qiqi": "七七",
+  "raiden-shogun": "雷电将军",
+  "razor": "雷泽",
+  "rosaria": "罗莎莉亚",
+  "sandrone": "桑多涅",
+  "sangonomiya-kokomi": "珊瑚宫心海",
+  "sayu": "早柚",
+  "sethos": "赛索斯",
+  "shenhe": "申鹤",
+  "shikanoin-heizou": "鹿野院平藏",
+  "sigewinne": "希格雯",
+  "skirk": "丝柯克",
+  "sucrose": "砂糖",
+  "tartaglia": "达达利亚",
+  "thoma": "托马",
+  "tighnari": "提纳里",
+  "varesa": "瓦雷莎",
+  "varka": "法尔伽",
+  "venti": "温迪",
+  "vesna": "薇斯纳",
+  "vodyanitsa": "沃雅妮莎",
+  "wanderer": "流浪者",
+  "wriothesley": "莱欧斯利",
+  "xiangling": "香菱",
+  "xianyun": "闲云",
+  "xiao": "魈",
+  "xilonen": "希诺宁",
+  "xingqiu": "行秋",
+  "xinyan": "辛焱",
+  "yae-miko": "八重神子",
+  "yanfei": "烟绯",
+  "yaoyao": "瑶瑶",
+  "yelan": "夜兰",
+  "yoimiya": "宵宫",
+  "yumemizuki-mizuki": "梦见月瑞希",
+  "yun-jin": "云堇",
+  "zhongli": "钟离",
+  "zibai": "兹白"
+ }
+}
