@@ -6,7 +6,33 @@
     "rarity": 5,
     "element": "None",
     "weaponType": "sword",
-    "region": "Other"
+    "region": "Other",
+    "talentBoostsByElement": {
+      "Anemo": {
+        "c3": "burst",
+        "c5": "skill"
+      },
+      "Geo": {
+        "c3": "burst",
+        "c5": "skill"
+      },
+      "Electro": {
+        "c3": "burst",
+        "c5": "skill"
+      },
+      "Dendro": {
+        "c3": "skill",
+        "c5": "burst"
+      },
+      "Hydro": {
+        "c3": "skill",
+        "c5": "burst"
+      },
+      "Pyro": {
+        "c3": "skill",
+        "c5": "burst"
+      }
+    }
   },
   {
     "id": "aino",
@@ -16,7 +42,11 @@
     "rarity": 4,
     "element": "Hydro",
     "weaponType": "claymore",
-    "region": "Nod-Krai"
+    "region": "Nod-Krai",
+    "talentBoosts": {
+      "c3": "burst",
+      "c5": "skill"
+    }
   },
   {
     "id": "albedo",
@@ -26,7 +56,11 @@
     "rarity": 5,
     "element": "Geo",
     "weaponType": "sword",
-    "region": "Mondstadt"
+    "region": "Mondstadt",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "alhaitham",
@@ -36,7 +70,11 @@
     "rarity": 5,
     "element": "Dendro",
     "weaponType": "sword",
-    "region": "Sumeru"
+    "region": "Sumeru",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "aloy",
@@ -56,7 +94,11 @@
     "rarity": 4,
     "element": "Electro",
     "weaponType": "polearm",
-    "region": "Snezhnaya"
+    "region": "Snezhnaya",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "amber",
@@ -66,7 +108,11 @@
     "rarity": 4,
     "element": "Pyro",
     "weaponType": "bow",
-    "region": "Mondstadt"
+    "region": "Mondstadt",
+    "talentBoosts": {
+      "c3": "burst",
+      "c5": "skill"
+    }
   },
   {
     "id": "arataki-itto",
@@ -76,7 +122,11 @@
     "rarity": 5,
     "element": "Geo",
     "weaponType": "claymore",
-    "region": "Inazuma"
+    "region": "Inazuma",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "arlecchino",
@@ -86,7 +136,11 @@
     "rarity": 5,
     "element": "Pyro",
     "weaponType": "polearm",
-    "region": "Snezhnaya"
+    "region": "Snezhnaya",
+    "talentBoosts": {
+      "c3": "auto",
+      "c5": "burst"
+    }
   },
   {
     "id": "baizhu",
@@ -96,7 +150,11 @@
     "rarity": 5,
     "element": "Dendro",
     "weaponType": "catalyst",
-    "region": "Liyue"
+    "region": "Liyue",
+    "talentBoosts": {
+      "c3": "burst",
+      "c5": "skill"
+    }
   },
   {
     "id": "barbara",
@@ -106,7 +164,11 @@
     "rarity": 4,
     "element": "Hydro",
     "weaponType": "catalyst",
-    "region": "Mondstadt"
+    "region": "Mondstadt",
+    "talentBoosts": {
+      "c3": "burst",
+      "c5": "skill"
+    }
   },
   {
     "id": "beidou",
@@ -116,7 +178,11 @@
     "rarity": 4,
     "element": "Electro",
     "weaponType": "claymore",
-    "region": "Liyue"
+    "region": "Liyue",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "bennett",
@@ -126,7 +192,11 @@
     "rarity": 4,
     "element": "Pyro",
     "weaponType": "sword",
-    "region": "Mondstadt"
+    "region": "Mondstadt",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "candace",
@@ -136,7 +206,11 @@
     "rarity": 4,
     "element": "Hydro",
     "weaponType": "polearm",
-    "region": "Sumeru"
+    "region": "Sumeru",
+    "talentBoosts": {
+      "c3": "burst",
+      "c5": "skill"
+    }
   },
   {
     "id": "charlotte",
@@ -146,7 +220,11 @@
     "rarity": 4,
     "element": "Cryo",
     "weaponType": "catalyst",
-    "region": "Fontaine"
+    "region": "Fontaine",
+    "talentBoosts": {
+      "c3": "burst",
+      "c5": "skill"
+    }
   },
   {
     "id": "chasca",
@@ -156,7 +234,11 @@
     "rarity": 5,
     "element": "Anemo",
     "weaponType": "bow",
-    "region": "Natlan"
+    "region": "Natlan",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "chevreuse",
@@ -166,7 +248,11 @@
     "rarity": 4,
     "element": "Pyro",
     "weaponType": "polearm",
-    "region": "Fontaine"
+    "region": "Fontaine",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "chiori",
@@ -176,7 +262,11 @@
     "rarity": 5,
     "element": "Geo",
     "weaponType": "sword",
-    "region": "Inazuma"
+    "region": "Inazuma",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "chongyun",
@@ -186,7 +276,11 @@
     "rarity": 4,
     "element": "Cryo",
     "weaponType": "claymore",
-    "region": "Liyue"
+    "region": "Liyue",
+    "talentBoosts": {
+      "c3": "burst",
+      "c5": "skill"
+    }
   },
   {
     "id": "citlali",
@@ -196,7 +290,11 @@
     "rarity": 5,
     "element": "Cryo",
     "weaponType": "catalyst",
-    "region": "Natlan"
+    "region": "Natlan",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "clorinde",
@@ -206,7 +304,11 @@
     "rarity": 5,
     "element": "Electro",
     "weaponType": "sword",
-    "region": "Fontaine"
+    "region": "Fontaine",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "collei",
@@ -216,7 +318,11 @@
     "rarity": 4,
     "element": "Dendro",
     "weaponType": "bow",
-    "region": "Sumeru"
+    "region": "Sumeru",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "columbina",
@@ -226,7 +332,11 @@
     "rarity": 5,
     "element": "Hydro",
     "weaponType": "catalyst",
-    "region": "Nod-Krai"
+    "region": "Nod-Krai",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "cyno",
@@ -236,7 +346,11 @@
     "rarity": 5,
     "element": "Electro",
     "weaponType": "polearm",
-    "region": "Sumeru"
+    "region": "Sumeru",
+    "talentBoosts": {
+      "c3": "burst",
+      "c5": "skill"
+    }
   },
   {
     "id": "dahlia",
@@ -246,7 +360,11 @@
     "rarity": 4,
     "element": "Hydro",
     "weaponType": "sword",
-    "region": "Mondstadt"
+    "region": "Mondstadt",
+    "talentBoosts": {
+      "c3": "burst",
+      "c5": "skill"
+    }
   },
   {
     "id": "dehya",
@@ -256,7 +374,11 @@
     "rarity": 5,
     "element": "Pyro",
     "weaponType": "claymore",
-    "region": "Sumeru"
+    "region": "Sumeru",
+    "talentBoosts": {
+      "c3": "burst",
+      "c5": "skill"
+    }
   },
   {
     "id": "diluc",
@@ -266,7 +388,11 @@
     "rarity": 5,
     "element": "Pyro",
     "weaponType": "claymore",
-    "region": "Mondstadt"
+    "region": "Mondstadt",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "diona",
@@ -276,7 +402,11 @@
     "rarity": 4,
     "element": "Cryo",
     "weaponType": "bow",
-    "region": "Mondstadt"
+    "region": "Mondstadt",
+    "talentBoosts": {
+      "c3": "burst",
+      "c5": "skill"
+    }
   },
   {
     "id": "dori",
@@ -286,7 +416,11 @@
     "rarity": 4,
     "element": "Electro",
     "weaponType": "claymore",
-    "region": "Sumeru"
+    "region": "Sumeru",
+    "talentBoosts": {
+      "c3": "burst",
+      "c5": "skill"
+    }
   },
   {
     "id": "durin",
@@ -296,7 +430,11 @@
     "rarity": 5,
     "element": "Pyro",
     "weaponType": "sword",
-    "region": "Mondstadt"
+    "region": "Mondstadt",
+    "talentBoosts": {
+      "c3": "burst",
+      "c5": "skill"
+    }
   },
   {
     "id": "emilie",
@@ -306,7 +444,11 @@
     "rarity": 5,
     "element": "Dendro",
     "weaponType": "polearm",
-    "region": "Fontaine"
+    "region": "Fontaine",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "escoffier",
@@ -316,7 +458,11 @@
     "rarity": 5,
     "element": "Cryo",
     "weaponType": "polearm",
-    "region": "Fontaine"
+    "region": "Fontaine",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "eula",
@@ -326,7 +472,11 @@
     "rarity": 5,
     "element": "Cryo",
     "weaponType": "claymore",
-    "region": "Mondstadt"
+    "region": "Mondstadt",
+    "talentBoosts": {
+      "c3": "burst",
+      "c5": "skill"
+    }
   },
   {
     "id": "faruzan",
@@ -336,7 +486,11 @@
     "rarity": 4,
     "element": "Anemo",
     "weaponType": "bow",
-    "region": "Sumeru"
+    "region": "Sumeru",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "fischl",
@@ -346,7 +500,11 @@
     "rarity": 4,
     "element": "Electro",
     "weaponType": "bow",
-    "region": "Mondstadt"
+    "region": "Mondstadt",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "flins",
@@ -356,7 +514,11 @@
     "rarity": 5,
     "element": "Electro",
     "weaponType": "polearm",
-    "region": "Nod-Krai"
+    "region": "Nod-Krai",
+    "talentBoosts": {
+      "c3": "burst",
+      "c5": "skill"
+    }
   },
   {
     "id": "freminet",
@@ -366,7 +528,11 @@
     "rarity": 4,
     "element": "Cryo",
     "weaponType": "claymore",
-    "region": "Fontaine"
+    "region": "Fontaine",
+    "talentBoosts": {
+      "c3": "auto",
+      "c5": "skill"
+    }
   },
   {
     "id": "furina",
@@ -376,7 +542,11 @@
     "rarity": 5,
     "element": "Hydro",
     "weaponType": "sword",
-    "region": "Fontaine"
+    "region": "Fontaine",
+    "talentBoosts": {
+      "c3": "burst",
+      "c5": "skill"
+    }
   },
   {
     "id": "gaming",
@@ -386,7 +556,11 @@
     "rarity": 4,
     "element": "Pyro",
     "weaponType": "claymore",
-    "region": "Liyue"
+    "region": "Liyue",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "ganyu",
@@ -396,7 +570,11 @@
     "rarity": 5,
     "element": "Cryo",
     "weaponType": "bow",
-    "region": "Liyue"
+    "region": "Liyue",
+    "talentBoosts": {
+      "c3": "burst",
+      "c5": "skill"
+    }
   },
   {
     "id": "gorou",
@@ -406,7 +584,11 @@
     "rarity": 4,
     "element": "Geo",
     "weaponType": "bow",
-    "region": "Inazuma"
+    "region": "Inazuma",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "hu-tao",
@@ -416,7 +598,11 @@
     "rarity": 5,
     "element": "Pyro",
     "weaponType": "polearm",
-    "region": "Liyue"
+    "region": "Liyue",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "iansan",
@@ -426,7 +612,11 @@
     "rarity": 4,
     "element": "Electro",
     "weaponType": "polearm",
-    "region": "Natlan"
+    "region": "Natlan",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "ifa",
@@ -436,7 +626,11 @@
     "rarity": 4,
     "element": "Anemo",
     "weaponType": "catalyst",
-    "region": "Natlan"
+    "region": "Natlan",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "illuga",
@@ -446,7 +640,11 @@
     "rarity": 4,
     "element": "Geo",
     "weaponType": "polearm",
-    "region": "Nod-Krai"
+    "region": "Nod-Krai",
+    "talentBoosts": {
+      "c3": "burst",
+      "c5": "skill"
+    }
   },
   {
     "id": "ineffa",
@@ -456,7 +654,11 @@
     "rarity": 5,
     "element": "Electro",
     "weaponType": "polearm",
-    "region": "Nod-Krai"
+    "region": "Nod-Krai",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "jahoda",
@@ -466,7 +668,11 @@
     "rarity": 4,
     "element": "Anemo",
     "weaponType": "bow",
-    "region": "Nod-Krai"
+    "region": "Nod-Krai",
+    "talentBoosts": {
+      "c3": "burst",
+      "c5": "skill"
+    }
   },
   {
     "id": "jean",
@@ -476,7 +682,11 @@
     "rarity": 5,
     "element": "Anemo",
     "weaponType": "sword",
-    "region": "Mondstadt"
+    "region": "Mondstadt",
+    "talentBoosts": {
+      "c3": "burst",
+      "c5": "skill"
+    }
   },
   {
     "id": "kachina",
@@ -486,7 +696,11 @@
     "rarity": 4,
     "element": "Geo",
     "weaponType": "polearm",
-    "region": "Natlan"
+    "region": "Natlan",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "kaedehara-kazuha",
@@ -496,7 +710,11 @@
     "rarity": 5,
     "element": "Anemo",
     "weaponType": "sword",
-    "region": "Inazuma"
+    "region": "Inazuma",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "kaeya",
@@ -506,7 +724,11 @@
     "rarity": 4,
     "element": "Cryo",
     "weaponType": "sword",
-    "region": "Mondstadt"
+    "region": "Mondstadt",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "kamisato-ayaka",
@@ -516,7 +738,11 @@
     "rarity": 5,
     "element": "Cryo",
     "weaponType": "sword",
-    "region": "Inazuma"
+    "region": "Inazuma",
+    "talentBoosts": {
+      "c3": "burst",
+      "c5": "skill"
+    }
   },
   {
     "id": "kamisato-ayato",
@@ -526,7 +752,11 @@
     "rarity": 5,
     "element": "Hydro",
     "weaponType": "sword",
-    "region": "Inazuma"
+    "region": "Inazuma",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "kaveh",
@@ -536,7 +766,11 @@
     "rarity": 4,
     "element": "Dendro",
     "weaponType": "claymore",
-    "region": "Sumeru"
+    "region": "Sumeru",
+    "talentBoosts": {
+      "c3": "burst",
+      "c5": "skill"
+    }
   },
   {
     "id": "keqing",
@@ -546,7 +780,11 @@
     "rarity": 5,
     "element": "Electro",
     "weaponType": "sword",
-    "region": "Liyue"
+    "region": "Liyue",
+    "talentBoosts": {
+      "c3": "burst",
+      "c5": "skill"
+    }
   },
   {
     "id": "kinich",
@@ -556,7 +794,11 @@
     "rarity": 5,
     "element": "Dendro",
     "weaponType": "claymore",
-    "region": "Natlan"
+    "region": "Natlan",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "kirara",
@@ -566,7 +808,11 @@
     "rarity": 4,
     "element": "Dendro",
     "weaponType": "sword",
-    "region": "Inazuma"
+    "region": "Inazuma",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "klee",
@@ -576,7 +822,11 @@
     "rarity": 5,
     "element": "Pyro",
     "weaponType": "catalyst",
-    "region": "Mondstadt"
+    "region": "Mondstadt",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "kujou-sara",
@@ -586,7 +836,11 @@
     "rarity": 4,
     "element": "Electro",
     "weaponType": "bow",
-    "region": "Inazuma"
+    "region": "Inazuma",
+    "talentBoosts": {
+      "c3": "burst",
+      "c5": "skill"
+    }
   },
   {
     "id": "kuki-shinobu",
@@ -596,7 +850,11 @@
     "rarity": 4,
     "element": "Electro",
     "weaponType": "sword",
-    "region": "Inazuma"
+    "region": "Inazuma",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "lan-yan",
@@ -606,7 +864,11 @@
     "rarity": 4,
     "element": "Anemo",
     "weaponType": "catalyst",
-    "region": "Liyue"
+    "region": "Liyue",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "lauma",
@@ -616,7 +878,11 @@
     "rarity": 5,
     "element": "Dendro",
     "weaponType": "catalyst",
-    "region": "Nod-Krai"
+    "region": "Nod-Krai",
+    "talentBoosts": {
+      "c3": "burst",
+      "c5": "skill"
+    }
   },
   {
     "id": "layla",
@@ -626,7 +892,11 @@
     "rarity": 4,
     "element": "Cryo",
     "weaponType": "sword",
-    "region": "Sumeru"
+    "region": "Sumeru",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "linnea",
@@ -636,7 +906,11 @@
     "rarity": 5,
     "element": "Geo",
     "weaponType": "bow",
-    "region": "Nod-Krai"
+    "region": "Nod-Krai",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "lisa",
@@ -646,7 +920,11 @@
     "rarity": 4,
     "element": "Electro",
     "weaponType": "catalyst",
-    "region": "Mondstadt"
+    "region": "Mondstadt",
+    "talentBoosts": {
+      "c3": "burst",
+      "c5": "skill"
+    }
   },
   {
     "id": "lohen",
@@ -656,7 +934,11 @@
     "rarity": 5,
     "element": "Cryo",
     "weaponType": "polearm",
-    "region": "Mondstadt"
+    "region": "Mondstadt",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "lumine",
@@ -665,7 +947,33 @@
     "rarity": 5,
     "element": "None",
     "weaponType": "sword",
-    "region": "Other"
+    "region": "Other",
+    "talentBoostsByElement": {
+      "Anemo": {
+        "c3": "burst",
+        "c5": "skill"
+      },
+      "Geo": {
+        "c3": "burst",
+        "c5": "skill"
+      },
+      "Electro": {
+        "c3": "burst",
+        "c5": "skill"
+      },
+      "Dendro": {
+        "c3": "skill",
+        "c5": "burst"
+      },
+      "Hydro": {
+        "c3": "skill",
+        "c5": "burst"
+      },
+      "Pyro": {
+        "c3": "skill",
+        "c5": "burst"
+      }
+    }
   },
   {
     "id": "lynette",
@@ -675,7 +983,11 @@
     "rarity": 4,
     "element": "Anemo",
     "weaponType": "sword",
-    "region": "Fontaine"
+    "region": "Fontaine",
+    "talentBoosts": {
+      "c3": "burst",
+      "c5": "skill"
+    }
   },
   {
     "id": "lyney",
@@ -685,7 +997,11 @@
     "rarity": 5,
     "element": "Pyro",
     "weaponType": "bow",
-    "region": "Fontaine"
+    "region": "Fontaine",
+    "talentBoosts": {
+      "c3": "auto",
+      "c5": "burst"
+    }
   },
   {
     "id": "mavuika",
@@ -695,7 +1011,11 @@
     "rarity": 5,
     "element": "Pyro",
     "weaponType": "claymore",
-    "region": "Natlan"
+    "region": "Natlan",
+    "talentBoosts": {
+      "c3": "burst",
+      "c5": "skill"
+    }
   },
   {
     "id": "mika",
@@ -705,7 +1025,11 @@
     "rarity": 4,
     "element": "Cryo",
     "weaponType": "polearm",
-    "region": "Mondstadt"
+    "region": "Mondstadt",
+    "talentBoosts": {
+      "c3": "burst",
+      "c5": "skill"
+    }
   },
   {
     "id": "mona",
@@ -715,7 +1039,11 @@
     "rarity": 5,
     "element": "Hydro",
     "weaponType": "catalyst",
-    "region": "Mondstadt"
+    "region": "Mondstadt",
+    "talentBoosts": {
+      "c3": "burst",
+      "c5": "skill"
+    }
   },
   {
     "id": "mualani",
@@ -725,7 +1053,11 @@
     "rarity": 5,
     "element": "Hydro",
     "weaponType": "catalyst",
-    "region": "Natlan"
+    "region": "Natlan",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "nahida",
@@ -735,7 +1067,11 @@
     "rarity": 5,
     "element": "Dendro",
     "weaponType": "catalyst",
-    "region": "Sumeru"
+    "region": "Sumeru",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "navia",
@@ -745,7 +1081,11 @@
     "rarity": 5,
     "element": "Geo",
     "weaponType": "claymore",
-    "region": "Fontaine"
+    "region": "Fontaine",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "nefer",
@@ -755,7 +1095,11 @@
     "rarity": 5,
     "element": "Dendro",
     "weaponType": "catalyst",
-    "region": "Nod-Krai"
+    "region": "Nod-Krai",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "neuvillette",
@@ -765,7 +1109,11 @@
     "rarity": 5,
     "element": "Hydro",
     "weaponType": "catalyst",
-    "region": "Fontaine"
+    "region": "Fontaine",
+    "talentBoosts": {
+      "c3": "auto",
+      "c5": "burst"
+    }
   },
   {
     "id": "nicole",
@@ -775,7 +1123,11 @@
     "rarity": 5,
     "element": "Pyro",
     "weaponType": "catalyst",
-    "region": "Other"
+    "region": "Other",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "nilou",
@@ -785,7 +1137,11 @@
     "rarity": 5,
     "element": "Hydro",
     "weaponType": "sword",
-    "region": "Sumeru"
+    "region": "Sumeru",
+    "talentBoosts": {
+      "c3": "burst",
+      "c5": "skill"
+    }
   },
   {
     "id": "ningguang",
@@ -795,7 +1151,11 @@
     "rarity": 4,
     "element": "Geo",
     "weaponType": "catalyst",
-    "region": "Liyue"
+    "region": "Liyue",
+    "talentBoosts": {
+      "c3": "burst",
+      "c5": "skill"
+    }
   },
   {
     "id": "noelle",
@@ -805,7 +1165,11 @@
     "rarity": 4,
     "element": "Geo",
     "weaponType": "claymore",
-    "region": "Mondstadt"
+    "region": "Mondstadt",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "odette",
@@ -815,7 +1179,11 @@
     "rarity": 5,
     "element": "Cryo",
     "weaponType": "sword",
-    "region": "Snezhnaya"
+    "region": "Snezhnaya",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "ororon",
@@ -825,7 +1193,11 @@
     "rarity": 4,
     "element": "Electro",
     "weaponType": "bow",
-    "region": "Natlan"
+    "region": "Natlan",
+    "talentBoosts": {
+      "c3": "burst",
+      "c5": "skill"
+    }
   },
   {
     "id": "prune",
@@ -835,7 +1207,11 @@
     "rarity": 4,
     "element": "Anemo",
     "weaponType": "catalyst",
-    "region": "Mondstadt"
+    "region": "Mondstadt",
+    "talentBoosts": {
+      "c3": "burst",
+      "c5": "skill"
+    }
   },
   {
     "id": "qiqi",
@@ -845,7 +1221,11 @@
     "rarity": 5,
     "element": "Cryo",
     "weaponType": "sword",
-    "region": "Liyue"
+    "region": "Liyue",
+    "talentBoosts": {
+      "c3": "burst",
+      "c5": "skill"
+    }
   },
   {
     "id": "raiden-shogun",
@@ -855,7 +1235,11 @@
     "rarity": 5,
     "element": "Electro",
     "weaponType": "polearm",
-    "region": "Inazuma"
+    "region": "Inazuma",
+    "talentBoosts": {
+      "c3": "burst",
+      "c5": "skill"
+    }
   },
   {
     "id": "razor",
@@ -865,7 +1249,11 @@
     "rarity": 4,
     "element": "Electro",
     "weaponType": "claymore",
-    "region": "Mondstadt"
+    "region": "Mondstadt",
+    "talentBoosts": {
+      "c3": "burst",
+      "c5": "skill"
+    }
   },
   {
     "id": "rosaria",
@@ -875,7 +1263,11 @@
     "rarity": 4,
     "element": "Cryo",
     "weaponType": "polearm",
-    "region": "Mondstadt"
+    "region": "Mondstadt",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "sandrone",
@@ -885,7 +1277,11 @@
     "rarity": 5,
     "element": "Cryo",
     "weaponType": "claymore",
-    "region": "Snezhnaya"
+    "region": "Snezhnaya",
+    "talentBoosts": {
+      "c3": "auto",
+      "c5": "burst"
+    }
   },
   {
     "id": "sangonomiya-kokomi",
@@ -895,7 +1291,11 @@
     "rarity": 5,
     "element": "Hydro",
     "weaponType": "catalyst",
-    "region": "Inazuma"
+    "region": "Inazuma",
+    "talentBoosts": {
+      "c3": "burst",
+      "c5": "skill"
+    }
   },
   {
     "id": "sayu",
@@ -905,7 +1305,11 @@
     "rarity": 4,
     "element": "Anemo",
     "weaponType": "claymore",
-    "region": "Inazuma"
+    "region": "Inazuma",
+    "talentBoosts": {
+      "c3": "burst",
+      "c5": "skill"
+    }
   },
   {
     "id": "sethos",
@@ -915,7 +1319,11 @@
     "rarity": 4,
     "element": "Electro",
     "weaponType": "bow",
-    "region": "Sumeru"
+    "region": "Sumeru",
+    "talentBoosts": {
+      "c3": "auto",
+      "c5": "burst"
+    }
   },
   {
     "id": "shenhe",
@@ -925,7 +1333,11 @@
     "rarity": 5,
     "element": "Cryo",
     "weaponType": "polearm",
-    "region": "Liyue"
+    "region": "Liyue",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "shikanoin-heizou",
@@ -935,7 +1347,11 @@
     "rarity": 4,
     "element": "Anemo",
     "weaponType": "catalyst",
-    "region": "Inazuma"
+    "region": "Inazuma",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "sigewinne",
@@ -945,7 +1361,11 @@
     "rarity": 5,
     "element": "Hydro",
     "weaponType": "bow",
-    "region": "Fontaine"
+    "region": "Fontaine",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "skirk",
@@ -955,7 +1375,11 @@
     "rarity": 5,
     "element": "Cryo",
     "weaponType": "sword",
-    "region": "Other"
+    "region": "Other",
+    "talentBoosts": {
+      "c3": "burst",
+      "c5": "skill"
+    }
   },
   {
     "id": "sucrose",
@@ -965,7 +1389,11 @@
     "rarity": 4,
     "element": "Anemo",
     "weaponType": "catalyst",
-    "region": "Mondstadt"
+    "region": "Mondstadt",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "tartaglia",
@@ -975,7 +1403,11 @@
     "rarity": 5,
     "element": "Hydro",
     "weaponType": "bow",
-    "region": "Snezhnaya"
+    "region": "Snezhnaya",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "thoma",
@@ -985,7 +1417,11 @@
     "rarity": 4,
     "element": "Pyro",
     "weaponType": "polearm",
-    "region": "Inazuma"
+    "region": "Inazuma",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "tighnari",
@@ -995,7 +1431,11 @@
     "rarity": 5,
     "element": "Dendro",
     "weaponType": "bow",
-    "region": "Sumeru"
+    "region": "Sumeru",
+    "talentBoosts": {
+      "c3": "burst",
+      "c5": "skill"
+    }
   },
   {
     "id": "varesa",
@@ -1005,7 +1445,11 @@
     "rarity": 5,
     "element": "Electro",
     "weaponType": "catalyst",
-    "region": "Natlan"
+    "region": "Natlan",
+    "talentBoosts": {
+      "c3": "burst",
+      "c5": "auto"
+    }
   },
   {
     "id": "varka",
@@ -1015,7 +1459,11 @@
     "rarity": 5,
     "element": "Anemo",
     "weaponType": "claymore",
-    "region": "Mondstadt"
+    "region": "Mondstadt",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "venti",
@@ -1025,7 +1473,11 @@
     "rarity": 5,
     "element": "Anemo",
     "weaponType": "bow",
-    "region": "Mondstadt"
+    "region": "Mondstadt",
+    "talentBoosts": {
+      "c3": "burst",
+      "c5": "skill"
+    }
   },
   {
     "id": "vesna",
@@ -1035,7 +1487,11 @@
     "rarity": 5,
     "element": "Anemo",
     "weaponType": "sword",
-    "region": "Snezhnaya"
+    "region": "Snezhnaya",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "vodyanitsa",
@@ -1045,7 +1501,11 @@
     "rarity": 5,
     "element": "Hydro",
     "weaponType": "catalyst",
-    "region": "Snezhnaya"
+    "region": "Snezhnaya",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "wanderer",
@@ -1055,7 +1515,11 @@
     "rarity": 5,
     "element": "Anemo",
     "weaponType": "catalyst",
-    "region": "Sumeru"
+    "region": "Sumeru",
+    "talentBoosts": {
+      "c3": "burst",
+      "c5": "skill"
+    }
   },
   {
     "id": "wriothesley",
@@ -1065,7 +1529,11 @@
     "rarity": 5,
     "element": "Cryo",
     "weaponType": "catalyst",
-    "region": "Fontaine"
+    "region": "Fontaine",
+    "talentBoosts": {
+      "c3": "auto",
+      "c5": "burst"
+    }
   },
   {
     "id": "xiangling",
@@ -1075,7 +1543,11 @@
     "rarity": 4,
     "element": "Pyro",
     "weaponType": "polearm",
-    "region": "Liyue"
+    "region": "Liyue",
+    "talentBoosts": {
+      "c3": "burst",
+      "c5": "skill"
+    }
   },
   {
     "id": "xianyun",
@@ -1085,7 +1557,11 @@
     "rarity": 5,
     "element": "Anemo",
     "weaponType": "catalyst",
-    "region": "Liyue"
+    "region": "Liyue",
+    "talentBoosts": {
+      "c3": "burst",
+      "c5": "skill"
+    }
   },
   {
     "id": "xiao",
@@ -1095,7 +1571,11 @@
     "rarity": 5,
     "element": "Anemo",
     "weaponType": "polearm",
-    "region": "Liyue"
+    "region": "Liyue",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "xilonen",
@@ -1105,7 +1585,11 @@
     "rarity": 5,
     "element": "Geo",
     "weaponType": "sword",
-    "region": "Natlan"
+    "region": "Natlan",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "xingqiu",
@@ -1115,7 +1599,11 @@
     "rarity": 4,
     "element": "Hydro",
     "weaponType": "sword",
-    "region": "Liyue"
+    "region": "Liyue",
+    "talentBoosts": {
+      "c3": "burst",
+      "c5": "skill"
+    }
   },
   {
     "id": "xinyan",
@@ -1125,7 +1613,11 @@
     "rarity": 4,
     "element": "Pyro",
     "weaponType": "claymore",
-    "region": "Liyue"
+    "region": "Liyue",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "yae-miko",
@@ -1135,7 +1627,11 @@
     "rarity": 5,
     "element": "Electro",
     "weaponType": "catalyst",
-    "region": "Inazuma"
+    "region": "Inazuma",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "yanfei",
@@ -1145,7 +1641,11 @@
     "rarity": 4,
     "element": "Pyro",
     "weaponType": "catalyst",
-    "region": "Liyue"
+    "region": "Liyue",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "yaoyao",
@@ -1155,7 +1655,11 @@
     "rarity": 4,
     "element": "Dendro",
     "weaponType": "polearm",
-    "region": "Liyue"
+    "region": "Liyue",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "yelan",
@@ -1165,7 +1669,11 @@
     "rarity": 5,
     "element": "Hydro",
     "weaponType": "bow",
-    "region": "Liyue"
+    "region": "Liyue",
+    "talentBoosts": {
+      "c3": "burst",
+      "c5": "skill"
+    }
   },
   {
     "id": "yoimiya",
@@ -1175,7 +1683,11 @@
     "rarity": 5,
     "element": "Pyro",
     "weaponType": "bow",
-    "region": "Inazuma"
+    "region": "Inazuma",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "yumemizuki-mizuki",
@@ -1185,7 +1697,11 @@
     "rarity": 5,
     "element": "Anemo",
     "weaponType": "catalyst",
-    "region": "Inazuma"
+    "region": "Inazuma",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "yun-jin",
@@ -1195,7 +1711,11 @@
     "rarity": 4,
     "element": "Geo",
     "weaponType": "polearm",
-    "region": "Liyue"
+    "region": "Liyue",
+    "talentBoosts": {
+      "c3": "burst",
+      "c5": "skill"
+    }
   },
   {
     "id": "zhongli",
@@ -1205,7 +1725,11 @@
     "rarity": 5,
     "element": "Geo",
     "weaponType": "polearm",
-    "region": "Liyue"
+    "region": "Liyue",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   },
   {
     "id": "zibai",
@@ -1215,6 +1739,10 @@
     "rarity": 5,
     "element": "Geo",
     "weaponType": "sword",
-    "region": "Liyue"
+    "region": "Liyue",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "burst"
+    }
   }
 ]
