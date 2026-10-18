@@ -10,7 +10,7 @@ export const DEFAULT_DETECTION_SETTINGS: DetectionSettings = {
   minCardSize: 24,
   maxCardSizeRatio: 1,
   minAspectRatio: 0.35,
-  maxAspectRatio: 2.5,
+  maxAspectRatio: 1.35,
   minConfidence: 0.35,
   sizeTolerance: 0.12,
   alignmentTolerance: 0.08,

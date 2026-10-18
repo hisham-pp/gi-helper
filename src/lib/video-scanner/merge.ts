@@ -84,7 +84,7 @@ export class SightingMerger {
     // A frame shows each card once; if it reports a material twice, keep the clearer card.
     const perFrame = new Map<string, CardRecognition>();
     for (const card of cards) {
-      if (!card.material) continue;
+      if ((card.kind && card.kind !== "material") || !card.material) continue;
       const prev = perFrame.get(card.material.id);
       if (!prev || card.confidence > prev.confidence) perFrame.set(card.material.id, card);
     }

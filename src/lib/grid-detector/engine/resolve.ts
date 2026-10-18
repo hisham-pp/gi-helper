@@ -56,7 +56,12 @@ export function isPlausibleGrid(lat: Lattice, imageArea: number): boolean {
     const area = (c.right - c.left) * (c.bottom - c.top);
     return q >= 0.7 && area >= 0.35 * imageArea;
   }
-  if (full.length === 2) return q >= 0.7;
+  if (full.length === 2) {
+    const cols = new Set(full.map((c) => c.col)).size;
+    const totalArea = full.reduce((s, c) => s + (c.right - c.left) * (c.bottom - c.top), 0);
+    if (cols === 1 && totalArea < 0.35 * imageArea) return false;
+    return q >= 0.7;
+  }
   return q >= 0.5;
 }
 
