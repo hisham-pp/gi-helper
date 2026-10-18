@@ -5,7 +5,8 @@
     "name": "Aether",
     "rarity": 5,
     "element": "None",
-    "weaponType": "sword"
+    "weaponType": "sword",
+    "region": "Other"
   },
   {
     "id": "aino",
@@ -44,7 +45,8 @@
     "title": "Savior From Another World",
     "rarity": 5,
     "element": "Cryo",
-    "weaponType": "bow"
+    "weaponType": "bow",
+    "region": "Other"
   },
   {
     "id": "alyosha",
@@ -53,7 +55,8 @@
     "title": "Swift-Striding Hound",
     "rarity": 4,
     "element": "Electro",
-    "weaponType": "polearm"
+    "weaponType": "polearm",
+    "region": "Snezhnaya"
   },
   {
     "id": "amber",
@@ -661,7 +664,8 @@
     "name": "Lumine",
     "rarity": 5,
     "element": "None",
-    "weaponType": "sword"
+    "weaponType": "sword",
+    "region": "Other"
   },
   {
     "id": "lynette",
@@ -770,7 +774,8 @@
     "title": "Clamor Within",
     "rarity": 5,
     "element": "Pyro",
-    "weaponType": "catalyst"
+    "weaponType": "catalyst",
+    "region": "Other"
   },
   {
     "id": "nilou",
@@ -809,7 +814,8 @@
     "title": "Swirling Snow",
     "rarity": 5,
     "element": "Cryo",
-    "weaponType": "sword"
+    "weaponType": "sword",
+    "region": "Snezhnaya"
   },
   {
     "id": "ororon",
@@ -878,7 +884,8 @@
     "title": "Mirrored Analysis",
     "rarity": 5,
     "element": "Cryo",
-    "weaponType": "claymore"
+    "weaponType": "claymore",
+    "region": "Snezhnaya"
   },
   {
     "id": "sangonomiya-kokomi",
@@ -947,7 +954,8 @@
     "title": "Void Star",
     "rarity": 5,
     "element": "Cryo",
-    "weaponType": "sword"
+    "weaponType": "sword",
+    "region": "Other"
   },
   {
     "id": "sucrose",
@@ -1026,7 +1034,8 @@
     "title": "Snowy Banquet's Sharp Blade",
     "rarity": 5,
     "element": "Anemo",
-    "weaponType": "sword"
+    "weaponType": "sword",
+    "region": "Snezhnaya"
   },
   {
     "id": "vodyanitsa",
@@ -1035,7 +1044,8 @@
     "title": "Lingering Siren-Song",
     "rarity": 5,
     "element": "Hydro",
-    "weaponType": "catalyst"
+    "weaponType": "catalyst",
+    "region": "Snezhnaya"
   },
   {
     "id": "wanderer",
@@ -1204,6 +1214,7 @@
     "title": "White Horse's Fleeting Spring",
     "rarity": 5,
     "element": "Geo",
-    "weaponType": "sword"
+    "weaponType": "sword",
+    "region": "Liyue"
   }
 ]
