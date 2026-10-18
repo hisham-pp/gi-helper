@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
-import { clientIp, isSameOrigin } from "@/lib/request-client";
-import { SCANNERS, type ScanStatsResponse } from "@/lib/scan-stats";
-import { getScanStats, recordScanRun } from "@/lib/scan-stats-server";
-import { getRealtimeConfig, RpcError } from "@/lib/supabase-rpc";
+import { clientIp, isSameOrigin } from "@/lib/server/request-client";
+import { SCANNERS, type ScanStatsResponse } from "@/lib/stats";
+import { getScanStats, recordScanRun } from "@/lib/stats/server";
+import { getRealtimeConfig, RpcError } from "@/lib/server/supabase-rpc";
 
 export const dynamic = "force-dynamic";
 

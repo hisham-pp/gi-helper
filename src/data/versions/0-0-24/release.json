@@ -1,0 +1,27 @@
+{
+  "title": "Mobile haptic feedback & modular architecture",
+  "date": "2026-10-18",
+  "summary": "Introduces tactile haptic feedback across mobile and PWA touch interactions, alongside a full modernization of the core library into clean, modular domain packages.",
+  "changes": [
+    {
+      "type": "new",
+      "text": "Cross-platform mobile haptic feedback: crisp tactile micro-pulses (12–15ms) when switching tabs in ScannerTabs, PillTabs, PillNav, and GlassSegmentedControl."
+    },
+    {
+      "type": "new",
+      "text": "Tactile review interactions: light and medium haptic responses when confirming, editing, or deleting equipment cards in the Scan Review modal."
+    },
+    {
+      "type": "new",
+      "text": "Multi-tier haptic driver engine: automatic selection between Web Vibration API, iOS WebKit switch fallback, and silent desktop fallback, respecting prefers-reduced-motion."
+    },
+    {
+      "type": "improved",
+      "text": "Modular lib architecture: reorganized shared utilities into domain-focused modules (good/, scanner/, hooks/, materials/, stats/, seo/, server/, storage/, versions/)."
+    },
+    {
+      "type": "improved",
+      "text": "Unified React hooks package: all motion and animation hooks consolidated under @/lib/hooks for cleaner imports and tree-shaking."
+    }
+  ]
+}

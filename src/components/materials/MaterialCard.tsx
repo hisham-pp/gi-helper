@@ -4,7 +4,7 @@ import React, { memo, useState } from "react";
 import Image from "next/image";
 import { Copy, Check, Info } from "lucide-react";
 import { MaterialItem } from "@/lib/types";
-import { bagOrder, getRarityStyles, getMaterialCategoryLabel } from "@/lib/material-ui";
+import { bagOrder, getRarityStyles, getMaterialCategoryLabel } from "@/lib/materials/ui";
 import { toast } from "sonner";
 import { MaterialThumb } from "@/components/ui/MaterialThumb";
 

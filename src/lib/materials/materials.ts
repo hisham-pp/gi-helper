@@ -1,10 +1,10 @@
 import materialsData from "@/data/materials.json";
 import otherMaterialsData from "@/data/other-materials.json";
-import { MaterialItem } from "./types";
+import type { MaterialItem } from "@/lib/types";
 
-// Helpers without the catalog live in ./material-ui; client code that doesn't
+// Helpers without the catalog live in ./ui; client code that doesn't
 // need getAllMaterials() should import them from there.
-export * from "./material-ui";
+export * from "./ui";
 
 /**
  * Returns all materials guaranteed sorted by canonical application order.

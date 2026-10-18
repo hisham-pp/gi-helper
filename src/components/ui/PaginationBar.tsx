@@ -2,8 +2,7 @@
 
 import React, { useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion";
-import { useWiggleOnChange } from "@/lib/use-wiggle-on-change";
+import { usePrefersReducedMotion, useWiggleOnChange } from "@/lib/hooks";
 
 interface PaginationBarProps {
   /** Current page, 1-based and already clamped to `totalPages`. */

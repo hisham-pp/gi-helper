@@ -10,11 +10,11 @@ import type { ScanningFileItem } from "./ScanningAnimation";
 import { cropToBlob } from "@/lib/grid-detector";
 import { isMaterialDetectionError, type CardRecognition, type ScanProgress } from "@/lib/material-detector";
 import { useMaterialScanClient } from "@/lib/material-detector/react";
-import { useScannerSettings } from "@/lib/scanner-settings";
-import { setScannerInventory } from "@/lib/scanner-inventory";
+import { useScannerSettings } from "@/lib/scanner/settings";
+import { setScannerInventory } from "@/lib/scanner/inventory";
 import type { DetectedItem, EquipmentReviewItem, ScannedReviewItem } from "@/lib/types";
-import { materialThumbUrl } from "@/lib/material-ui";
-import { recordScan } from "@/lib/scan-stats";
+import { materialThumbUrl } from "@/lib/materials/ui";
+import { recordScan } from "@/lib/stats";
 import {
   EQUIPMENT_KINDS,
   EquipmentStitcher,
@@ -22,8 +22,8 @@ import {
   uniqueByItem,
   uniquePanels,
   type EquipmentSighting,
-} from "@/lib/scan-equipment";
-import { getOwnedCharacters } from "@/lib/good-inventory";
+} from "@/lib/scanner/equipment";
+import { getOwnedCharacters } from "@/lib/good/inventory";
 import {
   equipmentIcon,
   equipmentReviewItem,

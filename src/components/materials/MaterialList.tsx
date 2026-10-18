@@ -20,8 +20,8 @@ import {
   getMaterialCategoryLabel,
   MaterialCategory,
   getRarityStyles,
-} from "@/lib/material-ui";
-import { useMaterialDescriptions } from "@/lib/material-descriptions";
+} from "@/lib/materials/ui";
+import { useMaterialDescriptions } from "@/lib/materials/descriptions";
 import { MaterialCard } from "./MaterialCard";
 import { CategoryFilterPills } from "./CategoryFilterPills";
 import { MaterialTableView } from "./MaterialTableView";
@@ -31,8 +31,7 @@ import { PaginationBar } from "@/components/ui/PaginationBar";
 import { ResetFiltersButton } from "@/components/ui/ResetFiltersButton";
 import { SearchField } from "@/components/ui/SearchField";
 import { PillTabs } from "@/components/ui/PillTabs";
-import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion";
-import { useWiggleOnChange } from "@/lib/use-wiggle-on-change";
+import { usePrefersReducedMotion, useWiggleOnChange } from "@/lib/hooks";
 
 type SortOption =
   | "order-asc"

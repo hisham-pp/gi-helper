@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { detectImageType } from "@/lib/feedback/images";
-import { clientIp } from "@/lib/request-client";
+import { clientIp } from "@/lib/server/request-client";
 import {
   FeedbackError,
   feedbackErrorResponse,

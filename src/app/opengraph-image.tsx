@@ -1,7 +1,7 @@
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
-import { SITE } from "@/lib/site";
+import { SITE } from "@/lib/seo";
 
 /** Social share card (Open Graph; X/Twitter falls back to it too). */
 export const alt = SITE.ogImageAlt;

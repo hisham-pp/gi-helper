@@ -1,7 +1,7 @@
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { z } from "zod";
-import { CHANGE_TYPES, type VersionRelease } from "./release-notes";
+import { CHANGE_TYPES, type VersionRelease } from "./notes";
 
 /**
  * Release notes live in `src/data/versions/<major>-<minor>-<patch>/release.json`.
@@ -13,7 +13,7 @@ export const RELEASE_FILE = "release.json";
 
 const VERSION_FOLDER = /^(\d+)-(\d+)-(\d+)$/;
 
-// Shapes and paging live in ./release-notes (no fs, so the browser can use them)
+// Shapes and paging live in ./notes (no fs, so the browser can use them)
 export {
   CHANGE_TYPES,
   RELEASES_PER_PAGE,
@@ -22,7 +22,7 @@ export {
   type ReleaseChange,
   type ReleasePage,
   type VersionRelease,
-} from "./release-notes";
+} from "./notes";
 
 const releaseSchema = z.object({
   title: z.string().min(1),

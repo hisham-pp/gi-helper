@@ -28,10 +28,12 @@ import {
   PUBLIC_FEEDBACK_KIND,
   type FeedbackKind,
 } from "@/lib/feedback/types";
-import { useModalMotion } from "@/lib/use-modal-motion";
-import { usePauseBackground } from "@/lib/use-pause-background";
-import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion";
-import { useWiggleOnChange } from "@/lib/use-wiggle-on-change";
+import {
+  useModalMotion,
+  usePauseBackground,
+  usePrefersReducedMotion,
+  useWiggleOnChange,
+} from "@/lib/hooks";
 import { ANONYMOUS_NAME, FeedbackAvatar } from "./FeedbackCard";
 import { KIND_META } from "./feedback-kinds";
 

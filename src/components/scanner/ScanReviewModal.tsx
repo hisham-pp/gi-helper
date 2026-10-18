@@ -31,14 +31,13 @@ import {
   AlertTriangle,
 } from "lucide-react";
 import { toast } from "sonner";
-import { getRarityStyles } from "@/lib/material-ui";
+import { getRarityStyles } from "@/lib/materials/ui";
 import { GlassInput } from "@/components/ui/GlassInput";
 import { MaterialThumb } from "@/components/ui/MaterialThumb";
-import { usePauseBackground } from "@/lib/use-pause-background";
-import { useModalMotion } from "@/lib/use-modal-motion";
+import { useModalMotion, usePauseBackground } from "@/lib/hooks";
 import { haptics } from "@/lib/haptics";
-import { useOwnedArtifacts, useOwnedWeapons } from "@/lib/good-inventory";
-import { fixedMainStat, splitArtifactItem } from "@/lib/scan-equipment";
+import { useOwnedArtifacts, useOwnedWeapons } from "@/lib/good/inventory";
+import { fixedMainStat, splitArtifactItem } from "@/lib/scanner/equipment";
 import { MAIN_STATS_BY_SLOT } from "@/lib/good/types";
 import { EquipmentReviewRow } from "./EquipmentReviewRow";
 import { equipmentName, type EquipmentConfirm } from "./equipment-review";

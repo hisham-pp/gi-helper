@@ -2,8 +2,7 @@
 
 import React, { forwardRef, useImperativeHandle, useRef, useState } from "react";
 import { Eye, EyeOff, X, type LucideIcon } from "lucide-react";
-import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion";
-import { playWiggle } from "@/lib/use-wiggle-on-change";
+import { playWiggle, usePrefersReducedMotion } from "@/lib/hooks";
 
 export interface GlassInputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "value" | "onChange" | "size"> {

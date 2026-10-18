@@ -17,10 +17,10 @@ import {
   type VideoScanProgress,
 } from "@/lib/video-scanner";
 import type { PixelRect } from "@/lib/grid-detector";
-import { useScannerSettings } from "@/lib/scanner-settings";
-import { setScannerInventory } from "@/lib/scanner-inventory";
+import { useScannerSettings } from "@/lib/scanner/settings";
+import { setScannerInventory } from "@/lib/scanner/inventory";
 import type { DetectedItem, EquipmentReviewItem, ScannedReviewItem } from "@/lib/types";
-import { getOwnedCharacters } from "@/lib/good-inventory";
+import { getOwnedCharacters } from "@/lib/good/inventory";
 import {
   equipmentIcon,
   equipmentReviewItem,
@@ -29,8 +29,8 @@ import {
   saveScannedEquipment,
   type EquipmentConfirm,
 } from "./equipment-review";
-import { materialThumbUrl } from "@/lib/material-ui";
-import { recordScan } from "@/lib/scan-stats";
+import { materialThumbUrl } from "@/lib/materials/ui";
+import { recordScan } from "@/lib/stats";
 
 interface VideoScannerViewProps {
   id?: string;

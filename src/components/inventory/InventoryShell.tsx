@@ -8,9 +8,9 @@ import { toast } from "sonner";
 import { LazySendFeedbackModal, preloadSendFeedbackModal } from "@/components/feedback/lazy-modals";
 import { PillNav, type PillNavItem } from "@/components/layout/PillNav";
 import { markFeedbackAsked, shouldAskForFeedback } from "@/lib/feedback/prompt";
-import { downloadGOOD } from "@/lib/good-format";
-import type { ImportSummary } from "@/lib/good-import";
-import { useGOODInventory } from "@/lib/good-inventory";
+import { downloadGOOD } from "@/lib/good/format";
+import type { ImportSummary } from "@/lib/good/import";
+import { useGOODInventory } from "@/lib/good/inventory";
 import { LazyImportGOODModal, preloadImportGOODModal } from "./lazy-modals";
 import { useHydrated } from "./shared";
 

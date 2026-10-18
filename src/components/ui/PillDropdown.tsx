@@ -3,8 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { ChevronDown } from "lucide-react";
-import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion";
-import { useWiggleOnChange } from "@/lib/use-wiggle-on-change";
+import { usePrefersReducedMotion, useWiggleOnChange } from "@/lib/hooks";
 
 export interface PillDropdownOption<T extends string = string> {
   value: T;

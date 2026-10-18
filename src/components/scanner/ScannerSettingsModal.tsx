@@ -20,7 +20,7 @@ import {
   AiProvider,
   getActiveProviderConfig,
   ServerEnvProviderInfo,
-} from "@/lib/scanner-settings";
+} from "@/lib/scanner/settings";
 import {
   listSupportedAdapters,
   getAiAdapter,
@@ -30,8 +30,7 @@ import { toast } from "sonner";
 
 import { GlassInput } from "@/components/ui/GlassInput";
 import { PillDropdown } from "@/components/ui/PillDropdown";
-import { usePauseBackground } from "@/lib/use-pause-background";
-import { useModalMotion } from "@/lib/use-modal-motion";
+import { useModalMotion, usePauseBackground } from "@/lib/hooks";
 
 interface ScannerSettingsModalProps {
   onClose: () => void;

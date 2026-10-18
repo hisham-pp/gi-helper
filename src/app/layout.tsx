@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { GlassToaster } from "@/components/ui/GlassToaster";
 import { BackgroundEffects } from "@/components/BackgroundEffects";
-import { SITE } from "@/lib/site";
+import { SITE } from "@/lib/seo";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next"
 

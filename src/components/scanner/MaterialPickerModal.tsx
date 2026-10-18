@@ -12,7 +12,7 @@ import {
 } from "@/lib/materials";
 import { GlassInput } from "@/components/ui/GlassInput";
 import { MaterialThumb } from "@/components/ui/MaterialThumb";
-import { useModalMotion } from "@/lib/use-modal-motion";
+import { useModalMotion } from "@/lib/hooks";
 
 /** Most options rendered at once; narrowing the search shows the rest. */
 const MAX_OPTIONS = 100;

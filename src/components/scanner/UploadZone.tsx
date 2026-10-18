@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { FolderOpen, ImageIcon } from "lucide-react";
-import { markSampleFile } from "@/lib/scan-stats";
+import { markSampleFile } from "@/lib/stats";
 import { ScanningAnimation, ScanningFileItem } from "./ScanningAnimation";
 import { ScanUploadIcon } from "./ScanUploadIcon";
 

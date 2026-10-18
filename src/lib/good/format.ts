@@ -1,7 +1,7 @@
-import { DetectedItem } from "./types";
-import { buildGOODDocument } from "./good/export";
-import { toGOODKey } from "./good/keys";
-import type { GoodDocument } from "./good/types";
+import type { DetectedItem } from "@/lib/types";
+import { buildGOODDocument } from "./export";
+import { toGOODKey } from "./keys";
+import type { GoodDocument } from "./types";
 
 /** GOOD key of a material name (see toGOODKey). */
 export const toGOODFormatName = (name: string) => toGOODKey(name);

@@ -20,8 +20,8 @@ import {
   weaponIconUrl,
   type WeaponInfo,
 } from "@/lib/good/catalog";
-import { useOwnedWeapons } from "@/lib/good-inventory";
-import { getRarityStyles } from "@/lib/material-ui";
+import { useOwnedWeapons } from "@/lib/good/inventory";
+import { getRarityStyles } from "@/lib/materials/ui";
 
 type SortOption = "rarity" | "atk" | "name";
 

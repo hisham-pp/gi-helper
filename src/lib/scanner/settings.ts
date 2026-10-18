@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { AiProviderId } from "./ai/adapters/types";
+import { AiProviderId } from "@/lib/ai/adapters/types";
 
 export type AiProvider = AiProviderId;
 

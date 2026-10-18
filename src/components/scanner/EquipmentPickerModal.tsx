@@ -7,9 +7,9 @@ import { GameIcon } from "@/components/ui/GameIcon";
 import { characterAvatarUrl, getAllCharacters } from "@/lib/characters";
 import { artifactIconUrl, getAllArtifactSets, getAllWeapons, weaponIconUrl } from "@/lib/good/catalog";
 import { SLOT_KEYS, SLOT_NAMES } from "@/lib/good/types";
-import { getRarityStyles } from "@/lib/material-ui";
+import { getRarityStyles } from "@/lib/materials/ui";
 import type { EquipmentReviewItem } from "@/lib/types";
-import { useModalMotion } from "@/lib/use-modal-motion";
+import { useModalMotion } from "@/lib/hooks";
 
 /** Most options rendered at once; narrowing the search shows the rest. */
 const MAX_OPTIONS = 120;

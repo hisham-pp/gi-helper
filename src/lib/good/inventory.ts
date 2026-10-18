@@ -1,9 +1,9 @@
 "use client";
 
-import { createLocalStore, readArray } from "./local-store";
-import { useScannerInventory } from "./scanner-inventory";
-import { buildGOODDocument, hasMainStat } from "./good/export";
-import type { GoodCharacter, GoodDocument, OwnedArtifact, OwnedWeapon } from "./good/types";
+import { createLocalStore, readArray } from "@/lib/storage/local-store";
+import { useScannerInventory } from "@/lib/scanner/inventory";
+import { buildGOODDocument, hasMainStat } from "./export";
+import type { GoodCharacter, GoodDocument, OwnedArtifact, OwnedWeapon } from "./types";
 
 /**
  * The rest of the inventory beside scanned materials (scanner-inventory.ts):
