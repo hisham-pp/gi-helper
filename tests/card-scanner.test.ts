@@ -206,6 +206,7 @@ const online: { samples: { file: string; kind: CardKind; cards: OnlineCard[] }[]
 
 describe("players' screenshots (pnpm fetch:online-samples)", () => {
   for (const sample of online.samples) {
+    if (!sample.cards) continue;
     const file = path.join(ONLINE, "files", sample.file);
     test(sample.file, { skip: !fs.existsSync(file) && "not downloaded" }, async () => {
       const image = await loadImage(file);

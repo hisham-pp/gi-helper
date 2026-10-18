@@ -345,6 +345,22 @@
   {
    "file": "artifacts-pc-adepti-a.png",
    "kind": "artifact",
+   "panel": {
+    "setId": "emblem-of-severed-fate",
+    "slot": "flower",
+    "rarity": 5,
+    "level": 20,
+    "locked": true,
+    "mainStatKey": "hp",
+    "mainStatValue": 4780,
+    "substats": [
+     {"key": "enerRech_", "value": 5.2},
+     {"key": "atk_", "value": 14},
+     {"key": "critRate_", "value": 7.8},
+     {"key": "atk", "value": 37}
+    ],
+    "location": "Xiangling"
+   },
    "cards": [
     [0, 1, "emblem-of-severed-fate:flower", 20, 5, true],
     [0, 2, "emblem-of-severed-fate:flower", 20, 5, true],
@@ -385,6 +401,22 @@
   {
    "file": "artifacts-pc-c.jpg",
    "kind": "artifact",
+   "panel": {
+    "setId": "echoes-of-an-offering",
+    "slot": "flower",
+    "rarity": 5,
+    "level": 20,
+    "locked": true,
+    "mainStatKey": "hp",
+    "mainStatValue": 4780,
+    "substats": [
+     {"key": "def", "value": 46},
+     {"key": "critDMG_", "value": 20.2},
+     {"key": "critRate_", "value": 2.7},
+     {"key": "atk_", "value": 16.3}
+    ],
+    "location": "KukiShinobu"
+   },
    "cards": [
     [0, 0, "echoes-of-an-offering:flower", 20, 5, true],
     [0, 1, "echoes-of-an-offering:flower", 20, 5, true],
@@ -537,6 +569,85 @@
     [3, 2, "xinyan", 1],
     [3, 3, "bennett", 1]
    ]
+  },
+  {
+   "file": "artifact-detail-go-a.png",
+   "kind": "artifact",
+   "panel": {
+    "setId": "wanderer-s-troupe",
+    "slot": "goblet",
+    "rarity": 5,
+    "level": 0,
+    "locked": false,
+    "mainStatKey": "def_",
+    "mainStatValue": 8.7,
+    "substats": [
+     {"key": "critRate_", "value": 3.1},
+     {"key": "def", "value": 21},
+     {"key": "hp_", "value": 5.3}
+    ],
+    "location": ""
+   }
+  },
+  {
+   "file": "artifact-detail-go-b.png",
+   "kind": "artifact",
+   "panel": {
+    "setId": "viridescent-venerer",
+    "slot": "sands",
+    "rarity": 5,
+    "level": 16,
+    "locked": true,
+    "mainStatKey": "eleMas",
+    "mainStatValue": 155,
+    "substats": [
+     {"key": "critRate_", "value": 6.2},
+     {"key": "hp_", "value": 4.7},
+     {"key": "def", "value": 19},
+     {"key": "critDMG_", "value": 19.4}
+    ],
+    "location": ""
+   }
+  },
+  {
+   "file": "artifact-detail-adepti.png",
+   "kind": "artifact",
+   "panel": {
+    "setId": "emblem-of-severed-fate",
+    "slot": "flower",
+    "rarity": 5,
+    "level": 20,
+    "locked": true,
+    "mainStatKey": "hp",
+    "mainStatValue": 4780,
+    "substats": [
+     {"key": "enerRech_", "value": 5.2},
+     {"key": "atk_", "value": 14},
+     {"key": "critRate_", "value": 7.8},
+     {"key": "atk", "value": 37}
+    ],
+    "location": "Xiangling"
+   }
+  },
+  {
+   "file": "artifacts-pc-d.jpg",
+   "kind": "artifact",
+   "panel": {
+    "setId": "maiden-beloved",
+    "slot": "flower",
+    "rarity": 5,
+    "level": 15,
+    "locked": false,
+    "mainStatKey": "hp",
+    "mainStatValue": 3764,
+    "substats": [
+     {"key": "def_", "value": 5.1},
+     {"key": "hp_", "value": 9.3},
+     {"key": "def", "value": 21},
+     {"key": "critRate_", "value": 6.6}
+    ],
+    "location": "Barbara"
+   }
   }
  ]
 }

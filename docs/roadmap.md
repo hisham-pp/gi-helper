@@ -154,25 +154,20 @@ Do this once, before the scanners, so each new scanner only adds recognition.
       set and slot, so the artifact atlas identifies both without reading any text.
       Done in 0.0.22, with the lock; flowers and plumes get their fixed main stat,
       the others are picked in review until the detail panel is read.
-- [ ] **Main stat and substats from the detail panel:** this needs on-device text
+- [x] **Main stat and substats from the detail panel:** this needs on-device text
       reading.
       - Option A: Tesseract.js in a worker. Snap results to the closed vocabulary
-        (about 20 stat names) and parse the numbers.
-      - Option B: glyph templates like `digit-templates.json`, extended to
-        letters, `%` and `.`.
-      - Option C: AI Vision as an opt-in fallback for low-confidence panels. That
-        gives the existing adapters a real job.
-- [ ] **Validation catches misreads:** the main-stat value follows from type,
+        (about 20 stat names) and parse the numbers. Done in 0.0.23.
+- [x] **Validation catches misreads:** the main-stat value follows from type,
       rarity and level. Substat values must be sums of valid rolls for the rarity,
       and the substat count and roll total must fit the level. Flag anything
-      impossible in review.
-- [ ] **"Tap-through" recording:** the player records the screen while tapping
+      impossible in review. Done in 0.0.23.
+- [x] **"Tap-through" recording:** the player records the screen while tapping
       artifact after artifact. The keyframe picker watches the detail panel
-      instead of the grid and reads each new artifact once. Suggest filters (5★
-      only, +16 and up) so people don't have to tap 1,500 pieces.
-- [ ] Equipped by (avatar match) and the lock state, as with weapons.
-- [ ] Review: card crop beside the parsed stats, quick edits, and invalid rolls
-      highlighted.
+      instead of the grid and reads each new artifact once. Done in 0.0.23.
+- [x] Equipped by (character name text match) and the lock state. Done in 0.0.23.
+- [x] Review: card crop beside the parsed stats, quick edits, and invalid rolls
+      highlighted. Done in 0.0.23.
 
 ---
 

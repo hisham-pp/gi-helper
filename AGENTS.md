@@ -66,7 +66,7 @@ Prefer `pnpm`; the repo pins `pnpm@10.17.1` and Node `22.x`.
 - `pnpm start`: Start the production server.
 - `pnpm test`: Run unit tests using Node's built-in test runner (`tsx --test tests/**/*.test.ts`).
 - `pnpm test:material-detector` / `pnpm eval:material-detector`: Material recognizer tests and accuracy report.
-- `pnpm fetch:online-samples` / `pnpm eval:card-scanner`: Download players' weapon, artifact, Materials-tab and character screenshots (`tests/online-samples/`) / the scanner's accuracy on them.
+- `pnpm fetch:online-samples` / `pnpm eval:card-scanner` / `pnpm eval:artifact-panel`: Download players' weapon, artifact, Materials-tab and character screenshots (`tests/online-samples/`) / evaluate card scanner and artifact detail panel accuracy.
 - `pnpm build:atlases [material|weapon|artifact|character]`: Rebuild the scanner's reference atlases from the icons (after a scrape; `sync-data` does it last).
 - `pnpm test:grid-detector` / `pnpm eval:grid-detector`: Grid detector tests and accuracy report.
 - `pnpm scrape:characters` / `scrape:weapons` / `scrape:artifacts` / `scrape:other-materials`: Rebuild the character, weapon, artifact-set and Materials-tab data and icons (update genshin-db first when new ones release). Icons come from enka.network, falling back to gi.yatta.moe.
@@ -95,7 +95,7 @@ Prefer `pnpm`; the repo pins `pnpm@10.17.1` and Node `22.x`.
 
 - When modifying the AI vision pipeline or material matcher, add or update tests in `tests/ai-vision.test.ts`.
 - When modifying the video scanner's frame selection or merging, update `tests/video-scanner.test.ts` and re-check the sample recording in the Video tab (expected numbers in `docs/video-scanner.md`).
-- When modifying the material recognizer, keep `pnpm test:material-detector` green and check `pnpm eval:material-detector` (also with `--impostors` and `--scale 0.5`); per-card ground truth is in `tests/material-detector/ground-truth.json`. For weapons, artifacts, the Materials tab and characters, run `pnpm fetch:online-samples` once, then keep `tests/card-scanner.test.ts` green and check `pnpm eval:card-scanner`; stitching and GOOD conversion are in `tests/scan-equipment.test.ts`.
+- When modifying the material recognizer, keep `pnpm test:material-detector` green and check `pnpm eval:material-detector` (also with `--impostors` and `--scale 0.5`); per-card ground truth is in `tests/material-detector/ground-truth.json`. For weapons, artifacts, the Materials tab and characters, run `pnpm fetch:online-samples` once, then keep `tests/card-scanner.test.ts` green and check `pnpm eval:card-scanner`; for artifact detail panels, keep `tests/artifact-panel.test.ts` green and check `pnpm eval:artifact-panel`; stitching and GOOD conversion are in `tests/scan-equipment.test.ts`.
 - When modifying GOOD parsing or export, the GOOD keys or the weapon/artifact/character data, update `tests/good-document.test.ts` (and `tests/e2e/fixtures/account.good.json` for the import flow).
 - When modifying the feedback filter, image checks or error messages, update `tests/feedback.test.ts`; `tests/characters.test.ts` checks the character list and avatars, `tests/scan-stats.test.ts` the scan counter's sample skipping and scanner kinds. Schema changes go in a new file under `supabase/migrations/`.
 - Always verify changes with `pnpm build` and `npx tsx --test tests/ai-vision.test.ts`.

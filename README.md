@@ -16,8 +16,8 @@ Next.js 15 (App Router), React 19, TypeScript and Tailwind CSS.
   - **Character Development Items** and **Materials**: each material and its count;
   - **Weapons**: weapon, level, refinement and lock (ascension from the level and
     the awakened icon);
-  - **Artifacts**: set, slot, rarity, level and lock (the main stat of flowers and
-    plumes; the others are picked in review, substats aren't read yet);
+  - **Artifacts**: set, slot, rarity, level, lock, main stat, and full substats with
+    roll verification from detail panel screenshots or tap-through recordings;
   - the party setup's **character list**: each character and their level.
 - **Video scanner:** drop a screen recording while you scroll any of those. The
   frames where scrolling settles are scanned; material counts are merged by vote,
@@ -78,6 +78,7 @@ from the server: each visitor enters their own in Scanner Settings.
 | `pnpm test:e2e`                                         | Playwright smoke tests against the production build (build first)    |
 | `pnpm test:material-detector` / `pnpm eval:material-detector` | Material recognizer tests / accuracy report                     |
 | `pnpm fetch:online-samples` / `pnpm eval:card-scanner`  | Download players' weapon, artifact, Materials-tab and character screenshots / accuracy report on them |
+| `pnpm eval:artifact-panel`                              | Artifact detail panel reading accuracy report                        |
 | `pnpm test:grid-detector` / `pnpm eval:grid-detector`   | Grid detector tests / accuracy report                                |
 | `pnpm sync-data`                                        | Re-scrape the game data and icons, rebuild the thumbnails and the scanner atlases |
 | `pnpm build:atlases`                                    | Rebuild the scanner's reference atlases (materials, weapons, artifacts, characters) |

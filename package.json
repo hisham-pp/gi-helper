@@ -1,6 +1,6 @@
 {
   "name": "genshin-material-tracker",
-  "version": "0.0.22",
+  "version": "0.0.23",
   "private": true,
   "packageManager": "pnpm@10.17.1",
   "engines": {
@@ -20,6 +20,7 @@
     "test:material-detector": "npx tsx --test tests/material-detector.test.ts tests/material-detector-samples.test.ts",
     "eval:material-detector": "tsx scripts/evaluate-material-detector.ts",
     "eval:card-scanner": "tsx scripts/evaluate-card-scanner.ts",
+    "eval:artifact-panel": "tsx scripts/evaluate-artifact-panel.ts",
     "fetch:online-samples": "tsx scripts/fetch-online-samples.ts",
     "build:atlases": "tsx scripts/build-atlases.ts",
     "build:artifact-stats": "tsx scripts/build-artifact-stats.ts",
