@@ -124,7 +124,7 @@ const SNAP_MIN_SHIFT = 0.03;
  */
 const EQUIPMENT_SNAP_TRIGGER = 0.15;
 /** How far the alignment search may move a box (fractions of its size). */
-const ALIGN_LIMIT = { dx: 0.06, dy: 0.05, scale: 0.08 };
+const ALIGN_LIMIT = { dx: 0.06, dy: 0.10, scale: 0.08 };
 /** Weapon and artifact boxes are often stretched by the avatar or a highlight: search further vertically. */
 const EQUIPMENT_ALIGN_LIMIT = { dx: 0.06, dy: 0.09, scale: 0.08 };
 /** Levels a weapon, an artifact or a character can show, and the prefix before them. */
@@ -206,12 +206,28 @@ function prepareBox(image: RgbaImage, box: PixelRect, bank: ReferenceBank, timer
       coarse: halve(fine0),
     };
   });
-  const coarseErrors = timer.time("coarse", () =>
-    bank.coarse.map((t) => compositeError(frames.coarse, t, frames.coarseMask)),
-  );
+  const coarseAlignments = new Map<number, Alignment>();
+  const coarseErrors = timer.time("coarse", () => {
+    const err0 = bank.coarse.map((t) => compositeError(frames.coarse, t, frames.coarseMask));
+    let minErr = err0[0];
+    for (let i = 1; i < err0.length; i++) if (err0[i] < minErr) minErr = err0[i];
+    if (bank.kind !== "material" || minErr < 0.12) return err0;
+    // When no candidate fits cleanly at identity, also check vertical shift (for offset icons or recovered boxes)
+    const alignUp: Alignment = { dx: 0, dy: -0.07, scale: 1 };
+    const fineUp = sampleCard(image, box, FINE_SIZE, alignUp);
+    const coarseUp = halve(fineUp);
+    const errUp = bank.coarse.map((t) => compositeError(coarseUp, t, frames.coarseMask));
+    return err0.map((e0, i) => {
+      if (errUp[i] < e0) {
+        coarseAlignments.set(i, alignUp);
+        return errUp[i];
+      }
+      return e0;
+    });
+  });
   let bestCoarse = 0;
   for (let i = 1; i < coarseErrors.length; i++) if (coarseErrors[i] < coarseErrors[bestCoarse]) bestCoarse = i;
-  return { box, ...frames, coarseErrors, bestCoarse };
+  return { box, ...frames, coarseErrors, bestCoarse, coarseAlignments };
 }
 
 /** True when two boxes differ by more than `tol` of the card width anywhere. */
@@ -248,7 +264,7 @@ function analyseCard(
       if (alt.coarseErrors[alt.bestCoarse] < prepared.coarseErrors[prepared.bestCoarse]) prepared = alt;
     }
   }
-  const { box, fine0, badge, fineMask, coarseErrors, bestCoarse } = prepared;
+  const { box, fine0, badge, fineMask, coarseErrors, bestCoarse, coarseAlignments } = prepared;
 
   // 3. Rarity (always read for reporting; used for ranking when enabled).
   const rarity = timer.time("rarity", () => {
@@ -286,8 +302,9 @@ function analyseCard(
   let ranked: Scored[] = timer.time("fine", () =>
     shortlist
       .map(({ index }) => {
-        const error = fineError(index, IDENTITY_ALIGNMENT);
-        return { index, error, rank: error + penalty(index), alignment: IDENTITY_ALIGNMENT };
+        const align = coarseAlignments.get(index) ?? IDENTITY_ALIGNMENT;
+        const error = fineError(index, align);
+        return { index, error, rank: error + penalty(index), alignment: align };
       })
       .sort((a, b) => a.rank - b.rank),
   );
@@ -300,7 +317,7 @@ function analyseCard(
       const fy = 1 / cardHeight(FINE_SIZE);
       const fx = 1 / FINE_SIZE;
       const lead = ranked[0];
-      const shared = patternSearch((p) => fineError(lead.index, p), IDENTITY_ALIGNMENT, lead.error, {
+      const shared = patternSearch((p) => fineError(lead.index, p), lead.alignment, lead.error, {
         step: { dx: fx, dy: fy, scale: 0.025 },
         minStep: fx / 4,
         maxEvaluations: 24,
@@ -349,7 +366,14 @@ function analyseCard(
   let quantity = EMPTY_QUANTITY;
   let level: LevelReading | null = null;
   if (bank.kind === "material") {
-    if (settings.readQuantity) quantity = timer.time("quantity", () => readQuantity(image, box, at, digits));
+    if (settings.readQuantity) {
+      quantity = timer.time("quantity", () => {
+        const q = readQuantity(image, box, at, digits);
+        if (q.value !== null) return q;
+        const q0 = readQuantity(image, box, IDENTITY_ALIGNMENT, digits);
+        return q0.value !== null ? q0 : q;
+      });
+    }
   } else {
     const kind = bank.kind;
     // Some weapons are drawn zoomed in or shifted, which can pull the icon's

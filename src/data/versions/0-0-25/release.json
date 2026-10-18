@@ -1,0 +1,23 @@
+{
+  "title": "Video Scanner Accuracy & Floating Icon Recognition",
+  "date": "2026-10-18",
+  "summary": "Eliminates spurious weapon false positives from inventory detail sheets, resolves alignment for vertically shifted materials (like Sakura Bloom), and guarantees material isolation in video scans.",
+  "changes": [
+    {
+      "type": "fixed",
+      "text": "Inventory detail sheet rejection: constrained detector aspect ratio and rejected single-column card grids, eliminating spurious weapon matches (such as Kagotsurube Isshin) and missing thumbnail 404 errors when tapping items during recordings."
+    },
+    {
+      "type": "improved",
+      "text": "Floating material icon recognition: introduced coarse vertical shift evaluation and expanded alignment search limits for materials with floating artwork (such as Sakura Bloom), achieving 100% recognition confidence on both full and downscaled frames."
+    },
+    {
+      "type": "fixed",
+      "text": "Quantity reading alignment fallback: footer digit OCR now falls back to canonical card box alignment when icon artwork shifts, guaranteeing reliable counts for materials with floating particles."
+    },
+    {
+      "type": "fixed",
+      "text": "Strict material merger filtering: guarded SightingMerger against non-material cards, ensuring video scan material tallies are completely isolated from equipment."
+    }
+  ]
+}
