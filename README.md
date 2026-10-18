@@ -69,49 +69,33 @@ from the server: each visitor enters their own in Scanner Settings.
 
 ## Commands
 
-| Command                                                 | Description                                                          |
-| :------------------------------------------------------ | :------------------------------------------------------------------- |
-| `pnpm dev`                                              | Development server at `localhost:3000` (Turbopack)                   |
-| `pnpm build` / `pnpm start`                             | Production build (type-checks) / serve it                            |
-| `pnpm lint`                                             | ESLint (Next.js core web vitals + TypeScript rules)                  |
-| `pnpm test`                                             | All unit tests (`node:test` via `tsx`), including the detector suites |
-| `pnpm test:e2e`                                         | Playwright smoke tests against the production build (build first)    |
-| `pnpm test:material-detector` / `pnpm eval:material-detector` | Material recognizer tests / accuracy report                     |
-| `pnpm fetch:online-samples` / `pnpm eval:card-scanner`  | Download players' weapon, artifact, Materials-tab and character screenshots / accuracy report on them |
-| `pnpm eval:artifact-panel`                              | Artifact detail panel reading accuracy report                        |
-| `pnpm test:grid-detector` / `pnpm eval:grid-detector`   | Grid detector tests / accuracy report                                |
-| `pnpm sync-data`                                        | Re-scrape the game data and icons, rebuild the thumbnails and the scanner atlases |
-| `pnpm build:atlases`                                    | Rebuild the scanner's reference atlases (materials, weapons, artifacts, characters) |
-| `pnpm format`                                           | Prettier                                                             |
-
-CI (`.github/workflows/ci.yml`) runs lint, unit tests, the build and the E2E
-smoke tests on every pull request. A daily workflow syncs game data.
+| Command                     | Description                                                          |
+| :-------------------------- | :------------------------------------------------------------------- |
+| `pnpm dev`                  | Development server at `localhost:3000` (Turbopack)                   |
+| `pnpm build` / `pnpm start` | Production build (type-checks) / serve it                            |
+| `pnpm lint`                 | ESLint (Next.js core web vitals + TypeScript rules)                  |
+| `pnpm format`               | Prettier                                                             |
+| `pnpm test`                 | Runs test suites via companion repository `gi-tests`                 |
+| `pnpm test:e2e`             | Runs Playwright smoke tests via companion repository `gi-tests`      |
+| `pnpm sync-data`            | Runs data scraping & atlas rebuild via `gi-sync-catalogue`            |
 
 ---
 
-## AI Vision providers
+## Suite Architecture & Companion Repositories
 
-| Provider                   | Default model             | Key                                                       |
-| :------------------------- | :------------------------ | :-------------------------------------------------------- |
-| Google Gemini (free tier)  | `gemini-flash-latest`     | [Google AI Studio](https://aistudio.google.com/app/apikey) |
-| OpenAI                     | `gpt-6-luna`              | [OpenAI Platform](https://platform.openai.com/api-keys)    |
-| Anthropic Claude           | `claude-sonnet-5-5`       | [Anthropic Console](https://console.anthropic.com/settings/keys) |
-| xAI Grok                   | `grok-4.7`                | [xAI Console](https://console.x.ai)                        |
-| Custom / OpenAI-compatible | `google/gemini-3.8-flash` | Any endpoint, e.g. [OpenRouter](https://openrouter.ai/keys) or local Ollama |
+This application is part of the modular **[GI Helper Suite](https://github.com/hisham-pp/gi-suite)**:
 
-A model saved in your settings that the app no longer lists falls back to the
-provider's default.
+- **[`gi-suite`](https://github.com/hisham-pp/gi-suite):** Umbrella repository holding all projects as Git submodules.
+- **[`gi-docs`](https://github.com/hisham-pp/gi-docs):** Technical documentation, detector algorithmic specs, feedback design & roadmap.
+- **[`gi-sync-catalogue`](https://github.com/hisham-pp/gi-sync-catalogue):** Genshin DB scrapers, asset generators, thumbnail builders & reference atlases.
+- **[`gi-tests`](https://github.com/hisham-pp/gi-tests):** Unit tests, detector evaluations, offline benchmarks & Playwright E2E suites.
 
 ---
 
 ## Project docs
 
-- [`AGENTS.md`](AGENTS.md): project structure, conventions and testing rules.
-- [`docs/material-detector.md`](docs/material-detector.md),
-  [`docs/grid-detector.md`](docs/grid-detector.md),
-  [`docs/video-scanner.md`](docs/video-scanner.md): the scanning engine.
-- [`docs/feedback.md`](docs/feedback.md): feedback page, inbox and Supabase setup.
-- [`docs/roadmap.md`](docs/roadmap.md): what's planned next.
+- [`AGENTS.md`](AGENTS.md): project structure, conventions and guidelines.
+- Technical specs and detector theory are maintained in [`gi-docs`](https://github.com/hisham-pp/gi-docs).
 
 ---
 
