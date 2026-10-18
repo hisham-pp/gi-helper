@@ -6,6 +6,7 @@ import { ShellLink } from "@/components/layout/ShellLink";
 import { usePathname } from "next/navigation";
 import type { LucideIcon } from "lucide-react";
 import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion";
+import { haptics } from "@/lib/haptics";
 
 export interface PillNavItem {
   href: Route;
@@ -22,7 +23,9 @@ const PAD = 4;
 const GAP = 4;
 
 export function isCurrent(pathname: string, href: string): boolean {
-  return href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
+  return href === "/"
+    ? pathname === "/"
+    : pathname === href || pathname.startsWith(`${href}/`);
 }
 
 interface PillNavProps {
@@ -48,7 +51,9 @@ export function PillNav({
 }: PillNavProps) {
   const pathname = usePathname();
   const activeIndex = items.findIndex(
-    (item) => isCurrent(pathname, item.href) || item.match?.some((path) => isCurrent(pathname, path)),
+    (item) =>
+      isCurrent(pathname, item.href) ||
+      item.match?.some((path) => isCurrent(pathname, path)),
   );
   const count = items.length;
   const thumbRef = useRef<HTMLDivElement>(null);
@@ -99,7 +104,12 @@ export function PillNav({
             href={item.href}
             title={item.label}
             aria-current={isActive ? "page" : undefined}
-            className={`relative select-none z-10 flex items-center justify-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-400 ${
+            onClick={() => {
+              if (!isActive) {
+                haptics.selection();
+              }
+            }}
+            className={`relative z-10 flex select-none items-center justify-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-400 ${
               isActive
                 ? "text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]"
                 : "text-white/55 hover:text-white/85"
@@ -112,7 +122,9 @@ export function PillNav({
             {item.count !== undefined && (
               <span
                 className={`rounded-full px-1.5 text-[10px] transition-colors ${
-                  isActive ? "bg-white/20 text-white" : "bg-white/10 text-white/60"
+                  isActive
+                    ? "bg-white/20 text-white"
+                    : "bg-white/10 text-white/60"
                 }`}
               >
                 {item.count}

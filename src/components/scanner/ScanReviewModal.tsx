@@ -2,7 +2,14 @@
 
 import { createPortal } from "react-dom";
 import dynamic from "next/dynamic";
-import React, { memo, useCallback, useDeferredValue, useEffect, useMemo, useState } from "react";
+import React, {
+  memo,
+  useCallback,
+  useDeferredValue,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import {
   ScannedReviewItem,
   DetectedItem,
@@ -29,6 +36,7 @@ import { GlassInput } from "@/components/ui/GlassInput";
 import { MaterialThumb } from "@/components/ui/MaterialThumb";
 import { usePauseBackground } from "@/lib/use-pause-background";
 import { useModalMotion } from "@/lib/use-modal-motion";
+import { haptics } from "@/lib/haptics";
 import { useOwnedArtifacts, useOwnedWeapons } from "@/lib/good-inventory";
 import { fixedMainStat, splitArtifactItem } from "@/lib/scan-equipment";
 import { MAIN_STATS_BY_SLOT } from "@/lib/good/types";
@@ -54,7 +62,10 @@ interface ScanReviewModalProps {
   /** Weapons and artifacts read in the same scan. */
   equipment?: EquipmentReviewItem[];
   onClose: () => void;
-  onConfirm: (confirmedItems: DetectedItem[], equipment?: EquipmentConfirm) => void;
+  onConfirm: (
+    confirmedItems: DetectedItem[],
+    equipment?: EquipmentConfirm,
+  ) => void;
 }
 
 type ReviewView = "materials" | "weapon" | "artifact" | "character";
@@ -80,13 +91,18 @@ export function ScanReviewModal({
   const [equip, setEquip] = useState<EquipmentReviewItem[]>(equipment);
   const [searchQuery, setSearchQuery] = useState("");
   // A scan of the Weapons or Artifacts tab is a snapshot of it, like a GOOD file
-  const [replace, setReplace] = useState<EquipmentConfirm["replace"]>({ weapon: true, artifact: true, character: false });
+  const [replace, setReplace] = useState<EquipmentConfirm["replace"]>({
+    weapon: true,
+    artifact: true,
+    character: false,
+  });
   const [ownedWeapons] = useOwnedWeapons();
   const [ownedArtifacts] = useOwnedArtifacts();
 
   const views = useMemo(() => {
     const list: ReviewView[] = [];
-    if (reviewItems.length > 0 || equipment.length === 0) list.push("materials");
+    if (reviewItems.length > 0 || equipment.length === 0)
+      list.push("materials");
     if (equipment.some((e) => e.kind === "weapon")) list.push("weapon");
     if (equipment.some((e) => e.kind === "artifact")) list.push("artifact");
     if (equipment.some((e) => e.kind === "character")) list.push("character");
@@ -107,37 +123,47 @@ export function ScanReviewModal({
     if (equipment.length > 0) loadEquipmentPicker().catch(() => {});
   }, [reviewItems.length, equipment.length]);
 
-  const handleEquipChange = useCallback((id: string, patch: Partial<EquipmentReviewItem>) => {
-    setEquip((prev) => prev.map((e) => (e.id === id ? { ...e, ...patch } : e)));
-  }, []);
+  const handleEquipChange = useCallback(
+    (id: string, patch: Partial<EquipmentReviewItem>) => {
+      setEquip((prev) =>
+        prev.map((e) => (e.id === id ? { ...e, ...patch } : e)),
+      );
+    },
+    [],
+  );
 
   const handleEquipRemove = useCallback((id: string) => {
     setEquip((prev) => prev.filter((e) => e.id !== id));
   }, []);
 
   /** Reassigns a row to another weapon or piece; an artifact keeps its main stat if the new slot allows it. */
-  const handleEquipSelect = useCallback((id: string, choice: ReviewCandidate | EquipmentOption) => {
-    setEquip((prev) =>
-      prev.map((e) => {
-        if (e.id !== id) return e;
-        const next: EquipmentReviewItem = {
-          ...e,
-          item: choice.id,
-          name: equipmentName(e.kind, choice.id),
-          rarity: e.rarity ?? choice.rarity,
-          variant: undefined,
-          reviewReason: undefined,
-        };
-        if (e.kind === "artifact") {
-          const slot = splitArtifactItem(choice.id).slot;
-          const allowed = MAIN_STATS_BY_SLOT[slot] as readonly string[];
-          next.mainStatKey = fixedMainStat(slot) ?? (allowed.includes(e.mainStatKey) ? e.mainStatKey : "");
-        }
-        return next;
-      }),
-    );
-    setEditingEquipId(null);
-  }, []);
+  const handleEquipSelect = useCallback(
+    (id: string, choice: ReviewCandidate | EquipmentOption) => {
+      setEquip((prev) =>
+        prev.map((e) => {
+          if (e.id !== id) return e;
+          const next: EquipmentReviewItem = {
+            ...e,
+            item: choice.id,
+            name: equipmentName(e.kind, choice.id),
+            rarity: e.rarity ?? choice.rarity,
+            variant: undefined,
+            reviewReason: undefined,
+          };
+          if (e.kind === "artifact") {
+            const slot = splitArtifactItem(choice.id).slot;
+            const allowed = MAIN_STATS_BY_SLOT[slot] as readonly string[];
+            next.mainStatKey =
+              fixedMainStat(slot) ??
+              (allowed.includes(e.mainStatKey) ? e.mainStatKey : "");
+          }
+          return next;
+        }),
+      );
+      setEditingEquipId(null);
+    },
+    [],
+  );
 
   const handleUpdateQuantity = useCallback((id: string, delta: number) => {
     setItems((prev) =>
@@ -215,7 +241,8 @@ export function ScanReviewModal({
     // The parent unmounts the modal on confirm, so hand the items over once it has closed
     closeThen(() => onConfirm(finalItems, confirmed));
     const parts = [
-      finalItems.length > 0 && `${finalItems.length} material${finalItems.length === 1 ? "" : "s"}`,
+      finalItems.length > 0 &&
+        `${finalItems.length} material${finalItems.length === 1 ? "" : "s"}`,
       ...(["weapon", "artifact", "character"] as const).map((k) => {
         const n = equip.filter((e) => e.kind === k && e.item).length;
         return n > 0 && `${n} ${k}${n === 1 ? "" : "s"}`;
@@ -236,10 +263,16 @@ export function ScanReviewModal({
   );
 
   const viewEquip = useMemo(
-    () => equip.filter((e) => e.kind === view && e.name.toLowerCase().includes(deferredQuery.toLowerCase())),
+    () =>
+      equip.filter(
+        (e) =>
+          e.kind === view &&
+          e.name.toLowerCase().includes(deferredQuery.toLowerCase()),
+      ),
     [equip, view, deferredQuery],
   );
-  const countOf = (v: ReviewView) => (v === "materials" ? items.length : equip.filter((e) => e.kind === v).length);
+  const countOf = (v: ReviewView) =>
+    v === "materials" ? items.length : equip.filter((e) => e.kind === v).length;
 
   const totalQuantity = useMemo(
     () => items.reduce((sum, item) => sum + item.quantity, 0),
@@ -249,8 +282,13 @@ export function ScanReviewModal({
   const editingItem = editingSlotId
     ? items.find((it) => it.id === editingSlotId)
     : undefined;
-  const editingEquip = editingEquipId ? equip.find((e) => e.id === editingEquipId) : undefined;
-  const ownedCount = { weapon: ownedWeapons.length, artifact: ownedArtifacts.length };
+  const editingEquip = editingEquipId
+    ? equip.find((e) => e.id === editingEquipId)
+    : undefined;
+  const ownedCount = {
+    weapon: ownedWeapons.length,
+    artifact: ownedArtifacts.length,
+  };
 
   // Portal to <body>: an ancestor's transform/filter (e.g. the tab panel's entry
   // animation) would otherwise trap the fixed overlay and the glass blur inside it.
@@ -279,8 +317,8 @@ export function ScanReviewModal({
                 Review Scan Results
               </h2>
               <p className="text-xs text-white/60">
-                Compare each card from your screenshots with what it was
-                matched to, fix any mistakes, and adjust the numbers.
+                Compare each card from your screenshots with what it was matched
+                to, fix any mistakes, and adjust the numbers.
               </p>
             </div>
           </div>
@@ -308,12 +346,21 @@ export function ScanReviewModal({
           />
 
           {views.length > 1 && (
-            <div className="flex items-center gap-1" role="group" aria-label="Kind of item">
+            <div
+              className="flex items-center gap-1"
+              role="group"
+              aria-label="Kind of item"
+            >
               {views.map((v) => (
                 <button
                   key={v}
                   aria-pressed={view === v}
-                  onClick={() => setView(v)}
+                  onClick={() => {
+                    if (view !== v) {
+                      haptics.selection();
+                    }
+                    setView(v);
+                  }}
                   className="glass-chip px-3 py-1 text-xs font-semibold"
                 >
                   {VIEW_LABELS[v]} ({countOf(v)})
@@ -339,17 +386,23 @@ export function ScanReviewModal({
           {view !== "materials" ? (
             viewEquip.length === 0 ? (
               <div className="py-12 text-center text-xs text-white/50">
-                {countOf(view) === 0 ? "All items were removed" : <>No items matching &ldquo;{searchQuery}&rdquo;</>}
+                {countOf(view) === 0 ? (
+                  "All items were removed"
+                ) : (
+                  <>No items matching &ldquo;{searchQuery}&rdquo;</>
+                )}
               </div>
             ) : (
               <div className="space-y-3">
-                {view === "artifact" && viewEquip.some((e) => e.mainStatKey === "") && (
-                  <p className="glass-chip w-full justify-center bg-amber-400/10 px-3 py-1.5 text-center text-[11px] text-amber-100">
-                    The bag only shows the main stat of flowers and plumes; the rest comes from the detail panel of
-                    the selected artifact. Pick it here, or record yourself tapping through your artifacts to read
-                    every panel.
-                  </p>
-                )}
+                {view === "artifact" &&
+                  viewEquip.some((e) => e.mainStatKey === "") && (
+                    <p className="glass-chip w-full justify-center bg-amber-400/10 px-3 py-1.5 text-center text-[11px] text-amber-100">
+                      The bag only shows the main stat of flowers and plumes;
+                      the rest comes from the detail panel of the selected
+                      artifact. Pick it here, or record yourself tapping through
+                      your artifacts to read every panel.
+                    </p>
+                  )}
                 {viewEquip.map((e) => (
                   <EquipmentReviewRow
                     key={e.id}
@@ -393,20 +446,22 @@ export function ScanReviewModal({
 
         {/* Footer */}
         <div className="flex flex-shrink-0 flex-wrap items-center justify-between gap-3 border-t border-white/10 px-6 py-4">
-          <button
-            onClick={close}
-            className="glass-btn px-5 py-2 text-sm"
-          >
+          <button onClick={close} className="glass-btn px-5 py-2 text-sm">
             Discard
           </button>
           {(["weapon", "artifact"] as const)
             .filter((k) => ownedCount[k] > 0 && equip.some((e) => e.kind === k))
             .map((k) => (
-              <label key={k} className="flex items-center gap-2 text-[11px] text-white/70">
+              <label
+                key={k}
+                className="flex items-center gap-2 text-[11px] text-white/70"
+              >
                 <input
                   type="checkbox"
                   checked={replace[k]}
-                  onChange={(ev) => setReplace((prev) => ({ ...prev, [k]: ev.target.checked }))}
+                  onChange={(ev) =>
+                    setReplace((prev) => ({ ...prev, [k]: ev.target.checked }))
+                  }
                   className="h-3.5 w-3.5 accent-teal-400"
                 />
                 Replace the {ownedCount[k]} {k}s in my inventory
@@ -462,7 +517,8 @@ const ReviewRow = memo(function ReviewRow({
   onRemove,
 }: ReviewRowProps) {
   const rarityStyles = getRarityStyles(item.rarity || 1);
-  const suggestions = item.candidates?.filter((c) => c.id !== item.materialId) ?? [];
+  const suggestions =
+    item.candidates?.filter((c) => c.id !== item.materialId) ?? [];
 
   return (
     <div
@@ -481,9 +537,7 @@ const ReviewRow = memo(function ReviewRow({
               className="h-full w-full object-contain"
             />
           ) : (
-            <span className="text-[10px] text-white/40">
-              No Crop
-            </span>
+            <span className="text-[10px] text-white/40">No Crop</span>
           )}
           <span className="absolute bottom-0.5 right-1 text-[9px] font-bold text-white/50">
             Raw
@@ -519,7 +573,9 @@ const ReviewRow = memo(function ReviewRow({
               alt={item.name}
               size={44}
               className="h-11 w-11"
-              fallback={<span className="text-[10px] text-white/40">No Img</span>}
+              fallback={
+                <span className="text-[10px] text-white/40">No Img</span>
+              }
             />
           </div>
 
@@ -548,17 +604,15 @@ const ReviewRow = memo(function ReviewRow({
             </div>
 
             {item.rarity && item.rarity >= 1 ? (
-              <div className={`flex items-center gap-0.5 text-[11px] font-bold ${rarityStyles.starColor}`}>
-                {Array.from({ length: item.rarity }).map(
-                  (_, i) => (
-                    <span key={i}>★</span>
-                  ),
-                )}
+              <div
+                className={`flex items-center gap-0.5 text-[11px] font-bold ${rarityStyles.starColor}`}
+              >
+                {Array.from({ length: item.rarity }).map((_, i) => (
+                  <span key={i}>★</span>
+                ))}
               </div>
             ) : (
-              <span className="text-[10px] text-white/40">
-                Common
-              </span>
+              <span className="text-[10px] text-white/40">Common</span>
             )}
           </div>
         </div>
@@ -576,9 +630,7 @@ const ReviewRow = memo(function ReviewRow({
                 className="glass-chip gap-1.5 px-2.5 py-0.5 text-[10px]"
                 title={`Switch to ${cand.name} (${cand.confidence}%)`}
               >
-                <span className="max-w-[130px] truncate">
-                  {cand.name}
-                </span>
+                <span className="max-w-[130px] truncate">{cand.name}</span>
                 <span className="font-mono text-[9px] font-semibold text-cyan-300">
                   {cand.confidence}%
                 </span>
