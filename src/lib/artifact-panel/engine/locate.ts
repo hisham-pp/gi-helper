@@ -32,10 +32,12 @@ export interface PanelGeometry {
   bodyTop: number;
   /** Bottom of the cream body (where the panel, or the screen, ends). */
   bodyBottom: number;
-  /** The "Equipped: …" band under the body, when the artifact is equipped. */
+  /** The "Equipped: …" band under the body, when the item is equipped. */
   equipped: { top: number; bottom: number } | null;
-  /** The dark level badge ("+20") in the body's top-left corner. */
+  /** The dark level badge ("+20" for artifacts, "Lv. 80/80" for weapons) in the body's top-left corner. */
   badge: { x: number; y: number; width: number; height: number };
+  /** Presumed kind from badge geometry (a weapon badge is much wider than "+20"). */
+  kind?: "artifact" | "weapon";
 }
 
 /** Cream of the panel body (and of card footers): ~(236, 229, 216), a little darker in JPEGs. */
@@ -44,7 +46,7 @@ export function isCream(r: number, g: number, b: number): boolean {
 }
 
 /** The light yellow "Equipped" band: ~(255, 231, 189). */
-function isEquippedYellow(r: number, g: number, b: number): boolean {
+export function isEquippedYellow(r: number, g: number, b: number): boolean {
   return r >= 240 && g >= 210 && g <= 242 && b >= 160 && b <= 212 && r - b >= 40;
 }
 
@@ -227,20 +229,20 @@ export function locateArtifactPanel(image: RgbaImage): PanelGeometry | null {
   if (!badgeBox) return null;
   const bw = badgeBox.x1 - badgeBox.x0;
   const bh = badgeBox.y1 - badgeBox.y0;
-  if (bh < width * 0.03 || bh > width * 0.1 || bw < width * 0.045 || bw > width * 0.2) return null;
-  if (badgeBox.count < bw * bh * 0.45) return null;
+  if (bh < width * 0.03 || bh > width * 0.13 || bw < width * 0.045 || bw > width * 0.35) return null;
+  if (badgeBox.count < bw * bh * 0.33) return null;
 
   // An "Equipped" band right under the body: rows mostly yellow (the name
   // and the avatar cover only part of each row).
   const bandRow = (y: number) => {
     let yellow = 0;
     for (let k = 0; k < 24; k++) if (isEquippedYellow(...px(image, x + width * (0.05 + (0.93 * k) / 23), y))) yellow++;
-    return yellow >= 10;
+    return yellow >= 8;
   };
   let equipped: PanelGeometry["equipped"] = null;
   let y = bodyBottom;
-  // Usually right under it; on consoles a gap of background separates them.
-  while (y < image.height && y < bodyBottom + width * 0.15 && !bandRow(y)) y++;
+  // Usually right under it; on consoles or weapon lore descriptions a gap of background separates them.
+  while (y < image.height && y < bodyBottom + width * 0.45 && !bandRow(y)) y++;
   if (y < image.height && bandRow(y)) {
     const top = y;
     let bottom = y + 1;
@@ -263,5 +265,6 @@ export function locateArtifactPanel(image: RgbaImage): PanelGeometry | null {
     bodyBottom,
     equipped,
     badge: { x: badgeBox.x0, y: badgeBox.y0, width: bw, height: bh },
+    kind: bw > width * 0.2 ? "weapon" : "artifact",
   };
 }

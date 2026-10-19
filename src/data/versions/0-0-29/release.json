@@ -1,0 +1,23 @@
+{
+  "title": "Weapon Detail Panel OCR & Bulk Refinement Review",
+  "date": "2026-10-19",
+  "summary": "Extracts weapon refinement rank, level cap and ascension, and equipped characters directly from weapon detail panels, featuring avatar template matching and a bulk-refinement review toolbar for weapons without detail panels.",
+  "changes": [
+    {
+      "type": "new",
+      "text": "Weapon detail panel OCR: automatically detects and reads weapon detail panels to extract refinement ranks (R1–R5), exact level caps to settle ambiguous ascensions (e.g. 80/80 vs 80/90), and equipped characters."
+    },
+    {
+      "type": "new",
+      "text": "Avatar atlas matching: matches small circular avatar crops from detail panels against the character atlas using Pearson correlation, correctly identifying equipped characters including custom-named Travelers."
+    },
+    {
+      "type": "new",
+      "text": "Bulk-set refinement in review: one-click R1–R5 toolbar in the scan review modal allows bulk-setting refinement for all weapons not covered by detail panels while preserving scanned panel ranks."
+    },
+    {
+      "type": "improved",
+      "text": "Equipment review details: weapon rows display a 'detail panel' indicator, show the resolved level cap (e.g. /80 or /90), and allow toggling ascension on breakpoint levels."
+    }
+  ]
+}

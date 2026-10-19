@@ -27,8 +27,11 @@ export function capturePanelScan(
 ): ArtifactPanelScan | null {
   const capture = captureArtifactPanel(image);
   if (!capture) return null;
-  const artifactGrids = grids
-    .filter((g) => kinds.find((k) => k.gridId === g.id)?.kind === "artifact")
+  const equipmentGrids = grids
+    .filter((g) => {
+      const k = kinds.find((entry) => entry.gridId === g.id)?.kind;
+      return k === "artifact" || k === "weapon";
+    })
     .map((g) =>
       toSource === 1
         ? g
@@ -38,6 +41,6 @@ export function capturePanelScan(
             emptySlots: g.emptySlots.map((s) => ({ ...s, ...scaleRect(s, 1 / toSource) })),
           },
     );
-  const highlights = slotHighlights(image, artifactGrids).map((h) => ({ ...h, box: scaleRect(h.box, toSource) }));
+  const highlights = slotHighlights(image, equipmentGrids).map((h) => ({ ...h, box: scaleRect(h.box, toSource) }));
   return { ...capture, bounds: scaleRect(capture.bounds, toSource), highlights };
 }

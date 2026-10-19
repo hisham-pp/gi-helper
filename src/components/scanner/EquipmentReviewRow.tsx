@@ -99,6 +99,11 @@ export const EquipmentReviewRow = memo(function EquipmentReviewRow({
               {item.rarity ? <span className={`font-bold ${styles.starColor}`}>{item.rarity}★</span> : null}
               {item.kind === "artifact" && item.item ? ` · ${artifactPieceDetail(item.item)}` : ""}
               {item.location ? ` · on ${describeCharacter(item.location).name}` : ""}
+              {item.fromPanel && (
+                <span className="font-medium text-emerald-300/80" title="Read from detail panel">
+                  {" · "}detail panel
+                </span>
+              )}
             </span>
           </div>
         </div>
@@ -145,6 +150,24 @@ export const EquipmentReviewRow = memo(function EquipmentReviewRow({
             aria-label="Level"
             className="w-9 bg-transparent text-center text-sm font-bold text-cyan-100 outline-none"
           />
+          {item.kind === "weapon" && item.ascension !== undefined && (
+            <button
+              type="button"
+              onClick={() => {
+                const asc = item.ascension!;
+                if (item.level === 80) onChange(item.id, { ascension: asc === 5 ? 6 : 5 });
+                else if (item.level === 70) onChange(item.id, { ascension: asc === 4 ? 5 : 4 });
+                else if (item.level === 60) onChange(item.id, { ascension: asc === 3 ? 4 : 3 });
+                else if (item.level === 50) onChange(item.id, { ascension: asc === 2 ? 3 : 2 });
+                else if (item.level === 40) onChange(item.id, { ascension: asc === 1 ? 2 : 1 });
+                else if (item.level === 20) onChange(item.id, { ascension: asc === 0 ? 1 : 0 });
+              }}
+              title={`Level cap ${[20, 40, 50, 60, 70, 80, 90][item.ascension] ?? 90} (ascension ${item.ascension}). Click to toggle.`}
+              className="text-[11px] font-semibold text-white/50 hover:text-cyan-200"
+            >
+              /{[20, 40, 50, 60, 70, 80, 90][item.ascension] ?? 90}
+            </button>
+          )}
         </label>
         {item.kind === "weapon" && (
           <select

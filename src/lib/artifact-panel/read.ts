@@ -6,12 +6,15 @@
  */
 import { MAIN_STATS_BY_SLOT, type SlotKey } from "../good/types";
 import type { ArtifactPanelCapture, PanelField } from "./engine/capture";
-import { joinLines, parseLevel, parseNumber, parseStatBlock, statKey } from "./engine/parse";
+import { joinLines, parseLevel, parseNumber, parseRefinement, parseStatBlock, parseWeaponLevelAndCap, statKey } from "./engine/parse";
 import { checkSubstats, levelsForMainValue, mainStatFits, maxArtifactLevel } from "./engine/stats";
 import { EQUIPPED_PREFIX, snap, vocabulary, type PanelLanguage, type StatName } from "./engine/vocabulary";
+import { matchAvatarAtlas } from "./engine/avatar";
 import type { OcrLanguage, PanelOcr } from "./ocr";
 import { getAllCharacters } from "../characters";
-import { getArtifactSetById } from "../good/catalog";
+import { getArtifactSetById, getWeaponById } from "../good/catalog";
+import type { AtlasManifest } from "../material-detector/engine/bank";
+import type { RgbaImage } from "../grid-detector/engine/image";
 
 export interface PanelSubstat {
   key: string;
@@ -19,11 +22,22 @@ export interface PanelSubstat {
 }
 
 export interface ArtifactPanelReading {
+  /** "artifact" or "weapon" */
+  kind?: "artifact" | "weapon";
   /** The game client's language, told by the slot name. */
   language: PanelLanguage;
-  /** From the piece name, or the set name with the slot. */
+  /** From the piece name, or the set name with the slot (null for weapons). */
   setId: string | null;
+  /** Artifact slot (null for weapons). */
   slot: SlotKey | null;
+  /** Weapon ID e.g. "prototype-archaic" (null for artifacts). */
+  weaponId?: string | null;
+  /** Refinement rank 1-5 (for weapons). */
+  refinement?: number | null;
+  /** Level cap e.g. 80, 90 (for weapons). */
+  levelCap?: number | null;
+  /** Ascension 0-6 settled by level cap (for weapons). */
+  ascension?: number | null;
   rarity: number | null;
   level: number | null;
   locked: boolean;
@@ -48,6 +62,11 @@ const NUMBER_CHARS = "0123456789.,%";
 export interface ReadOptions {
   /** Try this language first (the one the last panel was in). */
   preferLanguage?: PanelLanguage;
+  /** Character reference atlas (manifest and image) to identify equipped characters / Traveler. */
+  characterAtlas?: {
+    manifest: AtlasManifest;
+    image: RgbaImage;
+  };
 }
 
 /**
@@ -70,15 +89,102 @@ async function readSlot(
   return null;
 }
 
+async function readWeaponPanel(
+  capture: ArtifactPanelCapture,
+  ocr: PanelOcr,
+  options: ReadOptions = {},
+): Promise<ArtifactPanelReading | null> {
+  const language: PanelLanguage = options.preferLanguage ?? "en";
+  const lang = OCR_LANG[language];
+  const vocab = vocabulary(language);
+  const f = capture.fields;
+  const text: ArtifactPanelReading["text"] = {};
+  const read = async (field: PanelField, mode: "word" | "line" | "block", whitelist?: string) => {
+    const image = f[field];
+    if (!image) return "";
+    const t = await ocr.read(image, { lang: field === "level" || field === "refinement" ? "eng" : lang, mode, whitelist });
+    text[field] = t;
+    return t;
+  };
+
+  const [name, levelText, refinementText, equippedText] = await Promise.all([
+    read("name", "line"),
+    read("level", "block", "Lv.0123456789/ "),
+    read("refinement", "line"),
+    read("equipped", "line"),
+  ]);
+
+  const issues: string[] = [];
+  const weaponSnap = snap(joinLines(name), vocab.weapons, language);
+  const weaponId = weaponSnap?.value ?? null;
+  if (!weaponId) issues.push("Couldn't read the weapon name");
+
+  const weaponInfo = weaponId ? getWeaponById(weaponId) : undefined;
+  let rarity = capture.stars ?? capture.headerRarity ?? weaponInfo?.rarity ?? null;
+  if (rarity === null) issues.push("Couldn't count the stars");
+
+  const parsedLvl = parseWeaponLevelAndCap(levelText);
+  const level = parsedLvl?.level ?? null;
+  const levelCap = parsedLvl?.cap ?? null;
+  const ascension = parsedLvl?.ascension ?? null;
+  if (level === null) issues.push("Couldn't read the level");
+
+  const refinement = parseRefinement(refinementText) ?? (capture.fields.refinement ? null : 1);
+  if (refinement === null) issues.push("Couldn't read the refinement rank");
+
+  let location = "";
+  if (equippedText.trim()) {
+    const spoken = language === "zh" ? equippedText.replace(/\s+/g, "") : equippedText;
+    const who = snap(spoken.replace(EQUIPPED_PREFIX[language], "").trim(), vocab.characters, language, 0.3);
+    const character = who ? getAllCharacters().find((c) => c.id === who.value) : undefined;
+    if (character && character.key !== "Traveler") {
+      location = character.key;
+    } else if (capture.avatar && options.characterAtlas) {
+      const match = matchAvatarAtlas(capture.avatar, options.characterAtlas.manifest, options.characterAtlas.image);
+      if (match) location = match.location;
+    } else if (who && character?.key === "Traveler") {
+      location = "Traveler";
+    }
+  } else if (capture.avatar && options.characterAtlas) {
+    const match = matchAvatarAtlas(capture.avatar, options.characterAtlas.manifest, options.characterAtlas.image);
+    if (match) location = match.location;
+  }
+
+  return {
+    kind: "weapon",
+    language,
+    setId: null,
+    slot: null,
+    weaponId,
+    refinement,
+    levelCap,
+    ascension,
+    rarity,
+    level,
+    locked: capture.locked,
+    mainStatKey: null,
+    mainStatValue: null,
+    substats: [],
+    unactivatedSubstats: [],
+    location,
+    issues,
+    text,
+  };
+}
+
 /**
  * Reads a captured panel. Returns null when the panel turns out not to be
- * an artifact's (its slot line names no artifact slot in any language).
+ * an artifact's (its slot line names no artifact slot in any language) and
+ * not a weapon's.
  */
 export async function readArtifactPanel(
   capture: ArtifactPanelCapture,
   ocr: PanelOcr,
   options: ReadOptions = {},
 ): Promise<ArtifactPanelReading | null> {
+  if (capture.kind === "weapon") {
+    return readWeaponPanel(capture, ocr, options);
+  }
   const found = await readSlot(capture, ocr, options.preferLanguage ?? "en");
   if (!found) return null;
   const { language } = found;
@@ -187,11 +293,21 @@ export async function readArtifactPanel(
     const spoken = language === "zh" ? equippedText.replace(/\s+/g, "") : equippedText;
     const who = snap(spoken.replace(EQUIPPED_PREFIX[language], "").trim(), vocab.characters, language, 0.3);
     const character = who ? getAllCharacters().find((c) => c.id === who.value) : undefined;
-    // The Traveler shows the player's chosen name: not something we can match.
-    if (character && character.key !== "Traveler") location = character.key;
+    if (character && character.key !== "Traveler") {
+      location = character.key;
+    } else if (capture.avatar && options.characterAtlas) {
+      const match = matchAvatarAtlas(capture.avatar, options.characterAtlas.manifest, options.characterAtlas.image);
+      if (match) location = match.location;
+    } else if (who && character?.key === "Traveler") {
+      location = "Traveler";
+    }
+  } else if (capture.avatar && options.characterAtlas) {
+    const match = matchAvatarAtlas(capture.avatar, options.characterAtlas.manifest, options.characterAtlas.image);
+    if (match) location = match.location;
   }
 
   return {
+    kind: "artifact",
     language,
     setId,
     slot,

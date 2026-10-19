@@ -15,7 +15,7 @@
  */
 import type { ArtifactPanelReading } from "@/lib/artifact-panel/read";
 import type { SlotHighlight } from "@/lib/artifact-panel/engine/selection";
-import { getArtifactSetById, type ArtifactSetInfo, type WeaponInfo } from "@/lib/good/catalog";
+import { getArtifactSetById, getWeaponById, type ArtifactSetInfo, type WeaponInfo } from "@/lib/good/catalog";
 import {
   ASCENSION_MAX_LEVEL,
   SLOT_NAMES,
@@ -240,18 +240,22 @@ export function splitArtifactItem(item: string): { setId: string; slot: SlotKey 
   return { setId, slot: slot as SlotKey };
 }
 
-/** A scanned weapon as a GOOD weapon (who holds it isn't read: no location). */
+/** A scanned weapon as a GOOD weapon. */
 export function toGoodWeapon(
   s: Pick<EquipmentSighting, "variant" | "level" | "refinement" | "locked">,
   info: WeaponInfo,
+  details: { location?: string; ascension?: number } = {},
 ): GoodWeapon {
   const level = s.level ?? 1;
+  const ascension = details.ascension !== undefined && details.ascension !== null
+    ? details.ascension
+    : weaponAscension(level, !!s.variant?.startsWith("awakened"), info.rarity);
   return {
     key: info.key,
     level,
-    ascension: weaponAscension(level, !!s.variant?.startsWith("awakened"), info.rarity),
+    ascension,
     refinement: s.refinement ?? 1,
-    location: "",
+    location: details.location ?? "",
     lock: s.locked,
   };
 }
@@ -295,17 +299,48 @@ export function toGoodArtifact(
   return artifact;
 }
 
-/** Everything a panel reading says about an artifact, as one string: two equal keys are the same artifact. */
+/** Everything a panel reading says about an item, as one string: two equal keys are the same item. */
 export function panelKey(r: ArtifactPanelReading): string {
+  if (r.kind === "weapon") {
+    return ["weapon", r.weaponId, r.rarity, r.level, r.levelCap, r.ascension, r.refinement, r.locked, r.location].join("|");
+  }
   const stats = (list: { key: string; value: number }[]) => list.map((x) => `${x.key}=${x.value}`).join(",");
   return [r.setId, r.slot, r.rarity, r.level, r.mainStatKey, stats(r.substats), stats(r.unactivatedSubstats), r.locked, r.location].join("|");
 }
 
-/** "<set id>:<slot>" of a panel reading, or null when its set wasn't read. */
-export const panelItem = (r: ArtifactPanelReading): string | null => (r.setId && r.slot ? `${r.setId}:${r.slot}` : null);
+/** "<set id>:<slot>" or "<weapon id>" of a panel reading, or null when not read. */
+export const panelItem = (r: ArtifactPanelReading): string | null =>
+  r.kind === "weapon" ? (r.weaponId ?? null) : r.setId && r.slot ? `${r.setId}:${r.slot}` : null;
 
-/** A card for an artifact known only from its panel (its card wasn't detected, or no grid was). */
+/** A card for an item known only from its panel (its card wasn't detected, or no grid was). */
 function panelCard(r: ArtifactPanelReading, box: PixelRect, gridId: string, row: number | null, column: number | null): CardRecognition {
+  if (r.kind === "weapon") {
+    const item = r.weaponId ?? null;
+    const info = item ? getWeaponById(item) : undefined;
+    const name = info?.name ?? "Weapon";
+    const candidate: MaterialCandidate | null = item ? { id: item, name, rarity: (r.rarity ?? info?.rarity ?? 5) as Rarity, error: 0, confidence: 1 } : null;
+    const clean = r.issues.length === 0;
+    return {
+      cardId: `panel-${row ?? "x"}-${column ?? "x"}`,
+      gridId,
+      kind: "weapon",
+      row,
+      column,
+      box,
+      matchedBox: box,
+      status: !item ? "unknown" : clean ? "matched" : "uncertain",
+      material: candidate,
+      candidates: candidate ? [candidate] : [],
+      rarity: { value: (r.rarity ?? info?.rarity ?? null) as Rarity | null, stars: r.rarity, background: null, confidence: r.rarity ? 1 : 0 },
+      quantity: { value: null, text: "", confidence: 0 },
+      level: { value: r.level, confidence: r.level !== null ? 1 : 0 },
+      refinement: r.refinement != null ? { value: r.refinement, confidence: 1 } : null,
+      locked: r.locked,
+      hasNewBadge: false,
+      orderAdjusted: false,
+      confidence: !item ? 0 : clean ? 1 : 0.5,
+    };
+  }
   const item = panelItem(r);
   const set = r.setId ? getArtifactSetById(r.setId) : undefined;
   const name = (r.slot && set?.pieces[r.slot]) || (r.slot ? SLOT_NAMES[r.slot] : "Artifact");
@@ -335,11 +370,11 @@ function panelCard(r: ArtifactPanelReading, box: PixelRect, gridId: string, row:
 
 function panelSighting(r: ArtifactPanelReading, card: CardRecognition, source: number, row: number, column: number): EquipmentSighting {
   return {
-    kind: "artifact",
+    kind: r.kind === "weapon" ? "weapon" : "artifact",
     item: card.material?.id ?? null,
     rarity: r.rarity,
     level: r.level,
-    refinement: null,
+    refinement: r.refinement ?? null,
     locked: r.locked,
     status: card.status,
     confidence: card.confidence,
@@ -362,11 +397,11 @@ export function panelArtBox(bounds: PixelRect): PixelRect {
 const SELECTED_EMPTY_SLOT = 0.5;
 
 /**
- * Attaches an artifact panel reading to the card it describes, among one
- * frame's artifact rows: a card with the same piece and level (if several,
+ * Attaches a detail panel reading to the card it describes, among one
+ * frame's equipment rows: a card with the same item and level (if several,
  * the most highlighted one, i.e. the selected card). When the selected card
  * wasn't detected, its empty slot gets a card made from the panel. Otherwise
- * the reading comes back as `standalone`: an artifact seen only in its panel
+ * the reading comes back as `standalone`: an item seen only in its panel
  * (a full-screen detail view, or a grid that wasn't found).
  *
  * @param art the panel's box (the standalone card's crop)
@@ -394,7 +429,12 @@ export function attachPanel(
       }
     }
     if (best) {
-      out[best.r][best.k] = { ...out[best.r][best.k], panel: reading };
+      out[best.r][best.k] = {
+        ...out[best.r][best.k],
+        ...(reading.level !== null ? { level: reading.level } : {}),
+        ...(reading.refinement !== null && reading.refinement !== undefined ? { refinement: reading.refinement } : {}),
+        panel: reading,
+      };
       return { rows: out, standalone: null };
     }
     // The selected card is missing from the grid: its slot is empty and white-rimmed.

@@ -107,7 +107,7 @@ export function equipmentReviewItem(
   travelerElement = "Anemo",
 ): EquipmentReviewItem {
   const fixed = s.kind === "artifact" && s.item ? fixedMainStat(splitArtifactItem(s.item).slot) : null;
-  const panel = s.kind === "artifact" ? s.panel : undefined;
+  const panel = s.panel;
   return {
     id,
     kind: s.kind,
@@ -115,14 +115,15 @@ export function equipmentReviewItem(
     name: equipmentName(s.kind, s.item),
     rarity: s.rarity ?? undefined,
     ...(s.variant ? { variant: s.variant } : {}),
-    level: s.level ?? (s.kind === "weapon" ? 1 : 0),
-    refinement: s.refinement ?? 1,
+    level: panel?.level ?? s.level ?? (s.kind === "weapon" ? 1 : 0),
+    ...(panel?.ascension !== undefined && panel.ascension !== null ? { ascension: panel.ascension } : {}),
+    refinement: panel?.refinement ?? s.refinement ?? 1,
     locked: s.locked,
     mainStatKey: fixed ?? panel?.mainStatKey ?? "",
     ...(panel
       ? {
           fromPanel: true,
-          ...(panel.mainStatValue !== null ? { mainStatValue: panel.mainStatValue } : {}),
+          ...(panel.mainStatValue !== null && panel.mainStatValue !== undefined ? { mainStatValue: panel.mainStatValue } : {}),
           substats: panel.substats.map((x) => ({ ...x })),
           unactivatedSubstats: panel.unactivatedSubstats.map((x) => ({ ...x })),
           location: panel.location,
@@ -150,10 +151,10 @@ export interface EquipmentConfirm {
 /**
  * Saves confirmed weapons, artifacts and characters to the inventory. Rows
  * still unidentified are skipped. Artifacts whose detail panel was read
- * carry its substats and who wears them; otherwise (and for weapons)
- * `location` is empty and there are no substats. Characters are
- * merged by key (see toGoodCharacter); weapons and artifacts replace or add
- * to what's stored, per `replace`.
+ * carry its substats and who wears them; weapons carry refinement, level cap
+ * ascension and who holds them from their detail panel.
+ * Characters are merged by key (see toGoodCharacter); weapons and artifacts
+ * replace or add to what's stored, per `replace`.
  */
 export function saveScannedEquipment({ items, replace }: EquipmentConfirm) {
   const weapons: OwnedWeapon[] = [];
@@ -179,7 +180,10 @@ export function saveScannedEquipment({ items, replace }: EquipmentConfirm) {
         skipped++;
         continue;
       }
-      weapons.push({ ...toGoodWeapon(it, info), id: newEntryId("w") });
+      weapons.push({
+        ...toGoodWeapon(it, info, { location: it.location, ascension: it.ascension }),
+        id: newEntryId("w"),
+      });
     } else {
       const { setId, slot } = splitArtifactItem(it.item);
       const set = getArtifactSetById(setId);

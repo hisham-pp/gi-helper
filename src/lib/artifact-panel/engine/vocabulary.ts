@@ -6,6 +6,7 @@
  */
 import artifactSets from "@/data/artifact-sets.json";
 import characters from "@/data/characters.json";
+import weapons from "@/data/weapons.json";
 import namesZh from "@/data/names-zh.json";
 import type { SlotKey } from "../../good/types";
 
@@ -157,6 +158,8 @@ export interface Vocabulary {
   sets: Entry<string>[];
   /** Character name → character id. */
   characters: Entry<string>[];
+  /** Weapon name → weapon id. */
+  weapons: Entry<string>[];
 }
 
 const cache = new Map<PanelLanguage, Vocabulary>();
@@ -181,6 +184,13 @@ export function vocabulary(lang: PanelLanguage): Vocabulary {
       (characters as { id: string; name: string }[]).map((c): [string, string] => [
         c.id,
         lang === "en" ? c.name : (ZH.characters[c.id] ?? ""),
+      ]),
+      lang,
+    ),
+    weapons: entries(
+      (weapons as { id: string; name: string }[]).map((w): [string, string] => [
+        w.id,
+        w.name,
       ]),
       lang,
     ),
