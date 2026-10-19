@@ -268,7 +268,11 @@ export function VideoScannerView({ id = "video-panel", ariaLabelledBy = "video-t
             name: "Mora",
             rarity: 3,
             quantity: result.mora.value,
-            imageSnippet: materialThumbUrl("mora"),
+            imageSnippet: result.mora?.crop
+              ? trackUrl(result.mora.crop)
+              : result.moraCrop
+                ? trackUrl(result.moraCrop)
+                : materialThumbUrl("mora"),
             sourceImageName: "Bag Header",
             candidates: [
               {

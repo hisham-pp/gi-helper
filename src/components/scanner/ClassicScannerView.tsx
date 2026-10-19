@@ -8,7 +8,7 @@ import { UploadZone } from "./UploadZone";
 import { LazyScanReviewModal, preloadScanReviewModal } from "./lazy-modals";
 import type { ScanningFileItem } from "./ScanningAnimation";
 import { cropToBlob } from "@/lib/grid-detector";
-import { isMaterialDetectionError, type CardRecognition, type ScanProgress } from "@/lib/material-detector";
+import { isMaterialDetectionError, type CardRecognition, type MoraReading, type ScanProgress } from "@/lib/material-detector";
 import { useMaterialScanClient } from "@/lib/material-detector/react";
 import { useScannerSettings } from "@/lib/scanner/settings";
 import { setScannerInventory } from "@/lib/scanner/inventory";
@@ -49,6 +49,7 @@ interface ScanSummary {
   characters: number;
   flagged: number;
   unknown: number;
+  mora?: number | null;
 }
 
 
@@ -191,6 +192,7 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
         flagged: 0,
         unknown: 0,
       };
+      let bestMora: { reading: MoraReading; crop: Blob | null; sourceName: string } | null = null;
 
       try {
         for (let i = 0; i < files.length; i++) {
@@ -248,6 +250,12 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
                   },
                 });
               }
+              if (recognition.mora && recognition.mora.value !== null) {
+                if (!bestMora || recognition.mora.confidence > bestMora.reading.confidence) {
+                  const crop = bitmap ? await cropToBlob(bitmap, recognition.mora.box, "image/webp").catch(() => null) : null;
+                  bestMora = { reading: recognition.mora, crop, sourceName: file.name };
+                }
+              }
               const rows = equipmentRows(recognition.cards, i);
               if (panel && !panelFailed) {
                 setStatusMessage(`Reading the details in ${file.name}…`);
@@ -302,6 +310,26 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
         }
 
         const review = [...picks.values()].map((p) => p.item);
+        if (bestMora) {
+          review.unshift({
+            id: "screenshot-mora",
+            materialId: "mora",
+            name: "Mora",
+            rarity: 3,
+            quantity: bestMora.reading.value!,
+            imageSnippet: bestMora.crop ? trackUrl(bestMora.crop) : materialThumbUrl("mora"),
+            sourceImageName: bestMora.sourceName,
+            candidates: [
+              {
+                id: "mora",
+                name: "Mora",
+                rarity: 3,
+                confidence: Math.round(bestMora.reading.confidence * 100),
+              },
+            ],
+            reviewReason: bestMora.reading.confidence < 0.7 ? "Check quantity" : undefined,
+          });
+        }
         // Slots that need a second look first, then reading order.
         review.sort((a, b) => Number(!!b.reviewReason) - Number(!!a.reviewReason));
         const travelerElement = ownedTravelerElement(getOwnedCharacters());
@@ -330,6 +358,7 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
         /** Artifacts whose detail panel was read: main stat and substats included. */
         const withStats = equipment.filter((e) => e.fromPanel).length;
         totals.flagged = review.filter((r) => r.reviewReason).length + equipment.filter((e) => e.reviewReason).length;
+        totals.mora = bestMora?.reading.value ?? null;
         setSummary(totals);
         setReviewItems(review);
         setReviewEquipment(equipment);
@@ -459,6 +488,9 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
                 .join(" · ")}
             </span>
             {summary.flagged > 0 && <span className="text-amber-200"> · {summary.flagged} to check</span>}
+            {summary.mora !== null && summary.mora !== undefined && (
+              <span className="font-semibold text-amber-300"> · 🪙 {summary.mora.toLocaleString()} Mora</span>
+            )}
             {summary.unknown > 0 && <span className="text-white/50"> · {summary.unknown} not in catalog</span>}
             {summary.failedFiles > 0 && <span className="text-rose-300"> · {summary.failedFiles} failed</span>}
           </p>

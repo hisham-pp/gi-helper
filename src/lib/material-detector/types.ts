@@ -172,6 +172,8 @@ export interface MoraReading {
   box: PixelRect;
   /** 0–1 confidence. */
   confidence: number;
+  /** Scanned crop of the bag header Mora pill, if captured. */
+  crop?: Blob | null;
 }
 
 export interface MaterialRecognitionResult {

@@ -19,7 +19,7 @@ TASK:
 1. Scan the inventory item grid row-by-row, from top to bottom, left to right.
 2. For each fully visible material item box, match it to the exact canonical material from the REFERENCE MATERIAL LIST below.
 3. Read the exact numeric quantity shown at the bottom of the item slot (e.g. 1, 6, 12, 45, 1024, etc.). If an item is present without a visible count or shows 1, set quantity to 1.
-4. EXCLUDE PARTIALLY VISIBLE / CUT-OFF ITEMS: If an item slot is only half-visible, partially sliced, or cut off by the edges of the image (especially at the bottom or top row during scrolling), completely AVOID and SKIP it. Do not guess truncated items or items whose count area is cut off.
+4. HALF-SHOWN NUMBERS & PARTIALLY VISIBLE ITEMS: If an item slot or its quantity is partially cut off at the edge of the image or viewport (e.g. during scrolling) but the material and number can still be reasonably identified or guessed, INFER the number carefully and INCLUDE the item. Only skip items that are so severely truncated that their identity or quantity cannot be determined.
 
 OUTPUT FORMAT:
 Return ONLY a valid JSON object matching this schema:
@@ -35,8 +35,8 @@ Return ONLY a valid JSON object matching this schema:
 
 RULES:
 - You MUST match and select items from the REFERENCE MATERIAL LIST below using their exact canonical "id" and "name".
-- Detect all complete material items visible in the grid (Character Ascension, Talent Books, Weapon Ascension, Mob Drops, Boss Drops, Local Specialties, Ores, Mora, etc.).
-- AVOID HALF-VISIBLE / CUT-OFF ITEMS: Some materials may be half-visible or cut off by the border/scroll edge. Avoid and omit them from the JSON response. Only output items that are fully visible with their complete slot and quantity.
+- Detect all material items visible in the grid (Character Ascension, Talent Books, Weapon Ascension, Mob Drops, Boss Drops, Local Specialties, Ores, Mora, etc.).
+- HALF-SHOWN / PARTIALLY VISIBLE ITEMS: If an item or its quantity number is half-visible (e.g. cut off along the scroll border), read/guess the intended quantity from the visible digit shapes and strokes and include it. Only omit items where the number or material cannot be reasonably inferred.
 - Only read items in the grid. Ignore UI buttons, header tabs, left navigation icons, character models, and sidebar descriptions.
 - Quantity must be a valid positive integer.
 
