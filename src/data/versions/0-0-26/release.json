@@ -12,6 +12,10 @@
       "text": "Mora recognition UI: displays the recognized header Mora amount in the Material Recognition panel with live formatting."
     },
     {
+      "type": "new",
+      "text": "Video scanner Mora extraction: automatically captures Mora from recording keyframes and includes Mora in the review items and scan summary."
+    },
+    {
       "type": "improved",
       "text": "Character talent boost mapping: added C3/C5 constellation talent boost definitions (skill or burst) to characters.json for 100% accurate character imports."
     },

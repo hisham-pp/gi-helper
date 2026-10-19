@@ -46,6 +46,7 @@ interface VideoSummary {
   artifacts: number;
   characters: number;
   flagged: number;
+  mora?: number | null;
   seconds: number;
 }
 
@@ -260,6 +261,26 @@ export function VideoScannerView({ id = "video-panel", ariaLabelledBy = "video-t
           })),
           reviewReason: reviewReason(m),
         }));
+        if (result.mora && result.mora.value !== null) {
+          review.unshift({
+            id: "video-mora",
+            materialId: "mora",
+            name: "Mora",
+            rarity: 3,
+            quantity: result.mora.value,
+            imageSnippet: materialThumbUrl("mora"),
+            sourceImageName: "Bag Header",
+            candidates: [
+              {
+                id: "mora",
+                name: "Mora",
+                rarity: 3,
+                confidence: Math.round(result.mora.confidence * 100),
+              },
+            ],
+            reviewReason: result.mora.confidence < 0.7 ? "Check quantity" : undefined,
+          });
+        }
         // Slots that need a second look first, then the order they scrolled by.
         review.sort((a, b) => Number(!!b.reviewReason) - Number(!!a.reviewReason));
         const travelerElement = ownedTravelerElement(getOwnedCharacters());
@@ -287,6 +308,7 @@ export function VideoScannerView({ id = "video-panel", ariaLabelledBy = "video-t
           artifacts,
           characters,
           flagged,
+          mora: result.mora?.value ?? null,
           seconds: result.processingTimeMs / 1000,
         });
         setReviewItems(review);
@@ -406,6 +428,9 @@ export function VideoScannerView({ id = "video-panel", ariaLabelledBy = "video-t
                 .join(" · ")}
             </span>
             {summary.flagged > 0 && <span className="text-amber-200"> · {summary.flagged} to check</span>}
+            {summary.mora !== null && summary.mora !== undefined && (
+              <span className="font-semibold text-amber-300"> · 🪙 {summary.mora.toLocaleString()} Mora</span>
+            )}
             {summary.failedFrames > 0 && <span className="text-rose-300"> · {summary.failedFrames} frames failed</span>}
             <span className="text-white/50"> · {summary.seconds.toFixed(1)} s</span>
           </p>

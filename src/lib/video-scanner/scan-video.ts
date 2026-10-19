@@ -27,7 +27,7 @@ import { cropToBlob } from "../grid-detector/browser";
 import type { DetectedGrid, PixelRect } from "../grid-detector/types";
 import type { MaterialScanClient } from "../material-detector/client";
 import { isMaterialDetectionError } from "../material-detector/engine/errors";
-import type { CardRecognition, CardRecognitionStatus, ScanResult, ScanSettings } from "../material-detector/types";
+import type { CardRecognition, CardRecognitionStatus, MoraReading, ScanResult, ScanSettings } from "../material-detector/types";
 import {
   KeyframePicker,
   planGapFills,
@@ -124,6 +124,8 @@ export interface VideoScanResult {
   materials: VideoMaterial[];
   /** Weapons, artifacts and characters, in list order. */
   equipment: VideoEquipment[];
+  /** Best Mora reading from the bag header over all frames, if visible. */
+  mora?: MoraReading | null;
   processingTimeMs: number;
 }
 
@@ -221,6 +223,8 @@ export async function scanVideo(
     let fatal: unknown = null;
     /** Columns of the inventory, once a frame has shown them clearly. */
     let gridRegion: PixelRect | null = null;
+    /** Highest-confidence Mora count read from the bag header over all frames. */
+    let bestMora: MoraReading | null = null;
 
     let waiters: (() => void)[] = [];
     const notify = () => {
@@ -352,6 +356,11 @@ export async function scanVideo(
           const scanned = await result;
           cards = scanned.recognition.cards;
           panel = scanned.panel ?? null;
+          if (scanned.recognition.mora && scanned.recognition.mora.value !== null) {
+            if (!bestMora || scanned.recognition.mora.confidence > bestMora.confidence) {
+              bestMora = scanned.recognition.mora;
+            }
+          }
         } catch (err) {
           if (signal.aborted) throw cancelled();
           // Without reference data no frame can be recognised.
@@ -471,6 +480,7 @@ export async function scanVideo(
       panelsRead: panelReads.length,
       materials,
       equipment,
+      mora: bestMora,
       processingTimeMs: Math.round(now() - t0),
     };
   } catch (err) {
