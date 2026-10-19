@@ -1,7 +1,7 @@
 {
-  "title": "Bag Header Mora Reading & Character Talent Boost Data",
+  "title": "Bag Header & Video Scanner Mora Reading & Character Talent Boost Data",
   "date": "2026-10-19",
-  "summary": "Introduces automatic Mora extraction from the Genshin bag header currency bar and establishes game data constellation talent boost mappings (C3/C5) for all characters.",
+  "summary": "Introduces automatic Mora extraction from Genshin bag headers and video recording keyframes, live Mora recognition UI, and establishes constellation talent boost mappings (C3/C5) for all characters.",
   "changes": [
     {
       "type": "new",
