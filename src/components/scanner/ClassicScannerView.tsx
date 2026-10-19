@@ -125,6 +125,7 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
     return url;
   };
 
+
   /**
    * Scanned quantities replace stored ones: a screenshot shows the current count.
    * Shared with the other tabs: every scanner fills the same inventory.
@@ -380,6 +381,18 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [client, isScanning, mergeIntoInventory, router, settings.autoReviewResults],
   );
+
+  useEffect(() => {
+    const handleShared = (e: Event) => {
+      const customEvent = e as CustomEvent<{ files: File[] }>;
+      if (customEvent.detail?.files?.length > 0) {
+        toast.info(`Received ${customEvent.detail.files.length} shared screenshot(s)`);
+        handleFiles(customEvent.detail.files);
+      }
+    };
+    window.addEventListener("gi_shared_files_received", handleShared);
+    return () => window.removeEventListener("gi_shared_files_received", handleShared);
+  }, [handleFiles]);
 
   const handleConfirmReview = useCallback(
     (confirmed: DetectedItem[], equipment?: EquipmentConfirm) => {

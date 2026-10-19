@@ -14,6 +14,7 @@ export default function manifest(): MetadataRoute.Manifest {
     description: SITE.description,
     start_url: "/",
     display: "standalone",
+    orientation: "any",
     background_color: SITE.themeColor,
     theme_color: SITE.themeColor,
     icons: [
@@ -26,5 +27,36 @@ export default function manifest(): MetadataRoute.Manifest {
         purpose: "maskable",
       },
     ],
-  };
+    // Web Share Target: allows mobile players to share screenshots directly into GI Helper
+    share_target: {
+      action: "/",
+      method: "POST",
+      enctype: "multipart/form-data",
+      params: {
+        files: [
+          {
+            name: "images",
+            accept: ["image/*"],
+          },
+        ],
+      },
+    },
+    shortcuts: [
+      {
+        name: "Scanner",
+        url: "/",
+        description: "Open the inventory screenshot and video scanner",
+      },
+      {
+        name: "Inventory",
+        url: "/inventory/materials",
+        description: "View and manage scanned materials and gear",
+      },
+      {
+        name: "Database",
+        url: "/db/materials",
+        description: "Browse Genshin Impact materials, weapons, and characters",
+      },
+    ],
+  } as MetadataRoute.Manifest;
 }

@@ -20,6 +20,7 @@ import {
   AiProvider,
   getActiveProviderConfig,
   ServerEnvProviderInfo,
+  DEFAULT_SERVER_ENV_PROVIDERS,
 } from "@/lib/scanner/settings";
 import {
   listSupportedAdapters,
@@ -39,8 +40,8 @@ interface ScannerSettingsModalProps {
 
 /**
  * AI Vision settings. The parent mounts it only while open (via
- * LazyScannerSettingsModal), so the server-env check runs once per open
- * instead of on every page load.
+ * LazyScannerSettingsModal), initialized with offline defaults so it opens
+ * instantly with zero network delay.
  */
 export function ScannerSettingsModal({
   onClose,
@@ -49,7 +50,7 @@ export function ScannerSettingsModal({
   const { settings, updateSetting, mounted } = useScannerSettings();
   const [internalServerEnv, setInternalServerEnv] = useState<
     Record<string, ServerEnvProviderInfo>
-  >({});
+  >(serverEnvProp || DEFAULT_SERVER_ENV_PROVIDERS);
 
   usePauseBackground();
   // Renders nothing until the saved settings load, so the entrance waits for them
@@ -60,6 +61,10 @@ export function ScannerSettingsModal({
       setInternalServerEnv(serverEnvProp);
       return;
     }
+    // If offline, default provider configurations are already active
+    if (typeof navigator !== "undefined" && !navigator.onLine) {
+      return;
+    }
     fetch("/api/scanner/ai-vision")
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
@@ -67,7 +72,9 @@ export function ScannerSettingsModal({
           setInternalServerEnv(data.providers);
         }
       })
-      .catch(() => {});
+      .catch(() => {
+        setInternalServerEnv(DEFAULT_SERVER_ENV_PROVIDERS);
+      });
   }, [serverEnvProp]);
 
   const serverEnv = serverEnvProp || internalServerEnv;
@@ -188,6 +195,16 @@ export function ScannerSettingsModal({
   };
 
   const handleTestConnection = async () => {
+    if (typeof navigator !== "undefined" && !navigator.onLine) {
+      toast.error("You are currently offline. Testing external AI APIs requires an internet connection. Note: The Local Scanner runs 100% on-device offline!");
+      setTestingStatus({
+        loading: false,
+        success: false,
+        message: "Offline: Internet connection required to test cloud AI endpoint.",
+      });
+      return;
+    }
+
     const config = getActiveProviderConfig(settings);
 
     setTestingStatus({ loading: true });
