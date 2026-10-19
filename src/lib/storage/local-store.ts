@@ -25,6 +25,7 @@ export function createLocalStore<T>(
   const listeners = new Set<() => void>();
 
   const readStorage = (): T => {
+    if (typeof window === "undefined") return empty;
     try {
       const raw = window.localStorage.getItem(key);
       return raw === null ? empty : read(JSON.parse(raw));
@@ -48,6 +49,7 @@ export function createLocalStore<T>(
   };
 
   const subscribe = (listener: () => void) => {
+    if (typeof window === "undefined") return () => {};
     if (listeners.size === 0) window.addEventListener("storage", handleStorage);
     listeners.add(listener);
     return () => {
