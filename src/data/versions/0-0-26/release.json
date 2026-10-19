@@ -1,0 +1,23 @@
+{
+  "title": "Bag Header Mora Reading & Character Talent Boost Data",
+  "date": "2026-10-19",
+  "summary": "Introduces automatic Mora extraction from the Genshin bag header currency bar and establishes game data constellation talent boost mappings (C3/C5) for all characters.",
+  "changes": [
+    {
+      "type": "new",
+      "text": "Header Mora reading: detects the golden Mora coin in the bag header and reads multi-million integer counts via aspect-preserving area-averaged correlation against game digit templates."
+    },
+    {
+      "type": "new",
+      "text": "Mora recognition UI: displays the recognized header Mora amount in the Material Recognition panel with live formatting."
+    },
+    {
+      "type": "improved",
+      "text": "Character talent boost mapping: added C3/C5 constellation talent boost definitions (skill or burst) to characters.json for 100% accurate character imports."
+    },
+    {
+      "type": "improved",
+      "text": "Scale & orientation resilience: verified header Mora reading on both desktop and mobile screenshots across multiple aspect ratios (16:9, 19.5:9, 20.5:9) and at half resolution."
+    }
+  ]
+}
