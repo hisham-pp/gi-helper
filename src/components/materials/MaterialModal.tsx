@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   X,
   ChevronLeft,
@@ -15,6 +15,7 @@ import { MaterialItem } from "@/lib/types";
 import { bagOrder, getRarityStyles, getMaterialCategoryLabel, materialThumbUrl } from "@/lib/materials/ui";
 import { toast } from "sonner";
 import { useModalMotion, usePauseBackground } from "@/lib/hooks";
+import { triggerHaptic } from "@/lib/haptics";
 
 interface MaterialModalProps {
   material: MaterialItem;
@@ -46,12 +47,117 @@ export function MaterialModal({
 
   usePauseBackground();
   const { dialogRef, backdropRef, close } = useModalMotion(onClose);
+  const [navDirection, setNavDirection] = useState<"next" | "prev" | null>(null);
+  const swipeContainerRef = useRef<HTMLDivElement>(null);
+  const touchStartRef = useRef<{ x: number; y: number } | null>(null);
+  const isDraggingRef = useRef(false);
 
+  // When material changes, reset drag state and trigger smooth directional slide-in
   useEffect(() => {
     setCopied(false);
     setImgSrc(materialThumbUrl(material.id));
     setImgError(false);
-  }, [material]);
+
+    const el = swipeContainerRef.current;
+    if (!el) return;
+
+    el.style.transform = "";
+    el.style.opacity = "";
+    el.style.transition = "";
+
+    if (navDirection) {
+      const animClass = navDirection === "next" ? "anim-slide-in-right" : "anim-slide-in-left";
+      el.classList.remove("anim-slide-in-right", "anim-slide-in-left");
+      void el.offsetWidth; // Force reflow to restart animation
+      el.classList.add(animClass);
+    }
+  }, [material, navDirection]);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (e.touches.length === 1) {
+      touchStartRef.current = {
+        x: e.touches[0].clientX,
+        y: e.touches[0].clientY,
+      };
+      isDraggingRef.current = false;
+      const el = swipeContainerRef.current;
+      if (el) {
+        el.style.transition = "none";
+        el.classList.remove("anim-slide-in-right", "anim-slide-in-left");
+      }
+    }
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!touchStartRef.current) return;
+    const touch = e.touches[0];
+    const deltaX = touch.clientX - touchStartRef.current.x;
+    const deltaY = touch.clientY - touchStartRef.current.y;
+
+    // If vertical movement dominates, allow standard scroll
+    if (!isDraggingRef.current && Math.abs(deltaY) > Math.abs(deltaX)) {
+      return;
+    }
+
+    if (Math.abs(deltaX) > 8) {
+      isDraggingRef.current = true;
+    }
+
+    if (!isDraggingRef.current) return;
+
+    // Apply damping if dragging beyond available materials
+    let effectiveX = deltaX;
+    if ((deltaX > 0 && !hasPrev) || (deltaX < 0 && !hasNext)) {
+      effectiveX = deltaX * 0.22;
+    }
+
+    const el = swipeContainerRef.current;
+    if (el) {
+      const rotate = effectiveX * 0.025;
+      const opacity = Math.max(0.65, 1 - Math.abs(effectiveX) / 380);
+      el.style.transform = `translateX(${effectiveX}px) rotate(${rotate}deg)`;
+      el.style.opacity = `${opacity}`;
+    }
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (!touchStartRef.current) return;
+    const touch = e.changedTouches[0];
+    const deltaX = touch.clientX - touchStartRef.current.x;
+    const deltaY = touch.clientY - touchStartRef.current.y;
+    touchStartRef.current = null;
+    const wasDragging = isDraggingRef.current;
+    isDraggingRef.current = false;
+
+    const el = swipeContainerRef.current;
+    if (!el) return;
+
+    // Check if horizontal swipe threshold met (> 45px and predominantly horizontal)
+    if (wasDragging && Math.abs(deltaX) > 45 && Math.abs(deltaX) > Math.abs(deltaY) * 1.2) {
+      if (deltaX < 0 && hasNext && onNavigateNext) {
+        triggerHaptic("light");
+        el.style.transition = "transform 0.16s ease-out, opacity 0.16s ease-out";
+        el.style.transform = "translateX(-80px) rotate(-3deg)";
+        el.style.opacity = "0";
+        setNavDirection("next");
+        onNavigateNext();
+        return;
+      } else if (deltaX > 0 && hasPrev && onNavigatePrev) {
+        triggerHaptic("light");
+        el.style.transition = "transform 0.16s ease-out, opacity 0.16s ease-out";
+        el.style.transform = "translateX(80px) rotate(3deg)";
+        el.style.opacity = "0";
+        setNavDirection("prev");
+        onNavigatePrev();
+        return;
+      }
+    }
+
+    // Snap back smoothly if cancelled
+    el.style.transition = "transform 0.24s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease-out";
+    el.style.transform = "translateX(0px) rotate(0deg)";
+    el.style.opacity = "1";
+  };
 
   const handleImgError = () => {
     if (material.image && imgSrc !== material.image) {
@@ -67,8 +173,10 @@ export function MaterialModal({
       if (e.key === "Escape") {
         close();
       } else if (e.key === "ArrowRight" && hasNext && onNavigateNext) {
+        setNavDirection("next");
         onNavigateNext();
       } else if (e.key === "ArrowLeft" && hasPrev && onNavigatePrev) {
+        setNavDirection("prev");
         onNavigatePrev();
       }
     };
@@ -90,6 +198,22 @@ export function MaterialModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+      <style>{`
+        @keyframes modal-slide-in-right {
+          from { opacity: 0.35; transform: translateX(36px) scale(0.985); }
+          to { opacity: 1; transform: translateX(0) scale(1); }
+        }
+        @keyframes modal-slide-in-left {
+          from { opacity: 0.35; transform: translateX(-36px) scale(0.985); }
+          to { opacity: 1; transform: translateX(0) scale(1); }
+        }
+        .anim-slide-in-right {
+          animation: modal-slide-in-right 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .anim-slide-in-left {
+          animation: modal-slide-in-left 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+      `}</style>
       {/* Backdrop: a sibling of the dialog, so its fade doesn't fade the dialog */}
       <div
         ref={backdropRef}
@@ -102,51 +226,64 @@ export function MaterialModal({
         style={{ "--glass-accent": styles.accent } as React.CSSProperties}
         className="glass-card glass-card--lg glass-card--raised relative z-10 w-full max-w-lg overflow-hidden p-6"
       >
-        {/* Top Header Actions */}
-        <div className="flex items-center justify-between pb-4">
-          <div className="flex items-center gap-2">
-            <span className="glass-chip gap-1 px-3 py-1 font-mono text-xs font-bold text-white">
-              <span className="font-bold text-cyan-300">#</span>
-              {bagOrder(material).position}
-              {total !== undefined && bagOrder(material).tab !== "Materials" && (
-                <span className="ml-0.5 text-[10px] text-white/40">/ {total}</span>
-              )}
-            </span>
-            <span className={`glass-chip px-2.5 py-1 text-xs font-semibold ${styles.starColor}`}>
-              {rarity}★ Rarity
-            </span>
-          </div>
+        <div
+          ref={swipeContainerRef}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          className="w-full touch-pan-y will-change-transform"
+        >
+          {/* Top Header Actions */}
+          <div className="flex items-center justify-between pb-4">
+            <div className="flex items-center gap-2">
+              <span className="glass-chip gap-1 px-3 py-1 font-mono text-xs font-bold text-white">
+                <span className="font-bold text-cyan-300">#</span>
+                {bagOrder(material).position}
+                {total !== undefined && bagOrder(material).tab !== "Materials" && (
+                  <span className="ml-0.5 text-[10px] text-white/40">/ {total}</span>
+                )}
+              </span>
+              <span className={`glass-chip px-2.5 py-1 text-xs font-semibold ${styles.starColor}`}>
+                {rarity}★ Rarity
+              </span>
+            </div>
 
-          <div className="flex items-center gap-1.5">
-            {/* Prev / Next controls */}
-            <button
-              onClick={onNavigatePrev}
-              disabled={!hasPrev}
-              className="glass-icon-btn h-8 w-8 rounded-full"
-              title="Previous Material (Left Arrow)"
-              aria-label="Previous Material"
-            >
-              <ChevronLeft className="h-4 w-4" />
-            </button>
-            <button
-              onClick={onNavigateNext}
-              disabled={!hasNext}
-              className="glass-icon-btn h-8 w-8 rounded-full"
-              title="Next Material (Right Arrow)"
-              aria-label="Next Material"
-            >
-              <ChevronRight className="h-4 w-4" />
-            </button>
-            <button
-              onClick={close}
-              className="glass-icon-btn ml-2 h-8 w-8 rounded-full"
-              title="Close (Escape)"
-              aria-label="Close modal"
-            >
-              <X className="h-4 w-4" />
-            </button>
+            <div className="flex items-center gap-1.5">
+              {/* Prev / Next controls: hidden on mobile, visible from sm up */}
+              <button
+                onClick={() => {
+                  setNavDirection("prev");
+                  onNavigatePrev?.();
+                }}
+                disabled={!hasPrev}
+                className="glass-icon-btn hidden h-8 w-8 rounded-full sm:inline-flex"
+                title="Previous Material (Left Arrow)"
+                aria-label="Previous Material"
+              >
+                <ChevronLeft className="h-4 w-4" />
+              </button>
+              <button
+                onClick={() => {
+                  setNavDirection("next");
+                  onNavigateNext?.();
+                }}
+                disabled={!hasNext}
+                className="glass-icon-btn hidden h-8 w-8 rounded-full sm:inline-flex"
+                title="Next Material (Right Arrow)"
+                aria-label="Next Material"
+              >
+                <ChevronRight className="h-4 w-4" />
+              </button>
+              <button
+                onClick={close}
+                className="glass-icon-btn h-8 w-8 rounded-full sm:ml-2"
+                title="Close (Escape)"
+                aria-label="Close modal"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
           </div>
-        </div>
 
         <div className="glass-divider" />
 
@@ -253,10 +390,13 @@ export function MaterialModal({
         {/* Footer Navigation Tip */}
         <div className="glass-divider mt-4" />
         <div className="flex items-center justify-between pt-3 text-[11px] text-white/40">
-          <span>Tip: Use Arrow keys to browse materials in order</span>
+          <span className="hidden sm:inline">Tip: Use Arrow keys to browse materials in order</span>
+          <span className="sm:hidden">Tip: Swipe left/right to browse</span>
           <span className="font-mono">Esc to close</span>
         </div>
       </div>
     </div>
-  );
+  </div>
+);
 }
+
