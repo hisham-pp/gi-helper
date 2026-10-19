@@ -120,7 +120,7 @@ async function readWeaponPanel(
   if (!weaponId) issues.push("Couldn't read the weapon name");
 
   const weaponInfo = weaponId ? getWeaponById(weaponId) : undefined;
-  let rarity = capture.stars ?? capture.headerRarity ?? weaponInfo?.rarity ?? null;
+  const rarity = capture.stars ?? capture.headerRarity ?? weaponInfo?.rarity ?? null;
   if (rarity === null) issues.push("Couldn't count the stars");
 
   const parsedLvl = parseWeaponLevelAndCap(levelText);

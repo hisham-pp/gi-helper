@@ -366,8 +366,6 @@ export function VideoScannerView({ id = "video-panel", ariaLabelledBy = "video-t
         setFrameView(null);
       }
     },
-    // trackUrl and releasePreviews only touch refs.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [client1, client2, isScanning, handleFrame, mergeIntoInventory, router, settings.autoReviewResults],
   );
 

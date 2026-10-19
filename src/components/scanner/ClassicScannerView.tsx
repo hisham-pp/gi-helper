@@ -411,8 +411,6 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
         setStatusMessage("");
       }
     },
-    // trackUrl only touches a ref.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [client, isScanning, mergeIntoInventory, router, settings.autoReviewResults],
   );
 
