@@ -1,0 +1,27 @@
+{
+  "title": "Offline PWA Support, Precached Navigation & Instant Settings Sync",
+  "date": "2026-10-19",
+  "summary": "Introduces full offline PWA capabilities with comprehensive static bundle and RSC stream pre-caching, smooth offline navigation for inventory and database sections, Web Share Target integration, and synchronous local settings hydration.",
+  "changes": [
+    {
+      "type": "new",
+      "text": "Full offline PWA support: service worker automatically precaches application pages, extracted Next.js static script and stylesheet chunks, and RSC flight streams on install."
+    },
+    {
+      "type": "new",
+      "text": "Web Share Target API: allows sharing screenshots and video files directly into the scanner from mobile browsers and system share sheets."
+    },
+    {
+      "type": "improved",
+      "text": "Synchronous settings hydration: sync settings load instantly from local storage during initial layout hydration, eliminating layout shifts and race conditions on startup."
+    },
+    {
+      "type": "fixed",
+      "text": "Offline inventory and database navigation: ShellLink gracefully transitions to native document navigation offline, while the service worker intercepts RSC flight requests and navigation aliases to prevent client exceptions."
+    },
+    {
+      "type": "fixed",
+      "text": "Database detail modal images: ensures material, weapon, and character thumbnails in database sheets resolve reliably in both online and offline contexts."
+    }
+  ]
+}

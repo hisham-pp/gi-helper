@@ -3,13 +3,14 @@
 /**
  * GI Helper Progressive Web App Service Worker
  * Provides complete offline support for:
- * - App shell and navigation routes
+ * - App shell and navigation routes (/inventory/*, /db/*, /)
+ * - Next.js static script bundles, CSS chunks, and RSC Flight data
  * - Pre-cached and dynamically cached reference atlases (/data/*)
  * - Tesseract OCR engines and trained language data (/ocr/*)
  * - Web Share Target: receiving shared screenshot images directly into the scanner
  */
 
-const VERSION = "v1";
+const VERSION = "v2";
 const CACHE_STATIC = `gi-helper-static-${VERSION}`;
 const CACHE_DATA = `gi-helper-data-${VERSION}`;
 const CACHE_OCR = `gi-helper-ocr-${VERSION}`;
@@ -18,13 +19,9 @@ const CACHE_SHARED = "gi-helper-shared-images";
 
 const CURRENT_CACHES = [CACHE_STATIC, CACHE_DATA, CACHE_OCR, CACHE_PAGES, CACHE_SHARED];
 
-/** Core assets to pre-cache on service worker install */
-const PRECACHE_URLS = [
+/** Core app routes that must be completely available offline */
+const PRECACHE_ROUTES = [
   "/",
-  "/manifest.webmanifest",
-  "/icons/icon-192.png",
-  "/icons/icon-512.png",
-  "/icons/icon-maskable-512.png",
   "/inventory/materials",
   "/inventory/weapons",
   "/inventory/artifacts",
@@ -32,11 +29,82 @@ const PRECACHE_URLS = [
   "/db/materials",
 ];
 
+/** Core standalone assets to pre-cache */
+const PRECACHE_STATIC_ASSETS = [
+  "/manifest.webmanifest",
+  "/icons/icon-192.png",
+  "/icons/icon-512.png",
+  "/icons/icon-maskable-512.png",
+];
+
+/**
+ * Precaches core HTML shells, static script chunks, stylesheets,
+ * and React Server Component flight data during installation.
+ */
+async function precacheAll() {
+  const staticCache = await caches.open(CACHE_STATIC);
+  const pagesCache = await caches.open(CACHE_PAGES);
+
+  // 1. Precache static icons and manifest
+  await Promise.allSettled(
+    PRECACHE_STATIC_ASSETS.map(async (url) => {
+      try {
+        const res = await fetch(url);
+        if (res && res.status === 200) await staticCache.put(url, res);
+      } catch {}
+    }),
+  );
+
+  // 2. Precache HTML shells and extract required Next.js script/CSS chunks
+  const scriptOrLinkRegex = /<(?:script|link)[^>]+(?:src|href)="(\/_next\/static\/[^"]+)"/g;
+  const staticAssets = new Set();
+
+  await Promise.allSettled(
+    PRECACHE_ROUTES.map(async (route) => {
+      try {
+        // Fetch HTML document
+        const res = await fetch(route);
+        if (res && res.status === 200) {
+          const html = await res.text();
+          const htmlHeaders = { "Content-Type": "text/html; charset=utf-8" };
+          await pagesCache.put(route, new Response(html, { headers: htmlHeaders }));
+          await staticCache.put(route, new Response(html, { headers: htmlHeaders }));
+
+          // Extract script chunks and css links referenced by the HTML
+          let match;
+          while ((match = scriptOrLinkRegex.exec(html)) !== null) {
+            staticAssets.add(match[1]);
+          }
+        }
+      } catch {}
+
+      try {
+        // Fetch and cache RSC flight stream for client-side router navigation
+        const rscRes = await fetch(route, { headers: { "RSC": "1" } });
+        if (rscRes && rscRes.status === 200) {
+          const rscText = await rscRes.text();
+          const rscHeaders = { "Content-Type": "text/x-component; charset=utf-8" };
+          await pagesCache.put(route + "?_rsc=1", new Response(rscText, { headers: rscHeaders }));
+        }
+      } catch {}
+    }),
+  );
+
+  // 3. Precache every extracted Next.js chunk and stylesheet
+  await Promise.allSettled(
+    Array.from(staticAssets).map(async (assetUrl) => {
+      try {
+        const res = await fetch(assetUrl);
+        if (res && res.status === 200) await staticCache.put(assetUrl, res);
+      } catch {}
+    }),
+  );
+}
+
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches
-      .open(CACHE_STATIC)
-      .then((cache) => cache.addAll(PRECACHE_URLS).catch(() => undefined))
+    precacheAll()
+      .catch(() => undefined)
       .then(() => self.skipWaiting()),
   );
 });
@@ -79,7 +147,7 @@ async function cacheFirst(request, cacheName) {
 
 /**
  * Network-first strategy for navigation and dynamic pages:
- * Tries network first; if offline, falls back to cached page or home shell.
+ * Tries network first; if offline, falls back to cached page or relevant section shell.
  */
 async function networkFirst(request, cacheName) {
   try {
@@ -93,7 +161,21 @@ async function networkFirst(request, cacheName) {
     const cached = await caches.match(request);
     if (cached) return cached;
 
-    // Fall back to root app shell for client-side navigation
+    const url = new URL(request.url);
+    const pathname = url.pathname;
+    const pathMatch = await caches.match(pathname);
+    if (pathMatch) return pathMatch;
+
+    // Fall back to relevant section shell for offline viewing
+    if (pathname.startsWith("/inventory")) {
+      const inventoryShell = await caches.match("/inventory/materials");
+      if (inventoryShell) return inventoryShell;
+    } else if (pathname.startsWith("/db")) {
+      const dbShell = await caches.match("/db/materials");
+      if (dbShell) return dbShell;
+    }
+
+    // Fall back to root app shell
     const rootShell = await caches.match("/");
     if (rootShell) return rootShell;
 
@@ -163,7 +245,7 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  // 4. Static Game Assets & Next.js Bundles (/_next/static/*, /icons/*, /images/*)
+  // 4. Static Game Assets & Next.js Bundles (/_next/static/*, /icons/*, /images/*, /manifest.webmanifest)
   if (
     url.origin === location.origin &&
     (url.pathname.startsWith("/_next/static/") ||
@@ -181,18 +263,57 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  // 6. Navigation (HTML pages)
-  if (request.mode === "navigate") {
-    if (url.origin === location.origin) {
-      if (url.pathname === "/inventory") {
-        event.respondWith(Response.redirect(new URL("/inventory/materials", url.origin).href, 302));
-        return;
-      }
-      if (url.pathname === "/db") {
-        event.respondWith(Response.redirect(new URL("/db/materials", url.origin).href, 302));
-        return;
-      }
+  // 6. Navigation Aliases (/inventory, /db)
+  if (request.mode === "navigate" && url.origin === location.origin) {
+    if (url.pathname === "/inventory" || url.pathname === "/inventory/") {
+      event.respondWith(
+        caches.match("/inventory/materials").then((res) => {
+          if (res) return res;
+          return networkFirst(new Request("/inventory/materials"), CACHE_PAGES);
+        }),
+      );
+      return;
     }
+    if (url.pathname === "/db" || url.pathname === "/db/") {
+      event.respondWith(
+        caches.match("/db/materials").then((res) => {
+          if (res) return res;
+          return networkFirst(new Request("/db/materials"), CACHE_PAGES);
+        }),
+      );
+      return;
+    }
+  }
+
+  // 7. Next.js React Server Component (RSC) Flight requests (?_rsc=... or rsc: 1)
+  if (url.origin === location.origin && (url.searchParams.has("_rsc") || request.headers.get("rsc") === "1")) {
+    event.respondWith(
+      fetch(request)
+        .then((res) => {
+          if (res && res.status === 200) {
+            const clone = res.clone();
+            caches.open(CACHE_PAGES).then((cache) => cache.put(request, clone));
+          }
+          return res;
+        })
+        .catch(async () => {
+          const exact = await caches.match(request);
+          if (exact) return exact;
+
+          const byRscKey = await caches.match(url.pathname + "?_rsc=1");
+          if (byRscKey) return byRscKey;
+
+          // Safe fallback RSC stream to avoid crashing Next.js JSON/flight parser
+          return new Response('0:[]\n', {
+            headers: { "Content-Type": "text/x-component; charset=utf-8" },
+          });
+        }),
+    );
+    return;
+  }
+
+  // 8. Navigation (HTML pages)
+  if (request.mode === "navigate") {
     event.respondWith(networkFirst(request, CACHE_PAGES));
     return;
   }
