@@ -32,6 +32,7 @@ import {
   type GridKindReading,
   type MaterialCandidate,
   type MaterialRecognitionResult,
+  type MoraReading,
   type NumberReading,
   type QuantityReading,
   type Rarity,
@@ -64,6 +65,7 @@ import { guessGridKind, spreadCards } from "./kind";
 import { backgroundColor, compositeError, patternSearch, peakBlockError } from "./match";
 import { type DigitTemplates, readFooter, readQuantity } from "./quantity";
 import { classifyBackground, combineRarity, readStars } from "./rarity";
+import { readMora } from "./mora";
 
 export interface RecognitionInput {
   /** Pixels to analyse (the whole screenshot). */
@@ -609,6 +611,25 @@ export function recognizeCards(
   const sx = input.image.width / sourceW;
   const sy = input.image.height / sourceH;
 
+  const rawMora = settings.readMora ? timer.time("mora", () => readMora(input.image, digits)) : null;
+  const mora: MoraReading | null =
+    rawMora && (sx !== 1 || sy !== 1)
+      ? {
+          ...rawMora,
+          coin: {
+            x: Math.round(rawMora.coin.x / sx),
+            y: Math.round(rawMora.coin.y / sy),
+            radius: Math.round(rawMora.coin.radius / Math.min(sx, sy)),
+          },
+          box: {
+            x: Math.round(rawMora.box.x / sx),
+            y: Math.round(rawMora.box.y / sy),
+            width: Math.round(rawMora.box.width / sx),
+            height: Math.round(rawMora.box.height / sy),
+          },
+        }
+      : rawMora;
+
   const gridKinds = timer.time("kind", () => decideGridKinds(input, banks, settings, digits));
   const kindOf = new Map(gridKinds.map((g) => [g.gridId, g.kind]));
 
@@ -719,6 +740,7 @@ export function recognizeCards(
   return {
     imageWidth: sourceW,
     imageHeight: sourceH,
+    mora,
     grids: gridKinds,
     cards,
     items,

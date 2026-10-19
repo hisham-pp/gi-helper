@@ -85,6 +85,18 @@ export function RecognitionPanel({
             <Stat label="ms" value={Math.round(result.processingTimeMs)} tone="text-white" />
           </div>
 
+          {result.mora && result.mora.value !== null && (
+            <div className="mt-2.5 flex items-center justify-between rounded-xl border border-amber-400/20 bg-amber-400/10 px-3 py-1.5 text-xs">
+              <span className="flex items-center gap-1.5 font-medium text-amber-200">
+                <span className="text-sm">🪙</span>
+                Header Mora
+              </span>
+              <span className="font-mono text-xs font-bold text-amber-300">
+                {result.mora.value.toLocaleString()}
+              </span>
+            </div>
+          )}
+
           {cards.length > 0 && (
             <div className="mt-3 grid grid-cols-[repeat(auto-fill,minmax(150px,1fr))] gap-1.5">
               {cards.map((c) => {

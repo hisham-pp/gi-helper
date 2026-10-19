@@ -18,6 +18,7 @@ export {
   matchConfidence,
   type RecognitionInput,
 } from "./engine/recognize";
+export { readMora, locateMoraHeader } from "./engine/mora";
 export {
   ATLAS_FILES,
   createReferenceBank,
