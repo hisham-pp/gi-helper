@@ -126,6 +126,8 @@ export interface VideoScanResult {
   equipment: VideoEquipment[];
   /** Best Mora reading from the bag header over all frames, if visible. */
   mora?: MoraReading | null;
+  /** Scanned crop of the bag header Mora pill, if visible. */
+  moraCrop?: Blob | null;
   processingTimeMs: number;
 }
 
@@ -224,7 +226,8 @@ export async function scanVideo(
     /** Columns of the inventory, once a frame has shown them clearly. */
     let gridRegion: PixelRect | null = null;
     /** Highest-confidence Mora count read from the bag header over all frames. */
-    let bestMora: MoraReading | null = null;
+    const moraRef: { current: MoraReading | null } = { current: null };
+    let moraCropPromise: Promise<Blob | null> | null = null;
 
     let waiters: (() => void)[] = [];
     const notify = () => {
@@ -357,8 +360,9 @@ export async function scanVideo(
           cards = scanned.recognition.cards;
           panel = scanned.panel ?? null;
           if (scanned.recognition.mora && scanned.recognition.mora.value !== null) {
-            if (!bestMora || scanned.recognition.mora.confidence > bestMora.confidence) {
-              bestMora = scanned.recognition.mora;
+            if (!moraRef.current || scanned.recognition.mora.confidence > moraRef.current.confidence) {
+              moraRef.current = scanned.recognition.mora;
+              moraCropPromise = cropToBlob(bitmap, scanned.recognition.mora.box, "image/webp").catch(() => null);
             }
           }
         } catch (err) {
@@ -469,6 +473,10 @@ export async function scanVideo(
       framesScanned: completed,
       framesPicked: picked,
     });
+    const moraCrop = moraCropPromise ? await moraCropPromise : null;
+    if (moraRef.current && moraCrop) {
+      moraRef.current.crop = moraCrop;
+    }
     return {
       duration,
       width,
@@ -481,7 +489,8 @@ export async function scanVideo(
       panelsRead: panelReads.length,
       materials,
       equipment,
-      mora: bestMora,
+      mora: moraRef.current,
+      moraCrop,
       processingTimeMs: Math.round(now() - t0),
     };
   } catch (err) {

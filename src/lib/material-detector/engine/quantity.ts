@@ -109,16 +109,58 @@ export function otsu(values: Float32Array): number {
 
 /** Area-average of a region of the ink map into GLYPH_W × GLYPH_H, keeping aspect. */
 function normalizeGlyph(text: FooterText, b: Box): Float32Array {
-  const { ink, width: bandW } = text;
+  const { ink, width: bandW, height: bandH } = text;
   const out = new Float32Array(GLYPH_W * GLYPH_H);
   const gw = b.x1 - b.x0 + 1;
   const gh = b.y1 - b.y0 + 1;
-  const dstW = Math.min(GLYPH_W, Math.max(1, gw * (GLYPH_H / gh)));
-  const sx = gw / dstW; // source px per destination px (x)
-  const sy = gh / GLYPH_H;
+  const digitH = bandH * DIGIT_HEIGHT_RATIO;
+  const touchesEdge = b.y0 <= 1 || b.y1 >= bandH - 2;
+  const isTruncated = touchesEdge && gh < digitH * 0.65;
+
+  if (!isTruncated) {
+    const dstW = Math.min(GLYPH_W, Math.max(1, gw * (GLYPH_H / gh)));
+    const sx = gw / dstW; // source px per destination px (x)
+    const sy = gh / GLYPH_H;
+    const offset = (GLYPH_W - dstW) / 2;
+    for (let y = 0; y < GLYPH_H; y++) {
+      const a = b.y0 + y * sy;
+      const e = a + sy;
+      for (let x = 0; x < GLYPH_W; x++) {
+        const ua = (x - offset) * sx;
+        const xa = Math.max(0, ua);
+        const xe = Math.min(gw, ua + sx);
+        if (xe <= xa) continue;
+        let s = 0, wsum = 0;
+        for (let py = Math.floor(a); py < Math.ceil(e); py++) {
+          const wy = Math.min(e, py + 1) - Math.max(a, py);
+          if (wy <= 0) continue;
+          for (let px = Math.floor(xa); px < Math.ceil(xe); px++) {
+            const wx = Math.min(xe, px + 1) - Math.max(xa, px);
+            if (wx <= 0) continue;
+            s += ink[py * bandW + b.x0 + px] * wx * wy;
+            wsum += wx * wy;
+          }
+        }
+        // Partially covered destination pixels are diluted with background.
+        out[y * GLYPH_W + x] = wsum > 0 ? (s / wsum) * ((xe - xa) / sx) : 0;
+      }
+    }
+    return out;
+  }
+
+  // Truncated glyph (half-shown digit): preserve vertical aspect and anchor to top or bottom
+  const scale = GLYPH_H / digitH;
+  const dstH = Math.min(GLYPH_H, Math.max(2, Math.round(gh * scale)));
+  const dstW = Math.min(GLYPH_W, Math.max(1, Math.round(gw * scale)));
+  const sx = gw / dstW;
+  const sy = gh / dstH;
   const offset = (GLYPH_W - dstW) / 2;
-  for (let y = 0; y < GLYPH_H; y++) {
-    const a = b.y0 + y * sy;
+  const isTop = b.y1 >= bandH - 2;
+  const yStart = isTop ? 0 : GLYPH_H - dstH;
+
+  for (let dy = 0; dy < dstH; dy++) {
+    const y = yStart + dy;
+    const a = b.y0 + dy * sy;
     const e = a + sy;
     for (let x = 0; x < GLYPH_W; x++) {
       const ua = (x - offset) * sx;
@@ -136,7 +178,6 @@ function normalizeGlyph(text: FooterText, b: Box): Float32Array {
           wsum += wx * wy;
         }
       }
-      // Partially covered destination pixels are diluted with background.
       out[y * GLYPH_W + x] = wsum > 0 ? (s / wsum) * ((xe - xa) / sx) : 0;
     }
   }
@@ -247,6 +288,18 @@ export function readFooterText(image: RgbaImage, box: PixelRect, alignment: Alig
     const centres = components.map((c) => (c.y0 + c.y1) / 2).sort((a, b) => a - b);
     const midY = centres[Math.floor(centres.length / 2)];
     components = components.filter((c) => Math.abs((c.y0 + c.y1) / 2 - midY) <= digitH * 0.3);
+  } else {
+    // Check for half-shown digits when cut off by scroll viewport / card boundary
+    components = merged.filter((c) => {
+      const h = c.y1 - c.y0 + 1;
+      const touchesEdge = c.y0 <= 1 || c.y1 >= H - 2;
+      return (touchesEdge || h >= digitH * 0.5) && h >= digitH * 0.35 && h <= digitH * 1.45;
+    });
+    if (components.length > 0) {
+      const centres = components.map((c) => (c.y0 + c.y1) / 2).sort((a, b) => a - b);
+      const midY = centres[Math.floor(centres.length / 2)];
+      components = components.filter((c) => Math.abs((c.y0 + c.y1) / 2 - midY) <= digitH * 0.35);
+    }
   }
   return { width: W, height: H, ink, components, contrast };
 }
@@ -340,12 +393,22 @@ export interface DigitMatch {
   runnerUp: number;
 }
 
-export function classifyGlyph(ink: Float32Array, templates: DigitTemplates): DigitMatch {
+export function classifyGlyph(
+  ink: Float32Array,
+  templates: DigitTemplates,
+  slice?: { rowStart: number; rowCount: number },
+): DigitMatch {
   let digit = "?";
   let score = -1;
   let runnerUp = -1;
+  const useSlice = slice && slice.rowCount < GLYPH_H && slice.rowCount >= 4;
+  const startIdx = useSlice ? slice.rowStart * GLYPH_W : 0;
+  const endIdx = useSlice ? (slice.rowStart + slice.rowCount) * GLYPH_W : GLYPH_W * GLYPH_H;
+  const subInk = useSlice ? ink.subarray(startIdx, endIdx) : ink;
+
   for (const [d, t] of Object.entries(templates.digits)) {
-    const c = correlation(ink, t);
+    const subT = useSlice ? t.slice(startIdx, endIdx) : t;
+    const c = correlation(subInk, subT);
     if (c > score) {
       runnerUp = score;
       score = c;
@@ -364,17 +427,35 @@ export function classifyGlyph(ink: Float32Array, templates: DigitTemplates): Dig
  */
 function segmentComponent(text: FooterText, c: Box, templates: DigitTemplates): DigitMatch[] {
   const h = c.y1 - c.y0 + 1;
+  const digitH = text.height * DIGIT_HEIGHT_RATIO;
+  const isTruncated = h < digitH * 0.7;
+  const effH = isTruncated ? digitH : h;
   const positions = [c.x0, ...cutCandidates(text, c), c.x1 + 1];
   const memo = new Map<string, DigitMatch | null>();
   const last = positions.length - 1;
+
+  const matchBox = (b: Box): DigitMatch => {
+    const gh = b.y1 - b.y0 + 1;
+    const norm = normalizeGlyph(text, b);
+    const touchesEdge = b.y0 <= 1 || b.y1 >= text.height - 2;
+    if (touchesEdge && gh < digitH * 0.65) {
+      const scale = GLYPH_H / digitH;
+      const dstH = Math.min(GLYPH_H, Math.max(2, Math.round(gh * scale)));
+      const isTop = b.y1 >= text.height - 2;
+      const rowStart = isTop ? 0 : GLYPH_H - dstH;
+      return classifyGlyph(norm, templates, { rowStart, rowCount: dstH });
+    }
+    return classifyGlyph(norm, templates);
+  };
+
   const piece = (i: number, j: number): DigitMatch | null => {
     const k = `${i},${j}`;
     if (memo.has(k)) return memo.get(k)!;
     const w = positions[j] - positions[i];
     let result: DigitMatch | null = null;
-    if (w >= MIN_PIECE * h && w <= MAX_PIECE * h) {
+    if (w >= MIN_PIECE * h && w <= MAX_PIECE * effH) {
       const b = tighten(text, { x0: positions[i], x1: positions[j] - 1, y0: c.y0, y1: c.y1 });
-      if (b) result = classifyGlyph(normalizeGlyph(text, b), templates);
+      if (b) result = matchBox(b);
     }
     memo.set(k, result);
     return result;
@@ -394,9 +475,9 @@ function segmentComponent(text: FooterText, c: Box, templates: DigitTemplates): 
   }
   const end = last;
   if (best[end].value === -Infinity) {
-    // No plausible split (e.g. a smudge): classify the whole component.
+    // No plausible split (e.g. a smudge or single truncated component): classify the whole component.
     const b = tighten(text, c);
-    return b ? [classifyGlyph(normalizeGlyph(text, b), templates)] : [];
+    return b ? [matchBox(b)] : [];
   }
   const out: DigitMatch[] = [];
   for (let j = end; j > 0; j = best[j].from) out.unshift(piece(best[j].from, j)!);
@@ -422,7 +503,7 @@ export function readQuantity(
   let str = "";
   let confidence = 1;
   for (const d of digits) {
-    str += d.score >= 0.45 ? d.digit : "?";
+    str += d.score >= 0.40 ? d.digit : "?";
     confidence = Math.min(confidence, digitConfidence(d));
   }
   const value = /^\d+$/.test(str) && !(str.length > 1 && str[0] === "0") ? parseInt(str, 10) : null;

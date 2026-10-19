@@ -224,14 +224,14 @@ export function MaterialModal({
       <div
         ref={dialogRef}
         style={{ "--glass-accent": styles.accent } as React.CSSProperties}
-        className="glass-card glass-card--lg glass-card--raised relative z-10 w-full max-w-lg overflow-hidden p-6"
+        className="glass-card glass-card--lg glass-card--raised relative z-10 flex max-h-[90vh] sm:max-h-[86vh] w-full max-w-lg flex-col overflow-hidden p-5 sm:p-6"
       >
         <div
           ref={swipeContainerRef}
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
-          className="w-full touch-pan-y will-change-transform"
+          className="flex flex-1 flex-col min-h-0 w-full touch-pan-y will-change-transform overflow-y-auto pr-0.5"
         >
           {/* Top Header Actions */}
           <div className="flex items-center justify-between pb-4">
@@ -367,12 +367,12 @@ export function MaterialModal({
         </div>
 
         {/* In-Game Lore / Description */}
-        <div className="mt-4">
+        <div className="mt-4 flex flex-1 flex-col min-h-0">
           <h4 className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-white/50">
             <Bookmark className="h-3.5 w-3.5 text-cyan-300" />
             In-Game Description & Lore
           </h4>
-          <div className="glass-well mt-2 max-h-48 overflow-y-auto rounded-2xl p-3.5 text-xs leading-relaxed text-white/80">
+          <div className="glass-well mt-2 h-36 sm:h-44 flex-1 overflow-y-auto rounded-2xl p-3.5 text-xs leading-relaxed text-white/80">
             {material.description ? (
               material.description.split("\n").map((line, idx) => (
                 <p key={idx} className={idx > 0 ? "mt-2" : ""}>

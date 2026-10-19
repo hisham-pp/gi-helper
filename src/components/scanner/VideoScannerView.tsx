@@ -268,7 +268,11 @@ export function VideoScannerView({ id = "video-panel", ariaLabelledBy = "video-t
             name: "Mora",
             rarity: 3,
             quantity: result.mora.value,
-            imageSnippet: materialThumbUrl("mora"),
+            imageSnippet: result.mora?.crop
+              ? trackUrl(result.mora.crop)
+              : result.moraCrop
+                ? trackUrl(result.moraCrop)
+                : materialThumbUrl("mora"),
             sourceImageName: "Bag Header",
             candidates: [
               {
@@ -362,8 +366,6 @@ export function VideoScannerView({ id = "video-panel", ariaLabelledBy = "video-t
         setFrameView(null);
       }
     },
-    // trackUrl and releasePreviews only touch refs.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [client1, client2, isScanning, handleFrame, mergeIntoInventory, router, settings.autoReviewResults],
   );
 
