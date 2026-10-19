@@ -24,12 +24,13 @@ function siteUrl(path: string): string {
     : path;
 }
 
-const unavailable = (cause?: unknown) =>
-  new MaterialDetectionError(
-    "REFERENCES_UNAVAILABLE",
-    "The scanner's reference data could not be loaded. Check your connection and try again.",
-    cause,
-  );
+const unavailable = (cause?: unknown) => {
+  const isOffline = typeof navigator !== "undefined" && navigator.onLine === false;
+  const message = isOffline
+    ? "Scanner reference data is not cached for offline use yet. Please connect to the internet once to download and cache the reference atlases."
+    : "The scanner's reference data could not be loaded. Check your connection and try again.";
+  return new MaterialDetectionError("REFERENCES_UNAVAILABLE", message, cause);
+};
 
 async function readPixels(blob: Blob) {
   const bitmap = await createImageBitmap(blob, { colorSpaceConversion: "none", premultiplyAlpha: "none" });

@@ -148,6 +148,13 @@ export function AiScannerView({
       const currentConfig = getActiveProviderConfig(settings);
       const currentAdapter = getAiAdapter(settings.aiProvider);
 
+      if (typeof navigator !== "undefined" && !navigator.onLine) {
+        toast.error(
+          "AI Vision requires an internet connection. Switch to the Local Scanner tab to scan on-device offline!",
+        );
+        return;
+      }
+
       // AI key must be provided by user
       if (!currentConfig.apiKey?.trim()) {
         toast.error(

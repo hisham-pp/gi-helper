@@ -61,6 +61,15 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
+        // Service worker must always check for updates and be allowed at root scope
+        source: "/sw.js",
+        headers: [
+          { key: "Content-Type", value: "application/javascript; charset=utf-8" },
+          { key: "Cache-Control", value: "public, max-age=0, must-revalidate" },
+          { key: "Service-Worker-Allowed", value: "/" },
+        ],
+      },
+      {
         // Fetched as ?v=<content hash> (lib/material-detector/browser.ts): never changes
         source: "/data/:kind(material|weapon|artifact|character)-atlas.webp",
         has: [{ type: "query", key: "v" }],
