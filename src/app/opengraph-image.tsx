@@ -66,7 +66,7 @@ export default async function OpengraphImage() {
           height: "100%",
           alignItems: "center",
           justifyContent: "center",
-          backgroundColor: "#020e13",
+          backgroundColor: SITE.themeColor,
           fontFamily: fonts.length ? FONT_FAMILY : undefined,
         }}
       >

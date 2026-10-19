@@ -17,7 +17,7 @@ interface SiteHeaderProps {
  */
 export function SiteHeader({ version }: SiteHeaderProps) {
   return (
-    <header className="flex w-full shrink-0 flex-wrap items-center gap-x-2 gap-y-3 px-4 pb-3 pt-4 sm:flex-nowrap sm:gap-x-3 sm:px-6 sm:pb-4 md:px-8">
+    <header className="flex w-full shrink-0 flex-wrap items-center gap-x-2 gap-y-3 px-4 pb-3 pt-[max(1rem,env(safe-area-inset-top,1rem))] sm:flex-nowrap sm:gap-x-3 sm:px-6 sm:pb-4 md:px-8">
       <div className="flex min-w-0 items-center gap-2 sm:gap-2.5">
         <ShellLink href="/" className="flex items-center gap-2 sm:gap-2.5" aria-label="GI Helper home">
           <BrandIcon className="h-7 w-7 drop-shadow-[0_0_10px_rgba(45,212,191,0.35)] sm:h-8 sm:w-8" />

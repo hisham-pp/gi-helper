@@ -10,7 +10,7 @@
  * - Web Share Target: receiving shared screenshot images directly into the scanner
  */
 
-const VERSION = "v2";
+const VERSION = "v3";
 const CACHE_STATIC = `gi-helper-static-${VERSION}`;
 const CACHE_DATA = `gi-helper-data-${VERSION}`;
 const CACHE_OCR = `gi-helper-ocr-${VERSION}`;
@@ -35,17 +35,20 @@ const PRECACHE_STATIC_ASSETS = [
   "/icons/icon-192.png",
   "/icons/icon-512.png",
   "/icons/icon-maskable-512.png",
+  "/images/bg.webp",
+  "/images/bg.png",
 ];
 
 /**
  * Precaches core HTML shells, static script chunks, stylesheets,
- * and React Server Component flight data during installation.
+ * React Server Component flight data, and scanner reference atlases during installation.
  */
 async function precacheAll() {
   const staticCache = await caches.open(CACHE_STATIC);
   const pagesCache = await caches.open(CACHE_PAGES);
+  const dataCache = await caches.open(CACHE_DATA);
 
-  // 1. Precache static icons and manifest
+  // 1. Precache static icons, backgrounds and manifest
   await Promise.allSettled(
     PRECACHE_STATIC_ASSETS.map(async (url) => {
       try {
@@ -99,6 +102,38 @@ async function precacheAll() {
       } catch {}
     }),
   );
+
+  // 4. Precache scanner reference bank manifests and icon atlases
+  const atlasKinds = ["material", "weapon", "artifact", "character"];
+  await Promise.allSettled(
+    atlasKinds.map(async (kind) => {
+      const manifestUrl = `/data/${kind}-atlas.json`;
+      const imageUrl = `/data/${kind}-atlas.webp`;
+
+      try {
+        const mRes = await fetch(manifestUrl);
+        if (mRes && mRes.status === 200) {
+          const mClone = mRes.clone();
+          await dataCache.put(manifestUrl, mRes);
+          let hash = "";
+          try {
+            const data = await mClone.json();
+            if (data && data.hash) hash = data.hash;
+          } catch {}
+
+          const imgRes = await fetch(imageUrl);
+          if (imgRes && imgRes.status === 200) {
+            await dataCache.put(imageUrl, imgRes.clone());
+            if (hash) {
+              await dataCache.put(`${imageUrl}?v=${encodeURIComponent(hash)}`, imgRes.clone());
+            }
+          }
+        }
+      } catch (err) {
+        console.warn(`[SW] Failed to precache ${kind} atlas:`, err);
+      }
+    }),
+  );
 }
 
 self.addEventListener("install", (event) => {
@@ -129,7 +164,16 @@ self.addEventListener("activate", (event) => {
  * otherwise fetches from network, stores in cache, and returns.
  */
 async function cacheFirst(request, cacheName) {
-  const cached = await caches.match(request);
+  let cached = await caches.match(request);
+  if (!cached) {
+    cached = await caches.match(request, { ignoreSearch: true });
+  }
+  if (!cached) {
+    try {
+      const url = new URL(request.url);
+      cached = await caches.match(url.pathname);
+    } catch {}
+  }
   if (cached) return cached;
 
   try {
@@ -137,6 +181,12 @@ async function cacheFirst(request, cacheName) {
     if (networkResponse && networkResponse.status === 200) {
       const cache = await caches.open(cacheName);
       await cache.put(request, networkResponse.clone());
+      try {
+        const url = new URL(request.url);
+        if (url.search) {
+          await cache.put(url.pathname, networkResponse.clone());
+        }
+      } catch {}
     }
     return networkResponse;
   } catch (error) {

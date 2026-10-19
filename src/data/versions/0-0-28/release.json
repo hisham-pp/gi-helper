@@ -1,0 +1,23 @@
+{
+  "title": "Mobile Swipe Gestures, Top Bar Color Matching & Offline Scanner Atlases",
+  "date": "2026-10-19",
+  "summary": "Adds interactive touch swipe navigation and haptics to the material modal, matches PWA and mobile status bar colors to the application header, and precaches all scanner reference atlases for offline scanning.",
+  "changes": [
+    {
+      "type": "new",
+      "text": "Mobile swipe gestures: swipe left or right in the material modal with live drag tracking, subtle tilt, directional slide animations, and tactile haptic feedback."
+    },
+    {
+      "type": "improved",
+      "text": "PWA & mobile status bar color: the title bar and mobile browser status bar now seamlessly match the header's background color (#10232d), with dynamic updates on theme toggle."
+    },
+    {
+      "type": "improved",
+      "text": "Responsive modal navigation: removed bulky desktop arrow buttons on mobile viewports to maximize screen space, accompanied by contextual gesture hints."
+    },
+    {
+      "type": "fixed",
+      "text": "Offline scanner reference caching: precaches all reference bank manifests and icon atlases in the service worker, resolving offline scanner reference data errors."
+    }
+  ]
+}
