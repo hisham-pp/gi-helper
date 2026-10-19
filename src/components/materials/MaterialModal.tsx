@@ -7,13 +7,12 @@ import {
   ChevronRight,
   Copy,
   Check,
-  Hash,
   Tag,
   Layers,
   Bookmark,
 } from "lucide-react";
 import { MaterialItem } from "@/lib/types";
-import { bagOrder, getRarityStyles, getMaterialCategoryLabel } from "@/lib/materials/ui";
+import { bagOrder, getRarityStyles, getMaterialCategoryLabel, materialThumbUrl } from "@/lib/materials/ui";
 import { toast } from "sonner";
 import { useModalMotion, usePauseBackground } from "@/lib/hooks";
 
@@ -42,6 +41,7 @@ export function MaterialModal({
   descriptionPending = false,
 }: MaterialModalProps) {
   const [copied, setCopied] = useState(false);
+  const [imgSrc, setImgSrc] = useState(materialThumbUrl(material.id));
   const [imgError, setImgError] = useState(false);
 
   usePauseBackground();
@@ -49,8 +49,17 @@ export function MaterialModal({
 
   useEffect(() => {
     setCopied(false);
+    setImgSrc(materialThumbUrl(material.id));
     setImgError(false);
   }, [material]);
+
+  const handleImgError = () => {
+    if (material.image && imgSrc !== material.image) {
+      setImgSrc(material.image);
+    } else {
+      setImgError(true);
+    }
+  };
 
   // Handle keyboard events (Escape, Left, Right)
   useEffect(() => {
@@ -146,11 +155,15 @@ export function MaterialModal({
           {/* Big Item Frame */}
           <div className="glass-well glass-well--tinted relative flex h-28 w-28 shrink-0 items-center justify-center overflow-hidden rounded-3xl">
             {!imgError ? (
+              // eslint-disable-next-line @next/next/no-img-element
               <img
-                src={material.image}
+                src={imgSrc}
                 alt={material.name}
+                width={96}
+                height={96}
+                decoding="async"
                 className="h-24 w-24 object-contain drop-shadow-[0_8px_16px_rgba(0,0,0,0.7)]"
-                onError={() => setImgError(true)}
+                onError={handleImgError}
               />
             ) : (
               <span className="text-xs text-white/50">No Image</span>

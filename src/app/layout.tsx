@@ -4,7 +4,6 @@ import { GlassToaster } from "@/components/ui/GlassToaster";
 import { BackgroundEffects } from "@/components/BackgroundEffects";
 import { SITE } from "@/lib/seo";
 import { ServiceWorkerRegistration } from "@/components/pwa/ServiceWorkerRegistration";
-import { OfflineIndicator } from "@/components/pwa/OfflineIndicator";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next"
 
@@ -68,7 +67,6 @@ export default function RootLayout({
           <ServiceWorkerRegistration />
           <BackgroundEffects />
           {children}
-          <OfflineIndicator />
           <GlassToaster />
         </ThemeProvider>
       </body>

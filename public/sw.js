@@ -183,6 +183,16 @@ self.addEventListener("fetch", (event) => {
 
   // 6. Navigation (HTML pages)
   if (request.mode === "navigate") {
+    if (url.origin === location.origin) {
+      if (url.pathname === "/inventory") {
+        event.respondWith(Response.redirect(new URL("/inventory/materials", url.origin).href, 302));
+        return;
+      }
+      if (url.pathname === "/db") {
+        event.respondWith(Response.redirect(new URL("/db/materials", url.origin).href, 302));
+        return;
+      }
+    }
     event.respondWith(networkFirst(request, CACHE_PAGES));
     return;
   }
