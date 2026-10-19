@@ -69,7 +69,15 @@ async function load(kind: CardKind): Promise<ReferenceBank> {
   let pixels: ImageData;
   try {
     // The hash makes the (immutable) atlas cacheable across deployments.
-    const res = await fetch(siteUrl(`${files.image}?v=${encodeURIComponent(manifest.hash)}`));
+    let res: Response | null = null;
+    try {
+      res = await fetch(siteUrl(`${files.image}?v=${encodeURIComponent(manifest.hash)}`));
+    } catch {
+      res = null;
+    }
+    if (!res || !res.ok) {
+      res = await fetch(siteUrl(files.image));
+    }
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     pixels = await readPixels(await res.blob());
   } catch (err) {
