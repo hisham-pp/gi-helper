@@ -35,7 +35,8 @@ export const SITE = {
     "talent books",
   ],
   locale: "en_US",
-  themeColor: "#020e13",
+  themeColor: "#10232d",
+  themeColorLight: "#f0fbfb",
   ogImageAlt:
     "GI Helper: Genshin Impact Inventory Scanner. Read materials, weapons, artifacts and characters from screenshots.",
 } as const;

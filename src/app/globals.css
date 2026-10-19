@@ -247,6 +247,16 @@ html {
   animation: holographic-shimmer 2.5s ease-in-out infinite;
 }
 
+html {
+  background-color: #f0fbfb;
+}
+
+html.dark,
+.dark html,
+:where(.dark) {
+  background-color: #10232d;
+}
+
 body {
   min-height: 100vh;
   /* The visible height on phones (100vh counts the hidden browser bars) */

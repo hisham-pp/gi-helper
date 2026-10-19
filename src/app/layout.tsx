@@ -4,8 +4,9 @@ import { GlassToaster } from "@/components/ui/GlassToaster";
 import { BackgroundEffects } from "@/components/BackgroundEffects";
 import { SITE } from "@/lib/seo";
 import { ServiceWorkerRegistration } from "@/components/pwa/ServiceWorkerRegistration";
+import { ThemeColorMeta } from "@/components/ThemeColorMeta";
 import "./globals.css";
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/next";
 
 /**
  * Site-wide SEO defaults. Pages set their own title, description and canonical;
@@ -44,11 +45,20 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: SITE.name,
+  },
 };
 
 export const viewport: Viewport = {
-  themeColor: SITE.themeColor,
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: SITE.themeColor },
+    { media: "(prefers-color-scheme: light)", color: SITE.themeColorLight },
+  ],
   colorScheme: "dark light",
+  viewportFit: "cover",
 };
 
 export default function RootLayout({
@@ -63,6 +73,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <ThemeColorMeta />
           <Analytics />
           <ServiceWorkerRegistration />
           <BackgroundEffects />
