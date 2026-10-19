@@ -2294,39 +2294,6 @@
     "order": 10203
   },
   {
-    "id": "lantern-fiber",
-    "name": "Lantern Fiber",
-    "description": "Used in Lantern Rite as material with which to construct Xiao Lanterns.\nThis commonly encountered fibrous material can be processed into lantern wrappings so that the lanterns can float away, carrying their beautiful wishes far afield.",
-    "type": "OTHER_MATERIAL",
-    "category": "CRAFTING",
-    "rarity": 3,
-    "image": "/images/material-thumbs/lantern-fiber.webp",
-    "sortRank": 100,
-    "order": 10204
-  },
-  {
-    "id": "plaustrite-shard",
-    "name": "Plaustrite Shard",
-    "description": "Used in Lantern Rite as material with which to construct Xiao Lanterns.\nA mysterious shard of elemental rock that can float by itself. It is the secret to the flying lanterns. It is also said to be the thing that powers the Jade Chamber's floating mechanism.",
-    "type": "OTHER_MATERIAL",
-    "category": "CRAFTING",
-    "rarity": 3,
-    "image": "/images/material-thumbs/plaustrite-shard.webp",
-    "sortRank": 100,
-    "order": 10205
-  },
-  {
-    "id": "wick-material",
-    "name": "Wick Material",
-    "description": "Used in Lantern Rite as material with which to construct Xiao Lanterns.\nThe commonly encountered velvety material can be processed into lantern wicks so the lanterns can float away, carrying their beautiful wishes far afield.",
-    "type": "OTHER_MATERIAL",
-    "category": "CRAFTING",
-    "rarity": 3,
-    "image": "/images/material-thumbs/wick-material.webp",
-    "sortRank": 100,
-    "order": 10206
-  },
-  {
     "id": "empowered-dragontooth",
     "name": "Empowered Dragontooth",
     "description": "A Dragontooth infused with power. Its luster and texture appear to have been somewhat transformed...",
@@ -2335,7 +2302,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/empowered-dragontooth.webp",
     "sortRank": 200,
-    "order": 10207
+    "order": 10204
   },
   {
     "id": "strange-tooth",
@@ -2346,7 +2313,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/strange-tooth.webp",
     "sortRank": 200,
-    "order": 10208
+    "order": 10205
   },
   {
     "id": "borderland-bow-billet",
@@ -2357,7 +2324,7 @@
     "rarity": 4,
     "image": "/images/material-thumbs/borderland-bow-billet.webp",
     "sortRank": 300,
-    "order": 10209
+    "order": 10206
   },
   {
     "id": "borderland-catalyst-billet",
@@ -2368,7 +2335,7 @@
     "rarity": 4,
     "image": "/images/material-thumbs/borderland-catalyst-billet.webp",
     "sortRank": 300,
-    "order": 10210
+    "order": 10207
   },
   {
     "id": "borderland-claymore-billet",
@@ -2379,7 +2346,7 @@
     "rarity": 4,
     "image": "/images/material-thumbs/borderland-claymore-billet.webp",
     "sortRank": 300,
-    "order": 10211
+    "order": 10208
   },
   {
     "id": "borderland-polearm-billet",
@@ -2390,7 +2357,7 @@
     "rarity": 4,
     "image": "/images/material-thumbs/borderland-polearm-billet.webp",
     "sortRank": 300,
-    "order": 10212
+    "order": 10209
   },
   {
     "id": "borderland-sword-billet",
@@ -2401,7 +2368,7 @@
     "rarity": 4,
     "image": "/images/material-thumbs/borderland-sword-billet.webp",
     "sortRank": 300,
-    "order": 10213
+    "order": 10210
   },
   {
     "id": "midlander-bow-billet",
@@ -2412,7 +2379,7 @@
     "rarity": 4,
     "image": "/images/material-thumbs/midlander-bow-billet.webp",
     "sortRank": 300,
-    "order": 10214
+    "order": 10211
   },
   {
     "id": "midlander-catalyst-billet",
@@ -2423,7 +2390,7 @@
     "rarity": 4,
     "image": "/images/material-thumbs/midlander-catalyst-billet.webp",
     "sortRank": 300,
-    "order": 10215
+    "order": 10212
   },
   {
     "id": "midlander-claymore-billet",
@@ -2434,7 +2401,7 @@
     "rarity": 4,
     "image": "/images/material-thumbs/midlander-claymore-billet.webp",
     "sortRank": 300,
-    "order": 10216
+    "order": 10213
   },
   {
     "id": "midlander-polearm-billet",
@@ -2445,7 +2412,7 @@
     "rarity": 4,
     "image": "/images/material-thumbs/midlander-polearm-billet.webp",
     "sortRank": 300,
-    "order": 10217
+    "order": 10214
   },
   {
     "id": "midlander-sword-billet",
@@ -2456,7 +2423,7 @@
     "rarity": 4,
     "image": "/images/material-thumbs/midlander-sword-billet.webp",
     "sortRank": 300,
-    "order": 10218
+    "order": 10215
   },
   {
     "id": "northlander-bow-billet",
@@ -2467,7 +2434,7 @@
     "rarity": 4,
     "image": "/images/material-thumbs/northlander-bow-billet.webp",
     "sortRank": 300,
-    "order": 10219
+    "order": 10216
   },
   {
     "id": "northlander-catalyst-billet",
@@ -2478,7 +2445,7 @@
     "rarity": 4,
     "image": "/images/material-thumbs/northlander-catalyst-billet.webp",
     "sortRank": 300,
-    "order": 10220
+    "order": 10217
   },
   {
     "id": "northlander-claymore-billet",
@@ -2489,7 +2456,7 @@
     "rarity": 4,
     "image": "/images/material-thumbs/northlander-claymore-billet.webp",
     "sortRank": 300,
-    "order": 10221
+    "order": 10218
   },
   {
     "id": "northlander-polearm-billet",
@@ -2500,7 +2467,7 @@
     "rarity": 4,
     "image": "/images/material-thumbs/northlander-polearm-billet.webp",
     "sortRank": 300,
-    "order": 10222
+    "order": 10219
   },
   {
     "id": "northlander-sword-billet",
@@ -2511,7 +2478,7 @@
     "rarity": 4,
     "image": "/images/material-thumbs/northlander-sword-billet.webp",
     "sortRank": 300,
-    "order": 10223
+    "order": 10220
   },
   {
     "id": "amethyst-lump",
@@ -2522,7 +2489,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/amethyst-lump.webp",
     "sortRank": 301,
-    "order": 10224
+    "order": 10221
   },
   {
     "id": "condessence-crystal",
@@ -2533,7 +2500,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/condessence-crystal.webp",
     "sortRank": 301,
-    "order": 10225
+    "order": 10222
   },
   {
     "id": "crystal-chunk",
@@ -2544,7 +2511,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/crystal-chunk.webp",
     "sortRank": 301,
-    "order": 10226
+    "order": 10223
   },
   {
     "id": "iron-chunk",
@@ -2555,7 +2522,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/iron-chunk.webp",
     "sortRank": 301,
-    "order": 10227
+    "order": 10224
   },
   {
     "id": "magical-crystal-chunk",
@@ -2566,7 +2533,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/magical-crystal-chunk.webp",
     "sortRank": 301,
-    "order": 10228
+    "order": 10225
   },
   {
     "id": "rainbowdrop-crystal",
@@ -2577,7 +2544,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/rainbowdrop-crystal.webp",
     "sortRank": 301,
-    "order": 10229
+    "order": 10226
   },
   {
     "id": "starsilver",
@@ -2588,7 +2555,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/starsilver.webp",
     "sortRank": 301,
-    "order": 10230
+    "order": 10227
   },
   {
     "id": "white-iron-chunk",
@@ -2599,7 +2566,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/white-iron-chunk.webp",
     "sortRank": 301,
-    "order": 10231
+    "order": 10228
   },
   {
     "id": "butterfly-wings",
@@ -2610,7 +2577,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/butterfly-wings.webp",
     "sortRank": 320,
-    "order": 10232
+    "order": 10229
   },
   {
     "id": "cacahuatl",
@@ -2621,7 +2588,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/cacahuatl.webp",
     "sortRank": 320,
-    "order": 10233
+    "order": 10230
   },
   {
     "id": "crystal-core",
@@ -2632,7 +2599,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/crystal-core.webp",
     "sortRank": 320,
-    "order": 10234
+    "order": 10231
   },
   {
     "id": "electro-crystal",
@@ -2643,7 +2610,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/electro-crystal.webp",
     "sortRank": 320,
-    "order": 10235
+    "order": 10232
   },
   {
     "id": "embercore-flower",
@@ -2654,7 +2621,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/embercore-flower.webp",
     "sortRank": 320,
-    "order": 10236
+    "order": 10233
   },
   {
     "id": "flaming-flower-stamen",
@@ -2665,7 +2632,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/flaming-flower-stamen.webp",
     "sortRank": 320,
-    "order": 10237
+    "order": 10234
   },
   {
     "id": "frog",
@@ -2676,7 +2643,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/frog.webp",
     "sortRank": 320,
-    "order": 10238
+    "order": 10235
   },
   {
     "id": "horsetail",
@@ -2687,7 +2654,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/horsetail.webp",
     "sortRank": 320,
-    "order": 10239
+    "order": 10236
   },
   {
     "id": "icy-pebble",
@@ -2698,7 +2665,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/icy-pebble.webp",
     "sortRank": 320,
-    "order": 10240
+    "order": 10237
   },
   {
     "id": "lizard-tail",
@@ -2709,7 +2676,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/lizard-tail.webp",
     "sortRank": 320,
-    "order": 10241
+    "order": 10238
   },
   {
     "id": "loach-pearl",
@@ -2720,7 +2687,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/loach-pearl.webp",
     "sortRank": 320,
-    "order": 10242
+    "order": 10239
   },
   {
     "id": "lumifluorite",
@@ -2731,7 +2698,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/lumifluorite.webp",
     "sortRank": 320,
-    "order": 10243
+    "order": 10240
   },
   {
     "id": "luminescent-spine",
@@ -2742,7 +2709,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/luminescent-spine.webp",
     "sortRank": 320,
-    "order": 10244
+    "order": 10241
   },
   {
     "id": "mist-flower-corolla",
@@ -2753,7 +2720,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/mist-flower-corolla.webp",
     "sortRank": 320,
-    "order": 10245
+    "order": 10242
   },
   {
     "id": "nocturnal-blossom",
@@ -2764,7 +2731,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/nocturnal-blossom.webp",
     "sortRank": 320,
-    "order": 10246
+    "order": 10243
   },
   {
     "id": "pluie-lotus",
@@ -2775,7 +2742,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/pluie-lotus.webp",
     "sortRank": 320,
-    "order": 10247
+    "order": 10244
   },
   {
     "id": "viparyas",
@@ -2786,7 +2753,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/viparyas.webp",
     "sortRank": 320,
-    "order": 10248
+    "order": 10245
   },
   {
     "id": "adhigama-wood",
@@ -2797,7 +2764,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/adhigama-wood.webp",
     "sortRank": 330,
-    "order": 10249
+    "order": 10246
   },
   {
     "id": "alder-wood",
@@ -2808,7 +2775,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/alder-wood.webp",
     "sortRank": 330,
-    "order": 10250
+    "order": 10247
   },
   {
     "id": "aralia-wood",
@@ -2819,7 +2786,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/aralia-wood.webp",
     "sortRank": 330,
-    "order": 10251
+    "order": 10248
   },
   {
     "id": "ash-wood",
@@ -2830,7 +2797,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/ash-wood.webp",
     "sortRank": 330,
-    "order": 10252
+    "order": 10249
   },
   {
     "id": "ashen-aratiku-wood",
@@ -2841,7 +2808,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/ashen-aratiku-wood.webp",
     "sortRank": 330,
-    "order": 10253
+    "order": 10250
   },
   {
     "id": "athel-wood",
@@ -2852,7 +2819,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/athel-wood.webp",
     "sortRank": 330,
-    "order": 10254
+    "order": 10251
   },
   {
     "id": "bamboo-segment",
@@ -2863,7 +2830,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/bamboo-segment.webp",
     "sortRank": 330,
-    "order": 10255
+    "order": 10252
   },
   {
     "id": "birch-wood",
@@ -2874,7 +2841,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/birch-wood.webp",
     "sortRank": 330,
-    "order": 10256
+    "order": 10253
   },
   {
     "id": "bluebeech-wood",
@@ -2885,7 +2852,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/bluebeech-wood.webp",
     "sortRank": 330,
-    "order": 10257
+    "order": 10254
   },
   {
     "id": "brightwood",
@@ -2896,7 +2863,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/brightwood.webp",
     "sortRank": 330,
-    "order": 10258
+    "order": 10255
   },
   {
     "id": "cuihua-wood",
@@ -2907,7 +2874,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/cuihua-wood.webp",
     "sortRank": 330,
-    "order": 10259
+    "order": 10256
   },
   {
     "id": "cypress-wood",
@@ -2918,7 +2885,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/cypress-wood.webp",
     "sortRank": 330,
-    "order": 10260
+    "order": 10257
   },
   {
     "id": "fir-wood",
@@ -2929,7 +2896,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/fir-wood.webp",
     "sortRank": 330,
-    "order": 10261
+    "order": 10258
   },
   {
     "id": "flammabomb-wood",
@@ -2940,7 +2907,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/flammabomb-wood.webp",
     "sortRank": 330,
-    "order": 10262
+    "order": 10259
   },
   {
     "id": "fragrant-cedar-wood",
@@ -2951,7 +2918,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/fragrant-cedar-wood.webp",
     "sortRank": 330,
-    "order": 10263
+    "order": 10260
   },
   {
     "id": "hazelnut-wood",
@@ -2962,7 +2929,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/hazelnut-wood.webp",
     "sortRank": 330,
-    "order": 10264
+    "order": 10261
   },
   {
     "id": "karmaphala-wood",
@@ -2973,7 +2940,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/karmaphala-wood.webp",
     "sortRank": 330,
-    "order": 10265
+    "order": 10262
   },
   {
     "id": "larch-wood",
@@ -2984,7 +2951,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/larch-wood.webp",
     "sortRank": 330,
-    "order": 10266
+    "order": 10263
   },
   {
     "id": "linden-wood",
@@ -2995,7 +2962,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/linden-wood.webp",
     "sortRank": 330,
-    "order": 10267
+    "order": 10264
   },
   {
     "id": "mallow-wood",
@@ -3006,7 +2973,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/mallow-wood.webp",
     "sortRank": 330,
-    "order": 10268
+    "order": 10265
   },
   {
     "id": "maple-wood",
@@ -3017,7 +2984,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/maple-wood.webp",
     "sortRank": 330,
-    "order": 10269
+    "order": 10266
   },
   {
     "id": "mountain-date-wood",
@@ -3028,7 +2995,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/mountain-date-wood.webp",
     "sortRank": 330,
-    "order": 10270
+    "order": 10267
   },
   {
     "id": "otogi-wood",
@@ -3039,7 +3006,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/otogi-wood.webp",
     "sortRank": 330,
-    "order": 10271
+    "order": 10268
   },
   {
     "id": "peach-palm-wood",
@@ -3050,7 +3017,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/peach-palm-wood.webp",
     "sortRank": 330,
-    "order": 10272
+    "order": 10269
   },
   {
     "id": "pedunculate-oak-wood",
@@ -3061,7 +3028,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/pedunculate-oak-wood.webp",
     "sortRank": 330,
-    "order": 10273
+    "order": 10270
   },
   {
     "id": "pine-wood",
@@ -3072,7 +3039,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/pine-wood.webp",
     "sortRank": 330,
-    "order": 10274
+    "order": 10271
   },
   {
     "id": "sandbearer-wood",
@@ -3083,7 +3050,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/sandbearer-wood.webp",
     "sortRank": 330,
-    "order": 10275
+    "order": 10272
   },
   {
     "id": "silver-fir-wood",
@@ -3094,7 +3061,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/silver-fir-wood.webp",
     "sortRank": 330,
-    "order": 10276
+    "order": 10273
   },
   {
     "id": "snow-poplar-wood",
@@ -3105,7 +3072,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/snow-poplar-wood.webp",
     "sortRank": 330,
-    "order": 10277
+    "order": 10274
   },
   {
     "id": "torch-wood",
@@ -3116,7 +3083,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/torch-wood.webp",
     "sortRank": 330,
-    "order": 10278
+    "order": 10275
   },
   {
     "id": "white-birch-wood",
@@ -3127,7 +3094,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/white-birch-wood.webp",
     "sortRank": 330,
-    "order": 10279
+    "order": 10276
   },
   {
     "id": "white-chestnut-oak-wood",
@@ -3138,7 +3105,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/white-chestnut-oak-wood.webp",
     "sortRank": 330,
-    "order": 10280
+    "order": 10277
   },
   {
     "id": "yumemiru-wood",
@@ -3149,7 +3116,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/yumemiru-wood.webp",
     "sortRank": 330,
-    "order": 10281
+    "order": 10278
   },
   {
     "id": "blue-dye",
@@ -3160,7 +3127,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/blue-dye.webp",
     "sortRank": 331,
-    "order": 10282
+    "order": 10279
   },
   {
     "id": "fabric",
@@ -3171,7 +3138,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/fabric.webp",
     "sortRank": 331,
-    "order": 10283
+    "order": 10280
   },
   {
     "id": "red-dye",
@@ -3182,7 +3149,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/red-dye.webp",
     "sortRank": 331,
-    "order": 10284
+    "order": 10281
   },
   {
     "id": "yellow-dye",
@@ -3193,6 +3160,39 @@
     "rarity": 1,
     "image": "/images/material-thumbs/yellow-dye.webp",
     "sortRank": 331,
+    "order": 10282
+  },
+  {
+    "id": "big-pretty-crystal",
+    "name": "Big Pretty Crystal",
+    "description": "Additional Crafted Item",
+    "type": "OTHER_MATERIAL",
+    "category": "CRAFTING",
+    "rarity": 1,
+    "image": "/images/material-thumbs/big-pretty-crystal.webp",
+    "sortRank": 430051,
+    "order": 10283
+  },
+  {
+    "id": "medium-pretty-crystal",
+    "name": "Medium Pretty Crystal",
+    "description": "Additional Crafted Item",
+    "type": "OTHER_MATERIAL",
+    "category": "CRAFTING",
+    "rarity": 1,
+    "image": "/images/material-thumbs/medium-pretty-crystal.webp",
+    "sortRank": 430051,
+    "order": 10284
+  },
+  {
+    "id": "small-pretty-crystal",
+    "name": "Small Pretty Crystal",
+    "description": "Additional Crafted Item",
+    "type": "OTHER_MATERIAL",
+    "category": "CRAFTING",
+    "rarity": 1,
+    "image": "/images/material-thumbs/small-pretty-crystal.webp",
+    "sortRank": 430051,
     "order": 10285
   }
 ]
