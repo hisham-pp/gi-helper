@@ -392,8 +392,9 @@ export async function scanVideo(
           try {
             const reading = await panelReading(panel);
             if (reading) {
-              const attached = attachPanel(rows.artifact, reading, panel.highlights, index, panelArtBox(panel.bounds));
-              rows.artifact = attached.rows;
+              const targetKind: EquipmentKind = reading.kind === "weapon" ? "weapon" : "artifact";
+              const attached = attachPanel(rows[targetKind], reading, panel.highlights, index, panelArtBox(panel.bounds));
+              rows[targetKind] = attached.rows;
               if (attached.standalone) panelOnly.push({ time, sighting: attached.standalone });
             }
           } catch (err) {

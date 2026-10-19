@@ -270,6 +270,32 @@ export function ScanReviewModal({
       ),
     [equip, view, deferredQuery],
   );
+
+  const weaponsWithoutPanel = useMemo(
+    () =>
+      viewEquip.filter(
+        (e) => e.kind === "weapon" && !e.fromPanel,
+      ),
+    [viewEquip],
+  );
+
+  const handleBulkSetRefinement = useCallback(
+    (rank: number) => {
+      const targetIds = new Set(weaponsWithoutPanel.map((w) => w.id));
+      if (targetIds.size === 0) return;
+      setEquip((prev) =>
+        prev.map((e) =>
+          targetIds.has(e.id) ? { ...e, refinement: rank } : e,
+        ),
+      );
+      haptics.selection();
+      toast.success(
+        `Set ${targetIds.size} weapon${targetIds.size === 1 ? "" : "s"} without detail panel to R${rank}.`,
+      );
+    },
+    [weaponsWithoutPanel],
+  );
+
   const countOf = (v: ReviewView) =>
     v === "materials" ? items.length : equip.filter((e) => e.kind === v).length;
 
@@ -393,6 +419,37 @@ export function ScanReviewModal({
               </div>
             ) : (
               <div className="space-y-3">
+                {view === "weapon" && weaponsWithoutPanel.length > 0 && (
+                  <div className="glass-card flex flex-wrap items-center justify-between gap-3 border border-white/10 bg-white/5 p-3 sm:px-4 sm:py-2.5">
+                    <div className="flex items-center gap-2">
+                      <Sparkles className="h-4 w-4 flex-shrink-0 text-amber-300" />
+                      <span className="text-xs text-white/80">
+                        Bulk-set refinement for{" "}
+                        <span className="font-semibold text-white">
+                          {weaponsWithoutPanel.length}
+                        </span>{" "}
+                        weapon{weaponsWithoutPanel.length === 1 ? "" : "s"} without detail panel:
+                      </span>
+                    </div>
+                    <div
+                      className="flex items-center gap-1.5"
+                      role="group"
+                      aria-label="Bulk set refinement rank"
+                    >
+                      {[1, 2, 3, 4, 5].map((r) => (
+                        <button
+                          key={r}
+                          type="button"
+                          onClick={() => handleBulkSetRefinement(r)}
+                          className="glass-chip px-2.5 py-1 text-xs font-bold text-white transition hover:bg-white/20 hover:text-cyan-200 active:scale-95"
+                          title={`Set ${weaponsWithoutPanel.length} weapon${weaponsWithoutPanel.length === 1 ? "" : "s"} to R${r}`}
+                        >
+                          R{r}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
                 {view === "artifact" &&
                   viewEquip.some((e) => e.mainStatKey === "") && (
                     <p className="glass-chip w-full justify-center bg-amber-400/10 px-3 py-1.5 text-center text-[11px] text-amber-100">

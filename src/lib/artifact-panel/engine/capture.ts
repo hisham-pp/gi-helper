@@ -17,19 +17,29 @@ export interface GrayImage {
   data: Uint8Array;
 }
 
-export type PanelField = "name" | "slot" | "mainName" | "mainValue" | "level" | "stats" | "setName" | "equipped";
+export type PanelField = "name" | "slot" | "mainName" | "mainValue" | "level" | "stats" | "setName" | "equipped" | "refinement";
+
+export interface AvatarCrop {
+  width: number;
+  height: number;
+  data: Uint8Array;
+}
 
 export interface ArtifactPanelCapture {
   /** The panel, in image pixels (header to body bottom). */
   bounds: PixelRect;
   geometry: PanelGeometry;
+  /** "artifact" or "weapon" */
+  kind?: "artifact" | "weapon";
   /** Stars counted under the main stat (null when they can't be counted). */
   stars: number | null;
   /** Rarity told by the header bar's colour (orange 5★, purple 4★, blue 3★, green 2★, grey 1★). */
   headerRarity: number | null;
   locked: boolean;
-  /** Text fields for OCR; `setName` and `equipped` only when found. */
+  /** Text fields for OCR; `setName`, `refinement` and `equipped` only when found. */
   fields: Partial<Record<PanelField, GrayImage>>;
+  /** Small character avatar crop in RGBA, when equipped. */
+  avatar?: AvatarCrop | null;
   /** 24 × 40 grayscale thumbnail of the panel: consecutive video frames showing the same panel match it closely. */
   signature: Uint8Array;
 }
@@ -198,7 +208,24 @@ export function signatureDifference(a: Uint8Array, b: Uint8Array): number {
   return sum / a.length;
 }
 
-/** Finds the artifact detail panel and prepares it for reading; null when there is none. */
+export function cropAvatar(image: RgbaImage, rect: { x: number; y: number; width: number; height: number }): AvatarCrop | null {
+  const x0 = Math.max(0, Math.round(rect.x));
+  const y0 = Math.max(0, Math.round(rect.y));
+  const x1 = Math.min(image.width, Math.round(rect.x + rect.width));
+  const y1 = Math.min(image.height, Math.round(rect.y + rect.height));
+  const w = x1 - x0;
+  const h = y1 - y0;
+  if (w < 8 || h < 8) return null;
+  const data = new Uint8Array(w * h * 4);
+  for (let y = 0; y < h; y++) {
+    const srcOffset = ((y0 + y) * image.width + x0) * 4;
+    const dstOffset = y * w * 4;
+    data.set(image.data.subarray(srcOffset, srcOffset + w * 4), dstOffset);
+  }
+  return { width: w, height: h, data };
+}
+
+/** Finds the detail panel and prepares it for reading; null when there is none. */
 export function captureArtifactPanel(image: RgbaImage): ArtifactPanelCapture | null {
   const g = locateArtifactPanel(image);
   if (!g) return null;
@@ -237,8 +264,18 @@ export function captureArtifactPanel(image: RgbaImage): ArtifactPanelCapture | n
       fieldImage(image, { x0: g.x + W * 0.035, x1: g.x + W * 0.97, y0: set.top - W * 0.012, y1: set.bottom + W * 0.012 }, scale, "dark"),
     );
   }
+  const isWeapon = g.kind === "weapon";
+  if (isWeapon) {
+    put("refinement", fieldImage(image, { x0: g.x + W * 0.03, x1: g.x + W * 0.95, y0: g.bodyTop + W * 0.13, y1: g.bodyTop + W * 0.22 }, scale, "dark"));
+  }
+  let avatar: AvatarCrop | null = null;
   if (g.equipped) {
     put("equipped", fieldImage(image, { x0: g.x + W * 0.13, x1: g.x + W * 0.97, y0: g.equipped.top + W * 0.012, y1: g.equipped.bottom }, scale, "dark"));
+    const H = g.equipped.bottom - g.equipped.top;
+    const avatarSize = Math.min(H, W * 0.12);
+    const avX = g.x + W * 0.02;
+    const avY = g.equipped.top + (H - avatarSize) / 2;
+    avatar = cropAvatar(image, { x: avX, y: avY, width: avatarSize, height: avatarSize });
   }
 
   // Locked: a salmon padlock on a dark square; unlocked: a grey one on light grey.
@@ -246,10 +283,12 @@ export function captureArtifactPanel(image: RgbaImage): ArtifactPanelCapture | n
   return {
     bounds,
     geometry: g,
+    kind: isWeapon ? "weapon" : "artifact",
     stars: countStars(image, g),
     headerRarity: headerRarity(image, g),
     locked: lock !== null,
     fields,
+    avatar,
     signature: signatureOf(image, bounds),
   };
 }

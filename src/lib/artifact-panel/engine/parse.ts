@@ -114,3 +114,89 @@ export function parseLevel(text: string): number | null {
 export function joinLines(text: string): string {
   return text.split(/\n+/).map((l) => l.trim()).filter(Boolean).join(" ");
 }
+
+const CHINESE_REFINEMENT_DIGITS: Record<string, number> = {
+  一: 1,
+  二: 2,
+  三: 3,
+  四: 4,
+  五: 5,
+};
+
+/** Refinement rank 1-5 from text ("Refinement Rank 1", "EB Refinement Rank |", "精炼1阶"). */
+export function parseRefinement(text: string): number | null {
+  const cleaned = text.trim();
+  const m =
+    cleaned.match(/(?:refinement(?:\s*rank)?|rank|精炼)\s*[:：]?\s*([1-5|lI!一二三四五])/i) ??
+    cleaned.match(/\[([1-5])\]/) ??
+    cleaned.match(/([1-5|lI!一二三四五])\s*阶/) ??
+    cleaned.match(/\bR([1-5])\b/i);
+  if (!m) return null;
+  const raw = m[1];
+  if (CHINESE_REFINEMENT_DIGITS[raw]) return CHINESE_REFINEMENT_DIGITS[raw];
+  if (raw === "|" || raw === "l" || raw === "I" || raw === "!") return 1;
+  const val = Number(raw);
+  return val >= 1 && val <= 5 ? val : null;
+}
+
+export const WEAPON_ASCENSION_MAX_LEVEL = [20, 40, 50, 60, 70, 80, 90] as const;
+
+export function weaponAscensionFromCap(cap: number): number {
+  let bestIdx = 0;
+  let bestDiff = Math.abs(cap - WEAPON_ASCENSION_MAX_LEVEL[0]);
+  for (let i = 1; i < WEAPON_ASCENSION_MAX_LEVEL.length; i++) {
+    const diff = Math.abs(cap - WEAPON_ASCENSION_MAX_LEVEL[i]);
+    if (diff < bestDiff) {
+      bestDiff = diff;
+      bestIdx = i;
+    }
+  }
+  return bestIdx;
+}
+
+export interface WeaponLevelCap {
+  level: number;
+  cap: number;
+  ascension: number;
+}
+
+/** Parses weapon level badge: "Lv. 80/80" -> level 80, cap 80, ascension 5. */
+export function parseWeaponLevelAndCap(text: string): WeaponLevelCap | null {
+  const cleaned = text
+    .replace(/[OoDQ]/g, "0")
+    .replace(/[lIi|!]/g, "1")
+    .replace(/[Zz]/g, "2")
+    .replace(/[Ss]/g, "5")
+    .replace(/[B]/g, "8")
+    .replace(/[g]/g, "9");
+
+  const m = cleaned.match(/(\d{1,2})\s*[\/|\\]\s*(\d{1,2})/);
+  if (m) {
+    const level = parseInt(m[1], 10);
+    const cap = parseInt(m[2], 10);
+    if (Number.isFinite(level) && Number.isFinite(cap) && level > 0 && level <= 90) {
+      const ascension = weaponAscensionFromCap(cap);
+      const snappedCap = WEAPON_ASCENSION_MAX_LEVEL[ascension];
+      return {
+        level: Math.min(level, snappedCap),
+        cap: snappedCap,
+        ascension,
+      };
+    }
+  }
+
+  const single = parseNumber(cleaned)?.value;
+  if (single != null && single >= 1 && single <= 90) {
+    const level = Math.round(single);
+    let asc = 0;
+    if (level > 80) asc = 6;
+    else if (level > 70) asc = 5;
+    else if (level > 60) asc = 4;
+    else if (level > 50) asc = 3;
+    else if (level > 40) asc = 2;
+    else if (level > 20) asc = 1;
+    return { level, cap: WEAPON_ASCENSION_MAX_LEVEL[asc], ascension: asc };
+  }
+  return null;
+}
+

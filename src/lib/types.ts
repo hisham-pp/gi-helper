@@ -39,6 +39,8 @@ export interface EquipmentReviewItem {
   /** "awakened" when the weapon showed its awakened icon (ascension 2+). */
   variant?: string;
   level: number;
+  /** Weapons: ascension settled by level cap (e.g. 5 for 80/80 vs 6 for 80/90). */
+  ascension?: number;
   /** Weapons: 1–5. */
   refinement: number;
   locked: boolean;

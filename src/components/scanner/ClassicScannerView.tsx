@@ -250,10 +250,15 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
               }
               const rows = equipmentRows(recognition.cards, i);
               if (panel && !panelFailed) {
-                setStatusMessage(`Reading the artifact details in ${file.name}…`);
+                setStatusMessage(`Reading the details in ${file.name}…`);
                 try {
-                  const attached = await readAndAttachPanel(panel, rows.artifact, i);
-                  rows.artifact = attached.rows;
+                  const targetKind = panel.kind === "weapon" ? "weapon" : "artifact";
+                  const attached = await readAndAttachPanel(panel, rows[targetKind], i);
+                  if (attached.reading?.kind === "weapon") {
+                    rows.weapon = attached.rows;
+                  } else {
+                    rows.artifact = attached.rows;
+                  }
                   if (attached.standalone) {
                     const crop = bitmap ? await cropToBlob(bitmap, attached.standalone.card.box, "image/webp").catch(() => null) : null;
                     if (crop) equipmentCrops.set(attached.standalone.card, trackUrl(crop));
@@ -262,9 +267,9 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
                 } catch (err) {
                   if (controller.signal.aborted) throw err;
                   // Most likely the OCR couldn't be downloaded: the cards are still read.
-                  console.error("Reading the artifact panel failed:", err);
+                  console.error("Reading the detail panel failed:", err);
                   panelFailed = true;
-                  toast.warning("Couldn't read the artifact details panel; the cards were still scanned.");
+                  toast.warning("Couldn't read the details panel; the cards were still scanned.");
                 }
               }
               for (const kind of EQUIPMENT_KINDS) {
