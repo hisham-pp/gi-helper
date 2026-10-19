@@ -160,9 +160,25 @@ export interface RecognitionDiagnostics {
   stageTimingsMs: Record<string, number>;
 }
 
+/** A Mora count read from the bag header currency bar. */
+export interface MoraReading {
+  /** The Mora count, or null when the digits could not be read cleanly. */
+  value: number | null;
+  /** Raw recognised digit characters; "?" marks an unreadable glyph. */
+  text: string;
+  /** Center and radius of the golden Mora coin icon (original-image pixels). */
+  coin: { x: number; y: number; radius: number };
+  /** Bounding box of the Mora header pill (original-image pixels). */
+  box: PixelRect;
+  /** 0–1 confidence. */
+  confidence: number;
+}
+
 export interface MaterialRecognitionResult {
   imageWidth: number;
   imageHeight: number;
+  /** The Mora count read from the bag header, or null when absent / not visible. */
+  mora?: MoraReading | null;
   /** The kind of each grid that was recognised. */
   grids: GridKindReading[];
   /** Reading order: grid by grid, row-major. Clipped cards are skipped. */
@@ -194,6 +210,8 @@ export interface RecognitionSettings {
   refineAlignment: boolean;
   /** Read the quantity (or level) printed under each card. */
   readQuantity: boolean;
+  /** Read the Mora count from the bag header when visible (default true). */
+  readMora: boolean;
   /** Matches below this confidence (0–1) are reported as "uncertain". */
   minConfidence: number;
 }

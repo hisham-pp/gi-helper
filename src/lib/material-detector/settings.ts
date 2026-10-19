@@ -12,6 +12,7 @@ export const DEFAULT_RECOGNITION_SETTINGS: RecognitionSettings = {
   useInventoryOrder: true,
   refineAlignment: true,
   readQuantity: true,
+  readMora: true,
   minConfidence: 0.5,
 };
 
@@ -35,6 +36,7 @@ export function resolveRecognitionSettings(
     useInventoryOrder: boolOr(partial.useInventoryOrder, d.useInventoryOrder),
     refineAlignment: boolOr(partial.refineAlignment, d.refineAlignment),
     readQuantity: boolOr(partial.readQuantity, d.readQuantity),
+    readMora: boolOr(partial.readMora, d.readMora),
     minConfidence: clamp(finiteOr(partial.minConfidence, d.minConfidence), 0, 1),
   };
 }
