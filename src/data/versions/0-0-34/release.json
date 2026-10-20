@@ -1,0 +1,15 @@
+{
+  "title": "Smooth Material Modal Height & Whole-Modal Swipe Motion",
+  "date": "2026-10-20",
+  "summary": "Stabilizes material modal dimensions and improves swipe transitions by animating the entire modal card.",
+  "changes": [
+    {
+      "type": "fixed",
+      "text": "Modal Height Stability: added fixed modal height with responsive flex-sizing for the description lore box to prevent vertical jumping when switching materials."
+    },
+    {
+      "type": "improved",
+      "text": "Whole-Modal Swipe Motion: animated the entire modal card with tilt and fade on mobile swipe gestures and next/prev navigation rather than only sliding inner content."
+    }
+  ]
+}
