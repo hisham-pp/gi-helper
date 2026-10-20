@@ -21,7 +21,8 @@ export interface DetectOptions {
   signal?: AbortSignal;
 }
 
-const cancelled = () => new GridDetectionError("CANCELLED", "Detection was cancelled.");
+const cancelled = () =>
+  new GridDetectionError("CANCELLED", "Detection was cancelled.");
 
 export class GridDetectionClient {
   private worker: Worker | null = null;
@@ -72,21 +73,28 @@ export class GridDetectionClient {
     if (this.worker) return this.worker;
     if (this.workerUnavailable || typeof Worker === "undefined") return null;
     try {
-      const worker = new Worker(new URL("./detection.worker.ts", import.meta.url), {
-        type: "module",
-      });
+      const worker = new Worker(
+        new URL("./detection.worker.ts", import.meta.url),
+        {
+          type: "module",
+        },
+      );
       worker.onmessage = (event: MessageEvent<WorkerResponse>) => {
         const msg = event.data;
         const p = this.pending.get(msg.id);
         if (!p) return; // stale response from a request that was cancelled
         this.pending.delete(msg.id);
         if (msg.ok) p.resolve(msg.result);
-        else p.reject(new GridDetectionError(msg.error.code, msg.error.message));
+        else
+          p.reject(new GridDetectionError(msg.error.code, msg.error.message));
       };
       worker.onerror = (event) => {
         event.preventDefault();
         this.terminate(
-          new GridDetectionError("PROCESSING_FAILED", "The detection worker stopped unexpectedly."),
+          new GridDetectionError(
+            "PROCESSING_FAILED",
+            "The detection worker stopped unexpectedly.",
+          ),
         );
       };
       this.worker = worker;
@@ -119,7 +127,11 @@ export class GridDetectionClient {
       return result;
     } catch (err) {
       if (isGridDetectionError(err)) throw err;
-      throw new GridDetectionError("PROCESSING_FAILED", "Grid detection failed unexpectedly.", err);
+      throw new GridDetectionError(
+        "PROCESSING_FAILED",
+        "Grid detection failed unexpectedly.",
+        err,
+      );
     }
   }
 }

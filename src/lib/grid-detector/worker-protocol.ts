@@ -10,4 +10,8 @@ export interface WorkerRequest {
 
 export type WorkerResponse =
   | { id: number; ok: true; result: GridDetectionResult }
-  | { id: number; ok: false; error: { code: GridDetectionErrorCode; message: string } };
+  | {
+      id: number;
+      ok: false;
+      error: { code: GridDetectionErrorCode; message: string };
+    };

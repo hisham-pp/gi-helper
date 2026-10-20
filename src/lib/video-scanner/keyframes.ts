@@ -10,29 +10,20 @@
  * Coverage does not depend on these heuristics: after scanning, two picks
  * that share no material leave a gap, filled by `planGapFills`.
  */
+import { DEFAULT_KEYFRAME_OPTIONS } from "./constants/video.constants";
+import type {
+  CoverageFrame,
+  KeyframeOptions,
+  ProbeSample,
+} from "./types/keyframes.types";
 
-export interface KeyframeOptions {
-  /** Below this mean difference (0–255) to the previous sample, a frame counts as still. */
-  stillThreshold: number;
-  /** Below this mean difference to the last pick, a frame shows nothing new. */
-  duplicateThreshold: number;
-}
-
-export const DEFAULT_KEYFRAME_OPTIONS: KeyframeOptions = {
-  stillThreshold: 1.5,
-  duplicateThreshold: 2.5,
-};
-
-/** One sampled frame: its time and how much it differs from the previous sample. */
-export interface ProbeSample {
-  time: number;
-  /** Mean absolute difference (0–255) to the previous sample; Infinity for the first. */
-  motion: number;
-}
+export { DEFAULT_KEYFRAME_OPTIONS };
+export type { CoverageFrame, KeyframeOptions, ProbeSample };
 
 /** Mean absolute difference of two equally sized grayscale thumbnails (0–255). */
 export function frameDifference(a: Uint8Array, b: Uint8Array): number {
-  if (a.length !== b.length) throw new Error("Thumbnails must have the same size.");
+  if (a.length !== b.length)
+    throw new Error("Thumbnails must have the same size.");
   if (a.length === 0) return 0;
   let sum = 0;
   for (let i = 0; i < a.length; i++) sum += Math.abs(a[i] - b[i]);
@@ -58,7 +49,9 @@ export class KeyframePicker {
 
   /** Adds the next sample; returns the index of a sample picked by it, if any. */
   push(time: number, thumb: Uint8Array): number | null {
-    const motion = this.prevThumb ? frameDifference(thumb, this.prevThumb) : Infinity;
+    const motion = this.prevThumb
+      ? frameDifference(thumb, this.prevThumb)
+      : Infinity;
     this.prevThumb = thumb;
     const index = this.samples.length;
     this.samples.push({ time, motion });
@@ -77,28 +70,30 @@ export class KeyframePicker {
     return this.judge(pending, Infinity) ? pending.index : null;
   }
 
-  private judge(candidate: { index: number; thumb: Uint8Array }, nextMotion: number): boolean {
+  private judge(
+    candidate: { index: number; thumb: Uint8Array },
+    nextMotion: number,
+  ): boolean {
     const { index, thumb } = candidate;
     const motion = this.samples[index].motion;
     const isFirst = index === 0;
     const isLast = nextMotion === Infinity;
     const settled =
       motion <= this.options.stillThreshold ||
-      (index > 0 && motion < this.samples[index - 1].motion && motion <= nextMotion);
+      (index > 0 &&
+        motion < this.samples[index - 1].motion &&
+        motion <= nextMotion);
     if (!isFirst && !isLast && !settled) return false;
-    if (this.lastPickThumb && frameDifference(thumb, this.lastPickThumb) < this.options.duplicateThreshold) {
+    if (
+      this.lastPickThumb &&
+      frameDifference(thumb, this.lastPickThumb) <
+        this.options.duplicateThreshold
+    ) {
       return false;
     }
     this.lastPickThumb = thumb;
     return true;
   }
-}
-
-/** A scanned frame, reduced to what coverage checks need. */
-export interface CoverageFrame {
-  time: number;
-  /** Materials recognised with confidence; empty when the frame showed no inventory. */
-  materials: ReadonlySet<string>;
 }
 
 /**
@@ -178,6 +173,7 @@ export function probeTimes(duration: number, step: number): number[] {
     if (t > last) break;
     times.push(t);
   }
-  if (times.length === 0 || last - times[times.length - 1] > step / 2) times.push(Math.round(last * 1000) / 1000);
+  if (times.length === 0 || last - times[times.length - 1] > step / 2)
+    times.push(Math.round(last * 1000) / 1000);
   return times;
 }

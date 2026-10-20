@@ -30,23 +30,36 @@ async function handle(req: ScanWorkerRequest) {
       await loadReferenceBank(req.bank ?? "material");
       result = null;
     } else if (req.kind === "scan") {
-      result = await scanBlob(req.blob, req.name, req.settings, (p) => scope.postMessage({ id, type: "progress", ...p }));
+      result = await scanBlob(req.blob, req.name, req.settings, (p) =>
+        scope.postMessage({ id, type: "progress", ...p }),
+      );
     } else if (req.kind === "scan-frame") {
       try {
-        result = await scanBitmap(req.bitmap, req.settings, (p) => scope.postMessage({ id, type: "progress", ...p }));
+        result = await scanBitmap(req.bitmap, req.settings, (p) =>
+          scope.postMessage({ id, type: "progress", ...p }),
+        );
       } finally {
         req.bitmap.close();
       }
     } else {
-      result = await recognizeBlob(req.blob, req.name, req.grids, req.settings, (p) =>
-        scope.postMessage({ id, type: "progress", ...p }),
+      result = await recognizeBlob(
+        req.blob,
+        req.name,
+        req.grids,
+        req.settings,
+        (p) => scope.postMessage({ id, type: "progress", ...p }),
       );
     }
     scope.postMessage({ id, type: "done", result });
   } catch (err) {
     const safe = toMaterialDetectionError(err);
     // Keep internal details in the worker console only.
-    if (safe.code === "PROCESSING_FAILED") console.error("[material-detector]", err);
-    scope.postMessage({ id, type: "error", error: { code: safe.code, message: safe.message } });
+    if (safe.code === "PROCESSING_FAILED")
+      console.error("[material-detector]", err);
+    scope.postMessage({
+      id,
+      type: "error",
+      error: { code: safe.code, message: safe.message },
+    });
   }
 }

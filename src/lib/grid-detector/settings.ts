@@ -1,29 +1,15 @@
 import type { DetectionSettings, PixelRect } from "./types";
+import {
+  DEFAULT_DETECTION_SETTINGS,
+  GRID_SETTING_LIMITS,
+} from "./constants/grid.constants";
 
-/**
- * Defaults tuned on the Genshin reference screenshots in
- * `public/samples/grid-test/` and on synthetic grids. None of them encode a
- * grid size, card size or screen resolution.
- */
-export const DEFAULT_DETECTION_SETTINGS: DetectionSettings = {
-  sensitivity: 0.5,
-  minCardSize: 24,
-  maxCardSizeRatio: 1,
-  minAspectRatio: 0.35,
-  maxAspectRatio: 1.35,
-  minConfidence: 0.35,
-  sizeTolerance: 0.12,
-  alignmentTolerance: 0.08,
-  recoverMissedCards: true,
-  includeClippedCards: false,
-  region: null,
-  maxAnalysisSide: 1400,
-};
+export { DEFAULT_DETECTION_SETTINGS } from "./constants/grid.constants";
 
-const clamp = (v: number, lo: number, hi: number) =>
+const clamp = (v: number, lo: number, hi: number): number =>
   Math.min(hi, Math.max(lo, v));
 
-const finiteOr = (v: unknown, fallback: number) =>
+const finiteOr = (v: unknown, fallback: number): number =>
   typeof v === "number" && Number.isFinite(v) ? v : fallback;
 
 function normalizeRegion(
@@ -38,51 +24,66 @@ function normalizeRegion(
   return { x, y, width, height };
 }
 
-/** Merges partial user settings over the defaults and clamps every field to a sane range. */
+/** Merges partial user settings over the defaults and clamps every field to a safe range. */
 export function resolveDetectionSettings(
   partial: Partial<DetectionSettings> = {},
 ): DetectionSettings {
   const d = DEFAULT_DETECTION_SETTINGS;
+  const limits = GRID_SETTING_LIMITS;
+
   const minAspect = clamp(
     finiteOr(partial.minAspectRatio, d.minAspectRatio),
-    0.1,
-    10,
+    limits.aspectRatio.min,
+    limits.aspectRatio.max,
   );
   const maxAspect = clamp(
     finiteOr(partial.maxAspectRatio, d.maxAspectRatio),
-    0.1,
-    10,
+    limits.aspectRatio.min,
+    limits.aspectRatio.max,
   );
+
   return {
-    sensitivity: clamp(finiteOr(partial.sensitivity, d.sensitivity), 0, 1),
-    minCardSize: clamp(finiteOr(partial.minCardSize, d.minCardSize), 8, 4096),
+    sensitivity: clamp(
+      finiteOr(partial.sensitivity, d.sensitivity),
+      limits.sensitivity.min,
+      limits.sensitivity.max,
+    ),
+    minCardSize: clamp(
+      finiteOr(partial.minCardSize, d.minCardSize),
+      limits.minCardSize.min,
+      limits.minCardSize.max,
+    ),
     maxCardSizeRatio: clamp(
       finiteOr(partial.maxCardSizeRatio, d.maxCardSizeRatio),
-      0.05,
-      1,
+      limits.maxCardSizeRatio.min,
+      limits.maxCardSizeRatio.max,
     ),
     minAspectRatio: Math.min(minAspect, maxAspect),
     maxAspectRatio: Math.max(minAspect, maxAspect),
     minConfidence: clamp(
       finiteOr(partial.minConfidence, d.minConfidence),
-      0,
-      1,
+      limits.minConfidence.min,
+      limits.minConfidence.max,
     ),
     sizeTolerance: clamp(
       finiteOr(partial.sizeTolerance, d.sizeTolerance),
-      0.02,
-      0.4,
+      limits.sizeTolerance.min,
+      limits.sizeTolerance.max,
     ),
     alignmentTolerance: clamp(
       finiteOr(partial.alignmentTolerance, d.alignmentTolerance),
-      0.03,
-      0.4,
+      limits.alignmentTolerance.min,
+      limits.alignmentTolerance.max,
     ),
     recoverMissedCards: partial.recoverMissedCards ?? d.recoverMissedCards,
     includeClippedCards: partial.includeClippedCards ?? d.includeClippedCards,
     region: normalizeRegion(partial.region ?? d.region),
     maxAnalysisSide: Math.round(
-      clamp(finiteOr(partial.maxAnalysisSide, d.maxAnalysisSide), 320, 4096),
+      clamp(
+        finiteOr(partial.maxAnalysisSide, d.maxAnalysisSide),
+        limits.maxAnalysisSide.min,
+        limits.maxAnalysisSide.max,
+      ),
     ),
   };
 }

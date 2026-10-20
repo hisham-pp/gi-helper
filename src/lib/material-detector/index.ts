@@ -9,7 +9,11 @@
  * - `createReferenceBank` — builds the reference templates from an atlas.
  */
 export * from "./types";
-export { DEFAULT_RECOGNITION_SETTINGS, resolveRecognitionSettings } from "./settings";
+export * from "./constants";
+export {
+  DEFAULT_RECOGNITION_SETTINGS,
+  resolveRecognitionSettings,
+} from "./settings";
 export {
   recognizeCards,
   recognizeMaterials,
@@ -36,5 +40,10 @@ export {
 } from "./engine/errors";
 export type { DigitTemplates } from "./engine/quantity";
 export { MaterialScanClient, type ScanOptions } from "./client";
-export { loadReferenceBank, loadReferenceBanks, ATLAS_IMAGE_URL, ATLAS_MANIFEST_URL } from "./browser";
+export {
+  loadReferenceBank,
+  loadReferenceBanks,
+  ATLAS_IMAGE_URL,
+  ATLAS_MANIFEST_URL,
+} from "./browser";
 export type { ScanProgress, ScanStage } from "./worker-protocol";

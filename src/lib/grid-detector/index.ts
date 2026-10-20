@@ -10,7 +10,11 @@
  * scope: they consume the card boxes produced here.
  */
 export * from "./types";
-export { DEFAULT_DETECTION_SETTINGS, resolveDetectionSettings } from "./settings";
+export * from "./constants";
+export {
+  DEFAULT_DETECTION_SETTINGS,
+  resolveDetectionSettings,
+} from "./settings";
 export { detectInventoryGrids, type DetectionInput } from "./engine/detect";
 export {
   GridDetectionError,
@@ -20,7 +24,12 @@ export {
 } from "./engine/errors";
 export type { RgbaImage } from "./engine/image";
 export { GridDetectionClient, type DetectOptions } from "./client";
-export { cropToBitmap, cropToBlob, decodeImage, rasterizeForDetection } from "./browser";
+export {
+  cropToBitmap,
+  cropToBlob,
+  decodeImage,
+  rasterizeForDetection,
+} from "./browser";
 export {
   MAX_FILE_BYTES,
   SUPPORTED_IMAGE_TYPES,

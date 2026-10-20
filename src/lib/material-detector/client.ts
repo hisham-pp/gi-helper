@@ -12,9 +12,23 @@
  * the next request starts a fresh one.
  */
 import type { DetectedGrid } from "../grid-detector/types";
-import { isMaterialDetectionError, MaterialDetectionError, toMaterialDetectionError } from "./engine/errors";
-import type { CardKind, MaterialRecognitionResult, RecognitionSettings, ScanResult, ScanSettings } from "./types";
-import type { ScanProgress, ScanWorkerRequest, ScanWorkerResponse } from "./worker-protocol";
+import {
+  isMaterialDetectionError,
+  MaterialDetectionError,
+  toMaterialDetectionError,
+} from "./engine/errors";
+import type {
+  CardKind,
+  MaterialRecognitionResult,
+  RecognitionSettings,
+  ScanResult,
+  ScanSettings,
+} from "./types";
+import type {
+  ScanProgress,
+  ScanWorkerRequest,
+  ScanWorkerResponse,
+} from "./worker-protocol";
 
 export interface ScanOptions {
   signal?: AbortSignal;
@@ -27,9 +41,14 @@ interface Pending {
   onProgress?: (progress: ScanProgress) => void;
 }
 
-type RequestBody = ScanWorkerRequest extends infer R ? (R extends { id: number } ? Omit<R, "id"> : never) : never;
+type RequestBody = ScanWorkerRequest extends infer R
+  ? R extends { id: number }
+    ? Omit<R, "id">
+    : never
+  : never;
 
-const cancelled = () => new MaterialDetectionError("CANCELLED", "Scanning was cancelled.");
+const cancelled = () =>
+  new MaterialDetectionError("CANCELLED", "Scanning was cancelled.");
 
 export class MaterialScanClient {
   private worker: Worker | null = null;
@@ -38,23 +57,39 @@ export class MaterialScanClient {
   private nextId = 1;
 
   /** Detects the grids in a screenshot and recognises every card. */
-  scan(blob: Blob, settings: Partial<ScanSettings> = {}, options: ScanOptions = {}): Promise<ScanResult> {
+  scan(
+    blob: Blob,
+    settings: Partial<ScanSettings> = {},
+    options: ScanOptions = {},
+  ): Promise<ScanResult> {
     const name = blob instanceof File ? blob.name : undefined;
-    return this.request<ScanResult>({ kind: "scan", blob, name, settings }, options, async () => {
-      const { scanBlob } = await import("./run");
-      return scanBlob(blob, name, settings, options.onProgress);
-    });
+    return this.request<ScanResult>(
+      { kind: "scan", blob, name, settings },
+      options,
+      async () => {
+        const { scanBlob } = await import("./run");
+        return scanBlob(blob, name, settings, options.onProgress);
+      },
+    );
   }
 
   /**
    * Same as `scan`, for an already decoded image such as a video frame. The
    * worker gets a copy, so the caller keeps (and must close) the bitmap.
    */
-  scanFrame(bitmap: ImageBitmap, settings: Partial<ScanSettings> = {}, options: ScanOptions = {}): Promise<ScanResult> {
-    return this.request<ScanResult>({ kind: "scan-frame", bitmap, settings }, options, async () => {
-      const { scanBitmap } = await import("./run");
-      return scanBitmap(bitmap, settings, options.onProgress);
-    });
+  scanFrame(
+    bitmap: ImageBitmap,
+    settings: Partial<ScanSettings> = {},
+    options: ScanOptions = {},
+  ): Promise<ScanResult> {
+    return this.request<ScanResult>(
+      { kind: "scan-frame", bitmap, settings },
+      options,
+      async () => {
+        const { scanBitmap } = await import("./run");
+        return scanBitmap(bitmap, settings, options.onProgress);
+      },
+    );
   }
 
   /** Recognises the cards of already-detected (possibly edited) grids. */
@@ -65,10 +100,14 @@ export class MaterialScanClient {
     options: ScanOptions = {},
   ): Promise<MaterialRecognitionResult> {
     const name = blob instanceof File ? blob.name : undefined;
-    return this.request<MaterialRecognitionResult>({ kind: "recognize", blob, name, grids, settings }, options, async () => {
-      const { recognizeBlob } = await import("./run");
-      return recognizeBlob(blob, name, grids, settings, options.onProgress);
-    });
+    return this.request<MaterialRecognitionResult>(
+      { kind: "recognize", blob, name, grids, settings },
+      options,
+      async () => {
+        const { recognizeBlob } = await import("./run");
+        return recognizeBlob(blob, name, grids, settings, options.onProgress);
+      },
+    );
   }
 
   /** Starts loading a reference bank (materials by default) ahead of the first scan. Never rejects. */
@@ -85,7 +124,11 @@ export class MaterialScanClient {
     this.terminate(cancelled());
   }
 
-  private request<T>(body: RequestBody, options: ScanOptions, fallback: () => Promise<T>): Promise<T> {
+  private request<T>(
+    body: RequestBody,
+    options: ScanOptions,
+    fallback: () => Promise<T>,
+  ): Promise<T> {
     const { signal, onProgress } = options;
     if (signal?.aborted) return Promise.reject(cancelled());
     const worker = this.ensureWorker();
@@ -115,22 +158,36 @@ export class MaterialScanClient {
     if (this.worker) return this.worker;
     if (this.workerUnavailable || typeof Worker === "undefined") return null;
     try {
-      const worker = new Worker(new URL("./scan.worker.ts", import.meta.url), { type: "module" });
+      const worker = new Worker(new URL("./scan.worker.ts", import.meta.url), {
+        type: "module",
+      });
       worker.onmessage = (event: MessageEvent<ScanWorkerResponse>) => {
         const msg = event.data;
         const p = this.pending.get(msg.id);
         if (!p) return; // stale response from a request that was cancelled
         if (msg.type === "progress") {
-          p.onProgress?.({ stage: msg.stage, done: msg.done, total: msg.total });
+          p.onProgress?.({
+            stage: msg.stage,
+            done: msg.done,
+            total: msg.total,
+          });
           return;
         }
         this.pending.delete(msg.id);
         if (msg.type === "done") p.resolve(msg.result);
-        else p.reject(new MaterialDetectionError(msg.error.code, msg.error.message));
+        else
+          p.reject(
+            new MaterialDetectionError(msg.error.code, msg.error.message),
+          );
       };
       worker.onerror = (event) => {
         event.preventDefault();
-        this.terminate(new MaterialDetectionError("PROCESSING_FAILED", "The scanning worker stopped unexpectedly."));
+        this.terminate(
+          new MaterialDetectionError(
+            "PROCESSING_FAILED",
+            "The scanning worker stopped unexpectedly.",
+          ),
+        );
       };
       this.worker = worker;
       return worker;
@@ -147,7 +204,10 @@ export class MaterialScanClient {
     this.pending.clear();
   }
 
-  private async onMainThread<T>(run: () => Promise<T>, signal?: AbortSignal): Promise<T> {
+  private async onMainThread<T>(
+    run: () => Promise<T>,
+    signal?: AbortSignal,
+  ): Promise<T> {
     try {
       // Loaded on demand so the engines are only bundled into the worker
       // chunk unless a browser without Worker support actually needs them.

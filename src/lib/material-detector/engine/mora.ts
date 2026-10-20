@@ -16,12 +16,7 @@ import type { PixelRect } from "../../grid-detector/types";
 import type { RgbaImage } from "../../grid-detector/engine/image";
 import defaultDigitTemplates from "../../../data/digit-templates.json";
 import type { MoraReading } from "../types";
-import {
-  correlation,
-  type DigitTemplates,
-  GLYPH_H,
-  GLYPH_W,
-} from "./quantity";
+import { correlation, type DigitTemplates, GLYPH_H, GLYPH_W } from "./quantity";
 
 /** Bounding box of component in pill-local coordinates. */
 interface ComponentBox {
@@ -39,11 +34,14 @@ interface ComponentBox {
  */
 export function locateMoraHeader(
   image: RgbaImage,
-): { coin: { x: number; y: number; radius: number }; pillBox: PixelRect } | null {
+): {
+  coin: { x: number; y: number; radius: number };
+  pillBox: PixelRect;
+} | null {
   const w = image.width;
   const h = image.height;
   const minY = Math.round(h * 0.015);
-  const maxY = Math.round(h * 0.10);
+  const maxY = Math.round(h * 0.1);
   const minX = Math.round(w * 0.45);
   const maxX = Math.round(w * 0.88);
 
@@ -58,7 +56,7 @@ export function locateMoraHeader(
       const g = image.data[idx + 1];
       const b = image.data[idx + 2];
       // Golden Mora coin color profile
-      if (r > 160 && g > 120 && g <= r && b < 110 && (r - b) > 60) {
+      if (r > 160 && g > 120 && g <= r && b < 110 && r - b > 60) {
         sumX += x;
         sumY += y;
         count++;
@@ -171,7 +169,7 @@ export function readMora(
   }
 
   const contrast = maxL - minL;
-  if (contrast < 0.20 || maxL < 0.50) return null;
+  if (contrast < 0.2 || maxL < 0.5) return null;
 
   // Digits are bright white/cream on a dark/translucent pill
   const thresh = Math.max(0.55, minL + contrast * 0.55);
@@ -282,7 +280,11 @@ export function readMora(
   const pillEnclosingBox: PixelRect = {
     x: coin.x - coin.radius,
     y: pillBox.y,
-    width: lastDigit.x1 + pillBox.x - (coin.x - coin.radius) + Math.round(coin.radius * 0.6),
+    width:
+      lastDigit.x1 +
+      pillBox.x -
+      (coin.x - coin.radius) +
+      Math.round(coin.radius * 0.6),
     height: ph,
   };
 

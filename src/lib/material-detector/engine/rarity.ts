@@ -12,7 +12,13 @@
 import type { PixelRect } from "../../grid-detector/types";
 import type { RgbaImage } from "../../grid-detector/engine/image";
 import type { Rarity, RarityReading } from "../types";
-import { type Alignment, alignedRect, CARD_ASPECT, rgbToHsv, sampleRect } from "./card";
+import {
+  type Alignment,
+  alignedRect,
+  CARD_ASPECT,
+  rgbToHsv,
+  sampleRect,
+} from "./card";
 
 const STAR_WIDTH = 0.143;
 const STAR_PITCH = 0.1565;
@@ -34,7 +40,11 @@ export interface StarReading {
 }
 
 /** Counts the stars under the artwork; null when no consistent star row is visible. */
-export function readStars(image: RgbaImage, box: PixelRect, alignment: Alignment): StarReading | null {
+export function readStars(
+  image: RgbaImage,
+  box: PixelRect,
+  alignment: Alignment,
+): StarReading | null {
   const W = STAR_FRAME_W;
   const H = Math.round(W * CARD_ASPECT);
   const rect = alignedRect(box, alignment);
@@ -42,7 +52,12 @@ export function readStars(image: RgbaImage, box: PixelRect, alignment: Alignment
   const rows = Math.max(3, Math.round(H * STAR_ROWS.bottom) - top);
   const band = sampleRect(
     image,
-    { x: rect.x, y: rect.y + (top / H) * rect.height, width: rect.width, height: (rows / H) * rect.height },
+    {
+      x: rect.x,
+      y: rect.y + (top / H) * rect.height,
+      width: rect.width,
+      height: (rows / H) * rect.height,
+    },
     W,
     rows,
   );
@@ -88,17 +103,23 @@ export function readStars(image: RgbaImage, box: PixelRect, alignment: Alignment
   const offCentre = Math.abs(centre - 0.503);
   const fill = best.filled / (best.x1 - best.x0 + 1);
   if (residual > 0.05 || offCentre > 0.05 || fill < 0.6) return null;
-  const quality = Math.max(0, 1 - residual / 0.05) * Math.max(0, 1 - offCentre / 0.05) * Math.min(1, fill / 0.85);
+  const quality =
+    Math.max(0, 1 - residual / 0.05) *
+    Math.max(0, 1 - offCentre / 0.05) *
+    Math.min(1, fill / 0.85);
   return { count, extent, quality };
 }
 
 /** Rarity from the artwork background colour (straight RGB, 0–1). */
-export function classifyBackground(rgb: [number, number, number] | null): { rarity: Rarity; confidence: number } | null {
+export function classifyBackground(
+  rgb: [number, number, number] | null,
+): { rarity: Rarity; confidence: number } | null {
   if (!rgb) return null;
   const { h, s, v } = rgbToHsv(rgb[0], rgb[1], rgb[2]);
   if (v < 0.2) return null;
   // Grey: measured s 0.05–0.10; the coloured backgrounds are ≥ 0.29.
-  if (s < 0.19) return { rarity: 1, confidence: Math.min(1, (0.19 - s) / 0.06) };
+  if (s < 0.19)
+    return { rarity: 1, confidence: Math.min(1, (0.19 - s) / 0.06) };
   // Hue bands with their nearest boundary for a margin-based confidence.
   const bands: { rarity: Rarity; lo: number; hi: number }[] = [
     { rarity: 5, lo: 5, hi: 75 },
@@ -110,7 +131,10 @@ export function classifyBackground(rgb: [number, number, number] | null): { rari
   if (!band) return null;
   const margin = Math.min(h - band.lo, band.hi - h);
   const satMargin = Math.min(1, (s - 0.19) / 0.08);
-  return { rarity: band.rarity, confidence: Math.min(1, margin / 12) * satMargin };
+  return {
+    rarity: band.rarity,
+    confidence: Math.min(1, margin / 12) * satMargin,
+  };
 }
 
 export function combineRarity(
@@ -120,7 +144,12 @@ export function combineRarity(
   const starRarity = stars ? (stars.count as Rarity) : null;
   const bgRarity = background?.rarity ?? null;
   if (starRarity && bgRarity && starRarity === bgRarity) {
-    return { value: starRarity, stars: stars!.count, background: bgRarity, confidence: 0.97 };
+    return {
+      value: starRarity,
+      stars: stars!.count,
+      background: bgRarity,
+      confidence: 0.97,
+    };
   }
   if (starRarity && bgRarity) {
     // Disagreement: trust the clearer signal, but report low confidence.
@@ -133,10 +162,20 @@ export function combineRarity(
     };
   }
   if (starRarity) {
-    return { value: starRarity, stars: stars!.count, background: null, confidence: 0.6 + 0.3 * stars!.quality };
+    return {
+      value: starRarity,
+      stars: stars!.count,
+      background: null,
+      confidence: 0.6 + 0.3 * stars!.quality,
+    };
   }
   if (bgRarity) {
-    return { value: bgRarity, stars: null, background: bgRarity, confidence: 0.5 + 0.3 * background!.confidence };
+    return {
+      value: bgRarity,
+      stars: null,
+      background: bgRarity,
+      confidence: 0.5 + 0.3 * background!.confidence,
+    };
   }
   return { value: null, stars: null, background: null, confidence: 0 };
 }

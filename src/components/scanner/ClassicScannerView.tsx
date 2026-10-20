@@ -8,11 +8,20 @@ import { UploadZone } from "./UploadZone";
 import { LazyScanReviewModal, preloadScanReviewModal } from "./lazy-modals";
 import type { ScanningFileItem } from "./ScanningAnimation";
 import { cropToBlob } from "@/lib/grid-detector";
-import { isMaterialDetectionError, type CardRecognition, type MoraReading, type ScanProgress } from "@/lib/material-detector";
+import {
+  isMaterialDetectionError,
+  type CardRecognition,
+  type MoraReading,
+  type ScanProgress,
+} from "@/lib/material-detector";
 import { useMaterialScanClient } from "@/lib/material-detector/react";
 import { useScannerSettings } from "@/lib/scanner/settings";
 import { setScannerInventory } from "@/lib/scanner/inventory";
-import type { DetectedItem, EquipmentReviewItem, ScannedReviewItem } from "@/lib/types";
+import type {
+  DetectedItem,
+  EquipmentReviewItem,
+  ScannedReviewItem,
+} from "@/lib/types";
 import { materialThumbUrl } from "@/lib/materials/ui";
 import { recordScan } from "@/lib/stats";
 import {
@@ -21,8 +30,10 @@ import {
   equipmentRows,
   uniqueByItem,
   uniquePanels,
+  STAGE_START_PROGRESS,
   type EquipmentSighting,
-} from "@/lib/scanner/equipment";
+  type ScanSummary,
+} from "@/lib/scanner";
 import { getOwnedCharacters } from "@/lib/good/inventory";
 import {
   equipmentIcon,
@@ -39,28 +50,7 @@ interface ClassicScannerViewProps {
   ariaLabelledBy?: string;
 }
 
-interface ScanSummary {
-  files: number;
-  failedFiles: number;
-  cards: number;
-  materials: number;
-  weapons: number;
-  artifacts: number;
-  characters: number;
-  flagged: number;
-  unknown: number;
-  mora?: number | null;
-}
-
-
-
-/** Share of a file's progress bar reached when each stage starts. */
-const STAGE_START: Record<ScanProgress["stage"], number> = {
-  decoding: 0,
-  detecting: 0.05,
-  "loading-references": 0.2,
-  recognizing: 0.25,
-};
+const STAGE_START = STAGE_START_PROGRESS;
 
 function stageMessage(p: ScanProgress, fileName: string): string {
   switch (p.stage) {
@@ -71,7 +61,9 @@ function stageMessage(p: ScanProgress, fileName: string): string {
     case "loading-references":
       return "Loading the scanner's references…";
     case "recognizing":
-      return p.total > 0 ? `Identifying card ${p.done} of ${p.total}…` : "Identifying cards…";
+      return p.total > 0
+        ? `Identifying card ${p.done} of ${p.total}…`
+        : "Identifying cards…";
   }
 }
 
@@ -88,7 +80,10 @@ function reviewReason(card: CardRecognition): string | undefined {
  * key, no upload. Results go through the same review modal and inventory as
  * the AI Vision tab.
  */
-export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "scanner-tab" }: ClassicScannerViewProps) {
+export function ClassicScannerView({
+  id = "scanner-panel",
+  ariaLabelledBy = "scanner-tab",
+}: ClassicScannerViewProps) {
   // The atlas loads once the page is idle, not during the first render
   const client = useMaterialScanClient({ preload: "idle" });
   const { settings } = useScannerSettings();
@@ -105,7 +100,9 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
   const [summary, setSummary] = useState<ScanSummary | null>(null);
 
   const [reviewItems, setReviewItems] = useState<ScannedReviewItem[]>([]);
-  const [reviewEquipment, setReviewEquipment] = useState<EquipmentReviewItem[]>([]);
+  const [reviewEquipment, setReviewEquipment] = useState<EquipmentReviewItem[]>(
+    [],
+  );
   const [isReviewOpen, setIsReviewOpen] = useState(false);
 
   const controllerRef = useRef<AbortController | null>(null);
@@ -126,7 +123,6 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
     return url;
   };
 
-
   /**
    * Scanned quantities replace stored ones: a screenshot shows the current count.
    * Shared with the other tabs: every scanner fills the same inventory.
@@ -142,7 +138,9 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
   const handleFiles = useCallback(
     async (input: FileList | File[]) => {
       const files = Array.from(input).filter(
-        (f) => f.type.startsWith("image/") || /\.(png|jpe?g|webp|bmp|gif)$/i.test(f.name),
+        (f) =>
+          f.type.startsWith("image/") ||
+          /\.(png|jpe?g|webp|bmp|gif)$/i.test(f.name),
       );
       if (files.length === 0) {
         toast.error("Please choose image files (PNG, JPEG or WebP).");
@@ -162,7 +160,12 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
       // The review modal opens when the scan finishes: fetch its code meanwhile
       preloadScanReviewModal();
       setScanFiles(
-        files.map((f, i) => ({ file: f, previewUrl: trackUrl(f), name: f.name, status: i === 0 ? "scanning" : "pending" })),
+        files.map((f, i) => ({
+          file: f,
+          previewUrl: trackUrl(f),
+          name: f.name,
+          status: i === 0 ? "scanning" : "pending",
+        })),
       );
       setActiveIndex(0);
       setProgress(1);
@@ -170,7 +173,10 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
       setIsScanning(true);
 
       // One review slot per material; overlapping screenshots keep the clearest reading.
-      const picks = new Map<string, { item: ScannedReviewItem; confidence: number }>();
+      const picks = new Map<
+        string,
+        { item: ScannedReviewItem; confidence: number }
+      >();
       // Weapons and artifacts repeat: overlapping screenshots are stitched by rows instead.
       const stitchers = {
         weapon: new EquipmentStitcher(),
@@ -192,14 +198,21 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
         flagged: 0,
         unknown: 0,
       };
-      let bestMora: { reading: MoraReading; crop: Blob | null; sourceName: string } | null = null;
+      let bestMora: {
+        reading: MoraReading;
+        crop: Blob | null;
+        sourceName: string;
+      } | null = null;
 
       try {
         for (let i = 0; i < files.length; i++) {
           const file = files[i];
           setActiveIndex(i);
           setScanFiles((prev) =>
-            prev.map((f, k) => ({ ...f, status: k === i ? "scanning" : k < i ? "completed" : "pending" })),
+            prev.map((f, k) => ({
+              ...f,
+              status: k === i ? "scanning" : k < i ? "completed" : "pending",
+            })),
           );
           try {
             const { recognition, panel } = await client.scan(
@@ -209,8 +222,16 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
                 signal: controller.signal,
                 onProgress: (p) => {
                   const within =
-                    STAGE_START[p.stage] + (p.stage === "recognizing" && p.total > 0 ? (0.75 * p.done) / p.total : 0);
-                  setProgress(Math.max(1, Math.round(((i + within) / files.length) * 100)));
+                    STAGE_START[p.stage] +
+                    (p.stage === "recognizing" && p.total > 0
+                      ? (0.75 * p.done) / p.total
+                      : 0);
+                  setProgress(
+                    Math.max(
+                      1,
+                      Math.round(((i + within) / files.length) * 100),
+                    ),
+                  );
                   setStatusMessage(stageMessage(p, file.name));
                 },
               },
@@ -226,8 +247,13 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
                 }
                 if (card.kind !== "material") continue;
                 const existing = picks.get(card.material.id);
-                if (existing && existing.confidence >= card.confidence) continue;
-                const crop = bitmap ? await cropToBlob(bitmap, card.box, "image/webp").catch(() => null) : null;
+                if (existing && existing.confidence >= card.confidence)
+                  continue;
+                const crop = bitmap
+                  ? await cropToBlob(bitmap, card.box, "image/webp").catch(
+                      () => null,
+                    )
+                  : null;
                 picks.set(card.material.id, {
                   confidence: card.confidence,
                   item: {
@@ -236,7 +262,9 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
                     name: card.material.name,
                     rarity: card.material.rarity,
                     quantity: Math.max(1, card.quantity.value ?? 1),
-                    imageSnippet: crop ? trackUrl(crop) : materialThumbUrl(card.material.id),
+                    imageSnippet: crop
+                      ? trackUrl(crop)
+                      : materialThumbUrl(card.material.id),
                     sourceImageName: file.name,
                     row: card.row ?? undefined,
                     col: card.column ?? undefined,
@@ -251,25 +279,53 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
                 });
               }
               if (recognition.mora && recognition.mora.value !== null) {
-                if (!bestMora || recognition.mora.confidence > bestMora.reading.confidence) {
-                  const crop = bitmap ? await cropToBlob(bitmap, recognition.mora.box, "image/webp").catch(() => null) : null;
-                  bestMora = { reading: recognition.mora, crop, sourceName: file.name };
+                if (
+                  !bestMora ||
+                  recognition.mora.confidence > bestMora.reading.confidence
+                ) {
+                  const crop = bitmap
+                    ? await cropToBlob(
+                        bitmap,
+                        recognition.mora.box,
+                        "image/webp",
+                      ).catch(() => null)
+                    : null;
+                  bestMora = {
+                    reading: recognition.mora,
+                    crop,
+                    sourceName: file.name,
+                  };
                 }
               }
               const rows = equipmentRows(recognition.cards, i);
               if (panel && !panelFailed) {
                 setStatusMessage(`Reading the details in ${file.name}…`);
                 try {
-                  const targetKind = panel.kind === "weapon" ? "weapon" : "artifact";
-                  const attached = await readAndAttachPanel(panel, rows[targetKind], i);
+                  const targetKind =
+                    panel.kind === "weapon" ? "weapon" : "artifact";
+                  const attached = await readAndAttachPanel(
+                    panel,
+                    rows[targetKind],
+                    i,
+                  );
                   if (attached.reading?.kind === "weapon") {
                     rows.weapon = attached.rows;
                   } else {
                     rows.artifact = attached.rows;
                   }
                   if (attached.standalone) {
-                    const crop = bitmap ? await cropToBlob(bitmap, attached.standalone.card.box, "image/webp").catch(() => null) : null;
-                    if (crop) equipmentCrops.set(attached.standalone.card, trackUrl(crop));
+                    const crop = bitmap
+                      ? await cropToBlob(
+                          bitmap,
+                          attached.standalone.card.box,
+                          "image/webp",
+                        ).catch(() => null)
+                      : null;
+                    if (crop)
+                      equipmentCrops.set(
+                        attached.standalone.card,
+                        trackUrl(crop),
+                      );
                     panelOnly.push(attached.standalone);
                   }
                 } catch (err) {
@@ -277,12 +333,18 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
                   // Most likely the OCR couldn't be downloaded: the cards are still read.
                   console.error("Reading the detail panel failed:", err);
                   panelFailed = true;
-                  toast.warning("Couldn't read the details panel; the cards were still scanned.");
+                  toast.warning(
+                    "Couldn't read the details panel; the cards were still scanned.",
+                  );
                 }
               }
               for (const kind of EQUIPMENT_KINDS) {
                 for (const s of rows[kind].flat()) {
-                  const crop = bitmap ? await cropToBlob(bitmap, s.card.box, "image/webp").catch(() => null) : null;
+                  const crop = bitmap
+                    ? await cropToBlob(bitmap, s.card.box, "image/webp").catch(
+                        () => null,
+                      )
+                    : null;
                   if (crop) equipmentCrops.set(s.card, trackUrl(crop));
                 }
                 stitchers[kind].add(rows[kind]);
@@ -292,17 +354,33 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
             }
             setScanFiles((prev) =>
               prev.map((f, k) =>
-                k === i ? { ...f, status: "completed", itemCount: recognition.cards.filter((c) => c.material).length } : f,
+                k === i
+                  ? {
+                      ...f,
+                      status: "completed",
+                      itemCount: recognition.cards.filter((c) => c.material)
+                        .length,
+                    }
+                  : f,
               ),
             );
           } catch (err) {
             if (controller.signal.aborted) throw err;
             totals.failedFiles++;
-            const message = isMaterialDetectionError(err) ? err.message : "Scanning failed unexpectedly.";
+            const message = isMaterialDetectionError(err)
+              ? err.message
+              : "Scanning failed unexpectedly.";
             toast.error(`${file.name}: ${message}`);
-            setScanFiles((prev) => prev.map((f, k) => (k === i ? { ...f, status: "completed", itemCount: 0 } : f)));
+            setScanFiles((prev) =>
+              prev.map((f, k) =>
+                k === i ? { ...f, status: "completed", itemCount: 0 } : f,
+              ),
+            );
             // Reference data is needed for every file: no point continuing.
-            if (isMaterialDetectionError(err) && err.code.startsWith("REFERENCES_")) {
+            if (
+              isMaterialDetectionError(err) &&
+              err.code.startsWith("REFERENCES_")
+            ) {
               setScanError(message);
               break;
             }
@@ -317,7 +395,9 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
             name: "Mora",
             rarity: 3,
             quantity: bestMora.reading.value!,
-            imageSnippet: bestMora.crop ? trackUrl(bestMora.crop) : materialThumbUrl("mora"),
+            imageSnippet: bestMora.crop
+              ? trackUrl(bestMora.crop)
+              : materialThumbUrl("mora"),
             sourceImageName: bestMora.sourceName,
             candidates: [
               {
@@ -327,11 +407,14 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
                 confidence: Math.round(bestMora.reading.confidence * 100),
               },
             ],
-            reviewReason: bestMora.reading.confidence < 0.7 ? "Check quantity" : undefined,
+            reviewReason:
+              bestMora.reading.confidence < 0.7 ? "Check quantity" : undefined,
           });
         }
         // Slots that need a second look first, then reading order.
-        review.sort((a, b) => Number(!!b.reviewReason) - Number(!!a.reviewReason));
+        review.sort(
+          (a, b) => Number(!!b.reviewReason) - Number(!!a.reviewReason),
+        );
         const travelerElement = ownedTravelerElement(getOwnedCharacters());
         const equipment = EQUIPMENT_KINDS.flatMap((kind) => {
           const stitched = stitchers[kind].result();
@@ -353,11 +436,17 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
         });
         totals.materials = review.length;
         totals.weapons = equipment.filter((e) => e.kind === "weapon").length;
-        totals.artifacts = equipment.filter((e) => e.kind === "artifact").length;
-        totals.characters = equipment.filter((e) => e.kind === "character").length;
+        totals.artifacts = equipment.filter(
+          (e) => e.kind === "artifact",
+        ).length;
+        totals.characters = equipment.filter(
+          (e) => e.kind === "character",
+        ).length;
         /** Artifacts whose detail panel was read: main stat and substats included. */
         const withStats = equipment.filter((e) => e.fromPanel).length;
-        totals.flagged = review.filter((r) => r.reviewReason).length + equipment.filter((e) => e.reviewReason).length;
+        totals.flagged =
+          review.filter((r) => r.reviewReason).length +
+          equipment.filter((e) => e.reviewReason).length;
         totals.mora = bestMora?.reading.value ?? null;
         setSummary(totals);
         setReviewItems(review);
@@ -379,11 +468,14 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
         if (settings.autoReviewResults || equipment.length > 0) {
           setIsReviewOpen(true);
           const parts = [
-            review.length > 0 && `${review.length} material${review.length > 1 ? "s" : ""}`,
-            totals.weapons > 0 && `${totals.weapons} weapon${totals.weapons > 1 ? "s" : ""}`,
+            review.length > 0 &&
+              `${review.length} material${review.length > 1 ? "s" : ""}`,
+            totals.weapons > 0 &&
+              `${totals.weapons} weapon${totals.weapons > 1 ? "s" : ""}`,
             totals.artifacts > 0 &&
               `${totals.artifacts} artifact${totals.artifacts > 1 ? "s" : ""}${withStats ? ` (${withStats} with stats)` : ""}`,
-            totals.characters > 0 && `${totals.characters} character${totals.characters > 1 ? "s" : ""}`,
+            totals.characters > 0 &&
+              `${totals.characters} character${totals.characters > 1 ? "s" : ""}`,
           ].filter(Boolean);
           toast.success(
             `Recognised ${parts.join(", ")}` +
@@ -392,9 +484,16 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
           );
         } else {
           mergeIntoInventory(
-            review.map((r) => ({ id: r.materialId, name: r.name, quantity: r.quantity, rarity: r.rarity })),
+            review.map((r) => ({
+              id: r.materialId,
+              name: r.name,
+              quantity: r.quantity,
+              rarity: r.rarity,
+            })),
           );
-          toast.success(`Added ${review.length} material${review.length > 1 ? "s" : ""} to your inventory.`);
+          toast.success(
+            `Added ${review.length} material${review.length > 1 ? "s" : ""} to your inventory.`,
+          );
           router.push("/inventory/materials");
         }
       } catch (err) {
@@ -403,7 +502,11 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
           return;
         }
         console.error("Local scan failed:", err);
-        setScanError(isMaterialDetectionError(err) ? err.message : "Scanning failed unexpectedly.");
+        setScanError(
+          isMaterialDetectionError(err)
+            ? err.message
+            : "Scanning failed unexpectedly.",
+        );
       } finally {
         if (controllerRef.current === controller) controllerRef.current = null;
         setIsScanning(false);
@@ -411,26 +514,40 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
         setStatusMessage("");
       }
     },
-    [client, isScanning, mergeIntoInventory, router, settings.autoReviewResults],
+    [
+      client,
+      isScanning,
+      mergeIntoInventory,
+      router,
+      settings.autoReviewResults,
+    ],
   );
 
   useEffect(() => {
     const handleShared = (e: Event) => {
       const customEvent = e as CustomEvent<{ files: File[] }>;
       if (customEvent.detail?.files?.length > 0) {
-        toast.info(`Received ${customEvent.detail.files.length} shared screenshot(s)`);
+        toast.info(
+          `Received ${customEvent.detail.files.length} shared screenshot(s)`,
+        );
         handleFiles(customEvent.detail.files);
       }
     };
     window.addEventListener("gi_shared_files_received", handleShared);
-    return () => window.removeEventListener("gi_shared_files_received", handleShared);
+    return () =>
+      window.removeEventListener("gi_shared_files_received", handleShared);
   }, [handleFiles]);
 
   const handleConfirmReview = useCallback(
     (confirmed: DetectedItem[], equipment?: EquipmentConfirm) => {
       if (confirmed.length > 0) mergeIntoInventory(confirmed);
-      const saved = equipment ? saveScannedEquipment(equipment) : { weapons: 0, artifacts: 0, characters: 0, skipped: 0 };
-      if (saved.skipped > 0) toast.info(`${saved.skipped} unidentified card${saved.skipped > 1 ? "s were" : " was"} left out.`);
+      const saved = equipment
+        ? saveScannedEquipment(equipment)
+        : { weapons: 0, artifacts: 0, characters: 0, skipped: 0 };
+      if (saved.skipped > 0)
+        toast.info(
+          `${saved.skipped} unidentified card${saved.skipped > 1 ? "s were" : " was"} left out.`,
+        );
       setIsReviewOpen(false);
       router.push(inventoryPageFor({ materials: confirmed.length, ...saved }));
     },
@@ -455,7 +572,9 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
             <AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-rose-400" />
             <div className="min-w-0 space-y-0.5">
               <p className="text-xs font-bold text-white">Scan Error</p>
-              <p className="break-words text-[11px] leading-relaxed text-rose-200/90">{scanError}</p>
+              <p className="break-words text-[11px] leading-relaxed text-rose-200/90">
+                {scanError}
+              </p>
             </div>
           </div>
           <button
@@ -472,25 +591,47 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
       {summary && !isScanning && (
         <div className="flex flex-wrap items-center justify-between gap-2 pb-1">
           <p className="text-[11px] text-white/70 drop-shadow">
-            {summary.files} screenshot{summary.files > 1 ? "s" : ""} · {summary.cards} cards ·{" "}
+            {summary.files} screenshot{summary.files > 1 ? "s" : ""} ·{" "}
+            {summary.cards} cards ·{" "}
             <span className="font-semibold text-white">
               {[
-                summary.materials > 0 || summary.weapons + summary.artifacts + summary.characters === 0
+                summary.materials > 0 ||
+                summary.weapons + summary.artifacts + summary.characters === 0
                   ? `${summary.materials} materials`
                   : null,
                 summary.weapons > 0 ? `${summary.weapons} weapons` : null,
                 summary.artifacts > 0 ? `${summary.artifacts} artifacts` : null,
-                summary.characters > 0 ? `${summary.characters} characters` : null,
+                summary.characters > 0
+                  ? `${summary.characters} characters`
+                  : null,
               ]
                 .filter(Boolean)
                 .join(" · ")}
             </span>
-            {summary.flagged > 0 && <span className="text-amber-200"> · {summary.flagged} to check</span>}
-            {summary.mora !== null && summary.mora !== undefined && (
-              <span className="font-semibold text-amber-300"> · 🪙 {summary.mora.toLocaleString()} Mora</span>
+            {summary.flagged > 0 && (
+              <span className="text-amber-200">
+                {" "}
+                · {summary.flagged} to check
+              </span>
             )}
-            {summary.unknown > 0 && <span className="text-white/50"> · {summary.unknown} not in catalog</span>}
-            {summary.failedFiles > 0 && <span className="text-rose-300"> · {summary.failedFiles} failed</span>}
+            {summary.mora !== null && summary.mora !== undefined && (
+              <span className="font-semibold text-amber-300">
+                {" "}
+                · 🪙 {summary.mora.toLocaleString()} Mora
+              </span>
+            )}
+            {summary.unknown > 0 && (
+              <span className="text-white/50">
+                {" "}
+                · {summary.unknown} not in catalog
+              </span>
+            )}
+            {summary.failedFiles > 0 && (
+              <span className="text-rose-300">
+                {" "}
+                · {summary.failedFiles} failed
+              </span>
+            )}
           </p>
           {reviewItems.length + reviewEquipment.length > 0 && (
             <button
@@ -498,7 +639,9 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
               className="flex items-center gap-1.5 rounded-full border border-teal-400/30 bg-teal-500/20 px-3.5 py-1 text-xs font-bold text-teal-200 backdrop-blur-md transition-all hover:scale-105 hover:bg-teal-500/30 active:scale-95"
             >
               <Eye className="h-3.5 w-3.5" />
-              <span>Review Last Scan ({reviewItems.length + reviewEquipment.length})</span>
+              <span>
+                Review Last Scan ({reviewItems.length + reviewEquipment.length})
+              </span>
             </button>
           )}
         </div>
@@ -518,7 +661,9 @@ export function ClassicScannerView({ id = "scanner-panel", ariaLabelledBy = "sca
         onFilesSelected={handleFiles}
         onSelectThumbnail={(idx) => scanFiles[idx] && setActiveIndex(idx)}
         inputId="classic-screenshot-upload"
-        icon={<Scan className="h-7 w-7 text-teal-300 drop-shadow-md sm:h-8 sm:w-8" />}
+        icon={
+          <Scan className="h-7 w-7 text-teal-300 drop-shadow-md sm:h-8 sm:w-8" />
+        }
         title="Click to upload or drag & drop"
         description="Select screenshots of your bag: materials, weapons or artifacts, with their counts and levels."
         subDescription="Runs on your device: no API key, nothing uploaded."

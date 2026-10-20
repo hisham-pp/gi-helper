@@ -23,7 +23,9 @@ export function useObjectUrl(blob: Blob | null | undefined): string | null {
 }
 
 /** Decoded full-resolution bitmap (for original-quality crops), closed on change/unmount. */
-export function useDecodedBitmap(blob: Blob | null | undefined): ImageBitmap | null {
+export function useDecodedBitmap(
+  blob: Blob | null | undefined,
+): ImageBitmap | null {
   const [bitmap, setBitmap] = useState<ImageBitmap | null>(null);
   useEffect(() => {
     if (!blob) {

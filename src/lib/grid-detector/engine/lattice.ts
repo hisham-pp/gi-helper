@@ -181,8 +181,11 @@ export function fitLattices(members: Candidate[], alignTol: number): Lattice[] {
     const pitchOf = (horizontal: boolean) => {
       const a = horizontal ? cw0 : ch0;
       const b = horizontal ? ch0 : cw0;
-      const fromStrong = strong.length >= 2 ? estimatePitch(strong, horizontal, a, b) : NaN;
-      return Number.isFinite(fromStrong) ? fromStrong : estimatePitch(pool, horizontal, a, b);
+      const fromStrong =
+        strong.length >= 2 ? estimatePitch(strong, horizontal, a, b) : NaN;
+      return Number.isFinite(fromStrong)
+        ? fromStrong
+        : estimatePitch(pool, horizontal, a, b);
     };
     let px = pitchOf(true);
     let py = pitchOf(false);
@@ -358,7 +361,8 @@ function tryFullCard(
       p.bottom,
       radius,
     );
-    if (lenient ? !supported(faint, 1.15) : faint.quality < minQuality) return null;
+    if (lenient ? !supported(faint, 1.15) : faint.quality < minQuality)
+      return null;
     c = { ...faint, quality: latticeBackedQuality(faint) * 0.85 };
   } else if (c.quality < minQuality) {
     c = { ...c, quality: latticeBackedQuality(c) };

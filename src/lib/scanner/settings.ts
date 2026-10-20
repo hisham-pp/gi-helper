@@ -32,12 +32,31 @@ export interface ScannerSettings {
 }
 
 /** Built-in offline-ready default provider configurations (no network call needed) */
-export const DEFAULT_SERVER_ENV_PROVIDERS: Record<string, ServerEnvProviderInfo> = {
-  gemini: { hasKey: false, defaultModel: "gemini-flash-latest", defaultBaseUrl: "" },
+export const DEFAULT_SERVER_ENV_PROVIDERS: Record<
+  string,
+  ServerEnvProviderInfo
+> = {
+  gemini: {
+    hasKey: false,
+    defaultModel: "gemini-flash-latest",
+    defaultBaseUrl: "",
+  },
   openai: { hasKey: false, defaultModel: "gpt-6-luna", defaultBaseUrl: "" },
-  claude: { hasKey: false, defaultModel: "claude-sonnet-5-5", defaultBaseUrl: "" },
-  grok: { hasKey: false, defaultModel: "grok-4.7", defaultBaseUrl: "https://api.x.ai/v1" },
-  custom: { hasKey: false, defaultModel: "google/gemini-3.8-flash", defaultBaseUrl: "https://openrouter.ai/api/v1" },
+  claude: {
+    hasKey: false,
+    defaultModel: "claude-sonnet-5-5",
+    defaultBaseUrl: "",
+  },
+  grok: {
+    hasKey: false,
+    defaultModel: "grok-4.7",
+    defaultBaseUrl: "https://api.x.ai/v1",
+  },
+  custom: {
+    hasKey: false,
+    defaultModel: "google/gemini-3.8-flash",
+    defaultBaseUrl: "https://openrouter.ai/api/v1",
+  },
 };
 
 const STORAGE_KEY_SETTINGS_CONSOLIDATED = "scanner_settings_v2";
@@ -112,20 +131,30 @@ function readLegacySettings(): ScannerSettings {
 
   const layoutVal = localStorage.getItem(STORAGE_KEY_LAYOUT);
   const reviewVal = localStorage.getItem(STORAGE_KEY_REVIEW);
-  const providerVal = localStorage.getItem(STORAGE_KEY_AI_PROVIDER) as AiProvider | null;
+  const providerVal = localStorage.getItem(
+    STORAGE_KEY_AI_PROVIDER,
+  ) as AiProvider | null;
 
   let storedGeminiModel =
-    localStorage.getItem(STORAGE_KEY_GEMINI_MODEL) || DEFAULT_SCANNER_SETTINGS.geminiModel;
+    localStorage.getItem(STORAGE_KEY_GEMINI_MODEL) ||
+    DEFAULT_SCANNER_SETTINGS.geminiModel;
 
-  if (storedGeminiModel === "gemini-1.5-flash" || storedGeminiModel === "gemini-2.0-flash") {
+  if (
+    storedGeminiModel === "gemini-1.5-flash" ||
+    storedGeminiModel === "gemini-2.0-flash"
+  ) {
     storedGeminiModel = "gemini-flash-latest";
   }
 
   return {
     autoPreviewLayout:
-      layoutVal !== null ? layoutVal === "true" : DEFAULT_SCANNER_SETTINGS.autoPreviewLayout,
+      layoutVal !== null
+        ? layoutVal === "true"
+        : DEFAULT_SCANNER_SETTINGS.autoPreviewLayout,
     autoReviewResults:
-      reviewVal !== null ? reviewVal === "true" : DEFAULT_SCANNER_SETTINGS.autoReviewResults,
+      reviewVal !== null
+        ? reviewVal === "true"
+        : DEFAULT_SCANNER_SETTINGS.autoReviewResults,
     aiProvider: providerVal || DEFAULT_SCANNER_SETTINGS.aiProvider,
 
     geminiApiKey: localStorage.getItem(STORAGE_KEY_GEMINI_KEY) || "",
@@ -133,59 +162,94 @@ function readLegacySettings(): ScannerSettings {
 
     openaiApiKey: localStorage.getItem(STORAGE_KEY_OPENAI_KEY) || "",
     openaiModel:
-      localStorage.getItem(STORAGE_KEY_OPENAI_MODEL) || DEFAULT_SCANNER_SETTINGS.openaiModel,
+      localStorage.getItem(STORAGE_KEY_OPENAI_MODEL) ||
+      DEFAULT_SCANNER_SETTINGS.openaiModel,
     openaiBaseUrl: localStorage.getItem(STORAGE_KEY_OPENAI_BASE_URL) || "",
 
     claudeApiKey: localStorage.getItem(STORAGE_KEY_CLAUDE_KEY) || "",
     claudeModel:
-      localStorage.getItem(STORAGE_KEY_CLAUDE_MODEL) || DEFAULT_SCANNER_SETTINGS.claudeModel,
+      localStorage.getItem(STORAGE_KEY_CLAUDE_MODEL) ||
+      DEFAULT_SCANNER_SETTINGS.claudeModel,
 
     grokApiKey: localStorage.getItem(STORAGE_KEY_GROK_KEY) || "",
     grokModel:
-      localStorage.getItem(STORAGE_KEY_GROK_MODEL) || DEFAULT_SCANNER_SETTINGS.grokModel,
+      localStorage.getItem(STORAGE_KEY_GROK_MODEL) ||
+      DEFAULT_SCANNER_SETTINGS.grokModel,
     grokBaseUrl:
-      localStorage.getItem(STORAGE_KEY_GROK_BASE_URL) || DEFAULT_SCANNER_SETTINGS.grokBaseUrl,
+      localStorage.getItem(STORAGE_KEY_GROK_BASE_URL) ||
+      DEFAULT_SCANNER_SETTINGS.grokBaseUrl,
 
     customApiKey: localStorage.getItem(STORAGE_KEY_CUSTOM_KEY) || "",
     customModel:
-      localStorage.getItem(STORAGE_KEY_CUSTOM_MODEL) || DEFAULT_SCANNER_SETTINGS.customModel,
+      localStorage.getItem(STORAGE_KEY_CUSTOM_MODEL) ||
+      DEFAULT_SCANNER_SETTINGS.customModel,
     customBaseUrl:
-      localStorage.getItem(STORAGE_KEY_CUSTOM_BASE_URL) || DEFAULT_SCANNER_SETTINGS.customBaseUrl,
+      localStorage.getItem(STORAGE_KEY_CUSTOM_BASE_URL) ||
+      DEFAULT_SCANNER_SETTINGS.customBaseUrl,
   };
 }
 
 function normalizeStoredSettings(stored: unknown): ScannerSettings {
   if (stored && typeof stored === "object" && !Array.isArray(stored)) {
     const s = stored as Record<string, unknown>;
-    let geminiModel = typeof s.geminiModel === "string" ? s.geminiModel : DEFAULT_SCANNER_SETTINGS.geminiModel;
-    if (geminiModel === "gemini-1.5-flash" || geminiModel === "gemini-2.0-flash") {
+    let geminiModel =
+      typeof s.geminiModel === "string"
+        ? s.geminiModel
+        : DEFAULT_SCANNER_SETTINGS.geminiModel;
+    if (
+      geminiModel === "gemini-1.5-flash" ||
+      geminiModel === "gemini-2.0-flash"
+    ) {
       geminiModel = "gemini-flash-latest";
     }
 
     return {
       autoPreviewLayout:
-        typeof s.autoPreviewLayout === "boolean" ? s.autoPreviewLayout : DEFAULT_SCANNER_SETTINGS.autoPreviewLayout,
+        typeof s.autoPreviewLayout === "boolean"
+          ? s.autoPreviewLayout
+          : DEFAULT_SCANNER_SETTINGS.autoPreviewLayout,
       autoReviewResults:
-        typeof s.autoReviewResults === "boolean" ? s.autoReviewResults : DEFAULT_SCANNER_SETTINGS.autoReviewResults,
-      aiProvider: (s.aiProvider as AiProvider) || DEFAULT_SCANNER_SETTINGS.aiProvider,
+        typeof s.autoReviewResults === "boolean"
+          ? s.autoReviewResults
+          : DEFAULT_SCANNER_SETTINGS.autoReviewResults,
+      aiProvider:
+        (s.aiProvider as AiProvider) || DEFAULT_SCANNER_SETTINGS.aiProvider,
 
       geminiApiKey: typeof s.geminiApiKey === "string" ? s.geminiApiKey : "",
       geminiModel,
 
       openaiApiKey: typeof s.openaiApiKey === "string" ? s.openaiApiKey : "",
-      openaiModel: typeof s.openaiModel === "string" ? s.openaiModel : DEFAULT_SCANNER_SETTINGS.openaiModel,
+      openaiModel:
+        typeof s.openaiModel === "string"
+          ? s.openaiModel
+          : DEFAULT_SCANNER_SETTINGS.openaiModel,
       openaiBaseUrl: typeof s.openaiBaseUrl === "string" ? s.openaiBaseUrl : "",
 
       claudeApiKey: typeof s.claudeApiKey === "string" ? s.claudeApiKey : "",
-      claudeModel: typeof s.claudeModel === "string" ? s.claudeModel : DEFAULT_SCANNER_SETTINGS.claudeModel,
+      claudeModel:
+        typeof s.claudeModel === "string"
+          ? s.claudeModel
+          : DEFAULT_SCANNER_SETTINGS.claudeModel,
 
       grokApiKey: typeof s.grokApiKey === "string" ? s.grokApiKey : "",
-      grokModel: typeof s.grokModel === "string" ? s.grokModel : DEFAULT_SCANNER_SETTINGS.grokModel,
-      grokBaseUrl: typeof s.grokBaseUrl === "string" ? s.grokBaseUrl : DEFAULT_SCANNER_SETTINGS.grokBaseUrl,
+      grokModel:
+        typeof s.grokModel === "string"
+          ? s.grokModel
+          : DEFAULT_SCANNER_SETTINGS.grokModel,
+      grokBaseUrl:
+        typeof s.grokBaseUrl === "string"
+          ? s.grokBaseUrl
+          : DEFAULT_SCANNER_SETTINGS.grokBaseUrl,
 
       customApiKey: typeof s.customApiKey === "string" ? s.customApiKey : "",
-      customModel: typeof s.customModel === "string" ? s.customModel : DEFAULT_SCANNER_SETTINGS.customModel,
-      customBaseUrl: typeof s.customBaseUrl === "string" ? s.customBaseUrl : DEFAULT_SCANNER_SETTINGS.customBaseUrl,
+      customModel:
+        typeof s.customModel === "string"
+          ? s.customModel
+          : DEFAULT_SCANNER_SETTINGS.customModel,
+      customBaseUrl:
+        typeof s.customBaseUrl === "string"
+          ? s.customBaseUrl
+          : DEFAULT_SCANNER_SETTINGS.customBaseUrl,
     };
   }
 
@@ -201,7 +265,9 @@ export const scannerSettingsStore = createLocalStore<ScannerSettings>(
 );
 
 export function getScannerSettings(): ScannerSettings {
-  return typeof window === "undefined" ? DEFAULT_SCANNER_SETTINGS : scannerSettingsStore.get();
+  return typeof window === "undefined"
+    ? DEFAULT_SCANNER_SETTINGS
+    : scannerSettingsStore.get();
 }
 
 export function saveScannerSetting<K extends keyof ScannerSettings>(

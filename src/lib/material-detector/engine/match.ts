@@ -33,15 +33,26 @@ function rowBuffers(rows: number) {
  * When `residual` is given, the per-pixel error is written to it (-1 for
  * ignored pixels).
  */
-export function compositeError(card: Frame, t: Template, mask: IgnoreMask, residual?: Float32Array): number {
+export function compositeError(
+  card: Frame,
+  t: Template,
+  mask: IgnoreMask,
+  residual?: Float32Array,
+): number {
   const W = t.size;
   const rows = t.rows;
   const radius = Math.max(2, Math.round(W / 20));
   const buf = rowBuffers(rows);
   // buf layout: [sumR, sumG, sumB, sumW] × rows, then smoothed [R, G, B, ok] × rows
-  let totR = 0, totG = 0, totB = 0, totW = 0;
+  let totR = 0,
+    totG = 0,
+    totB = 0,
+    totW = 0;
   for (let y = 0; y < rows; y++) {
-    let sr = 0, sg = 0, sb = 0, sw = 0;
+    let sr = 0,
+      sg = 0,
+      sb = 0,
+      sw = 0;
     const base = y * W;
     for (let x = 0; x < W; x++) {
       const i = base + x;
@@ -67,7 +78,10 @@ export function compositeError(card: Frame, t: Template, mask: IgnoreMask, resid
   const gB = totW > 1 ? totB / totW : 0.45;
 
   const out = rows * 4;
-  let wr = 0, wg = 0, wb = 0, ww = 0;
+  let wr = 0,
+    wg = 0,
+    wb = 0,
+    ww = 0;
   for (let y = 0; y < Math.min(rows, radius); y++) {
     wr += buf[y * 4];
     wg += buf[y * 4 + 1];
@@ -105,7 +119,9 @@ export function compositeError(card: Frame, t: Template, mask: IgnoreMask, resid
   let n = 0;
   for (let y = 0; y < rows; y++) {
     const o = out + y * 4;
-    const br = buf[o], bg = buf[o + 1], bb = buf[o + 2];
+    const br = buf[o],
+      bg = buf[o + 1],
+      bb = buf[o + 2];
     const base = y * W;
     for (let x = 0; x < W; x++) {
       const i = base + x;
@@ -133,12 +149,18 @@ export function compositeError(card: Frame, t: Template, mask: IgnoreMask, resid
  * (another talent book's emblem, a sibling gem's facet) leaves a hot spot
  * that the image-wide mean dilutes.
  */
-export function peakBlockError(residual: Float32Array, width: number, rows: number, block: number): number {
+export function peakBlockError(
+  residual: Float32Array,
+  width: number,
+  rows: number,
+  block: number,
+): number {
   const step = Math.max(1, block >> 1);
   let peak = 0;
   for (let y0 = 0; y0 + block <= rows; y0 += step) {
     for (let x0 = 0; x0 + block <= width; x0 += step) {
-      let s = 0, n = 0;
+      let s = 0,
+        n = 0;
       for (let y = y0; y < y0 + block; y++) {
         for (let x = x0; x < x0 + block; x++) {
           const v = residual[y * width + x];
@@ -158,11 +180,18 @@ export function peakBlockError(residual: Float32Array, width: number, rows: numb
  * the pixels a (well-matching) candidate leaves fully uncovered. That corner
  * is rarely covered by icons and never by the "New" badge.
  */
-export function backgroundColor(card: Frame, t: Template, mask: IgnoreMask): [number, number, number] | null {
+export function backgroundColor(
+  card: Frame,
+  t: Template,
+  mask: IgnoreMask,
+): [number, number, number] | null {
   const W = t.size;
   const yMax = Math.min(t.rows, Math.round(W * 0.6));
   const xMax = Math.round(W * 0.45);
-  let r = 0, g = 0, b = 0, n = 0;
+  let r = 0,
+    g = 0,
+    b = 0,
+    n = 0;
   for (let y = 1; y < yMax; y++) {
     for (let x = 1; x < xMax; x++) {
       const i = y * W + x;
@@ -193,7 +222,12 @@ export function patternSearch(
   evaluate: (p: SearchStep) => number,
   start: SearchStep,
   startError: number,
-  options: { step: SearchStep; minStep: number; maxEvaluations: number; limit: SearchStep },
+  options: {
+    step: SearchStep;
+    minStep: number;
+    maxEvaluations: number;
+    limit: SearchStep;
+  },
 ): { best: SearchStep; error: number; evaluations: number } {
   let best = { ...start };
   let bestErr = startError;
@@ -207,7 +241,8 @@ export function patternSearch(
       for (const sign of [1, -1]) {
         if (evaluations >= options.maxEvaluations) break;
         const next = { ...best, [key]: best[key] + sign * step[key] };
-        if (Math.abs(next[key] - center[key]) > options.limit[key] + 1e-9) continue;
+        if (Math.abs(next[key] - center[key]) > options.limit[key] + 1e-9)
+          continue;
         const e = evaluate(next);
         evaluations++;
         if (e < bestErr - 1e-6) {

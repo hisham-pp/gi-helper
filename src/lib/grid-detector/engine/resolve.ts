@@ -20,7 +20,12 @@ const SOURCE_WEIGHT = { detected: 1, recovered: 0.8 } as const;
  */
 function cardWeight(c: LatticeCard): number {
   const perimeter = 2 * (c.right - c.left + (c.bottom - c.top));
-  return (c.clipped ? 0.4 : SOURCE_WEIGHT[c.source]) * c.quality * c.quality * perimeter;
+  return (
+    (c.clipped ? 0.4 : SOURCE_WEIGHT[c.source]) *
+    c.quality *
+    c.quality *
+    perimeter
+  );
 }
 
 export function latticeScore(lat: Lattice): number {
@@ -58,7 +63,10 @@ export function isPlausibleGrid(lat: Lattice, imageArea: number): boolean {
   }
   if (full.length === 2) {
     const cols = new Set(full.map((c) => c.col)).size;
-    const totalArea = full.reduce((s, c) => s + (c.right - c.left) * (c.bottom - c.top), 0);
+    const totalArea = full.reduce(
+      (s, c) => s + (c.right - c.left) * (c.bottom - c.top),
+      0,
+    );
     if (cols === 1 && totalArea < 0.35 * imageArea) return false;
     return q >= 0.7;
   }

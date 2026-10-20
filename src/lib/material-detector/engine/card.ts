@@ -26,10 +26,16 @@ export const ART_ROWS_FRACTION = 0.71;
 export const STAR_BAND = { top: 0.7, bottom: 0.85 } as const;
 export const FOOTER_TOP = 0.82;
 /** Digits sit inside this band; slightly generous for loose boxes. */
-export const DIGIT_BAND = { top: 0.845, bottom: 0.985, left: 0.06, right: 0.94 } as const;
+export const DIGIT_BAND = {
+  top: 0.845,
+  bottom: 0.985,
+  left: 0.06,
+  right: 0.94,
+} as const;
 
 export const cardHeight = (size: number) => Math.round(size * CARD_ASPECT);
-export const artRows = (size: number) => Math.floor(cardHeight(size) * ART_ROWS_FRACTION);
+export const artRows = (size: number) =>
+  Math.floor(cardHeight(size) * ART_ROWS_FRACTION);
 
 /** Planar RGB image with channels in 0–1. */
 export interface Frame {
@@ -63,7 +69,12 @@ export const IDENTITY_ALIGNMENT: Alignment = { dx: 0, dy: 0, scale: 1 };
 export function normalizeCardBox(box: PixelRect): PixelRect {
   const expected = box.width * CARD_ASPECT;
   if (Math.abs(box.height - expected) / expected > 0.12) return box;
-  return { x: box.x, y: box.y + box.height - expected, width: box.width, height: expected };
+  return {
+    x: box.x,
+    y: box.y + box.height - expected,
+    width: box.width,
+    height: expected,
+  };
 }
 
 const isCream = (r: number, g: number, b: number) => {
@@ -79,7 +90,10 @@ const isCream = (r: number, g: number, b: number) => {
  * and bottom; the height follows from the fixed aspect ratio. Returns null
  * when no single, card-sized footer is visible.
  */
-export function snapToFooter(image: RgbaImage, box: PixelRect): PixelRect | null {
+export function snapToFooter(
+  image: RgbaImage,
+  box: PixelRect,
+): PixelRect | null {
   const ex = box.width * 0.15;
   const ey = box.height * 0.15;
   const x0 = Math.max(0, box.x - ex);
@@ -89,11 +103,17 @@ export function snapToFooter(image: RgbaImage, box: PixelRect): PixelRect | null
   if (x1 - x0 < 8 || y1 - y0 < 8) return null;
   const W = 120;
   const H = Math.max(8, Math.round((W * (y1 - y0)) / (x1 - x0)));
-  const f = sampleRect(image, { x: x0, y: y0, width: x1 - x0, height: y1 - y0 }, W, H);
+  const f = sampleRect(
+    image,
+    { x: x0, y: y0, width: x1 - x0, height: y1 - y0 },
+    W,
+    H,
+  );
   const sx = (x1 - x0) / W;
   const sy = (y1 - y0) / H;
   const cream = new Uint8Array(W * H);
-  for (let i = 0; i < cream.length; i++) cream[i] = isCream(f.r[i], f.g[i], f.b[i]) ? 1 : 0;
+  for (let i = 0; i < cream.length; i++)
+    cream[i] = isCream(f.r[i], f.g[i], f.b[i]) ? 1 : 0;
 
   // Footer rows: a run of rows that are mostly cream across the box's width.
   const boxL = Math.max(0, Math.round((box.x - x0) / sx));
@@ -112,15 +132,25 @@ export function snapToFooter(image: RgbaImage, box: PixelRect): PixelRect | null
   const expected = (box.y + box.height * 0.91 - y0) / sy;
   const footer = runs
     .filter((r) => r.bottom - r.top >= 2)
-    .sort((a, b) => Math.abs((a.top + a.bottom) / 2 - expected) - Math.abs((b.top + b.bottom) / 2 - expected))[0];
+    .sort(
+      (a, b) =>
+        Math.abs((a.top + a.bottom) / 2 - expected) -
+        Math.abs((b.top + b.bottom) / 2 - expected),
+    )[0];
   if (!footer) return null;
 
   // Footer columns, measured on the strip below the digits and above the
   // rounded bottom corners, where the footer is plain cream edge to edge.
   // Keep the run overlapping the box most.
   const rows = footer.bottom - footer.top;
-  const stripTop = Math.min(footer.bottom - 2, Math.round(footer.bottom - 0.22 * rows));
-  const stripBottom = Math.max(stripTop + 1, Math.round(footer.bottom - 0.05 * rows));
+  const stripTop = Math.min(
+    footer.bottom - 2,
+    Math.round(footer.bottom - 0.22 * rows),
+  );
+  const stripBottom = Math.max(
+    stripTop + 1,
+    Math.round(footer.bottom - 0.05 * rows),
+  );
   const cols: { left: number; right: number }[] = [];
   for (let x = 0; x < W; x++) {
     let n = 0;
@@ -130,7 +160,8 @@ export function snapToFooter(image: RgbaImage, box: PixelRect): PixelRect | null
     if (on && last && last.right >= x - 1) last.right = x + 1;
     else if (on) cols.push({ left: x, right: x + 1 });
   }
-  const overlap = (c: { left: number; right: number }) => Math.min(c.right, boxR) - Math.max(c.left, boxL);
+  const overlap = (c: { left: number; right: number }) =>
+    Math.min(c.right, boxR) - Math.max(c.left, boxL);
   const col = cols.sort((a, b) => overlap(b) - overlap(a))[0];
   if (!col) return null;
 
@@ -160,7 +191,12 @@ export function alignedRect(box: PixelRect, a: Alignment): PixelRect {
  * Area-average resample of an arbitrary (fractional) source rectangle into a
  * `w × h` frame. Pixels outside the image are clamped to the border.
  */
-export function sampleRect(image: RgbaImage, rect: PixelRect, w: number, h: number): Frame {
+export function sampleRect(
+  image: RgbaImage,
+  rect: PixelRect,
+  w: number,
+  h: number,
+): Frame {
   const { width: iw, height: ih, data } = image;
   const n = w * h;
   const r = new Float32Array(n);
@@ -171,8 +207,10 @@ export function sampleRect(image: RgbaImage, rect: PixelRect, w: number, h: numb
   const inv = 1 / (255 * fx * fy);
 
   // Per-axis source spans: [first, last] index and edge weights.
-  const xs0 = new Int32Array(w), xs1 = new Int32Array(w);
-  const xw0 = new Float32Array(w), xw1 = new Float32Array(w);
+  const xs0 = new Int32Array(w),
+    xs1 = new Int32Array(w);
+  const xw0 = new Float32Array(w),
+    xw1 = new Float32Array(w);
   for (let x = 0; x < w; x++) {
     const a = rect.x + x * fx;
     const e = a + fx;
@@ -190,11 +228,14 @@ export function sampleRect(image: RgbaImage, rect: PixelRect, w: number, h: numb
     const y0 = Math.floor(a);
     const y1 = Math.ceil(e) - 1;
     for (let x = 0; x < w; x++) {
-      let sr = 0, sg = 0, sb = 0;
+      let sr = 0,
+        sg = 0,
+        sb = 0;
       for (let sy = y0; sy <= y1; sy++) {
         const wy = sy === y0 ? Math.min(e, y0 + 1) - a : sy === y1 ? e - y1 : 1;
         const row = clampY(sy) * iw;
-        const x0 = xs0[x], x1 = xs1[x];
+        const x0 = xs0[x],
+          x1 = xs1[x];
         for (let sx = x0; sx <= x1; sx++) {
           const wx = sx === x0 ? xw0[x] : sx === x1 ? xw1[x] : 1;
           const wt = wx * wy;
@@ -235,15 +276,22 @@ export function halve(frame: Frame): Frame {
     for (let x = 0; x < w; x++) {
       const p = 2 * y * W + 2 * x;
       const i = y * w + x;
-      r[i] = (frame.r[p] + frame.r[p + 1] + frame.r[p + W] + frame.r[p + W + 1]) / 4;
-      g[i] = (frame.g[p] + frame.g[p + 1] + frame.g[p + W] + frame.g[p + W + 1]) / 4;
-      b[i] = (frame.b[p] + frame.b[p + 1] + frame.b[p + W] + frame.b[p + W + 1]) / 4;
+      r[i] =
+        (frame.r[p] + frame.r[p + 1] + frame.r[p + W] + frame.r[p + W + 1]) / 4;
+      g[i] =
+        (frame.g[p] + frame.g[p + 1] + frame.g[p + W] + frame.g[p + W + 1]) / 4;
+      b[i] =
+        (frame.b[p] + frame.b[p + 1] + frame.b[p + W] + frame.b[p + W + 1]) / 4;
     }
   }
   return { width: w, height: h, r, g, b };
 }
 
-export function rgbToHsv(r: number, g: number, b: number): { h: number; s: number; v: number } {
+export function rgbToHsv(
+  r: number,
+  g: number,
+  b: number,
+): { h: number; s: number; v: number } {
   const max = Math.max(r, g, b);
   const min = Math.min(r, g, b);
   const d = max - min;
@@ -258,7 +306,8 @@ export function rgbToHsv(r: number, g: number, b: number): { h: number; s: numbe
   return { h, s: max === 0 ? 0 : d / max, v: max };
 }
 
-export const luminance = (r: number, g: number, b: number) => 0.299 * r + 0.587 * g + 0.114 * b;
+export const luminance = (r: number, g: number, b: number) =>
+  0.299 * r + 0.587 * g + 0.114 * b;
 
 /** Pixels to ignore while matching (1 = ignore), e.g. a "New" badge. */
 export type IgnoreMask = Uint8Array;
@@ -270,7 +319,9 @@ export type IgnoreMask = Uint8Array;
  * screenshots badge cards cover ~70% of the probe area versus 0% for all
  * others. Returns the region to ignore, in frame pixels, or null.
  */
-export function detectNewBadge(frame: Frame): { x0: number; y1: number } | null {
+export function detectNewBadge(
+  frame: Frame,
+): { x0: number; y1: number } | null {
   const { width: w, height: h } = frame;
   const top = Math.round(h * 0.2);
   const left = Math.round(w * 0.4);
@@ -284,7 +335,11 @@ export function detectNewBadge(frame: Frame): { x0: number; y1: number } | null 
       const i = y * w + x;
       const { h: hue, s, v } = rgbToHsv(frame.r[i], frame.g[i], frame.b[i]);
       const isBadge = hue >= 32 && hue <= 48 && s > 0.62 && v > 0.72;
-      const inProbe = y >= Math.round(h * 0.02) && y < Math.round(h * 0.15) && x > w * 0.6 && x < w * 0.92;
+      const inProbe =
+        y >= Math.round(h * 0.02) &&
+        y < Math.round(h * 0.15) &&
+        x > w * 0.6 &&
+        x < w * 0.92;
       if (inProbe) probe++;
       if (!isBadge) continue;
       hits++;
@@ -299,7 +354,11 @@ export function detectNewBadge(frame: Frame): { x0: number; y1: number } | null 
   return { x0: Math.max(0, x0 - margin), y1: Math.min(h - 1, y1 + margin * 2) };
 }
 
-export function badgeMask(width: number, rows: number, badge: { x0: number; y1: number } | null): IgnoreMask {
+export function badgeMask(
+  width: number,
+  rows: number,
+  badge: { x0: number; y1: number } | null,
+): IgnoreMask {
   const mask = new Uint8Array(width * rows);
   if (!badge) return mask;
   for (let y = 0; y <= Math.min(rows - 1, badge.y1); y++) {
@@ -321,7 +380,11 @@ export const EQUIPMENT_OVERLAYS = {
 } as const;
 
 /** Marks the overlay corners of a weapon or artifact card as ignored (in place). */
-export function addEquipmentOverlays(mask: IgnoreMask, width: number, rows: number): IgnoreMask {
+export function addEquipmentOverlays(
+  mask: IgnoreMask,
+  width: number,
+  rows: number,
+): IgnoreMask {
   const { topLeft, topRight } = EQUIPMENT_OVERLAYS;
   const leftX = Math.ceil(topLeft.right * width);
   const leftY = Math.min(rows, Math.ceil(topLeft.bottom * width));
@@ -335,8 +398,15 @@ export function addEquipmentOverlays(mask: IgnoreMask, width: number, rows: numb
 }
 
 /** Scales a badge region found on a `fromW`-wide frame to a `toW`-wide frame. */
-export function scaleBadge(badge: { x0: number; y1: number } | null, fromW: number, toW: number) {
+export function scaleBadge(
+  badge: { x0: number; y1: number } | null,
+  fromW: number,
+  toW: number,
+) {
   if (!badge) return null;
   const f = toW / fromW;
-  return { x0: Math.floor(badge.x0 * f), y1: Math.ceil((badge.y1 + 1) * f) - 1 };
+  return {
+    x0: Math.floor(badge.x0 * f),
+    y1: Math.ceil((badge.y1 + 1) * f) - 1,
+  };
 }

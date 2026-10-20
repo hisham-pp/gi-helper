@@ -364,7 +364,9 @@ function pairSegments(
           // Different starting points often settle on the same borders.
           const refinedKey =
             -1 -
-            (((refined.left * 4099 + refined.top) * 4099 + refined.right) * 4099 + refined.bottom);
+            (((refined.left * 4099 + refined.top) * 4099 + refined.right) *
+              4099 +
+              refined.bottom);
           if (seen.has(refinedKey)) continue;
           seen.add(refinedKey);
           out.push(refined);
@@ -397,7 +399,8 @@ export function generateCandidates(
     (sg) => verticalSupport(e, sg.pos, sg.start, sg.end) >= SEGMENT_MIN_SUPPORT,
   );
   const hSegs = traceSegments(e.hMask, w, h, false, minLen, maxGap).filter(
-    (sg) => horizontalSupport(e, sg.pos, sg.start, sg.end) >= SEGMENT_MIN_SUPPORT,
+    (sg) =>
+      horizontalSupport(e, sg.pos, sg.start, sg.end) >= SEGMENT_MIN_SUPPORT,
   );
 
   const vIndex = indexSegments(vSegs, w);
@@ -408,8 +411,26 @@ export function generateCandidates(
   // Safety valve for pathological images (e.g. dense line art); never reached
   // on real screenshots, and reported in diagnostics when it is.
   const maxPairs = 400_000;
-  const completeV = pairSegments(vSegs, hIndex, e, limits, true, out, seen, maxPairs);
-  const completeH = pairSegments(hSegs, vIndex, e, limits, false, out, seen, maxPairs);
+  const completeV = pairSegments(
+    vSegs,
+    hIndex,
+    e,
+    limits,
+    true,
+    out,
+    seen,
+    maxPairs,
+  );
+  const completeH = pairSegments(
+    hSegs,
+    vIndex,
+    e,
+    limits,
+    false,
+    out,
+    seen,
+    maxPairs,
+  );
   return {
     candidates: out,
     segmentCount: vSegs.length + hSegs.length,

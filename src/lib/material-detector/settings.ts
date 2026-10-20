@@ -1,42 +1,55 @@
-import { CARD_KINDS, type RecognitionSettings } from "./types";
+import {
+  CARD_KINDS,
+  DEFAULT_RECOGNITION_SETTINGS,
+  RECOGNITION_SETTING_LIMITS,
+} from "./constants/recognition.constants";
+import type { RecognitionSettings } from "./types/settings.types";
 
-/**
- * Defaults tuned on the Genshin reference screenshots in
- * `public/samples/test-set-01/` (see docs/material-detector.md).
- */
-export const DEFAULT_RECOGNITION_SETTINGS: RecognitionSettings = {
-  kind: "auto",
-  shortlistSize: 12,
-  candidateCount: 5,
-  useRarity: true,
-  useInventoryOrder: true,
-  refineAlignment: true,
-  readQuantity: true,
-  readMora: true,
-  minConfidence: 0.5,
-};
+export { DEFAULT_RECOGNITION_SETTINGS } from "./constants/recognition.constants";
 
-const clamp = (v: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, v));
+const clamp = (v: number, lo: number, hi: number): number =>
+  Math.min(hi, Math.max(lo, v));
 
-const finiteOr = (v: unknown, fallback: number) =>
+const finiteOr = (v: unknown, fallback: number): number =>
   typeof v === "number" && Number.isFinite(v) ? v : fallback;
 
-const boolOr = (v: unknown, fallback: boolean) => (typeof v === "boolean" ? v : fallback);
+const boolOr = (v: unknown, fallback: boolean): boolean =>
+  typeof v === "boolean" ? v : fallback;
 
-/** Merges partial user settings over the defaults and clamps every field to a sane range. */
+/** Merges partial user settings over the defaults and clamps every field to a safe range. */
 export function resolveRecognitionSettings(
   partial: Partial<RecognitionSettings> = {},
 ): RecognitionSettings {
   const d = DEFAULT_RECOGNITION_SETTINGS;
+  const limits = RECOGNITION_SETTING_LIMITS;
+
   return {
-    kind: (CARD_KINDS as readonly unknown[]).includes(partial.kind) ? partial.kind! : d.kind,
-    shortlistSize: Math.round(clamp(finiteOr(partial.shortlistSize, d.shortlistSize), 2, 64)),
-    candidateCount: Math.round(clamp(finiteOr(partial.candidateCount, d.candidateCount), 1, 10)),
+    kind: (CARD_KINDS as readonly unknown[]).includes(partial.kind)
+      ? partial.kind!
+      : d.kind,
+    shortlistSize: Math.round(
+      clamp(
+        finiteOr(partial.shortlistSize, d.shortlistSize),
+        limits.shortlistSize.min,
+        limits.shortlistSize.max,
+      ),
+    ),
+    candidateCount: Math.round(
+      clamp(
+        finiteOr(partial.candidateCount, d.candidateCount),
+        limits.candidateCount.min,
+        limits.candidateCount.max,
+      ),
+    ),
     useRarity: boolOr(partial.useRarity, d.useRarity),
     useInventoryOrder: boolOr(partial.useInventoryOrder, d.useInventoryOrder),
     refineAlignment: boolOr(partial.refineAlignment, d.refineAlignment),
     readQuantity: boolOr(partial.readQuantity, d.readQuantity),
     readMora: boolOr(partial.readMora, d.readMora),
-    minConfidence: clamp(finiteOr(partial.minConfidence, d.minConfidence), 0, 1),
+    minConfidence: clamp(
+      finiteOr(partial.minConfidence, d.minConfidence),
+      limits.minConfidence.min,
+      limits.minConfidence.max,
+    ),
   };
 }

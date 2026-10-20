@@ -6,6 +6,8 @@
  * - `KeyframePicker`, `planGapFills` — pure frame selection (used by tests).
  * - `SightingMerger` — pure merging of per-frame cards with quantity voting.
  */
+export * from "./types";
+export * from "./constants";
 export {
   scanVideo,
   lockRegion,
@@ -16,6 +18,7 @@ export {
   type VideoScanStage,
   type VideoFrameEvent,
   type VideoMaterial,
+  type VideoEquipment,
 } from "./scan-video";
 export {
   KeyframePicker,
@@ -29,7 +32,12 @@ export {
   type KeyframeOptions,
   type ProbeSample,
 } from "./keyframes";
-export { SightingMerger, sightingKey, type MergedMaterial, type Sighting } from "./merge";
+export {
+  SightingMerger,
+  sightingKey,
+  type MergedMaterial,
+  type Sighting,
+} from "./merge";
 export {
   VideoScanError,
   isVideoScanError,
