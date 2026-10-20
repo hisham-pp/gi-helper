@@ -1,0 +1,23 @@
+{
+  "title": "Mobile Bottom Navigation Drag Snapback Fix & Direct Gesture Decoupling",
+  "date": "2026-10-20",
+  "summary": "Eliminates mid-drag indicator snapback on the mobile bottom navigation bar by removing premature vertical bounds cancellation and decoupling 120fps direct DOM transforms from React JSX render reconciliation.",
+  "changes": [
+    {
+      "type": "fixed",
+      "text": "Mobile Bottom Dock Drag Snapback: eliminated vertical out-of-bounds cancellation that prematurely snapped the indicator back to the starting tab during natural upward thumb arcing."
+    },
+    {
+      "type": "fixed",
+      "text": "Render Diffing Decoupling: decoupled thumb indicator transforms from React JSX style reconciliation via useLayoutEffect, guaranteeing that component re-renders on tab crossings never wipe out or reset active DOM transforms."
+    },
+    {
+      "type": "improved",
+      "text": "Immediate Drag Tracking: removed vertical scroll intent abort checks on the touch-none dock, allowing horizontal thumb tracking to begin immediately upon slight touch movement."
+    },
+    {
+      "type": "fixed",
+      "text": "Initial Tab Detection: mapped touchstart coordinates directly to the touched tab's bounding box instead of assuming activeIndex."
+    }
+  ]
+}
