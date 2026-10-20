@@ -14,6 +14,10 @@
     {
       "type": "improved",
       "text": "Version-Aware Service Worker Caching: enhanced `cacheFirst` to respect version query parameters (`?v=...`) without cross-version fallback, and routed atlas manifests via `networkFirst` for immediate online updates with seamless offline fallback."
+    },
+    {
+      "type": "fixed",
+      "text": "Mobile Bottom Dock Drag Navigation: restored smooth touch drag-over tab switching exclusively on the mobile bottom bar with click suppression on touch release, direct 120fps thumb tracking, and removed drag gestures from all other tabs."
     }
   ]
 }

@@ -59,6 +59,8 @@ export function MobileBottomNav() {
   const currentThumbLeftRef = useRef(0);
   const isCancelledRef = useRef(false);
   const justDraggedRef = useRef(false);
+  const lastDragTimeRef = useRef(0);
+  const cleanUpTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Synchronize optimistic index once real route navigation catches up
   useEffect(() => {
@@ -109,6 +111,11 @@ export function MobileBottomNav() {
     const rect = dockRef.current?.getBoundingClientRect();
     if (!rect) return;
 
+    if (cleanUpTimerRef.current) {
+      clearTimeout(cleanUpTimerRef.current);
+      cleanUpTimerRef.current = null;
+    }
+
     touchStartRef.current = {
       x: touch.clientX,
       y: touch.clientY,
@@ -123,6 +130,10 @@ export function MobileBottomNav() {
     const colWidth = (innerWidth - (TOTAL_ITEMS - 1) * GAP) / TOTAL_ITEMS;
     const step = colWidth + GAP;
     currentThumbLeftRef.current = Math.max(0, activeIndex * step);
+
+    if (thumbRef.current) {
+      thumbRef.current.style.transition = "none";
+    }
   };
 
   const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
@@ -139,7 +150,7 @@ export function MobileBottomNav() {
       if (Math.abs(dx) > 6 && Math.abs(dx) > Math.abs(dy)) {
         hasDraggedRef.current = true;
         setIsDragging(true);
-      } else if (Math.abs(dy) > 12) {
+      } else if (Math.abs(dy) > 15) {
         // Vertical scroll intent; ignore
         return;
       }
@@ -152,40 +163,20 @@ export function MobileBottomNav() {
     const colWidth = (innerWidth - (TOTAL_ITEMS - 1) * GAP) / TOTAL_ITEMS;
     const step = colWidth + GAP;
 
-    // Vertical drag cancellation if finger leaves the dock boundary
+    // Vertical drag cancellation if finger leaves the dock boundary (generous 120px / 90px bounds)
     const isOutOfBounds =
-      touch.clientY < rect.top - 65 || touch.clientY > rect.bottom + 50;
+      touch.clientY < rect.top - 120 || touch.clientY > rect.bottom + 90;
 
     if (isOutOfBounds) {
       if (!isCancelledRef.current) {
         isCancelledRef.current = true;
         setDragIndex(null);
         currentDragIndexRef.current = activeIndex;
-        const startLeft = currentThumbLeftRef.current;
-        const targetLeft = activeIndex * step;
+        const targetLeft = Math.max(0, activeIndex * step);
 
-        if (thumbRef.current && !reducedMotion && typeof thumbRef.current.animate === "function") {
-          const anim = thumbRef.current.animate(
-            [
-              { transform: `translateX(${startLeft}px) scale(1.05, 0.94)` },
-              { transform: `translateX(${targetLeft}px) scale(1, 1)` },
-            ],
-            {
-              duration: 280,
-              easing: "cubic-bezier(0.2, 0.9, 0.3, 1)",
-              fill: "forwards",
-            },
-          );
-          anim.onfinish = () => {
-            if (thumbRef.current) thumbRef.current.style.transform = "";
-            try {
-              anim.cancel();
-            } catch {
-              // ignore
-            }
-          };
-        } else if (thumbRef.current) {
-          thumbRef.current.style.transform = "";
+        if (thumbRef.current && !reducedMotion) {
+          thumbRef.current.style.transition = "transform 260ms cubic-bezier(0.2, 0.9, 0.3, 1)";
+          thumbRef.current.style.transform = `translateX(${targetLeft}px) scale(1, 1)`;
         }
         triggerHaptic("dragTick");
       }
@@ -194,6 +185,9 @@ export function MobileBottomNav() {
 
     if (isCancelledRef.current) {
       isCancelledRef.current = false;
+      if (thumbRef.current) {
+        thumbRef.current.style.transition = "none";
+      }
     }
 
     // Direct tracking: center the thumb right under the finger
@@ -204,6 +198,7 @@ export function MobileBottomNav() {
     currentThumbLeftRef.current = clampedThumbLeft;
 
     if (thumbRef.current && !reducedMotion) {
+      thumbRef.current.style.transition = "none";
       thumbRef.current.style.transform = `translateX(${clampedThumbLeft}px) scale(1.05, 0.94)`;
     }
 
@@ -228,15 +223,14 @@ export function MobileBottomNav() {
     const hadDragged = hasDraggedRef.current;
     const wasCancelled = isCancelledRef.current;
     const targetIndex = currentDragIndexRef.current;
-    const startLeft = currentThumbLeftRef.current;
 
     touchStartRef.current = null;
     hasDraggedRef.current = false;
     isCancelledRef.current = false;
 
     if (hadDragged) {
-      // Prevent synthetic click from firing on the touch point
       e.preventDefault();
+      lastDragTimeRef.current = Date.now();
       justDraggedRef.current = true;
 
       const rect = dockRef.current?.getBoundingClientRect();
@@ -249,37 +243,26 @@ export function MobileBottomNav() {
         !wasCancelled && targetIndex !== null && targetIndex >= 0
           ? targetIndex
           : activeIndex;
-      const targetLeft = finalIndex * step;
+      const targetLeft = Math.max(0, finalIndex * step);
 
-      // Lock optimistic index to the target tab so it never snaps backwards during Next.js routing
+      // Lock optimistic index to target tab so it never snaps backwards during Next.js routing
       setOptimisticIndex(finalIndex);
       setIsDragging(false);
       setDragIndex(null);
 
       // Smoothly spring from exact current touch release position into target slot
-      if (thumbRef.current && !reducedMotion && typeof thumbRef.current.animate === "function") {
-        const anim = thumbRef.current.animate(
-          [
-            { transform: `translateX(${startLeft}px) scale(1.05, 0.94)` },
-            { transform: `translateX(${targetLeft}px) scale(1, 1)` },
-          ],
-          {
-            duration: 320,
-            easing: "cubic-bezier(0.2, 0.9, 0.3, 1)",
-            fill: "forwards",
-          },
-        );
-        anim.onfinish = () => {
+      if (thumbRef.current && !reducedMotion) {
+        thumbRef.current.style.transition = "transform 320ms cubic-bezier(0.2, 0.9, 0.3, 1)";
+        thumbRef.current.style.transform = `translateX(${targetLeft}px) scale(1, 1)`;
+
+        cleanUpTimerRef.current = setTimeout(() => {
           if (thumbRef.current) {
+            thumbRef.current.style.transition = "";
             thumbRef.current.style.transform = "";
           }
-          try {
-            anim.cancel();
-          } catch {
-            // ignore
-          }
-        };
+        }, 340);
       } else if (thumbRef.current) {
+        thumbRef.current.style.transition = "";
         thumbRef.current.style.transform = "";
       }
 
@@ -305,6 +288,7 @@ export function MobileBottomNav() {
       }
     } else {
       if (thumbRef.current) {
+        thumbRef.current.style.transition = "";
         thumbRef.current.style.transform = "";
       }
       setIsDragging(false);
@@ -313,35 +297,25 @@ export function MobileBottomNav() {
   };
 
   const handleTouchCancel = () => {
-    if (hasDraggedRef.current && thumbRef.current && !reducedMotion && typeof thumbRef.current.animate === "function") {
+    if (hasDraggedRef.current && thumbRef.current && !reducedMotion) {
       const rect = dockRef.current?.getBoundingClientRect();
       const dockPadding = 4;
       const innerWidth = (rect?.width ?? 320) - 2 * dockPadding;
       const colWidth = (innerWidth - (TOTAL_ITEMS - 1) * GAP) / TOTAL_ITEMS;
       const step = colWidth + GAP;
-      const startLeft = currentThumbLeftRef.current;
-      const targetLeft = activeIndex * step;
+      const targetLeft = Math.max(0, activeIndex * step);
 
-      const anim = thumbRef.current.animate(
-        [
-          { transform: `translateX(${startLeft}px) scale(1.05, 0.94)` },
-          { transform: `translateX(${targetLeft}px) scale(1, 1)` },
-        ],
-        {
-          duration: 260,
-          easing: "cubic-bezier(0.2, 0.9, 0.3, 1)",
-          fill: "forwards",
-        },
-      );
-      anim.onfinish = () => {
-        if (thumbRef.current) thumbRef.current.style.transform = "";
-        try {
-          anim.cancel();
-        } catch {
-          // ignore
+      thumbRef.current.style.transition = "transform 260ms cubic-bezier(0.2, 0.9, 0.3, 1)";
+      thumbRef.current.style.transform = `translateX(${targetLeft}px) scale(1, 1)`;
+
+      cleanUpTimerRef.current = setTimeout(() => {
+        if (thumbRef.current) {
+          thumbRef.current.style.transition = "";
+          thumbRef.current.style.transform = "";
         }
-      };
+      }, 280);
     } else if (thumbRef.current) {
+      thumbRef.current.style.transition = "";
       thumbRef.current.style.transform = "";
     }
 
@@ -386,7 +360,9 @@ export function MobileBottomNav() {
               className="glass-thumb absolute bottom-0.5 top-0.5 left-0 rounded-full will-change-transform pointer-events-none"
               style={{
                 width: `calc((100% - ${(TOTAL_ITEMS - 1) * GAP}px) / ${TOTAL_ITEMS})`,
-                transform: `translateX(calc(${Math.max(displayIndex, 0)} * (100% + ${GAP}px)))`,
+                transform: isDragging
+                  ? undefined
+                  : `translateX(calc(${Math.max(displayIndex, 0)} * (100% + ${GAP}px)))`,
                 opacity: displayIndex < 0 ? 0 : 1,
                 transition: isDragging
                   ? "none"
@@ -405,10 +381,14 @@ export function MobileBottomNav() {
                   key={item.href}
                   href={item.href}
                   title={item.label}
+                  draggable={false}
+                  onDragStart={(e) => e.preventDefault()}
                   aria-current={index === activeIndex ? "page" : undefined}
                   onClick={(e) => {
-                    if (hasDraggedRef.current) {
+                    // Suppress click if it was dispatched right after a touch drag gesture
+                    if (Date.now() - lastDragTimeRef.current < 500) {
                       e.preventDefault();
+                      e.stopPropagation();
                       return;
                     }
                     if (isSettings) {
@@ -417,14 +397,14 @@ export function MobileBottomNav() {
                       triggerHaptic("selection");
                     }
                   }}
-                  className={`relative z-10 flex flex-col items-center justify-center gap-1 rounded-full py-2 px-1 text-[11px] font-semibold transition-[color,transform] duration-200 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-400 ${
+                  className={`relative z-10 flex flex-col items-center justify-center gap-1 rounded-full py-2 px-1 text-[11px] font-semibold transition-[color,transform] duration-200 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-400 touch-none select-none ${
                     isActive
                       ? "text-white dark:drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]"
                       : "text-white/55 hover:text-white/85"
                   }`}
                 >
                   <Icon
-                    className={`h-4 w-4 shrink-0 transition-transform duration-300 ${
+                    className={`h-4 w-4 shrink-0 transition-transform duration-300 pointer-events-none ${
                       isSettings && gearSpinning
                         ? "gear-spin-anim text-amber-500 dark:text-amber-300"
                         : isActive
@@ -434,7 +414,7 @@ export function MobileBottomNav() {
                           : "text-white/50"
                     }`}
                   />
-                  <span className="whitespace-nowrap tracking-tight">{item.label}</span>
+                  <span className="whitespace-nowrap tracking-tight pointer-events-none">{item.label}</span>
                 </ShellLink>
               );
             })}
@@ -444,4 +424,3 @@ export function MobileBottomNav() {
     </>
   );
 }
-
