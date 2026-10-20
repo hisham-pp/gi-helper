@@ -35,3 +35,20 @@ jobs:
 
       - name: Build
         run: pnpm build
+
+  update-suite:
+    name: Trigger gi-suite submodule update
+    needs: check
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dispatch Submodule Update in gi-suite
+        env:
+          GH_TOKEN: ${{ secrets.SUITE_DISPATCH_TOKEN }}
+        run: |
+          if [ -n "$GH_TOKEN" ]; then
+            echo "Dispatching update-submodules workflow in hisham-pp/gi-suite..."
+            gh workflow run update-submodules.yml --repo hisham-pp/gi-suite || echo "Suite update dispatch skipped or failed."
+          else
+            echo "SUITE_DISPATCH_TOKEN not configured; skipping automated suite update."
+          fi
