@@ -1,0 +1,19 @@
+{
+  "title": "Modular @gi/* Workspace Package Architecture",
+  "date": "2026-10-20",
+  "summary": "Reorganized shared detection, scanner, artifact-panel, and utility libraries into dedicated @gi/* workspace packages, with updated application imports and package-level TypeScript configuration.",
+  "changes": [
+    {
+      "type": "improved",
+      "text": "Modular Workspace Packages: extracted detection, grid detection, image scanning, artifact panels, video scanning, scanner, and shared utility libraries into dedicated @gi/* packages."
+    },
+    {
+      "type": "improved",
+      "text": "Updated Package Integration: configured pnpm workspace resolution, Next.js package transpilation, and TypeScript path aliases, and updated application imports to use the new packages."
+    },
+    {
+      "type": "removed",
+      "text": "Removed duplicate legacy implementations and unused dependencies while retaining thin compatibility re-exports for existing src/lib import paths."
+    }
+  ]
+}
