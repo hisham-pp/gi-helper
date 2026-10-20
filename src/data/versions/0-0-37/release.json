@@ -1,0 +1,23 @@
+{
+  "title": "Authentic Midlander Billet Recognition & Truncated Quantity Resolution",
+  "date": "2026-10-20",
+  "summary": "Fixes Midlander Claymore Billet misidentifying as Riftborn Regalia by upgrading billet atlas icons to authentic in-game art, and fixes quantity reading truncation and false conflict alerts.",
+  "changes": [
+    {
+      "type": "fixed",
+      "text": "Midlander Billet Recognition: replaced outdated beta silver icons with authentic dark in-game icons across all Midlander Billets (Claymore, Sword, Bow, Catalyst, Polearm), eliminating misidentification as Riftborn Regalia and restoring 100% recognition confidence."
+    },
+    {
+      "type": "fixed",
+      "text": "Digit Stroke Boundary Segmentation: fixed footer text component merging to enforce vertical proximity and height constraints, preventing star-row artifacts from merging with and deleting adjacent digits."
+    },
+    {
+      "type": "improved",
+      "text": "Edge-Truncated Digit Classification & Multi-Frame Consensus: enhanced digit aspect checks and sliced template matching for edge-clipped numbers, and updated video scanner multi-frame voting to gracefully resolve partial-frame truncations without false 'Frames disagree on quantity' alerts."
+    },
+    {
+      "type": "improved",
+      "text": "Crop Thumbnail Preview: moved the 'Raw' indicator badge to the top-left corner in review dialogs so it never obscures footer numbers."
+    }
+  ]
+}

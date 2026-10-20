@@ -127,9 +127,40 @@ export class SightingMerger {
       const readable = [...votes.values.entries()].filter(([v]) => v !== null);
       const pool = readable.length > 0 ? readable : [...votes.values.entries()];
       pool.sort((a, b) => b[1].weight - a[1].weight);
-      const [quantity, top] = pool[0];
+      let winIdx = 0;
+      const topVal = pool[0][0];
+      if (topVal !== null) {
+        const topStr = String(topVal);
+        for (let i = 1; i < pool.length; i++) {
+          const candVal = pool[i][0];
+          if (candVal === null) continue;
+          const candStr = String(candVal);
+          // If the leading vote was a truncated prefix/suffix of a longer number with confident sighting
+          if (
+            candStr.length > topStr.length &&
+            (candStr.startsWith(topStr) || candStr.endsWith(topStr)) &&
+            pool[i][1].best.card.quantity.confidence >= 0.25 &&
+            pool[i][1].weight >= pool[0][1].weight * 0.4
+          ) {
+            winIdx = i;
+            break;
+          }
+        }
+      }
+      const [quantity, top] = pool[winIdx];
       const total = pool.reduce((s, [, v]) => s + v.weight, 0);
-      const runnerUp = pool[1]?.[1].weight ?? 0;
+      const runnerUpVote = pool.find((_, idx) => idx !== winIdx);
+      const runnerUp = runnerUpVote?.[1].weight ?? 0;
+      const runnerUpVal = runnerUpVote?.[0];
+      const isTruncation =
+        quantity !== null &&
+        runnerUpVal !== null &&
+        runnerUpVal !== undefined &&
+        (String(quantity).startsWith(String(runnerUpVal)) ||
+          String(quantity).endsWith(String(runnerUpVal)) ||
+          String(runnerUpVal).startsWith(String(quantity)) ||
+          String(runnerUpVal).endsWith(String(quantity)));
+
       const card = top.best.card;
       merged.push({
         materialId,
@@ -141,7 +172,8 @@ export class SightingMerger {
         quantityConfidence: card.quantity.confidence,
         sightings: votes.sightings,
         agreeing: top.count,
-        quantityConflict: total > 0 && runnerUp / total >= CONFLICT_VOTE_SHARE,
+        quantityConflict:
+          total > 0 && !isTruncation && runnerUp / total >= CONFLICT_VOTE_SHARE,
         firstSeen: votes.firstSeen,
         best: top.best,
         candidates: card.candidates,
