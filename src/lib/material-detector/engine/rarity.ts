@@ -28,7 +28,7 @@ const STAR_FRAME_W = 128;
 
 const isStarPixel = (r: number, g: number, b: number) => {
   const { h, s, v } = rgbToHsv(r, g, b);
-  return h >= 38 && h <= 60 && s > 0.5 && v > 0.8;
+  return h >= 38 && h <= 60 && s > 0.45 && v > 0.75;
 };
 
 export interface StarReading {
@@ -73,9 +73,9 @@ export function readStars(
     on[x] = hits >= minHits ? 1 : 0;
   }
 
-  // Group star columns into clusters, bridging the ~1.7 px gaps between
+  // Group star columns into clusters, bridging the ~1.7–5 px gaps between
   // touching stars, and keep the cluster nearest the card's centre.
-  const maxGap = Math.max(2, Math.round(W * 0.03));
+  const maxGap = Math.max(2, Math.round(W * 0.07));
   const clusters: { x0: number; x1: number; filled: number }[] = [];
   for (let x = 0; x < W; x++) {
     if (!on[x]) continue;

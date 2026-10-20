@@ -1,0 +1,23 @@
+{
+  "title": "Scanner Accuracy & Robustness Improvements for Online Datasets",
+  "date": "2026-10-20",
+  "summary": "Improves card and grid scanner accuracy across diverse player screenshots, fixing lattice container resolution, downscaled star clustering, and equipment confidence calibration.",
+  "changes": [
+    {
+      "type": "fixed",
+      "text": "Lattice Resolution: prevent multi-card grid lattices from being discarded by enclosing modal dialog containers."
+    },
+    {
+      "type": "fixed",
+      "text": "Downscaled Star Clustering: increase star notch tolerance and HSV thresholds so 5-star cards retain 100% star detection on downscaled and blurred images."
+    },
+    {
+      "type": "fixed",
+      "text": "Footer Snap Fallback: add footer snap fallback in guessGridKind to ensure weapon cards with slight bounding box offsets correctly identify grid kind."
+    },
+    {
+      "type": "improved",
+      "text": "Equipment Match Confidence: calibrate kind-aware peak block thresholds for 3D rendered weapons and equipment subject to bloom and particle effects, achieving 100% item identification accuracy across online datasets."
+    }
+  ]
+}
