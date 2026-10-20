@@ -1,4 +1,4 @@
-import type { ReviewCandidate, ScannedReviewItem } from "@/lib/types";
+import type { ReviewCandidate, ScannedReviewItem } from "../types/domain.types";
 import type { CardRecognition } from "@gi/image-scanner";
 
 /**

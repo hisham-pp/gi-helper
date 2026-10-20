@@ -10,7 +10,7 @@ import {
   setOwnedWeapons,
 } from "./inventory";
 import { setScannerInventory } from "@gi/scanner";
-import type { DetectedItem } from "@/lib/types";
+import type { DetectedItem } from "@gi/scanner";
 
 export type ImportSection = "characters" | "weapons" | "artifacts" | "materials";
 

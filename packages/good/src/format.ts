@@ -1,4 +1,4 @@
-import type { DetectedItem } from "@/lib/types";
+import type { DetectedItem } from "@gi/scanner";
 import { buildGOODDocument } from "./export";
 import { toGOODKey } from "./keys";
 import type { GoodDocument } from "./types";

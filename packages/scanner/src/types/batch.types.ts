@@ -1,4 +1,4 @@
-import type { EquipmentReviewItem, ScannedReviewItem } from "@/lib/types";
+import type { EquipmentReviewItem, ScannedReviewItem } from "./domain.types";
 import type { MoraReading } from "@gi/image-scanner";
 import type { ScanSummary } from "./orchestration.types";
 

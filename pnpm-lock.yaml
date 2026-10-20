@@ -164,6 +164,9 @@ importers:
       '@gi/grid-detector':
         specifier: workspace:*
         version: link:../grid-detector
+      '@gi/scanner':
+        specifier: workspace:*
+        version: link:../scanner
       react:
         specifier: '>=18'
         version: 19.3.0

@@ -1,8 +1,10 @@
 "use client";
 
 import { useCallback } from "react";
-import { AiProviderId } from "@/lib/ai/adapters/types";
-import { createLocalStore } from "@/lib/storage/local-store";
+import { createLocalStore } from "./utils/local-store";
+
+/** AI provider identifier. Inlined here to avoid a reverse dependency on @/lib/ai. */
+export type AiProviderId = "gemini" | "openai" | "claude" | "grok" | "custom";
 
 export type AiProvider = AiProviderId;
 

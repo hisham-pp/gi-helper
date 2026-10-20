@@ -1,7 +1,7 @@
 "use client";
 
-import { createLocalStore, readArray } from "@/lib/storage/local-store";
-import type { DetectedItem } from "@/lib/types";
+import { createLocalStore, readArray } from "./utils/local-store";
+import type { DetectedItem } from "./types/domain.types";
 
 /**
  * The scanned inventory: every scanner tab adds to it and the /inventory page

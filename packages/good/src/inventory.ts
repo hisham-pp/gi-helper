@@ -1,6 +1,6 @@
 "use client";
 
-import { createLocalStore, readArray } from "@/lib/storage/local-store";
+import { createLocalStore, readArray } from "./utils/local-store";
 import { useScannerInventory } from "@gi/scanner";
 import { buildGOODDocument, hasMainStat } from "./export";
 import type { GoodCharacter, GoodDocument, OwnedArtifact, OwnedWeapon } from "./types";

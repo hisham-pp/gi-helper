@@ -1,5 +1,5 @@
 import { getDirectoryMaterials } from "@/lib/materials";
-import type { DetectedItem } from "@/lib/types";
+import type { DetectedItem } from "@gi/scanner";
 import { toGOODKey } from "./keys";
 
 /*
