@@ -38,6 +38,7 @@ export function MobileBottomNav() {
   const [gearSpinning, setGearSpinning] = useState(false);
   const [dragIndex, setDragIndex] = useState<number | null>(null);
   const [isDragging, setIsDragging] = useState(false);
+  const [optimisticIndex, setOptimisticIndex] = useState<number | null>(null);
   const reducedMotion = usePrefersReducedMotion();
 
   // Route-based active index (0, 1, 2, or 3)
@@ -55,15 +56,33 @@ export function MobileBottomNav() {
   const touchStartRef = useRef<{ x: number; y: number; time: number } | null>(null);
   const hasDraggedRef = useRef(false);
   const currentDragIndexRef = useRef<number | null>(null);
+  const currentThumbLeftRef = useRef(0);
   const isCancelledRef = useRef(false);
+  const justDraggedRef = useRef(false);
 
-  // Effective displayed active index (dragged item overrides while active)
-  const displayIndex = dragIndex !== null ? dragIndex : activeIndex;
+  // Synchronize optimistic index once real route navigation catches up
+  useEffect(() => {
+    if (optimisticIndex !== null && optimisticIndex === activeIndex) {
+      setOptimisticIndex(null);
+    }
+  }, [activeIndex, optimisticIndex]);
 
-  // Smooth squash-and-stretch sliding animation when route changes
+  // Effective displayed active index (dragged item overrides while active, optimistic holds during route transition)
+  const displayIndex =
+    dragIndex !== null
+      ? dragIndex
+      : optimisticIndex !== null
+        ? optimisticIndex
+        : activeIndex;
+
+  // Smooth squash-and-stretch sliding animation when route changes via tap
   useEffect(() => {
     const prevIndex = prevIndexRef.current;
     prevIndexRef.current = activeIndex;
+    if (justDraggedRef.current) {
+      justDraggedRef.current = false;
+      return;
+    }
     if (prevIndex === activeIndex || activeIndex < 0 || reducedMotion || isDragging) return;
 
     thumbRef.current?.animate(
@@ -98,6 +117,12 @@ export function MobileBottomNav() {
     hasDraggedRef.current = false;
     isCancelledRef.current = false;
     currentDragIndexRef.current = activeIndex;
+
+    const dockPadding = 4;
+    const innerWidth = rect.width - 2 * dockPadding;
+    const colWidth = (innerWidth - (TOTAL_ITEMS - 1) * GAP) / TOTAL_ITEMS;
+    const step = colWidth + GAP;
+    currentThumbLeftRef.current = Math.max(0, activeIndex * step);
   };
 
   const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
@@ -122,6 +147,11 @@ export function MobileBottomNav() {
 
     if (!hasDraggedRef.current) return;
 
+    const dockPadding = 4; // p-1 = 4px
+    const innerWidth = rect.width - 2 * dockPadding;
+    const colWidth = (innerWidth - (TOTAL_ITEMS - 1) * GAP) / TOTAL_ITEMS;
+    const step = colWidth + GAP;
+
     // Vertical drag cancellation if finger leaves the dock boundary
     const isOutOfBounds =
       touch.clientY < rect.top - 65 || touch.clientY > rect.bottom + 50;
@@ -131,7 +161,30 @@ export function MobileBottomNav() {
         isCancelledRef.current = true;
         setDragIndex(null);
         currentDragIndexRef.current = activeIndex;
-        if (thumbRef.current) {
+        const startLeft = currentThumbLeftRef.current;
+        const targetLeft = activeIndex * step;
+
+        if (thumbRef.current && !reducedMotion && typeof thumbRef.current.animate === "function") {
+          const anim = thumbRef.current.animate(
+            [
+              { transform: `translateX(${startLeft}px) scale(1.05, 0.94)` },
+              { transform: `translateX(${targetLeft}px) scale(1, 1)` },
+            ],
+            {
+              duration: 280,
+              easing: "cubic-bezier(0.2, 0.9, 0.3, 1)",
+              fill: "forwards",
+            },
+          );
+          anim.onfinish = () => {
+            if (thumbRef.current) thumbRef.current.style.transform = "";
+            try {
+              anim.cancel();
+            } catch {
+              // ignore
+            }
+          };
+        } else if (thumbRef.current) {
           thumbRef.current.style.transform = "";
         }
         triggerHaptic("dragTick");
@@ -143,17 +196,12 @@ export function MobileBottomNav() {
       isCancelledRef.current = false;
     }
 
-    // Grid measurements
-    const dockPadding = 4; // p-1 = 4px
-    const innerWidth = rect.width - 2 * dockPadding;
-    const colWidth = (innerWidth - (TOTAL_ITEMS - 1) * GAP) / TOTAL_ITEMS;
-    const step = colWidth + GAP;
-
     // Direct tracking: center the thumb right under the finger
     const relX = touch.clientX - rect.left - dockPadding;
     const targetThumbLeft = relX - colWidth / 2;
     const maxLeft = (TOTAL_ITEMS - 1) * step;
     const clampedThumbLeft = Math.max(0, Math.min(targetThumbLeft, maxLeft));
+    currentThumbLeftRef.current = clampedThumbLeft;
 
     if (thumbRef.current && !reducedMotion) {
       thumbRef.current.style.transform = `translateX(${clampedThumbLeft}px) scale(1.05, 0.94)`;
@@ -180,21 +228,60 @@ export function MobileBottomNav() {
     const hadDragged = hasDraggedRef.current;
     const wasCancelled = isCancelledRef.current;
     const targetIndex = currentDragIndexRef.current;
+    const startLeft = currentThumbLeftRef.current;
 
     touchStartRef.current = null;
     hasDraggedRef.current = false;
     isCancelledRef.current = false;
 
-    // Reset inline transform so CSS cubic-bezier transition handles final snap
-    if (thumbRef.current) {
-      thumbRef.current.style.transform = "";
-    }
-    setIsDragging(false);
-    setDragIndex(null);
-
     if (hadDragged) {
       // Prevent synthetic click from firing on the touch point
       e.preventDefault();
+      justDraggedRef.current = true;
+
+      const rect = dockRef.current?.getBoundingClientRect();
+      const dockPadding = 4;
+      const innerWidth = (rect?.width ?? 320) - 2 * dockPadding;
+      const colWidth = (innerWidth - (TOTAL_ITEMS - 1) * GAP) / TOTAL_ITEMS;
+      const step = colWidth + GAP;
+
+      const finalIndex =
+        !wasCancelled && targetIndex !== null && targetIndex >= 0
+          ? targetIndex
+          : activeIndex;
+      const targetLeft = finalIndex * step;
+
+      // Lock optimistic index to the target tab so it never snaps backwards during Next.js routing
+      setOptimisticIndex(finalIndex);
+      setIsDragging(false);
+      setDragIndex(null);
+
+      // Smoothly spring from exact current touch release position into target slot
+      if (thumbRef.current && !reducedMotion && typeof thumbRef.current.animate === "function") {
+        const anim = thumbRef.current.animate(
+          [
+            { transform: `translateX(${startLeft}px) scale(1.05, 0.94)` },
+            { transform: `translateX(${targetLeft}px) scale(1, 1)` },
+          ],
+          {
+            duration: 320,
+            easing: "cubic-bezier(0.2, 0.9, 0.3, 1)",
+            fill: "forwards",
+          },
+        );
+        anim.onfinish = () => {
+          if (thumbRef.current) {
+            thumbRef.current.style.transform = "";
+          }
+          try {
+            anim.cancel();
+          } catch {
+            // ignore
+          }
+        };
+      } else if (thumbRef.current) {
+        thumbRef.current.style.transform = "";
+      }
 
       if (!wasCancelled && targetIndex !== null && targetIndex >= 0) {
         const item = MOBILE_NAV_ITEMS[targetIndex];
@@ -216,16 +303,51 @@ export function MobileBottomNav() {
           }
         }
       }
+    } else {
+      if (thumbRef.current) {
+        thumbRef.current.style.transform = "";
+      }
+      setIsDragging(false);
+      setDragIndex(null);
     }
   };
 
   const handleTouchCancel = () => {
+    if (hasDraggedRef.current && thumbRef.current && !reducedMotion && typeof thumbRef.current.animate === "function") {
+      const rect = dockRef.current?.getBoundingClientRect();
+      const dockPadding = 4;
+      const innerWidth = (rect?.width ?? 320) - 2 * dockPadding;
+      const colWidth = (innerWidth - (TOTAL_ITEMS - 1) * GAP) / TOTAL_ITEMS;
+      const step = colWidth + GAP;
+      const startLeft = currentThumbLeftRef.current;
+      const targetLeft = activeIndex * step;
+
+      const anim = thumbRef.current.animate(
+        [
+          { transform: `translateX(${startLeft}px) scale(1.05, 0.94)` },
+          { transform: `translateX(${targetLeft}px) scale(1, 1)` },
+        ],
+        {
+          duration: 260,
+          easing: "cubic-bezier(0.2, 0.9, 0.3, 1)",
+          fill: "forwards",
+        },
+      );
+      anim.onfinish = () => {
+        if (thumbRef.current) thumbRef.current.style.transform = "";
+        try {
+          anim.cancel();
+        } catch {
+          // ignore
+        }
+      };
+    } else if (thumbRef.current) {
+      thumbRef.current.style.transform = "";
+    }
+
     touchStartRef.current = null;
     hasDraggedRef.current = false;
     isCancelledRef.current = false;
-    if (thumbRef.current) {
-      thumbRef.current.style.transform = "";
-    }
     setIsDragging(false);
     setDragIndex(null);
   };

@@ -1,0 +1,23 @@
+{
+  "title": "Universal Tab Drag-to-Switch & Zero-Jump Fluid Release Physics",
+  "date": "2026-10-20",
+  "summary": "Brings smooth iOS-style touch drag-over gestures and tactile detents to all tab and segmented controls across the app, with zero-jump fluid spring release physics.",
+  "changes": [
+    {
+      "type": "improved",
+      "text": "Zero-Jump Post-Drag Physics: replaced instantaneous transform resets with smooth cubic-bezier spring release animations from the finger's exact release coordinates, eliminating post-drag jumps across mobile navigation and scanner tabs."
+    },
+    {
+      "type": "improved",
+      "text": "Optimistic Mobile Navigation: preserved target tab highlight and indicator positioning through client-side routing so the indicator never snaps back to the previous route while loading."
+    },
+    {
+      "type": "new",
+      "text": "Touch Drag on Pill Tabs: enabled continuous drag-over tab switching with variable-width thumb tracking and detent haptics on PillTabs (category filters, rarity filters, character element tabs, and weapon type tabs)."
+    },
+    {
+      "type": "new",
+      "text": "Touch Drag on Glass Segmented Controls: brought fluid 120fps drag tracking, tactile boundary clicks, and smooth spring release to GlassSegmentedControl."
+    }
+  ]
+}
