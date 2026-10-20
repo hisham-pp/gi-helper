@@ -1,19 +1,19 @@
 {
-  "title": "Automated Versioned Asset Cache Invalidation & Authentic Billet Icons",
+  "title": "Automated Service Worker Version Sync & Billet Thumbnail Cache Busting",
   "date": "2026-10-20",
-  "summary": "Synchronizes Service Worker cache versioning directly with package.json and adds query-based asset cache busting, ensuring newly updated material icons and atlas manifests are delivered immediately.",
+  "summary": "Automates Service Worker cache versioning directly from package.json and adds versioned asset cache busting, resolving stale silver Midlander billet thumbnails and ensuring updated reference assets take effect immediately.",
   "changes": [
     {
       "type": "fixed",
-      "text": "Thumbnail Cache Invalidation: linked material thumbnail URLs to the current app version (`?v=v${version}`), preventing browsers and PWAs from holding onto stale cached beta icons (such as silver Midlander billets)."
+      "text": "Billet Thumbnail Cache Busting: linked material thumbnail URLs to the active app version (`?v=v${pkg.version}`), resolving a stale caching issue where Midlander Sword Billet and Midlander Claymore Billet displayed outdated silver beta icons instead of authentic dark in-game art."
+    },
+    {
+      "type": "new",
+      "text": "Automated Service Worker Version Sync: introduced `scripts/sync-sw-version.mjs` wired into `predev`, `prebuild`, and `postinstall` hooks to automatically synchronize the Service Worker cache namespace (`VERSION`) with `package.json`, eliminating manual version maintenance across files."
     },
     {
       "type": "improved",
-      "text": "Automated Service Worker Version Sync: added a build/dev hook (`scripts/sync-sw-version.mjs`) that automatically synchronizes the Service Worker cache namespace (`VERSION`) with `package.json`, purging obsolete caches upon update."
-    },
-    {
-      "type": "improved",
-      "text": "Network-First Atlas Manifest Routing: updated Service Worker fetch strategy to retrieve reference manifests with `networkFirst` when online, preventing atlas metadata lock-in while preserving full offline functionality."
+      "text": "Version-Aware Service Worker Caching: enhanced `cacheFirst` to respect version query parameters (`?v=...`) without cross-version fallback, and routed atlas manifests via `networkFirst` for immediate online updates with seamless offline fallback."
     }
   ]
 }
