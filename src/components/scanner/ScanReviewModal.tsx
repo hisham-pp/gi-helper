@@ -595,7 +595,7 @@ const ReviewRow = memo(function ReviewRow({
           ) : (
             <span className="text-[10px] text-white/40">No Crop</span>
           )}
-          <span className="absolute bottom-0.5 right-1 text-[9px] font-bold text-white/50">
+          <span className="absolute top-1 left-1 rounded bg-black/40 px-1 py-0.5 text-[8px] font-medium tracking-wide text-white/60">
             Raw
           </span>
         </div>

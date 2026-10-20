@@ -292,19 +292,29 @@ export function readFooterText(
     .sort((a, b) => a.x0 - b.x0);
   const merged: Box[] = [];
   for (const c of parts) {
-    const last = merged[merged.length - 1];
-    if (last) {
-      const overlap = Math.min(last.x1, c.x1) - Math.max(last.x0, c.x0) + 1;
-      const minW = Math.min(last.x1 - last.x0, c.x1 - c.x0) + 1;
-      if (overlap >= minW * 0.5) {
-        last.x0 = Math.min(last.x0, c.x0);
-        last.x1 = Math.max(last.x1, c.x1);
-        last.y0 = Math.min(last.y0, c.y0);
-        last.y1 = Math.max(last.y1, c.y1);
-        continue;
+    let mergedIntoExisting = false;
+    for (let i = merged.length - 1; i >= 0; i--) {
+      const prev = merged[i];
+      const overlap = Math.min(prev.x1, c.x1) - Math.max(prev.x0, c.x0) + 1;
+      const minW = Math.min(prev.x1 - prev.x0, c.x1 - c.x0) + 1;
+      const yGap = Math.max(0, Math.max(prev.y0, c.y0) - Math.min(prev.y1, c.y1) - 1);
+      const combinedH = Math.max(prev.y1, c.y1) - Math.min(prev.y0, c.y0) + 1;
+      if (
+        overlap >= minW * 0.5 &&
+        yGap <= Math.max(2, digitH * 0.25) &&
+        combinedH <= digitH * 1.45
+      ) {
+        prev.x0 = Math.min(prev.x0, c.x0);
+        prev.x1 = Math.max(prev.x1, c.x1);
+        prev.y0 = Math.min(prev.y0, c.y0);
+        prev.y1 = Math.max(prev.y1, c.y1);
+        mergedIntoExisting = true;
+        break;
       }
     }
-    merged.push({ x0: c.x0, x1: c.x1, y0: c.y0, y1: c.y1 });
+    if (!mergedIntoExisting) {
+      merged.push({ x0: c.x0, x1: c.x1, y0: c.y0, y1: c.y1 });
+    }
   }
 
   // Keep digit-sized components on a common baseline.
@@ -485,8 +495,9 @@ function segmentComponent(
 ): DigitMatch[] {
   const h = c.y1 - c.y0 + 1;
   const digitH = text.height * DIGIT_HEIGHT_RATIO;
-  const isTruncated = h < digitH * 0.7;
-  const effH = isTruncated ? digitH : h;
+  const touchesEdge = c.y0 <= 1 || c.y1 >= text.height - 2;
+  const isTruncated = touchesEdge || h < digitH * 0.75;
+  const effH = Math.max(h, digitH);
   const positions = [c.x0, ...cutCandidates(text, c), c.x1 + 1];
   const memo = new Map<string, DigitMatch | null>();
   const last = positions.length - 1;
@@ -494,8 +505,8 @@ function segmentComponent(
   const matchBox = (b: Box): DigitMatch => {
     const gh = b.y1 - b.y0 + 1;
     const norm = normalizeGlyph(text, b);
-    const touchesEdge = b.y0 <= 1 || b.y1 >= text.height - 2;
-    if (touchesEdge && gh < digitH * 0.65) {
+    const pieceTouchesEdge = b.y0 <= 1 || b.y1 >= text.height - 2;
+    if (pieceTouchesEdge && gh < digitH * 0.85) {
       const scale = GLYPH_H / digitH;
       const dstH = Math.min(GLYPH_H, Math.max(2, Math.round(gh * scale)));
       const isTop = b.y1 >= text.height - 2;
