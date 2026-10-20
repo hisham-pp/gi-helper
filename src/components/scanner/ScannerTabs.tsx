@@ -42,14 +42,20 @@ export function ScannerTabs({
   const touchStartRef = useRef<{ x: number; y: number; time: number } | null>(null);
   const hasDraggedRef = useRef(false);
   const currentDragIndexRef = useRef<number | null>(null);
+  const currentThumbLeftRef = useRef(0);
   const isCancelledRef = useRef(false);
+  const justDraggedRef = useRef(false);
 
   const displayIndex = dragIndex !== null ? dragIndex : activeIndex;
 
-  // The thumb stretches while it travels, then settles back like a soft lens.
+  // The thumb stretches while it travels, then settles back like a soft lens (only on taps, not post-drag).
   useEffect(() => {
     const prevIndex = prevIndexRef.current;
     prevIndexRef.current = activeIndex;
+    if (justDraggedRef.current) {
+      justDraggedRef.current = false;
+      return;
+    }
     if (prevIndex === activeIndex || reducedMotion || isDragging) return;
 
     indicatorRef.current?.animate(
@@ -104,6 +110,14 @@ export function ScannerTabs({
     hasDraggedRef.current = false;
     isCancelledRef.current = false;
     currentDragIndexRef.current = activeIndex;
+
+    const padding = 6;
+    const innerWidth = rect.width - 2 * padding;
+    const gap = 4;
+    const tabCount = tabs.length;
+    const tabWidth = (innerWidth - (tabCount - 1) * gap) / tabCount;
+    const step = tabWidth + gap;
+    currentThumbLeftRef.current = Math.max(0, activeIndex * step);
   };
 
   const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
@@ -126,6 +140,13 @@ export function ScannerTabs({
 
     if (!hasDraggedRef.current) return;
 
+    const padding = 6; // p-1.5 = 6px
+    const innerWidth = rect.width - 2 * padding;
+    const gap = 4;
+    const tabCount = tabs.length;
+    const tabWidth = (innerWidth - (tabCount - 1) * gap) / tabCount;
+    const step = tabWidth + gap;
+
     const isOutOfBounds =
       touch.clientY < rect.top - 60 || touch.clientY > rect.bottom + 50;
 
@@ -134,7 +155,30 @@ export function ScannerTabs({
         isCancelledRef.current = true;
         setDragIndex(null);
         currentDragIndexRef.current = activeIndex;
-        if (indicatorRef.current) {
+        const startLeft = currentThumbLeftRef.current;
+        const targetLeft = activeIndex * step;
+
+        if (indicatorRef.current && !reducedMotion && typeof indicatorRef.current.animate === "function") {
+          const anim = indicatorRef.current.animate(
+            [
+              { transform: `translateX(${startLeft}px) scale(1.05, 0.94)` },
+              { transform: `translateX(${targetLeft}px) scale(1, 1)` },
+            ],
+            {
+              duration: 260,
+              easing: "cubic-bezier(0.2, 0.9, 0.3, 1)",
+              fill: "forwards",
+            },
+          );
+          anim.onfinish = () => {
+            if (indicatorRef.current) indicatorRef.current.style.transform = "";
+            try {
+              anim.cancel();
+            } catch {
+              // ignore
+            }
+          };
+        } else if (indicatorRef.current) {
           indicatorRef.current.style.transform = "";
         }
         haptics.dragTick();
@@ -146,17 +190,11 @@ export function ScannerTabs({
       isCancelledRef.current = false;
     }
 
-    const padding = 6; // p-1.5 = 6px
-    const innerWidth = rect.width - 2 * padding;
-    const gap = 4;
-    const tabCount = tabs.length;
-    const tabWidth = (innerWidth - (tabCount - 1) * gap) / tabCount;
-    const step = tabWidth + gap;
-
     const relX = touch.clientX - rect.left - padding;
     const targetThumbLeft = relX - tabWidth / 2;
     const maxLeft = (tabCount - 1) * step;
     const clampedThumbLeft = Math.max(0, Math.min(targetThumbLeft, maxLeft));
+    currentThumbLeftRef.current = clampedThumbLeft;
 
     if (indicatorRef.current && !reducedMotion) {
       indicatorRef.current.style.transform = `translateX(${clampedThumbLeft}px) scale(1.05, 0.94)`;
@@ -181,19 +219,58 @@ export function ScannerTabs({
     const hadDragged = hasDraggedRef.current;
     const wasCancelled = isCancelledRef.current;
     const targetIndex = currentDragIndexRef.current;
+    const startLeft = currentThumbLeftRef.current;
 
     touchStartRef.current = null;
     hasDraggedRef.current = false;
     isCancelledRef.current = false;
 
-    if (indicatorRef.current) {
-      indicatorRef.current.style.transform = "";
-    }
-    setIsDragging(false);
-    setDragIndex(null);
-
     if (hadDragged) {
       e.preventDefault();
+      justDraggedRef.current = true;
+
+      const rect = trackRef.current?.getBoundingClientRect();
+      const padding = 6;
+      const innerWidth = (rect?.width ?? 320) - 2 * padding;
+      const gap = 4;
+      const tabCount = tabs.length;
+      const tabWidth = (innerWidth - (tabCount - 1) * gap) / tabCount;
+      const step = tabWidth + gap;
+
+      const finalIndex =
+        !wasCancelled && targetIndex !== null && targetIndex >= 0
+          ? targetIndex
+          : activeIndex;
+      const targetLeft = finalIndex * step;
+
+      setIsDragging(false);
+      setDragIndex(null);
+
+      if (indicatorRef.current && !reducedMotion && typeof indicatorRef.current.animate === "function") {
+        const anim = indicatorRef.current.animate(
+          [
+            { transform: `translateX(${startLeft}px) scale(1.05, 0.94)` },
+            { transform: `translateX(${targetLeft}px) scale(1, 1)` },
+          ],
+          {
+            duration: 300,
+            easing: "cubic-bezier(0.2, 0.9, 0.3, 1)",
+            fill: "forwards",
+          },
+        );
+        anim.onfinish = () => {
+          if (indicatorRef.current) {
+            indicatorRef.current.style.transform = "";
+          }
+          try {
+            anim.cancel();
+          } catch {
+            // ignore
+          }
+        };
+      } else if (indicatorRef.current) {
+        indicatorRef.current.style.transform = "";
+      }
 
       if (!wasCancelled && targetIndex !== null && targetIndex >= 0) {
         if (targetIndex !== activeIndex) {
@@ -203,16 +280,53 @@ export function ScannerTabs({
           haptics.selection();
         }
       }
+    } else {
+      if (indicatorRef.current) {
+        indicatorRef.current.style.transform = "";
+      }
+      setIsDragging(false);
+      setDragIndex(null);
     }
   };
 
   const handleTouchCancel = () => {
+    if (hasDraggedRef.current && indicatorRef.current && !reducedMotion && typeof indicatorRef.current.animate === "function") {
+      const rect = trackRef.current?.getBoundingClientRect();
+      const padding = 6;
+      const innerWidth = (rect?.width ?? 320) - 2 * padding;
+      const gap = 4;
+      const tabCount = tabs.length;
+      const tabWidth = (innerWidth - (tabCount - 1) * gap) / tabCount;
+      const step = tabWidth + gap;
+      const startLeft = currentThumbLeftRef.current;
+      const targetLeft = activeIndex * step;
+
+      const anim = indicatorRef.current.animate(
+        [
+          { transform: `translateX(${startLeft}px) scale(1.05, 0.94)` },
+          { transform: `translateX(${targetLeft}px) scale(1, 1)` },
+        ],
+        {
+          duration: 260,
+          easing: "cubic-bezier(0.2, 0.9, 0.3, 1)",
+          fill: "forwards",
+        },
+      );
+      anim.onfinish = () => {
+        if (indicatorRef.current) indicatorRef.current.style.transform = "";
+        try {
+          anim.cancel();
+        } catch {
+          // ignore
+        }
+      };
+    } else if (indicatorRef.current) {
+      indicatorRef.current.style.transform = "";
+    }
+
     touchStartRef.current = null;
     hasDraggedRef.current = false;
     isCancelledRef.current = false;
-    if (indicatorRef.current) {
-      indicatorRef.current.style.transform = "";
-    }
     setIsDragging(false);
     setDragIndex(null);
   };
