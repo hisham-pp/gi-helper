@@ -10,7 +10,7 @@
  * - Web Share Target: receiving shared screenshot images directly into the scanner
  */
 
-const VERSION = "v3";
+const VERSION = "v0.0.41";
 const CACHE_STATIC = `gi-helper-static-${VERSION}`;
 const CACHE_DATA = `gi-helper-data-${VERSION}`;
 const CACHE_OCR = `gi-helper-ocr-${VERSION}`;
@@ -111,7 +111,7 @@ async function precacheAll() {
       const imageUrl = `/data/${kind}-atlas.webp`;
 
       try {
-        const mRes = await fetch(manifestUrl);
+        const mRes = await fetch(manifestUrl, { cache: "no-cache" });
         if (mRes && mRes.status === 200) {
           const mClone = mRes.clone();
           await dataCache.put(manifestUrl, mRes);
@@ -165,12 +165,14 @@ self.addEventListener("activate", (event) => {
  */
 async function cacheFirst(request, cacheName) {
   let cached = await caches.match(request);
-  if (!cached) {
+  const url = new URL(request.url);
+  const isVersioned = url.searchParams.has("v");
+
+  if (!cached && !isVersioned) {
     cached = await caches.match(request, { ignoreSearch: true });
   }
-  if (!cached) {
+  if (!cached && !isVersioned) {
     try {
-      const url = new URL(request.url);
       cached = await caches.match(url.pathname);
     } catch {}
   }
@@ -182,8 +184,7 @@ async function cacheFirst(request, cacheName) {
       const cache = await caches.open(cacheName);
       await cache.put(request, networkResponse.clone());
       try {
-        const url = new URL(request.url);
-        if (url.search) {
+        if (url.search && !isVersioned) {
           await cache.put(url.pathname, networkResponse.clone());
         }
       } catch {}
@@ -284,7 +285,11 @@ self.addEventListener("fetch", (event) => {
   if (request.method !== "GET") return;
 
   // 2. Reference Atlases & Manifests (/data/*.webp, /data/*.json)
-  if (url.origin === location.origin && /^\/data\/.*-atlas\.(webp|json)$/.test(url.pathname)) {
+  if (url.origin === location.origin && /^\/data\/.*-atlas\.json$/.test(url.pathname)) {
+    event.respondWith(networkFirst(request, CACHE_DATA));
+    return;
+  }
+  if (url.origin === location.origin && /^\/data\/.*-atlas\.webp$/.test(url.pathname)) {
     event.respondWith(cacheFirst(request, CACHE_DATA));
     return;
   }

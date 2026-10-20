@@ -1,6 +1,6 @@
 {
   "name": "genshin-material-tracker",
-  "version": "0.0.40",
+  "version": "0.0.41",
   "private": true,
   "packageManager": "pnpm@10.17.1",
   "engines": {
@@ -8,8 +8,10 @@
   },
   "scripts": {
     "dev": "next dev --turbopack",
+    "predev": "node scripts/sync-sw-version.mjs",
     "dev:webpack": "next dev",
     "build": "next build",
+    "prebuild": "node scripts/sync-sw-version.mjs",
     "start": "next start",
     "lint": "eslint .",
     "format": "prettier --write .",
@@ -17,7 +19,7 @@
     "test:e2e": "pnpm --dir ../gi-tests test:e2e",
     "sync-data": "pnpm --dir ../gi-sync-catalogue sync-data && pnpm --dir ../gi-sync-catalogue export:app",
     "feedback:admin": "tsx scripts/feedback-admin.ts",
-    "postinstall": "node scripts/copy-ocr-assets.mjs"
+    "postinstall": "node scripts/copy-ocr-assets.mjs && node scripts/sync-sw-version.mjs"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
