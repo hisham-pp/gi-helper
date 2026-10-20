@@ -6,8 +6,8 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { UploadZone } from "./UploadZone";
 import { LazyScanReviewModal, preloadScanReviewModal } from "./lazy-modals";
-import { isMaterialDetectionError, type CardRecognitionStatus } from "@/lib/material-detector";
-import { useMaterialScanClient } from "@/lib/material-detector/react";
+import { isMaterialDetectionError, type CardRecognitionStatus } from "@gi/image-scanner";
+import { useMaterialScanClient } from "@gi/image-scanner/react";
 import {
   isVideoFile,
   isVideoScanError,
@@ -15,12 +15,12 @@ import {
   type VideoFrameEvent,
   type VideoMaterial,
   type VideoScanProgress,
-} from "@/lib/video-scanner";
-import type { PixelRect } from "@/lib/grid-detector";
-import { useScannerSettings } from "@/lib/scanner/settings";
-import { setScannerInventory } from "@/lib/scanner/inventory";
+} from "@gi/video-scanner";
+import type { PixelRect } from "@gi/grid-detector";
+import { useScannerSettings } from "@gi/scanner";
+import { setScannerInventory } from "@gi/scanner";
 import type { DetectedItem, EquipmentReviewItem, ScannedReviewItem } from "@/lib/types";
-import { getOwnedCharacters } from "@/lib/good/inventory";
+import { getOwnedCharacters } from "@gi/good";
 import {
   equipmentIcon,
   equipmentReviewItem,

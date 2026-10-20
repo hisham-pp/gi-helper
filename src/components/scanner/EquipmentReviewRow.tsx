@@ -3,12 +3,12 @@
 import React, { memo } from "react";
 import { AlertTriangle, ArrowRight, Lock, LockOpen, Pencil, Trash2 } from "lucide-react";
 import { GameIcon } from "@/components/ui/GameIcon";
-import { mainStatValue } from "@/lib/artifact-panel/engine/stats";
+import { mainStatValue } from "@gi/artifact-panel";
 import { characterAvatarUrl } from "@/lib/characters";
-import { artifactIconUrl, describeCharacter, weaponIconUrl } from "@/lib/good/catalog";
-import { isPercentStat, MAIN_STATS_BY_SLOT, STAT_NAMES, type SlotKey, type StatKey } from "@/lib/good/types";
+import { artifactIconUrl, describeCharacter, weaponIconUrl } from "@gi/good";
+import { isPercentStat, MAIN_STATS_BY_SLOT, STAT_NAMES, type SlotKey, type StatKey } from "@gi/good";
 import { getRarityStyles } from "@/lib/materials/ui";
-import { splitArtifactItem } from "@/lib/scanner/equipment";
+import { splitArtifactItem } from "@gi/scanner";
 import type { EquipmentReviewItem, ReviewCandidate } from "@/lib/types";
 import { ArtifactStatsEditor } from "./ArtifactStatsEditor";
 import { artifactPieceDetail, isTraveler, TRAVELER_ELEMENTS } from "./equipment-review";

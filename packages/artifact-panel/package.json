@@ -1,0 +1,24 @@
+{
+  "name": "@gi/artifact-panel",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Artifact detail panel OCR and stat parser for GI Helper",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./*": "./src/*.ts",
+    "./types": "./src/types/index.ts",
+    "./types/*": "./src/types/*.ts",
+    "./browser": "./src/browser.ts",
+    "./read": "./src/read.ts",
+    "./engine/*": "./src/engine/*.ts"
+  },
+  "dependencies": {
+    "@gi/detection-core": "workspace:*",
+    "@gi/grid-detector": "workspace:*",
+    "@gi/good": "workspace:*",
+    "@gi/image-scanner": "workspace:*",
+    "tesseract.js": "7.0.0"
+  }
+}

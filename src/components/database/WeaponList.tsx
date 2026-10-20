@@ -19,8 +19,8 @@ import {
   WEAPON_TYPES,
   weaponIconUrl,
   type WeaponInfo,
-} from "@/lib/good/catalog";
-import { useOwnedWeapons } from "@/lib/good/inventory";
+  useOwnedWeapons
+} from "@gi/good";
 import { getRarityStyles } from "@/lib/materials/ui";
 
 type SortOption = "rarity" | "atk" | "name";

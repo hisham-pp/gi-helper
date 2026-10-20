@@ -5,6 +5,15 @@ const nextConfig: NextConfig = {
   // E2E tests) run beside `pnpm dev`, which would otherwise overwrite .next.
   distDir: process.env.NEXT_DIST_DIR || ".next",
   typedRoutes: true,
+  transpilePackages: [
+    "@gi/detection-core",
+    "@gi/grid-detector",
+    "@gi/image-scanner",
+    "@gi/artifact-panel",
+    "@gi/video-scanner",
+    "@gi/scanner",
+    "@gi/good",
+  ],
   env: {
     NEXT_PUBLIC_BUILD_ID: process.env.NEXT_BUILD_ID ?? `dev-${Date.now()}`,
   },
@@ -42,7 +51,16 @@ const nextConfig: NextConfig = {
     ],
   },
   experimental: {
-    optimizePackageImports: ["lucide-react"],
+    optimizePackageImports: [
+      "lucide-react",
+      "@gi/scanner",
+      "@gi/good",
+      "@gi/grid-detector",
+      "@gi/image-scanner",
+      "@gi/artifact-panel",
+      "@gi/video-scanner",
+      "@gi/detection-core",
+    ],
   },
   // The database and inventory moved to sub-pages (/db/*, /inventory/*) in 0.0.20
   async redirects() {

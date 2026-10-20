@@ -2,7 +2,7 @@
 
 import React from "react";
 import { AlertTriangle, ChevronDown, Grid3X3 } from "lucide-react";
-import type { DetectedGrid, GridDetectionResult } from "@/lib/grid-detector";
+import type { DetectedGrid, GridDetectionResult } from "@gi/grid-detector";
 
 interface DetectionSummaryProps {
   result: GridDetectionResult | null;

@@ -1,0 +1,31 @@
+{
+  "name": "@gi/image-scanner",
+  "version": "0.0.1",
+  "private": true,
+  "description": "On-device material and equipment card recognizer for GI Helper",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./*": "./src/*.ts",
+    "./browser": "./src/browser.ts",
+    "./client": "./src/client.ts",
+    "./types": "./src/types/index.ts",
+    "./types/*": "./src/types/*.ts",
+    "./engine/*": "./src/engine/*.ts"
+  },
+  "dependencies": {
+    "@gi/detection-core": "workspace:*",
+    "@gi/grid-detector": "workspace:*",
+    "@gi/artifact-panel": "workspace:*",
+    "@gi/scanner": "workspace:*"
+  },
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    }
+  }
+}

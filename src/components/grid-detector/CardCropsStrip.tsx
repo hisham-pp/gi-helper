@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { cropToBlob, type DetectedGrid } from "@/lib/grid-detector";
+import { cropToBlob, type DetectedGrid } from "@gi/grid-detector";
 
 interface CardCropsStripProps {
   bitmap: ImageBitmap | null;

@@ -3,8 +3,8 @@
 import { createPortal } from "react-dom";
 import React, { useCallback, useEffect, useId, useRef, useState } from "react";
 import { FileJson, FileUp, TriangleAlert, X } from "lucide-react";
-import { parseGOOD, type ParsedGOOD } from "@/lib/good/document";
-import { applyGOODImport, type ImportSection, type ImportSummary } from "@/lib/good/import";
+import { parseGOOD, type ParsedGOOD } from "@gi/good";
+import { applyGOODImport, type ImportSection, type ImportSummary } from "@gi/good";
 import { useModalMotion, usePauseBackground } from "@/lib/hooks";
 
 /** Big enough for any real account (a few MB with 2,000 artifacts). */

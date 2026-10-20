@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import type { CardRecognition, CardRecognitionStatus } from "@/lib/material-detector";
+import type { CardRecognition, CardRecognitionStatus } from "@gi/image-scanner";
 
 export const STATUS_STYLE: Record<CardRecognitionStatus, { label: string; chip: string; border: string; stroke: string }> = {
   matched: {

@@ -2,7 +2,7 @@
 
 import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Maximize, Minus, Plus, Loader2 } from "lucide-react";
-import type { CardEdit, DetectedCard, DetectedGrid, PixelRect } from "@/lib/grid-detector";
+import type { CardEdit, DetectedCard, DetectedGrid, PixelRect } from "@gi/grid-detector";
 
 export type EditorTool = "select" | "add" | "region";
 

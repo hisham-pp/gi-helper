@@ -20,7 +20,7 @@ import {
   AiProvider,
   ServerEnvProviderInfo,
   DEFAULT_SERVER_ENV_PROVIDERS,
-} from "@/lib/scanner/settings";
+} from "@gi/scanner";
 import {
   listSupportedAdapters,
   getAiAdapter,

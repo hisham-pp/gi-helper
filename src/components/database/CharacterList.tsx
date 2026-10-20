@@ -13,8 +13,7 @@ import {
   getAllCharacters,
   type Character,
 } from "@/lib/characters";
-import { WEAPON_TYPE_NAMES, WEAPON_TYPES } from "@/lib/good/catalog";
-import { useOwnedCharacters } from "@/lib/good/inventory";
+import { WEAPON_TYPE_NAMES, WEAPON_TYPES, useOwnedCharacters } from "@gi/good";
 import { getRarityStyles } from "@/lib/materials/ui";
 import { ELEMENT_ACCENTS, ELEMENTS, ElementTag } from "./DatabaseNav";
 
