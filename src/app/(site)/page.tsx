@@ -3,7 +3,7 @@ import { Scanner } from "@/components/scanner/Scanner";
 import { pageMetadata, SITE } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
-  title: `${SITE.title} | ${SITE.name}`,
+  title: `${SITE.name} – ${SITE.title}`,
   absoluteTitle: true,
   description: SITE.description,
   path: "/",

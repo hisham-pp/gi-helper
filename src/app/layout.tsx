@@ -15,7 +15,7 @@ import { Analytics } from "@vercel/analytics/next";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default: `${SITE.title} | ${SITE.name}`,
+    default: `${SITE.name} – ${SITE.title}`,
     template: `%s | ${SITE.name}`,
   },
   description: SITE.description,
@@ -27,12 +27,12 @@ export const metadata: Metadata = {
     type: "website",
     siteName: SITE.name,
     locale: SITE.locale,
-    title: `${SITE.title} | ${SITE.name}`,
+    title: `${SITE.name} – ${SITE.title}`,
     description: SITE.description,
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SITE.title} | ${SITE.name}`,
+    title: `${SITE.name} – ${SITE.title}`,
     description: SITE.description,
   },
   robots: {
@@ -44,6 +44,9 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
       "max-snippet": -1,
     },
+  },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
   },
   appleWebApp: {
     capable: true,
