@@ -15,7 +15,7 @@ import {
   getArtifactSet,
   nameFromKey,
   type ArtifactSetInfo,
-} from "@/lib/good/catalog";
+} from "@gi/good";
 import {
   formatStat,
   SLOT_KEYS,
@@ -24,8 +24,8 @@ import {
   type OwnedArtifact,
   type StatKey,
   MAIN_STATS_BY_SLOT,
-} from "@/lib/good/types";
-import { useOwnedArtifacts } from "@/lib/good/inventory";
+} from "@gi/good";
+import { useOwnedArtifacts } from "@gi/good";
 import { getRarityStyles } from "@/lib/materials/ui";
 import { EquippedBy, LockBadge, paginate, RarityStars, ResultsCounter, TabEmptyState, useHydrated } from "./shared";
 import { useInventoryActions } from "./InventoryShell";

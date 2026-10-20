@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { GridSession } from "@/lib/grid-detector";
+import { GridSession } from "@gi/grid-detector";
 import {
   Layers,
   Edit2,

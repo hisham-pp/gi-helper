@@ -10,10 +10,8 @@ import { SearchField } from "@/components/ui/SearchField";
 import {
   artifactIconUrl,
   getAllArtifactSets,
-  type ArtifactSetInfo,
-} from "@/lib/good/catalog";
-import { SLOT_KEYS, SLOT_NAMES } from "@/lib/good/types";
-import { useOwnedArtifacts } from "@/lib/good/inventory";
+  type ArtifactSetInfo, SLOT_KEYS, SLOT_NAMES, useOwnedArtifacts
+} from "@gi/good";
 import { getRarityStyles } from "@/lib/materials/ui";
 
 type SortOption = "rarity" | "name";

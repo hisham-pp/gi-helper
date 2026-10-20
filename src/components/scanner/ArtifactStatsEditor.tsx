@@ -2,8 +2,8 @@
 
 import React from "react";
 import { AlertTriangle, Plus, X } from "lucide-react";
-import { checkSubstats, SUBSTAT_KEYS } from "@/lib/artifact-panel/engine/stats";
-import { isPercentStat, STAT_NAMES, type StatKey } from "@/lib/good/types";
+import { checkSubstats, SUBSTAT_KEYS } from "@gi/artifact-panel";
+import { isPercentStat, STAT_NAMES, type StatKey } from "@gi/good";
 
 type Substat = { key: string; value: number };
 

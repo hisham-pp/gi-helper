@@ -8,8 +8,8 @@ import {
   type DetectedCard,
   type DetectedGrid,
   type PixelRect,
-} from "@/lib/grid-detector";
-import { useObjectUrl } from "@/lib/grid-detector/react";
+} from "@gi/grid-detector";
+import { useObjectUrl } from "@gi/grid-detector/react";
 
 interface CardInspectorProps {
   selection: { grid: DetectedGrid; card: DetectedCard } | null;

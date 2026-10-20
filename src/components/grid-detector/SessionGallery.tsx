@@ -2,8 +2,8 @@
 
 import React from "react";
 import { Loader2 } from "lucide-react";
-import type { SessionImage } from "@/lib/grid-detector";
-import { useObjectUrl } from "@/lib/grid-detector/react";
+import type { SessionImage } from "@gi/grid-detector";
+import { useObjectUrl } from "@gi/grid-detector/react";
 
 interface SessionGalleryProps {
   images: SessionImage[];

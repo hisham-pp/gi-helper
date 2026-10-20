@@ -15,9 +15,9 @@ import { recordScan } from "@/lib/stats";
 import {
   useScannerSettings,
   getActiveProviderConfig,
-} from "@/lib/scanner/settings";
+} from "@gi/scanner";
 import { getAiAdapter } from "@/lib/ai/adapters";
-import { setScannerInventory } from "@/lib/scanner/inventory";
+import { setScannerInventory } from "@gi/scanner";
 import {
   Eye,
   Settings,

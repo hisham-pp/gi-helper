@@ -2,7 +2,7 @@
 
 import React from "react";
 import { RefreshCw, RotateCcw, Scan, SlidersHorizontal, X } from "lucide-react";
-import type { DetectionSettings } from "@/lib/grid-detector";
+import type { DetectionSettings } from "@gi/grid-detector";
 
 interface DetectionSettingsPanelProps {
   settings: DetectionSettings;

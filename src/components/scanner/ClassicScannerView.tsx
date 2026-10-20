@@ -7,16 +7,16 @@ import { toast } from "sonner";
 import { UploadZone } from "./UploadZone";
 import { LazyScanReviewModal, preloadScanReviewModal } from "./lazy-modals";
 import type { ScanningFileItem } from "./ScanningAnimation";
-import { cropToBlob } from "@/lib/grid-detector";
+import { cropToBlob } from "@gi/grid-detector";
 import {
   isMaterialDetectionError,
   type CardRecognition,
   type MoraReading,
   type ScanProgress,
-} from "@/lib/material-detector";
-import { useMaterialScanClient } from "@/lib/material-detector/react";
-import { useScannerSettings } from "@/lib/scanner/settings";
-import { setScannerInventory } from "@/lib/scanner/inventory";
+} from "@gi/image-scanner";
+import { useMaterialScanClient } from "@gi/image-scanner/react";
+import { useScannerSettings } from "@gi/scanner";
+import { setScannerInventory } from "@gi/scanner";
 import type {
   DetectedItem,
   EquipmentReviewItem,
@@ -33,8 +33,8 @@ import {
   STAGE_START_PROGRESS,
   type EquipmentSighting,
   type ScanSummary,
-} from "@/lib/scanner";
-import { getOwnedCharacters } from "@/lib/good/inventory";
+} from "@gi/scanner";
+import { getOwnedCharacters } from "@gi/good";
 import {
   equipmentIcon,
   equipmentReviewItem,

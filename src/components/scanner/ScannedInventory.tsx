@@ -27,14 +27,14 @@ import { PillDropdown } from "@/components/ui/PillDropdown";
 import { ResetFiltersButton } from "@/components/ui/ResetFiltersButton";
 import { SearchField } from "@/components/ui/SearchField";
 import { useConfirm } from "@/components/ui/use-confirm";
-import { nameFromKey } from "@/lib/good/catalog";
-import { useExtraMaterials } from "@/lib/good/inventory";
+import { nameFromKey } from "@gi/good";
+import { useExtraMaterials } from "@gi/good";
 import {
   getMaterialCategoryId,
   MaterialCategory,
 } from "@/lib/materials/ui";
 import { useInventoryActions } from "@/components/inventory/InventoryShell";
-import { useScannerInventory } from "@/lib/scanner/inventory";
+import { useScannerInventory } from "@gi/scanner";
 import type { DetectedItem, MaterialItem } from "@/lib/types";
 import { usePrefersReducedMotion, useWiggleOnChange } from "@/lib/hooks";
 

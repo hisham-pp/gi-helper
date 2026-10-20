@@ -1,11 +1,11 @@
 "use client";
 
 import { characterAvatarUrl, getCharacter } from "@/lib/characters";
-import { artifactIconUrl, getArtifactSetById, getWeaponById, weaponIconUrl } from "@/lib/good/catalog";
-import { SLOT_NAMES, type GoodCharacter, type OwnedArtifact, type OwnedWeapon } from "@/lib/good/types";
-import { newEntryId, setOwnedArtifacts, setOwnedCharacters, setOwnedWeapons } from "@/lib/good/inventory";
-import type { ArtifactPanelReading } from "@/lib/artifact-panel/read";
-import type { ArtifactPanelScan } from "@/lib/artifact-panel/types";
+import { artifactIconUrl, getArtifactSetById, getWeaponById, weaponIconUrl } from "@gi/good";
+import { SLOT_NAMES, type GoodCharacter, type OwnedArtifact, type OwnedWeapon } from "@gi/good";
+import { newEntryId, setOwnedArtifacts, setOwnedCharacters, setOwnedWeapons } from "@gi/good";
+import type { ArtifactPanelReading } from "@gi/artifact-panel";
+import type { ArtifactPanelScan } from "@gi/artifact-panel";
 import {
   attachPanel,
   fixedMainStat,
@@ -16,7 +16,7 @@ import {
   toGoodWeapon,
   type EquipmentKind,
   type EquipmentSighting,
-} from "@/lib/scanner/equipment";
+} from "@gi/scanner";
 import type { EquipmentReviewItem } from "@/lib/types";
 
 /**
@@ -36,7 +36,7 @@ export async function readAndAttachPanel(
   source: number,
   read?: (scan: ArtifactPanelScan) => Promise<ArtifactPanelReading | null>,
 ): Promise<{ rows: EquipmentSighting[][]; standalone: EquipmentSighting | null; reading: ArtifactPanelReading | null }> {
-  const reading = await (read ?? (async (scan) => (await import("@/lib/artifact-panel/browser")).readPanel(scan)))(panel);
+  const reading = await (read ?? (async (scan) => (await import("@gi/artifact-panel")).readPanel(scan)))(panel);
   if (!reading) return { rows, standalone: null, reading: null };
   return { ...attachPanel(rows, reading, panel.highlights, source, panelArtBox(panel.bounds)), reading };
 }

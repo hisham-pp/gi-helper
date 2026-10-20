@@ -2,7 +2,7 @@
 
 import React from "react";
 import { ArrowDownUp, BadgeInfo, Hash, Sparkles } from "lucide-react";
-import type { CardRecognition } from "@/lib/material-detector";
+import type { CardRecognition } from "@gi/image-scanner";
 import { MaterialIcon, pct, Stars, STATUS_STYLE } from "./shared";
 
 interface CardRecognitionDetailsProps {

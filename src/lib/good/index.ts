@@ -1,9 +1,5 @@
-export * from "./types";
-export * from "./keys";
-export * from "./catalog";
-export * from "./document";
-export * from "./export";
-export * from "./materials";
-export * from "./format";
-export * from "./import";
-export * from "./inventory";
+/**
+ * GOOD format library.
+ * Re-exported from workspace package @gi/good.
+ */
+export * from "@gi/good";

@@ -1,0 +1,11 @@
+export type DetectionErrorCode =
+  | "UNSUPPORTED_FILE_TYPE"
+  | "FILE_TOO_LARGE"
+  | "EMPTY_FILE"
+  | "DECODE_FAILED"
+  | "INVALID_IMAGE"
+  | "IMAGE_TOO_SMALL"
+  | "IMAGE_TOO_LARGE"
+  | "INVALID_REGION"
+  | "CANCELLED"
+  | "PROCESSING_FAILED";

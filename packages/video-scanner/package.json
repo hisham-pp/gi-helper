@@ -1,0 +1,27 @@
+{
+  "name": "@gi/video-scanner",
+  "version": "0.0.1",
+  "private": true,
+  "description": "On-device screen recording video scanner for GI Helper",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./*": "./src/*.ts",
+    "./types": "./src/types/index.ts",
+    "./types/*": "./src/types/*.ts",
+    "./constants": "./src/constants/index.ts",
+    "./constants/*": "./src/constants/*.ts",
+    "./keyframes": "./src/keyframes.ts",
+    "./merge": "./src/merge.ts",
+    "./scan-video": "./src/scan-video.ts",
+    "./video": "./src/video.ts"
+  },
+  "dependencies": {
+    "@gi/detection-core": "workspace:*",
+    "@gi/grid-detector": "workspace:*",
+    "@gi/image-scanner": "workspace:*",
+    "@gi/artifact-panel": "workspace:*",
+    "@gi/scanner": "workspace:*"
+  }
+}

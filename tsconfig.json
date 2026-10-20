@@ -26,7 +26,23 @@
     "paths": {
       "@/*": [
         "./src/*"
-      ]
+      ],
+      "@gi/detection-core": ["./packages/detection-core/src/index.ts"],
+      "@gi/detection-core/*": ["./packages/detection-core/src/*"],
+      "@gi/grid-detector": ["./packages/grid-detector/src/index.ts"],
+      "@gi/grid-detector/*": ["./packages/grid-detector/src/*"],
+      "@gi/image-scanner": ["./packages/image-scanner/src/index.ts"],
+      "@gi/image-scanner/*": ["./packages/image-scanner/src/*"],
+      "@gi/material-detector": ["./packages/image-scanner/src/index.ts"],
+      "@gi/material-detector/*": ["./packages/image-scanner/src/*"],
+      "@gi/artifact-panel": ["./packages/artifact-panel/src/index.ts"],
+      "@gi/artifact-panel/*": ["./packages/artifact-panel/src/*"],
+      "@gi/video-scanner": ["./packages/video-scanner/src/index.ts"],
+      "@gi/video-scanner/*": ["./packages/video-scanner/src/*"],
+      "@gi/scanner": ["./packages/scanner/src/index.ts"],
+      "@gi/scanner/*": ["./packages/scanner/src/*"],
+      "@gi/good": ["./packages/good/src/index.ts"],
+      "@gi/good/*": ["./packages/good/src/*"]
     }
   },
   "include": [

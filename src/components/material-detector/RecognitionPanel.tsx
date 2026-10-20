@@ -2,7 +2,7 @@
 
 import React from "react";
 import { AlertTriangle, ChevronDown, Loader2, RefreshCw, ScanSearch, Tags } from "lucide-react";
-import type { MaterialRecognitionResult } from "@/lib/material-detector";
+import type { MaterialRecognitionResult } from "@gi/image-scanner";
 import { MaterialIcon, pct, STATUS_STYLE } from "./shared";
 
 interface RecognitionPanelProps {

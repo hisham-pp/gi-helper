@@ -27,10 +27,10 @@ import {
   type GridSession,
   type PixelRect,
   type SessionImage,
-} from "@/lib/grid-detector";
-import { useDecodedBitmap, useGridDetectionClient, useObjectUrl } from "@/lib/grid-detector/react";
-import { isMaterialDetectionError, type MaterialRecognitionResult } from "@/lib/material-detector";
-import { useMaterialScanClient } from "@/lib/material-detector/react";
+} from "@gi/grid-detector";
+import { useDecodedBitmap, useGridDetectionClient, useObjectUrl } from "@gi/grid-detector/react";
+import { isMaterialDetectionError, type MaterialRecognitionResult } from "@gi/image-scanner";
+import { useMaterialScanClient } from "@gi/image-scanner/react";
 import { CardRecognitionDetails, cardLabel, RecognitionPanel, STATUS_STYLE } from "@/components/material-detector";
 import { SessionBar } from "./SessionBar";
 import { UploadZone } from "./UploadZone";

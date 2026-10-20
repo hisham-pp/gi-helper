@@ -2,7 +2,7 @@
 
 import { createPortal } from "react-dom";
 import React from "react";
-import { ServerEnvProviderInfo, useScannerSettings } from "@/lib/scanner/settings";
+import { ServerEnvProviderInfo, useScannerSettings } from "@gi/scanner";
 import { useModalMotion, usePauseBackground } from "@/lib/hooks";
 import { ScannerSettingsContent } from "./ScannerSettingsContent";
 

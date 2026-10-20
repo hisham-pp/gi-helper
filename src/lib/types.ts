@@ -1,7 +1,7 @@
 /**
  * Core domain types and review data models for GI Suite.
  */
-import type { PixelRect } from "./grid-detector/types";
+import type { PixelRect } from "@gi/grid-detector";
 
 export type { PixelRect };
 

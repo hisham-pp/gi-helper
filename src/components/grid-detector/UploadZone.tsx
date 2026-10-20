@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Upload } from "lucide-react";
-import { SUPPORTED_IMAGE_TYPES } from "@/lib/grid-detector/validation";
+import { SUPPORTED_IMAGE_TYPES } from "@gi/grid-detector";
 
 interface UploadZoneProps {
   onFilesSelected: (files: FileList | File[]) => void;

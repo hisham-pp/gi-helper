@@ -4,7 +4,7 @@ import React, { useSyncExternalStore } from "react";
 import { Lock, type LucideIcon } from "lucide-react";
 import { GameIcon } from "@/components/ui/GameIcon";
 import { characterAvatarUrl } from "@/lib/characters";
-import { describeCharacter } from "@/lib/good/catalog";
+import { describeCharacter } from "@gi/good";
 import { getRarityStyles } from "@/lib/materials/ui";
 
 const noopSubscribe = () => () => {};
