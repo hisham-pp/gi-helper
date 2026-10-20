@@ -43,6 +43,8 @@ describe("HapticFeedbackService", () => {
     const service = new HapticFeedbackService([driver]);
 
     service.light();
+    service.dragTick();
+    service.dragSnap();
     service.medium();
     service.heavy();
     service.success();
@@ -51,6 +53,8 @@ describe("HapticFeedbackService", () => {
 
     assert.deepEqual(driver.triggeredPatterns, [
       HAPTIC_PATTERNS.light,
+      HAPTIC_PATTERNS.dragTick,
+      HAPTIC_PATTERNS.dragSnap,
       HAPTIC_PATTERNS.medium,
       HAPTIC_PATTERNS.heavy,
       HAPTIC_PATTERNS.success,

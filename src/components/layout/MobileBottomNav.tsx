@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Backpack, House, Library, Settings } from "lucide-react";
 import { ShellLink } from "@/components/layout/ShellLink";
 import { isCurrent } from "./PillNav";
@@ -30,10 +30,14 @@ const TOTAL_ITEMS = 4; // Home, Inventory, Database, Settings
  * Fixed bottom navigation bar for mobile devices.
  * Always visible at the bottom of the viewport with safe-area spacing,
  * routing to Home, Inventory, Database, and Settings page.
+ * Supports iOS-style smooth drag-to-switch across tabs with tactile haptic ticks.
  */
 export function MobileBottomNav() {
   const pathname = usePathname();
+  const router = useRouter();
   const [gearSpinning, setGearSpinning] = useState(false);
+  const [dragIndex, setDragIndex] = useState<number | null>(null);
+  const [isDragging, setIsDragging] = useState(false);
   const reducedMotion = usePrefersReducedMotion();
 
   // Route-based active index (0, 1, 2, or 3)
@@ -43,14 +47,24 @@ export function MobileBottomNav() {
       item.match?.some((path) => isCurrent(pathname, path)),
   );
 
+  const dockRef = useRef<HTMLDivElement>(null);
   const thumbRef = useRef<HTMLDivElement>(null);
   const prevIndexRef = useRef(activeIndex);
 
-  // Smooth squash-and-stretch sliding animation for the bottom dock thumb
+  // References to track touch gesture without React re-render lag
+  const touchStartRef = useRef<{ x: number; y: number; time: number } | null>(null);
+  const hasDraggedRef = useRef(false);
+  const currentDragIndexRef = useRef<number | null>(null);
+  const isCancelledRef = useRef(false);
+
+  // Effective displayed active index (dragged item overrides while active)
+  const displayIndex = dragIndex !== null ? dragIndex : activeIndex;
+
+  // Smooth squash-and-stretch sliding animation when route changes
   useEffect(() => {
     const prevIndex = prevIndexRef.current;
     prevIndexRef.current = activeIndex;
-    if (prevIndex === activeIndex || activeIndex < 0 || reducedMotion) return;
+    if (prevIndex === activeIndex || activeIndex < 0 || reducedMotion || isDragging) return;
 
     thumbRef.current?.animate(
       [
@@ -61,12 +75,159 @@ export function MobileBottomNav() {
       ],
       { duration: 480, easing: "cubic-bezier(0.16, 1, 0.3, 1)" },
     );
-  }, [activeIndex, reducedMotion]);
+  }, [activeIndex, reducedMotion, isDragging]);
 
   const handleSettingsClick = () => {
     triggerHaptic("selection");
     setGearSpinning(true);
     setTimeout(() => setGearSpinning(false), 600);
+  };
+
+  // --- Drag over tabs gesture handling ---
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (e.touches.length !== 1) return;
+    const touch = e.touches[0];
+    const rect = dockRef.current?.getBoundingClientRect();
+    if (!rect) return;
+
+    touchStartRef.current = {
+      x: touch.clientX,
+      y: touch.clientY,
+      time: Date.now(),
+    };
+    hasDraggedRef.current = false;
+    isCancelledRef.current = false;
+    currentDragIndexRef.current = activeIndex;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (!touchStartRef.current || e.touches.length !== 1) return;
+    const touch = e.touches[0];
+    const rect = dockRef.current?.getBoundingClientRect();
+    if (!rect) return;
+
+    const dx = touch.clientX - touchStartRef.current.x;
+    const dy = touch.clientY - touchStartRef.current.y;
+
+    // Detect horizontal drag intent (threshold of 6px)
+    if (!hasDraggedRef.current) {
+      if (Math.abs(dx) > 6 && Math.abs(dx) > Math.abs(dy)) {
+        hasDraggedRef.current = true;
+        setIsDragging(true);
+      } else if (Math.abs(dy) > 12) {
+        // Vertical scroll intent; ignore
+        return;
+      }
+    }
+
+    if (!hasDraggedRef.current) return;
+
+    // Vertical drag cancellation if finger leaves the dock boundary
+    const isOutOfBounds =
+      touch.clientY < rect.top - 65 || touch.clientY > rect.bottom + 50;
+
+    if (isOutOfBounds) {
+      if (!isCancelledRef.current) {
+        isCancelledRef.current = true;
+        setDragIndex(null);
+        currentDragIndexRef.current = activeIndex;
+        if (thumbRef.current) {
+          thumbRef.current.style.transform = "";
+        }
+        triggerHaptic("dragTick");
+      }
+      return;
+    }
+
+    if (isCancelledRef.current) {
+      isCancelledRef.current = false;
+    }
+
+    // Grid measurements
+    const dockPadding = 4; // p-1 = 4px
+    const innerWidth = rect.width - 2 * dockPadding;
+    const colWidth = (innerWidth - (TOTAL_ITEMS - 1) * GAP) / TOTAL_ITEMS;
+    const step = colWidth + GAP;
+
+    // Direct tracking: center the thumb right under the finger
+    const relX = touch.clientX - rect.left - dockPadding;
+    const targetThumbLeft = relX - colWidth / 2;
+    const maxLeft = (TOTAL_ITEMS - 1) * step;
+    const clampedThumbLeft = Math.max(0, Math.min(targetThumbLeft, maxLeft));
+
+    if (thumbRef.current && !reducedMotion) {
+      thumbRef.current.style.transform = `translateX(${clampedThumbLeft}px) scale(1.05, 0.94)`;
+    }
+
+    // Determine hovered item index
+    const clampedRelX = Math.max(0, Math.min(relX, innerWidth));
+    const newIndex = Math.min(
+      Math.floor(clampedRelX / (innerWidth / TOTAL_ITEMS)),
+      TOTAL_ITEMS - 1,
+    );
+
+    if (newIndex !== currentDragIndexRef.current) {
+      currentDragIndexRef.current = newIndex;
+      setDragIndex(newIndex);
+      // Crisp detent tick as finger glides across tab boundaries
+      triggerHaptic("dragTick");
+    }
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (!touchStartRef.current) return;
+
+    const hadDragged = hasDraggedRef.current;
+    const wasCancelled = isCancelledRef.current;
+    const targetIndex = currentDragIndexRef.current;
+
+    touchStartRef.current = null;
+    hasDraggedRef.current = false;
+    isCancelledRef.current = false;
+
+    // Reset inline transform so CSS cubic-bezier transition handles final snap
+    if (thumbRef.current) {
+      thumbRef.current.style.transform = "";
+    }
+    setIsDragging(false);
+    setDragIndex(null);
+
+    if (hadDragged) {
+      // Prevent synthetic click from firing on the touch point
+      e.preventDefault();
+
+      if (!wasCancelled && targetIndex !== null && targetIndex >= 0) {
+        const item = MOBILE_NAV_ITEMS[targetIndex];
+        const isSettings = item.label === "Settings";
+
+        if (targetIndex !== activeIndex) {
+          triggerHaptic("dragSnap");
+          if (isSettings) {
+            handleSettingsClick();
+            router.push("/settings");
+          } else {
+            router.push(item.href);
+          }
+        } else {
+          // Snapped back to current item: confirm with light tap
+          triggerHaptic("selection");
+          if (isSettings) {
+            handleSettingsClick();
+          }
+        }
+      }
+    }
+  };
+
+  const handleTouchCancel = () => {
+    touchStartRef.current = null;
+    hasDraggedRef.current = false;
+    isCancelledRef.current = false;
+    if (thumbRef.current) {
+      thumbRef.current.style.transform = "";
+    }
+    setIsDragging(false);
+    setDragIndex(null);
   };
 
   return (
@@ -87,23 +248,33 @@ export function MobileBottomNav() {
         aria-label="Mobile Navigation"
         className="fixed bottom-3 inset-x-3 max-w-md mx-auto z-40 sm:hidden select-none pb-[env(safe-area-inset-bottom,0px)]"
       >
-        <div className="glass-dock rounded-full p-1">
+        <div
+          ref={dockRef}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          onTouchCancel={handleTouchCancel}
+          className="glass-dock rounded-full p-1 touch-none"
+        >
           <div className="relative grid grid-cols-4 items-center gap-1">
             {/* Sliding glass thumb */}
             <div
               ref={thumbRef}
               aria-hidden="true"
-              className="glass-thumb absolute bottom-0.5 top-0.5 left-0 rounded-full transition-transform duration-300 ease-out will-change-transform"
+              className="glass-thumb absolute bottom-0.5 top-0.5 left-0 rounded-full will-change-transform pointer-events-none"
               style={{
                 width: `calc((100% - ${(TOTAL_ITEMS - 1) * GAP}px) / ${TOTAL_ITEMS})`,
-                transform: `translateX(calc(${Math.max(activeIndex, 0)} * (100% + ${GAP}px)))`,
-                opacity: activeIndex < 0 ? 0 : 1,
+                transform: `translateX(calc(${Math.max(displayIndex, 0)} * (100% + ${GAP}px)))`,
+                opacity: displayIndex < 0 ? 0 : 1,
+                transition: isDragging
+                  ? "none"
+                  : "transform 360ms cubic-bezier(0.16, 1, 0.3, 1), opacity 200ms ease",
               }}
             />
 
             {/* Navigation links */}
             {MOBILE_NAV_ITEMS.map((item, index) => {
-              const isActive = index === activeIndex;
+              const isActive = index === displayIndex;
               const isSettings = item.label === "Settings";
               const Icon = item.icon;
 
@@ -112,11 +283,15 @@ export function MobileBottomNav() {
                   key={item.href}
                   href={item.href}
                   title={item.label}
-                  aria-current={isActive ? "page" : undefined}
-                  onClick={() => {
+                  aria-current={index === activeIndex ? "page" : undefined}
+                  onClick={(e) => {
+                    if (hasDraggedRef.current) {
+                      e.preventDefault();
+                      return;
+                    }
                     if (isSettings) {
                       handleSettingsClick();
-                    } else if (!isActive) {
+                    } else if (index !== activeIndex) {
                       triggerHaptic("selection");
                     }
                   }}
@@ -147,3 +322,4 @@ export function MobileBottomNav() {
     </>
   );
 }
+
