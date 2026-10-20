@@ -1,0 +1,19 @@
+{
+  "title": "Theme-Aware Mobile Bottom Navigation Glass & PWA Context Palette",
+  "date": "2026-10-20",
+  "summary": "Styles the fixed mobile bottom navigation dock with signature application theme glass (#10232d in dark mode and #f0fbfb in light mode) with cyan rim lighting and high-contrast icons.",
+  "changes": [
+    {
+      "type": "improved",
+      "text": "Mobile Bottom Navigation Theme Styling: replaced hardcoded neutral-900 with dedicated .glass-dock styling seamlessly matching the application's signature #10232d oceanic teal in dark mode and #f0fbfb frosted mint in light mode, complete with cyan rim illumination and ambient drop glow."
+    },
+    {
+      "type": "improved",
+      "text": "Adaptive Navigation Icons & Active Thumb Alignment: refined active icon contrast (cyan-600/cyan-200 and amber-500/amber-300) and perfected mathematical sliding thumb alignment across all four mobile navigation destinations."
+    },
+    {
+      "type": "improved",
+      "text": "PWA Context Menu Theme Harmony: updated desktop context menu and mobile long-press bottom sheet backgrounds to match the application's signature theme palette in both dark and light modes."
+    }
+  ]
+}

@@ -23,7 +23,6 @@ const MOBILE_NAV_ITEMS: MobileNavItem[] = [
   { href: "/settings" as Route, label: "Settings", icon: Settings, match: ["/settings"] },
 ];
 
-const PAD = 4;
 const GAP = 4;
 const TOTAL_ITEMS = 4; // Home, Inventory, Database, Settings
 
@@ -88,15 +87,15 @@ export function MobileBottomNav() {
         aria-label="Mobile Navigation"
         className="fixed bottom-3 inset-x-3 max-w-md mx-auto z-40 sm:hidden select-none pb-[env(safe-area-inset-bottom,0px)]"
       >
-        <div className="glass-card glass-card--raised rounded-full p-1 border border-white/15 bg-neutral-900/90 shadow-[0_8px_32px_rgba(0,0,0,0.55)] backdrop-blur-xl">
+        <div className="glass-dock rounded-full p-1">
           <div className="relative grid grid-cols-4 items-center gap-1">
             {/* Sliding glass thumb */}
             <div
               ref={thumbRef}
               aria-hidden="true"
-              className="glass-thumb absolute bottom-0.5 top-0.5 left-0.5 rounded-full transition-transform duration-300 ease-out will-change-transform"
+              className="glass-thumb absolute bottom-0.5 top-0.5 left-0 rounded-full transition-transform duration-300 ease-out will-change-transform"
               style={{
-                width: `calc((100% - ${2 * PAD + (TOTAL_ITEMS - 1) * GAP}px) / ${TOTAL_ITEMS})`,
+                width: `calc((100% - ${(TOTAL_ITEMS - 1) * GAP}px) / ${TOTAL_ITEMS})`,
                 transform: `translateX(calc(${Math.max(activeIndex, 0)} * (100% + ${GAP}px)))`,
                 opacity: activeIndex < 0 ? 0 : 1,
               }}
@@ -123,18 +122,18 @@ export function MobileBottomNav() {
                   }}
                   className={`relative z-10 flex flex-col items-center justify-center gap-1 rounded-full py-2 px-1 text-[11px] font-semibold transition-[color,transform] duration-200 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-400 ${
                     isActive
-                      ? "text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]"
+                      ? "text-white dark:drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]"
                       : "text-white/55 hover:text-white/85"
                   }`}
                 >
                   <Icon
                     className={`h-4 w-4 shrink-0 transition-transform duration-300 ${
                       isSettings && gearSpinning
-                        ? "gear-spin-anim text-amber-300"
+                        ? "gear-spin-anim text-amber-500 dark:text-amber-300"
                         : isActive
                           ? isSettings
-                            ? "scale-110 rotate-180 text-amber-300"
-                            : "scale-110 text-cyan-200"
+                            ? "scale-110 rotate-180 text-amber-500 dark:text-amber-300"
+                            : "scale-110 text-cyan-600 dark:text-cyan-200 drop-shadow-[0_0_8px_rgba(34,211,238,0.5)]"
                           : "text-white/50"
                     }`}
                   />
