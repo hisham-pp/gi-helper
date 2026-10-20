@@ -14,6 +14,7 @@ const PAGE_ORDER = [
   "/db/characters",
   "/db/weapons",
   "/db/artifacts",
+  "/settings",
   "/feedback",
   "/about",
   "/versions",
@@ -67,18 +68,19 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
       fromIndex < 0 || toIndex < 0 ? 0 : Math.sign(toIndex - fromIndex);
 
     // No fill: once finished the transform is dropped, so it can't trap fixed
-    // overlays or backdrop blurs inside the page.
+    // overlays or backdrop blurs inside the page. Vertical scale stays <= 1
+    // to avoid transient vertical scrollbars appearing on full-viewport pages.
     const animation = ref.current?.animate(
       [
-        { transform: `translateX(${14 * dir}px) scale(0.97)` },
+        { transform: `translateX(${10 * dir}px) scale(0.98)` },
         {
-          transform: `translateX(${-3 * dir}px) scale(1.012, 0.985)`,
+          transform: `translateX(${-2 * dir}px) scale(1.006, 0.99)`,
           offset: 0.45,
         },
-        { transform: "translateX(0) scale(0.996, 1.006)", offset: 0.75 },
+        { transform: "translateX(0) scale(0.998, 1)", offset: 0.75 },
         { transform: "translateX(0) scale(1)" },
       ],
-      { duration: 600, easing: "ease-out" },
+      { duration: 500, easing: "ease-out" },
     );
     return () => animation?.cancel();
   }, [pathname, nested]);
@@ -87,7 +89,7 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
     // Squash around the middle of the screen, not the middle of a long page
     <div
       ref={ref}
-      className="flex w-full flex-1 flex-col"
+      className="flex w-full max-w-full flex-1 flex-col overflow-x-clip"
       style={{ transformOrigin: "50% 40vh" }}
     >
       <NestedContext.Provider value={true}>{children}</NestedContext.Provider>

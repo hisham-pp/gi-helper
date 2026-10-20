@@ -8,6 +8,7 @@ import {
   PackageCheck,
   Swords,
   Users,
+  Settings,
   type LucideIcon,
 } from "lucide-react";
 
@@ -214,6 +215,12 @@ export const PAGE_SHELLS: Record<string, () => React.ReactElement> = {
     <ShellPage width="max-w-3xl">
       <Hero icon={MessageSquareHeart} title="Feedback" chips={1} />
       <TextCards count={3} avatar />
+    </ShellPage>
+  ),
+  "/settings": () => (
+    <ShellPage width="max-w-2xl">
+      <Hero icon={Settings} title="Scanner Settings" />
+      <TextCards count={2} />
     </ShellPage>
   ),
 };

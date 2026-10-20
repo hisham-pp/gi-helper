@@ -8,7 +8,6 @@ import { isCurrent } from "./PillNav";
 import { usePrefersReducedMotion } from "@/lib/hooks";
 import { triggerHaptic } from "@/lib/haptics";
 import type { Route } from "next";
-import { LazyScannerSettingsModal, preloadScannerSettingsModal } from "@/components/scanner/lazy-modals";
 
 interface MobileNavItem {
   href: Route;
@@ -21,6 +20,7 @@ const MOBILE_NAV_ITEMS: MobileNavItem[] = [
   { href: "/", label: "Home", icon: House },
   { href: "/inventory/materials", label: "Inventory", icon: Backpack, match: ["/inventory"] },
   { href: "/db/materials", label: "Database", icon: Library, match: ["/db"] },
+  { href: "/settings" as Route, label: "Settings", icon: Settings, match: ["/settings"] },
 ];
 
 const PAD = 4;
@@ -30,23 +30,19 @@ const TOTAL_ITEMS = 4; // Home, Inventory, Database, Settings
 /**
  * Fixed bottom navigation bar for mobile devices.
  * Always visible at the bottom of the viewport with safe-area spacing,
- * housing primary navigation and an animated settings button.
+ * routing to Home, Inventory, Database, and Settings page.
  */
 export function MobileBottomNav() {
   const pathname = usePathname();
-  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [gearSpinning, setGearSpinning] = useState(false);
   const reducedMotion = usePrefersReducedMotion();
 
-  // Route-based active index (0, 1, or 2)
-  const routeActiveIndex = MOBILE_NAV_ITEMS.findIndex(
+  // Route-based active index (0, 1, 2, or 3)
+  const activeIndex = MOBILE_NAV_ITEMS.findIndex(
     (item) =>
       isCurrent(pathname, item.href) ||
       item.match?.some((path) => isCurrent(pathname, path)),
   );
-
-  // If settings modal is open, thumb slides to settings button (index 3)
-  const activeIndex = isSettingsOpen ? 3 : routeActiveIndex;
 
   const thumbRef = useRef<HTMLDivElement>(null);
   const prevIndexRef = useRef(activeIndex);
@@ -68,11 +64,9 @@ export function MobileBottomNav() {
     );
   }, [activeIndex, reducedMotion]);
 
-  const handleOpenSettings = () => {
+  const handleSettingsClick = () => {
     triggerHaptic("selection");
     setGearSpinning(true);
-    preloadScannerSettingsModal();
-    setIsSettingsOpen(true);
     setTimeout(() => setGearSpinning(false), 600);
   };
 
@@ -111,6 +105,7 @@ export function MobileBottomNav() {
             {/* Navigation links */}
             {MOBILE_NAV_ITEMS.map((item, index) => {
               const isActive = index === activeIndex;
+              const isSettings = item.label === "Settings";
               const Icon = item.icon;
 
               return (
@@ -120,7 +115,9 @@ export function MobileBottomNav() {
                   title={item.label}
                   aria-current={isActive ? "page" : undefined}
                   onClick={() => {
-                    if (!isActive) {
+                    if (isSettings) {
+                      handleSettingsClick();
+                    } else if (!isActive) {
                       triggerHaptic("selection");
                     }
                   }}
@@ -132,44 +129,22 @@ export function MobileBottomNav() {
                 >
                   <Icon
                     className={`h-4 w-4 shrink-0 transition-transform duration-300 ${
-                      isActive ? "scale-110 text-cyan-200" : "text-white/50"
+                      isSettings && gearSpinning
+                        ? "gear-spin-anim text-amber-300"
+                        : isActive
+                          ? isSettings
+                            ? "scale-110 rotate-180 text-amber-300"
+                            : "scale-110 text-cyan-200"
+                          : "text-white/50"
                     }`}
                   />
                   <span className="whitespace-nowrap tracking-tight">{item.label}</span>
                 </ShellLink>
               );
             })}
-
-            {/* Animated Settings Button */}
-            <button
-              onClick={handleOpenSettings}
-              onPointerEnter={preloadScannerSettingsModal}
-              onFocus={preloadScannerSettingsModal}
-              aria-label="Scanner Settings"
-              title="Scanner Settings"
-              className={`group relative z-10 flex flex-col items-center justify-center gap-1 rounded-full py-2 px-1 text-[11px] font-semibold transition-[color,transform] duration-200 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-400 ${
-                activeIndex === 3
-                  ? "text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]"
-                  : "text-white/55 hover:text-white/85"
-              }`}
-            >
-              <Settings
-                className={`h-4 w-4 shrink-0 transition-transform duration-500 ease-out ${
-                  gearSpinning
-                    ? "gear-spin-anim text-amber-300"
-                    : activeIndex === 3
-                      ? "scale-110 rotate-180 text-amber-300"
-                      : "text-white/50 group-hover:rotate-45 group-active:rotate-90"
-                }`}
-              />
-              <span className="whitespace-nowrap tracking-tight">Settings</span>
-            </button>
           </div>
         </div>
       </nav>
-
-      {/* Scanner Settings Modal instance if opened via bottom nav */}
-      {isSettingsOpen && <LazyScannerSettingsModal onClose={() => setIsSettingsOpen(false)} />}
     </>
   );
 }

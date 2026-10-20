@@ -374,7 +374,7 @@ export function PwaContextMenu() {
               </button>
 
               <button
-                onClick={handleOpenSettings}
+                onClick={() => navigateTo("/settings")}
                 className="glass-track flex flex-col items-center justify-center gap-1.5 rounded-2xl p-3 text-center text-white/80 active:scale-95 transition-transform"
               >
                 <Settings className="h-5 w-5 text-amber-400" />
