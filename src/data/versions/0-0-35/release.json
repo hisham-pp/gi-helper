@@ -1,0 +1,23 @@
+{
+  "title": "Mobile Bottom Navigation, PWA Custom Context Menu & Modal Scroll Lock",
+  "date": "2026-10-20",
+  "summary": "Introduces a fixed mobile bottom navigation dock with animated settings, locks background scrolling during modal gestures, and adds native-like PWA user-select rules with custom desktop and mobile context menus.",
+  "changes": [
+    {
+      "type": "new",
+      "text": "Fixed Mobile Bottom Navigation: added an always-visible floating glass dock on mobile with Home, Inventory, Database, and an animated Settings button with spinning gear feedback and squash-and-stretch thumb sliding."
+    },
+    {
+      "type": "new",
+      "text": "Custom Context & Hold Menus for PWA: replaced native browser context menu on desktop PWA with a custom glass quick actions menu, and added touch-hold long press action sheets on mobile PWA."
+    },
+    {
+      "type": "fixed",
+      "text": "Modal Background Scroll Lock: locked document body scrolling and touchover actions when modals are mounted, preventing background scroll when swiping material cards."
+    },
+    {
+      "type": "improved",
+      "text": "PWA Native App Feel: disabled user text selection and callouts in standalone PWA mode while keeping input and textarea selection enabled."
+    }
+  ]
+}
