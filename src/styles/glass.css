@@ -8,6 +8,7 @@
 /* Shared 1px gradient rim, drawn with a masked layer so only the border shows */
 .glass-pane::before,
 .glass-card::before,
+.glass-dock::before,
 .glass-thumb::before,
 .glass-lens::before,
 .glass-spot {
@@ -717,6 +718,45 @@ button.glass-chip:disabled {
     closest-side,
     rgba(103, 232, 249, 0.95),
     transparent
+  );
+}
+
+/* ------------------------------------------------------------------------------
+   Mobile Bottom Navigation Dock
+   Floating frosted pill dock matching the application's signature #10232d
+   oceanic dark teal palette and cyan glow.
+   ------------------------------------------------------------------------------ */
+.glass-dock {
+  --glass-accent: 165, 243, 252;
+  position: relative;
+  isolation: isolate;
+  border-radius: 9999px;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.08) 0%,
+      rgba(255, 255, 255, 0.02) 40%,
+      rgba(255, 255, 255, 0.01) 75%,
+      rgba(var(--glass-accent), 0.07) 100%
+    ),
+    rgba(16, 35, 45, 0.88);
+  backdrop-filter: blur(24px) saturate(1.6);
+  -webkit-backdrop-filter: blur(24px) saturate(1.6);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.45),
+    inset 0 -1px 1px rgba(var(--glass-accent), 0.2),
+    inset 0 0 28px -10px rgba(var(--glass-accent), 0.28),
+    0 0 24px -4px rgba(34, 211, 238, 0.22),
+    0 16px 40px -12px rgba(6, 22, 30, 0.75);
+}
+
+.glass-dock::before {
+  background: linear-gradient(
+    160deg,
+    rgba(255, 255, 255, 0.65),
+    rgba(255, 255, 255, 0.1) 35%,
+    rgba(255, 255, 255, 0.06) 65%,
+    rgba(var(--glass-accent), 0.55)
   );
 }
 

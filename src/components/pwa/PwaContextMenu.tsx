@@ -217,7 +217,7 @@ export function PwaContextMenu() {
         <div
           ref={menuRef}
           style={{ left: desktopPos.x, top: desktopPos.y }}
-          className="glass-card glass-card--raised fixed z-50 flex w-56 flex-col gap-1 rounded-2xl border border-white/10 bg-neutral-900/95 p-1.5 shadow-2xl backdrop-blur-xl animate-in fade-in zoom-in-95 duration-150 select-none text-white text-xs font-medium"
+          className="glass-card glass-card--raised fixed z-50 flex w-56 flex-col gap-1 rounded-2xl border border-white/10 bg-[#f0fbfb]/95 dark:bg-[#10232d]/95 p-1.5 shadow-2xl backdrop-blur-xl animate-in fade-in zoom-in-95 duration-150 select-none text-white text-xs font-medium"
         >
           <div className="flex items-center justify-between px-3 py-1.5 border-b border-white/10 text-white/50 text-[11px] font-semibold tracking-wider uppercase">
             <span className="flex items-center gap-1.5 text-cyan-300">
@@ -328,7 +328,7 @@ export function PwaContextMenu() {
           <div
             ref={menuRef}
             onClick={(e) => e.stopPropagation()}
-            className="glass-card glass-card--raised w-full max-w-lg mx-auto rounded-t-3xl border-t border-white/15 bg-neutral-900/98 p-5 pb-[max(1.5rem,env(safe-area-inset-bottom,1.5rem))] shadow-2xl animate-in slide-in-from-bottom duration-250 select-none"
+            className="glass-card glass-card--raised w-full max-w-lg mx-auto rounded-t-3xl border-t border-white/15 bg-[#f0fbfb]/98 dark:bg-[#10232d]/98 p-5 pb-[max(1.5rem,env(safe-area-inset-bottom,1.5rem))] shadow-2xl animate-in slide-in-from-bottom duration-250 select-none"
           >
             {/* Sheet Handle */}
             <div className="mx-auto mb-4 h-1 w-12 rounded-full bg-white/25" />
