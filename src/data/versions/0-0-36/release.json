@@ -1,0 +1,19 @@
+{
+  "title": "Mobile Settings Page & Page Transition Scrollbar Containment",
+  "date": "2026-10-20",
+  "summary": "Renders Settings as a dedicated page on mobile while maintaining the desktop modal experience using a shared component, and eliminates scrollbar appearance during page switches.",
+  "changes": [
+    {
+      "type": "new",
+      "text": "Mobile Settings Page: rendered Scanner AI Settings as a dedicated full page on mobile (/settings) using the shared ScannerSettingsContent component."
+    },
+    {
+      "type": "improved",
+      "text": "Desktop Modal & Shared Architecture: preserved the desktop modal experience with portal and squash-and-stretch motion while sharing 100% of the settings logic and UI cards."
+    },
+    {
+      "type": "fixed",
+      "text": "Page Transition Scrollbar Elimination: added overflow-x containment and clamped vertical scale overshoot during squash-and-stretch animations to eliminate transient scrollbars during page switches."
+    }
+  ]
+}

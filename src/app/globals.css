@@ -117,6 +117,7 @@ html {
   /* Reserve the scrollbar's width on every page, so the shared top bar and
      centred content don't shift sideways between short and long pages */
   scrollbar-gutter: stable;
+  overflow-x: clip;
 }
 
 /* Moves the layer rather than its background-position: a transform is done by
@@ -265,6 +266,7 @@ body {
   font-family:
     var(--font-plus-jakarta-sans), ui-sans-serif, system-ui, sans-serif;
   background-color: transparent;
+  overflow-x: clip;
 }
 
 ::selection {
