@@ -44,40 +44,113 @@ export function locateMoraHeader(
   const maxY = Math.round(h * 0.1);
   const minX = Math.round(w * 0.45);
   const maxX = Math.round(w * 0.88);
+  const sw = maxX - minX + 1;
+  const sh = maxY - minY + 1;
 
-  let sumX = 0;
-  let sumY = 0;
-  let count = 0;
-
-  for (let y = minY; y < maxY; y++) {
-    for (let x = minX; x < maxX; x++) {
-      const idx = (y * w + x) * 4;
+  const mask = new Uint8Array(sw * sh);
+  let totalGold = 0;
+  for (let y = 0; y < sh; y++) {
+    const iy = minY + y;
+    for (let x = 0; x < sw; x++) {
+      const ix = minX + x;
+      const idx = (iy * w + ix) * 4;
       const r = image.data[idx];
       const g = image.data[idx + 1];
       const b = image.data[idx + 2];
       // Golden Mora coin color profile
       if (r > 160 && g > 120 && g <= r && b < 110 && r - b > 60) {
-        sumX += x;
-        sumY += y;
-        count++;
+        mask[y * sw + x] = 1;
+        totalGold++;
       }
     }
   }
 
   // Minimum gold pixels needed to establish a coin icon
-  if (count < 15) return null;
+  if (totalGold < 15) return null;
 
-  const coinX = Math.round(sumX / count);
-  const coinY = Math.round(sumY / count);
+  // Group gold pixels into connected components (allowing 2px gap across internal coin engravings)
+  const label = new Int32Array(sw * sh).fill(-1);
+  interface GoldComp {
+    count: number;
+    x0: number;
+    x1: number;
+    y0: number;
+    y1: number;
+    sumX: number;
+    sumY: number;
+  }
+  const comps: GoldComp[] = [];
 
-  // Validate that the coin centroid is in the expected header region
-  const normX = coinX / w;
-  const normY = coinY / h;
-  if (normX < 0.48 || normX > 0.85 || normY < 0.025 || normY > 0.085) {
-    return null;
+  for (let i = 0; i < mask.length; i++) {
+    if (!mask[i] || label[i] >= 0) continue;
+    const c: GoldComp = {
+      count: 0,
+      x0: maxX,
+      x1: -1,
+      y0: maxY,
+      y1: -1,
+      sumX: 0,
+      sumY: 0,
+    };
+    label[i] = comps.length;
+    const stack = [i];
+    while (stack.length) {
+      const p = stack.pop()!;
+      const lx = p % sw;
+      const ly = (p - lx) / sw;
+      const gx = minX + lx;
+      const gy = minY + ly;
+      c.count++;
+      c.sumX += gx;
+      c.sumY += gy;
+      if (gx < c.x0) c.x0 = gx;
+      if (gx > c.x1) c.x1 = gx;
+      if (gy < c.y0) c.y0 = gy;
+      if (gy > c.y1) c.y1 = gy;
+
+      for (let dy = -2; dy <= 2; dy++) {
+        const ny = ly + dy;
+        if (ny < 0 || ny >= sh) continue;
+        for (let dx = -2; dx <= 2; dx++) {
+          const nx = lx + dx;
+          if (nx < 0 || nx >= sw) continue;
+          const q = ny * sw + nx;
+          if (mask[q] && label[q] < 0) {
+            label[q] = comps.length;
+            stack.push(q);
+          }
+        }
+      }
+    }
+    comps.push(c);
   }
 
-  const radius = Math.max(5, Math.round(Math.sqrt(count / Math.PI) * 1.1));
+  // Find candidate coin components: compact aspect ratio and in the upper currency bar
+  const candidates = comps.filter((c) => {
+    if (c.count < 15) return false;
+    const cw = c.x1 - c.x0 + 1;
+    const ch = c.y1 - c.y0 + 1;
+    if (cw < 6 || ch < 6) return false;
+    const aspect = cw / ch;
+    if (aspect < 0.5 || aspect > 2.0) return false;
+    const cx = c.sumX / c.count;
+    const cy = c.sumY / c.count;
+    const normX = cx / w;
+    const normY = cy / h;
+    return normX >= 0.48 && normX <= 0.85 && normY >= 0.025 && normY <= 0.085;
+  });
+
+  if (candidates.length === 0) return null;
+
+  // Largest gold cluster in the header is the Mora coin (distinguishing it from stray gold text)
+  candidates.sort((a, b) => b.count - a.count);
+  const best = candidates[0];
+
+  const coinX = Math.round(best.sumX / best.count);
+  const coinY = Math.round(best.sumY / best.count);
+  const countRadius = Math.round(Math.sqrt(best.count / Math.PI) * 1.1);
+  const boundRadius = Math.max(best.x1 - coinX, coinX - best.x0);
+  const radius = Math.max(5, countRadius, boundRadius);
 
   const pillLeft = coinX + radius;
   const pillRight = Math.min(w - 1, coinX + Math.round(h * 0.22));

@@ -1,0 +1,19 @@
+{
+  "title": "Robust Mora Header Detection & Workspace Tooling",
+  "date": "2026-10-20",
+  "summary": "Fixes Mora count detection when nearby golden header text caused leading digits to be clipped, and introduces umbrella workspace scripts for running dev and test commands across all sub-projects.",
+  "changes": [
+    {
+      "type": "fixed",
+      "text": "Mora Header Coin Isolation: upgraded Mora coin detection to use connected-component clustering on gold pixels, isolating the coin from nearby gold header text (such as 'Inventory' tabs) and preventing centroid drift that clipped leading digits."
+    },
+    {
+      "type": "fixed",
+      "text": "Mora Crop Snippet: ensured enclosing bounding box cleanly frames both the golden coin icon and the entire digit sequence in the scan review modal."
+    },
+    {
+      "type": "new",
+      "text": "Root Workspace Tooling: added root package.json to easily run dev, build, lint, test, and catalog sync commands across all submodules from the root directory."
+    }
+  ]
+}
