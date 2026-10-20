@@ -72,7 +72,25 @@ export function MaterialModal({
     }
   }, [material, navDirection, dialogRef]);
 
+  // Non-passive listener to prevent browser background scroll/navigation during horizontal card drag
+  useEffect(() => {
+    const el = dialogRef.current;
+    if (!el) return;
+
+    const onTouchMoveNative = (e: TouchEvent) => {
+      if (isDraggingRef.current && e.cancelable) {
+        e.preventDefault();
+      }
+    };
+
+    el.addEventListener("touchmove", onTouchMoveNative, { passive: false });
+    return () => {
+      el.removeEventListener("touchmove", onTouchMoveNative);
+    };
+  }, [dialogRef]);
+
   const handleTouchStart = (e: React.TouchEvent) => {
+    e.stopPropagation();
     if (e.touches.length === 1) {
       touchStartRef.current = {
         x: e.touches[0].clientX,
@@ -93,16 +111,18 @@ export function MaterialModal({
     const deltaX = touch.clientX - touchStartRef.current.x;
     const deltaY = touch.clientY - touchStartRef.current.y;
 
-    // If vertical movement dominates, allow standard scroll
+    // If vertical movement dominates, allow standard scroll inside the modal content
     if (!isDraggingRef.current && Math.abs(deltaY) > Math.abs(deltaX)) {
       return;
     }
 
     if (Math.abs(deltaX) > 8) {
       isDraggingRef.current = true;
+      e.stopPropagation();
     }
 
     if (!isDraggingRef.current) return;
+    e.stopPropagation();
 
     // Apply damping if dragging beyond available materials
     let effectiveX = deltaX;
@@ -121,6 +141,7 @@ export function MaterialModal({
 
   const handleTouchEnd = (e: React.TouchEvent) => {
     if (!touchStartRef.current) return;
+    e.stopPropagation();
     const touch = e.changedTouches[0];
     const deltaX = touch.clientX - touchStartRef.current.x;
     const deltaY = touch.clientY - touchStartRef.current.y;
@@ -196,7 +217,14 @@ export function MaterialModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-hidden">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-hidden overscroll-none touch-none select-none"
+      onTouchMove={(e) => {
+        if (e.target === e.currentTarget && e.cancelable) {
+          e.preventDefault();
+        }
+      }}
+    >
       <style>{`
         @keyframes modal-slide-in-right {
           from { opacity: 0; transform: translateX(56px) scale(0.985); }
@@ -216,8 +244,11 @@ export function MaterialModal({
       {/* Backdrop: a sibling of the dialog, so its fade doesn't fade the dialog */}
       <div
         ref={backdropRef}
-        className="fixed inset-0 bg-black/55 backdrop-blur-sm"
+        className="fixed inset-0 bg-black/55 backdrop-blur-sm touch-none overscroll-none"
         onClick={close}
+        onTouchMove={(e) => {
+          if (e.cancelable) e.preventDefault();
+        }}
       />
 
       <div
@@ -233,7 +264,7 @@ export function MaterialModal({
         style={{ "--glass-accent": styles.accent } as React.CSSProperties}
         className="glass-card glass-card--lg glass-card--raised relative z-10 flex h-[580px] sm:h-[600px] max-h-[90vh] sm:max-h-[86vh] w-full max-w-lg flex-col overflow-hidden p-5 sm:p-6 touch-pan-y will-change-transform"
       >
-        <div className="flex flex-1 flex-col min-h-0 w-full overflow-y-auto pr-0.5">
+        <div className="flex flex-1 flex-col min-h-0 w-full overflow-y-auto pr-0.5 overscroll-contain touch-pan-y">
           {/* Top Header Actions */}
           <div className="flex items-center justify-between pb-4 shrink-0">
             <div className="flex items-center gap-2">

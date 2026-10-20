@@ -17,7 +17,7 @@ interface SiteHeaderProps {
  */
 export function SiteHeader({ version }: SiteHeaderProps) {
   return (
-    <header className="flex w-full shrink-0 flex-wrap items-center gap-x-2 gap-y-3 px-4 pb-3 pt-[max(1rem,env(safe-area-inset-top,1rem))] sm:flex-nowrap sm:gap-x-3 sm:px-6 sm:pb-4 md:px-8">
+    <header className="flex w-full shrink-0 flex-nowrap items-center gap-x-2 px-4 pb-3 pt-[max(1rem,env(safe-area-inset-top,1rem))] sm:gap-x-3 sm:px-6 sm:pb-4 md:px-8">
       <div className="flex min-w-0 items-center gap-2 sm:gap-2.5">
         <ShellLink href="/" className="flex items-center gap-2 sm:gap-2.5" aria-label="GI Helper home">
           <BrandIcon className="h-7 w-7 drop-shadow-[0_0_10px_rgba(45,212,191,0.35)] sm:h-8 sm:w-8" />
@@ -28,13 +28,16 @@ export function SiteHeader({ version }: SiteHeaderProps) {
         {version && <VersionChip version={version} />}
       </div>
 
-      {/* Phones: last, so it wraps to a row of its own; from sm: right, beside the buttons */}
-      <div className="order-last w-full sm:order-none sm:ml-auto sm:w-auto">
+      {/* Phones: hidden because mobile uses the fixed bottom navigation dock; from sm: right, beside the buttons */}
+      <div className="hidden sm:block sm:ml-auto sm:w-auto">
         <HeaderNav />
       </div>
 
       <div className="ml-auto flex items-center gap-2 sm:ml-0 sm:gap-3">
-        <ScannerSettingsButton />
+        {/* On mobile, Settings is placed in the fixed bottom navigation dock */}
+        <div className="hidden sm:block">
+          <ScannerSettingsButton />
+        </div>
         <ThemeToggle />
       </div>
     </header>

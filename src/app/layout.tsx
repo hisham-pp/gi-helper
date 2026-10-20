@@ -5,6 +5,7 @@ import { BackgroundEffects } from "@/components/BackgroundEffects";
 import { SITE } from "@/lib/seo";
 import { ServiceWorkerRegistration } from "@/components/pwa/ServiceWorkerRegistration";
 import { ThemeColorMeta } from "@/components/ThemeColorMeta";
+import { PwaContextMenu } from "@/components/pwa/PwaContextMenu";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 
@@ -82,6 +83,7 @@ export default function RootLayout({
           <BackgroundEffects />
           {children}
           <GlassToaster />
+          <PwaContextMenu />
         </ThemeProvider>
       </body>
     </html>
