@@ -1,0 +1,19 @@
+{
+  "title": "Automated Versioned Asset Cache Invalidation & Authentic Billet Icons",
+  "date": "2026-10-20",
+  "summary": "Synchronizes Service Worker cache versioning directly with package.json and adds query-based asset cache busting, ensuring newly updated material icons and atlas manifests are delivered immediately.",
+  "changes": [
+    {
+      "type": "fixed",
+      "text": "Thumbnail Cache Invalidation: linked material thumbnail URLs to the current app version (`?v=v${version}`), preventing browsers and PWAs from holding onto stale cached beta icons (such as silver Midlander billets)."
+    },
+    {
+      "type": "improved",
+      "text": "Automated Service Worker Version Sync: added a build/dev hook (`scripts/sync-sw-version.mjs`) that automatically synchronizes the Service Worker cache namespace (`VERSION`) with `package.json`, purging obsolete caches upon update."
+    },
+    {
+      "type": "improved",
+      "text": "Network-First Atlas Manifest Routing: updated Service Worker fetch strategy to retrieve reference manifests with `networkFirst` when online, preventing atlas metadata lock-in while preserving full offline functionality."
+    }
+  ]
+}
