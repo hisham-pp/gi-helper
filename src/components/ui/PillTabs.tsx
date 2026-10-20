@@ -43,20 +43,10 @@ export function PillTabs<T extends string | number>({
   const [thumb, setThumb] = useState<{ left: number; width: number } | null>(
     null,
   );
-  const [dragIndex, setDragIndex] = useState<number | null>(null);
-  const [isDragging, setIsDragging] = useState(false);
   const reducedMotion = usePrefersReducedMotion();
   const activeIndex = options.findIndex((o) => o.value === value);
-  const displayIndex = dragIndex !== null ? dragIndex : activeIndex;
-  const accent = options[displayIndex]?.accent ?? options[activeIndex]?.accent ?? DEFAULT_ACCENT;
+  const accent = options[activeIndex]?.accent ?? DEFAULT_ACCENT;
   const prevIndexRef = useRef(activeIndex);
-
-  const touchStartRef = useRef<{ x: number; y: number } | null>(null);
-  const hasDraggedRef = useRef(false);
-  const currentDragIndexRef = useRef<number | null>(null);
-  const currentThumbGeoRef = useRef<{ left: number; width: number }>({ left: 0, width: 0 });
-  const isCancelledRef = useRef(false);
-  const justDraggedRef = useRef(false);
 
   // Follow the selected tab, also when counts change its width
   useLayoutEffect(() => {
@@ -75,15 +65,11 @@ export function PillTabs<T extends string | number>({
     return () => observer.disconnect();
   }, [activeIndex, options]);
 
-  // Same squash-and-stretch as the scanner tab thumb (for direct taps only)
+  // Same squash-and-stretch as the scanner tab thumb
   useLayoutEffect(() => {
     const prevIndex = prevIndexRef.current;
     prevIndexRef.current = activeIndex;
-    if (justDraggedRef.current) {
-      justDraggedRef.current = false;
-      return;
-    }
-    if (prevIndex === activeIndex || activeIndex < 0 || reducedMotion || isDragging) return;
+    if (prevIndex === activeIndex || activeIndex < 0 || reducedMotion) return;
     thumbRef.current?.animate(
       [
         { scale: "1 1" },
@@ -93,283 +79,14 @@ export function PillTabs<T extends string | number>({
       ],
       { duration: 520, easing: "ease-out" },
     );
-  }, [activeIndex, reducedMotion, isDragging]);
-
-  const getButtonsGeo = () => {
-    const track = trackRef.current;
-    if (!track) return [];
-    const buttons = Array.from(track.querySelectorAll<HTMLElement>("[data-tab]"));
-    return buttons.map((btn, idx) => ({
-      index: idx,
-      left: btn.offsetLeft,
-      width: btn.offsetWidth,
-      rect: btn.getBoundingClientRect(),
-    }));
-  };
-
-  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
-    if (e.touches.length !== 1) return;
-    const touch = e.touches[0];
-    touchStartRef.current = { x: touch.clientX, y: touch.clientY };
-    hasDraggedRef.current = false;
-    isCancelledRef.current = false;
-    currentDragIndexRef.current = activeIndex;
-    if (thumb) {
-      currentThumbGeoRef.current = { left: thumb.left, width: thumb.width };
-    }
-  };
-
-  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-    if (!touchStartRef.current || e.touches.length !== 1) return;
-    const touch = e.touches[0];
-    const track = trackRef.current;
-    if (!track) return;
-    const trackRect = track.getBoundingClientRect();
-
-    const dx = touch.clientX - touchStartRef.current.x;
-    const dy = touch.clientY - touchStartRef.current.y;
-
-    if (!hasDraggedRef.current) {
-      if (Math.abs(dx) > 6 && Math.abs(dx) > Math.abs(dy)) {
-        hasDraggedRef.current = true;
-        setIsDragging(true);
-      } else if (Math.abs(dy) > 12) {
-        return;
-      }
-    }
-
-    if (!hasDraggedRef.current) return;
-
-    const isOutOfBounds =
-      touch.clientY < trackRect.top - 50 || touch.clientY > trackRect.bottom + 50;
-
-    const geo = getButtonsGeo();
-    if (!geo.length) return;
-
-    if (isOutOfBounds) {
-      if (!isCancelledRef.current) {
-        isCancelledRef.current = true;
-        setDragIndex(null);
-        currentDragIndexRef.current = activeIndex;
-
-        const currentGeo = currentThumbGeoRef.current;
-        const targetBtn = geo[activeIndex] || geo[0];
-
-        if (thumbRef.current && !reducedMotion && typeof thumbRef.current.animate === "function") {
-          const anim = thumbRef.current.animate(
-            [
-              {
-                transform: `translateX(${currentGeo.left}px) scale(1.04, 0.94)`,
-                width: `${currentGeo.width}px`,
-              },
-              {
-                transform: `translateX(${targetBtn.left}px) scale(1, 1)`,
-                width: `${targetBtn.width}px`,
-              },
-            ],
-            {
-              duration: 260,
-              easing: "cubic-bezier(0.2, 0.9, 0.3, 1)",
-              fill: "forwards",
-            },
-          );
-          anim.onfinish = () => {
-            if (thumbRef.current) {
-              thumbRef.current.style.transform = "";
-              thumbRef.current.style.width = "";
-            }
-            try {
-              anim.cancel();
-            } catch {
-              // ignore
-            }
-          };
-        } else if (thumbRef.current) {
-          thumbRef.current.style.transform = "";
-          thumbRef.current.style.width = "";
-        }
-        haptics.dragTick();
-      }
-      return;
-    }
-
-    if (isCancelledRef.current) {
-      isCancelledRef.current = false;
-    }
-
-    // Determine which tab is under the finger
-    let hovered = activeIndex >= 0 ? activeIndex : 0;
-    for (let i = 0; i < geo.length; i++) {
-      const r = geo[i].rect;
-      if (touch.clientX >= r.left && touch.clientX <= r.right) {
-        hovered = i;
-        break;
-      }
-    }
-    if (touch.clientX < geo[0].rect.left) hovered = 0;
-    else if (touch.clientX > geo[geo.length - 1].rect.right) hovered = geo.length - 1;
-
-    const targetTab = geo[hovered];
-    const firstTab = geo[0];
-    const lastTab = geo[geo.length - 1];
-    const minLeft = firstTab.left;
-    const maxLeft = lastTab.left + lastTab.width - targetTab.width;
-
-    const fingerRelX = touch.clientX - trackRect.left;
-    const rawLeft = fingerRelX - targetTab.width / 2;
-    const clampedLeft = Math.max(minLeft, Math.min(rawLeft, maxLeft));
-
-    currentThumbGeoRef.current = { left: clampedLeft, width: targetTab.width };
-
-    if (thumbRef.current && !reducedMotion) {
-      thumbRef.current.style.transform = `translateX(${clampedLeft}px) scale(1.04, 0.94)`;
-      thumbRef.current.style.width = `${targetTab.width}px`;
-    }
-
-    if (hovered !== currentDragIndexRef.current) {
-      currentDragIndexRef.current = hovered;
-      setDragIndex(hovered);
-      haptics.dragTick();
-    }
-  };
-
-  const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
-    if (!touchStartRef.current) return;
-
-    const hadDragged = hasDraggedRef.current;
-    const wasCancelled = isCancelledRef.current;
-    const targetIndex = currentDragIndexRef.current;
-    const currentGeo = currentThumbGeoRef.current;
-
-    touchStartRef.current = null;
-    hasDraggedRef.current = false;
-    isCancelledRef.current = false;
-
-    if (hadDragged) {
-      e.preventDefault();
-      justDraggedRef.current = true;
-
-      const geo = getButtonsGeo();
-      const finalIndex =
-        !wasCancelled && targetIndex !== null && targetIndex >= 0 && targetIndex < options.length
-          ? targetIndex
-          : activeIndex;
-
-      const targetBtn = geo[finalIndex] || geo[0];
-
-      setIsDragging(false);
-      setDragIndex(null);
-
-      if (thumbRef.current && targetBtn && !reducedMotion && typeof thumbRef.current.animate === "function") {
-        const anim = thumbRef.current.animate(
-          [
-            {
-              transform: `translateX(${currentGeo.left}px) scale(1.04, 0.94)`,
-              width: `${currentGeo.width}px`,
-            },
-            {
-              transform: `translateX(${targetBtn.left}px) scale(1, 1)`,
-              width: `${targetBtn.width}px`,
-            },
-          ],
-          {
-            duration: 300,
-            easing: "cubic-bezier(0.2, 0.9, 0.3, 1)",
-            fill: "forwards",
-          },
-        );
-        anim.onfinish = () => {
-          if (thumbRef.current) {
-            thumbRef.current.style.transform = "";
-            thumbRef.current.style.width = "";
-          }
-          try {
-            anim.cancel();
-          } catch {
-            // ignore
-          }
-        };
-      } else if (thumbRef.current) {
-        thumbRef.current.style.transform = "";
-        thumbRef.current.style.width = "";
-      }
-
-      if (!wasCancelled && targetIndex !== null && targetIndex >= 0 && targetIndex < options.length) {
-        if (targetIndex !== activeIndex) {
-          haptics.dragSnap();
-          onChange(options[targetIndex].value);
-        } else {
-          haptics.selection();
-        }
-      }
-    } else {
-      if (thumbRef.current) {
-        thumbRef.current.style.transform = "";
-        thumbRef.current.style.width = "";
-      }
-      setIsDragging(false);
-      setDragIndex(null);
-    }
-  };
-
-  const handleTouchCancel = () => {
-    if (hasDraggedRef.current && thumbRef.current && !reducedMotion && typeof thumbRef.current.animate === "function") {
-      const geo = getButtonsGeo();
-      const targetBtn = geo[activeIndex] || geo[0];
-      const currentGeo = currentThumbGeoRef.current;
-
-      if (targetBtn) {
-        const anim = thumbRef.current.animate(
-          [
-            {
-              transform: `translateX(${currentGeo.left}px) scale(1.04, 0.94)`,
-              width: `${currentGeo.width}px`,
-            },
-            {
-              transform: `translateX(${targetBtn.left}px) scale(1, 1)`,
-              width: `${targetBtn.width}px`,
-            },
-          ],
-          {
-            duration: 260,
-            easing: "cubic-bezier(0.2, 0.9, 0.3, 1)",
-            fill: "forwards",
-          },
-        );
-        anim.onfinish = () => {
-          if (thumbRef.current) {
-            thumbRef.current.style.transform = "";
-            thumbRef.current.style.width = "";
-          }
-          try {
-            anim.cancel();
-          } catch {
-            // ignore
-          }
-        };
-      }
-    } else if (thumbRef.current) {
-      thumbRef.current.style.transform = "";
-      thumbRef.current.style.width = "";
-    }
-
-    touchStartRef.current = null;
-    hasDraggedRef.current = false;
-    isCancelledRef.current = false;
-    setIsDragging(false);
-    setDragIndex(null);
-  };
+  }, [activeIndex, reducedMotion]);
 
   return (
     <div
       ref={trackRef}
       role="group"
       aria-label={ariaLabel}
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
-      onTouchCancel={handleTouchCancel}
-      className={`glass-track inline-flex shrink-0 items-center gap-1 p-1 touch-none ${className}`}
+      className={`glass-track inline-flex shrink-0 items-center gap-1 p-1 ${className}`}
     >
       <div
         ref={thumbRef}
@@ -382,24 +99,21 @@ export function PillTabs<T extends string | number>({
             width: thumb?.width ?? 0,
             transform: `translateX(${thumb?.left ?? 0}px)`,
             opacity: thumb ? 1 : 0,
-            transition: isDragging
+            transition: reducedMotion
               ? "none"
-              : reducedMotion
-                ? "none"
-                : "transform 420ms cubic-bezier(0.34, 1.35, 0.5, 1), width 420ms cubic-bezier(0.34, 1.35, 0.5, 1), opacity 200ms",
+              : "transform 550ms cubic-bezier(0.34, 1.35, 0.5, 1), width 550ms cubic-bezier(0.34, 1.35, 0.5, 1), opacity 200ms",
           } as React.CSSProperties
         }
       />
 
-      {options.map((option, index) => {
-        const isActive = index === displayIndex;
+      {options.map((option) => {
+        const isActive = option.value === value;
         return (
           <button
             key={option.value}
             type="button"
             data-tab
             onClick={() => {
-              if (hasDraggedRef.current) return;
               if (option.value !== value) {
                 haptics.selection();
               }
