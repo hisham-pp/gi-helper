@@ -1,0 +1,27 @@
+{
+  "title": "Modular Scanner & Detection Engine Architecture",
+  "date": "2026-10-20",
+  "summary": "Comprehensive architectural refactoring of the on-device detection and scanning engine, establishing clean domain module boundaries, dedicated types and constants, and unified orchestration without altering algorithms or detection accuracy.",
+  "changes": [
+    {
+      "type": "improved",
+      "text": "Scanner Engine Orchestration: extracted unified screenshot scanning pipeline, multi-screenshot row stitching, and GOOD format mapping into dedicated engine modules under lib/scanner."
+    },
+    {
+      "type": "improved",
+      "text": "Grid Detection Modularization: split monolithic grid types into focused geometry, settings, and grid models, and centralized parameter thresholds into domain constants."
+    },
+    {
+      "type": "improved",
+      "text": "Card Recognition Clean-up: organized recognition types into focused models (bank, rarity, quantity, mora, settings) and centralized card geometry and atlas specifications."
+    },
+    {
+      "type": "improved",
+      "text": "Video Scanner Architecture: organized keyframe selection heuristics, sighting voting consensus, and video stream decoding with dedicated types and constants."
+    },
+    {
+      "type": "improved",
+      "text": "Type Safety & Formatting: eliminated loose types, documented domain entities in lib/types.ts, and formatted all engine files to repository code standards."
+    }
+  ]
+}
