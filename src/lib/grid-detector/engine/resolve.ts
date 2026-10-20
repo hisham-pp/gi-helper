@@ -119,14 +119,13 @@ export function resolveLattices(
         const inside = insideOf[i];
         if (inside.length < 2) return;
         const covered = inside.reduce((s, ca) => s + area(ca), 0);
-        if (covered >= 0.6 * area(cb) && allSeparated(inside, 2)) containers++;
+        if ((covered >= 0.35 * area(cb) || inside.length >= 3) && allSeparated(inside, 2)) containers++;
       });
       // Only when the contained cards are at least as convincing — otherwise
       // a good card is being "tiled" by weak slivers.
       if (
         containers >= 0.5 * bFull.length &&
-        meanQuality(a) >= 0.9 * meanQuality(b) &&
-        latticeScore(a) >= latticeScore(b)
+        meanQuality(a) >= 0.8 * meanQuality(b)
       ) {
         dropped.add(b);
         continue;
@@ -137,13 +136,17 @@ export function resolveLattices(
       // divider... Prefer the complete card when its evidence is comparable —
       // both per card and in total, so one large stray rectangle (bounded by
       // long UI lines) cannot swallow a well-supported grid.
-      const insideAny = new Set(insideOf.flat());
-      if (
-        insideAny.size >= 0.5 * aFull.length &&
-        meanQuality(b) >= 0.75 * meanQuality(a) &&
-        latticeScore(b) >= 0.4 * latticeScore(a)
-      ) {
-        dropped.add(a);
+      // This applies ONLY when b does not contain multiple separate cards.
+      const hasMultipleInside = insideOf.some((inside) => inside.length >= 2);
+      if (!hasMultipleInside) {
+        const insideAny = new Set(insideOf.flat());
+        if (
+          insideAny.size >= 0.5 * aFull.length &&
+          meanQuality(b) >= 0.75 * meanQuality(a) &&
+          latticeScore(b) >= 0.4 * latticeScore(a)
+        ) {
+          dropped.add(a);
+        }
       }
     }
   }

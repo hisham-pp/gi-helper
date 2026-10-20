@@ -597,14 +597,17 @@ export function matchConfidence(
   best: number,
   runnerUp: number | undefined,
   peak = 0,
+  kind: CardKind = "material",
 ): number {
+  const goodPeak = kind === "material" ? GOOD_PEAK : 0.45;
+  const badPeak = kind === "material" ? BAD_PEAK : 0.75;
   const fitMean = Math.min(
     1,
     Math.max(0, (UNKNOWN_ERROR - best) / (UNKNOWN_ERROR - GOOD_ERROR)),
   );
   const fitPeak = Math.min(
     1,
-    Math.max(0, (BAD_PEAK - peak) / (BAD_PEAK - GOOD_PEAK)),
+    Math.max(0, (badPeak - peak) / (badPeak - goodPeak)),
   );
   const fit = Math.min(fitMean, fitPeak);
   const margin =
@@ -915,6 +918,7 @@ export function recognizeCards(
         best.rank,
         runnerUp ? Math.max(runnerUp.rank, best.rank) : undefined,
         best.peak,
+        bank.kind,
       ) *
       (pick === 0 ? 1 : 0.8) *
       rarityClash;

@@ -14,7 +14,7 @@ import type {
 } from "../../grid-detector/types";
 import type { RgbaImage } from "../../grid-detector/engine/image";
 import type { CardKind } from "../types";
-import { IDENTITY_ALIGNMENT, normalizeCardBox } from "./card";
+import { IDENTITY_ALIGNMENT, normalizeCardBox, snapToFooter } from "./card";
 import { type DigitTemplates, readFooter } from "./quantity";
 import { readStars } from "./rarity";
 
@@ -63,11 +63,15 @@ export function guessGridKind(
       height: card.height * scale.y,
     });
     const footer = readFooter(image, box, IDENTITY_ALIGNMENT, digits);
-    if (footer.prefix === "Lv")
-      votes[
-        readStars(image, box, IDENTITY_ALIGNMENT) ? "weapon" : "character"
-      ]++;
-    else if (footer.prefix === "+") votes.artifact++;
+    if (footer.prefix === "Lv") {
+      const hasStars =
+        readStars(image, box, IDENTITY_ALIGNMENT) ??
+        (() => {
+          const snapped = snapToFooter(image, box);
+          return snapped ? readStars(image, snapped, IDENTITY_ALIGNMENT) : null;
+        })();
+      votes[hasStars ? "weapon" : "character"]++;
+    } else if (footer.prefix === "+") votes.artifact++;
     else if (footer.prefix === "" && footer.value !== null) votes.material++;
   }
   const total =
