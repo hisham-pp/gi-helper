@@ -1,0 +1,23 @@
+{
+  "title": "Mobile Bottom Dock Drag Destination Commitment & Gesture Stability",
+  "date": "2026-10-20",
+  "summary": "Permanently eliminates mid-drag and post-drag indicator snapbacks on the mobile bottom navigation bar by eliminating transform clearing timeouts, committing touchcancel to hovered tabs, and adding non-passive touchmove prevention.",
+  "changes": [
+    {
+      "type": "fixed",
+      "text": "Permanent Transform Locking: eliminated trailing style.transform clearing timeouts after drag releases, keeping the thumb indicator locked firmly on the destination tab throughout Next.js route loading with zero jump."
+    },
+    {
+      "type": "fixed",
+      "text": "TouchCancel Destination Commit: updated touchcancel handling to commit navigation to the actively hovered tab instead of forcibly aborting and resetting the thumb to the start tab."
+    },
+    {
+      "type": "improved",
+      "text": "Non-Passive Touch Event Interception: registered a native non-passive touchmove listener with e.preventDefault() on the navigation dock, preventing mobile Safari and Chrome from triggering native link-drag recognizers."
+    },
+    {
+      "type": "improved",
+      "text": "Synchronous Drag State & Click Suppression: introduced synchronous isDraggingRef to eliminate React render batching race conditions during gestures, and widened trailing synthetic click suppression to 650ms."
+    }
+  ]
+}
