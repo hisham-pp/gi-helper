@@ -1,0 +1,15 @@
+{
+  "title": "In-Game Bag Canonical Ordering for Billets & Materials",
+  "date": "2026-10-20",
+  "summary": "Fixes inventory recognition for weapon billets and Materials-tab items by aligning the catalog ordering with Genshin Impact's in-game bag order.",
+  "changes": [
+    {
+      "type": "fixed",
+      "text": "Materials-Tab Bag Order: corrected the catalog ordering of weapon billets (Northlander -> Midlander -> Borderland, Sword -> Bow -> Claymore -> Catalyst -> Polearm) and forging ores to match in-game bag order instead of arbitrary category grouping and alphabetical sort."
+    },
+    {
+      "type": "fixed",
+      "text": "Billet Recognition Accuracy: resolved an issue where Midlander billets (e.g. Midlander Claymore Billet) were erroneously overridden by character development boss materials during inventory order optimization."
+    }
+  ]
+}
