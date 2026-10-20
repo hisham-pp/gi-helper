@@ -21,7 +21,12 @@ scope.onmessage = async (event) => {
   } catch (err) {
     const safe = toGridDetectionError(err);
     // Keep internal details in the worker console only.
-    if (safe.code === "PROCESSING_FAILED") console.error("[grid-detector]", err);
-    scope.postMessage({ id, ok: false, error: { code: safe.code, message: safe.message } });
+    if (safe.code === "PROCESSING_FAILED")
+      console.error("[grid-detector]", err);
+    scope.postMessage({
+      id,
+      ok: false,
+      error: { code: safe.code, message: safe.message },
+    });
   }
 };

@@ -24,7 +24,9 @@ function whenIdleAfterLoad(fn: () => void): () => void {
   const schedule = () => {
     if (cancelled) return;
     if ("requestIdleCallback" in window) {
-      idleId = window.requestIdleCallback(() => !cancelled && fn(), { timeout: 4000 });
+      idleId = window.requestIdleCallback(() => !cancelled && fn(), {
+        timeout: 4000,
+      });
     } else {
       timer = setTimeout(() => !cancelled && fn(), 1500);
     }
@@ -46,13 +48,17 @@ function whenIdleAfterLoad(fn: () => void): () => void {
  * unmount. See Preload for when the reference bank starts downloading;
  * `client.preload()` can also be called on intent (it only loads once).
  */
-export function useMaterialScanClient({ preload = false }: { preload?: Preload } = {}): MaterialScanClient {
+export function useMaterialScanClient({
+  preload = false,
+}: { preload?: Preload } = {}): MaterialScanClient {
   const ref = useRef<MaterialScanClient | null>(null);
   if (!ref.current) ref.current = new MaterialScanClient();
   useEffect(() => {
     const client = ref.current;
     const cancelIdle =
-      preload === "idle" ? whenIdleAfterLoad(() => client?.preload()) : undefined;
+      preload === "idle"
+        ? whenIdleAfterLoad(() => client?.preload())
+        : undefined;
     if (preload === true) client?.preload();
     return () => {
       cancelIdle?.();

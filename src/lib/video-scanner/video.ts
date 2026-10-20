@@ -3,17 +3,21 @@
  * opening, precise seeking, tiny grayscale thumbnails for motion analysis and
  * full-resolution bitmaps for scanning. Browser only.
  */
-import { MAX_IMAGE_PIXELS, MAX_IMAGE_SIDE, MIN_IMAGE_SIDE } from "../grid-detector/engine/image";
+import {
+  MAX_IMAGE_PIXELS,
+  MAX_IMAGE_SIDE,
+  MIN_IMAGE_SIDE,
+} from "../grid-detector/engine/image";
 
-export type VideoScanErrorCode =
-  | "EMPTY_FILE"
-  | "UNSUPPORTED_FILE_TYPE"
-  | "FILE_TOO_LARGE"
-  | "DECODE_FAILED"
-  | "VIDEO_TOO_LONG"
-  | "IMAGE_TOO_SMALL"
-  | "IMAGE_TOO_LARGE"
-  | "CANCELLED";
+import {
+  MAX_VIDEO_BYTES,
+  MAX_VIDEO_SECONDS,
+  VIDEO_EXTENSIONS,
+} from "./constants/video.constants";
+import type { VideoScanErrorCode } from "./types/video.types";
+
+export { MAX_VIDEO_BYTES, MAX_VIDEO_SECONDS };
+export type { VideoScanErrorCode };
 
 /** Client-safe error: `message` is written for end users. */
 export class VideoScanError extends Error {
@@ -39,24 +43,25 @@ export function isVideoScanError(err: unknown): err is VideoScanError {
   );
 }
 
-/** 2 GB: recordings are read straight from disk, never loaded into memory. */
-export const MAX_VIDEO_BYTES = 2 * 1024 * 1024 * 1024;
-/** 10 minutes: far longer than scrolling through any inventory. */
-export const MAX_VIDEO_SECONDS = 10 * 60;
-
-const VIDEO_EXTENSIONS = ["mp4", "m4v", "mov", "webm", "mkv", "avi", "3gp"];
-
 /** True for files that look like a video (by MIME type, or extension when the type is missing). */
 export function isVideoFile(file: { type: string; name?: string }): boolean {
   if (file.type.toLowerCase().startsWith("video/")) return true;
   const ext = file.name?.split(".").pop()?.toLowerCase();
-  return !!ext && VIDEO_EXTENSIONS.includes(ext);
+  return !!ext && (VIDEO_EXTENSIONS as readonly string[]).includes(ext);
 }
 
-export function validateVideoFile(file: { type: string; size: number; name?: string }): void {
-  if (file.size === 0) throw new VideoScanError("EMPTY_FILE", "The file is empty.");
+export function validateVideoFile(file: {
+  type: string;
+  size: number;
+  name?: string;
+}): void {
+  if (file.size === 0)
+    throw new VideoScanError("EMPTY_FILE", "The file is empty.");
   if (!isVideoFile(file)) {
-    throw new VideoScanError("UNSUPPORTED_FILE_TYPE", "Unsupported file type. Use a video such as MP4 or WebM.");
+    throw new VideoScanError(
+      "UNSUPPORTED_FILE_TYPE",
+      "Unsupported file type. Use a video such as MP4 or WebM.",
+    );
   }
   if (file.size > MAX_VIDEO_BYTES) {
     throw new VideoScanError(
@@ -66,7 +71,8 @@ export function validateVideoFile(file: { type: string; size: number; name?: str
   }
 }
 
-const cancelled = () => new VideoScanError("CANCELLED", "Scanning was cancelled.");
+const cancelled = () =>
+  new VideoScanError("CANCELLED", "Scanning was cancelled.");
 const unreadable = (cause?: unknown) =>
   new VideoScanError(
     "DECODE_FAILED",
@@ -80,7 +86,10 @@ const SEEK_TIMEOUT_MS = 15_000;
 type AnyCanvas = OffscreenCanvas | HTMLCanvasElement;
 type AnyContext = OffscreenCanvasRenderingContext2D | CanvasRenderingContext2D;
 
-function createCanvas(width: number, height: number): { canvas: AnyCanvas; ctx: AnyContext } {
+function createCanvas(
+  width: number,
+  height: number,
+): { canvas: AnyCanvas; ctx: AnyContext } {
   let canvas: AnyCanvas;
   if (typeof OffscreenCanvas !== "undefined") {
     canvas = new OffscreenCanvas(width, height);
@@ -89,8 +98,14 @@ function createCanvas(width: number, height: number): { canvas: AnyCanvas; ctx: 
     canvas.width = width;
     canvas.height = height;
   }
-  const ctx = canvas.getContext("2d", { willReadFrequently: true }) as AnyContext | null;
-  if (!ctx) throw new VideoScanError("DECODE_FAILED", "Could not create a canvas to read the video.");
+  const ctx = canvas.getContext("2d", {
+    willReadFrequently: true,
+  }) as AnyContext | null;
+  if (!ctx)
+    throw new VideoScanError(
+      "DECODE_FAILED",
+      "Could not create a canvas to read the video.",
+    );
   return { canvas, ctx };
 }
 
@@ -99,7 +114,12 @@ export class VideoFrameSource {
   readonly duration: number;
   readonly width: number;
   readonly height: number;
-  private thumbCanvas: { canvas: AnyCanvas; ctx: AnyContext; width: number; height: number } | null = null;
+  private thumbCanvas: {
+    canvas: AnyCanvas;
+    ctx: AnyContext;
+    width: number;
+    height: number;
+  } | null = null;
 
   private constructor(private readonly video: HTMLVideoElement) {
     this.duration = video.duration;
@@ -108,7 +128,10 @@ export class VideoFrameSource {
   }
 
   /** Loads the video's metadata. `url` is an object URL owned by the caller. */
-  static async open(url: string, signal?: AbortSignal): Promise<VideoFrameSource> {
+  static async open(
+    url: string,
+    signal?: AbortSignal,
+  ): Promise<VideoFrameSource> {
     if (signal?.aborted) throw cancelled();
     const video = document.createElement("video");
     video.muted = true;
@@ -151,9 +174,16 @@ export class VideoFrameSource {
       );
     }
     if (width < MIN_IMAGE_SIDE || height < MIN_IMAGE_SIDE) {
-      throw new VideoScanError("IMAGE_TOO_SMALL", `The video is too small (${width}×${height}px).`);
+      throw new VideoScanError(
+        "IMAGE_TOO_SMALL",
+        `The video is too small (${width}×${height}px).`,
+      );
     }
-    if (width > MAX_IMAGE_SIDE || height > MAX_IMAGE_SIDE || width * height > MAX_IMAGE_PIXELS) {
+    if (
+      width > MAX_IMAGE_SIDE ||
+      height > MAX_IMAGE_SIDE ||
+      width * height > MAX_IMAGE_PIXELS
+    ) {
       throw new VideoScanError(
         "IMAGE_TOO_LARGE",
         `The video resolution is too high (${width}×${height}px). The limit is ${MAX_IMAGE_SIDE}px per side.`,
@@ -207,7 +237,10 @@ export class VideoFrameSource {
 }
 
 /** Downscaled JPEG of a frame, for showing progress. */
-export async function encodePreview(bitmap: ImageBitmap, maxWidth = 960): Promise<Blob> {
+export async function encodePreview(
+  bitmap: ImageBitmap,
+  maxWidth = 960,
+): Promise<Blob> {
   const scale = Math.min(1, maxWidth / bitmap.width);
   const width = Math.max(1, Math.round(bitmap.width * scale));
   const height = Math.max(1, Math.round(bitmap.height * scale));
@@ -216,10 +249,12 @@ export async function encodePreview(bitmap: ImageBitmap, maxWidth = 960): Promis
     ctx.imageSmoothingEnabled = true;
     ctx.imageSmoothingQuality = "high";
     ctx.drawImage(bitmap, 0, 0, width, height);
-    if ("convertToBlob" in canvas) return await canvas.convertToBlob({ type: "image/jpeg", quality: 0.82 });
+    if ("convertToBlob" in canvas)
+      return await canvas.convertToBlob({ type: "image/jpeg", quality: 0.82 });
     return await new Promise<Blob>((resolve, reject) =>
       (canvas as HTMLCanvasElement).toBlob(
-        (b) => (b ? resolve(b) : reject(new Error("Could not encode the preview."))),
+        (b) =>
+          b ? resolve(b) : reject(new Error("Could not encode the preview.")),
         "image/jpeg",
         0.82,
       ),
@@ -231,7 +266,12 @@ export async function encodePreview(bitmap: ImageBitmap, maxWidth = 960): Promis
 }
 
 /** Runs `start` and resolves on `event`; rejects on a media error, a timeout or `signal`. */
-function waitFor(video: HTMLVideoElement, event: string, signal: AbortSignal | undefined, start: () => void) {
+function waitFor(
+  video: HTMLVideoElement,
+  event: string,
+  signal: AbortSignal | undefined,
+  start: () => void,
+) {
   return new Promise<void>((resolve, reject) => {
     if (signal?.aborted) {
       reject(cancelled());

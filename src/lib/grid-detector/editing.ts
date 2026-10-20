@@ -17,17 +17,38 @@ function median(values: number[]): number {
 }
 
 /** Clamps a rectangle to the image and rounds it to whole pixels. */
-export function clampRect(rect: PixelRect, imageWidth: number, imageHeight: number): PixelRect {
-  const x0 = Math.max(0, Math.min(imageWidth - 1, Math.round(Math.min(rect.x, rect.x + rect.width))));
-  const y0 = Math.max(0, Math.min(imageHeight - 1, Math.round(Math.min(rect.y, rect.y + rect.height))));
-  const x1 = Math.max(x0 + 1, Math.min(imageWidth, Math.round(Math.max(rect.x, rect.x + rect.width))));
-  const y1 = Math.max(y0 + 1, Math.min(imageHeight, Math.round(Math.max(rect.y, rect.y + rect.height))));
+export function clampRect(
+  rect: PixelRect,
+  imageWidth: number,
+  imageHeight: number,
+): PixelRect {
+  const x0 = Math.max(
+    0,
+    Math.min(imageWidth - 1, Math.round(Math.min(rect.x, rect.x + rect.width))),
+  );
+  const y0 = Math.max(
+    0,
+    Math.min(
+      imageHeight - 1,
+      Math.round(Math.min(rect.y, rect.y + rect.height)),
+    ),
+  );
+  const x1 = Math.max(
+    x0 + 1,
+    Math.min(imageWidth, Math.round(Math.max(rect.x, rect.x + rect.width))),
+  );
+  const y1 = Math.max(
+    y0 + 1,
+    Math.min(imageHeight, Math.round(Math.max(rect.y, rect.y + rect.height))),
+  );
   return { x: x0, y: y0, width: x1 - x0, height: y1 - y0 };
 }
 
 /** Lattice origin implied by the cards that have row/column assignments. */
 function latticeOrigin(grid: DetectedGrid): { x0: number; y0: number } | null {
-  const placed = grid.cards.filter((c) => c.row !== null && c.column !== null && !c.clipped);
+  const placed = grid.cards.filter(
+    (c) => c.row !== null && c.column !== null && !c.clipped,
+  );
   if (placed.length === 0) return null;
   return {
     x0: median(placed.map((c) => c.x - (c.column as number) * grid.pitchX)),
@@ -50,7 +71,8 @@ export function latticePosition(
   const sizeOk =
     Math.abs(rect.width - grid.cardWidth) <= 0.35 * grid.cardWidth &&
     Math.abs(rect.height - grid.cardHeight) <= 0.35 * grid.cardHeight;
-  if (dx > tolerance * grid.pitchX || dy > tolerance * grid.pitchY || !sizeOk) return null;
+  if (dx > tolerance * grid.pitchX || dy > tolerance * grid.pitchY || !sizeOk)
+    return null;
   return { row, column };
 }
 
@@ -59,10 +81,15 @@ export function latticePosition(
  * indices, row/column counts, bounds, card ids and empty slots.
  */
 export function normalizeGrid(grid: DetectedGrid): DetectedGrid {
-  if (grid.cards.length === 0) return { ...grid, rows: 0, columns: 0, emptySlots: [] };
+  if (grid.cards.length === 0)
+    return { ...grid, rows: 0, columns: 0, emptySlots: [] };
   const placed = grid.cards.filter((c) => c.row !== null && c.column !== null);
-  const rMin = placed.length ? Math.min(...placed.map((c) => c.row as number)) : 0;
-  const cMin = placed.length ? Math.min(...placed.map((c) => c.column as number)) : 0;
+  const rMin = placed.length
+    ? Math.min(...placed.map((c) => c.row as number))
+    : 0;
+  const cMin = placed.length
+    ? Math.min(...placed.map((c) => c.column as number))
+    : 0;
   const cards = grid.cards
     .map((c) =>
       c.row !== null && c.column !== null
@@ -76,8 +103,12 @@ export function normalizeGrid(grid: DetectedGrid): DetectedGrid {
         a.y - b.y ||
         a.x - b.x,
     );
-  const rows = placed.length ? Math.max(...cards.map((c) => c.row ?? 0)) + 1 : 0;
-  const columns = placed.length ? Math.max(...cards.map((c) => c.column ?? 0)) + 1 : 0;
+  const rows = placed.length
+    ? Math.max(...cards.map((c) => c.row ?? 0)) + 1
+    : 0;
+  const columns = placed.length
+    ? Math.max(...cards.map((c) => c.column ?? 0)) + 1
+    : 0;
 
   const x0 = Math.min(...cards.map((c) => c.x));
   const y0 = Math.min(...cards.map((c) => c.y));
@@ -136,7 +167,10 @@ export function applyCardEdit(
     return grids
       .map((g) =>
         g.cards.some((c) => c.id === edit.cardId)
-          ? normalizeGrid({ ...g, cards: g.cards.filter((c) => c.id !== edit.cardId) })
+          ? normalizeGrid({
+              ...g,
+              cards: g.cards.filter((c) => c.id !== edit.cardId),
+            })
           : g,
       )
       .filter((g) => g.cards.length > 0);
@@ -149,7 +183,13 @@ export function applyCardEdit(
       if (!g.cards.some((c) => c.id === edit.cardId)) return g;
       const cards = g.cards.map((c) =>
         c.id === edit.cardId
-          ? { ...c, ...rect, source: "manual" as const, confidence: 1, clipped: false }
+          ? {
+              ...c,
+              ...rect,
+              source: "manual" as const,
+              confidence: 1,
+              clipped: false,
+            }
           : c,
       );
       return normalizeGrid({ ...g, cards });
@@ -163,7 +203,10 @@ export function applyCardEdit(
   for (const g of grids) {
     if (g.id === MANUAL_GRID_ID) continue;
     const pos = latticePosition(g, rect);
-    if (pos && !g.cards.some((c) => c.row === pos.row && c.column === pos.column)) {
+    if (
+      pos &&
+      !g.cards.some((c) => c.row === pos.row && c.column === pos.column)
+    ) {
       target = g;
       position = pos;
       break;
@@ -180,7 +223,9 @@ export function applyCardEdit(
   };
   if (target) {
     const t = target;
-    return grids.map((g) => (g === t ? normalizeGrid({ ...g, cards: [...g.cards, card] }) : g));
+    return grids.map((g) =>
+      g === t ? normalizeGrid({ ...g, cards: [...g.cards, card] }) : g,
+    );
   }
   const manual = grids.find((g) => g.id === MANUAL_GRID_ID);
   if (manual) {
@@ -231,12 +276,23 @@ export function createEditorState(grids: DetectedGrid[] = []): EditorState {
   return { original: grids, present: grids, past: [], future: [] };
 }
 
-export function editorReducer(state: EditorState, action: EditorAction): EditorState {
+export function editorReducer(
+  state: EditorState,
+  action: EditorAction,
+): EditorState {
   switch (action.type) {
     case "load":
-      return createEditorStateWith(action.grids, action.original ?? action.grids);
+      return createEditorStateWith(
+        action.grids,
+        action.original ?? action.grids,
+      );
     case "edit": {
-      const next = applyCardEdit(state.present, action.edit, action.imageWidth, action.imageHeight);
+      const next = applyCardEdit(
+        state.present,
+        action.edit,
+        action.imageWidth,
+        action.imageHeight,
+      );
       if (next === state.present) return state;
       return {
         ...state,
@@ -258,7 +314,12 @@ export function editorReducer(state: EditorState, action: EditorAction): EditorS
     case "redo": {
       if (state.future.length === 0) return state;
       const [next, ...rest] = state.future;
-      return { ...state, present: next, past: [...state.past, state.present], future: rest };
+      return {
+        ...state,
+        present: next,
+        past: [...state.past, state.present],
+        future: rest,
+      };
     }
     case "reset":
       if (state.present === state.original) return state;
@@ -271,7 +332,10 @@ export function editorReducer(state: EditorState, action: EditorAction): EditorS
   }
 }
 
-function createEditorStateWith(present: DetectedGrid[], original: DetectedGrid[]): EditorState {
+function createEditorStateWith(
+  present: DetectedGrid[],
+  original: DetectedGrid[],
+): EditorState {
   return { original, present, past: [], future: [] };
 }
 

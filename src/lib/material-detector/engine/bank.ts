@@ -14,7 +14,12 @@
  * and pixels the icon does not cover say "this should be plain background".
  */
 import type { RgbaImage } from "../../grid-detector/engine/image";
-import { CARD_KINDS, type CardKind, type Rarity, type ReferenceEntry } from "../types";
+import {
+  CARD_KINDS,
+  type CardKind,
+  type Rarity,
+  type ReferenceEntry,
+} from "../types";
 import { artRows } from "./card";
 import { MaterialDetectionError } from "./errors";
 
@@ -27,11 +32,26 @@ export const ATLAS_FORMAT = "gi-material-atlas";
 export const ATLAS_VERSION = 1;
 
 /** Site paths of each kind's atlas (under public/). */
-export const ATLAS_FILES: Record<CardKind, { manifest: string; image: string }> = {
-  material: { manifest: "/data/material-atlas.json", image: "/data/material-atlas.webp" },
-  weapon: { manifest: "/data/weapon-atlas.json", image: "/data/weapon-atlas.webp" },
-  artifact: { manifest: "/data/artifact-atlas.json", image: "/data/artifact-atlas.webp" },
-  character: { manifest: "/data/character-atlas.json", image: "/data/character-atlas.webp" },
+export const ATLAS_FILES: Record<
+  CardKind,
+  { manifest: string; image: string }
+> = {
+  material: {
+    manifest: "/data/material-atlas.json",
+    image: "/data/material-atlas.webp",
+  },
+  weapon: {
+    manifest: "/data/weapon-atlas.json",
+    image: "/data/weapon-atlas.webp",
+  },
+  artifact: {
+    manifest: "/data/artifact-atlas.json",
+    image: "/data/artifact-atlas.webp",
+  },
+  character: {
+    manifest: "/data/character-atlas.json",
+    image: "/data/character-atlas.webp",
+  },
 };
 
 export interface AtlasManifest {
@@ -83,9 +103,11 @@ function makeTemplate(size: number, rows: number): Template {
   };
 }
 
-const isRarity = (v: unknown): v is Rarity => v === 1 || v === 2 || v === 3 || v === 4 || v === 5;
+const isRarity = (v: unknown): v is Rarity =>
+  v === 1 || v === 2 || v === 3 || v === 4 || v === 5;
 
-const optional = (v: unknown, check: (v: unknown) => boolean) => v === undefined || check(v);
+const optional = (v: unknown, check: (v: unknown) => boolean) =>
+  v === undefined || check(v);
 
 export function validateManifest(value: unknown): AtlasManifest {
   const m = value as Partial<AtlasManifest> | null;
@@ -109,7 +131,10 @@ export function validateManifest(value: unknown): AtlasManifest {
         typeof e.order === "number" &&
         optional(e.item, (v) => typeof v === "string") &&
         optional(e.variant, (v) => typeof v === "string") &&
-        optional(e.rarities, (v) => Array.isArray(v) && v.length > 0 && v.every(isRarity)),
+        optional(
+          e.rarities,
+          (v) => Array.isArray(v) && v.length > 0 && v.every(isRarity),
+        ),
     );
   if (!ok) {
     throw new MaterialDetectionError(
@@ -121,11 +146,18 @@ export function validateManifest(value: unknown): AtlasManifest {
 }
 
 /** Builds the bank from the atlas pixels (straight-alpha RGBA) and its manifest. */
-export function createReferenceBank(manifestJson: unknown, atlas: RgbaImage): ReferenceBank {
+export function createReferenceBank(
+  manifestJson: unknown,
+  atlas: RgbaImage,
+): ReferenceBank {
   const manifest = validateManifest(manifestJson);
   const T = manifest.tileSize;
   const rowsOfTiles = Math.ceil(manifest.entries.length / manifest.columns);
-  if (atlas.width < manifest.columns * T || atlas.height < rowsOfTiles * T || atlas.data.length < atlas.width * atlas.height * 4) {
+  if (
+    atlas.width < manifest.columns * T ||
+    atlas.height < rowsOfTiles * T ||
+    atlas.data.length < atlas.width * atlas.height * 4
+  ) {
     throw new MaterialDetectionError(
       "REFERENCES_INVALID",
       "The scanner's reference image does not match its manifest. Please reload the page.",
@@ -144,7 +176,12 @@ export function createReferenceBank(manifestJson: unknown, atlas: RgbaImage): Re
   /** Premultiplied 0–1 value of one atlas pixel channel. */
   const read = (p: number) => {
     const al = data[p + 3] / 255;
-    return [(data[p] / 255) * al, (data[p + 1] / 255) * al, (data[p + 2] / 255) * al, al] as const;
+    return [
+      (data[p] / 255) * al,
+      (data[p + 1] / 255) * al,
+      (data[p + 2] / 255) * al,
+      al,
+    ] as const;
   };
 
   const finalize = (t: Template) => {
@@ -173,9 +210,14 @@ export function createReferenceBank(manifestJson: unknown, atlas: RgbaImage): Re
     const o = tileOrigin(index);
     for (let y = 0; y < coarseRows; y++) {
       for (let x = 0; x < COARSE_SIZE; x++) {
-        let r = 0, g = 0, b = 0, a = 0;
+        let r = 0,
+          g = 0,
+          b = 0,
+          a = 0;
         for (let k = 0; k < 4; k++) {
-          const [pr, pg, pb, pa] = read(((o.y + 2 * y + (k >> 1)) * AW + o.x + 2 * x + (k & 1)) * 4);
+          const [pr, pg, pb, pa] = read(
+            ((o.y + 2 * y + (k >> 1)) * AW + o.x + 2 * x + (k & 1)) * 4,
+          );
           r += pr;
           g += pg;
           b += pb;
@@ -191,7 +233,9 @@ export function createReferenceBank(manifestJson: unknown, atlas: RgbaImage): Re
     return finalize(t);
   };
 
-  const fineCache: (Template | undefined)[] = new Array(manifest.entries.length);
+  const fineCache: (Template | undefined)[] = new Array(
+    manifest.entries.length,
+  );
   return {
     kind: manifest.kind ?? "material",
     version: manifest.hash,

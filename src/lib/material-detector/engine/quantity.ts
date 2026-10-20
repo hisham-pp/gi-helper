@@ -15,7 +15,13 @@
 import type { PixelRect } from "../../grid-detector/types";
 import type { RgbaImage } from "../../grid-detector/engine/image";
 import type { QuantityReading } from "../types";
-import { type Alignment, alignedRect, DIGIT_BAND, luminance, sampleRect } from "./card";
+import {
+  type Alignment,
+  alignedRect,
+  DIGIT_BAND,
+  luminance,
+  sampleRect,
+} from "./card";
 
 export const GLYPH_W = 14;
 export const GLYPH_H = 20;
@@ -85,11 +91,15 @@ export interface FooterText {
 export function otsu(values: Float32Array): number {
   const bins = 64;
   const hist = new Float64Array(bins);
-  for (const v of values) hist[Math.min(bins - 1, Math.max(0, Math.floor(v * bins)))]++;
+  for (const v of values)
+    hist[Math.min(bins - 1, Math.max(0, Math.floor(v * bins)))]++;
   const total = values.length;
   let sum = 0;
   for (let i = 0; i < bins; i++) sum += i * hist[i];
-  let sumB = 0, wB = 0, best = 0, threshold = 0.5;
+  let sumB = 0,
+    wB = 0,
+    best = 0,
+    threshold = 0.5;
   for (let i = 0; i < bins; i++) {
     wB += hist[i];
     if (wB === 0) continue;
@@ -130,7 +140,8 @@ function normalizeGlyph(text: FooterText, b: Box): Float32Array {
         const xa = Math.max(0, ua);
         const xe = Math.min(gw, ua + sx);
         if (xe <= xa) continue;
-        let s = 0, wsum = 0;
+        let s = 0,
+          wsum = 0;
         for (let py = Math.floor(a); py < Math.ceil(e); py++) {
           const wy = Math.min(e, py + 1) - Math.max(a, py);
           if (wy <= 0) continue;
@@ -167,7 +178,8 @@ function normalizeGlyph(text: FooterText, b: Box): Float32Array {
       const xa = Math.max(0, ua);
       const xe = Math.min(gw, ua + sx);
       if (xe <= xa) continue;
-      let s = 0, wsum = 0;
+      let s = 0,
+        wsum = 0;
       for (let py = Math.floor(a); py < Math.ceil(e); py++) {
         const wy = Math.min(e, py + 1) - Math.max(a, py);
         if (wy <= 0) continue;
@@ -185,7 +197,11 @@ function normalizeGlyph(text: FooterText, b: Box): Float32Array {
 }
 
 /** Finds the text components printed in a card's footer. */
-export function readFooterText(image: RgbaImage, box: PixelRect, alignment: Alignment): FooterText {
+export function readFooterText(
+  image: RgbaImage,
+  box: PixelRect,
+  alignment: Alignment,
+): FooterText {
   const rect = alignedRect(box, alignment);
   const band: PixelRect = {
     x: rect.x + rect.width * DIGIT_BAND.left,
@@ -197,10 +213,14 @@ export function readFooterText(image: RgbaImage, box: PixelRect, alignment: Alig
   const W = Math.max(8, Math.round((band.width / band.height) * H));
   const frame = sampleRect(image, band, W, H);
   const lum = new Float32Array(W * H);
-  for (let i = 0; i < lum.length; i++) lum[i] = luminance(frame.r[i], frame.g[i], frame.b[i]);
+  for (let i = 0; i < lum.length; i++)
+    lum[i] = luminance(frame.r[i], frame.g[i], frame.b[i]);
 
   const threshold = otsu(lum);
-  let bgSum = 0, bgN = 0, inkSum = 0, inkN = 0;
+  let bgSum = 0,
+    bgN = 0,
+    inkSum = 0,
+    inkN = 0;
   for (const v of lum) {
     if (v >= threshold) {
       bgSum += v;
@@ -214,7 +234,13 @@ export function readFooterText(image: RgbaImage, box: PixelRect, alignment: Alig
   const fg = inkN ? inkSum / inkN : 0;
   const contrast = bg - fg;
   const ink = new Float32Array(W * H);
-  const empty = { width: W, height: H, ink, components: [], contrast: Math.max(0, contrast) };
+  const empty = {
+    width: W,
+    height: H,
+    ink,
+    components: [],
+    contrast: Math.max(0, contrast),
+  };
   // Cream footer ≈ 0.9, digits ≈ 0.3–0.4. Anything flat or dark has no text.
   if (contrast < 0.18 || inkN === 0 || bg < 0.55) return empty;
 
@@ -261,7 +287,9 @@ export function readFooterText(image: RgbaImage, box: PixelRect, alignment: Alig
 
   const digitH = H * DIGIT_HEIGHT_RATIO;
   // Merge pieces of one glyph (strokes split by thresholding): strong horizontal overlap.
-  const parts = comps.filter((c) => c.n >= 3 && c.y1 - c.y0 + 1 >= digitH * 0.2).sort((a, b) => a.x0 - b.x0);
+  const parts = comps
+    .filter((c) => c.n >= 3 && c.y1 - c.y0 + 1 >= digitH * 0.2)
+    .sort((a, b) => a.x0 - b.x0);
   const merged: Box[] = [];
   for (const c of parts) {
     const last = merged[merged.length - 1];
@@ -285,20 +313,32 @@ export function readFooterText(image: RgbaImage, box: PixelRect, alignment: Alig
     return h >= digitH * 0.6 && h <= digitH * 1.45;
   });
   if (components.length > 0) {
-    const centres = components.map((c) => (c.y0 + c.y1) / 2).sort((a, b) => a - b);
+    const centres = components
+      .map((c) => (c.y0 + c.y1) / 2)
+      .sort((a, b) => a - b);
     const midY = centres[Math.floor(centres.length / 2)];
-    components = components.filter((c) => Math.abs((c.y0 + c.y1) / 2 - midY) <= digitH * 0.3);
+    components = components.filter(
+      (c) => Math.abs((c.y0 + c.y1) / 2 - midY) <= digitH * 0.3,
+    );
   } else {
     // Check for half-shown digits when cut off by scroll viewport / card boundary
     components = merged.filter((c) => {
       const h = c.y1 - c.y0 + 1;
       const touchesEdge = c.y0 <= 1 || c.y1 >= H - 2;
-      return (touchesEdge || h >= digitH * 0.5) && h >= digitH * 0.35 && h <= digitH * 1.45;
+      return (
+        (touchesEdge || h >= digitH * 0.5) &&
+        h >= digitH * 0.35 &&
+        h <= digitH * 1.45
+      );
     });
     if (components.length > 0) {
-      const centres = components.map((c) => (c.y0 + c.y1) / 2).sort((a, b) => a - b);
+      const centres = components
+        .map((c) => (c.y0 + c.y1) / 2)
+        .sort((a, b) => a - b);
       const midY = centres[Math.floor(centres.length / 2)];
-      components = components.filter((c) => Math.abs((c.y0 + c.y1) / 2 - midY) <= digitH * 0.35);
+      components = components.filter(
+        (c) => Math.abs((c.y0 + c.y1) / 2 - midY) <= digitH * 0.35,
+      );
     }
   }
   return { width: W, height: H, ink, components, contrast };
@@ -348,7 +388,11 @@ export function splitByAspect(text: FooterText, c: Box): Box[] {
   let left = c.x0;
   for (let k = 1; k < n; k++) {
     const target = c.x0 + (w * k) / n;
-    const cut = cuts.length ? cuts.reduce((a, b) => (Math.abs(b - target) < Math.abs(a - target) ? b : a)) : Math.round(target);
+    const cut = cuts.length
+      ? cuts.reduce((a, b) =>
+          Math.abs(b - target) < Math.abs(a - target) ? b : a,
+        )
+      : Math.round(target);
     if (cut <= left) continue;
     pieces.push({ x0: left, x1: cut - 1, y0: c.y0, y1: c.y1 });
     left = cut;
@@ -358,7 +402,11 @@ export function splitByAspect(text: FooterText, c: Box): Box[] {
 }
 
 /** Normalised glyphs for template building (aspect-based splitting). */
-export function extractGlyphs(image: RgbaImage, box: PixelRect, alignment: Alignment): Glyph[] {
+export function extractGlyphs(
+  image: RgbaImage,
+  box: PixelRect,
+  alignment: Alignment,
+): Glyph[] {
   const text = readFooterText(image, box, alignment);
   return text.components
     .flatMap((c) => splitByAspect(text, c))
@@ -369,14 +417,17 @@ export function extractGlyphs(image: RgbaImage, box: PixelRect, alignment: Align
 
 export function correlation(a: Float32Array, b: number[]): number {
   const n = a.length;
-  let ma = 0, mb = 0;
+  let ma = 0,
+    mb = 0;
   for (let i = 0; i < n; i++) {
     ma += a[i];
     mb += b[i];
   }
   ma /= n;
   mb /= n;
-  let sab = 0, saa = 0, sbb = 0;
+  let sab = 0,
+    saa = 0,
+    sbb = 0;
   for (let i = 0; i < n; i++) {
     const da = a[i] - ma;
     const db = b[i] - mb;
@@ -403,7 +454,9 @@ export function classifyGlyph(
   let runnerUp = -1;
   const useSlice = slice && slice.rowCount < GLYPH_H && slice.rowCount >= 4;
   const startIdx = useSlice ? slice.rowStart * GLYPH_W : 0;
-  const endIdx = useSlice ? (slice.rowStart + slice.rowCount) * GLYPH_W : GLYPH_W * GLYPH_H;
+  const endIdx = useSlice
+    ? (slice.rowStart + slice.rowCount) * GLYPH_W
+    : GLYPH_W * GLYPH_H;
   const subInk = useSlice ? ink.subarray(startIdx, endIdx) : ink;
 
   for (const [d, t] of Object.entries(templates.digits)) {
@@ -425,7 +478,11 @@ export function classifyGlyph(
  * the cut candidates, maximising Σ (correlation − PIECE_COST). An extra cut
  * must therefore produce two pieces that each look like a digit.
  */
-function segmentComponent(text: FooterText, c: Box, templates: DigitTemplates): DigitMatch[] {
+function segmentComponent(
+  text: FooterText,
+  c: Box,
+  templates: DigitTemplates,
+): DigitMatch[] {
   const h = c.y1 - c.y0 + 1;
   const digitH = text.height * DIGIT_HEIGHT_RATIO;
   const isTruncated = h < digitH * 0.7;
@@ -454,15 +511,25 @@ function segmentComponent(text: FooterText, c: Box, templates: DigitTemplates): 
     const w = positions[j] - positions[i];
     let result: DigitMatch | null = null;
     if (w >= MIN_PIECE * h && w <= MAX_PIECE * effH) {
-      const b = tighten(text, { x0: positions[i], x1: positions[j] - 1, y0: c.y0, y1: c.y1 });
+      const b = tighten(text, {
+        x0: positions[i],
+        x1: positions[j] - 1,
+        y0: c.y0,
+        y1: c.y1,
+      });
       if (b) result = matchBox(b);
     }
     memo.set(k, result);
     return result;
   };
   const gain = (i: number, j: number, m: DigitMatch) =>
-    m.score - PIECE_COST - (m.digit === "1" && (i > 0 || j < last) ? CUT_ONE_PENALTY : 0);
-  const best: { value: number; from: number }[] = positions.map(() => ({ value: -Infinity, from: -1 }));
+    m.score -
+    PIECE_COST -
+    (m.digit === "1" && (i > 0 || j < last) ? CUT_ONE_PENALTY : 0);
+  const best: { value: number; from: number }[] = positions.map(() => ({
+    value: -Infinity,
+    from: -1,
+  }));
   best[0] = { value: 0, from: -1 };
   for (let j = 1; j < positions.length; j++) {
     for (let i = 0; i < j; i++) {
@@ -480,7 +547,8 @@ function segmentComponent(text: FooterText, c: Box, templates: DigitTemplates): 
     return b ? [matchBox(b)] : [];
   }
   const out: DigitMatch[] = [];
-  for (let j = end; j > 0; j = best[j].from) out.unshift(piece(best[j].from, j)!);
+  for (let j = end; j > 0; j = best[j].from)
+    out.unshift(piece(best[j].from, j)!);
   return out;
 }
 
@@ -498,16 +566,26 @@ export function readQuantity(
   templates: DigitTemplates,
 ): QuantityReading {
   const text = readFooterText(image, box, alignment);
-  const digits = text.components.flatMap((c) => segmentComponent(text, c, templates));
-  if (digits.length === 0 || digits.length > 5) return { value: null, text: "", confidence: 0 };
+  const digits = text.components.flatMap((c) =>
+    segmentComponent(text, c, templates),
+  );
+  if (digits.length === 0 || digits.length > 5)
+    return { value: null, text: "", confidence: 0 };
   let str = "";
   let confidence = 1;
   for (const d of digits) {
-    str += d.score >= 0.40 ? d.digit : "?";
+    str += d.score >= 0.4 ? d.digit : "?";
     confidence = Math.min(confidence, digitConfidence(d));
   }
-  const value = /^\d+$/.test(str) && !(str.length > 1 && str[0] === "0") ? parseInt(str, 10) : null;
-  return { value, text: str, confidence: value === null ? 0 : Math.round(confidence * 1000) / 1000 };
+  const value =
+    /^\d+$/.test(str) && !(str.length > 1 && str[0] === "0")
+      ? parseInt(str, 10)
+      : null;
+  return {
+    value,
+    text: str,
+    confidence: value === null ? 0 : Math.round(confidence * 1000) / 1000,
+  };
 }
 
 // ── Weapon and artifact footers ─────────────────────────────────────────────
@@ -533,7 +611,11 @@ export interface FooterGlyph {
  * The text components of a footer, each normalised like a glyph (touching
  * digits stay one component). Used to learn the "L", "v" and "+" templates.
  */
-export function footerComponents(image: RgbaImage, box: PixelRect, alignment: Alignment): FooterGlyph[] {
+export function footerComponents(
+  image: RgbaImage,
+  box: PixelRect,
+  alignment: Alignment,
+): FooterGlyph[] {
   const text = readFooterText(image, box, alignment);
   return text.components
     .map((c) => tighten(text, c))
@@ -550,7 +632,11 @@ const SHORT_GLYPH = 0.82;
 const BASELINE_SLACK = 0.14;
 
 /** Correlation of a glyph with one symbol template (-1 when there is none). */
-function symbolScore(ink: Float32Array, templates: DigitTemplates, symbol: string): number {
+function symbolScore(
+  ink: Float32Array,
+  templates: DigitTemplates,
+  symbol: string,
+): number {
   const t = templates.symbols?.[symbol];
   return t ? correlation(ink, t) : -1;
 }
@@ -572,7 +658,12 @@ export function readFooter(
 ): FooterReading {
   const text = readFooterText(image, box, alignment);
   const comps = text.components;
-  const none: FooterReading = { value: null, text: "", confidence: 0, prefix: null };
+  const none: FooterReading = {
+    value: null,
+    text: "",
+    confidence: 0,
+    prefix: null,
+  };
   if (comps.length === 0) return none;
   const height = (c: Box) => c.y1 - c.y0 + 1;
   const tallest = Math.max(...comps.map(height));
@@ -583,8 +674,10 @@ export function readFooter(
     return b ? normalizeGlyph(text, b) : null;
   };
   const isShort = (c: Box) => height(c) <= SHORT_GLYPH * tallest;
-  const onBaseline = (c: Box) => Math.abs(c.y1 - bottom) <= BASELINE_SLACK * tallest;
-  const centred = (c: Box) => Math.abs((c.y0 + c.y1) / 2 - middle) <= BASELINE_SLACK * tallest;
+  const onBaseline = (c: Box) =>
+    Math.abs(c.y1 - bottom) <= BASELINE_SLACK * tallest;
+  const centred = (c: Box) =>
+    Math.abs((c.y0 + c.y1) / 2 - middle) <= BASELINE_SLACK * tallest;
   const hasTemplates = !!templates.symbols;
   /** With templates, the glyph must fit its symbol better than any digit; without, its shape decides. */
   const looksLike = (c: Box, symbol: string) => {
@@ -599,7 +692,13 @@ export function readFooter(
   let start = 0;
   const [first, second] = comps;
   // "+" and "v" are both short; "+" floats mid-height, "v" sits on the baseline.
-  if (comps.length >= 2 && isShort(first) && centred(first) && (hasTemplates || !onBaseline(first)) && looksLike(first, "+")) {
+  if (
+    comps.length >= 2 &&
+    isShort(first) &&
+    centred(first) &&
+    (hasTemplates || !onBaseline(first)) &&
+    looksLike(first, "+")
+  ) {
     prefix = "+";
     start = 1;
   } else if (
@@ -614,15 +713,21 @@ export function readFooter(
     start = 2;
   }
 
-  const digits = comps.slice(start).flatMap((c) => segmentComponent(text, c, templates));
-  if (digits.length === 0 || digits.length > 5) return { ...none, prefix: start > 0 ? prefix : null };
+  const digits = comps
+    .slice(start)
+    .flatMap((c) => segmentComponent(text, c, templates));
+  if (digits.length === 0 || digits.length > 5)
+    return { ...none, prefix: start > 0 ? prefix : null };
   let str = "";
   let confidence = 1;
   for (const d of digits) {
     str += d.score >= 0.45 ? d.digit : "?";
     confidence = Math.min(confidence, digitConfidence(d));
   }
-  const value = /^\d+$/.test(str) && !(str.length > 1 && str[0] === "0") ? parseInt(str, 10) : null;
+  const value =
+    /^\d+$/.test(str) && !(str.length > 1 && str[0] === "0")
+      ? parseInt(str, 10)
+      : null;
   return {
     value,
     text: (prefix === "Lv" ? "Lv. " : prefix) + str,

@@ -15,7 +15,13 @@
  */
 import type { PixelRect } from "../../grid-detector/types";
 import type { RgbaImage } from "../../grid-detector/engine/image";
-import { type Alignment, alignedRect, luminance, rgbToHsv, sampleRect } from "./card";
+import {
+  type Alignment,
+  alignedRect,
+  luminance,
+  rgbToHsv,
+  sampleRect,
+} from "./card";
 import { correlation, type DigitTemplates, GLYPH_H, GLYPH_W } from "./quantity";
 
 export interface RefinementReading {
@@ -39,7 +45,12 @@ const SLOT_2 = { top: 0.21, bottom: 0.38 } as const;
 /** Sampling resolution of one slot (square). */
 const SLOT_PX = 24;
 
-function sampleSlot(image: RgbaImage, box: PixelRect, alignment: Alignment, slot: { top: number; bottom: number }) {
+function sampleSlot(
+  image: RgbaImage,
+  box: PixelRect,
+  alignment: Alignment,
+  slot: { top: number; bottom: number },
+) {
   const rect = alignedRect(box, alignment);
   const w = rect.width;
   return sampleRect(
@@ -64,20 +75,38 @@ const isLockPink = (r: number, g: number, b: number) => {
 /** Share of lock-pink pixels a slot needs: the padlock fills ~30% of its box. */
 const LOCK_SHARE = 0.1;
 
-function lockShare(image: RgbaImage, box: PixelRect, alignment: Alignment, slot: { top: number; bottom: number }) {
+function lockShare(
+  image: RgbaImage,
+  box: PixelRect,
+  alignment: Alignment,
+  slot: { top: number; bottom: number },
+) {
   const f = sampleSlot(image, box, alignment, slot);
   let n = 0;
-  for (let i = 0; i < f.r.length; i++) if (isLockPink(f.r[i], f.g[i], f.b[i])) n++;
+  for (let i = 0; i < f.r.length; i++)
+    if (isLockPink(f.r[i], f.g[i], f.b[i])) n++;
   return n / f.r.length;
 }
 
 /** Whether the item is locked: a salmon padlock in either corner slot. */
-export function readLock(image: RgbaImage, box: PixelRect, alignment: Alignment): LockReading {
-  const share = Math.max(lockShare(image, box, alignment, SLOT_1), lockShare(image, box, alignment, SLOT_2));
+export function readLock(
+  image: RgbaImage,
+  box: PixelRect,
+  alignment: Alignment,
+): LockReading {
+  const share = Math.max(
+    lockShare(image, box, alignment, SLOT_1),
+    lockShare(image, box, alignment, SLOT_2),
+  );
   const locked = share >= LOCK_SHARE;
   // Clear when far from the threshold either way.
-  const distance = locked ? (share - LOCK_SHARE) / LOCK_SHARE : (LOCK_SHARE - share) / LOCK_SHARE;
-  return { locked, confidence: Math.round(Math.min(1, 0.5 + distance) * 1000) / 1000 };
+  const distance = locked
+    ? (share - LOCK_SHARE) / LOCK_SHARE
+    : (LOCK_SHARE - share) / LOCK_SHARE;
+  return {
+    locked,
+    confidence: Math.round(Math.min(1, 0.5 + distance) * 1000) / 1000,
+  };
 }
 
 /**
@@ -111,7 +140,11 @@ export function readRefinement(
   const threshold = (lo + hi) / 2;
 
   // The digit: bright pixels, away from the slot's edges (the box's rim).
-  let x0 = SLOT_PX, x1 = -1, y0 = SLOT_PX, y1 = -1, bright = 0;
+  let x0 = SLOT_PX,
+    x1 = -1,
+    y0 = SLOT_PX,
+    y1 = -1,
+    bright = 0;
   const margin = 2;
   for (let y = margin; y < SLOT_PX - margin; y++) {
     for (let x = margin; x < SLOT_PX - margin; x++) {
@@ -143,7 +176,9 @@ export function readRefinement(
       ink[y * GLYPH_W + x] = Math.min(1, Math.max(0, (v - lo) / (hi - lo)));
     }
   }
-  let best = -1, second = -1, digit = 0;
+  let best = -1,
+    second = -1,
+    digit = 0;
   for (let d = 1; d <= 5; d++) {
     const t = templates.digits[String(d)];
     if (!t) continue;
@@ -159,5 +194,8 @@ export function readRefinement(
   if (best < 0.45) return none;
   const fit = Math.min(1, Math.max(0, (best - 0.45) / 0.35));
   const margin2 = Math.min(1, Math.max(0, (best - second) / 0.15));
-  return { value: digit, confidence: Math.round(Math.sqrt(fit * margin2) * 1000) / 1000 };
+  return {
+    value: digit,
+    confidence: Math.round(Math.sqrt(fit * margin2) * 1000) / 1000,
+  };
 }

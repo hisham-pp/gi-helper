@@ -4,7 +4,10 @@
  * Grid detection errors keep their code, so callers handle one error type.
  * `message` is always written for end users; internal details stay on `cause`.
  */
-import { isGridDetectionError, type GridDetectionErrorCode } from "../../grid-detector/engine/errors";
+import {
+  isGridDetectionError,
+  type GridDetectionErrorCode,
+} from "../../grid-detector/engine/errors";
 
 export type MaterialDetectionErrorCode =
   | GridDetectionErrorCode
@@ -16,7 +19,11 @@ export type MaterialDetectionErrorCode =
 export class MaterialDetectionError extends Error {
   readonly code: MaterialDetectionErrorCode;
 
-  constructor(code: MaterialDetectionErrorCode, message: string, cause?: unknown) {
+  constructor(
+    code: MaterialDetectionErrorCode,
+    message: string,
+    cause?: unknown,
+  ) {
     super(message);
     this.name = "MaterialDetectionError";
     this.code = code;
@@ -26,7 +33,9 @@ export class MaterialDetectionError extends Error {
   }
 }
 
-export function isMaterialDetectionError(err: unknown): err is MaterialDetectionError {
+export function isMaterialDetectionError(
+  err: unknown,
+): err is MaterialDetectionError {
   return (
     err instanceof MaterialDetectionError ||
     (typeof err === "object" &&

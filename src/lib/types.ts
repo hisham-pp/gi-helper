@@ -1,3 +1,10 @@
+/**
+ * Core domain types and review data models for GI Suite.
+ */
+import type { PixelRect } from "./grid-detector/types";
+
+export type { PixelRect };
+
 export interface DetectedItem {
   id: string;
   name: string;
@@ -27,7 +34,7 @@ export interface ScannedReviewItem {
   reviewReason?: string;
 }
 
-/** A weapon, artifact or character in the post-scan review (see lib/scan-equipment.ts). */
+/** A weapon, artifact or character in the post-scan review (see lib/scanner/equipment.ts). */
 export interface EquipmentReviewItem {
   id: string;
   kind: "weapon" | "artifact" | "character";

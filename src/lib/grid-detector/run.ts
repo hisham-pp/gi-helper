@@ -8,7 +8,8 @@ import { detectInventoryGrids } from "./engine/detect";
 import { resolveDetectionSettings } from "./settings";
 import type { DetectionSettings, GridDetectionResult } from "./types";
 
-const now = () => (typeof performance !== "undefined" ? performance.now() : Date.now());
+const now = () =>
+  typeof performance !== "undefined" ? performance.now() : Date.now();
 const round1 = (v: number) => Math.round(v * 10) / 10;
 
 export async function detectFromBlob(

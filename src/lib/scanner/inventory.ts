@@ -14,8 +14,7 @@ const STORAGE_KEY = "scanner_detected_items";
 const EMPTY: DetectedItem[] = [];
 
 type InventoryUpdate =
-  | DetectedItem[]
-  | ((prev: DetectedItem[]) => DetectedItem[]);
+  DetectedItem[] | ((prev: DetectedItem[]) => DetectedItem[]);
 
 const store = createLocalStore<DetectedItem[]>(STORAGE_KEY, EMPTY, readArray);
 

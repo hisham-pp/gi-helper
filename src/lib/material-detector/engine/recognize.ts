@@ -20,7 +20,11 @@
  * Pure TypeScript over typed arrays: runs in a Web Worker and in Node (tests).
  * Deterministic for a given input, bank and settings.
  */
-import type { DetectedCard, DetectedGrid, PixelRect } from "../../grid-detector/types";
+import type {
+  DetectedCard,
+  DetectedGrid,
+  PixelRect,
+} from "../../grid-detector/types";
 import type { RgbaImage } from "../../grid-detector/engine/image";
 import { validateRgbaImage } from "../../grid-detector/engine/image";
 import defaultDigitTemplates from "../../../data/digit-templates.json";
@@ -62,7 +66,12 @@ import { decodeInventoryOrder } from "./context";
 import { readLock, readRefinement } from "./equipment";
 import { MaterialDetectionError, toMaterialDetectionError } from "./errors";
 import { guessGridKind, spreadCards } from "./kind";
-import { backgroundColor, compositeError, patternSearch, peakBlockError } from "./match";
+import {
+  backgroundColor,
+  compositeError,
+  patternSearch,
+  peakBlockError,
+} from "./match";
 import { type DigitTemplates, readFooter, readQuantity } from "./quantity";
 import { classifyBackground, combineRarity, readStars } from "./rarity";
 import { readMora } from "./mora";
@@ -126,7 +135,7 @@ const SNAP_MIN_SHIFT = 0.03;
  */
 const EQUIPMENT_SNAP_TRIGGER = 0.15;
 /** How far the alignment search may move a box (fractions of its size). */
-const ALIGN_LIMIT = { dx: 0.06, dy: 0.10, scale: 0.08 };
+const ALIGN_LIMIT = { dx: 0.06, dy: 0.1, scale: 0.08 };
 /** Weapon and artifact boxes are often stretched by the avatar or a highlight: search further vertically. */
 const EQUIPMENT_ALIGN_LIMIT = { dx: 0.06, dy: 0.09, scale: 0.08 };
 /** Levels a weapon, an artifact or a character can show, and the prefix before them. */
@@ -138,9 +147,14 @@ const LEVELS = {
 /** Cards compared with every bank when the text can't tell a grid's kind. */
 const KIND_PROBE_CARDS = 6;
 
-const EMPTY_QUANTITY: QuantityReading = { value: null, text: "", confidence: 0 };
+const EMPTY_QUANTITY: QuantityReading = {
+  value: null,
+  text: "",
+  confidence: 0,
+};
 
-const now = () => (typeof performance !== "undefined" ? performance.now() : Date.now());
+const now = () =>
+  typeof performance !== "undefined" ? performance.now() : Date.now();
 
 interface Scored {
   index: number;
@@ -188,13 +202,25 @@ class Timer {
  * cards the corners that hold the refinement badge, the lock and the
  * equipped character's avatar.
  */
-function ignoreMask(bank: ReferenceBank, size: number, rows: number, badge: { x0: number; y1: number } | null) {
+function ignoreMask(
+  bank: ReferenceBank,
+  size: number,
+  rows: number,
+  badge: { x0: number; y1: number } | null,
+) {
   const mask = badgeMask(size, rows, badge);
-  return bank.kind === "material" ? mask : addEquipmentOverlays(mask, size, rows);
+  return bank.kind === "material"
+    ? mask
+    : addEquipmentOverlays(mask, size, rows);
 }
 
 /** Canonical frames of one candidate card box and the coarse pass over the whole catalog. */
-function prepareBox(image: RgbaImage, box: PixelRect, bank: ReferenceBank, timer: Timer) {
+function prepareBox(
+  image: RgbaImage,
+  box: PixelRect,
+  bank: ReferenceBank,
+  timer: Timer,
+) {
   const fineRows = artRows(FINE_SIZE);
   const coarseRows = artRows(COARSE_SIZE);
   const frames = timer.time("sample", () => {
@@ -204,21 +230,31 @@ function prepareBox(image: RgbaImage, box: PixelRect, bank: ReferenceBank, timer
       fine0,
       badge,
       fineMask: ignoreMask(bank, FINE_SIZE, fineRows, badge),
-      coarseMask: ignoreMask(bank, COARSE_SIZE, coarseRows, scaleBadge(badge, FINE_SIZE, COARSE_SIZE)),
+      coarseMask: ignoreMask(
+        bank,
+        COARSE_SIZE,
+        coarseRows,
+        scaleBadge(badge, FINE_SIZE, COARSE_SIZE),
+      ),
       coarse: halve(fine0),
     };
   });
   const coarseAlignments = new Map<number, Alignment>();
   const coarseErrors = timer.time("coarse", () => {
-    const err0 = bank.coarse.map((t) => compositeError(frames.coarse, t, frames.coarseMask));
+    const err0 = bank.coarse.map((t) =>
+      compositeError(frames.coarse, t, frames.coarseMask),
+    );
     let minErr = err0[0];
-    for (let i = 1; i < err0.length; i++) if (err0[i] < minErr) minErr = err0[i];
+    for (let i = 1; i < err0.length; i++)
+      if (err0[i] < minErr) minErr = err0[i];
     if (bank.kind !== "material" || minErr < 0.12) return err0;
     // When no candidate fits cleanly at identity, also check vertical shift (for offset icons or recovered boxes)
     const alignUp: Alignment = { dx: 0, dy: -0.07, scale: 1 };
     const fineUp = sampleCard(image, box, FINE_SIZE, alignUp);
     const coarseUp = halve(fineUp);
-    const errUp = bank.coarse.map((t) => compositeError(coarseUp, t, frames.coarseMask));
+    const errUp = bank.coarse.map((t) =>
+      compositeError(coarseUp, t, frames.coarseMask),
+    );
     return err0.map((e0, i) => {
       if (errUp[i] < e0) {
         coarseAlignments.set(i, alignUp);
@@ -228,7 +264,8 @@ function prepareBox(image: RgbaImage, box: PixelRect, bank: ReferenceBank, timer
     });
   });
   let bestCoarse = 0;
-  for (let i = 1; i < coarseErrors.length; i++) if (coarseErrors[i] < coarseErrors[bestCoarse]) bestCoarse = i;
+  for (let i = 1; i < coarseErrors.length; i++)
+    if (coarseErrors[i] < coarseErrors[bestCoarse]) bestCoarse = i;
   return { box, ...frames, coarseErrors, bestCoarse, coarseAlignments };
 }
 
@@ -259,23 +296,42 @@ function analyseCard(
   //      footer; the snapped box is kept only if the catalog fits it better.
   let prepared = prepareBox(image, givenBox, bank, timer);
   const snapTrigger = equipment ? EQUIPMENT_SNAP_TRIGGER : SNAP_TRIGGER;
-  if (settings.refineAlignment && prepared.coarseErrors[prepared.bestCoarse] > snapTrigger) {
+  if (
+    settings.refineAlignment &&
+    prepared.coarseErrors[prepared.bestCoarse] > snapTrigger
+  ) {
     const snapped = timer.time("sample", () => snapToFooter(image, givenBox));
     if (snapped && boxesDiffer(givenBox, snapped, SNAP_MIN_SHIFT)) {
       const alt = prepareBox(image, snapped, bank, timer);
-      if (alt.coarseErrors[alt.bestCoarse] < prepared.coarseErrors[prepared.bestCoarse]) prepared = alt;
+      if (
+        alt.coarseErrors[alt.bestCoarse] <
+        prepared.coarseErrors[prepared.bestCoarse]
+      )
+        prepared = alt;
     }
   }
-  const { box, fine0, badge, fineMask, coarseErrors, bestCoarse, coarseAlignments } = prepared;
+  const {
+    box,
+    fine0,
+    badge,
+    fineMask,
+    coarseErrors,
+    bestCoarse,
+    coarseAlignments,
+  } = prepared;
 
   // 3. Rarity (always read for reporting; used for ranking when enabled).
   const rarity = timer.time("rarity", () => {
     const stars = readStars(image, box, IDENTITY_ALIGNMENT);
-    const bg = classifyBackground(backgroundColor(fine0, bank.fine(bestCoarse), fineMask));
+    const bg = classifyBackground(
+      backgroundColor(fine0, bank.fine(bestCoarse), fineMask),
+    );
     return combineRarity(stars, bg);
   });
   const penalty = (index: number) =>
-    settings.useRarity && rarity.value !== null && !hasRarity(bank.entries[index], rarity.value)
+    settings.useRarity &&
+    rarity.value !== null &&
+    !hasRarity(bank.entries[index], rarity.value)
       ? RARITY_PENALTY * rarity.confidence
       : 0;
 
@@ -319,29 +375,51 @@ function analyseCard(
       const fy = 1 / cardHeight(FINE_SIZE);
       const fx = 1 / FINE_SIZE;
       const lead = ranked[0];
-      const shared = patternSearch((p) => fineError(lead.index, p), lead.alignment, lead.error, {
-        step: { dx: fx, dy: fy, scale: 0.025 },
-        minStep: fx / 4,
-        maxEvaluations: 24,
-        limit,
-      });
+      const shared = patternSearch(
+        (p) => fineError(lead.index, p),
+        lead.alignment,
+        lead.error,
+        {
+          step: { dx: fx, dy: fy, scale: 0.025 },
+          minStep: fx / 4,
+          maxEvaluations: 24,
+          limit,
+        },
+      );
       // Only candidates that could still overtake the leader are worth re-scoring.
       const realigned = ranked.map((s) => {
-        if (s.index !== lead.index && s.rank - lead.rank > RESCORE_WINDOW) return s;
-        const error = s.index === lead.index ? shared.error : fineError(s.index, shared.best);
+        if (s.index !== lead.index && s.rank - lead.rank > RESCORE_WINDOW)
+          return s;
+        const error =
+          s.index === lead.index
+            ? shared.error
+            : fineError(s.index, shared.best);
         const best = Math.min(error, s.error);
-        return { ...s, error: best, rank: best + penalty(s.index), alignment: error <= s.error ? shared.best : s.alignment };
+        return {
+          ...s,
+          error: best,
+          rank: best + penalty(s.index),
+          alignment: error <= s.error ? shared.best : s.alignment,
+        };
       });
       realigned.sort((a, b) => a.rank - b.rank);
-      const contenders = realigned.filter((s, k) => k < REALIGN_TOP && s.rank - realigned[0].rank < 2 * CLEAR_MARGIN);
+      const contenders = realigned.filter(
+        (s, k) =>
+          k < REALIGN_TOP && s.rank - realigned[0].rank < 2 * CLEAR_MARGIN,
+      );
       // A clear winner needs no individual search.
       for (const s of contenders.length > 1 ? contenders : []) {
-        const local = patternSearch((p) => fineError(s.index, p), s.alignment, s.error, {
-          step: { dx: fx / 2, dy: fy / 2, scale: 0.0125 },
-          minStep: fx / 4,
-          maxEvaluations: 10,
-          limit,
-        });
+        const local = patternSearch(
+          (p) => fineError(s.index, p),
+          s.alignment,
+          s.error,
+          {
+            step: { dx: fx / 2, dy: fy / 2, scale: 0.0125 },
+            minStep: fx / 4,
+            maxEvaluations: 10,
+            limit,
+          },
+        );
         s.error = local.error;
         s.rank = local.error + penalty(s.index);
         s.alignment = local.best;
@@ -357,7 +435,12 @@ function analyseCard(
   timer.time("fine", () => {
     const residual = new Float32Array(FINE_SIZE * fineRows);
     for (const s of ranked.slice(0, PEAK_TOP)) {
-      compositeError(frameAt(s.alignment), bank.fine(s.index), fineMask, residual);
+      compositeError(
+        frameAt(s.alignment),
+        bank.fine(s.index),
+        fineMask,
+        residual,
+      );
       s.peak = peakBlockError(residual, FINE_SIZE, fineRows, PEAK_BLOCK);
     }
   });
@@ -383,7 +466,11 @@ function analyseCard(
     // from the cream footer, which is what is being read.
     level = settings.readQuantity
       ? timer.time("quantity", () => {
-          const boxes = [alignedRect(box, at), box, snapToFooter(image, box)].filter((b): b is PixelRect => !!b);
+          const boxes = [
+            alignedRect(box, at),
+            box,
+            snapToFooter(image, box),
+          ].filter((b): b is PixelRect => !!b);
           return readLevel(image, boxes, digits, kind);
         })
       : { value: null, confidence: 0, plainCount: false };
@@ -399,19 +486,45 @@ function analyseCard(
       : null;
   const locked =
     bank.kind === "weapon" || bank.kind === "artifact"
-      ? timer.time("overlays", () => readLock(image, box, IDENTITY_ALIGNMENT).locked || readLock(image, box, at).locked)
+      ? timer.time(
+          "overlays",
+          () =>
+            readLock(image, box, IDENTITY_ALIGNMENT).locked ||
+            readLock(image, box, at).locked,
+        )
       : null;
 
   const plainCount = level?.plainCount ?? false;
-  if (level) level = { value: level.value, confidence: level.confidence, plainCount: false };
-  return { box, ranked, rarity, quantity, level, refinement, locked, plainCount, hasNewBadge: badge !== null, evaluations };
+  if (level)
+    level = {
+      value: level.value,
+      confidence: level.confidence,
+      plainCount: false,
+    };
+  return {
+    box,
+    ranked,
+    rarity,
+    quantity,
+    level,
+    refinement,
+    locked,
+    plainCount,
+    hasNewBadge: badge !== null,
+    evaluations,
+  };
 }
 
 /**
  * A weapon's "Lv. 90" or an artifact's "+20", if in range: the most
  * confident reading over a few candidate boxes of the card.
  */
-function readLevel(image: RgbaImage, boxes: PixelRect[], digits: DigitTemplates, kind: keyof typeof LEVELS): LevelReading {
+function readLevel(
+  image: RgbaImage,
+  boxes: PixelRect[],
+  digits: DigitTemplates,
+  kind: keyof typeof LEVELS,
+): LevelReading {
   const range = LEVELS[kind];
   let best: LevelReading = { value: null, confidence: 0, plainCount: false };
   let prefixed = false;
@@ -419,11 +532,25 @@ function readLevel(image: RgbaImage, boxes: PixelRect[], digits: DigitTemplates,
   for (const b of boxes) {
     const footer = readFooter(image, b, IDENTITY_ALIGNMENT, digits);
     if (footer.prefix === range.prefix) prefixed = true;
-    if (footer.prefix === "" && footer.value !== null && footer.confidence >= 0.6) plainCount = true;
-    if (footer.value === null || footer.value < range.min || footer.value > range.max) continue;
+    if (
+      footer.prefix === "" &&
+      footer.value !== null &&
+      footer.confidence >= 0.6
+    )
+      plainCount = true;
+    if (
+      footer.value === null ||
+      footer.value < range.min ||
+      footer.value > range.max
+    )
+      continue;
     // Without the expected prefix the footer was only partly read.
-    const confidence = Math.round(footer.confidence * (footer.prefix === range.prefix ? 1 : 0.5) * 1000) / 1000;
-    if (confidence > best.confidence || best.value === null) best = { value: footer.value, confidence, plainCount: false };
+    const confidence =
+      Math.round(
+        footer.confidence * (footer.prefix === range.prefix ? 1 : 0.5) * 1000,
+      ) / 1000;
+    if (confidence > best.confidence || best.value === null)
+      best = { value: footer.value, confidence, plainCount: false };
     if (footer.prefix === range.prefix && confidence >= 0.9) break;
   }
   // A clear count with no "Lv."/"+" anywhere: a material in this tab (the
@@ -436,13 +563,15 @@ interface LevelReading extends NumberReading {
   plainCount: boolean;
 }
 
-const key = (a: Alignment) => `${a.dx.toFixed(5)},${a.dy.toFixed(5)},${a.scale.toFixed(5)}`;
+const key = (a: Alignment) =>
+  `${a.dx.toFixed(5)},${a.dy.toFixed(5)},${a.scale.toFixed(5)}`;
 
 /** The catalog item an entry shows (a variant's item, else the entry itself). */
 const itemOf = (e: ReferenceEntry) => e.item ?? e.id;
 
 /** Whether an item comes in a rarity (artifact pieces come in several). */
-export const hasRarity = (e: ReferenceEntry, rarity: Rarity) => (e.rarities ? e.rarities.includes(rarity) : e.rarity === rarity);
+export const hasRarity = (e: ReferenceEntry, rarity: Rarity) =>
+  e.rarities ? e.rarities.includes(rarity) : e.rarity === rarity;
 
 /** Keeps the best-ranked variant of each item (`ranked` is sorted best first). */
 function collapseVariants(ranked: Scored[], bank: ReferenceBank): Scored[] {
@@ -464,15 +593,32 @@ function collapseVariants(ranked: Scored[], bank: ReferenceBank): Scored[] {
  *   colour) whose mean error looks fine but whose emblem or facets don't.
  * - margin: how far ahead of the runner-up it is.
  */
-export function matchConfidence(best: number, runnerUp: number | undefined, peak = 0): number {
-  const fitMean = Math.min(1, Math.max(0, (UNKNOWN_ERROR - best) / (UNKNOWN_ERROR - GOOD_ERROR)));
-  const fitPeak = Math.min(1, Math.max(0, (BAD_PEAK - peak) / (BAD_PEAK - GOOD_PEAK)));
+export function matchConfidence(
+  best: number,
+  runnerUp: number | undefined,
+  peak = 0,
+): number {
+  const fitMean = Math.min(
+    1,
+    Math.max(0, (UNKNOWN_ERROR - best) / (UNKNOWN_ERROR - GOOD_ERROR)),
+  );
+  const fitPeak = Math.min(
+    1,
+    Math.max(0, (BAD_PEAK - peak) / (BAD_PEAK - GOOD_PEAK)),
+  );
   const fit = Math.min(fitMean, fitPeak);
-  const margin = runnerUp === undefined ? 1 : Math.min(1, Math.max(0, (runnerUp - best) / CLEAR_MARGIN));
+  const margin =
+    runnerUp === undefined
+      ? 1
+      : Math.min(1, Math.max(0, (runnerUp - best) / CLEAR_MARGIN));
   return Math.round(fit * (0.35 + 0.65 * margin) * 1000) / 1000;
 }
 
-function toCandidate(bank: ReferenceBank, s: Scored, confidence: number): MaterialCandidate {
+function toCandidate(
+  bank: ReferenceBank,
+  s: Scored,
+  confidence: number,
+): MaterialCandidate {
   const e = bank.entries[s.index];
   return {
     id: itemOf(e),
@@ -485,7 +631,12 @@ function toCandidate(bank: ReferenceBank, s: Scored, confidence: number): Materi
 }
 
 function mapBox(card: DetectedCard, sx: number, sy: number): PixelRect {
-  return { x: card.x * sx, y: card.y * sy, width: card.width * sx, height: card.height * sy };
+  return {
+    x: card.x * sx,
+    y: card.y * sy,
+    width: card.width * sx,
+    height: card.height * sy,
+  };
 }
 
 const unmapBox = (r: PixelRect, sx: number, sy: number): PixelRect => ({
@@ -520,11 +671,19 @@ function kindFromIcons(
     const bank = banks[kind]!;
     const errors = cards
       .map((card) => {
-        const p = prepareBox(image, normalizeCardBox(mapBox(card, sx, sy)), bank, timer);
+        const p = prepareBox(
+          image,
+          normalizeCardBox(mapBox(card, sx, sy)),
+          bank,
+          timer,
+        );
         return p.coarseErrors[p.bestCoarse];
       })
       .sort((a, b) => a - b);
-    return { kind, error: errors.length ? errors[errors.length >> 1] : Infinity };
+    return {
+      kind,
+      error: errors.length ? errors[errors.length >> 1] : Infinity,
+    };
   });
   scores.sort((a, b) => a.error - b.error);
   const gap = scores.length > 1 ? scores[1].error - scores[0].error : 0.05;
@@ -555,15 +714,38 @@ export function decideGridKinds(
   const available = CARD_KINDS.filter((k) => banks[k]);
   const timer = new Timer();
   return input.grids.map((grid): GridKindReading => {
-    if (settings.kind !== "auto") return { gridId: grid.id, kind: settings.kind, source: "setting", confidence: 1 };
+    if (settings.kind !== "auto")
+      return {
+        gridId: grid.id,
+        kind: settings.kind,
+        source: "setting",
+        confidence: 1,
+      };
     const preset = input.kinds?.[grid.id];
     if (preset) return preset;
     const guess = guessGridKind(input.image, grid, digits, { x: sx, y: sy });
     if (guess.kind && (available.length === 0 || banks[guess.kind])) {
-      return { gridId: grid.id, kind: guess.kind, source: "text", confidence: guess.confidence };
+      return {
+        gridId: grid.id,
+        kind: guess.kind,
+        source: "text",
+        confidence: guess.confidence,
+      };
     }
-    if (available.length === 0) return { gridId: grid.id, kind: "material", source: "text", confidence: 0 };
-    if (available.length === 1) return { gridId: grid.id, kind: available[0], source: "icons", confidence: 0 };
+    if (available.length === 0)
+      return {
+        gridId: grid.id,
+        kind: "material",
+        source: "text",
+        confidence: 0,
+      };
+    if (available.length === 1)
+      return {
+        gridId: grid.id,
+        kind: available[0],
+        source: "icons",
+        confidence: 0,
+      };
     return kindFromIcons(input.image, grid, sx, sy, banks, available, timer);
   });
 }
@@ -575,7 +757,12 @@ export function recognizeMaterials(
   partialSettings: Partial<RecognitionSettings> = {},
   digits: DigitTemplates = defaultDigitTemplates as DigitTemplates,
 ): MaterialRecognitionResult {
-  return recognizeCards(input, { [bank.kind]: bank }, { ...partialSettings, kind: bank.kind }, digits);
+  return recognizeCards(
+    input,
+    { [bank.kind]: bank },
+    { ...partialSettings, kind: bank.kind },
+    digits,
+  );
 }
 
 /**
@@ -597,8 +784,14 @@ export function recognizeCards(
     throw toMaterialDetectionError(err);
   }
   const loaded = CARD_KINDS.filter((k) => banks[k]);
-  if (loaded.length === 0 || loaded.some((k) => banks[k]!.coarse.length === 0)) {
-    throw new MaterialDetectionError("REFERENCES_INVALID", "No material references are loaded.");
+  if (
+    loaded.length === 0 ||
+    loaded.some((k) => banks[k]!.coarse.length === 0)
+  ) {
+    throw new MaterialDetectionError(
+      "REFERENCES_INVALID",
+      "No material references are loaded.",
+    );
   }
   if (settings.kind !== "auto" && !banks[settings.kind]) {
     throw new MaterialDetectionError(
@@ -611,7 +804,9 @@ export function recognizeCards(
   const sx = input.image.width / sourceW;
   const sy = input.image.height / sourceH;
 
-  const rawMora = settings.readMora ? timer.time("mora", () => readMora(input.image, digits)) : null;
+  const rawMora = settings.readMora
+    ? timer.time("mora", () => readMora(input.image, digits))
+    : null;
   const mora: MoraReading | null =
     rawMora && (sx !== 1 || sy !== 1)
       ? {
@@ -630,7 +825,9 @@ export function recognizeCards(
         }
       : rawMora;
 
-  const gridKinds = timer.time("kind", () => decideGridKinds(input, banks, settings, digits));
+  const gridKinds = timer.time("kind", () =>
+    decideGridKinds(input, banks, settings, digits),
+  );
   const kindOf = new Map(gridKinds.map((g) => [g.gridId, g.kind]));
 
   // Per card analysis.
@@ -640,17 +837,31 @@ export function recognizeCards(
     if (!bank) return [];
     return [...grid.cards]
       .filter((c) => !c.clipped && c.width >= 8 && c.height >= 8)
-      .sort((a, b) => (a.row ?? 0) - (b.row ?? 0) || (a.column ?? 0) - (b.column ?? 0) || a.y - b.y || a.x - b.x)
+      .sort(
+        (a, b) =>
+          (a.row ?? 0) - (b.row ?? 0) ||
+          (a.column ?? 0) - (b.column ?? 0) ||
+          a.y - b.y ||
+          a.x - b.x,
+      )
       .map((card) => ({ grid, card, bank }));
   });
   try {
     for (const { grid, card, bank } of work) {
       const box = normalizeCardBox(mapBox(card, sx, sy));
-      analyses.push({ card, grid, bank, ...analyseCard(input.image, box, bank, settings, digits, timer) });
+      analyses.push({
+        card,
+        grid,
+        bank,
+        ...analyseCard(input.image, box, bank, settings, digits, timer),
+      });
       input.onProgress?.(analyses.length, work.length);
     }
   } catch (err) {
-    throw toMaterialDetectionError(err, "Material recognition failed unexpectedly.");
+    throw toMaterialDetectionError(
+      err,
+      "Material recognition failed unexpectedly.",
+    );
   }
 
   // Inventory-order context, grid by grid. Only materials have a fixed order:
@@ -665,9 +876,15 @@ export function recognizeCards(
         const seq = members.map(({ a }) =>
           a.ranked[0].error > UNKNOWN_ERROR
             ? []
-            : a.ranked.map((s) => ({ order: a.bank.entries[s.index].order, error: s.rank })),
+            : a.ranked.map((s) => ({
+                order: a.bank.entries[s.index].order,
+                error: s.rank,
+              })),
         );
-        decodeInventoryOrder(seq, { penalty: ORDER_PENALTY, window: ORDER_WINDOW }).forEach((k, j) => {
+        decodeInventoryOrder(seq, {
+          penalty: ORDER_PENALTY,
+          window: ORDER_WINDOW,
+        }).forEach((k, j) => {
           chosen[members[j].i] = k;
         });
       }
@@ -678,39 +895,72 @@ export function recognizeCards(
   const cards: CardRecognition[] = analyses.map((a, i) => {
     const { bank } = a;
     const pick = chosen[i];
-    const ordered = pick === 0 ? a.ranked : [a.ranked[pick], ...a.ranked.filter((_, k) => k !== pick)];
+    const ordered =
+      pick === 0
+        ? a.ranked
+        : [a.ranked[pick], ...a.ranked.filter((_, k) => k !== pick)];
     const best = ordered[0];
     const runnerUp = ordered[1];
     // An order-based pick is only as sure as the visual tie it broke allows.
     // A material whose tier contradicts the stars and background is likely
     // a sibling of the real one (e.g. a material missing from the catalog).
     const rarityClash =
-      settings.useRarity && a.rarity.value !== null && !hasRarity(bank.entries[best.index], a.rarity.value)
+      settings.useRarity &&
+      a.rarity.value !== null &&
+      !hasRarity(bank.entries[best.index], a.rarity.value)
         ? 1 - RARITY_CLASH * a.rarity.confidence
         : 1;
     const confidence =
-      matchConfidence(best.rank, runnerUp ? Math.max(runnerUp.rank, best.rank) : undefined, best.peak) *
+      matchConfidence(
+        best.rank,
+        runnerUp ? Math.max(runnerUp.rank, best.rank) : undefined,
+        best.peak,
+      ) *
       (pick === 0 ? 1 : 0.8) *
       rarityClash;
     const unknown = best.error > UNKNOWN_ERROR || a.plainCount;
-    const candidates = ordered.slice(0, settings.candidateCount).map((s, k) =>
-      toCandidate(
-        bank,
-        s,
-        k === 0 ? confidence : Math.round(confidence * Math.exp(-(s.rank - best.rank) / ALTERNATIVE_DECAY) * 1000) / 1000,
-      ),
-    );
-    const footerConfidence = bank.kind === "material" ? a.quantity.confidence : (a.level?.confidence ?? 0);
-    const footerFactor = settings.readQuantity ? 0.6 + 0.4 * footerConfidence : 1;
+    const candidates = ordered
+      .slice(0, settings.candidateCount)
+      .map((s, k) =>
+        toCandidate(
+          bank,
+          s,
+          k === 0
+            ? confidence
+            : Math.round(
+                confidence *
+                  Math.exp(-(s.rank - best.rank) / ALTERNATIVE_DECAY) *
+                  1000,
+              ) / 1000,
+        ),
+      );
+    const footerConfidence =
+      bank.kind === "material"
+        ? a.quantity.confidence
+        : (a.level?.confidence ?? 0);
+    const footerFactor = settings.readQuantity
+      ? 0.6 + 0.4 * footerConfidence
+      : 1;
     return {
       cardId: a.card.id,
       gridId: a.grid.id,
       kind: bank.kind,
       row: a.card.row,
       column: a.card.column,
-      box: { x: a.card.x, y: a.card.y, width: a.card.width, height: a.card.height },
-      matchedBox: roundRect(unmapBox(alignedRect(a.box, best.alignment), sx, sy)),
-      status: unknown ? "unknown" : confidence >= settings.minConfidence ? "matched" : "uncertain",
+      box: {
+        x: a.card.x,
+        y: a.card.y,
+        width: a.card.width,
+        height: a.card.height,
+      },
+      matchedBox: roundRect(
+        unmapBox(alignedRect(a.box, best.alignment), sx, sy),
+      ),
+      status: unknown
+        ? "unknown"
+        : confidence >= settings.minConfidence
+          ? "matched"
+          : "uncertain",
       material: unknown ? null : candidates[0],
       candidates,
       rarity: a.rarity,
@@ -720,7 +970,9 @@ export function recognizeCards(
       locked: a.locked,
       hasNewBadge: a.hasNewBadge,
       orderAdjusted: pick !== 0,
-      confidence: unknown ? 0 : Math.round(confidence * footerFactor * 1000) / 1000,
+      confidence: unknown
+        ? 0
+        : Math.round(confidence * footerFactor * 1000) / 1000,
     };
   });
 
@@ -728,15 +980,32 @@ export function recognizeCards(
   const review = cards.filter((c) => c.status !== "matched").length;
   const warnings: string[] = [];
   if (analyses.length === 0) warnings.push("No complete cards to recognise.");
-  if (review > 0) warnings.push(`${review} card${review > 1 ? "s" : ""} could not be identified with confidence.`);
-  const known = settings.readQuantity ? cards.filter((c) => c.status !== "unknown") : [];
-  const unreadable = known.filter((c) => c.kind === "material" && c.quantity.value === null).length;
-  if (unreadable > 0) warnings.push(`${unreadable} quantit${unreadable > 1 ? "ies" : "y"} could not be read.`);
-  const noLevel = known.filter((c) => c.kind !== "material" && c.level?.value == null).length;
-  if (noLevel > 0) warnings.push(`${noLevel} level${noLevel > 1 ? "s" : ""} could not be read.`);
+  if (review > 0)
+    warnings.push(
+      `${review} card${review > 1 ? "s" : ""} could not be identified with confidence.`,
+    );
+  const known = settings.readQuantity
+    ? cards.filter((c) => c.status !== "unknown")
+    : [];
+  const unreadable = known.filter(
+    (c) => c.kind === "material" && c.quantity.value === null,
+  ).length;
+  if (unreadable > 0)
+    warnings.push(
+      `${unreadable} quantit${unreadable > 1 ? "ies" : "y"} could not be read.`,
+    );
+  const noLevel = known.filter(
+    (c) => c.kind !== "material" && c.level?.value == null,
+  ).length;
+  if (noLevel > 0)
+    warnings.push(
+      `${noLevel} level${noLevel > 1 ? "s" : ""} could not be read.`,
+    );
 
   const round1 = (v: number) => Math.round(v * 10) / 10;
-  const used = loaded.map((k) => banks[k]!).filter((b) => gridKinds.some((g) => g.kind === b.kind));
+  const used = loaded
+    .map((k) => banks[k]!)
+    .filter((b) => gridKinds.some((g) => g.kind === b.kind));
   return {
     imageWidth: sourceW,
     imageHeight: sourceH,
@@ -751,9 +1020,15 @@ export function recognizeCards(
       referenceCount: used.reduce((n, b) => n + b.entries.length, 0),
       bankVersion: used.map((b) => b.version).join("+"),
       alignmentEvaluations: analyses.length
-        ? Math.round((analyses.reduce((s, a) => s + a.evaluations, 0) / analyses.length) * 10) / 10
+        ? Math.round(
+            (analyses.reduce((s, a) => s + a.evaluations, 0) /
+              analyses.length) *
+              10,
+          ) / 10
         : 0,
-      stageTimingsMs: Object.fromEntries(Object.entries(timer.totals).map(([k, v]) => [k, round1(v)])),
+      stageTimingsMs: Object.fromEntries(
+        Object.entries(timer.totals).map(([k, v]) => [k, round1(v)]),
+      ),
     },
   };
 }

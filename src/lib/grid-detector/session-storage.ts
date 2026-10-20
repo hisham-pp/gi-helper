@@ -2,7 +2,12 @@
  * IndexedDB persistence for the Grid Detector studio: named sessions holding
  * uploaded screenshots, their automatic detection and any manual edits.
  */
-import type { DetectedGrid, GridDetectionResult, GridSession, SessionImage } from "./types";
+import type {
+  DetectedGrid,
+  GridDetectionResult,
+  GridSession,
+  SessionImage,
+} from "./types";
 
 const DB_NAME = "gi_grid_detector_sessions";
 const DB_VERSION = 1;
@@ -74,7 +79,8 @@ function dataUrlToBlob(dataUrl: string): Blob {
 }
 
 function normalizeImage(record: LegacyImageRecord): SessionImage | null {
-  const blob = record.blob ?? (record.dataUrl ? dataUrlToBlob(record.dataUrl) : null);
+  const blob =
+    record.blob ?? (record.dataUrl ? dataUrlToBlob(record.dataUrl) : null);
   if (!blob) return null;
   return {
     id: record.id,
@@ -95,9 +101,14 @@ export async function getAllSessions(): Promise<GridSession[]> {
   try {
     const db = await openDB();
     const sessions = await requestToPromise(
-      db.transaction(SESSIONS_STORE, "readonly").objectStore(SESSIONS_STORE).getAll(),
+      db
+        .transaction(SESSIONS_STORE, "readonly")
+        .objectStore(SESSIONS_STORE)
+        .getAll(),
     );
-    return (sessions as GridSession[]).sort((a, b) => b.updatedAt - a.updatedAt);
+    return (sessions as GridSession[]).sort(
+      (a, b) => b.updatedAt - a.updatedAt,
+    );
   } catch (err) {
     console.warn("IndexedDB unavailable, starting without saved sessions", err);
     return [];
@@ -118,7 +129,9 @@ export async function createSession(name: string): Promise<GridSession> {
   return session;
 }
 
-export async function updateSession(session: GridSession): Promise<GridSession> {
+export async function updateSession(
+  session: GridSession,
+): Promise<GridSession> {
   const db = await openDB();
   const updated = { ...session, updatedAt: Date.now() };
   const tx = db.transaction(SESSIONS_STORE, "readwrite");
@@ -132,16 +145,24 @@ export async function deleteSession(sessionId: string): Promise<void> {
   const tx = db.transaction([SESSIONS_STORE, IMAGES_STORE], "readwrite");
   tx.objectStore(SESSIONS_STORE).delete(sessionId);
   const images = tx.objectStore(IMAGES_STORE);
-  const keys = await requestToPromise(images.index("sessionId").getAllKeys(sessionId));
+  const keys = await requestToPromise(
+    images.index("sessionId").getAllKeys(sessionId),
+  );
   for (const key of keys) images.delete(key);
   await txDone(tx);
 }
 
-export async function getImagesForSession(sessionId: string): Promise<SessionImage[]> {
+export async function getImagesForSession(
+  sessionId: string,
+): Promise<SessionImage[]> {
   try {
     const db = await openDB();
     const records = await requestToPromise(
-      db.transaction(IMAGES_STORE, "readonly").objectStore(IMAGES_STORE).index("sessionId").getAll(sessionId),
+      db
+        .transaction(IMAGES_STORE, "readonly")
+        .objectStore(IMAGES_STORE)
+        .index("sessionId")
+        .getAll(sessionId),
     );
     return (records as LegacyImageRecord[])
       .map(normalizeImage)
@@ -155,7 +176,10 @@ export async function getImagesForSession(sessionId: string): Promise<SessionIma
 
 export async function addImageToSession(
   sessionId: string,
-  image: Pick<SessionImage, "name" | "blob" | "width" | "height" | "detection" | "grids">,
+  image: Pick<
+    SessionImage,
+    "name" | "blob" | "width" | "height" | "detection" | "grids"
+  >,
 ): Promise<SessionImage> {
   const db = await openDB();
   const record: SessionImage = {
@@ -168,7 +192,8 @@ export async function addImageToSession(
   const tx = db.transaction([IMAGES_STORE, SESSIONS_STORE], "readwrite");
   tx.objectStore(IMAGES_STORE).add(record);
   const sessions = tx.objectStore(SESSIONS_STORE);
-  const session = (await requestToPromise(sessions.get(sessionId))) as GridSession | undefined;
+  const session = (await requestToPromise(sessions.get(sessionId))) as
+    GridSession | undefined;
   if (session) sessions.put({ ...session, updatedAt: Date.now() });
   await txDone(tx);
   return record;
@@ -176,12 +201,15 @@ export async function addImageToSession(
 
 export async function updateImageResult(
   imageId: string,
-  patch: Partial<Pick<SessionImage, "detection" | "grids" | "isManuallyAdjusted">>,
+  patch: Partial<
+    Pick<SessionImage, "detection" | "grids" | "isManuallyAdjusted">
+  >,
 ): Promise<void> {
   const db = await openDB();
   const tx = db.transaction(IMAGES_STORE, "readwrite");
   const store = tx.objectStore(IMAGES_STORE);
-  const record = (await requestToPromise(store.get(imageId))) as LegacyImageRecord | undefined;
+  const record = (await requestToPromise(store.get(imageId))) as
+    LegacyImageRecord | undefined;
   if (record) {
     const normalized = normalizeImage(record);
     if (normalized) store.put({ ...normalized, ...patch });

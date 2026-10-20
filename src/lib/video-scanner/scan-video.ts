@@ -27,16 +27,19 @@ import { cropToBlob } from "../grid-detector/browser";
 import type { DetectedGrid, PixelRect } from "../grid-detector/types";
 import type { MaterialScanClient } from "../material-detector/client";
 import { isMaterialDetectionError } from "../material-detector/engine/errors";
-import type { CardRecognition, CardRecognitionStatus, MoraReading, ScanResult, ScanSettings } from "../material-detector/types";
+import type {
+  CardRecognition,
+  MoraReading,
+  ScanResult,
+} from "../material-detector/types";
 import {
   KeyframePicker,
   planGapFills,
   probeInterval,
   probeTimes,
   type CoverageFrame,
-  type KeyframeOptions,
 } from "./keyframes";
-import { SightingMerger, sightingKey, type MergedMaterial } from "./merge";
+import { SightingMerger, sightingKey } from "./merge";
 import {
   EQUIPMENT_KINDS,
   EquipmentStitcher,
@@ -48,88 +51,39 @@ import {
   type EquipmentKind,
   type EquipmentSighting,
 } from "@/lib/scanner/equipment";
-import { encodePreview, validateVideoFile, VideoFrameSource, VideoScanError } from "./video";
+import {
+  encodePreview,
+  validateVideoFile,
+  VideoFrameSource,
+  VideoScanError,
+} from "./video";
 
-/** Upper bound on scanned frames, whatever the video does. */
-export const MAX_SCANNED_FRAMES = 400;
+import {
+  ANALYSIS_PROGRESS_SHARE,
+  MAX_SCANNED_FRAMES,
+  MIN_LOCK_CARDS,
+  SAME_PANEL_DIFFERENCE,
+} from "./constants/video.constants";
+import type {
+  VideoEquipment,
+  VideoFrameEvent,
+  VideoMaterial,
+  VideoScanOptions,
+  VideoScanProgress,
+  VideoScanResult,
+  VideoScanStage,
+} from "./types/video.types";
 
-export type VideoScanStage = "opening" | "scanning";
-
-export interface VideoScanProgress {
-  stage: VideoScanStage;
-  /** Overall progress, 0–1 (never decreases). */
-  fraction: number;
-  duration: number;
-  /** How far the motion analysis has got (s). */
-  analysedTo: number;
-  framesScanned: number;
-  /** Frames picked so far, scanned or not. */
-  framesPicked: number;
-}
-
-/** A frame picked for scanning, as it moves through the queue. */
-export interface VideoFrameEvent {
-  /** Stable id of the frame (its sample index). */
-  id: number;
-  time: number;
-  status: "queued" | "scanning" | "done" | "failed";
-  /** Downscaled JPEG of the frame (with "scanning"). */
-  preview?: Blob;
-  /** Cards found in the frame, in original video pixels (with "done"). */
-  cards?: { box: PixelRect; status: CardRecognitionStatus }[];
-}
-
-export interface VideoScanOptions {
-  signal?: AbortSignal;
-  onProgress?: (progress: VideoScanProgress) => void;
-  onFrame?: (event: VideoFrameEvent) => void;
-  /** Called once the video's metadata is known. */
-  onOpen?: (info: { duration: number; width: number; height: number }) => void;
-  keyframes?: Partial<KeyframeOptions>;
-  settings?: Partial<ScanSettings>;
-  /**
-   * Reads an artifact detail panel (default: the browser OCR of
-   * lib/artifact-panel/browser.ts, loaded the first time a frame shows one).
-   */
-  readPanel?: (scan: ArtifactPanelScan) => Promise<ArtifactPanelReading | null>;
-}
-
-export interface VideoMaterial extends MergedMaterial {
-  /** The card cut from the clearest frame that agrees with the quantity (WebP). */
-  crop: Blob | null;
-}
-
-/** A weapon, artifact or character of the recording, after stitching. */
-export interface VideoEquipment extends EquipmentSighting {
-  /** Time (s) of the frame its reading comes from. */
-  time: number;
-  /** The card cut from that frame (WebP). */
-  crop: Blob | null;
-}
-
-export interface VideoScanResult {
-  duration: number;
-  width: number;
-  height: number;
-  /** Frames sampled for motion analysis. */
-  framesAnalysed: number;
-  framesScanned: number;
-  failedFrames: number;
-  /** Card readings over all frames (a card seen in three frames counts three times). */
-  cardsRead: number;
-  /** Card readings that matched nothing in the catalog. */
-  unknownCards: number;
-  /** Artifact detail panels read (identical panels in several frames count once). */
-  panelsRead: number;
-  materials: VideoMaterial[];
-  /** Weapons, artifacts and characters, in list order. */
-  equipment: VideoEquipment[];
-  /** Best Mora reading from the bag header over all frames, if visible. */
-  mora?: MoraReading | null;
-  /** Scanned crop of the bag header Mora pill, if visible. */
-  moraCrop?: Blob | null;
-  processingTimeMs: number;
-}
+export { MAX_SCANNED_FRAMES };
+export type {
+  VideoEquipment,
+  VideoFrameEvent,
+  VideoMaterial,
+  VideoScanOptions,
+  VideoScanProgress,
+  VideoScanResult,
+  VideoScanStage,
+};
 
 interface GrabbedFrame {
   index: number;
@@ -137,15 +91,14 @@ interface GrabbedFrame {
   bitmap: ImageBitmap;
 }
 
-const now = () => (typeof performance !== "undefined" ? performance.now() : Date.now());
-const cancelled = () => new VideoScanError("CANCELLED", "Scanning was cancelled.");
+const now = () =>
+  typeof performance !== "undefined" ? performance.now() : Date.now();
+const cancelled = () =>
+  new VideoScanError("CANCELLED", "Scanning was cancelled.");
 /** Share of the progress bar given to the motion analysis. */
-const ANALYSIS_SHARE = 0.2;
-/** A grid this large is trusted to fix the columns searched in later frames. */
-const MIN_LOCK_CARDS = 6;
+const ANALYSIS_SHARE = ANALYSIS_PROGRESS_SHARE;
 /** Panels whose thumbnails differ less than this (0-255) are the same panel: read once. */
-const SAME_PANEL = 0.8;
-
+const SAME_PANEL = SAME_PANEL_DIFFERENCE;
 
 /**
  * Scans a recording with one or more scan clients (one worker each; frames
@@ -158,9 +111,16 @@ export async function scanVideo(
 ): Promise<VideoScanResult> {
   const t0 = now();
   const { onProgress, onFrame, onOpen } = options;
-  const pool = Array.isArray(clients) ? clients : [clients as MaterialScanClient];
-  if (pool.length === 0) throw new Error("scanVideo needs at least one scan client.");
-  validateVideoFile({ type: file.type, size: file.size, name: file instanceof File ? file.name : undefined });
+  const pool = Array.isArray(clients)
+    ? clients
+    : [clients as MaterialScanClient];
+  if (pool.length === 0)
+    throw new Error("scanVideo needs at least one scan client.");
+  validateVideoFile({
+    type: file.type,
+    size: file.size,
+    name: file instanceof File ? file.name : undefined,
+  });
 
   // One controller for every task: a fatal error in one stops the others.
   const controller = new AbortController();
@@ -174,7 +134,14 @@ export async function scanVideo(
   let probe: VideoFrameSource | null = null;
   let reader: VideoFrameSource | null = null;
   try {
-    onProgress?.({ stage: "opening", fraction: 0, duration: 0, analysedTo: 0, framesScanned: 0, framesPicked: 0 });
+    onProgress?.({
+      stage: "opening",
+      fraction: 0,
+      duration: 0,
+      analysedTo: 0,
+      framesScanned: 0,
+      framesPicked: 0,
+    });
     // The analysis and the scanners each seek their own element, so they run side by side.
     probe = await VideoFrameSource.open(url, signal);
     reader = await VideoFrameSource.open(url, signal);
@@ -190,16 +157,26 @@ export async function scanVideo(
     const pendingCrops: Promise<void>[] = [];
     const coverage: CoverageFrame[] = [];
     /** Weapon and artifact rows per scanned frame, stitched once every frame is in. */
-    const equipmentFrames: { time: number; rows: Record<EquipmentKind, EquipmentSighting[][]> }[] = [];
+    const equipmentFrames: {
+      time: number;
+      rows: Record<EquipmentKind, EquipmentSighting[][]>;
+    }[] = [];
     /** Artifacts seen only in a panel, with the time of their frame. */
     const panelOnly: { time: number; sighting: EquipmentSighting }[] = [];
     /** Panels read so far, by thumbnail: a frame showing the same panel reuses the reading. */
-    const panelReads: { signature: Uint8Array; reading: Promise<ArtifactPanelReading | null> }[] = [];
+    const panelReads: {
+      signature: Uint8Array;
+      reading: Promise<ArtifactPanelReading | null>;
+    }[] = [];
     let panelFailure: unknown = null;
     const readPanel =
-      options.readPanel ?? (async (scan: ArtifactPanelScan) => (await import("../artifact-panel/browser")).readPanel(scan));
+      options.readPanel ??
+      (async (scan: ArtifactPanelScan) =>
+        (await import("../artifact-panel/browser")).readPanel(scan));
     const panelReading = (scan: ArtifactPanelScan) => {
-      const known = panelReads.find((p) => signatureDifference(p.signature, scan.signature) < SAME_PANEL);
+      const known = panelReads.find(
+        (p) => signatureDifference(p.signature, scan.signature) < SAME_PANEL,
+      );
       if (known) return known.reading;
       const reading = readPanel(scan);
       panelReads.push({ signature: scan.signature, reading });
@@ -240,11 +217,23 @@ export async function scanVideo(
     signal.addEventListener("abort", notify, { once: true });
 
     const report = () => {
-      const analysed = analysisDone ? 1 : times.length > 1 ? analysedTo / times[times.length - 1] : 0;
+      const analysed = analysisDone
+        ? 1
+        : times.length > 1
+          ? analysedTo / times[times.length - 1]
+          : 0;
       // Until the analysis ends, extrapolate how many frames will be picked.
-      const expected = analysisDone ? picked : Math.max(picked, picked / Math.max(analysed, 0.05));
+      const expected = analysisDone
+        ? picked
+        : Math.max(picked, picked / Math.max(analysed, 0.05));
       const scanShare = expected > 0 ? completed / expected : 0;
-      fraction = Math.max(fraction, Math.min(0.99, ANALYSIS_SHARE * analysed + (1 - ANALYSIS_SHARE) * scanShare));
+      fraction = Math.max(
+        fraction,
+        Math.min(
+          0.99,
+          ANALYSIS_SHARE * analysed + (1 - ANALYSIS_SHARE) * scanShare,
+        ),
+      );
       onProgress?.({
         stage: "scanning",
         fraction,
@@ -258,7 +247,11 @@ export async function scanVideo(
       if (taken.has(index) || queue.includes(index)) return;
       queue.push(index);
       picked++;
-      onFrame?.({ id: index, time: picker.samples[index].time, status: "queued" });
+      onFrame?.({
+        id: index,
+        time: picker.samples[index].time,
+        status: "queued",
+      });
       notify();
     };
     const fail = (err: unknown) => {
@@ -332,11 +325,18 @@ export async function scanVideo(
       }
     };
 
-    const detect = async (client: MaterialScanClient, bitmap: ImageBitmap): Promise<ScanResult> => {
+    const detect = async (
+      client: MaterialScanClient,
+      bitmap: ImageBitmap,
+    ): Promise<ScanResult> => {
       const region = gridRegion;
       const settings = options.settings ?? {};
       if (region) {
-        const result = await client.scanFrame(bitmap, { ...settings, grid: { ...settings.grid, region } }, { signal });
+        const result = await client.scanFrame(
+          bitmap,
+          { ...settings, grid: { ...settings.grid, region } },
+          { signal },
+        );
         if (result.detection.grids.length > 0) return result;
         // Another screen, or the layout changed: look at the whole frame.
       }
@@ -345,7 +345,10 @@ export async function scanVideo(
       return result;
     };
 
-    const scanOne = async (client: MaterialScanClient, { index, time, bitmap }: GrabbedFrame) => {
+    const scanOne = async (
+      client: MaterialScanClient,
+      { index, time, bitmap }: GrabbedFrame,
+    ) => {
       const frame = frameNo++;
       try {
         // The worker gets its copy right away; the preview is encoded meanwhile.
@@ -359,16 +362,30 @@ export async function scanVideo(
           const scanned = await result;
           cards = scanned.recognition.cards;
           panel = scanned.panel ?? null;
-          if (scanned.recognition.mora && scanned.recognition.mora.value !== null) {
-            if (!moraRef.current || scanned.recognition.mora.confidence > moraRef.current.confidence) {
+          if (
+            scanned.recognition.mora &&
+            scanned.recognition.mora.value !== null
+          ) {
+            if (
+              !moraRef.current ||
+              scanned.recognition.mora.confidence > moraRef.current.confidence
+            ) {
               moraRef.current = scanned.recognition.mora;
-              moraCropPromise = cropToBlob(bitmap, scanned.recognition.mora.box, "image/webp").catch(() => null);
+              moraCropPromise = cropToBlob(
+                bitmap,
+                scanned.recognition.mora.box,
+                "image/webp",
+              ).catch(() => null);
             }
           }
         } catch (err) {
           if (signal.aborted) throw cancelled();
           // Without reference data no frame can be recognised.
-          if (isMaterialDetectionError(err) && err.code.startsWith("REFERENCES_")) throw err;
+          if (
+            isMaterialDetectionError(err) &&
+            err.code.startsWith("REFERENCES_")
+          )
+            throw err;
           failedFrames++;
           coverage.push({ time, materials: new Set() });
           onFrame?.({ id: index, time, status: "failed" });
@@ -396,10 +413,18 @@ export async function scanVideo(
           try {
             const reading = await panelReading(panel);
             if (reading) {
-              const targetKind: EquipmentKind = reading.kind === "weapon" ? "weapon" : "artifact";
-              const attached = attachPanel(rows[targetKind], reading, panel.highlights, index, panelArtBox(panel.bounds));
+              const targetKind: EquipmentKind =
+                reading.kind === "weapon" ? "weapon" : "artifact";
+              const attached = attachPanel(
+                rows[targetKind],
+                reading,
+                panel.highlights,
+                index,
+                panelArtBox(panel.bounds),
+              );
               rows[targetKind] = attached.rows;
-              if (attached.standalone) panelOnly.push({ time, sighting: attached.standalone });
+              if (attached.standalone)
+                panelOnly.push({ time, sighting: attached.standalone });
             }
           } catch (err) {
             if (signal.aborted) throw cancelled();
@@ -407,7 +432,8 @@ export async function scanVideo(
             panelFailure = err;
           }
         }
-        if (EQUIPMENT_KINDS.some((k) => rows[k].length > 0)) equipmentFrames.push({ time, rows });
+        if (EQUIPMENT_KINDS.some((k) => rows[k].length > 0))
+          equipmentFrames.push({ time, rows });
         // Coverage by what the frame shows: materials by id, equipment by item and level
         // (neighbouring frames that share none of these may have skipped rows).
         coverage.push({
@@ -415,10 +441,19 @@ export async function scanVideo(
           materials: new Set(
             cards
               .filter((c) => c.status === "matched" && c.material)
-              .map((c) => (c.kind === "material" ? c.material!.id : `${c.kind}:${c.material!.id}:${c.level?.value ?? "?"}`)),
+              .map((c) =>
+                c.kind === "material"
+                  ? c.material!.id
+                  : `${c.kind}:${c.material!.id}:${c.level?.value ?? "?"}`,
+              ),
           ),
         });
-        onFrame?.({ id: index, time, status: "done", cards: cards.map((c) => ({ box: c.box, status: c.status })) });
+        onFrame?.({
+          id: index,
+          time,
+          status: "done",
+          cards: cards.map((c) => ({ box: c.box, status: c.status })),
+        });
       } finally {
         bitmap.close();
       }
@@ -464,7 +499,13 @@ export async function scanVideo(
       ...m,
       crop: crops.get(sightingKey(m.materialId, m.quantity)) ?? null,
     }));
-    const equipment = await stitchEquipment(equipmentFrames, panelOnly, reader, picker.samples, signal);
+    const equipment = await stitchEquipment(
+      equipmentFrames,
+      panelOnly,
+      reader,
+      picker.samples,
+      signal,
+    );
     onProgress?.({
       stage: "scanning",
       fraction: 1,
@@ -511,7 +552,10 @@ export async function scanVideo(
  * cards (crops of every card of every frame would be thousands).
  */
 async function stitchEquipment(
-  frames: { time: number; rows: Record<EquipmentKind, EquipmentSighting[][]> }[],
+  frames: {
+    time: number;
+    rows: Record<EquipmentKind, EquipmentSighting[][]>;
+  }[],
   panelOnly: { time: number; sighting: EquipmentSighting }[],
   reader: VideoFrameSource,
   samples: readonly { time: number }[],
@@ -526,7 +570,9 @@ async function stitchEquipment(
     if (kind === "character") {
       cards.push(...uniqueByItem(stitched));
     } else if (kind === "artifact") {
-      const alone = [...panelOnly].sort((a, b) => a.time - b.time).map((p) => p.sighting);
+      const alone = [...panelOnly]
+        .sort((a, b) => a.time - b.time)
+        .map((p) => p.sighting);
       cards.push(...stitched, ...uniquePanels(alone, stitched));
     } else {
       cards.push(...stitched);
@@ -534,25 +580,38 @@ async function stitchEquipment(
   }
   const crops = new Map<EquipmentSighting, Blob | null>();
   const bySource = new Map<number, EquipmentSighting[]>();
-  for (const c of cards) bySource.set(c.source, [...(bySource.get(c.source) ?? []), c]);
+  for (const c of cards)
+    bySource.set(c.source, [...(bySource.get(c.source) ?? []), c]);
   for (const [source, list] of bySource) {
     if (signal.aborted) throw cancelled();
     await reader.seek(samples[source].time, signal);
     const bitmap = await reader.frame();
     try {
-      for (const c of list) crops.set(c, await cropToBlob(bitmap, c.card.box, "image/webp").catch(() => null));
+      for (const c of list)
+        crops.set(
+          c,
+          await cropToBlob(bitmap, c.card.box, "image/webp").catch(() => null),
+        );
     } finally {
       bitmap.close();
     }
   }
-  return cards.map((c) => ({ ...c, time: samples[c.source].time, crop: crops.get(c) ?? null }));
+  return cards.map((c) => ({
+    ...c,
+    time: samples[c.source].time,
+    crop: crops.get(c) ?? null,
+  }));
 }
 
 /**
  * The full-height band of columns holding the detected grids, with half a
  * card of margin, or null when the frame shows no clear grid.
  */
-export function lockRegion(grids: readonly DetectedGrid[], width: number, height: number): PixelRect | null {
+export function lockRegion(
+  grids: readonly DetectedGrid[],
+  width: number,
+  height: number,
+): PixelRect | null {
   const cards = grids.reduce((n, g) => n + g.cards.length, 0);
   if (cards < MIN_LOCK_CARDS) return null;
   let x0 = Infinity;

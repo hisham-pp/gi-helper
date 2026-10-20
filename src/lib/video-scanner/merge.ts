@@ -6,45 +6,20 @@
  * a frame where a touch marker or compression smeared the digits is outvoted
  * by the clean ones. Frames that clearly disagree are flagged for review.
  */
-import type { CardRecognition, CardRecognitionStatus, MaterialCandidate, Rarity } from "../material-detector/types";
+import type {
+  CardRecognition,
+  CardRecognitionStatus,
+} from "../material-detector/types";
+import { CONFLICT_VOTE_SHARE } from "./constants/video.constants";
+import type { MergedMaterial, Sighting } from "./types/merge.types";
 
-/** One card of one scanned frame. */
-export interface Sighting {
-  /** Index of the scanned frame (in scan order). */
-  frame: number;
-  /** Frame time (s). */
-  time: number;
-  card: CardRecognition;
-}
+export type { MergedMaterial, Sighting };
 
-export interface MergedMaterial {
-  materialId: string;
-  name: string;
-  rarity: Rarity;
-  /** Voted quantity; null when no frame could read it. */
-  quantity: number | null;
-  /** Best status over all sightings. */
-  status: CardRecognitionStatus;
-  /** Highest overall confidence over all sightings (0–1). */
-  confidence: number;
-  /** Quantity confidence of the best sighting that agrees with the vote (0–1). */
-  quantityConfidence: number;
-  /** Frames that showed this material. */
-  sightings: number;
-  /** Sightings whose quantity agrees with `quantity`. */
-  agreeing: number;
-  /** A clearly different quantity was read in other frames. */
-  quantityConflict: boolean;
-  /** Time (s) the material was first seen. */
-  firstSeen: number;
-  /** The clearest sighting that agrees with the vote (for the crop and the candidates). */
-  best: Sighting;
-  candidates: MaterialCandidate[];
-}
-
-/** Share of the vote a runner-up quantity needs to flag a conflict. */
-const CONFLICT_SHARE = 0.34;
-const STATUS_RANK: Record<CardRecognitionStatus, number> = { unknown: 0, uncertain: 1, matched: 2 };
+const STATUS_RANK: Record<CardRecognitionStatus, number> = {
+  unknown: 0,
+  uncertain: 1,
+  matched: 2,
+};
 
 interface ValueVote {
   weight: number;
@@ -61,14 +36,21 @@ interface MaterialVotes {
 }
 
 /** Key of one (material, quantity) pair; each keeps its own clearest sighting. */
-export function sightingKey(materialId: string, quantity: number | null): string {
+export function sightingKey(
+  materialId: string,
+  quantity: number | null,
+): string {
   return `${materialId}|${quantity ?? "?"}`;
 }
 
 /** Weight of a sighting's quantity vote: recognised and legible counts most. */
 function voteWeight(card: CardRecognition): number {
   const statusFactor = card.status === "matched" ? 1 : 0.4;
-  return statusFactor * Math.max(0.05, card.confidence) * Math.max(0.05, card.quantity.confidence);
+  return (
+    statusFactor *
+    Math.max(0.05, card.confidence) *
+    Math.max(0.05, card.quantity.confidence)
+  );
 }
 
 export class SightingMerger {
@@ -79,31 +61,47 @@ export class SightingMerger {
    * clearest one for their (material, quantity) pair, so the caller can crop
    * them from the frame while it still has it.
    */
-  add(frame: number, time: number, cards: readonly CardRecognition[]): Sighting[] {
+  add(
+    frame: number,
+    time: number,
+    cards: readonly CardRecognition[],
+  ): Sighting[] {
     const improved: Sighting[] = [];
     // A frame shows each card once; if it reports a material twice, keep the clearer card.
     const perFrame = new Map<string, CardRecognition>();
     for (const card of cards) {
       if ((card.kind && card.kind !== "material") || !card.material) continue;
       const prev = perFrame.get(card.material.id);
-      if (!prev || card.confidence > prev.confidence) perFrame.set(card.material.id, card);
+      if (!prev || card.confidence > prev.confidence)
+        perFrame.set(card.material.id, card);
     }
     for (const [id, card] of perFrame) {
       const sighting: Sighting = { frame, time, card };
       let votes = this.byMaterial.get(id);
       if (!votes) {
-        votes = { values: new Map(), sightings: 0, status: card.status, confidence: 0, firstSeen: time };
+        votes = {
+          values: new Map(),
+          sightings: 0,
+          status: card.status,
+          confidence: 0,
+          firstSeen: time,
+        };
         this.byMaterial.set(id, votes);
       }
       votes.sightings++;
       votes.confidence = Math.max(votes.confidence, card.confidence);
-      if (STATUS_RANK[card.status] > STATUS_RANK[votes.status]) votes.status = card.status;
+      if (STATUS_RANK[card.status] > STATUS_RANK[votes.status])
+        votes.status = card.status;
       votes.firstSeen = Math.min(votes.firstSeen, time);
 
       const value = card.quantity.value;
       const vote = votes.values.get(value);
       if (!vote) {
-        votes.values.set(value, { weight: voteWeight(card), count: 1, best: sighting });
+        votes.values.set(value, {
+          weight: voteWeight(card),
+          count: 1,
+          best: sighting,
+        });
         improved.push(sighting);
       } else {
         vote.weight += voteWeight(card);
@@ -143,16 +141,21 @@ export class SightingMerger {
         quantityConfidence: card.quantity.confidence,
         sightings: votes.sightings,
         agreeing: top.count,
-        quantityConflict: total > 0 && runnerUp / total >= CONFLICT_SHARE,
+        quantityConflict: total > 0 && runnerUp / total >= CONFLICT_VOTE_SHARE,
         firstSeen: votes.firstSeen,
         best: top.best,
         candidates: card.candidates,
       });
     }
-    return merged.sort((a, b) => a.firstSeen - b.firstSeen || orderInFrame(a.best, b.best));
+    return merged.sort(
+      (a, b) => a.firstSeen - b.firstSeen || orderInFrame(a.best, b.best),
+    );
   }
 }
 
 function orderInFrame(a: Sighting, b: Sighting): number {
-  return (a.card.row ?? 0) - (b.card.row ?? 0) || (a.card.column ?? 0) - (b.card.column ?? 0);
+  return (
+    (a.card.row ?? 0) - (b.card.row ?? 0) ||
+    (a.card.column ?? 0) - (b.card.column ?? 0)
+  );
 }

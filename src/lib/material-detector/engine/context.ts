@@ -30,7 +30,10 @@ export interface SequenceOptions {
  * Returns, per card, the index of the chosen candidate. Cards with no
  * candidates (unrecognised) break the chain.
  */
-export function decodeInventoryOrder(cards: SequenceCandidate[][], options: SequenceOptions): number[] {
+export function decodeInventoryOrder(
+  cards: SequenceCandidate[][],
+  options: SequenceOptions,
+): number[] {
   const choice = cards.map(() => 0);
   let start = 0;
   while (start < cards.length) {
