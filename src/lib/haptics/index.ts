@@ -20,6 +20,10 @@ import { useCallback, useMemo } from "react";
 export const HAPTIC_PATTERNS = {
   /** Ultra-crisp tap (12ms) ideal for tabs, switches, segmented controls, and chips. */
   selection: 12,
+  /** Fast micro-tick (8ms) specifically tuned for continuous dragging across tab bars & sliders. */
+  dragTick: 8,
+  /** Tactile snap confirmation [10ms, 30ms, 12ms] when landing on a dragged tab. */
+  dragSnap: [10, 30, 12],
   /** Light pulse (15ms) for general button clicks and selection states. */
   light: 15,
   /** Medium pulse (25ms) for primary actions, confirmations, and modal transitions. */
@@ -300,6 +304,20 @@ export class HapticFeedbackService {
   }
 
   /**
+   * Ultra-crisp micro-tick (8ms) for dragging across tabs, segmented controls, or sliders.
+   */
+  dragTick(options?: HapticFeedbackOptions): boolean {
+    return this.trigger("dragTick", options);
+  }
+
+  /**
+   * Tactile snap confirmation [10ms, 30ms, 12ms] when landing on a selected dragged tab.
+   */
+  dragSnap(options?: HapticFeedbackOptions): boolean {
+    return this.trigger("dragSnap", options);
+  }
+
+  /**
    * Light tactile tap (15ms).
    */
   light(options?: HapticFeedbackOptions): boolean {
@@ -391,6 +409,20 @@ export function useHapticFeedback(defaultOptions?: HapticFeedbackOptions) {
     [defaultOptions],
   );
 
+  const dragTick = useCallback(
+    (options?: HapticFeedbackOptions) => {
+      return hapticFeedback.dragTick({ ...defaultOptions, ...options });
+    },
+    [defaultOptions],
+  );
+
+  const dragSnap = useCallback(
+    (options?: HapticFeedbackOptions) => {
+      return hapticFeedback.dragSnap({ ...defaultOptions, ...options });
+    },
+    [defaultOptions],
+  );
+
   const light = useCallback(
     (options?: HapticFeedbackOptions) => {
       return hapticFeedback.light({ ...defaultOptions, ...options });
@@ -441,6 +473,8 @@ export function useHapticFeedback(defaultOptions?: HapticFeedbackOptions) {
     () => ({
       trigger,
       selection,
+      dragTick,
+      dragSnap,
       light,
       medium,
       heavy,
@@ -452,6 +486,6 @@ export function useHapticFeedback(defaultOptions?: HapticFeedbackOptions) {
       isPwa,
       isTouchDevice,
     }),
-    [trigger, selection, light, medium, heavy, success, warning, error, cancel],
+    [trigger, selection, dragTick, dragSnap, light, medium, heavy, success, warning, error, cancel],
   );
 }

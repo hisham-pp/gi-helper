@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { usePrefersReducedMotion } from "@/lib/hooks";
 import { haptics } from "@/lib/haptics";
 
@@ -31,16 +31,26 @@ export function ScannerTabs({
   onTabChange,
   ariaLabel = "Scanner modes",
 }: ScannerTabsProps) {
+  const trackRef = useRef<HTMLDivElement>(null);
   const tabButtonRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const indicatorRef = useRef<HTMLDivElement>(null);
   const prevIndexRef = useRef(activeIndex);
+  const [dragIndex, setDragIndex] = useState<number | null>(null);
+  const [isDragging, setIsDragging] = useState(false);
   const reducedMotion = usePrefersReducedMotion();
+
+  const touchStartRef = useRef<{ x: number; y: number; time: number } | null>(null);
+  const hasDraggedRef = useRef(false);
+  const currentDragIndexRef = useRef<number | null>(null);
+  const isCancelledRef = useRef(false);
+
+  const displayIndex = dragIndex !== null ? dragIndex : activeIndex;
 
   // The thumb stretches while it travels, then settles back like a soft lens.
   useEffect(() => {
     const prevIndex = prevIndexRef.current;
     prevIndexRef.current = activeIndex;
-    if (prevIndex === activeIndex || reducedMotion) return;
+    if (prevIndex === activeIndex || reducedMotion || isDragging) return;
 
     indicatorRef.current?.animate(
       [
@@ -51,7 +61,7 @@ export function ScannerTabs({
       ],
       { duration: 520, easing: "ease-out" },
     );
-  }, [activeIndex, reducedMotion]);
+  }, [activeIndex, reducedMotion, isDragging]);
 
   const handleKeyDown = (event: React.KeyboardEvent, index: number) => {
     let nextIndex = index;
@@ -79,10 +89,143 @@ export function ScannerTabs({
     tabButtonRefs.current[nextIndex]?.focus();
   };
 
+  // --- Drag over tabs gesture handling ---
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (e.touches.length !== 1) return;
+    const touch = e.touches[0];
+    const rect = trackRef.current?.getBoundingClientRect();
+    if (!rect) return;
+
+    touchStartRef.current = {
+      x: touch.clientX,
+      y: touch.clientY,
+      time: Date.now(),
+    };
+    hasDraggedRef.current = false;
+    isCancelledRef.current = false;
+    currentDragIndexRef.current = activeIndex;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (!touchStartRef.current || e.touches.length !== 1) return;
+    const touch = e.touches[0];
+    const rect = trackRef.current?.getBoundingClientRect();
+    if (!rect) return;
+
+    const dx = touch.clientX - touchStartRef.current.x;
+    const dy = touch.clientY - touchStartRef.current.y;
+
+    if (!hasDraggedRef.current) {
+      if (Math.abs(dx) > 6 && Math.abs(dx) > Math.abs(dy)) {
+        hasDraggedRef.current = true;
+        setIsDragging(true);
+      } else if (Math.abs(dy) > 12) {
+        return;
+      }
+    }
+
+    if (!hasDraggedRef.current) return;
+
+    const isOutOfBounds =
+      touch.clientY < rect.top - 60 || touch.clientY > rect.bottom + 50;
+
+    if (isOutOfBounds) {
+      if (!isCancelledRef.current) {
+        isCancelledRef.current = true;
+        setDragIndex(null);
+        currentDragIndexRef.current = activeIndex;
+        if (indicatorRef.current) {
+          indicatorRef.current.style.transform = "";
+        }
+        haptics.dragTick();
+      }
+      return;
+    }
+
+    if (isCancelledRef.current) {
+      isCancelledRef.current = false;
+    }
+
+    const padding = 6; // p-1.5 = 6px
+    const innerWidth = rect.width - 2 * padding;
+    const gap = 4;
+    const tabCount = tabs.length;
+    const tabWidth = (innerWidth - (tabCount - 1) * gap) / tabCount;
+    const step = tabWidth + gap;
+
+    const relX = touch.clientX - rect.left - padding;
+    const targetThumbLeft = relX - tabWidth / 2;
+    const maxLeft = (tabCount - 1) * step;
+    const clampedThumbLeft = Math.max(0, Math.min(targetThumbLeft, maxLeft));
+
+    if (indicatorRef.current && !reducedMotion) {
+      indicatorRef.current.style.transform = `translateX(${clampedThumbLeft}px) scale(1.05, 0.94)`;
+    }
+
+    const clampedRelX = Math.max(0, Math.min(relX, innerWidth));
+    const newIndex = Math.min(
+      Math.floor(clampedRelX / (innerWidth / tabCount)),
+      tabCount - 1,
+    );
+
+    if (newIndex !== currentDragIndexRef.current) {
+      currentDragIndexRef.current = newIndex;
+      setDragIndex(newIndex);
+      haptics.dragTick();
+    }
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (!touchStartRef.current) return;
+
+    const hadDragged = hasDraggedRef.current;
+    const wasCancelled = isCancelledRef.current;
+    const targetIndex = currentDragIndexRef.current;
+
+    touchStartRef.current = null;
+    hasDraggedRef.current = false;
+    isCancelledRef.current = false;
+
+    if (indicatorRef.current) {
+      indicatorRef.current.style.transform = "";
+    }
+    setIsDragging(false);
+    setDragIndex(null);
+
+    if (hadDragged) {
+      e.preventDefault();
+
+      if (!wasCancelled && targetIndex !== null && targetIndex >= 0) {
+        if (targetIndex !== activeIndex) {
+          haptics.dragSnap();
+          onTabChange(targetIndex);
+        } else {
+          haptics.selection();
+        }
+      }
+    }
+  };
+
+  const handleTouchCancel = () => {
+    touchStartRef.current = null;
+    hasDraggedRef.current = false;
+    isCancelledRef.current = false;
+    if (indicatorRef.current) {
+      indicatorRef.current.style.transform = "";
+    }
+    setIsDragging(false);
+    setDragIndex(null);
+  };
+
   return (
     <div className="flex w-full justify-center">
       <div
-        className={`glass-track flex w-full items-center gap-1 p-1.5 ${tabs.length > 2 ? "max-w-[520px]" : "max-w-[420px]"}`}
+        ref={trackRef}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+        onTouchCancel={handleTouchCancel}
+        className={`glass-track flex w-full items-center gap-1 p-1.5 touch-none ${tabs.length > 2 ? "max-w-[520px]" : "max-w-[420px]"}`}
         role="tablist"
         aria-label={ariaLabel}
         data-active={activeIndex}
@@ -90,18 +233,21 @@ export function ScannerTabs({
         {/* Raised Glass Thumb Indicator */}
         <div
           ref={indicatorRef}
-          className="glass-thumb"
+          className="glass-thumb pointer-events-none"
           style={{
             // Track padding is 6px per side and buttons are 4px apart (gap-1).
             width: `calc((100% - 12px - ${(tabs.length - 1) * 4}px) / ${tabs.length})`,
-            transform: `translateX(calc(${activeIndex} * (100% + 4px)))`,
+            transform: `translateX(calc(${displayIndex} * (100% + 4px)))`,
+            transition: isDragging
+              ? "none"
+              : "transform 360ms cubic-bezier(0.16, 1, 0.3, 1), opacity 200ms ease",
           }}
           aria-hidden="true"
         />
 
         {/* Tab Buttons */}
         {tabs.map((tab, index) => {
-          const isActive = index === activeIndex;
+          const isActive = index === displayIndex;
 
           return (
             <button
@@ -115,7 +261,11 @@ export function ScannerTabs({
               aria-controls={tab.panelId}
               tabIndex={isActive ? 0 : -1}
               data-index={index}
-              onClick={() => {
+              onClick={(e) => {
+                if (hasDraggedRef.current) {
+                  e.preventDefault();
+                  return;
+                }
                 if (index !== activeIndex) {
                   haptics.selection();
                 }
@@ -149,3 +299,4 @@ export function ScannerTabs({
     </div>
   );
 }
+

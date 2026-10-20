@@ -1,0 +1,19 @@
+{
+  "title": "iOS-Style Drag Over Tabs Gesture & Enhanced Haptic Detents",
+  "date": "2026-10-20",
+  "summary": "Adds native iOS-style smooth touch drag-over gestures across tabs on mobile devices with live thumb tracking and crisp tactile detent feedback on tab transitions.",
+  "changes": [
+    {
+      "type": "new",
+      "text": "iOS-Style Drag-to-Switch Gesture: touch down and drag smoothly across the mobile bottom navigation dock to preview and switch destinations in real time with continuous thumb tracking and elastic snap physics."
+    },
+    {
+      "type": "improved",
+      "text": "Tactile Detent Haptic Feedback: added ultra-crisp micro-ticks (dragTick) when crossing tab boundaries and a satisfying double-pulse snap confirmation (dragSnap) on touch release."
+    },
+    {
+      "type": "improved",
+      "text": "Segmented Tab Dragging: brought the same fluid drag-over tab selection to the scanner mode segmented controls (ScannerTabs) on touch screens."
+    }
+  ]
+}
