@@ -37,7 +37,6 @@ export function MobileBottomNav() {
   const router = useRouter();
   const [gearSpinning, setGearSpinning] = useState(false);
   const [dragIndex, setDragIndex] = useState<number | null>(null);
-  const [isDragging, setIsDragging] = useState(false);
   const [optimisticIndex, setOptimisticIndex] = useState<number | null>(null);
   const reducedMotion = usePrefersReducedMotion();
 
@@ -53,13 +52,13 @@ export function MobileBottomNav() {
   const prevIndexRef = useRef(activeIndex);
 
   // References to track touch gesture without React re-render lag
+  const isDraggingRef = useRef(false);
   const touchStartRef = useRef<{ x: number; y: number; time: number } | null>(null);
   const hasDraggedRef = useRef(false);
   const currentDragIndexRef = useRef<number | null>(null);
   const currentThumbLeftRef = useRef(0);
   const justDraggedRef = useRef(false);
   const lastDragTimeRef = useRef(0);
-  const cleanUpTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Synchronize optimistic index once real route navigation catches up
   useEffect(() => {
@@ -76,9 +75,9 @@ export function MobileBottomNav() {
         ? optimisticIndex
         : activeIndex;
 
-  // Follow the active/optimistic tab when NOT actively dragging (avoids React style prop clobbering)
+  // Follow the active/optimistic tab when NOT actively dragging
   useLayoutEffect(() => {
-    if (isDragging) return;
+    if (isDraggingRef.current) return;
     const targetX = `calc(${Math.max(displayIndex, 0)} * (100% + ${GAP}px))`;
     if (thumbRef.current) {
       thumbRef.current.style.transition = reducedMotion
@@ -86,7 +85,22 @@ export function MobileBottomNav() {
         : "transform 360ms cubic-bezier(0.16, 1, 0.3, 1), opacity 200ms ease";
       thumbRef.current.style.transform = `translateX(${targetX})`;
     }
-  }, [displayIndex, isDragging, reducedMotion]);
+  }, [displayIndex, reducedMotion]);
+
+  // Non-passive native touch listener on dock to prevent browser cancel gestures
+  useEffect(() => {
+    const el = dockRef.current;
+    if (!el) return;
+
+    const onNativeTouchMove = (e: TouchEvent) => {
+      if (isDraggingRef.current && e.cancelable) {
+        e.preventDefault();
+      }
+    };
+
+    el.addEventListener("touchmove", onNativeTouchMove, { passive: false });
+    return () => el.removeEventListener("touchmove", onNativeTouchMove);
+  }, []);
 
   // Smooth squash-and-stretch sliding animation when route changes via tap
   useEffect(() => {
@@ -96,7 +110,7 @@ export function MobileBottomNav() {
       justDraggedRef.current = false;
       return;
     }
-    if (prevIndex === activeIndex || activeIndex < 0 || reducedMotion || isDragging) return;
+    if (prevIndex === activeIndex || activeIndex < 0 || reducedMotion || isDraggingRef.current) return;
 
     thumbRef.current?.animate(
       [
@@ -107,12 +121,48 @@ export function MobileBottomNav() {
       ],
       { duration: 480, easing: "cubic-bezier(0.16, 1, 0.3, 1)" },
     );
-  }, [activeIndex, reducedMotion, isDragging]);
+  }, [activeIndex, reducedMotion]);
 
   const handleSettingsClick = () => {
     triggerHaptic("selection");
     setGearSpinning(true);
     setTimeout(() => setGearSpinning(false), 600);
+  };
+
+  const commitTabSelection = (targetIndex: number) => {
+    const finalIndex = Math.max(0, Math.min(targetIndex, TOTAL_ITEMS - 1));
+    isDraggingRef.current = false;
+    hasDraggedRef.current = false;
+    lastDragTimeRef.current = Date.now();
+    justDraggedRef.current = true;
+
+    setOptimisticIndex(finalIndex);
+    setDragIndex(null);
+
+    // Smoothly spring indicator into the target tab slot
+    if (thumbRef.current && !reducedMotion) {
+      const targetX = `calc(${finalIndex} * (100% + ${GAP}px))`;
+      thumbRef.current.style.transition = "transform 320ms cubic-bezier(0.2, 0.9, 0.3, 1)";
+      thumbRef.current.style.transform = `translateX(${targetX}) scale(1, 1)`;
+    }
+
+    const item = MOBILE_NAV_ITEMS[finalIndex];
+    const isSettings = item.label === "Settings";
+
+    if (finalIndex !== activeIndex) {
+      triggerHaptic("dragSnap");
+      if (isSettings) {
+        handleSettingsClick();
+        router.push("/settings");
+      } else {
+        router.push(item.href);
+      }
+    } else {
+      triggerHaptic("selection");
+      if (isSettings) {
+        handleSettingsClick();
+      }
+    }
   };
 
   // --- Drag over tabs gesture handling ---
@@ -122,17 +172,13 @@ export function MobileBottomNav() {
     const rect = dockRef.current?.getBoundingClientRect();
     if (!rect) return;
 
-    if (cleanUpTimerRef.current) {
-      clearTimeout(cleanUpTimerRef.current);
-      cleanUpTimerRef.current = null;
-    }
-
     touchStartRef.current = {
       x: touch.clientX,
       y: touch.clientY,
       time: Date.now(),
     };
     hasDraggedRef.current = false;
+    isDraggingRef.current = false;
 
     const dockPadding = 4;
     const innerWidth = rect.width - 2 * dockPadding;
@@ -165,11 +211,11 @@ export function MobileBottomNav() {
 
     const dx = touch.clientX - touchStartRef.current.x;
 
-    // Detect horizontal drag intent (threshold of 5px)
+    // Detect horizontal drag intent (threshold of 4px)
     if (!hasDraggedRef.current) {
-      if (Math.abs(dx) > 5) {
+      if (Math.abs(dx) > 4) {
         hasDraggedRef.current = true;
-        setIsDragging(true);
+        isDraggingRef.current = true;
       } else {
         return;
       }
@@ -213,102 +259,30 @@ export function MobileBottomNav() {
     const targetIndex = currentDragIndexRef.current;
 
     touchStartRef.current = null;
-    hasDraggedRef.current = false;
 
-    if (hadDragged) {
+    if (hadDragged && targetIndex !== null && targetIndex >= 0) {
       e.preventDefault();
-      lastDragTimeRef.current = Date.now();
-      justDraggedRef.current = true;
-
-      const rect = dockRef.current?.getBoundingClientRect();
-      const dockPadding = 4;
-      const innerWidth = (rect?.width ?? 320) - 2 * dockPadding;
-      const colWidth = (innerWidth - (TOTAL_ITEMS - 1) * GAP) / TOTAL_ITEMS;
-      const step = colWidth + GAP;
-
-      const finalIndex =
-        targetIndex !== null && targetIndex >= 0
-          ? targetIndex
-          : activeIndex >= 0
-            ? activeIndex
-            : 0;
-      const targetLeft = Math.max(0, finalIndex * step);
-
-      // Lock optimistic index to target tab so it never snaps backwards during Next.js routing
-      setOptimisticIndex(finalIndex);
-      setIsDragging(false);
-      setDragIndex(null);
-
-      // Smoothly spring from exact current touch release position into target slot
-      if (thumbRef.current && !reducedMotion) {
-        thumbRef.current.style.transition = "transform 320ms cubic-bezier(0.2, 0.9, 0.3, 1)";
-        thumbRef.current.style.transform = `translateX(${targetLeft}px) scale(1, 1)`;
-
-        cleanUpTimerRef.current = setTimeout(() => {
-          if (thumbRef.current) {
-            thumbRef.current.style.transition = "";
-            thumbRef.current.style.transform = "";
-          }
-        }, 340);
-      }
-
-      if (targetIndex !== null && targetIndex >= 0) {
-        const item = MOBILE_NAV_ITEMS[targetIndex];
-        const isSettings = item.label === "Settings";
-
-        if (targetIndex !== activeIndex) {
-          triggerHaptic("dragSnap");
-          if (isSettings) {
-            handleSettingsClick();
-            router.push("/settings");
-          } else {
-            router.push(item.href);
-          }
-        } else {
-          // Confirms release on active item
-          triggerHaptic("selection");
-          if (isSettings) {
-            handleSettingsClick();
-          }
-        }
-      }
+      commitTabSelection(targetIndex);
     } else {
-      if (thumbRef.current) {
-        thumbRef.current.style.transition = "";
-        thumbRef.current.style.transform = "";
-      }
-      setIsDragging(false);
+      isDraggingRef.current = false;
+      hasDraggedRef.current = false;
       setDragIndex(null);
     }
   };
 
   const handleTouchCancel = () => {
-    if (hasDraggedRef.current && thumbRef.current && !reducedMotion) {
-      const rect = dockRef.current?.getBoundingClientRect();
-      const dockPadding = 4;
-      const innerWidth = (rect?.width ?? 320) - 2 * dockPadding;
-      const colWidth = (innerWidth - (TOTAL_ITEMS - 1) * GAP) / TOTAL_ITEMS;
-      const step = colWidth + GAP;
-      const targetLeft = Math.max(0, activeIndex * step);
-
-      thumbRef.current.style.transition = "transform 260ms cubic-bezier(0.2, 0.9, 0.3, 1)";
-      thumbRef.current.style.transform = `translateX(${targetLeft}px) scale(1, 1)`;
-
-      cleanUpTimerRef.current = setTimeout(() => {
-        if (thumbRef.current) {
-          thumbRef.current.style.transition = "";
-          thumbRef.current.style.transform = "";
-        }
-      }, 280);
-    } else if (thumbRef.current) {
-      thumbRef.current.style.transition = "";
-      thumbRef.current.style.transform = "";
-    }
+    const hadDragged = hasDraggedRef.current;
+    const targetIndex = currentDragIndexRef.current;
 
     touchStartRef.current = null;
-    hasDraggedRef.current = false;
-    setIsDragging(false);
-    setDragIndex(null);
+
+    if (hadDragged && targetIndex !== null && targetIndex >= 0) {
+      commitTabSelection(targetIndex);
+    } else {
+      isDraggingRef.current = false;
+      hasDraggedRef.current = false;
+      setDragIndex(null);
+    }
   };
 
   return (
@@ -365,7 +339,7 @@ export function MobileBottomNav() {
                   aria-current={index === activeIndex ? "page" : undefined}
                   onClick={(e) => {
                     // Suppress click if it was dispatched right after a touch drag gesture
-                    if (Date.now() - lastDragTimeRef.current < 500) {
+                    if (Date.now() - lastDragTimeRef.current < 650) {
                       e.preventDefault();
                       e.stopPropagation();
                       return;
