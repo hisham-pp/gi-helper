@@ -1,0 +1,11 @@
+{
+  "title": "Taller Mobile Navigation",
+  "date": "2026-10-21",
+  "summary": "Increased the mobile bottom navigation dock height for easier tapping.",
+  "changes": [
+    {
+      "type": "improved",
+      "text": "Mobile Navigation: increased the height of the bottom dock buttons to provide larger touch targets."
+    }
+  ]
+}

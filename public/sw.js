@@ -10,7 +10,7 @@
  * - Web Share Target: receiving shared screenshot images directly into the scanner
  */
 
-const VERSION = "v0.0.45";
+const VERSION = "v0.0.46";
 const CACHE_STATIC = `gi-helper-static-${VERSION}`;
 const CACHE_DATA = `gi-helper-data-${VERSION}`;
 const CACHE_OCR = `gi-helper-ocr-${VERSION}`;
