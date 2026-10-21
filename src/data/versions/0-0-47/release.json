@@ -1,0 +1,23 @@
+{
+  "title": "Mobile Layout Improvements",
+  "date": "2026-10-21",
+  "summary": "Made the mobile home screen more compact and consistent, with clearer navigation.",
+  "changes": [
+    {
+      "type": "improved",
+      "text": "Mobile Home Layout: reduced excess spacing and adjusted the scanner upload area to use the available screen height."
+    },
+    {
+      "type": "improved",
+      "text": "Consistent Scanner Panels: Scanner, Video, and AI Vision upload panels now share the same height on mobile."
+    },
+    {
+      "type": "improved",
+      "text": "Mobile Navigation Styling: enlarged the dock icons, assigned each tab a distinct color, and added a matching active-button glow."
+    },
+    {
+      "type": "improved",
+      "text": "Simplified Mobile Footer: hid the fan-project disclaimer on mobile screens."
+    }
+  ]
+}

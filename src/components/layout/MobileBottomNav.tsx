@@ -13,14 +13,48 @@ interface MobileNavItem {
   href: Route;
   label: string;
   icon: React.ComponentType<{ className?: string }>;
+  iconColor: string;
+  activeIconColor: string;
+  activeButtonGlow: string;
   match?: string[];
 }
 
 const MOBILE_NAV_ITEMS: MobileNavItem[] = [
-  { href: "/", label: "Home", icon: House },
-  { href: "/inventory/materials", label: "Inventory", icon: Backpack, match: ["/inventory"] },
-  { href: "/db/materials", label: "Database", icon: Library, match: ["/db"] },
-  { href: "/more" as Route, label: "More", icon: Ellipsis, match: ["/more", "/settings", "/about", "/feedback", "/versions"] },
+  {
+    href: "/",
+    label: "Home",
+    icon: House,
+    iconColor: "text-emerald-300/70",
+    activeIconColor: "text-emerald-300 drop-shadow-[0_0_8px_rgba(110,231,183,0.55)]",
+    activeButtonGlow: "bg-emerald-400/10 shadow-[0_0_18px_rgba(110,231,183,0.24)]",
+  },
+  {
+    href: "/inventory/materials",
+    label: "Inventory",
+    icon: Backpack,
+    iconColor: "text-amber-300/70",
+    activeIconColor: "text-amber-300 drop-shadow-[0_0_8px_rgba(252,211,77,0.55)]",
+    activeButtonGlow: "bg-amber-400/10 shadow-[0_0_18px_rgba(252,211,77,0.24)]",
+    match: ["/inventory"],
+  },
+  {
+    href: "/db/materials",
+    label: "Database",
+    icon: Library,
+    iconColor: "text-sky-300/70",
+    activeIconColor: "text-sky-300 drop-shadow-[0_0_8px_rgba(125,211,252,0.55)]",
+    activeButtonGlow: "bg-sky-400/10 shadow-[0_0_18px_rgba(125,211,252,0.24)]",
+    match: ["/db"],
+  },
+  {
+    href: "/more" as Route,
+    label: "More",
+    icon: Ellipsis,
+    iconColor: "text-violet-300/70",
+    activeIconColor: "text-violet-300 drop-shadow-[0_0_8px_rgba(196,181,253,0.55)]",
+    activeButtonGlow: "bg-violet-400/10 shadow-[0_0_18px_rgba(196,181,253,0.24)]",
+    match: ["/more", "/settings", "/about", "/feedback", "/versions"],
+  },
 ];
 
 const GAP = 4;
@@ -309,7 +343,6 @@ export function MobileBottomNav() {
             {/* Navigation links */}
             {MOBILE_NAV_ITEMS.map((item, index) => {
               const isActive = index === displayIndex;
-              const isMore = item.label === "More";
               const Icon = item.icon;
 
               return (
@@ -334,17 +367,13 @@ export function MobileBottomNav() {
                   }}
                   className={`relative z-10 flex flex-col items-center justify-center gap-1 rounded-full py-4 px-1 text-[12px] font-semibold transition-[color,transform] duration-200 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-400 touch-none select-none ${
                     isActive
-                      ? "text-white dark:drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]"
+                      ? `text-white dark:drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)] ${item.activeButtonGlow}`
                       : "text-white/55 hover:text-white/85"
                   }`}
                 >
                   <Icon
-                    className={`h-4 w-4 shrink-0 transition-transform duration-300 pointer-events-none ${
-                      isActive
-                        ? isMore
-                          ? "scale-110 text-violet-400 dark:text-violet-300 drop-shadow-[0_0_8px_rgba(167,139,250,0.5)]"
-                          : "scale-110 text-cyan-600 dark:text-cyan-200 drop-shadow-[0_0_8px_rgba(34,211,238,0.5)]"
-                        : "text-white/50"
+                    className={`h-6 w-6 shrink-0 transition-[color,transform,filter] duration-300 pointer-events-none ${
+                      isActive ? `scale-110 ${item.activeIconColor}` : item.iconColor
                     }`}
                   />
                 </ShellLink>

@@ -55,10 +55,9 @@ export default function ScannerPage() {
       />
       {/* Main Scanner Container. Results live on /inventory, so only a small
           gap above the footer (the old bottom padding made the page scroll) */}
-      <main className="flex flex-1 w-full flex-col items-center justify-start pb-4">
+      <main className="flex min-h-0 w-full flex-1 flex-col items-center justify-start pb-4">
         <Scanner />
       </main>
     </div>
   );
 }
-
