@@ -28,6 +28,8 @@ export interface UploadZoneProps {
   /** Icon shown on the sample button; defaults to a neutral image icon. */
   sampleButtonIcon?: React.ReactNode;
   showSampleButton?: boolean;
+  /** Use a shorter upload panel on compact mobile layouts. */
+  compactOnMobile?: boolean;
   /** File loaded by the sample button; defaults to a sample screenshot. */
   sample?: { url: string; fileName: string; type: string };
   /** `accept` of the file input; defaults to images. */
@@ -68,6 +70,7 @@ export function UploadZone({
   sampleButtonText = "Try a sample",
   sampleButtonIcon,
   showSampleButton = true,
+  compactOnMobile = false,
   sample = DEFAULT_SAMPLE,
   accept = "image/*",
   multiple = true,
@@ -139,7 +142,9 @@ export function UploadZone({
 
   return (
     <div
-      className="glass-pane overflow-hidden"
+      className={`glass-pane overflow-hidden ${
+        compactOnMobile ? "flex min-h-0 flex-1 flex-col sm:flex-none" : ""
+      }`}
       data-dragging={isDragging}
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
@@ -171,22 +176,38 @@ export function UploadZone({
       ) : (
         <label
           htmlFor={inputId}
-          className="relative z-10 flex min-h-[340px] sm:min-h-[380px] cursor-pointer flex-col items-center justify-center p-8 sm:p-12 text-center select-none"
+          className={`relative z-10 flex cursor-pointer flex-col items-center justify-center text-center select-none ${
+            compactOnMobile
+              ? "min-h-[240px] flex-1 p-4 sm:min-h-[380px] sm:flex-none sm:p-12"
+              : "min-h-[340px] p-8 sm:min-h-[380px] sm:p-12"
+          }`}
         >
           {/* Glass Lens Icon */}
-          <div className="glass-lens mb-6 h-16 w-16 sm:h-[72px] sm:w-[72px]">
+          <div
+            className={`glass-lens h-16 w-16 sm:mb-6 sm:h-[72px] sm:w-[72px] ${
+              compactOnMobile ? "mb-3" : "mb-6"
+            }`}
+          >
             {icon || (
               <ScanUploadIcon className="relative h-7 w-7 sm:h-8 sm:w-8 text-cyan-200 drop-shadow-[0_0_8px_rgba(34,211,238,0.55)]" />
             )}
           </div>
 
           {/* Heading */}
-          <h3 className="mb-2 text-xl sm:text-2xl font-semibold tracking-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.45)]">
+          <h3
+            className={`mb-2 font-semibold tracking-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.45)] ${
+              compactOnMobile ? "text-lg sm:text-2xl" : "text-xl sm:text-2xl"
+            }`}
+          >
             {isDragging ? "Release to upload" : title}
           </h3>
 
           {/* Multi-line Subtitles */}
-          <div className="mb-7 max-w-lg space-y-1 text-xs sm:text-sm leading-relaxed text-white/70 drop-shadow-[0_1px_3px_rgba(0,0,0,0.4)]">
+          <div
+            className={`max-w-lg space-y-1 text-xs leading-relaxed text-white/70 drop-shadow-[0_1px_3px_rgba(0,0,0,0.4)] sm:mb-7 sm:text-sm ${
+              compactOnMobile ? "mb-4" : "mb-7"
+            }`}
+          >
             <p>{description}</p>
             {subDescription && <p className="text-white/50">{subDescription}</p>}
           </div>

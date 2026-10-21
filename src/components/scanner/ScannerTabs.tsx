@@ -125,7 +125,7 @@ export function ScannerTabs({
                 onTabChange(index);
               }}
               onKeyDown={(e) => handleKeyDown(e, index)}
-              className={`relative z-10 flex flex-1 items-center justify-center gap-2 rounded-full py-2.5 px-3 font-semibold transition-[color,transform] duration-200 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-400 select-none ${
+              className={`relative z-10 flex flex-1 items-center justify-center gap-2 rounded-full px-2.5 py-2 font-semibold transition-[color,transform] duration-200 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-400 select-none sm:px-3 sm:py-2.5 ${
                 isActive
                   ? "text-white dark:drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]"
                   : "text-white/60 hover:text-white/85"

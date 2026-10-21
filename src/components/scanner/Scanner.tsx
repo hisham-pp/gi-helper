@@ -9,7 +9,7 @@ import { ClassicScannerView } from "./ClassicScannerView";
 
 /** Same footprint as a tab's drop zone, so nothing jumps while a tab's code loads. */
 function PanelPlaceholder() {
-  return <div className="glass-pane min-h-[360px] w-full motion-safe:animate-pulse" aria-busy="true" />;
+  return <div className="glass-pane min-h-[240px] w-full flex-1 motion-safe:animate-pulse sm:min-h-[360px] sm:flex-none" aria-busy="true" />;
 }
 
 // The Video and AI Vision tabs load on demand: most visits only use the
@@ -118,14 +118,14 @@ export function Scanner() {
   };
 
   return (
-    <div className="mx-auto flex w-full max-w-4xl flex-col items-center space-y-6 pt-2 sm:pt-4">
+    <div className="mx-auto flex min-h-0 w-full max-w-4xl flex-1 flex-col items-center space-y-3 pt-0 sm:flex-none sm:space-y-6 sm:pt-4">
       {/* Header: mode-neutral Icon + Title & Description shared by all tabs */}
-      <div className="space-y-2 text-center">
+      <div className="space-y-1.5 text-center sm:space-y-2">
         {/* Icon flows inline so it stays beside the first word when the title wraps */}
-        <h1 className="text-balance text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-white drop-shadow-[0_4px_14px_rgba(0,0,0,0.7)]">
+        <h1 className="text-balance text-xl font-bold tracking-tight text-white drop-shadow-[0_4px_14px_rgba(0,0,0,0.7)] sm:text-3xl md:text-4xl">
           Scan Your Inventory
         </h1>
-        <p className="mx-auto max-w-xl text-xs sm:text-sm text-cyan-100/75 drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]">
+        <p className="mx-auto max-w-xl text-[11px] text-cyan-100/75 drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)] sm:text-sm">
           Upload screenshots or a screen recording of your Genshin Impact bag to read its materials, weapons and artifacts.
         </p>
       </div>
@@ -145,14 +145,35 @@ export function Scanner() {
           switching tabs keeps each one's state (last review, a scan in
           progress; results live on /inventory); the inactive ones are just
           hidden, and its entry animation replays when it is shown again. */}
-      <div ref={panelsRef} className="w-full">
-        <div hidden={activeTab !== 0}>
+      <div ref={panelsRef} className="flex min-h-0 w-full flex-1 flex-col sm:flex-none">
+        <div
+          hidden={activeTab !== 0}
+          className={
+            activeTab === 0
+              ? "flex min-h-0 flex-1 flex-col sm:block sm:flex-none"
+              : "hidden"
+          }
+        >
           <ClassicScannerView id="scanner-panel" ariaLabelledBy="scanner-tab" />
         </div>
-        <div hidden={activeTab !== 1}>
+        <div
+          hidden={activeTab !== 1}
+          className={
+            activeTab === 1
+              ? "flex min-h-0 flex-1 flex-col sm:block sm:flex-none"
+              : "hidden"
+          }
+        >
           {visited.has(1) && <VideoScannerView id="video-panel" ariaLabelledBy="video-tab" />}
         </div>
-        <div hidden={activeTab !== 2}>
+        <div
+          hidden={activeTab !== 2}
+          className={
+            activeTab === 2
+              ? "flex min-h-0 flex-1 flex-col sm:block sm:flex-none"
+              : "hidden"
+          }
+        >
           {visited.has(2) && <AiScannerView id="ai-panel" ariaLabelledBy="ai-tab" />}
         </div>
       </div>

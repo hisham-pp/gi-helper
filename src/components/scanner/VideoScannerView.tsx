@@ -390,7 +390,7 @@ export function VideoScannerView({ id = "video-panel", ariaLabelledBy = "video-t
       role="tabpanel"
       aria-labelledby={ariaLabelledBy}
       tabIndex={0}
-      className="pill-tab-panel w-full space-y-4 focus-visible:outline-none"
+      className="pill-tab-panel flex min-h-0 w-full flex-1 flex-col space-y-2 focus-visible:outline-none sm:block sm:flex-none sm:space-y-4"
     >
       {scanError && !isScanning && (
         <div className="on-dark animate-in fade-in slide-in-from-top-2 mx-auto flex w-full max-w-2xl items-start justify-between gap-3 rounded-2xl border border-rose-500/40 bg-rose-950/50 p-3.5 text-xs text-rose-200 shadow-xl backdrop-blur-xl">
@@ -469,6 +469,7 @@ export function VideoScannerView({ id = "video-panel", ariaLabelledBy = "video-t
         sampleButtonText="Try a sample recording"
         sampleButtonIcon={<Film />}
         accent="teal"
+        compactOnMobile
         scanOverlay={video && frameView?.cards ? <FrameOverlay video={video} cards={frameView.cards} /> : null}
         scanFooter={
           video ? (
