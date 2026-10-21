@@ -1,6 +1,7 @@
 import React from "react";
 import {
   Backpack,
+  Ellipsis,
   Flower2,
   History,
   Info,
@@ -221,6 +222,12 @@ export const PAGE_SHELLS: Record<string, () => React.ReactElement> = {
     <ShellPage width="max-w-2xl">
       <Hero icon={Settings} title="Scanner Settings" />
       <TextCards count={2} />
+    </ShellPage>
+  ),
+  "/more": () => (
+    <ShellPage width="max-w-lg">
+      <Hero icon={Ellipsis} title="More" />
+      <TextCards count={4} />
     </ShellPage>
   ),
 };

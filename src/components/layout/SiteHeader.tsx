@@ -34,7 +34,7 @@ export function SiteHeader({ version }: SiteHeaderProps) {
       </div>
 
       <div className="ml-auto flex items-center gap-2 sm:ml-0 sm:gap-3">
-        {/* On mobile, Settings is placed in the fixed bottom navigation dock */}
+        {/* Mobile users can open app settings from the More page in the bottom dock. */}
         <div className="hidden sm:block">
           <ScannerSettingsButton />
         </div>

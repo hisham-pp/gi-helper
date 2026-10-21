@@ -1,0 +1,19 @@
+{
+  "title": "Mobile More Menu",
+  "date": "2026-10-21",
+  "summary": "Updated mobile navigation with a More page that gathers secondary app destinations in one place.",
+  "changes": [
+    {
+      "type": "improved",
+      "text": "Mobile Navigation: replaced the Settings tab in the bottom dock with a More page linking to Settings, About us, Feedback, and Release Notes."
+    },
+    {
+      "type": "improved",
+      "text": "Responsive Footer: About us, Feedback, and Release Notes links are shown in the footer on desktop and hidden on mobile."
+    },
+    {
+      "type": "improved",
+      "text": "Compact Mobile Navigation: bottom dock tabs display icons without text labels."
+    }
+  ]
+}
