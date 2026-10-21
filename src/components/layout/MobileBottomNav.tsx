@@ -332,7 +332,7 @@ export function MobileBottomNav() {
                       triggerHaptic("selection");
                     }
                   }}
-                  className={`relative z-10 flex flex-col items-center justify-center gap-1 rounded-full py-3 px-1 text-[11px] font-semibold transition-[color,transform] duration-200 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-400 touch-none select-none ${
+                  className={`relative z-10 flex flex-col items-center justify-center gap-1 rounded-full py-4 px-1 text-[12px] font-semibold transition-[color,transform] duration-200 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-400 touch-none select-none ${
                     isActive
                       ? "text-white dark:drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]"
                       : "text-white/55 hover:text-white/85"
