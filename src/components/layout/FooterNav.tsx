@@ -16,8 +16,7 @@ export function FooterNav() {
     <PillNav
       items={FOOTER_ITEMS}
       ariaLabel="Footer"
-      className="grid w-full sm:inline-grid sm:w-auto"
-      iconClassName="hidden sm:block"
+      className="hidden sm:inline-grid sm:w-auto"
     />
   );
 }

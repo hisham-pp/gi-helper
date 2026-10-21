@@ -2,7 +2,7 @@
 
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { Backpack, House, Library, Settings } from "lucide-react";
+import { Backpack, Ellipsis, House, Library } from "lucide-react";
 import { ShellLink } from "@/components/layout/ShellLink";
 import { isCurrent } from "./PillNav";
 import { usePrefersReducedMotion } from "@/lib/hooks";
@@ -20,36 +20,42 @@ const MOBILE_NAV_ITEMS: MobileNavItem[] = [
   { href: "/", label: "Home", icon: House },
   { href: "/inventory/materials", label: "Inventory", icon: Backpack, match: ["/inventory"] },
   { href: "/db/materials", label: "Database", icon: Library, match: ["/db"] },
-  { href: "/settings" as Route, label: "Settings", icon: Settings, match: ["/settings"] },
+  { href: "/more" as Route, label: "More", icon: Ellipsis, match: ["/more", "/settings", "/about", "/feedback", "/versions"] },
 ];
 
 const GAP = 4;
-const TOTAL_ITEMS = 4; // Home, Inventory, Database, Settings
+const TOTAL_ITEMS = 4; // Home, Inventory, Database, More
 
 /**
  * Fixed bottom navigation bar for mobile devices.
  * Always visible at the bottom of the viewport with safe-area spacing,
- * routing to Home, Inventory, Database, and Settings page.
+ * routing to Home, Inventory, Database, and the More page.
  * Supports iOS-style smooth drag-to-switch across tabs with tactile haptic ticks.
  */
 export function MobileBottomNav() {
   const pathname = usePathname();
   const router = useRouter();
-  const [gearSpinning, setGearSpinning] = useState(false);
+
+  const [hasHydrated, setHasHydrated] = useState(false);
   const [dragIndex, setDragIndex] = useState<number | null>(null);
   const [optimisticIndex, setOptimisticIndex] = useState<number | null>(null);
   const reducedMotion = usePrefersReducedMotion();
 
-  // Route-based active index (0, 1, 2, or 3)
-  const activeIndex = MOBILE_NAV_ITEMS.findIndex(
+  useEffect(() => {
+    setHasHydrated(true);
+  }, []);
+
+  // Rewrites can make the browser pathname differ from the server-rendered path.
+  const routeActiveIndex = MOBILE_NAV_ITEMS.findIndex(
     (item) =>
       isCurrent(pathname, item.href) ||
       item.match?.some((path) => isCurrent(pathname, path)),
   );
+  const activeIndex = hasHydrated ? routeActiveIndex : -1;
 
   const dockRef = useRef<HTMLDivElement>(null);
   const thumbRef = useRef<HTMLDivElement>(null);
-  const prevIndexRef = useRef(activeIndex);
+  const prevIndexRef = useRef(routeActiveIndex);
 
   // References to track touch gesture without React re-render lag
   const isDraggingRef = useRef(false);
@@ -123,11 +129,7 @@ export function MobileBottomNav() {
     );
   }, [activeIndex, reducedMotion]);
 
-  const handleSettingsClick = () => {
-    triggerHaptic("selection");
-    setGearSpinning(true);
-    setTimeout(() => setGearSpinning(false), 600);
-  };
+
 
   const commitTabSelection = (targetIndex: number) => {
     const finalIndex = Math.max(0, Math.min(targetIndex, TOTAL_ITEMS - 1));
@@ -147,21 +149,12 @@ export function MobileBottomNav() {
     }
 
     const item = MOBILE_NAV_ITEMS[finalIndex];
-    const isSettings = item.label === "Settings";
 
     if (finalIndex !== activeIndex) {
       triggerHaptic("dragSnap");
-      if (isSettings) {
-        handleSettingsClick();
-        router.push("/settings");
-      } else {
-        router.push(item.href);
-      }
+      router.push(item.href);
     } else {
       triggerHaptic("selection");
-      if (isSettings) {
-        handleSettingsClick();
-      }
     }
   };
 
@@ -287,16 +280,6 @@ export function MobileBottomNav() {
 
   return (
     <>
-      <style>{`
-        @keyframes gear-spin-burst {
-          0% { transform: rotate(0deg) scale(1); }
-          50% { transform: rotate(180deg) scale(1.22); }
-          100% { transform: rotate(360deg) scale(1); }
-        }
-        .gear-spin-anim {
-          animation: gear-spin-burst 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-        }
-      `}</style>
 
       {/* Mobile Fixed Navigation Dock: sm:hidden */}
       <nav
@@ -326,7 +309,7 @@ export function MobileBottomNav() {
             {/* Navigation links */}
             {MOBILE_NAV_ITEMS.map((item, index) => {
               const isActive = index === displayIndex;
-              const isSettings = item.label === "Settings";
+              const isMore = item.label === "More";
               const Icon = item.icon;
 
               return (
@@ -334,6 +317,7 @@ export function MobileBottomNav() {
                   key={item.href}
                   href={item.href}
                   title={item.label}
+                  aria-label={item.label}
                   draggable={false}
                   onDragStart={(e) => e.preventDefault()}
                   aria-current={index === activeIndex ? "page" : undefined}
@@ -344,13 +328,11 @@ export function MobileBottomNav() {
                       e.stopPropagation();
                       return;
                     }
-                    if (isSettings) {
-                      handleSettingsClick();
-                    } else if (index !== activeIndex) {
+                    if (index !== activeIndex) {
                       triggerHaptic("selection");
                     }
                   }}
-                  className={`relative z-10 flex flex-col items-center justify-center gap-1 rounded-full py-2 px-1 text-[11px] font-semibold transition-[color,transform] duration-200 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-400 touch-none select-none ${
+                  className={`relative z-10 flex flex-col items-center justify-center gap-1 rounded-full py-3 px-1 text-[11px] font-semibold transition-[color,transform] duration-200 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-400 touch-none select-none ${
                     isActive
                       ? "text-white dark:drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]"
                       : "text-white/55 hover:text-white/85"
@@ -358,16 +340,13 @@ export function MobileBottomNav() {
                 >
                   <Icon
                     className={`h-4 w-4 shrink-0 transition-transform duration-300 pointer-events-none ${
-                      isSettings && gearSpinning
-                        ? "gear-spin-anim text-amber-500 dark:text-amber-300"
-                        : isActive
-                          ? isSettings
-                            ? "scale-110 rotate-180 text-amber-500 dark:text-amber-300"
-                            : "scale-110 text-cyan-600 dark:text-cyan-200 drop-shadow-[0_0_8px_rgba(34,211,238,0.5)]"
-                          : "text-white/50"
+                      isActive
+                        ? isMore
+                          ? "scale-110 text-violet-400 dark:text-violet-300 drop-shadow-[0_0_8px_rgba(167,139,250,0.5)]"
+                          : "scale-110 text-cyan-600 dark:text-cyan-200 drop-shadow-[0_0_8px_rgba(34,211,238,0.5)]"
+                        : "text-white/50"
                     }`}
                   />
-                  <span className="whitespace-nowrap tracking-tight pointer-events-none">{item.label}</span>
                 </ShellLink>
               );
             })}
