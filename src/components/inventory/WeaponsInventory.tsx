@@ -132,7 +132,7 @@ export function WeaponsInventory() {
   const typeCounts = WEAPON_TYPES.map((t) => ({ t, n: entries.filter((e) => e.info?.type === t).length }));
 
   return (
-    <>
+    <div className="flex w-full flex-1 flex-col gap-6">
       <div className="glass-card glass-card--lg p-5">
         <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
           <SearchField value={search} onChange={setSearch} placeholder="Search your weapons..." />
@@ -208,7 +208,7 @@ export function WeaponsInventory() {
         onPageChange={setPage}
       />
       {confirmModal}
-    </>
+    </div>
   );
 }
 

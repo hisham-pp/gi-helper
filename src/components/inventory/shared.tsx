@@ -91,6 +91,7 @@ export function ResultsCounter({
   noun,
   page,
   totalPages,
+  className = "",
   children,
 }: {
   shown: number;
@@ -98,10 +99,13 @@ export function ResultsCounter({
   noun: string;
   page?: number;
   totalPages?: number;
+  className?: string;
   children?: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-wrap items-center justify-between gap-3 px-1 text-xs text-white/70">
+    <div
+      className={`flex flex-wrap items-center justify-between gap-3 px-1 text-xs text-white/70 ${className}`}
+    >
       <span>
         Showing <strong className="font-mono text-white">{shown}</strong> of{" "}
         <strong className="font-mono text-white">{total}</strong> {noun}

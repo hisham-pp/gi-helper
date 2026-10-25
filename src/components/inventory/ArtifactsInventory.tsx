@@ -161,7 +161,7 @@ export function ArtifactsInventory() {
   }
 
   return (
-    <>
+    <div className="flex w-full flex-1 flex-col gap-6">
       <div className="glass-card glass-card--lg p-5">
         <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
           <SearchField value={search} onChange={setSearch} placeholder="Search by set, piece or stat..." />
@@ -248,7 +248,7 @@ export function ArtifactsInventory() {
         onPageChange={setPage}
       />
       {confirmModal}
-    </>
+    </div>
   );
 }
 
