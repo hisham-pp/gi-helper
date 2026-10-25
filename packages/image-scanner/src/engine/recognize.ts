@@ -537,7 +537,7 @@ function readLevel(
 
     // An artifact's "+" read as leading digit "4" or "1" (e.g. 420 -> +20, 116 -> +16, 40 -> +0):
     if (val !== null && kind === "artifact" && val > range.max && val < 1000) {
-      const rem = val % 100;
+      const rem = val >= 100 ? val % 100 : val >= 40 && val < 50 ? val % 10 : -1;
       if (rem >= range.min && rem <= range.max) {
         val = rem;
         isPrefixed = true;
