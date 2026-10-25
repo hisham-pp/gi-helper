@@ -135,7 +135,14 @@ export function snap<T>(text: string, entries: readonly Entry<T>[], lang: PanelL
   }
   if (!best) return null;
   const len = entries.find((e) => e.value === best!.value)!.norm.length;
-  const allowed = Math.max(len <= 3 ? 0 : 1, Math.floor(len * maxRatio)) / len;
+  if (
+    lang === "en" &&
+    best.value === "hp" &&
+    (norm === "hb" || norm === "hd" || norm === "hr" || norm === "np" || norm === "ip")
+  ) {
+    return { value: best.value, ratio: 0.5 };
+  }
+  const allowed = Math.max(len < 3 ? 0 : 1, Math.floor(len * maxRatio)) / len;
   return best.ratio <= allowed + 1e-9 ? best : null;
 }
 

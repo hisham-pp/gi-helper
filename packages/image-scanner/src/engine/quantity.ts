@@ -319,7 +319,7 @@ export function readFooterText(
   // Keep digit-sized components on a common baseline.
   let components = merged.filter((c) => {
     const h = c.y1 - c.y0 + 1;
-    return h >= digitH * 0.6 && h <= digitH * 1.45;
+    return h >= digitH * 0.48 && h <= digitH * 1.45;
   });
   if (components.length > 0) {
     const centres = components
@@ -327,7 +327,7 @@ export function readFooterText(
       .sort((a, b) => a - b);
     const midY = centres[Math.floor(centres.length / 2)];
     components = components.filter(
-      (c) => Math.abs((c.y0 + c.y1) / 2 - midY) <= digitH * 0.3,
+      (c) => Math.abs((c.y0 + c.y1) / 2 - midY) <= digitH * 0.42,
     );
   } else {
     // Check for half-shown digits when cut off by scroll viewport / card boundary
@@ -639,7 +639,7 @@ export function footerComponents(
  * about two thirds of it, "v" sitting on the baseline and "+" centred.
  */
 const SHORT_GLYPH = 0.82;
-const BASELINE_SLACK = 0.14;
+const BASELINE_SLACK = 0.22;
 
 /** Correlation of a glyph with one symbol template (-1 when there is none). */
 function symbolScore(
@@ -652,7 +652,7 @@ function symbolScore(
 }
 
 /** A symbol is accepted when its template fits at least this well (or, without templates, by shape alone). */
-const SYMBOL_MIN = 0.6;
+const SYMBOL_MIN = 0.48;
 
 /**
  * Reads a card footer that may start with "Lv." (weapons) or "+"
@@ -695,7 +695,10 @@ export function readFooter(
     if (!ink) return false;
     const score = symbolScore(ink, templates, symbol);
     if (score < 0) return true;
-    return score >= SYMBOL_MIN && score > classifyGlyph(ink, templates).score;
+    return (
+      (score >= SYMBOL_MIN && score > classifyGlyph(ink, templates).score - 0.05) ||
+      score >= 0.7
+    );
   };
 
   let prefix: FooterPrefix = "";
