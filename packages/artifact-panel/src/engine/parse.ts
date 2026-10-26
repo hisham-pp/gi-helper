@@ -43,7 +43,10 @@ export function parseNumber(text: string): ParsedNumber | null {
   if (!m) return null;
   let num = m[1].replace(/[.,]+$/, "");
   const percentSign = m[2] === "%" || /%/.test(cleaned.slice(m.index! + m[0].length));
-  // "4,780": thousands; "12,4": a decimal comma.
+  // "4,780": thousands; "12,4": a decimal comma; "4.780" without % is also thousands.
+  if (!percentSign && /\b\d{1,2}\.\d{3}(?!\d)/.test(num)) {
+    num = num.replace(/\./g, "");
+  }
   num = /,\d{3}(?!\d)/.test(num) ? num.replace(/,/g, "") : num.replace(/,/g, ".");
   const parts = num.split(".");
   if (parts.length > 2) num = parts.slice(0, -1).join("") + "." + parts[parts.length - 1];

@@ -5,5 +5,9 @@ import { PageTransition } from "@/components/layout/PageTransition";
  * remounts when you leave /inventory), so each one still plays the page entrance.
  */
 export default function InventoryTemplate({ children }: { children: React.ReactNode }) {
-  return <PageTransition>{children}</PageTransition>;
+  return (
+    <PageTransition>
+      <div className="flex w-full flex-1 flex-col gap-6">{children}</div>
+    </PageTransition>
+  );
 }

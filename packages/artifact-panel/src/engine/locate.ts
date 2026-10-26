@@ -52,7 +52,7 @@ export function isEquippedYellow(r: number, g: number, b: number): boolean {
 
 /** Dark slate of the level badge: ~(60, 70, 85). */
 function isBadgeDark(r: number, g: number, b: number): boolean {
-  return r < 120 && g < 125 && b < 140 && b >= r - 10;
+  return r < 135 && g < 140 && b < 155 && b >= r - 15;
 }
 
 const px = (image: RgbaImage, x: number, y: number) => {
@@ -229,8 +229,8 @@ export function locateArtifactPanel(image: RgbaImage): PanelGeometry | null {
   if (!badgeBox) return null;
   const bw = badgeBox.x1 - badgeBox.x0;
   const bh = badgeBox.y1 - badgeBox.y0;
-  if (bh < width * 0.03 || bh > width * 0.13 || bw < width * 0.045 || bw > width * 0.35) return null;
-  if (badgeBox.count < bw * bh * 0.33) return null;
+  if (bh < width * 0.025 || bh > width * 0.15 || bw < width * 0.035 || bw > width * 0.38) return null;
+  if (badgeBox.count < bw * bh * 0.28) return null;
 
   // An "Equipped" band right under the body: rows mostly yellow (the name
   // and the avatar cover only part of each row).

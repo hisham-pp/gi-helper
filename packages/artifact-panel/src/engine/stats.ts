@@ -56,6 +56,23 @@ export function substatRolls(rarity: number, key: string, value: number): number
   return DATA.subValues[String(rarity)]?.[key]?.[shownKey(key, value)] ?? [];
 }
 
+/** Snaps a slightly rounded/anti-aliased OCR substat value to the exact roll tier if within 0.1. */
+export function snapSubstatValue(rarity: number, key: string, value: number): number {
+  const table = DATA.subValues[String(rarity)]?.[key];
+  if (!table) return value;
+  const k = shownKey(key, value);
+  if (table[k]?.length) return isPercentStat(key) ? Number(value.toFixed(1)) : Math.round(value);
+  if (isPercentStat(key)) {
+    const plusK = (value + 0.1).toFixed(1);
+    const minusK = (value - 0.1).toFixed(1);
+    const plus = table[plusK];
+    const minus = table[minusK];
+    if (plus?.length && !minus?.length) return Number(plusK);
+    if (minus?.length && !plus?.length) return Number(minusK);
+  }
+  return value;
+}
+
 /** Initial substats and upgrades: 5★ starts with 3–4 and gains a roll every 4 levels. */
 export function rollBudget(rarity: number, level: number): { initial: [number, number]; upgrades: number } {
   return {

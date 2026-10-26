@@ -13,6 +13,7 @@ import {
   getAllCharacters,
   type Character,
 } from "@/lib/characters";
+import dynamic from "next/dynamic";
 import { WEAPON_TYPE_NAMES, WEAPON_TYPES, useOwnedCharacters } from "@gi/good";
 import { getRarityStyles } from "@/lib/materials/ui";
 import { ELEMENT_ACCENTS, ELEMENTS, ElementTag } from "./DatabaseNav";
@@ -23,6 +24,12 @@ const SORT_OPTIONS: { value: SortOption; label: string }[] = [
   { value: "name", label: "Name (A → Z)" },
   { value: "rarity", label: "Rarity (5★ first)" },
 ];
+
+/** Loaded on demand so its bundle stays out of initial page load. */
+const CharacterModal = dynamic(
+  () => import("./CharacterModal").then((m) => m.CharacterModal),
+  { ssr: false },
+);
 
 /** The /characters page: every playable character, with the ones you own marked. */
 export function CharacterList() {
@@ -72,6 +79,30 @@ export function CharacterList() {
       : list.sort(byName);
   }, [characters, search, element, weapon, rarity, region, sortBy]);
 
+  const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(null);
+
+  const selectedIndexInFiltered = useMemo(() => {
+    if (!selectedCharacter) return -1;
+    return filtered.findIndex((c) => c.id === selectedCharacter.id);
+  }, [selectedCharacter, filtered]);
+
+  const hasNextModal =
+    selectedIndexInFiltered >= 0 &&
+    selectedIndexInFiltered < filtered.length - 1;
+  const hasPrevModal = selectedIndexInFiltered > 0;
+
+  const handleNextModal = () => {
+    if (hasNextModal) {
+      setSelectedCharacter(filtered[selectedIndexInFiltered + 1]);
+    }
+  };
+
+  const handlePrevModal = () => {
+    if (hasPrevModal) {
+      setSelectedCharacter(filtered[selectedIndexInFiltered - 1]);
+    }
+  };
+
   const isFiltered =
     search.trim() !== "" ||
     element !== "ALL" ||
@@ -89,8 +120,9 @@ export function CharacterList() {
   };
 
   return (
-    // db/layout.tsx holds the page padding and DatabaseNav
-    <div className="w-full space-y-6">
+    <>
+      {/* db/layout.tsx holds the page padding and DatabaseNav */}
+      <div className="w-full space-y-6">
       <div className="glass-card glass-card--lg p-6 sm:p-8">
         <div className="space-y-1.5">
           <div className="flex items-center gap-2">
@@ -198,6 +230,7 @@ export function CharacterList() {
               key={c.id}
               character={c}
               constellation={ownedByKey.get(c.key)}
+              onSelect={setSelectedCharacter}
             />
           ))}
         </div>
@@ -215,26 +248,54 @@ export function CharacterList() {
           </button>
         </TabEmptyState>
       )}
-    </div>
+      </div>
+
+      {selectedCharacter && (
+        <CharacterModal
+          character={selectedCharacter}
+          constellation={ownedByKey.get(selectedCharacter.key)}
+          onClose={() => setSelectedCharacter(null)}
+          onNavigateNext={handleNextModal}
+          onNavigatePrev={handlePrevModal}
+          hasNext={hasNextModal}
+          hasPrev={hasPrevModal}
+          total={filtered.length}
+          index={selectedIndexInFiltered}
+        />
+      )}
+    </>
   );
 }
 
 const CharacterCard = React.memo(function CharacterCard({
   character,
   constellation,
+  onSelect,
 }: {
   character: Character;
   /** Set when the character is in your inventory. */
   constellation?: number;
+  onSelect: (character: Character) => void;
 }) {
+  const onClick = () => onSelect(character);
+
   return (
     <div
+      onClick={onClick}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onClick();
+        }
+      }}
       style={
         {
           "--glass-accent": getRarityStyles(character.rarity).accent,
         } as React.CSSProperties
       }
-      className="glass-card glass-card--hover flex flex-col items-center p-4 text-center hover:transform-none motion-safe:hover:animate-squish"
+      className="glass-card glass-card--hover flex cursor-pointer flex-col items-center p-4 text-center hover:transform-none motion-safe:hover:animate-squish"
     >
       {constellation !== undefined && (
         <span

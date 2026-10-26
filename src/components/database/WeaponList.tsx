@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useMemo, useState } from "react";
+import dynamic from "next/dynamic";
 import { ArrowUpDown, Sparkles, Star, Swords } from "lucide-react";
 import {
   paginate,
@@ -30,6 +31,12 @@ const SORT_OPTIONS: { value: SortOption; label: string }[] = [
   { value: "atk", label: "Base ATK (high → low)" },
   { value: "name", label: "Name (A → Z)" },
 ];
+
+/** Loaded on demand so its bundle stays out of initial page load. */
+const WeaponModal = dynamic(
+  () => import("./WeaponModal").then((m) => m.WeaponModal),
+  { ssr: false },
+);
 
 const PAGE_SIZE = 48;
 
@@ -90,6 +97,31 @@ export function WeaponList() {
     page: currentPage,
     totalPages,
   } = paginate(filtered, page, PAGE_SIZE);
+
+  const [selectedWeapon, setSelectedWeapon] = useState<WeaponInfo | null>(null);
+
+  const selectedIndexInFiltered = useMemo(() => {
+    if (!selectedWeapon) return -1;
+    return filtered.findIndex((w) => w.id === selectedWeapon.id);
+  }, [selectedWeapon, filtered]);
+
+  const hasNextModal =
+    selectedIndexInFiltered >= 0 &&
+    selectedIndexInFiltered < filtered.length - 1;
+  const hasPrevModal = selectedIndexInFiltered > 0;
+
+  const handleNextModal = () => {
+    if (hasNextModal) {
+      setSelectedWeapon(filtered[selectedIndexInFiltered + 1]);
+    }
+  };
+
+  const handlePrevModal = () => {
+    if (hasPrevModal) {
+      setSelectedWeapon(filtered[selectedIndexInFiltered - 1]);
+    }
+  };
+
   const isFiltered =
     search.trim() !== "" ||
     type !== "ALL" ||
@@ -105,8 +137,9 @@ export function WeaponList() {
   };
 
   return (
-    // db/layout.tsx holds the page padding and DatabaseNav
-    <div className="w-full space-y-6">
+    <>
+      {/* db/layout.tsx holds the page padding and DatabaseNav */}
+      <div className="w-full space-y-6">
       <div className="glass-card glass-card--lg p-6 sm:p-8">
         <div className="space-y-1.5">
           <div className="flex items-center gap-2">
@@ -209,6 +242,7 @@ export function WeaponList() {
               key={w.id}
               weapon={w}
               owned={ownedCount.get(w.key) ?? 0}
+              onSelect={setSelectedWeapon}
             />
           ))}
         </div>
@@ -234,25 +268,53 @@ export function WeaponList() {
         totalItems={filtered.length}
         onPageChange={setPage}
       />
-    </div>
+      </div>
+
+      {selectedWeapon && (
+        <WeaponModal
+          weapon={selectedWeapon}
+          owned={ownedCount.get(selectedWeapon.key) ?? 0}
+          onClose={() => setSelectedWeapon(null)}
+          onNavigateNext={handleNextModal}
+          onNavigatePrev={handlePrevModal}
+          hasNext={hasNextModal}
+          hasPrev={hasPrevModal}
+          total={filtered.length}
+          index={selectedIndexInFiltered}
+        />
+      )}
+    </>
   );
 }
 
 const WeaponCard = React.memo(function WeaponCard({
   weapon,
   owned,
+  onSelect,
 }: {
   weapon: WeaponInfo;
   owned: number;
+  onSelect: (weapon: WeaponInfo) => void;
 }) {
+  const onClick = () => onSelect(weapon);
+
   return (
     <div
+      onClick={onClick}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onClick();
+        }
+      }}
       style={
         {
           "--glass-accent": getRarityStyles(weapon.rarity).accent,
         } as React.CSSProperties
       }
-      className="glass-card glass-card--hover flex flex-col items-center p-4 text-center hover:transform-none motion-safe:hover:animate-squish"
+      className="glass-card glass-card--hover flex cursor-pointer flex-col items-center p-4 text-center hover:transform-none motion-safe:hover:animate-squish"
     >
       {owned > 0 && (
         <span

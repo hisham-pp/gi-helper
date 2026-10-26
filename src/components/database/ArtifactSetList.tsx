@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useMemo, useState } from "react";
+import dynamic from "next/dynamic";
 import { ArrowUpDown, Flower2, Star } from "lucide-react";
 import { RarityStars, TabEmptyState } from "@/components/inventory/shared";
 import { GameIcon } from "@/components/ui/GameIcon";
@@ -20,6 +21,12 @@ const SORT_OPTIONS: { value: SortOption; label: string }[] = [
   { value: "rarity", label: "Rarity (5★ first)" },
   { value: "name", label: "Name (A → Z)" },
 ];
+
+/** Loaded on demand so its bundle stays out of initial page load. */
+const ArtifactSetModal = dynamic(
+  () => import("./ArtifactSetModal").then((m) => m.ArtifactSetModal),
+  { ssr: false },
+);
 
 const BONUS_LABELS = {
   "1": "1-Piece",
@@ -64,6 +71,30 @@ export function ArtifactSetList() {
       : list.sort((a, b) => maxRarity(b) - maxRarity(a) || byName(a, b));
   }, [sets, search, rarity, sortBy]);
 
+  const [selectedSet, setSelectedSet] = useState<ArtifactSetInfo | null>(null);
+
+  const selectedIndexInFiltered = useMemo(() => {
+    if (!selectedSet) return -1;
+    return filtered.findIndex((s) => s.id === selectedSet.id);
+  }, [selectedSet, filtered]);
+
+  const hasNextModal =
+    selectedIndexInFiltered >= 0 &&
+    selectedIndexInFiltered < filtered.length - 1;
+  const hasPrevModal = selectedIndexInFiltered > 0;
+
+  const handleNextModal = () => {
+    if (hasNextModal) {
+      setSelectedSet(filtered[selectedIndexInFiltered + 1]);
+    }
+  };
+
+  const handlePrevModal = () => {
+    if (hasPrevModal) {
+      setSelectedSet(filtered[selectedIndexInFiltered - 1]);
+    }
+  };
+
   const isFiltered =
     search.trim() !== "" || rarity !== "ALL" || sortBy !== "rarity";
   const reset = () => {
@@ -73,8 +104,9 @@ export function ArtifactSetList() {
   };
 
   return (
-    // db/layout.tsx holds the page padding and DatabaseNav
-    <div className="w-full space-y-6">
+    <>
+      {/* db/layout.tsx holds the page padding and DatabaseNav */}
+      <div className="w-full space-y-6">
       <div className="glass-card glass-card--lg p-6 sm:p-8">
         <div className="space-y-1.5">
           <div className="flex items-center gap-2">
@@ -138,6 +170,7 @@ export function ArtifactSetList() {
               key={s.id}
               set={s}
               owned={ownedPieces.get(s.key) ?? 0}
+              onSelect={setSelectedSet}
             />
           ))}
         </div>
@@ -155,25 +188,53 @@ export function ArtifactSetList() {
           </button>
         </TabEmptyState>
       )}
-    </div>
+      </div>
+
+      {selectedSet && (
+        <ArtifactSetModal
+          set={selectedSet}
+          owned={ownedPieces.get(selectedSet.key) ?? 0}
+          onClose={() => setSelectedSet(null)}
+          onNavigateNext={handleNextModal}
+          onNavigatePrev={handlePrevModal}
+          hasNext={hasNextModal}
+          hasPrev={hasPrevModal}
+          total={filtered.length}
+          index={selectedIndexInFiltered}
+        />
+      )}
+    </>
   );
 }
 
 const ArtifactSetCard = React.memo(function ArtifactSetCard({
   set,
   owned,
+  onSelect,
 }: {
   set: ArtifactSetInfo;
   owned: number;
+  onSelect: (set: ArtifactSetInfo) => void;
 }) {
   const top = maxRarity(set);
   const low = Math.min(...set.rarities);
+  const onClick = () => onSelect(set);
+
   return (
     <div
+      onClick={onClick}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onClick();
+        }
+      }}
       style={
         { "--glass-accent": getRarityStyles(top).accent } as React.CSSProperties
       }
-      className="glass-card glass-card--hover flex flex-col gap-3 p-5 hover:transform-none motion-safe:hover:animate-squish"
+      className="glass-card glass-card--hover flex cursor-pointer flex-col gap-3 p-5 text-left hover:transform-none motion-safe:hover:animate-squish focus:outline-none focus:ring-2 focus:ring-cyan-400/40 select-none"
     >
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">

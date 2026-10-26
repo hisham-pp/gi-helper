@@ -34,6 +34,7 @@ import {
   MaterialCategory,
 } from "@/lib/materials/ui";
 import { useInventoryActions } from "@/components/inventory/InventoryShell";
+import { ResultsCounter } from "@/components/inventory/shared";
 import { useScannerInventory } from "@gi/scanner";
 import type { DetectedItem, MaterialItem } from "@/lib/types";
 import { usePrefersReducedMotion, useWiggleOnChange } from "@/lib/hooks";
@@ -252,7 +253,7 @@ export function ScannedInventory({ catalog }: { catalog: MaterialItem[] }) {
   const hasItems = hydrated && items.length > 0;
 
   return (
-    <>
+    <div className="flex w-full flex-1 flex-col gap-6">
         {hydrated && extraCount > 0 && (
           <details className="glass-card glass-card--lg group p-5">
             <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-xs text-white/80">
@@ -352,30 +353,20 @@ export function ScannedInventory({ catalog }: { catalog: MaterialItem[] }) {
             </div>
 
             {/* Results Counter */}
-            <div className="flex flex-wrap items-center justify-between gap-3 px-1 text-xs text-white/70">
-              <span>
-                Showing{" "}
-                <strong className="font-mono text-white">{totalItems}</strong>{" "}
-                of{" "}
-                <strong className="font-mono text-white">{stats.total}</strong>{" "}
-                materials
-              </span>
-              <div className="flex flex-wrap items-center gap-3">
-                {totalPages > 1 && (
-                  <span className="text-white/60">
-                    Page{" "}
-                    <strong className="text-white">{validCurrentPage}</strong> of{" "}
-                    <strong className="text-white">{totalPages}</strong>
-                  </span>
-                )}
-                <button
-                  onClick={handleClear}
-                  className="glass-btn glass-btn--danger px-3 py-1.5 text-xs"
-                >
-                  <Trash2 className="h-3.5 w-3.5" /> Clear All
-                </button>
-              </div>
-            </div>
+            <ResultsCounter
+              shown={totalItems}
+              total={stats.total}
+              noun="materials"
+              page={validCurrentPage}
+              totalPages={totalPages}
+            >
+              <button
+                onClick={handleClear}
+                className="glass-btn glass-btn--danger px-3 py-1.5 text-xs"
+              >
+                <Trash2 className="h-3.5 w-3.5" /> Clear All
+              </button>
+            </ResultsCounter>
 
             {totalItems > 0 ? (
               <ResultGrid
@@ -449,6 +440,6 @@ export function ScannedInventory({ catalog }: { catalog: MaterialItem[] }) {
         )}
 
       {confirmModal}
-    </>
+    </div>
   );
 }

@@ -12,7 +12,7 @@ import {
 } from "@gi/good";
 import type { ArtifactPanelCapture, PanelField } from "./engine/capture";
 import { joinLines, parseLevel, parseNumber, parseRefinement, parseStatBlock, parseWeaponLevelAndCap, statKey } from "./engine/parse";
-import { checkSubstats, levelsForMainValue, mainStatFits, maxArtifactLevel } from "./engine/stats";
+import { checkSubstats, levelsForMainValue, mainStatFits, maxArtifactLevel, snapSubstatValue } from "./engine/stats";
 import { EQUIPPED_PREFIX, snap, vocabulary, type PanelLanguage, type StatName } from "./engine/vocabulary";
 import { matchAvatarAtlas } from "./engine/avatar";
 import type { OcrLanguage, PanelOcr } from "./ocr";
@@ -189,7 +189,19 @@ export async function readArtifactPanel(
   if (capture.kind === "weapon") {
     return readWeaponPanel(capture, ocr, options);
   }
-  const found = await readSlot(capture, ocr, options.preferLanguage ?? "en");
+  let found = await readSlot(capture, ocr, options.preferLanguage ?? "en");
+  if (!found && capture.fields.name) {
+    // If the slot line couldn't be read, try reading the piece name directly.
+    // Every piece name in the game uniquely determines both its set and its slot.
+    for (const testLang of ["en", "zh"] as const) {
+      const nameText = await ocr.read(capture.fields.name, { lang: OCR_LANG[testLang], mode: "block" });
+      const piece = snap(joinLines(nameText), vocabulary(testLang).pieces, testLang);
+      if (piece) {
+        found = { language: testLang, slot: piece.value.slot, text: "" };
+        break;
+      }
+    }
+  }
   if (!found) return null;
   const { language } = found;
   const lang = OCR_LANG[language];
@@ -231,13 +243,27 @@ export async function readArtifactPanel(
   if (piece && setLine && piece.value.setId !== setLine.value) issues.push("The piece name and set name disagree");
   if (!setId) issues.push("Couldn't read the set");
 
+  // Level: the badge, checked against the main stat value (which also gives it when the badge is unreadable).
+  let level = parseLevel(levelText);
+
   // Rarity: the stars, else the header's colour.
   let rarity = capture.stars ?? capture.headerRarity;
   const set = setId ? getArtifactSetById(setId) : undefined;
-  if (rarity !== null && set && !set.rarities.includes(rarity)) {
-    issues.push(`${set.name} has no ${rarity}★ pieces`);
+
+  // Level establishes a hard lower bound on rarity (5★ required for > +16, 4★ for > +12, 3★ for > +8, 2★ for > +4)
+  if (level !== null && level > 0) {
+    const minRarity = Math.min(5, Math.ceil(level / 4));
+    if (rarity === null || rarity < minRarity) {
+      rarity = minRarity;
+    }
   }
+
   if (rarity === null && set?.rarities.length === 1) rarity = set.rarities[0];
+  if (rarity !== null && set && !set.rarities.includes(rarity)) {
+    // Snap to the closest valid rarity the set actually has
+    const sorted = [...set.rarities].sort((a, b) => Math.abs(a - rarity!) - Math.abs(b - rarity!));
+    rarity = sorted[0];
+  }
   if (rarity === null) issues.push("Couldn't count the stars");
 
   // Main stat: the name, with "%" deciding HP / ATK / DEF; fixed on flowers and plumes.
@@ -256,15 +282,27 @@ export async function readArtifactPanel(
   }
   if (!mainStatKey) issues.push("Couldn't read the main stat");
 
-  // Level: the badge, checked against the main stat value (which also gives it when the badge is unreadable).
-  let level = parseLevel(levelText);
-  if (level !== null && rarity !== null && level > maxArtifactLevel(rarity)) level = null;
+  if (level !== null && rarity !== null && level > maxArtifactLevel(rarity)) {
+    // If level is valid (<= 20) and set allows higher rarity, promote rarity instead of discarding level
+    if (level <= 20 && set && Math.max(...set.rarities) >= Math.ceil(level / 4)) {
+      rarity = Math.ceil(level / 4);
+    } else {
+      level = null;
+    }
+  }
+
   if (rarity !== null && mainStatKey && value) {
     const fits = level !== null && mainStatFits(rarity, mainStatKey, level, value.value);
     if (!fits) {
       const levels = levelsForMainValue(rarity, mainStatKey, value.value);
-      if (level === null && levels.length === 1) level = levels[0];
-      else issues.push("The main stat value doesn't match the level");
+      if (level === null && levels.length === 1) {
+        level = levels[0];
+      } else if (levels.length === 1 && Math.abs(levels[0] - (level ?? 0)) <= 1) {
+        // Main stat value is strictly exact for level: recover level from exact main stat
+        level = levels[0];
+      } else {
+        issues.push("The main stat value doesn't match the level");
+      }
     }
   } else if (mainStatKey && !value) {
     issues.push("Couldn't read the main stat value");
@@ -273,8 +311,14 @@ export async function readArtifactPanel(
 
   // Substats, checked against the rolls the rarity and level allow.
   const lines = parseStatBlock(statsText, language);
-  const substats = lines.filter((s) => !s.unactivated).map(({ key, value }) => ({ key, value }));
-  const unactivatedSubstats = lines.filter((s) => s.unactivated).map(({ key, value }) => ({ key, value }));
+  const substats = lines.filter((s) => !s.unactivated).map(({ key, value }) => ({
+    key,
+    value: rarity !== null ? snapSubstatValue(rarity, key, value) : value,
+  }));
+  const unactivatedSubstats = lines.filter((s) => s.unactivated).map(({ key, value }) => ({
+    key,
+    value: rarity !== null ? snapSubstatValue(rarity, key, value) : value,
+  }));
   if (substats.length === 0) {
     if (rarity === null || rarity > 2 || (level ?? 0) >= 4) issues.push("Couldn't read the substats");
   } else if (rarity !== null && level !== null) {

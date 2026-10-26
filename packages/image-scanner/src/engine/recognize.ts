@@ -531,7 +531,20 @@ function readLevel(
   let plainCount = false;
   for (const b of boxes) {
     const footer = readFooter(image, b, IDENTITY_ALIGNMENT, digits);
-    if (footer.prefix === range.prefix) prefixed = true;
+    let val = footer.value;
+    let isPrefixed = footer.prefix === range.prefix;
+    if (isPrefixed) prefixed = true;
+
+    // An artifact's "+" read as leading digit "4" or "1" (e.g. 420 -> +20, 116 -> +16, 40 -> +0):
+    if (val !== null && kind === "artifact" && val > range.max && val < 1000) {
+      const rem = val >= 100 ? val % 100 : val >= 40 && val < 50 ? val % 10 : -1;
+      if (rem >= range.min && rem <= range.max) {
+        val = rem;
+        isPrefixed = true;
+        prefixed = true;
+      }
+    }
+
     if (
       footer.prefix === "" &&
       footer.value !== null &&
@@ -539,19 +552,19 @@ function readLevel(
     )
       plainCount = true;
     if (
-      footer.value === null ||
-      footer.value < range.min ||
-      footer.value > range.max
+      val === null ||
+      val < range.min ||
+      val > range.max
     )
       continue;
     // Without the expected prefix the footer was only partly read.
     const confidence =
       Math.round(
-        footer.confidence * (footer.prefix === range.prefix ? 1 : 0.5) * 1000,
+        footer.confidence * (isPrefixed ? 1 : 0.5) * 1000,
       ) / 1000;
     if (confidence > best.confidence || best.value === null)
-      best = { value: footer.value, confidence, plainCount: false };
-    if (footer.prefix === range.prefix && confidence >= 0.9) break;
+      best = { value: val, confidence, plainCount: false };
+    if (isPrefixed && confidence >= 0.9) break;
   }
   // A clear count with no "Lv."/"+" anywhere: a material in this tab (the
   // weapons tab ends with enhancement ores), not a weapon, artifact or character.
