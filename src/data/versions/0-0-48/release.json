@@ -1,27 +1,19 @@
 {
-  "title": "Screen Share Live Scanning & Web Discovery",
+  "title": "Web Scanner Discovery & SEO Guides",
   "date": "2026-10-26",
-  "summary": "Introduced in-browser live screen sharing and mobile camera scanning, along with improved search discoverability.",
+  "summary": "Improved search discoverability, guides for web-based inventory scanning, and rich comparison FAQs.",
   "changes": [
     {
       "type": "new",
-      "text": "Live Screen Share: Share any Genshin Impact window or monitor directly in your browser on desktop to scan your inventory without saving or uploading video files."
-    },
-    {
-      "type": "new",
-      "text": "Mobile Camera Scanning: Point your phone camera at your PC monitor or TV screen to stream and scan inventory in real-time with HUD and duration timers."
-    },
-    {
-      "type": "new",
-      "text": "Mobile Screen Recording Assistant: Quick guided workflow for scanning recordings made with built-in Android Quick Settings and iOS Control Center."
-    },
-    {
-      "type": "new",
-      "text": "Instant Snapshot Capture: Snap any frame in real-time from the live stream to scan immediately."
+      "text": "Web Discovery & Comparison Guides: Added comprehensive SEO metadata, FAQs, and detailed feature comparison tables for web-based Kamera alternatives."
     },
     {
       "type": "improved",
-      "text": "Web Discovery & Guides: Added comprehensive SEO metadata, FAQs, and feature comparison tables for web-based Kamera alternatives."
+      "text": "Metadata & OpenGraph: Optimized page titles, keywords, descriptions, and dynamic social preview images for material and weapon scanner queries."
+    },
+    {
+      "type": "improved",
+      "text": "Home Layout & Discoverability: Streamlined homepage content hierarchy with seamless links to inventory tools, privacy details, and weapon guides."
     }
   ]
 }

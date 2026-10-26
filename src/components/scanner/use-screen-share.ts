@@ -3,32 +3,21 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 
-export type StreamSourceType = "screen" | "camera";
-
 export interface ScreenShareState {
   stream: MediaStream | null;
   isStreaming: boolean;
   isRecording: boolean;
-  sourceType: StreamSourceType | null;
   elapsedSeconds: number;
   error: string | null;
   videoDimensions: { width: number; height: number } | null;
 }
 
-/** Check if navigator.mediaDevices.getDisplayMedia is available */
+/** Check if navigator.mediaDevices.getDisplayMedia is available in this browser */
 export function canUseDisplayMedia(): boolean {
   return (
     typeof navigator !== "undefined" &&
     !!navigator.mediaDevices &&
     typeof navigator.mediaDevices.getDisplayMedia === "function"
-  );
-}
-
-/** Check if user is on a mobile device (Android, iOS, etc.) */
-export function isMobileDevice(): boolean {
-  if (typeof navigator === "undefined") return false;
-  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-    navigator.userAgent || "",
   );
 }
 
@@ -48,36 +37,6 @@ export function getSupportedVideoMimeType(): string {
   return "";
 }
 
-/** Capture a single frame from HTMLVideoElement as a JPEG File */
-export async function snapPhotoFromVideo(video: HTMLVideoElement): Promise<File> {
-  const width = video.videoWidth || 1920;
-  const height = video.videoHeight || 1080;
-  const canvas = document.createElement("canvas");
-  canvas.width = width;
-  canvas.height = height;
-  const ctx = canvas.getContext("2d");
-  if (!ctx) throw new Error("Could not create canvas context for frame capture.");
-  ctx.drawImage(video, 0, 0, width, height);
-
-  return new Promise((resolve, reject) => {
-    canvas.toBlob(
-      (blob) => {
-        if (!blob) {
-          reject(new Error("Failed to create snapshot from video stream."));
-          return;
-        }
-        const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
-        const file = new File([blob], `Screen_Capture_${timestamp}.jpg`, {
-          type: "image/jpeg",
-        });
-        resolve(file);
-      },
-      "image/jpeg",
-      0.95,
-    );
-  });
-}
-
 export interface UseScreenShareOptions {
   /** Called when stream is ended by user (e.g. browser's native floating "Stop sharing" bar) */
   onAutoStop?: (file: File) => void;
@@ -87,13 +46,11 @@ export function useScreenShare(options: UseScreenShareOptions = {}) {
   const { onAutoStop } = options;
 
   const [stream, setStream] = useState<MediaStream | null>(null);
-  const [sourceType, setSourceType] = useState<StreamSourceType | null>(null);
   const [isStreaming, setIsStreaming] = useState(false);
   const [isRecording, setIsRecording] = useState(false);
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
   const [error, setError] = useState<string | null>(null);
   const [videoDimensions, setVideoDimensions] = useState<{ width: number; height: number } | null>(null);
-  const [isMobileModalOpen, setIsMobileModalOpen] = useState(false);
 
   const streamRef = useRef<MediaStream | null>(null);
   const recorderRef = useRef<MediaRecorder | null>(null);
@@ -102,7 +59,6 @@ export function useScreenShare(options: UseScreenShareOptions = {}) {
   const mimeTypeRef = useRef<string>("");
   const autoStopTriggeredRef = useRef(false);
 
-  // Keep streamRef updated
   useEffect(() => {
     streamRef.current = stream;
   }, [stream]);
@@ -140,7 +96,6 @@ export function useScreenShare(options: UseScreenShareOptions = {}) {
     recorderRef.current = null;
     chunksRef.current = [];
     setStream(null);
-    setSourceType(null);
     setIsStreaming(false);
     setIsRecording(false);
     setElapsedSeconds(0);
@@ -154,82 +109,6 @@ export function useScreenShare(options: UseScreenShareOptions = {}) {
       resetState();
     };
   }, [resetState]);
-
-  const startStreamRecording = useCallback(
-    (activeStream: MediaStream, type: StreamSourceType) => {
-      resetState();
-      setError(null);
-      setStream(activeStream);
-      streamRef.current = activeStream;
-      setSourceType(type);
-      setIsStreaming(true);
-      autoStopTriggeredRef.current = false;
-
-      // Extract video track dimensions
-      const videoTrack = activeStream.getVideoTracks()[0];
-      if (videoTrack) {
-        const settings = videoTrack.getSettings();
-        if (settings.width && settings.height) {
-          setVideoDimensions({ width: settings.width, height: settings.height });
-        }
-      }
-
-      // Initialize MediaRecorder
-      const supportedMime = getSupportedVideoMimeType();
-      mimeTypeRef.current = supportedMime;
-      chunksRef.current = [];
-
-      try {
-        const recorder = new MediaRecorder(
-          activeStream,
-          supportedMime ? { mimeType: supportedMime } : undefined,
-        );
-
-        recorder.ondataavailable = (event) => {
-          if (event.data && event.data.size > 0) {
-            chunksRef.current.push(event.data);
-          }
-        };
-
-        recorderRef.current = recorder;
-        recorder.start(500); // chunk every 500ms
-        setIsRecording(true);
-      } catch (recErr) {
-        console.warn("MediaRecorder start failed:", recErr);
-        // We can still stream without recording if needed
-      }
-
-      // Elapsed seconds counter
-      setElapsedSeconds(0);
-      timerRef.current = setInterval(() => {
-        setElapsedSeconds((prev) => prev + 1);
-      }, 1000);
-
-      // Listen to track.onended (e.g. browser native "Stop sharing" button)
-      if (videoTrack) {
-        videoTrack.onended = async () => {
-          if (autoStopTriggeredRef.current) return;
-          autoStopTriggeredRef.current = true;
-
-          // If we have some recorded time, auto-finish and trigger onAutoStop
-          if (recorderRef.current && recorderRef.current.state !== "inactive") {
-            try {
-              const file = await finalizeRecording();
-              if (file && file.size > 1000 && onAutoStop) {
-                onAutoStop(file);
-                return;
-              }
-            } catch (err) {
-              console.error("Auto stop recording error:", err);
-            }
-          }
-          resetState();
-        };
-      }
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [onAutoStop, resetState],
-  );
 
   /** Helper to finalize recording and return File */
   const finalizeRecording = useCallback(async (): Promise<File> => {
@@ -274,17 +153,95 @@ export function useScreenShare(options: UseScreenShareOptions = {}) {
     });
   }, [clearTimer, resetState, stopTracks]);
 
-  /** Start native Screen Sharing via getDisplayMedia */
+  const startStreamRecording = useCallback(
+    (activeStream: MediaStream) => {
+      resetState();
+      setError(null);
+      setStream(activeStream);
+      streamRef.current = activeStream;
+      setIsStreaming(true);
+      autoStopTriggeredRef.current = false;
+
+      // Extract video track dimensions
+      const videoTrack = activeStream.getVideoTracks()[0];
+      if (videoTrack) {
+        const settings = videoTrack.getSettings();
+        if (settings.width && settings.height) {
+          setVideoDimensions({ width: settings.width, height: settings.height });
+        }
+      }
+
+      // Initialize MediaRecorder
+      const supportedMime = getSupportedVideoMimeType();
+      mimeTypeRef.current = supportedMime;
+      chunksRef.current = [];
+
+      try {
+        const recorder = new MediaRecorder(
+          activeStream,
+          supportedMime ? { mimeType: supportedMime } : undefined,
+        );
+
+        recorder.ondataavailable = (event) => {
+          if (event.data && event.data.size > 0) {
+            chunksRef.current.push(event.data);
+          }
+        };
+
+        recorderRef.current = recorder;
+        recorder.start(500); // chunk every 500ms
+        setIsRecording(true);
+      } catch (recErr) {
+        console.warn("MediaRecorder start failed:", recErr);
+      }
+
+      // Elapsed seconds counter
+      setElapsedSeconds(0);
+      timerRef.current = setInterval(() => {
+        setElapsedSeconds((prev) => prev + 1);
+      }, 1000);
+
+      // Listen to track.onended (e.g. browser native "Stop sharing" button)
+      if (videoTrack) {
+        videoTrack.onended = async () => {
+          if (autoStopTriggeredRef.current) return;
+          autoStopTriggeredRef.current = true;
+
+          // If we have some recorded time, auto-finish and trigger onAutoStop
+          if (recorderRef.current && recorderRef.current.state !== "inactive") {
+            try {
+              const file = await finalizeRecording();
+              if (file && file.size > 1000 && onAutoStop) {
+                onAutoStop(file);
+                return;
+              }
+            } catch (err) {
+              console.error("Auto stop recording error:", err);
+            }
+          }
+          resetState();
+        };
+      }
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [onAutoStop, resetState],
+  );
+
+  /** Start Screen Sharing directly on any device (Desktop, mobile, tablet) */
   const startScreenShare = useCallback(async () => {
     if (!canUseDisplayMedia()) {
-      setIsMobileModalOpen(true);
+      toast.error(
+        "Screen sharing is not supported by this browser. (On iOS, use Safari 17.2+; on Android, use a browser supporting display media or upload a screen recording).",
+        { duration: 6000 },
+      );
       return;
     }
 
     try {
       setError(null);
-      // Attempt with displaySurface constraint for desktop
       let activeStream: MediaStream;
+
+      // Attempt with desktop constraint first
       try {
         activeStream = await navigator.mediaDevices.getDisplayMedia({
           video: {
@@ -294,21 +251,18 @@ export function useScreenShare(options: UseScreenShareOptions = {}) {
           audio: false,
         });
       } catch (err: unknown) {
-        // Retry with basic constraint if displaySurface was rejected
-        if (
-          err instanceof Error &&
-          (err.name === "OverconstrainedError" || err.name === "TypeError")
-        ) {
-          activeStream = await navigator.mediaDevices.getDisplayMedia({
-            video: true,
-            audio: false,
-          });
-        } else {
-          throw err;
+        // If user cancelled, don't retry
+        if (err instanceof Error && (err.name === "NotAllowedError" || err.name === "AbortError")) {
+          return;
         }
+        // Retry with bare video: true (needed on mobile Safari iOS 17.2+ and browsers rejecting displaySurface)
+        activeStream = await navigator.mediaDevices.getDisplayMedia({
+          video: true,
+          audio: false,
+        });
       }
 
-      startStreamRecording(activeStream, "screen");
+      startStreamRecording(activeStream);
       toast.info("Screen sharing active! Open Genshin and scroll your bag.");
     } catch (err: unknown) {
       if (err instanceof Error && (err.name === "NotAllowedError" || err.name === "AbortError")) {
@@ -316,60 +270,11 @@ export function useScreenShare(options: UseScreenShareOptions = {}) {
         return;
       }
       console.error("Screen sharing error:", err);
-      // If mobile or unsupported, offer mobile assistant
-      if (isMobileDevice()) {
-        setIsMobileModalOpen(true);
-      } else {
-        const msg = err instanceof Error ? err.message : "Failed to start screen share.";
-        setError(msg);
-        toast.error(`Screen share error: ${msg}`);
-      }
+      const msg = err instanceof Error ? err.message : "Failed to start screen share.";
+      setError(msg);
+      toast.error(`Screen share error: ${msg}`);
     }
   }, [startStreamRecording]);
-
-  /** Start Camera stream (ideal for scanning another screen from a mobile device) */
-  const startCameraCapture = useCallback(
-    async (facingMode: "environment" | "user" = "environment") => {
-      if (!navigator.mediaDevices?.getUserMedia) {
-        toast.error("Camera access is not supported on this browser.");
-        return;
-      }
-
-      try {
-        setError(null);
-        let activeStream: MediaStream;
-        try {
-          activeStream = await navigator.mediaDevices.getUserMedia({
-            video: {
-              facingMode: { ideal: facingMode },
-              width: { ideal: 1920, min: 1280 },
-              height: { ideal: 1080, min: 720 },
-            },
-            audio: false,
-          });
-        } catch {
-          // Fallback to basic video constraint
-          activeStream = await navigator.mediaDevices.getUserMedia({
-            video: true,
-            audio: false,
-          });
-        }
-
-        startStreamRecording(activeStream, "camera");
-        setIsMobileModalOpen(false);
-        toast.info("Camera viewfinder open! Point at your screen.");
-      } catch (err: unknown) {
-        if (err instanceof Error && (err.name === "NotAllowedError" || err.name === "AbortError")) {
-          return;
-        }
-        console.error("Camera capture error:", err);
-        const msg = err instanceof Error ? err.message : "Could not access camera.";
-        setError(msg);
-        toast.error(`Camera error: ${msg}`);
-      }
-    },
-    [startStreamRecording],
-  );
 
   /** Stop recording & return File for video scanner */
   const stopAndGetVideo = useCallback(async (): Promise<File | null> => {
@@ -384,22 +289,6 @@ export function useScreenShare(options: UseScreenShareOptions = {}) {
     }
   }, [finalizeRecording, resetState]);
 
-  /** Snap single frame as JPEG File for image scanner */
-  const snapCurrentFrame = useCallback(
-    async (videoEl: HTMLVideoElement): Promise<File | null> => {
-      try {
-        const file = await snapPhotoFromVideo(videoEl);
-        resetState();
-        return file;
-      } catch (err) {
-        console.error("Failed to snap frame:", err);
-        toast.error("Could not capture frame from stream.");
-        return null;
-      }
-    },
-    [resetState],
-  );
-
   /** Cancel streaming and reset */
   const cancelStream = useCallback(() => {
     resetState();
@@ -408,20 +297,14 @@ export function useScreenShare(options: UseScreenShareOptions = {}) {
 
   return {
     stream,
-    sourceType,
     isStreaming,
     isRecording,
     elapsedSeconds,
     error,
     videoDimensions,
-    isMobileModalOpen,
-    setIsMobileModalOpen,
     startScreenShare,
-    startCameraCapture,
     stopAndGetVideo,
-    snapCurrentFrame,
     cancelStream,
     canUseDisplayMedia: canUseDisplayMedia(),
-    isMobile: isMobileDevice(),
   };
 }

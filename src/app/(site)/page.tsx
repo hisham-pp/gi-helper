@@ -80,7 +80,7 @@ export default function ScannerPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
       />
       {/* Main Scanner Container. */}
-      <main className="flex min-h-0 w-full flex-1 flex-col items-center justify-start pb-4">
+      <main className="flex w-full flex-1 flex-col items-center justify-start pb-6">
         <Scanner />
         <HomeSeoContent />
       </main>

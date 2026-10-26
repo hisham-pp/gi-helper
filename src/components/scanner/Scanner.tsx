@@ -117,7 +117,7 @@ export function Scanner() {
   };
 
   return (
-    <div className="mx-auto flex min-h-0 w-full max-w-4xl flex-1 flex-col items-center space-y-3 pt-0 sm:flex-none sm:space-y-6 sm:pt-4">
+    <div className="mx-auto flex w-full max-w-4xl flex-col items-center space-y-4 pt-1 sm:space-y-6 sm:pt-4">
       {/* Header: mode-neutral Icon + Title & Description shared by all tabs */}
       <div className="space-y-1.5 text-center sm:space-y-2">
         {/* Icon flows inline so it stays beside the first word when the title wraps */}
@@ -144,34 +144,32 @@ export function Scanner() {
           switching tabs keeps each one's state (last review, a scan in
           progress; results live on /inventory); the inactive ones are just
           hidden, and its entry animation replays when it is shown again. */}
-      <div ref={panelsRef} className="flex min-h-0 w-full flex-1 flex-col sm:flex-none">
+      <div ref={panelsRef} className="w-full">
         <div
           hidden={activeTab !== 0}
-          className={
-            activeTab === 0
-              ? "flex min-h-0 flex-1 flex-col sm:block sm:flex-none"
-              : "hidden"
-          }
+          className={activeTab === 0 ? "w-full" : "hidden"}
         >
-          <ClassicScannerView id="scanner-panel" ariaLabelledBy="scanner-tab" />
+          <ClassicScannerView
+            id="scanner-panel"
+            ariaLabelledBy="scanner-tab"
+            onShareScreen={() => {
+              handleTabChange(1);
+              setVisited((prev) => (prev.has(1) ? prev : new Set(prev).add(1)));
+              setTimeout(() => {
+                window.dispatchEvent(new CustomEvent("gi_trigger_screen_share"));
+              }, 50);
+            }}
+          />
         </div>
         <div
           hidden={activeTab !== 1}
-          className={
-            activeTab === 1
-              ? "flex min-h-0 flex-1 flex-col sm:block sm:flex-none"
-              : "hidden"
-          }
+          className={activeTab === 1 ? "w-full" : "hidden"}
         >
           {visited.has(1) && <VideoScannerView id="video-panel" ariaLabelledBy="video-tab" />}
         </div>
         <div
           hidden={activeTab !== 2}
-          className={
-            activeTab === 2
-              ? "flex min-h-0 flex-1 flex-col sm:block sm:flex-none"
-              : "hidden"
-          }
+          className={activeTab === 2 ? "w-full" : "hidden"}
         >
           {visited.has(2) && <AiScannerView id="ai-panel" ariaLabelledBy="ai-tab" />}
         </div>

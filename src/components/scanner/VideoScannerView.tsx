@@ -8,7 +8,6 @@ import { UploadZone } from "./UploadZone";
 import { LazyScanReviewModal, preloadScanReviewModal } from "./lazy-modals";
 import { useScreenShare } from "./use-screen-share";
 import { LiveScreenStudio } from "./LiveScreenStudio";
-import { MobileScreenShareModal } from "./MobileScreenShareModal";
 import { isMaterialDetectionError, type CardRecognitionStatus } from "@gi/image-scanner";
 import { useMaterialScanClient } from "@gi/image-scanner/react";
 import {
@@ -398,12 +397,30 @@ export function VideoScannerView({ id = "video-panel", ariaLabelledBy = "video-t
 
   const handleShareScreen = useCallback(() => {
     if (isScanning) return;
-    if (screenShare.isMobile && !screenShare.canUseDisplayMedia) {
-      screenShare.setIsMobileModalOpen(true);
-    } else {
-      screenShare.startScreenShare();
-    }
+    screenShare.startScreenShare();
   }, [isScanning, screenShare]);
+
+  // Listen for trigger or shared video from other tabs
+  useEffect(() => {
+    const handleTrigger = () => {
+      if (!isScanning) {
+        screenShare.startScreenShare();
+      }
+    };
+    const handleSharedVideo = (e: Event) => {
+      const customEvent = e as CustomEvent<{ file: File }>;
+      if (customEvent.detail?.file) {
+        handleFiles([customEvent.detail.file]);
+      }
+    };
+
+    window.addEventListener("gi_trigger_screen_share", handleTrigger);
+    window.addEventListener("gi_shared_video_received", handleSharedVideo);
+    return () => {
+      window.removeEventListener("gi_trigger_screen_share", handleTrigger);
+      window.removeEventListener("gi_shared_video_received", handleSharedVideo);
+    };
+  }, [handleFiles, isScanning, screenShare]);
 
   const framesScanned = timeline.filter((f) => f.status === "done" || f.status === "failed").length;
 
@@ -413,7 +430,7 @@ export function VideoScannerView({ id = "video-panel", ariaLabelledBy = "video-t
       role="tabpanel"
       aria-labelledby={ariaLabelledBy}
       tabIndex={0}
-      className="pill-tab-panel flex min-h-0 w-full flex-1 flex-col space-y-2 focus-visible:outline-none sm:block sm:flex-none sm:space-y-4"
+      className="pill-tab-panel w-full space-y-3 focus-visible:outline-none sm:space-y-4"
     >
       {scanError && !isScanning && (
         <div className="on-dark animate-in fade-in slide-in-from-top-2 mx-auto flex w-full max-w-2xl items-start justify-between gap-3 rounded-2xl border border-rose-500/40 bg-rose-950/50 p-3.5 text-xs text-rose-200 shadow-xl backdrop-blur-xl">
@@ -474,7 +491,6 @@ export function VideoScannerView({ id = "video-panel", ariaLabelledBy = "video-t
       {screenShare.isStreaming ? (
         <LiveScreenStudio
           stream={screenShare.stream}
-          sourceType={screenShare.sourceType}
           elapsedSeconds={screenShare.elapsedSeconds}
           isRecording={screenShare.isRecording}
           accent="teal"
@@ -546,14 +562,6 @@ export function VideoScannerView({ id = "video-panel", ariaLabelledBy = "video-t
           onConfirm={handleConfirmReview}
         />
       )}
-
-      <MobileScreenShareModal
-        isOpen={screenShare.isMobileModalOpen}
-        onClose={() => screenShare.setIsMobileModalOpen(false)}
-        onSelectCamera={() => screenShare.startCameraCapture("environment")}
-        onSelectVideoFile={(files) => handleFiles(files)}
-        onTryDisplayMedia={() => screenShare.startScreenShare()}
-      />
     </div>
   );
 }
