@@ -11,7 +11,7 @@ export function SiteFooter() {
     <footer className="w-full shrink-0 px-4 pb-[max(1.5rem,env(safe-area-inset-bottom,1.5rem))] pt-2 sm:px-6 md:px-8">
       <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-x-4 gap-y-2 text-xs text-white/50 sm:flex-row">
         <p className="hidden sm:block">
-          Unofficial fan project. Not affiliated with HoYoverse.
+          Unofficial fan project. Web-based Genshin Impact inventory scanner &amp; Kamera alternative. Not affiliated with HoYoverse.
         </p>
         <ScanCounter />
         <FooterNav />

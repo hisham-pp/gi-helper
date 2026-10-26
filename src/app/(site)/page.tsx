@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
 import { Scanner } from "@/components/scanner/Scanner";
+import { HomeSeoContent, SEO_FAQS } from "@/components/home/HomeSeoContent";
 import { pageMetadata, SITE } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
-  title: `${SITE.name} – ${SITE.title}`,
+  title: "Genshin Inventory Scanner – Web-Based & Kamera Alternative | GI Helper",
   absoluteTitle: true,
   description: SITE.description,
   path: "/",
 });
 
-/** Structured data so search engines can describe the scanner as a free web app. */
+/** Structured data so search engines understand the web app, keywords, and FAQs. */
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
@@ -17,30 +18,55 @@ const jsonLd = {
       "@type": "WebSite",
       "@id": `${SITE.url}/#website`,
       url: SITE.url,
-      name: SITE.name,
+      name: "GI Helper – Genshin Inventory Scanner",
+      alternateName: [
+        "Genshin Inventory Scanner",
+        "Genshin Web Based Inventory Scanner",
+        "GI Helper",
+        "Genshin Kamera Web Alternative",
+      ],
       description: SITE.description,
       inLanguage: "en",
     },
     {
       "@type": "WebApplication",
       "@id": `${SITE.url}/#app`,
-      name: `${SITE.name} – ${SITE.title}`,
+      name: "Genshin Inventory Scanner (GI Helper)",
+      alternateName: [
+        "Genshin Web Based Inventory Scanner",
+        "Genshin Kamera Web Alternative",
+        "GI Helper",
+      ],
       url: SITE.url,
       description: SITE.description,
-      applicationCategory: "UtilitiesApplication",
-      operatingSystem: "Any",
-      browserRequirements: "Requires JavaScript",
+      applicationCategory: "UtilitiesApplication, GameApplication",
+      operatingSystem: "Any Web Browser (Chrome, Safari, Firefox, Edge, iOS, Android, PC, Mac, Linux)",
+      browserRequirements: "Requires JavaScript and modern browser with WebAssembly / Web Workers",
       isAccessibleForFree: true,
       offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
       featureList: [
-        "On-device scanning of inventory screenshots, no API key needed",
-        "On-device scanning of inventory screen recordings",
-        "Optional AI Vision scanning with Gemini, OpenAI, Claude or Grok",
-        "Review and correct detected materials and quantities",
-        "Export to GOOD format for Genshin optimizers",
+        "100% Web-based Genshin Impact inventory scanner requiring no software downloads",
+        "Lightweight online alternative to desktop scanners like Inventory Kamera and Amenoma",
+        "Client-side private scanning using Web Workers; screenshots and recordings never leave your device",
+        "Scans Character Development Items, Materials, Weapons, Artifacts, and Character rosters",
+        "Video screen recording scanner with automatic scroll detection and frame stitching",
+        "Direct export to GOOD (Genshin Open Object Description) format for Genshin Optimizer",
+        "Optional AI Vision scanning with Gemini, OpenAI, Claude, or Grok",
       ],
       about: { "@type": "VideoGame", name: "Genshin Impact" },
       isPartOf: { "@id": `${SITE.url}/#website` },
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${SITE.url}/#faq`,
+      mainEntity: SEO_FAQS.map((faq) => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: faq.answerText,
+        },
+      })),
     },
   ],
 };
@@ -53,10 +79,10 @@ export default function ScannerPage() {
         // Escape "<" so the JSON can never close the script tag
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
       />
-      {/* Main Scanner Container. Results live on /inventory, so only a small
-          gap above the footer (the old bottom padding made the page scroll) */}
+      {/* Main Scanner Container. */}
       <main className="flex min-h-0 w-full flex-1 flex-col items-center justify-start pb-4">
         <Scanner />
+        <HomeSeoContent />
       </main>
     </div>
   );
