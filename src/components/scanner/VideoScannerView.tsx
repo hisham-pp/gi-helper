@@ -6,6 +6,9 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { UploadZone } from "./UploadZone";
 import { LazyScanReviewModal, preloadScanReviewModal } from "./lazy-modals";
+import { useScreenShare } from "./use-screen-share";
+import { LiveScreenStudio } from "./LiveScreenStudio";
+import { MobileScreenShareModal } from "./MobileScreenShareModal";
 import { isMaterialDetectionError, type CardRecognitionStatus } from "@gi/image-scanner";
 import { useMaterialScanClient } from "@gi/image-scanner/react";
 import {
@@ -382,6 +385,26 @@ export function VideoScannerView({ id = "video-panel", ariaLabelledBy = "video-t
 
   const handleCloseReview = useCallback(() => setIsReviewOpen(false), []);
 
+  const handleAutoStop = useCallback(
+    (file: File) => {
+      handleFiles([file]);
+    },
+    [handleFiles],
+  );
+
+  const screenShare = useScreenShare({
+    onAutoStop: handleAutoStop,
+  });
+
+  const handleShareScreen = useCallback(() => {
+    if (isScanning) return;
+    if (screenShare.isMobile && !screenShare.canUseDisplayMedia) {
+      screenShare.setIsMobileModalOpen(true);
+    } else {
+      screenShare.startScreenShare();
+    }
+  }, [isScanning, screenShare]);
+
   const framesScanned = timeline.filter((f) => f.status === "done" || f.status === "failed").length;
 
   return (
@@ -448,41 +471,59 @@ export function VideoScannerView({ id = "video-panel", ariaLabelledBy = "video-t
         </div>
       )}
 
-      <UploadZone
-        isScanning={isScanning}
-        progress={progress}
-        statusMessage={statusMessage}
-        activeImageSrc={frameView?.previewUrl ?? null}
-        activeFileName={frameView ? `${fileName} · ${formatVideoTime(frameView.time)}` : fileName}
-        providerDisplayName="Video scanner"
-        modelName="on-device"
-        scanEmptyMessage="Reading the recording..."
-        onFilesSelected={handleFiles}
-        inputId="video-recording-upload"
-        accept="video/*,.mp4,.m4v,.mov,.webm,.mkv"
-        multiple={false}
-        icon={<Film className="h-7 w-7 text-teal-300 drop-shadow-md sm:h-8 sm:w-8" />}
-        title="Click to upload or drag & drop"
-        description="Select a screen recording of your bag, scrolling through a tab: materials, weapons or artifacts."
-        subDescription="Scroll at a steady pace, pausing briefly between flicks. Runs on your device: nothing uploaded."
-        sample={SAMPLE_RECORDING}
-        sampleButtonText="Try a sample recording"
-        sampleButtonIcon={<Film />}
-        accent="teal"
-        compactOnMobile
-        scanOverlay={video && frameView?.cards ? <FrameOverlay video={video} cards={frameView.cards} /> : null}
-        scanFooter={
-          video ? (
-            <VideoTimeline
-              duration={video.duration}
-              analysedTo={analysedTo}
-              frames={timeline}
-              currentId={frameView?.id ?? null}
-              framesScanned={framesScanned}
-            />
-          ) : null
-        }
-      />
+      {screenShare.isStreaming ? (
+        <LiveScreenStudio
+          stream={screenShare.stream}
+          sourceType={screenShare.sourceType}
+          elapsedSeconds={screenShare.elapsedSeconds}
+          isRecording={screenShare.isRecording}
+          accent="teal"
+          onStopAndScanVideo={async () => {
+            const file = await screenShare.stopAndGetVideo();
+            if (file) handleFiles([file]);
+          }}
+          onCancel={screenShare.cancelStream}
+          tipText="Scroll steadily through your Genshin inventory bag · Click 'Stop & Scan' when finished"
+        />
+      ) : (
+        <UploadZone
+          isScanning={isScanning}
+          progress={progress}
+          statusMessage={statusMessage}
+          activeImageSrc={frameView?.previewUrl ?? null}
+          activeFileName={frameView ? `${fileName} · ${formatVideoTime(frameView.time)}` : fileName}
+          providerDisplayName="Video scanner"
+          modelName="on-device"
+          scanEmptyMessage="Reading the recording..."
+          onFilesSelected={handleFiles}
+          onShareScreen={handleShareScreen}
+          shareScreenButtonText="Share Screen"
+          inputId="video-recording-upload"
+          accept="video/*,.mp4,.m4v,.mov,.webm,.mkv"
+          multiple={false}
+          icon={<Film className="h-7 w-7 text-teal-300 drop-shadow-md sm:h-8 sm:w-8" />}
+          title="Click to upload or drag & drop"
+          description="Select a screen recording or share your screen directly to scan materials, weapons or artifacts."
+          subDescription="Scroll at a steady pace, pausing briefly between flicks. Runs on your device: nothing uploaded."
+          sample={SAMPLE_RECORDING}
+          sampleButtonText="Try a sample recording"
+          sampleButtonIcon={<Film />}
+          accent="teal"
+          compactOnMobile
+          scanOverlay={video && frameView?.cards ? <FrameOverlay video={video} cards={frameView.cards} /> : null}
+          scanFooter={
+            video ? (
+              <VideoTimeline
+                duration={video.duration}
+                analysedTo={analysedTo}
+                frames={timeline}
+                currentId={frameView?.id ?? null}
+                framesScanned={framesScanned}
+              />
+            ) : null
+          }
+        />
+      )}
 
       {isScanning && (
         <div className="flex justify-center">
@@ -505,6 +546,14 @@ export function VideoScannerView({ id = "video-panel", ariaLabelledBy = "video-t
           onConfirm={handleConfirmReview}
         />
       )}
+
+      <MobileScreenShareModal
+        isOpen={screenShare.isMobileModalOpen}
+        onClose={() => screenShare.setIsMobileModalOpen(false)}
+        onSelectCamera={() => screenShare.startCameraCapture("environment")}
+        onSelectVideoFile={(files) => handleFiles(files)}
+        onTryDisplayMedia={() => screenShare.startScreenShare()}
+      />
     </div>
   );
 }

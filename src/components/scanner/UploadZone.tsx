@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { FolderOpen, ImageIcon } from "lucide-react";
+import { FolderOpen, ImageIcon, ScreenShare } from "lucide-react";
 import { markSampleFile } from "@/lib/stats";
 import { ScanningAnimation, ScanningFileItem } from "./ScanningAnimation";
 import { ScanUploadIcon } from "./ScanUploadIcon";
@@ -28,6 +28,11 @@ export interface UploadZoneProps {
   /** Icon shown on the sample button; defaults to a neutral image icon. */
   sampleButtonIcon?: React.ReactNode;
   showSampleButton?: boolean;
+  /** Screen share action callback */
+  onShareScreen?: () => void;
+  shareScreenButtonText?: string;
+  shareScreenButtonIcon?: React.ReactNode;
+  showShareScreenButton?: boolean;
   /** Use a shorter upload panel on compact mobile layouts. */
   compactOnMobile?: boolean;
   /** File loaded by the sample button; defaults to a sample screenshot. */
@@ -70,6 +75,10 @@ export function UploadZone({
   sampleButtonText = "Try a sample",
   sampleButtonIcon,
   showSampleButton = true,
+  onShareScreen,
+  shareScreenButtonText = "Share Screen",
+  shareScreenButtonIcon,
+  showShareScreenButton = true,
   compactOnMobile = false,
   sample = DEFAULT_SAMPLE,
   accept = "image/*",
@@ -218,6 +227,22 @@ export function UploadZone({
               <FolderOpen className="h-3.5 w-3.5" />
               Browse files
             </span>
+            {onShareScreen && showShareScreenButton !== false && (
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  onShareScreen();
+                }}
+                className="glass-btn"
+              >
+                <span className="inline-flex text-cyan-200 [&>svg]:h-3.5 [&>svg]:w-3.5">
+                  {shareScreenButtonIcon || <ScreenShare />}
+                </span>
+                <span>{shareScreenButtonText}</span>
+              </button>
+            )}
             {showSampleButton && (
               <button
                 type="button"

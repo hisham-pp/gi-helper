@@ -125,7 +125,7 @@ export function Scanner() {
           Genshin Impact Inventory Scanner
         </h1>
         <p className="mx-auto max-w-xl text-[11px] text-cyan-100/80 drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)] sm:text-sm">
-          Free web-based inventory scanner &amp; Kamera alternative. Upload screenshots or screen recordings to scan materials, weapons, artifacts and characters right in your browser.
+          Free web-based inventory scanner &amp; Kamera alternative. Upload screenshots, screen recordings or share your screen directly to scan materials, weapons, artifacts and characters right in your browser.
         </p>
       </div>
 
