@@ -1987,7 +1987,7 @@
     "image": "/images/materials/ethereal-crystalscale-stone.png",
     "sortRank": 10639,
     "order": 184,
-    "family": "Snowland Fae Materials"
+    "family": "Fae of Crystalline Flesh Materials"
   },
   {
     "id": "ethereal-crystal",
@@ -1998,7 +1998,7 @@
     "image": "/images/materials/ethereal-crystal.png",
     "sortRank": 10639,
     "order": 185,
-    "family": "Snowland Fae Materials"
+    "family": "Fae of Crystalline Flesh Materials"
   },
   {
     "id": "ethereal-glimmershard",
@@ -2009,7 +2009,7 @@
     "image": "/images/materials/ethereal-glimmershard.png",
     "sortRank": 10639,
     "order": 186,
-    "family": "Snowland Fae Materials"
+    "family": "Fae of Crystalline Flesh Materials"
   },
   {
     "id": "prime-chimeric-nexus",
