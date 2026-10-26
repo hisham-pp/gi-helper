@@ -1,3 +1,4 @@
+import { Github } from "lucide-react";
 import { FooterNav } from "./FooterNav";
 import { ScanCounter } from "./ScanCounter";
 
@@ -14,7 +15,19 @@ export function SiteFooter() {
           Unofficial fan project. Web-based Genshin Impact inventory scanner &amp; Kamera alternative. Not affiliated with HoYoverse.
         </p>
         <ScanCounter />
-        <FooterNav />
+        <div className="flex items-center gap-2">
+          <FooterNav />
+          <a
+            href="https://github.com/hisham-pp/gi-helper"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="GitHub Repository"
+            aria-label="GI Helper on GitHub"
+            className="glass-chip flex h-8 w-8 items-center justify-center rounded-xl text-white/70 hover:text-white transition-colors"
+          >
+            <Github className="h-4 w-4" />
+          </a>
+        </div>
       </div>
     </footer>
   );

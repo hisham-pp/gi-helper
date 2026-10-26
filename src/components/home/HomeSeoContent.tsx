@@ -584,6 +584,15 @@ export function HomeSeoContent() {
           <ShellLink href="/feedback" className="hover:text-cyan-300 hover:underline">
             Feedback &amp; Bug Reports
           </ShellLink>
+          <a
+            href="https://github.com/hisham-pp/gi-helper"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-cyan-300 hover:underline inline-flex items-center gap-1"
+          >
+            <span>GitHub (Open Source)</span>
+            <ExternalLink className="h-3 w-3 text-white/40" />
+          </a>
         </div>
       </div>
     </section>

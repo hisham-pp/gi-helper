@@ -7,6 +7,8 @@ import {
   History,
   ChevronRight,
   BookOpen,
+  Github,
+  ExternalLink,
   type LucideIcon,
 } from "lucide-react";
 import { pageMetadata } from "@/lib/seo";
@@ -21,12 +23,13 @@ export const metadata: Metadata = pageMetadata({
 });
 
 interface MoreMenuItem {
-  href: Route;
+  href: Route | string;
   label: string;
   description: string;
   icon: LucideIcon;
   /** Accent colour class for the icon chip. */
   accent: string;
+  external?: boolean;
 }
 
 const MENU_ITEMS: MoreMenuItem[] = [
@@ -50,6 +53,14 @@ const MENU_ITEMS: MoreMenuItem[] = [
     description: "What GI Helper is, how it works and your data",
     icon: Info,
     accent: "text-cyan-300",
+  },
+  {
+    href: "https://github.com/hisham-pp/gi-helper",
+    label: "GitHub",
+    description: "Open source repository, issues & MIT license",
+    icon: Github,
+    accent: "text-purple-300",
+    external: true,
   },
   {
     href: "/feedback" as Route,
@@ -85,28 +96,54 @@ export default function MorePage() {
 
         {/* Menu list */}
         <div className="space-y-2">
-          {MENU_ITEMS.map(({ href, label, description, icon: Icon, accent }) => (
-            <ShellLink
-              key={href}
-              href={href}
-              className="glass-card group flex items-center gap-4 p-4 transition-all duration-200 hover:scale-[1.01] active:scale-[0.98]"
-            >
-              <span
-                className={`glass-chip flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl ${accent}`}
+          {MENU_ITEMS.map(({ href, label, description, icon: Icon, accent, external }) => {
+            const content = (
+              <>
+                <span
+                  className={`glass-chip flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl ${accent}`}
+                >
+                  <Icon className="h-5 w-5" />
+                </span>
+                <div className="min-w-0 flex-1">
+                  <span className="block text-sm font-bold text-white">
+                    {label}
+                  </span>
+                  <span className="block text-xs leading-relaxed text-white/60">
+                    {description}
+                  </span>
+                </div>
+                {external ? (
+                  <ExternalLink className="h-4 w-4 shrink-0 text-white/30 transition-transform duration-200 group-hover:text-white/50" />
+                ) : (
+                  <ChevronRight className="h-4 w-4 shrink-0 text-white/30 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-white/50" />
+                )}
+              </>
+            );
+
+            if (external) {
+              return (
+                <a
+                  key={href}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="glass-card group flex items-center gap-4 p-4 transition-all duration-200 hover:scale-[1.01] active:scale-[0.98]"
+                >
+                  {content}
+                </a>
+              );
+            }
+
+            return (
+              <ShellLink
+                key={href}
+                href={href as Route}
+                className="glass-card group flex items-center gap-4 p-4 transition-all duration-200 hover:scale-[1.01] active:scale-[0.98]"
               >
-                <Icon className="h-5 w-5" />
-              </span>
-              <div className="min-w-0 flex-1">
-                <span className="block text-sm font-bold text-white">
-                  {label}
-                </span>
-                <span className="block text-xs leading-relaxed text-white/60">
-                  {description}
-                </span>
-              </div>
-              <ChevronRight className="h-4 w-4 shrink-0 text-white/30 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-white/50" />
-            </ShellLink>
-          ))}
+                {content}
+              </ShellLink>
+            );
+          })}
         </div>
 
         {/* Version footer */}

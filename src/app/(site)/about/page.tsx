@@ -7,6 +7,8 @@ import {
   Scan,
   ShieldCheck,
   Sparkles,
+  Github,
+  ExternalLink,
   type LucideIcon,
 } from "lucide-react";
 import { BrandIcon } from "@/components/layout/BrandIcon";
@@ -180,6 +182,50 @@ export default function AboutPage() {
               . See the release notes for what changed.
             </p>
           )}
+        </section>
+
+        {/* Open Source & License */}
+        <section aria-labelledby="license" className="glass-card glass-card--lg p-6 sm:p-8">
+          <h2
+            id="license"
+            className="flex items-center gap-2 text-lg font-extrabold tracking-tight text-white sm:text-xl"
+          >
+            <Github className="h-5 w-5 text-cyan-300" />
+            Open Source &amp; License
+          </h2>
+          <p className="mt-3 max-w-3xl text-sm leading-relaxed text-white/80">
+            GI Helper is 100% free and open source under the{" "}
+            <a
+              href="https://github.com/hisham-pp/gi-helper/blob/main/LICENSE"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-cyan-300 hover:underline"
+            >
+              MIT License
+            </a>
+            . You are welcome to inspect the source code, fork the repository, report issues, or
+            contribute to the computer vision detector on GitHub.
+          </p>
+          <div className="mt-5 flex flex-wrap gap-3">
+            <a
+              href="https://github.com/hisham-pp/gi-helper"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="glass-btn glass-btn--primary px-4 py-2 text-xs font-bold inline-flex items-center gap-2"
+            >
+              <Github className="h-4 w-4" />
+              <span>GitHub Repository</span>
+              <ExternalLink className="h-3 w-3 text-white/50" />
+            </a>
+            <a
+              href="https://github.com/hisham-pp/gi-helper/blob/main/LICENSE"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="glass-btn px-4 py-2 text-xs font-medium inline-flex items-center gap-2"
+            >
+              <span>View LICENSE</span>
+            </a>
+          </div>
         </section>
       </main>
     </div>
