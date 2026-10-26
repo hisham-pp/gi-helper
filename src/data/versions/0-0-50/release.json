@@ -1,0 +1,27 @@
+{
+  "title": "SEO Guides & Scanner Documentation",
+  "date": "2026-10-26",
+  "summary": "Comprehensive guides for web-based inventory scanning, GOOD format export, and video scanning, plus crawlable homepage documentation and search crawler service worker fixes.",
+  "changes": [
+    {
+      "type": "new",
+      "text": "Scanner Guides Hub: Added dedicated guides for Genshin Impact inventory scanning, Kamera alternative comparison, screenshot-to-GOOD export for Genshin Optimizer, and bulk video scanning."
+    },
+    {
+      "type": "new",
+      "text": "Comprehensive Homepage SEO Guide: Enriched the home page with crawlable guides detailing supported inventory categories, how client-side WebAssembly OCR works, privacy guarantees, and GOOD export workflows."
+    },
+    {
+      "type": "improved",
+      "text": "Internal Linking & Discoverability: Added contextual internal links across homepage guides, database catalogues, inventory trackers, and footer navigation."
+    },
+    {
+      "type": "improved",
+      "text": "XML Sitemap Expansion: Included all newly published guide tutorials with high indexing priority."
+    },
+    {
+      "type": "fixed",
+      "text": "Crawler Service Worker Handling: Gracefully suppressed Service Worker registration errors in Googlebot's Web Rendering Service (WRS) and headless crawler environments."
+    }
+  ]
+}

@@ -1,10 +1,11 @@
 "use client";
 
 import React from "react";
-import { Info, MessageSquareHeart, ScrollText } from "lucide-react";
+import { BookOpen, Info, MessageSquareHeart, ScrollText } from "lucide-react";
 import { PillNav, type PillNavItem } from "./PillNav";
 
 const FOOTER_ITEMS: PillNavItem[] = [
+  { href: "/guides", label: "Guides", icon: BookOpen },
   { href: "/feedback", label: "Feedback", icon: MessageSquareHeart },
   { href: "/about", label: "About us", icon: Info },
   { href: "/versions", label: "Release notes", icon: ScrollText },

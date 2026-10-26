@@ -12,6 +12,14 @@ export function ServiceWorkerRegistration() {
       return;
     }
 
+    // Skip registration in automated crawlers / Googlebot Web Rendering Service (WRS)
+    if (
+      "wrsParams" in window ||
+      /bot|googlebot|crawler|spider|robot|crawling/i.test(navigator.userAgent)
+    ) {
+      return;
+    }
+
     // 1. Register the Service Worker
     navigator.serviceWorker
       .register("/sw.js", { scope: "/" })
@@ -33,7 +41,17 @@ export function ServiceWorkerRegistration() {
         });
       })
       .catch((err) => {
-        console.warn("[SW] Registration error:", err);
+        // Suppress expected rejection in automated crawlers (e.g. Googlebot WRS) or aborts
+        if (
+          err?.message === "Rejected" ||
+          err?.name === "AbortError" ||
+          err?.name === "SecurityError"
+        ) {
+          return;
+        }
+        if (process.env.NODE_ENV === "development") {
+          console.warn("[SW] Registration error:", err);
+        }
       });
 
     // 2. Handle incoming Web Share Target files (?shared=1)
