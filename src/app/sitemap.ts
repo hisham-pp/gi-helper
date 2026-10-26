@@ -24,6 +24,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     })),
     {
+      url: `${SITE.url}/guides`,
+      lastModified,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    ...[
+      "/guides/genshin-inventory-scanner",
+      "/guides/screenshot-to-good-export",
+      "/guides/video-inventory-scanner",
+    ].map((path) => ({
+      url: `${SITE.url}${path}`,
+      lastModified,
+      changeFrequency: "weekly" as const,
+      priority: 0.9,
+    })),
+    {
       url: `${SITE.url}/feedback`,
       lastModified,
       changeFrequency: "weekly",

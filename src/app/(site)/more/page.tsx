@@ -6,6 +6,7 @@ import {
   MessageSquareHeart,
   History,
   ChevronRight,
+  BookOpen,
   type LucideIcon,
 } from "lucide-react";
 import { pageMetadata } from "@/lib/seo";
@@ -29,6 +30,13 @@ interface MoreMenuItem {
 }
 
 const MENU_ITEMS: MoreMenuItem[] = [
+  {
+    href: "/guides" as Route,
+    label: "Guides & Tutorials",
+    description: "Kamera alternative, GOOD export, and video scanning guides",
+    icon: BookOpen,
+    accent: "text-cyan-300",
+  },
   {
     href: "/settings" as Route,
     label: "Settings",
