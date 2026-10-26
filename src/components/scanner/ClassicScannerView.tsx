@@ -6,9 +6,6 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { UploadZone } from "./UploadZone";
 import { LazyScanReviewModal, preloadScanReviewModal } from "./lazy-modals";
-import { useScreenShare } from "./use-screen-share";
-import { LiveScreenStudio } from "./LiveScreenStudio";
-import { MobileScreenShareModal } from "./MobileScreenShareModal";
 import type { ScanningFileItem } from "./ScanningAnimation";
 import { cropToBlob } from "@gi/grid-detector";
 import {
@@ -51,6 +48,7 @@ import {
 interface ClassicScannerViewProps {
   id?: string;
   ariaLabelledBy?: string;
+  onShareScreen?: () => void;
 }
 
 const STAGE_START = STAGE_START_PROGRESS;
@@ -86,6 +84,7 @@ function reviewReason(card: CardRecognition): string | undefined {
 export function ClassicScannerView({
   id = "scanner-panel",
   ariaLabelledBy = "scanner-tab",
+  onShareScreen,
 }: ClassicScannerViewProps) {
   // The atlas loads once the page is idle, not during the first render
   const client = useMaterialScanClient({ preload: "idle" });
@@ -559,29 +558,6 @@ export function ClassicScannerView({
 
   const handleCloseReview = useCallback(() => setIsReviewOpen(false), []);
 
-  const handleAutoStop = useCallback(
-    async (file: File) => {
-      if (file.type.startsWith("video/")) {
-        router.push("/?tab=video");
-        toast.info("Recording saved. Switched to Video tab to scan.");
-      }
-    },
-    [router],
-  );
-
-  const screenShare = useScreenShare({
-    onAutoStop: handleAutoStop,
-  });
-
-  const handleShareScreen = useCallback(() => {
-    if (isScanning) return;
-    if (screenShare.isMobile && !screenShare.canUseDisplayMedia) {
-      screenShare.setIsMobileModalOpen(true);
-    } else {
-      screenShare.startScreenShare();
-    }
-  }, [isScanning, screenShare]);
-
   const activeFile = scanFiles[activeIndex];
 
   return (
@@ -590,7 +566,7 @@ export function ClassicScannerView({
       role="tabpanel"
       aria-labelledby={ariaLabelledBy}
       tabIndex={0}
-      className="pill-tab-panel flex min-h-0 w-full flex-1 flex-col space-y-2 focus-visible:outline-none sm:block sm:flex-none sm:space-y-4"
+      className="pill-tab-panel w-full space-y-3 focus-visible:outline-none sm:space-y-4"
     >
       {scanError && !isScanning && (
         <div className="on-dark animate-in fade-in slide-in-from-top-2 mx-auto flex w-full max-w-2xl items-start justify-between gap-3 rounded-2xl border border-rose-500/40 bg-rose-950/50 p-3.5 text-xs text-rose-200 shadow-xl backdrop-blur-xl">
@@ -673,57 +649,32 @@ export function ClassicScannerView({
         </div>
       )}
 
-      {screenShare.isStreaming ? (
-        <LiveScreenStudio
-          stream={screenShare.stream}
-          sourceType={screenShare.sourceType}
-          elapsedSeconds={screenShare.elapsedSeconds}
-          isRecording={screenShare.isRecording}
-          accent="teal"
-          onStopAndScanVideo={async () => {
-            const file = await screenShare.stopAndGetVideo();
-            if (file) {
-              router.push("/?tab=video");
-              toast.info("Recording saved. Switched to Video tab to scan.");
-            }
-          }}
-          onSnapPhoto={async (videoEl) => {
-            const photoFile = await screenShare.snapCurrentFrame(videoEl);
-            if (photoFile) {
-              handleFiles([photoFile]);
-            }
-          }}
-          onCancel={screenShare.cancelStream}
-          tipText="Click 'Snap Frame' to capture and scan your inventory screen immediately"
-        />
-      ) : (
-        <UploadZone
-          isScanning={isScanning}
-          progress={progress}
-          statusMessage={statusMessage}
-          activeImageSrc={activeFile?.previewUrl ?? null}
-          activeFileName={activeFile?.name}
-          fileIndex={activeIndex + 1}
-          totalFiles={scanFiles.length}
-          providerDisplayName="Local scanner"
-          modelName="on-device"
-          scanningFiles={scanFiles}
-          onFilesSelected={handleFiles}
-          onShareScreen={handleShareScreen}
-          shareScreenButtonText="Share Screen"
-          onSelectThumbnail={(idx) => scanFiles[idx] && setActiveIndex(idx)}
-          inputId="classic-screenshot-upload"
-          icon={
-            <Scan className="h-7 w-7 text-teal-300 drop-shadow-md sm:h-8 sm:w-8" />
-          }
-          title="Click to upload or drag & drop"
-          description="Select screenshots of your bag or share your screen directly to capture & scan."
-          subDescription="Runs on your device: no API key, nothing uploaded."
-          sampleButtonIcon={<Scan />}
-          accent="teal"
-          compactOnMobile
-        />
-      )}
+      <UploadZone
+        isScanning={isScanning}
+        progress={progress}
+        statusMessage={statusMessage}
+        activeImageSrc={activeFile?.previewUrl ?? null}
+        activeFileName={activeFile?.name}
+        fileIndex={activeIndex + 1}
+        totalFiles={scanFiles.length}
+        providerDisplayName="Local scanner"
+        modelName="on-device"
+        scanningFiles={scanFiles}
+        onFilesSelected={handleFiles}
+        onShareScreen={onShareScreen}
+        shareScreenButtonText="Share Screen"
+        onSelectThumbnail={(idx) => scanFiles[idx] && setActiveIndex(idx)}
+        inputId="classic-screenshot-upload"
+        icon={
+          <Scan className="h-7 w-7 text-teal-300 drop-shadow-md sm:h-8 sm:w-8" />
+        }
+        title="Click to upload or drag & drop"
+        description="Select screenshots of your bag or share your screen directly to capture & scan."
+        subDescription="Runs on your device: no API key, nothing uploaded."
+        sampleButtonIcon={<Scan />}
+        accent="teal"
+        compactOnMobile
+      />
 
       {isScanning && (
         <div className="flex justify-center">
@@ -746,17 +697,6 @@ export function ClassicScannerView({
           onConfirm={handleConfirmReview}
         />
       )}
-
-      <MobileScreenShareModal
-        isOpen={screenShare.isMobileModalOpen}
-        onClose={() => screenShare.setIsMobileModalOpen(false)}
-        onSelectCamera={() => screenShare.startCameraCapture("environment")}
-        onSelectVideoFile={() => {
-          router.push("/?tab=video");
-          toast.info("Switched to Video tab for screen recording.");
-        }}
-        onTryDisplayMedia={() => screenShare.startScreenShare()}
-      />
     </div>
   );
 }

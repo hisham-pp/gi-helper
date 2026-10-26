@@ -1,6 +1,6 @@
 {
   "name": "genshin-material-tracker",
-  "version": "0.0.48",
+  "version": "0.0.49",
   "private": true,
   "packageManager": "pnpm@10.17.1",
   "engines": {

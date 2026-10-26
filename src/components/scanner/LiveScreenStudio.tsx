@@ -1,16 +1,13 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { Camera, CheckCircle2, Monitor, Video, X } from "lucide-react";
-import type { StreamSourceType } from "./use-screen-share";
+import { CheckCircle2, ScreenShare, X } from "lucide-react";
 
 export interface LiveScreenStudioProps {
   stream: MediaStream | null;
-  sourceType: StreamSourceType | null;
   elapsedSeconds: number;
   isRecording?: boolean;
   onStopAndScanVideo: () => void;
-  onSnapPhoto?: (videoEl: HTMLVideoElement) => void;
   onCancel: () => void;
   accent?: "teal" | "cyan";
   tipText?: string;
@@ -24,11 +21,9 @@ function formatDuration(sec: number): string {
 
 export function LiveScreenStudio({
   stream,
-  sourceType,
   elapsedSeconds,
   isRecording = true,
   onStopAndScanVideo,
-  onSnapPhoto,
   onCancel,
   accent = "teal",
   tipText = "Open Genshin Impact & scroll through your bag (Materials, Weapons, or Artifacts). Click 'Stop & Scan' when finished.",
@@ -65,14 +60,6 @@ export function LiveScreenStudio({
     };
   }, [stream]);
 
-  const handleSnap = () => {
-    if (videoRef.current && onSnapPhoto) {
-      onSnapPhoto(videoRef.current);
-    }
-  };
-
-  const isCamera = sourceType === "camera";
-
   return (
     <div className="glass-pane relative flex min-h-[320px] w-full flex-col overflow-hidden p-3 shadow-2xl sm:min-h-[460px] sm:p-5">
       {/* Top HUD Bar */}
@@ -92,12 +79,8 @@ export function LiveScreenStudio({
 
         {/* Center: Source info & dimensions */}
         <div className="hidden items-center gap-2 rounded-full border border-white/10 bg-black/40 px-3.5 py-1 text-[11px] text-white/80 backdrop-blur-md sm:flex">
-          {isCamera ? (
-            <Video className="h-3.5 w-3.5 text-teal-300" />
-          ) : (
-            <Monitor className="h-3.5 w-3.5 text-cyan-300" />
-          )}
-          <span>{isCamera ? "Camera Stream" : "Screen / Window Share"}</span>
+          <ScreenShare className="h-3.5 w-3.5 text-cyan-300" />
+          <span>Screen / Window Share</span>
           {dimensions && (
             <span className="font-mono text-white/50">
               · {dimensions.width}×{dimensions.height}
@@ -161,19 +144,6 @@ export function LiveScreenStudio({
           <CheckCircle2 className="h-4 w-4 drop-shadow transition-transform group-hover:scale-110" />
           <span>Stop &amp; Scan Recording</span>
         </button>
-
-        {/* Secondary Action: Snap Current Frame */}
-        {onSnapPhoto && (
-          <button
-            type="button"
-            onClick={handleSnap}
-            className="glass-btn flex items-center gap-1.5 px-4 py-2 text-xs font-semibold sm:text-sm"
-            title="Scan this exact frame as a single screenshot"
-          >
-            <Camera className="h-3.5 w-3.5 text-cyan-200" />
-            <span>Snap Frame</span>
-          </button>
-        )}
 
         {/* Cancel Stream */}
         <button

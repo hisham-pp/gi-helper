@@ -1,0 +1,23 @@
+{
+  "title": "Live Screen Share Scanner",
+  "date": "2026-10-26",
+  "summary": "Scan Genshin Impact directly from live screen and window streams on desktop and mobile browsers without saving or uploading video files.",
+  "changes": [
+    {
+      "type": "new",
+      "text": "In-Browser Screen Sharing: Share your Genshin Impact window, full display, or mobile screen directly to scan materials, weapons, and artifacts live."
+    },
+    {
+      "type": "new",
+      "text": "Seamless Video Scanner Flow: Starting screen share from any tab routes directly into the video scanner and records in place, preventing lost recordings upon tab switches."
+    },
+    {
+      "type": "new",
+      "text": "Live Viewfinder HUD: Real-time recording indicator, duration timer, and one-tap Stop & Scan button with automatic video processing."
+    },
+    {
+      "type": "improved",
+      "text": "Mobile Screen Share Support: Enabled direct browser-based screen sharing for supported mobile devices without camera fallbacks."
+    }
+  ]
+}

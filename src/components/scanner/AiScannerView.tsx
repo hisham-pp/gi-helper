@@ -399,7 +399,7 @@ export function AiScannerView({
       role="tabpanel"
       aria-labelledby={ariaLabelledBy}
       tabIndex={0}
-      className="pill-tab-panel flex min-h-0 w-full flex-1 flex-col space-y-2 focus-visible:outline-none sm:block sm:flex-none sm:space-y-4"
+      className="pill-tab-panel w-full space-y-3 focus-visible:outline-none sm:space-y-4"
     >
       {/* Scan Error Banner */}
       {scanError && !isScanning && (

@@ -24,12 +24,12 @@ export const SEO_FAQS: SeoFaqItem[] = [
   {
     question: "How does GI Helper compare to Genshin Kamera (Inventory Kamera)?",
     answerText:
-      "Inventory Kamera is a popular desktop application that automates key presses and captures the game window in real-time, but it only works on Windows PC. GI Helper is a modern web-based alternative that works across Windows, Mac, Linux, iOS, Android, and PlayStation screenshots. It supports direct in-browser screen sharing and mobile camera scanning with zero installation, no administrative privileges, and never interacts with your game client or memory.",
+      "Inventory Kamera is a popular desktop application that automates key presses and captures the game window in real-time, but it only works on Windows PC. GI Helper is a modern web-based alternative that works across Windows, Mac, Linux, iOS, Android, and PlayStation screenshots. It supports direct in-browser screen sharing with zero installation, no administrative privileges, and never interacts with your game client or memory.",
   },
   {
     question: "Can I scan Genshin inventory on iPhone, iPad, Android, or PlayStation?",
     answerText:
-      "Yes. Because GI Helper runs directly in any modern browser (Safari, Chrome, Firefox, Edge), mobile players on iOS and Android can take screenshots in-game, upload screen recordings, or use the Point Camera at Screen feature to scan their PC monitor or TV screen in real-time. Console players (PS4/PS5) can scan effortlessly using their mobile camera or by transferring screenshots.",
+      "Yes. Because GI Helper runs directly in any modern browser (Safari, Chrome, Firefox, Edge), mobile players on iOS and Android can take screenshots in-game, upload screen recordings, or share their screen directly to scan their inventory. Console players (PS4/PS5) can scan effortlessly by transferring their bag screenshots to their phone or computer.",
   },
   {
     question: "What Genshin Impact inventory items can be scanned?",
@@ -213,11 +213,11 @@ export function HomeSeoContent() {
                 <td className="py-3 text-white/60">Live game automation only</td>
               </tr>
               <tr>
-                <td className="py-3 font-medium text-white">Live Screen Share &amp; Camera Scan</td>
+                <td className="py-3 font-medium text-white">Live Screen Share</td>
                 <td className="py-3 text-emerald-300">
                   <div className="flex items-center gap-1.5">
                     <Check className="h-4 w-4 shrink-0" />
-                    <span>Supported (Desktop window share &amp; mobile camera)</span>
+                    <span>Supported (Desktop &amp; mobile browser screen sharing)</span>
                   </div>
                 </td>
                 <td className="py-3 text-white/60">Automates active window only</td>

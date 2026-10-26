@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { FolderOpen, ImageIcon, ScreenShare } from "lucide-react";
 import { markSampleFile } from "@/lib/stats";
 import { ScanningAnimation, ScanningFileItem } from "./ScanningAnimation";
@@ -89,6 +89,12 @@ export function UploadZone({
 }: UploadZoneProps) {
   const [isDragging, setIsDragging] = useState(false);
   const [isLoadingSample, setIsLoadingSample] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleZoneClick = (e: React.MouseEvent) => {
+    if ((e.target as HTMLElement).closest("button, a")) return;
+    fileInputRef.current?.click();
+  };
 
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();
@@ -151,9 +157,7 @@ export function UploadZone({
 
   return (
     <div
-      className={`glass-pane overflow-hidden ${
-        compactOnMobile ? "flex min-h-0 flex-1 flex-col sm:flex-none" : ""
-      }`}
+      className="glass-pane overflow-hidden w-full touch-pan-y"
       data-dragging={isDragging}
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
@@ -183,11 +187,11 @@ export function UploadZone({
           />
         </div>
       ) : (
-        <label
-          htmlFor={inputId}
-          className={`relative z-10 flex cursor-pointer flex-col items-center justify-center text-center select-none ${
+        <div
+          onClick={handleZoneClick}
+          className={`relative z-10 flex cursor-pointer flex-col items-center justify-center text-center select-none touch-pan-y ${
             compactOnMobile
-              ? "min-h-[240px] flex-1 p-4 sm:min-h-[380px] sm:flex-none sm:p-12"
+              ? "min-h-[240px] p-4 sm:min-h-[380px] sm:p-12"
               : "min-h-[340px] p-8 sm:min-h-[380px] sm:p-12"
           }`}
         >
@@ -223,10 +227,14 @@ export function UploadZone({
 
           {/* Actions: the whole pane opens the picker; "Browse files" is its visible cue */}
           <div className="relative z-20 flex flex-wrap items-center justify-center gap-2.5">
-            <span className="glass-btn glass-btn--primary">
+            <button
+              type="button"
+              onClick={() => fileInputRef.current?.click()}
+              className="glass-btn glass-btn--primary"
+            >
               <FolderOpen className="h-3.5 w-3.5" />
               Browse files
-            </span>
+            </button>
             {onShareScreen && showShareScreenButton !== false && (
               <button
                 type="button"
@@ -261,6 +269,7 @@ export function UploadZone({
           </div>
 
           <input
+            ref={fileInputRef}
             id={inputId}
             type="file"
             accept={accept}
@@ -269,7 +278,7 @@ export function UploadZone({
             onChange={handleChange}
             disabled={isScanning}
           />
-        </label>
+        </div>
       )}
     </div>
   );
