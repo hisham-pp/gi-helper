@@ -3,7 +3,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import dynamic from "next/dynamic";
 import { Film, Scan, Sparkles } from "lucide-react";
-import { BrandIcon } from "@/components/layout/BrandIcon";
 import { ScannerTabs, TabItem } from "./ScannerTabs";
 import { ClassicScannerView } from "./ClassicScannerView";
 
@@ -123,10 +122,10 @@ export function Scanner() {
       <div className="space-y-1.5 text-center sm:space-y-2">
         {/* Icon flows inline so it stays beside the first word when the title wraps */}
         <h1 className="text-balance text-xl font-bold tracking-tight text-white drop-shadow-[0_4px_14px_rgba(0,0,0,0.7)] sm:text-3xl md:text-4xl">
-          Scan Your Inventory
+          Genshin Impact Inventory Scanner
         </h1>
-        <p className="mx-auto max-w-xl text-[11px] text-cyan-100/75 drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)] sm:text-sm">
-          Upload screenshots or a screen recording of your Genshin Impact bag to read its materials, weapons and artifacts.
+        <p className="mx-auto max-w-xl text-[11px] text-cyan-100/80 drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)] sm:text-sm">
+          Free web-based inventory scanner &amp; Kamera alternative. Upload screenshots or screen recordings to scan materials, weapons, artifacts and characters right in your browser.
         </p>
       </div>
 

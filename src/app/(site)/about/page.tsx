@@ -16,9 +16,9 @@ import { pageMetadata } from "@/lib/seo";
 import { getLatestVersion } from "@/lib/versions";
 
 export const metadata: Metadata = pageMetadata({
-  title: "About GI Helper",
+  title: "About – Web-Based Genshin Inventory Scanner & Kamera Alternative",
   description:
-    "GI Helper is a free, fan-made Genshin Impact inventory scanner: recognise materials, weapons, artifacts and characters from screenshots or screen recordings on your device or with AI Vision, review them, and export to GOOD format.",
+    "GI Helper is a free, web-based Genshin Impact inventory scanner and online Kamera alternative: recognise materials, weapons, artifacts and characters from screenshots or screen recordings on your device, review them, and export to GOOD format.",
   path: "/about",
 });
 
@@ -76,9 +76,13 @@ export default function AboutPage() {
                 About GI Helper
               </h1>
               <p className="max-w-2xl text-sm leading-relaxed text-white/80">
-                A free, fan-made helper for Genshin Impact players: scan your inventory
-                screenshots, check every material, weapon, artifact and character, and
-                export them to your favourite optimizer, without typing a single number.
+                A free, fan-made{" "}
+                <ShellLink href="/" className="font-semibold text-cyan-300 hover:underline">
+                  web-based Genshin inventory scanner
+                </ShellLink>{" "}
+                and online alternative to desktop tools like Inventory Kamera. Scan screenshots or
+                screen recordings of materials, weapons, artifacts and characters right in your browser,
+                and export them directly to Genshin Optimizer in GOOD format.
               </p>
             </div>
           </div>

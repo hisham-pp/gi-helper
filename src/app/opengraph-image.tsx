@@ -8,9 +8,9 @@ export const alt = SITE.ogImageAlt;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-const HEADLINE = "Scan Your Genshin Inventory";
-const SUBTITLE = "Materials, weapons and artifacts from screenshots, exported to GOOD.";
-const FEATURES = ["On-device scanner", "AI Vision", "GOOD export"];
+const HEADLINE = "Genshin Inventory Scanner";
+const SUBTITLE = "Web-based scanner & Kamera alternative for materials, weapons & artifacts.";
+const FEATURES = ["In-Browser Scanner", "Kamera Alternative", "GOOD Export"];
 const FONT_FAMILY = "Plus Jakarta Sans";
 
 /**
