@@ -1,6 +1,7 @@
 import { ShellLink } from "@/components/layout/ShellLink";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { ScannerSettingsButton } from "@/components/scanner/ScannerSettingsButton";
+import { Github } from "lucide-react";
 import { BrandIcon } from "./BrandIcon";
 import { HeaderNav, VersionChip } from "./HeaderNav";
 
@@ -39,6 +40,16 @@ export function SiteHeader({ version }: SiteHeaderProps) {
           <ScannerSettingsButton />
         </div>
         <ThemeToggle />
+        <a
+          href="https://github.com/hisham-pp/gi-helper"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="GitHub Repository"
+          aria-label="GI Helper GitHub Repository"
+          className="glass-chip flex h-8 w-8 items-center justify-center rounded-xl text-white/70 hover:text-white transition-colors"
+        >
+          <Github className="h-4 w-4" />
+        </a>
       </div>
     </header>
   );
