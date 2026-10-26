@@ -6,6 +6,9 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { UploadZone } from "./UploadZone";
 import { LazyScanReviewModal, preloadScanReviewModal } from "./lazy-modals";
+import { useScreenShare } from "./use-screen-share";
+import { LiveScreenStudio } from "./LiveScreenStudio";
+import { MobileScreenShareModal } from "./MobileScreenShareModal";
 import type { ScanningFileItem } from "./ScanningAnimation";
 import { cropToBlob } from "@gi/grid-detector";
 import {
@@ -556,6 +559,29 @@ export function ClassicScannerView({
 
   const handleCloseReview = useCallback(() => setIsReviewOpen(false), []);
 
+  const handleAutoStop = useCallback(
+    async (file: File) => {
+      if (file.type.startsWith("video/")) {
+        router.push("/?tab=video");
+        toast.info("Recording saved. Switched to Video tab to scan.");
+      }
+    },
+    [router],
+  );
+
+  const screenShare = useScreenShare({
+    onAutoStop: handleAutoStop,
+  });
+
+  const handleShareScreen = useCallback(() => {
+    if (isScanning) return;
+    if (screenShare.isMobile && !screenShare.canUseDisplayMedia) {
+      screenShare.setIsMobileModalOpen(true);
+    } else {
+      screenShare.startScreenShare();
+    }
+  }, [isScanning, screenShare]);
+
   const activeFile = scanFiles[activeIndex];
 
   return (
@@ -647,30 +673,57 @@ export function ClassicScannerView({
         </div>
       )}
 
-      <UploadZone
-        isScanning={isScanning}
-        progress={progress}
-        statusMessage={statusMessage}
-        activeImageSrc={activeFile?.previewUrl ?? null}
-        activeFileName={activeFile?.name}
-        fileIndex={activeIndex + 1}
-        totalFiles={scanFiles.length}
-        providerDisplayName="Local scanner"
-        modelName="on-device"
-        scanningFiles={scanFiles}
-        onFilesSelected={handleFiles}
-        onSelectThumbnail={(idx) => scanFiles[idx] && setActiveIndex(idx)}
-        inputId="classic-screenshot-upload"
-        icon={
-          <Scan className="h-7 w-7 text-teal-300 drop-shadow-md sm:h-8 sm:w-8" />
-        }
-        title="Click to upload or drag & drop"
-        description="Select screenshots of your bag: materials, weapons or artifacts, with their counts and levels."
-        subDescription="Runs on your device: no API key, nothing uploaded."
-        sampleButtonIcon={<Scan />}
-        accent="teal"
-        compactOnMobile
-      />
+      {screenShare.isStreaming ? (
+        <LiveScreenStudio
+          stream={screenShare.stream}
+          sourceType={screenShare.sourceType}
+          elapsedSeconds={screenShare.elapsedSeconds}
+          isRecording={screenShare.isRecording}
+          accent="teal"
+          onStopAndScanVideo={async () => {
+            const file = await screenShare.stopAndGetVideo();
+            if (file) {
+              router.push("/?tab=video");
+              toast.info("Recording saved. Switched to Video tab to scan.");
+            }
+          }}
+          onSnapPhoto={async (videoEl) => {
+            const photoFile = await screenShare.snapCurrentFrame(videoEl);
+            if (photoFile) {
+              handleFiles([photoFile]);
+            }
+          }}
+          onCancel={screenShare.cancelStream}
+          tipText="Click 'Snap Frame' to capture and scan your inventory screen immediately"
+        />
+      ) : (
+        <UploadZone
+          isScanning={isScanning}
+          progress={progress}
+          statusMessage={statusMessage}
+          activeImageSrc={activeFile?.previewUrl ?? null}
+          activeFileName={activeFile?.name}
+          fileIndex={activeIndex + 1}
+          totalFiles={scanFiles.length}
+          providerDisplayName="Local scanner"
+          modelName="on-device"
+          scanningFiles={scanFiles}
+          onFilesSelected={handleFiles}
+          onShareScreen={handleShareScreen}
+          shareScreenButtonText="Share Screen"
+          onSelectThumbnail={(idx) => scanFiles[idx] && setActiveIndex(idx)}
+          inputId="classic-screenshot-upload"
+          icon={
+            <Scan className="h-7 w-7 text-teal-300 drop-shadow-md sm:h-8 sm:w-8" />
+          }
+          title="Click to upload or drag & drop"
+          description="Select screenshots of your bag or share your screen directly to capture & scan."
+          subDescription="Runs on your device: no API key, nothing uploaded."
+          sampleButtonIcon={<Scan />}
+          accent="teal"
+          compactOnMobile
+        />
+      )}
 
       {isScanning && (
         <div className="flex justify-center">
@@ -693,6 +746,17 @@ export function ClassicScannerView({
           onConfirm={handleConfirmReview}
         />
       )}
+
+      <MobileScreenShareModal
+        isOpen={screenShare.isMobileModalOpen}
+        onClose={() => screenShare.setIsMobileModalOpen(false)}
+        onSelectCamera={() => screenShare.startCameraCapture("environment")}
+        onSelectVideoFile={() => {
+          router.push("/?tab=video");
+          toast.info("Switched to Video tab for screen recording.");
+        }}
+        onTryDisplayMedia={() => screenShare.startScreenShare()}
+      />
     </div>
   );
 }
