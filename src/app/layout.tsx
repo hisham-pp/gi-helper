@@ -8,6 +8,7 @@ import { ThemeColorMeta } from "@/components/ThemeColorMeta";
 import { PwaContextMenu } from "@/components/pwa/PwaContextMenu";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 /**
  * Site-wide SEO defaults. Pages set their own title, description and canonical;
@@ -79,6 +80,7 @@ export default function RootLayout({
         >
           <ThemeColorMeta />
           <Analytics />
+          <SpeedInsights />
           <ServiceWorkerRegistration />
           <BackgroundEffects />
           {children}
