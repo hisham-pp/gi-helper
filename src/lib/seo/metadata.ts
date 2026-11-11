@@ -1,9 +1,15 @@
 import type { Metadata } from "next";
 import { SITE } from "./site";
 
-/** Served by app/opengraph-image.tsx. */
+/**
+ * Absolute URL for the generated OG image.
+ *
+ * Using an absolute URL (rather than the bare "/opengraph-image" path) ensures
+ * social scrapers — Twitter/X, Discord, Slack — that do not honour Next.js's
+ * `metadataBase` convention still resolve the image correctly.
+ */
 const OG_IMAGE = {
-  url: "/opengraph-image",
+  url: `${SITE.url}/opengraph-image`,
   width: 1200,
   height: 630,
   alt: SITE.ogImageAlt,
@@ -13,7 +19,11 @@ interface PageSeo {
   /** Page title without the site name; the layout template appends it. */
   title: string;
   description: string;
-  /** Canonical path, e.g. "/db/materials". */
+  /**
+   * Canonical path, e.g. "/db/materials".
+   * Stored as an absolute URL so crawlers and social scrapers that don't
+   * read `metadataBase` still resolve the canonical correctly.
+   */
   path: string;
   /** Use the title exactly as given (skip the "| GI Helper" template). */
   absoluteTitle?: boolean;
@@ -26,15 +36,16 @@ interface PageSeo {
  * including the share image.
  */
 export function pageMetadata({ title, description, path, absoluteTitle }: PageSeo): Metadata {
+  const canonicalUrl = `${SITE.url}${path}`;
   return {
     title: absoluteTitle ? { absolute: title } : title,
     description,
-    alternates: { canonical: path },
+    alternates: { canonical: canonicalUrl },
     openGraph: {
       type: "website",
       siteName: SITE.name,
       locale: SITE.locale,
-      url: path,
+      url: canonicalUrl,
       title,
       description,
       images: [OG_IMAGE],
