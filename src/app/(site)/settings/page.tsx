@@ -5,6 +5,8 @@ export const metadata: Metadata = {
   title: "Scanner Settings",
   description:
     "Configure AI Vision providers, models, API credentials, and workflow preferences for GI Helper.",
+  // Settings are user-specific UI with no static content to index.
+  robots: { index: false, follow: false },
 };
 
 export default function SettingsPage() {

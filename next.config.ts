@@ -65,8 +65,10 @@ const nextConfig: NextConfig = {
   // The database and inventory moved to sub-pages (/db/*, /inventory/*) in 0.0.20
   async redirects() {
     return [
-      { source: "/db", destination: "/db/materials", permanent: false },
-      { source: "/inventory", destination: "/inventory/materials", permanent: false },
+      // Permanent redirects: Google passes PageRank through and stops
+      // re-crawling the source URL after the first 301.
+      { source: "/db", destination: "/db/materials", permanent: true },
+      { source: "/inventory", destination: "/inventory/materials", permanent: true },
       // Old URLs, still linked from outside
       { source: "/materials", destination: "/db/materials", permanent: true },
       { source: "/characters", destination: "/db/characters", permanent: true },

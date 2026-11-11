@@ -11,16 +11,18 @@ import {
   ExternalLink,
   type LucideIcon,
 } from "lucide-react";
-import { pageMetadata } from "@/lib/seo";
 import { getLatestVersion } from "@/lib/versions";
 import type { Route } from "next";
 
-export const metadata: Metadata = pageMetadata({
+// /more is a mobile bottom-nav overflow hub: a list of links with no unique
+// static content. Excluding it from the index keeps crawl budget focused on
+// content pages (guides, DB, home) and prevents Google from treating it as a
+// thin duplicate of /about or /settings.
+export const metadata: Metadata = {
   title: "More",
-  description:
-    "Settings, about, feedback, release notes and more for GI Helper.",
-  path: "/more",
-});
+  description: "Settings, about, feedback, release notes and more for GI Helper.",
+  robots: { index: false, follow: true },
+};
 
 interface MoreMenuItem {
   href: Route | string;
