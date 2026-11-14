@@ -51,7 +51,7 @@ export const SEO_FAQS: SeoFaqItem[] = [
   {
     question: "How do I export my scanned inventory to Genshin Optimizer?",
     answerText:
-      "After scanning and confirming your items in the review modal, open the Inventory page and click 'Export to GOOD'. GI Helper creates a standard GOOD (Genshin Open Object Description) JSON file that can be imported directly into Genshin Optimizer, Seelie.me, or Akasha System.",
+      "After scanning and confirming your items in the review modal, open the Inventory page and click 'Export to GOOD'. GI Helper creates a standard GOOD (Genshin Open Object Description) JSON file that can be imported directly into Genshin Optimizer, Genshin Track, Seelie.me, or Akasha System.",
   },
   {
     question: "Is GI Helper safe to use? Can my Genshin account get banned?",
@@ -149,7 +149,7 @@ export function HomeSeoContent() {
                 Screenshot to GOOD Export
               </h4>
               <p className="text-xs text-white/70 leading-relaxed">
-                Convert your bag into standard GOOD JSON for Genshin Optimizer and Seelie.
+                Convert your bag into standard GOOD JSON for Genshin Optimizer, Genshin Track, and Seelie.
               </p>
               <div className="flex items-center gap-1 pt-1 text-[11px] font-semibold text-cyan-300">
                 <span>Read Guide</span>
@@ -370,7 +370,7 @@ export function HomeSeoContent() {
             <h3 className="text-xs font-bold uppercase tracking-wider">Export Workflow</h3>
           </div>
           <h3 className="text-lg font-bold text-white sm:text-xl">
-            Direct Export to Genshin Optimizer &amp; Seelie in GOOD Format
+            Direct Export to Genshin Optimizer, Genshin Track &amp; Seelie in GOOD Format
           </h3>
           <p className="text-xs leading-relaxed text-white/70 sm:text-sm">
             GI Helper formats your inventory according to the standard{" "}
@@ -415,7 +415,7 @@ export function HomeSeoContent() {
             </span>
             <h4 className="text-sm font-bold text-white">Import &amp; Optimize</h4>
             <p className="text-xs leading-relaxed text-white/70">
-              Upload the JSON file into Genshin Optimizer or Seelie.me to calculate optimal builds
+              Upload the JSON file into Genshin Optimizer, Genshin Track, or Seelie.me to calculate optimal builds
               and farm schedules instantly.
             </p>
           </div>

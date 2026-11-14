@@ -1032,6 +1032,20 @@
     }
   },
   {
+    "id": "mitya",
+    "key": "Mitya",
+    "name": "Mitya",
+    "title": "Rules Set at Naught",
+    "rarity": 5,
+    "element": "Electro",
+    "weaponType": "catalyst",
+    "region": "Snezhnaya",
+    "talentBoosts": {
+      "c3": "skill",
+      "c5": "auto"
+    }
+  },
+  {
     "id": "mona",
     "key": "Mona",
     "name": "Mona",
@@ -1434,6 +1448,20 @@
     "region": "Sumeru",
     "talentBoosts": {
       "c3": "burst",
+      "c5": "skill"
+    }
+  },
+  {
+    "id": "valeriy",
+    "key": "Valeriy",
+    "name": "Valeriy",
+    "title": "Fort Fulguration",
+    "rarity": 4,
+    "element": "Electro",
+    "weaponType": "sword",
+    "region": "Snezhnaya",
+    "talentBoosts": {
+      "c3": "auto",
       "c5": "skill"
     }
   },

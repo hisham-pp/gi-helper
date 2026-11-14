@@ -41,9 +41,9 @@ const STEPS = [
       "Head over to the Inventory tab and click 'Export to GOOD'. GI Helper immediately downloads a standard .json file compliant with the GOOD format specification version 3.0.",
   },
   {
-    title: "5. Import into Genshin Optimizer or Seelie",
+    title: "5. Import into Genshin Optimizer, Genshin Track, or Seelie",
     description:
-      "Open Genshin Optimizer (frzyc.github.io/genshin-optimizer), navigate to Settings → Database → Import / Upload File, and select your exported GOOD JSON. Your builds and damage numbers are computed automatically!",
+      "Open your preferred optimizer (such as Genshin Optimizer at frzyc.github.io/genshin-optimizer or Genshin Track at genshintrack.com/dashboard), navigate to Settings / Database → Import, and select your exported GOOD JSON. Your builds, artifacts, and progression goals are computed automatically!",
   },
 ];
 
@@ -52,6 +52,11 @@ const COMPATIBLE_TOOLS = [
     name: "Genshin Optimizer",
     url: "https://frzyc.github.io/genshin-optimizer/",
     desc: "The premier damage calculator and artifact build optimizer. Import your weapons, artifacts, and characters to find optimal team builds.",
+  },
+  {
+    name: "Genshin Track",
+    url: "https://genshintrack.com/dashboard",
+    desc: "Online Genshin Impact character build optimizer, account progression dashboard, and artifact inventory tracker.",
   },
   {
     name: "Seelie.me",
