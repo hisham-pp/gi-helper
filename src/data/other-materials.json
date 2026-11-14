@@ -2459,6 +2459,28 @@
     "order": 10218
   },
   {
+    "id": "sour-bait",
+    "name": "Sour Bait",
+    "description": "A type of bait based on flour mixed with the pulp and seeds of Bulle Fruit. When tossed into the water, it quickly spreads a sweet and sour fragrance that is irresistible to fishes such as Heartfeather Bass. A group of anglers once resorted to eating this bait in an emergency after they had run out of supplies, and were poisoned as a result. To prevent such accidents from happening again, this type of bait was made much sourer than it was before — so sour in fact that simply holding it up to their noses makes people feel dizzy and causes their eyes to stream, let alone putting it in their mouths...\n\nSuitable for catching Heartfeather Bass.",
+    "type": "OTHER_MATERIAL",
+    "category": "FISHING",
+    "rarity": 2,
+    "image": "/images/material-thumbs/sour-bait.webp",
+    "sortRank": 340,
+    "order": 10219
+  },
+  {
+    "id": "flashing-maintenance-mek-bait",
+    "name": "Flashing Maintenance Mek Bait",
+    "description": "A unique type of Trap said to utilize technology developed by the Fontaine Research Institute. Equipped with a metal protective cage and hook bars, the device contains a light made from Marcotte extract.\nWhen tossed in water, the light flashes at a certain frequency to attract nearby Maintenance Meks, which are often referred to as \"Water Maintenance Fish\" or \"Iron Fish.\" Maintenance Meks have powerful bites, but they are only able to bite onto the specially made external bars which hook them firmly in place. The contraption is essentially a special kind of bait designed to catch valuable \"Iron Fishes.\"\n\nSuitable for catching Maintenance Meks.",
+    "type": "OTHER_MATERIAL",
+    "category": "FISHING",
+    "rarity": 2,
+    "image": "/images/material-thumbs/flashing-maintenance-mek-bait.webp",
+    "sortRank": 340,
+    "order": 10220
+  },
+  {
     "id": "spinelgrain-bait",
     "name": "Spinelgrain Bait",
     "description": "Made from a mixture of Spinel Fruit and Grainfruit, this peculiar Natlan fish bait can maintain its shape even after having been submerged for extended periods of time. By dissipating flavor at a consistent rate, its remarkable power to attract fish continues unabated for a very long time indeed.\n\nSuitable for catching normal Rapidfish, Sunfish, and normal Unihornfish.",
@@ -2467,7 +2489,7 @@
     "rarity": 2,
     "image": "/images/material-thumbs/spinelgrain-bait.webp",
     "sortRank": 340,
-    "order": 10219
+    "order": 10221
   },
   {
     "id": "emberglow-bait",
@@ -2478,7 +2500,7 @@
     "rarity": 2,
     "image": "/images/material-thumbs/emberglow-bait.webp",
     "sortRank": 340,
-    "order": 10220
+    "order": 10222
   },
   {
     "id": "berry-bait",
@@ -2489,7 +2511,7 @@
     "rarity": 2,
     "image": "/images/material-thumbs/berry-bait.webp",
     "sortRank": 340,
-    "order": 10221
+    "order": 10223
   },
   {
     "id": "refreshing-lakka-bait",
@@ -2500,7 +2522,7 @@
     "rarity": 2,
     "image": "/images/material-thumbs/refreshing-lakka-bait.webp",
     "sortRank": 340,
-    "order": 10222
+    "order": 10224
   },
   {
     "id": "glimmering-bait",
@@ -2511,7 +2533,7 @@
     "rarity": 2,
     "image": "/images/material-thumbs/glimmering-bait.webp",
     "sortRank": 340,
-    "order": 10223
+    "order": 10225
   },
   {
     "id": "medaka",
@@ -2522,7 +2544,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/medaka.webp",
     "sortRank": 341,
-    "order": 10224
+    "order": 10226
   },
   {
     "id": "glaze-medaka",
@@ -2533,7 +2555,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/glaze-medaka.webp",
     "sortRank": 341,
-    "order": 10225
+    "order": 10227
   },
   {
     "id": "sweet-flower-medaka",
@@ -2544,7 +2566,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/sweet-flower-medaka.webp",
     "sortRank": 341,
-    "order": 10226
+    "order": 10228
   },
   {
     "id": "aizen-medaka",
@@ -2555,7 +2577,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/aizen-medaka.webp",
     "sortRank": 341,
-    "order": 10227
+    "order": 10229
   },
   {
     "id": "dawncatcher",
@@ -2566,7 +2588,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/dawncatcher.webp",
     "sortRank": 341,
-    "order": 10228
+    "order": 10230
   },
   {
     "id": "crystalfish",
@@ -2577,7 +2599,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/crystalfish.webp",
     "sortRank": 341,
-    "order": 10229
+    "order": 10231
   },
   {
     "id": "lunged-stickleback",
@@ -2588,7 +2610,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/lunged-stickleback.webp",
     "sortRank": 341,
-    "order": 10230
+    "order": 10232
   },
   {
     "id": "betta",
@@ -2599,7 +2621,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/betta.webp",
     "sortRank": 341,
-    "order": 10231
+    "order": 10233
   },
   {
     "id": "venomspine-fish",
@@ -2610,7 +2632,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/venomspine-fish.webp",
     "sortRank": 341,
-    "order": 10232
+    "order": 10234
   },
   {
     "id": "akai-maou",
@@ -2621,7 +2643,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/akai-maou.webp",
     "sortRank": 341,
-    "order": 10233
+    "order": 10235
   },
   {
     "id": "snowstrider",
@@ -2632,7 +2654,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/snowstrider.webp",
     "sortRank": 341,
-    "order": 10234
+    "order": 10236
   },
   {
     "id": "golden-koi",
@@ -2643,7 +2665,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/golden-koi.webp",
     "sortRank": 341,
-    "order": 10235
+    "order": 10237
   },
   {
     "id": "rusty-koi",
@@ -2654,7 +2676,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/rusty-koi.webp",
     "sortRank": 341,
-    "order": 10236
+    "order": 10238
   },
   {
     "id": "cerulean-doppeldrake",
@@ -2665,7 +2687,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/cerulean-doppeldrake.webp",
     "sortRank": 341,
-    "order": 10237
+    "order": 10239
   },
   {
     "id": "brown-shirakodai",
@@ -2676,7 +2698,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/brown-shirakodai.webp",
     "sortRank": 342,
-    "order": 10238
+    "order": 10240
   },
   {
     "id": "purple-shirakodai",
@@ -2687,7 +2709,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/purple-shirakodai.webp",
     "sortRank": 342,
-    "order": 10239
+    "order": 10241
   },
   {
     "id": "tea-colored-shirakodai",
@@ -2698,7 +2720,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/tea-colored-shirakodai.webp",
     "sortRank": 342,
-    "order": 10240
+    "order": 10242
   },
   {
     "id": "abiding-angelfish",
@@ -2709,7 +2731,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/abiding-angelfish.webp",
     "sortRank": 342,
-    "order": 10241
+    "order": 10243
   },
   {
     "id": "raimei-angelfish",
@@ -2720,7 +2742,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/raimei-angelfish.webp",
     "sortRank": 342,
-    "order": 10242
+    "order": 10244
   },
   {
     "id": "pufferfish",
@@ -2731,7 +2753,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/pufferfish.webp",
     "sortRank": 342,
-    "order": 10243
+    "order": 10245
   },
   {
     "id": "bitter-pufferfish",
@@ -2742,7 +2764,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/bitter-pufferfish.webp",
     "sortRank": 342,
-    "order": 10244
+    "order": 10246
   },
   {
     "id": "divda-ray",
@@ -2753,7 +2775,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/divda-ray.webp",
     "sortRank": 342,
-    "order": 10245
+    "order": 10247
   },
   {
     "id": "formalo-ray",
@@ -2764,7 +2786,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/formalo-ray.webp",
     "sortRank": 342,
-    "order": 10246
+    "order": 10248
   },
   {
     "id": "true-fruit-angler",
@@ -2775,7 +2797,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/true-fruit-angler.webp",
     "sortRank": 342,
-    "order": 10247
+    "order": 10249
   },
   {
     "id": "peach-of-the-deep-waves",
@@ -2786,7 +2808,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/peach-of-the-deep-waves.webp",
     "sortRank": 342,
-    "order": 10248
+    "order": 10250
   },
   {
     "id": "sandstorm-angler",
@@ -2797,7 +2819,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/sandstorm-angler.webp",
     "sortRank": 342,
-    "order": 10249
+    "order": 10251
   },
   {
     "id": "sunset-cloud-angler",
@@ -2808,7 +2830,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/sunset-cloud-angler.webp",
     "sortRank": 342,
-    "order": 10250
+    "order": 10252
   },
   {
     "id": "lazurite-axe-marlin",
@@ -2819,7 +2841,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/lazurite-axe-marlin.webp",
     "sortRank": 342,
-    "order": 10251
+    "order": 10253
   },
   {
     "id": "halcyon-jade-axe-marlin",
@@ -2830,7 +2852,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/halcyon-jade-axe-marlin.webp",
     "sortRank": 342,
-    "order": 10252
+    "order": 10254
   },
   {
     "id": "streaming-axe-marlin",
@@ -2841,7 +2863,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/streaming-axe-marlin.webp",
     "sortRank": 342,
-    "order": 10253
+    "order": 10255
   },
   {
     "id": "rippling-heartfeather-bass",
@@ -2852,7 +2874,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/rippling-heartfeather-bass.webp",
     "sortRank": 342,
-    "order": 10254
+    "order": 10256
   },
   {
     "id": "blazing-heartfeather-bass",
@@ -2863,7 +2885,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/blazing-heartfeather-bass.webp",
     "sortRank": 342,
-    "order": 10255
+    "order": 10257
   },
   {
     "id": "jade-heartfeather-bass",
@@ -2874,7 +2896,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/jade-heartfeather-bass.webp",
     "sortRank": 342,
-    "order": 10256
+    "order": 10258
   },
   {
     "id": "maintenance-mek-initial-configuration",
@@ -2885,7 +2907,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/maintenance-mek-initial-configuration.webp",
     "sortRank": 343,
-    "order": 10257
+    "order": 10259
   },
   {
     "id": "maintenance-mek-water-body-cleaner",
@@ -2896,7 +2918,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/maintenance-mek-water-body-cleaner.webp",
     "sortRank": 343,
-    "order": 10258
+    "order": 10260
   },
   {
     "id": "maintenance-mek-situation-controller",
@@ -2907,7 +2929,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/maintenance-mek-situation-controller.webp",
     "sortRank": 343,
-    "order": 10259
+    "order": 10261
   },
   {
     "id": "maintenance-mek-platinum-collection",
@@ -2918,7 +2940,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/maintenance-mek-platinum-collection.webp",
     "sortRank": 343,
-    "order": 10260
+    "order": 10262
   },
   {
     "id": "maintenance-mek-gold-leader",
@@ -2929,7 +2951,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/maintenance-mek-gold-leader.webp",
     "sortRank": 343,
-    "order": 10261
+    "order": 10263
   },
   {
     "id": "floral-rapidfighting-fish",
@@ -2940,7 +2962,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/floral-rapidfighting-fish.webp",
     "sortRank": 344,
-    "order": 10262
+    "order": 10264
   },
   {
     "id": "diving-rapidfighting-fish",
@@ -2951,7 +2973,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/diving-rapidfighting-fish.webp",
     "sortRank": 344,
-    "order": 10263
+    "order": 10265
   },
   {
     "id": "magma-rapidfighting-fish",
@@ -2962,7 +2984,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/magma-rapidfighting-fish.webp",
     "sortRank": 344,
-    "order": 10264
+    "order": 10266
   },
   {
     "id": "greenwave-sunfish",
@@ -2973,7 +2995,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/greenwave-sunfish.webp",
     "sortRank": 344,
-    "order": 10265
+    "order": 10267
   },
   {
     "id": "dusk-sunfish",
@@ -2984,7 +3006,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/dusk-sunfish.webp",
     "sortRank": 344,
-    "order": 10266
+    "order": 10268
   },
   {
     "id": "phony-phlogiston-unihornfish",
@@ -2995,7 +3017,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/phony-phlogiston-unihornfish.webp",
     "sortRank": 344,
-    "order": 10267
+    "order": 10269
   },
   {
     "id": "pseudoshark-unihornfish",
@@ -3006,7 +3028,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/pseudoshark-unihornfish.webp",
     "sortRank": 344,
-    "order": 10268
+    "order": 10270
   },
   {
     "id": "secret-source-scout-sweeper",
@@ -3017,7 +3039,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/secret-source-scout-sweeper.webp",
     "sortRank": 344,
-    "order": 10269
+    "order": 10271
   },
   {
     "id": "common-axehead-fish",
@@ -3028,7 +3050,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/common-axehead-fish.webp",
     "sortRank": 345,
-    "order": 10270
+    "order": 10272
   },
   {
     "id": "frosted-axehead-fish",
@@ -3039,7 +3061,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/frosted-axehead-fish.webp",
     "sortRank": 345,
-    "order": 10271
+    "order": 10273
   },
   {
     "id": "blazing-axehead-fish",
@@ -3050,7 +3072,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/blazing-axehead-fish.webp",
     "sortRank": 345,
-    "order": 10272
+    "order": 10274
   },
   {
     "id": "veggie-mauler-shark",
@@ -3061,7 +3083,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/veggie-mauler-shark.webp",
     "sortRank": 345,
-    "order": 10273
+    "order": 10275
   },
   {
     "id": "neon-mauler-shark",
@@ -3072,7 +3094,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/neon-mauler-shark.webp",
     "sortRank": 345,
-    "order": 10274
+    "order": 10276
   },
   {
     "id": "azuregaze-crystal-eye",
@@ -3083,7 +3105,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/azuregaze-crystal-eye.webp",
     "sortRank": 345,
-    "order": 10275
+    "order": 10277
   },
   {
     "id": "nightgaze-crystal-eye",
@@ -3094,7 +3116,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/nightgaze-crystal-eye.webp",
     "sortRank": 345,
-    "order": 10276
+    "order": 10278
   },
   {
     "id": "charcoal-snowfin",
@@ -3105,7 +3127,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/charcoal-snowfin.webp",
     "sortRank": 346,
-    "order": 10277
+    "order": 10279
   },
   {
     "id": "cream-snowfin",
@@ -3116,7 +3138,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/cream-snowfin.webp",
     "sortRank": 346,
-    "order": 10278
+    "order": 10280
   },
   {
     "id": "moonlight-snowfin",
@@ -3127,7 +3149,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/moonlight-snowfin.webp",
     "sortRank": 346,
-    "order": 10279
+    "order": 10281
   },
   {
     "id": "ruby-starbloom-fish",
@@ -3138,7 +3160,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/ruby-starbloom-fish.webp",
     "sortRank": 346,
-    "order": 10280
+    "order": 10282
   },
   {
     "id": "frostpetal-starbloom-fish",
@@ -3149,7 +3171,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/frostpetal-starbloom-fish.webp",
     "sortRank": 346,
-    "order": 10281
+    "order": 10283
   },
   {
     "id": "iridescent-starbloom-fish",
@@ -3160,7 +3182,7 @@
     "rarity": 3,
     "image": "/images/material-thumbs/iridescent-starbloom-fish.webp",
     "sortRank": 346,
-    "order": 10282
+    "order": 10284
   },
   {
     "id": "small-pretty-crystal",
@@ -3171,7 +3193,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/small-pretty-crystal.webp",
     "sortRank": 430051,
-    "order": 10283
+    "order": 10285
   },
   {
     "id": "medium-pretty-crystal",
@@ -3182,7 +3204,7 @@
     "rarity": 1,
     "image": "/images/material-thumbs/medium-pretty-crystal.webp",
     "sortRank": 430051,
-    "order": 10284
+    "order": 10286
   },
   {
     "id": "big-pretty-crystal",
@@ -3193,6 +3215,6 @@
     "rarity": 1,
     "image": "/images/material-thumbs/big-pretty-crystal.webp",
     "sortRank": 430051,
-    "order": 10285
+    "order": 10287
   }
 ]

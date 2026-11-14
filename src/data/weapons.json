@@ -767,6 +767,19 @@
     "passive": "Offering Unto Wind and Sun"
   },
   {
+    "id": "starsealed-edict",
+    "key": "StarsealedEdict",
+    "name": "Starsealed Edict",
+    "rarity": 5,
+    "type": "catalyst",
+    "atk": 542,
+    "substat": {
+      "name": "CRIT DMG",
+      "value": "88.2%"
+    },
+    "passive": "Dawnstar's Flowing Trail"
+  },
+  {
     "id": "summit-shaper",
     "key": "SummitShaper",
     "name": "Summit Shaper",

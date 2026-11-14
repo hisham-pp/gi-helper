@@ -1,0 +1,23 @@
+{
+  "title": "Genshin Track Support, Game Data Sync & Submodule Fixes",
+  "date": "2026-11-14",
+  "summary": "Added Genshin Track as a supported build optimizer and progression dashboard, synced character and material game catalogs to genshin-db 5.2.15 (introducing Mitya and Valeriy), and fixed repository submodule initialization.",
+  "changes": [
+    {
+      "type": "new",
+      "text": "Supported Optimizer – Genshin Track: Added integration and documentation links for Genshin Track (genshintrack.com/dashboard) across the GOOD export guide, homepage SEO workflows, and account planning roadmaps."
+    },
+    {
+      "type": "new",
+      "text": "Character & Material Catalog Update: Synchronized canonical game database with genshin-db 5.2.15, importing new playable characters Mitya and Valeriy, generating lossless 64² WebP reference atlases, and updating material catalogs."
+    },
+    {
+      "type": "improved",
+      "text": "Sync Scraper Resilience: Fixed missing image handling for newly added characters, added Fandom image lookup for missing bait items, and cached existing weapon and artifact WebP icons to drastically accelerate builds."
+    },
+    {
+      "type": "fixed",
+      "text": "Git Submodule Repository Cloning: Resolved corrupted git refs and clone branches across all submodules (gi-helper, gi-docs, gi-sync-catalogue, gi-tests) in the suite."
+    }
+  ]
+}
